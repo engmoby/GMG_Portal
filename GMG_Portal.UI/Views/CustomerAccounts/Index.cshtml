@@ -1,0 +1,462 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+@using GMG_Portal.Content.Admin.SystemParameters;
+@using GMG_Portal.Content.Admin;
+@using GMG_Portal.Content;
+
+<script type="text/javascript" src="~/Scripts/app/services/CustomerAccounts.js"></script>
+<script type="text/javascript" src="~/Scripts/app/pages/CustomerAccounts/CustomerAccounts.js"></script>
+@*<input type="hidden" id="HEnglishNameUnique" value="@CustomerAccounts.EnglishNameUnique" />*@
+<input type="hidden" id="HUpdateSuccessMessage" value="@CustomerAccounts.UpdateSuccessMessage" />
+<input type="hidden" id="HSaveSuccessMessage" value="@CustomerAccounts.SaveSuccessMessage" />
+<input type="hidden" id="HDeleteSuccessMessage" value="@CustomerAccounts.DeleteSuccessMessage" />
+<input type="hidden" id="HCannotDeleted" value="@CustomerAccounts.CannotDeleted" />
+
+<div class="widgets" ng-controller="CustomerAccountsController as ctrl">
+
+    <div ba-panel ng-show="ShowTableData">
+
+        <table id="TableWithSearch" class="table table-hover table-condensed" st-table="TableData" st-safe-src="Customers">
+
+            <thead>
+                <tr class="toolbar">
+                    <th colspan="3">
+                        <div class="input-group">
+                            <span class="input-group-addon addon-left"><i class="fa fa-search" aria-hidden="true"></i></span>
+                            <input st-search="" class="form-control" placeholder="@CustomerAccounts.txtSearchLbl" type="text" />
+                        </div>
+                    </th>
+                    <th colspan="3"></th>
+                    <th>
+                        <div class="input-group">
+                            <button class="btn btn-primary btn-with-icon" ng-click="open(null)"><i class="fa fa-plus" aria-hidden="true"></i>@CustomerAccounts.BtnAdd</button>
+                        </div>
+                    </th>
+                </tr>
+
+                <tr class="sortable">
+                    <th>#</th>
+                    <th st-sort="NameAr">@CustomerAccounts.lblTblName</th>
+                    <th st-sort="NameEn">@CustomerAccounts.LblAccountType</th>
+                    <th st-sort="NameAr">@CustomerAccounts.lblCountry</th>
+                    <th st-sort="NameEn">@CustomerAccounts.lblCity</th>
+                    <th st-sort="NameEn">@CustomerAccounts.lblAccountStatus</th>
+                    <th>@CustomerAccounts.Action</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+                <tr ng-repeat="Customer in TableData">
+                    <td ng-class="{'red-text': Customer.IsDeleted == true}">{{$index+1}}</td>
+                    <td ng-class="{'red-text': Customer.IsDeleted == true}">{{Customer.FirstNameEn}} {{Customer.MidNameEn}} {{Customer.LastNameEn}}</td>
+                    <td ng-class="{'red-text': Customer.IsDeleted == true}">{{Customer.AccountTypeNameEn}}</td>
+                    <td ng-class="{'red-text': Customer.IsDeleted == true}">{{Customer.CountryNameEn}}</td>
+                    <td ng-class="{'red-text': Customer.IsDeleted == true}">{{Customer.CityNameEn}}</td>
+                    <td ng-class="{'red-text': Customer.IsDeleted == true}">{{Customer.AccountStatusNameEn}}</td>
+                    <td>
+                        <div class="buttons" ng-show="!Customer.IsDeleted">
+                            <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(Customer)"><i class="fa fa-pencil" aria-hidden="true"></i>@CustomerAccounts.TableBtnEdit</button>
+                            <button class="btn btn-danger editable-table-button btn-xs btn-with-icon" ng-confirm="Confirm Delete ?" ng-click="Delete(Customer)"><i class="fa fa-trash-o" aria-hidden="true"></i>@CustomerAccounts.TableBtnDelete</button>
+                        </div>
+                        <div class="buttons restore-button" ng-show="Customer.IsDeleted">
+                            <button class="center-block btn btn-default  restore-button btn-xs btn-with-icon" ng-click="Restore(Customer)"><i class="fa fa-undo" aria-hidden="true"></i>Restore</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr ng-show="TableData.length==0">
+                    <td colspan="7">
+                        @Shared.GridNoData
+                    </td>
+                </tr>
+            </tbody>
+
+            <tfoot>
+                <tr>
+                    <td colspan="4" class="text-center">
+                        <div st-pagination="" st-items-by-page="10"></div>
+                    </td>
+                </tr>
+            </tfoot>
+
+        </table>
+
+    </div>
+
+
+    <div class="row" ng-show="ShowFrmAddUpdate">
+        <div class="col-md-12">
+
+            <div ba-panel ba-panel-title="Form Wizard" ba-panel-class="with-scroll">
+
+                <ba-wizard>
+
+                    <ba-wizard-step title="@CustomerAccounts.TabBasicInformationTitle">
+
+                        <div name="FrmAddUpdate" id="FrmAddUpdateId" novalidate ng-form autocomplete="off">
+
+                            <input type="hidden" ng-model="ctrl.isFrmAddUpdateInvalid" value="{{ctrl.isFrmAddUpdateInvalid=FrmAddUpdate.$invalid}}"/>
+
+                            <div class="row frame">
+                                <div class="col-md-6 form-group ">
+                                    <label>@CustomerAccounts.LblAccountType</label><span class="red-text"> *</span>
+                                    <select name="LstAccountType" class="form-control" ng-options="AccountType as AccountType.NameAr  for AccountType in AccountTypes"
+                                            ng-model="SelectedAccountType" ng-change="selectedAccountTypesChanged(SelectedAccountType)" required>
+                                        <option value=''> @CustomerAccounts.LstAccountTypesLbl</option>
+                                    </select>
+                                    <div class="red-text" ng-messages="FrmAddUpdate.LstAccountType.$error" ng-show="FrmAddUpdate.LstAccountType.$touched">
+                                        <span class="error" ng-message="required">@CustomerAccounts.LstAccountTypeRequiredErrorMessage</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row frame">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>@CustomerAccounts.lblArabicFirstName</label><span class="red-text"> *</span>
+                                        <input type="text" ng-model="Customer.FirstNameAr" class="form-control" name="TxtArabicFirstName" placeholder="Text" required ng-pattern="/@Regex.NameEn/">
+                                        <div class="red-text" ng-messages="FrmAddUpdate.TxtArabicFirstName.$error" ng-show="FrmAddUpdate.TxtArabicFirstName.$touched">
+                                            <span class="error" ng-message="required">@CustomerAccounts.TxtArabicFirstNameRequiredErrorMessage</span>
+                                            <span class="error" ng-message="pattern">@CustomerAccounts.TxtArabicFirstNamePatternErrorMessage</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>@CustomerAccounts.lblArabicSecondName</label>
+                                        <input type="text" ng-model="Customer.MidNameAr" class="form-control" name="TxtArabicSecondName" placeholder="Text" required ng-pattern="/@Regex.NameAr/">
+                                        <div class="red-text" ng-messages="FrmAddUpdate.TxtArabicSecondName.$error" ng-show="FrmAddUpdate.TxtArabicSecondName.$touched">
+                                            <span class="error" ng-message="required">@CustomerAccounts.TxtArabicSecondNameRequiredErrorMessage</span>
+                                            <span class="error" ng-message="pattern">@CustomerAccounts.TxtArabicSecondNamePatternErrorMessage</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>@CustomerAccounts.lblArabicLastName</label><span class="red-text"> *</span>
+                                        <input type="text" ng-model="Customer.LastNameAr" class="form-control" name="TxtArabicLastName" placeholder="Text" required ng-pattern="/@Regex.NameAr/">
+                                        <div class="red-text" ng-messages="FrmAddUpdate.TxtArabicLastName.$error" ng-show="FrmAddUpdate.TxtArabicLastName.$touched">
+                                            <span class="error" ng-message="required">@CustomerAccounts.TxtArabicLastNameRequiredErrorMessage</span>
+                                            <span class="error" ng-message="pattern">@CustomerAccounts.TxtArabicLastNamePatternErrorMessage</span>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="col-md-6">
+
+                                    <div class="form-group">
+                                        <label>@CustomerAccounts.lblEnglishFirstName</label><span class="red-text"> *</span>
+                                        <input type="text" ng-model="Customer.FirstNameEn" class="form-control" name="TxtEnglishFirstName" placeholder="Text" required ng-pattern="/@Regex.NameEn/">
+                                        <div class="red-text" ng-messages="FrmAddUpdate.TxtEnglishFirstName.$error" ng-show="FrmAddUpdate.TxtEnglishFirstName.$touched">
+                                            <span class="error" ng-message="required">@CustomerAccounts.TxtEnglishFirstNameRequiredErrorMessage</span>
+                                            <span class="error" ng-message="pattern">@CustomerAccounts.TxtEnglishFirstNamePatternErrorMessage</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>@CustomerAccounts.lblEnglishSecondName</label>
+                                        <input type="text" ng-model="Customer.MidNameEn" class="form-control" name="TxtEnglishSecondName" placeholder="Text" required ng-pattern="/@Regex.NameEn/">
+                                        <div class="red-text" ng-messages="FrmAddUpdate.TxtEnglishSecondName.$error" ng-show="FrmAddUpdate.TxtEnglishSecondName.$touched">
+                                            <span class="error" ng-message="required">@CustomerAccounts.TxtEnglishSecondNameRequiredErrorMessage</span>
+                                            <span class="error" ng-message="pattern">@CustomerAccounts.TxtEnglishSecondNamePatternErrorMessage</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>@CustomerAccounts.lblEnglishLastName</label><span class="red-text"> *</span>
+                                        <input type="text" ng-model="Customer.LastNameEn" class="form-control" name="TxtEnglishLastName" placeholder="Text" required ng-pattern="/@Regex.NameEn/">
+                                        <div class="red-text" ng-messages="FrmAddUpdate.TxtEnglishLastName.$error" ng-show="FrmAddUpdate.TxtEnglishLastName.$touched">
+                                            <span class="error" ng-message="required">@CustomerAccounts.TxtEnglishLastNameRequiredErrorMessage</span>
+                                            <span class="error" ng-message="pattern">@CustomerAccounts.TxtEnglishLastNamePatternErrorMessage</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="row frame">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>@CustomerAccounts.lblCountry</label><span class="red-text"> *</span>
+                                        <select name="lstCountry" class="form-control" ng-options="country as country.NameAr  for country in Countries"
+                                                ng-model="selectedCountry" ng-change="selectedCountryChanged(selectedCountry)" required>
+                                            <option value=''>@CustomerAccounts.lstChooseCountry</option>
+                                        </select>
+                                        <div class="red-text" ng-messages="FrmAddUpdate.lstCountry.$error" ng-show="FrmAddUpdate.lstCountry.$touched">
+                                            <span class="error" ng-message="required">@CustomerAccounts.lstCountryRequiredErrorMessage</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>@CustomerAccounts.lblAddress</label><span class="red-text"> *</span>
+                                        <input type="text" ng-model="Customer.Address" class="form-control" name="txtAddress" placeholder="Text" required ng-pattern="/@Regex.Address/">
+                                        <div class="red-text" ng-messages="FrmAddUpdate.txtAddress.$error" ng-show="FrmAddUpdate.txtAddress.$touched">
+                                            <span class="error" ng-message="required">@CustomerAccounts.txtAddressRequiredErrorMessage</span>
+                                            <span class="error" ng-message="pattern">@CustomerAccounts.txtAddressPatternErrorMessage</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>@CustomerAccounts.lblMailBox</label>
+                                        <input type="number" ng-model="Customer.MailBoxNo" class="form-control" name="txtMailBox" placeholder="Number" ng-pattern="/@Regex.Number/">
+                                        <div class="red-text" ng-messages="FrmAddUpdate.txtMailBox.$error" ng-show="FrmAddUpdate.txtMailBox.$touched">
+                                            <span class="error" ng-message="pattern">@CustomerAccounts.txtMailBoxPatternErrorMessage</span>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="col-md-6">
+
+                                    <div class="form-group">
+                                        <label>@CustomerAccounts.lblCity</label><span class="red-text"> *</span>
+                                        <select name="lstCity" class="form-control" ng-options="city as city.NameAr for city in cities"
+                                                ng-model="selectedCity" ng-change="selectedCityChanged(selectedCity)" required>
+                                            <option value=''>@CustomerAccounts.lblChooseCity</option>
+                                        </select>
+                                        <div class="red-text" ng-messages="FrmAddUpdate.lstCity.$error" ng-show="FrmAddUpdate.lstCity.$touched">
+                                            <span class="error" ng-message="required">@CustomerAccounts.lstCityRequiredErrorMessage</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>@CustomerAccounts.lblRegion</label><span class="red-text"> *</span>
+                                        <select name="lstRegion" class="form-control" ng-options="Region as Region.NameEn for Region in Regions"
+                                                ng-model="selectedRegion" ng-change="selectedRegionChanged(selectedRegion)" required>
+                                            <option value=''>@CustomerAccounts.lblChooseRegion</option>
+                                        </select>
+                                        <div class="red-text" ng-messages="FrmAddUpdate.lstRegion.$error" ng-show="FrmAddUpdate.lstRegion.$touched">
+                                            <span class="error" ng-message="required">@CustomerAccounts.lstRegionRequiredErrorMessage</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>@CustomerAccounts.lblPostalCode</label>
+                                        <input type="text" ng-model="Customer.PostalCode" class="form-control" name="TxtPostalCode" placeholder="AlphaNumeric" ng-pattern="/@Regex.AlphaNumeric/">
+                                        <div class="red-text" ng-messages="FrmAddUpdate.TxtPostalCode.$error" ng-show="FrmAddUpdate.TxtPostalCode.$touched">
+                                            <span class="error" ng-message="pattern">@CustomerAccounts.TxtPostalCodePatternErrorMessage</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="row frame">
+                                <div class="col-md-6">
+
+                                    <div class="form-group">
+                                        <label>@CustomerAccounts.lblTelephoneNumber</label><span class="red-text"> *</span>
+                                        <input type="text" ng-model="Customer.PhoneNo" class="form-control" name="txtTelephoneNumber" placeholder="Telephone" required ng-pattern="/@Regex.Phone/">
+                                        <div class="red-text" ng-messages="FrmAddUpdate.txtTelephoneNumber.$error" ng-show="FrmAddUpdate.txtTelephoneNumber.$touched">
+                                            <span class="error" ng-message="required">@CustomerAccounts.txtTelephoneNumberRequiredErrorMessage</span>
+                                            <span class="error" ng-message="pattern">@CustomerAccounts.txtTelephoneNumberPatternErrorMessage</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>@CustomerAccounts.lblEmail</label><span class="red-text"> *</span>
+                                        <input type="text" ng-model="Customer.Email" class="form-control" name="txtEmail" placeholder="Mail" required ng-pattern="/@Regex.Email/">
+                                        <div class="red-text" ng-messages="FrmAddUpdate.txtEmail.$error" ng-show="FrmAddUpdate.txtEmail.$touched">
+                                            <span class="error" ng-message="required">@CustomerAccounts.txtEmailRequiredErrorMessage</span>
+                                            <span class="error" ng-message="pattern">@CustomerAccounts.txtEmailPatternErrorMessage</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-6">
+
+                                    <div class="form-group">
+                                        <label>@CustomerAccounts.lblMobile</label><span class="red-text"> *</span>
+                                        <input type="text" ng-model="Customer.MobileNo" class="form-control" name="txtMobile" placeholder="Mobile" required ng-pattern="/@Regex.Phone/">
+                                        <div class="red-text" ng-messages="FrmAddUpdate.txtMobile.$error" ng-show="FrmAddUpdate.txtMobile.$touched">
+                                            <span class="error" ng-message="required">@CustomerAccounts.txtMobileRequiredErrorMessage</span>
+                                            <span class="error" ng-message="pattern">@CustomerAccounts.txtMobilePatternErrorMessage</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>@CustomerAccounts.lblFax</label>
+                                        <input type="text" ng-model="Customer.FaxNo" class="form-control" name="txtFax" placeholder="Number" ng-pattern="/@Regex.Fax/">
+                                        <div class="red-text" ng-messages="FrmAddUpdate.txtFax.$error" ng-show="FrmAddUpdate.txtFax.$touched">
+                                            <span class="error" ng-message="pattern">@CustomerAccounts.txtFaxPatternErrorMessage</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </ba-wizard-step>
+
+                    <ba-wizard-step title="@CustomerAccounts.TabContractData">
+                        <div name="FrmContractData" id="FrmContractDataId" novalidate ng-form autocomplete="off">
+                            <input type="hidden" ng-model="ctrl.isFrmContractInvalid" value="{{ctrl.isFrmContractInvalid=FrmContractData.$invalid}}" />
+                            <div class="row frame">
+                                <div class="col-md-6">
+
+                                    <div class="form-group">
+                                        <label>@CustomerAccounts.lblContractNumber</label><span class="red-text"> *</span>
+                                        <input type="number" ng-model="Customer.ContractNo" class="form-control" name="txtContractNumber" placeholder="Number" required ng-pattern="/@Regex.Number/">
+                                        <div class="red-text" ng-messages="FrmContractData.txtContractNumber.$error" ng-show="FrmContractData.txtContractNumber.$touched">
+                                            <span class="error" ng-message="required">@CustomerAccounts.txtContractNumberRequiredErrorMessage</span>
+                                            <span class="error" ng-message="pattern">@CustomerAccounts.txtContractNumberPatternErrorMessage</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>@CustomerAccounts.lblTelephoneNumber</label><span class="red-text"> *</span>
+                                        <input type="number" ng-model="Customer.CoPhoneNo" class="form-control" name="txtTelephoneNumber" placeholder="Telphone" required ng-pattern="/@Regex.Phone/">
+                                        <div class="red-text" ng-messages="FrmContractData.txtTelephoneNumber.$error" ng-show="FrmContractData.txtTelephoneNumber.$touched">
+                                            <span class="error" ng-message="required">@CustomerAccounts.txtTelephoneNumberRequiredErrorMessage</span>
+                                            <span class="error" ng-message="pattern">@CustomerAccounts.txtTelephoneNumberPatternErrorMessage</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>@CustomerAccounts.lblEmail</label><span class="red-text"> *</span>
+                                        <input type="text" ng-model="Customer.CoEmail" class="form-control" name="txtEmail" placeholder="Mail" required ng-pattern="/@Regex.Email/">
+                                        <div class="red-text" ng-messages="FrmContractData.txtEmail.$error" ng-show="FrmContractData.txtEmail.$touched">
+                                            <span class="error" ng-message="required">@CustomerAccounts.txtEmailRequiredErrorMessage</span>
+                                            <span class="error" ng-message="pattern">@CustomerAccounts.txtEmailPatternErrorMessage</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>@CustomerAccounts.lblContractDate</label><span class="red-text"> *</span>
+                                        <p class="input-group">
+                                            <input type="text" ng-model="Customer.ContractDate" ng class="form-control" uib-datepicker-popup="{{format}}"
+                                                   datepicker-options="options" is-open="opened" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"
+                                                    show-button-bar="false" />
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn btn-default" ng-click="openDatePicker()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                            </span>
+                                        </p>
+                                        <div class="red-text" ng-messages="FrmContractData.TxtContractDate.$error" ng-show="FrmContractData.TxtContractDate.$touched">
+                                            <span class="error" ng-message="required">@CustomerAccounts.TxtContractDateRequiredErrorMessage</span>
+                                            <span class="error" ng-message="pattern">@CustomerAccounts.TxtContractDatePatternErrorMessage</span>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="col-md-6">
+
+                                    <div class="form-group">
+                                        <label>@CustomerAccounts.lblPersonInCharge</label><span class="red-text"> *</span>
+                                        <input type="text" ng-model="Customer.PersonInCharge" class="form-control" name="TxtPersonInCharge" placeholder="Text" required ng-pattern="/@Regex.NameAr/">
+                                        <div class="red-text" ng-messages="FrmContractData.TxtPersonInCharge.$error" ng-show="FrmContractData.TxtPersonInCharge.$touched">
+                                            <span class="error" ng-message="required">@CustomerAccounts.TxtPersonInChargeRequiredErrorMessage</span>
+                                            <span class="error" ng-message="pattern">@CustomerAccounts.TxtPersonInChargePatternErrorMessage</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>@CustomerAccounts.lblMobile</label><span class="red-text"> *</span>
+                                        <input type="text" ng-model="Customer.CoMobileNo" class="form-control" name="txtMobile" placeholder="Mobile" required ng-pattern="/@Regex.Phone/">
+                                        <div class="red-text" ng-messages="FrmContractData.txtMobile.$error" ng-show="FrmContractData.txtMobile.$touched">
+                                            <span class="error" ng-message="required">@CustomerAccounts.txtMobileRequiredErrorMessage</span>
+                                            <span class="error" ng-message="pattern">@CustomerAccounts.txtMobilePatternErrorMessage</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>@CustomerAccounts.lblEmailWasel</label><span class="red-text"> *</span>
+                                        <input type="text" ng-model="Customer.WaselEmail" class="form-control" name="txtWaselEmail" placeholder="Mail" required ng-pattern="/@Regex.Email/">
+                                        <div class="red-text" ng-messages="FrmContractData.txtWaselEmail.$error" ng-show="FrmContractData.txtWaselEmail.$touched">
+                                            <span class="error" ng-message="required">@CustomerAccounts.txtEmailRequiredErrorMessage</span>
+                                            <span class="error" ng-message="pattern">@CustomerAccounts.txtEmailPatternErrorMessage</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <custom-Uploader images-bases="Customer.ContractImages"></custom-Uploader>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="row frame">
+
+                                <div class="col-md-6 form-group ">
+                                    <label>@CustomerAccounts.LblPaymentType</label><span class="red-text"> *</span>
+                                    <select name="LstPaymentType" class="form-control" ng-options="PaymentType as PaymentType.NameEn  for PaymentType in PaymentTypes"
+                                            ng-model="SelectedPaymentType" ng-change="selectedPaymentTypesChanged(SelectedPaymentType)" required>
+                                        <option value=''> @CustomerAccounts.LstPaymentTypeChooseLbl</option>
+                                    </select>
+                                    <div class="red-text" ng-messages="FrmContractData.LstPaymentType.$error" ng-show="FrmContractData.LstPaymentType.$touched">
+                                        <span class="error" ng-message="required">@CustomerAccounts.LstPaymentTypeRequiredErrorMessage</span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+
+                                    <div class="form-group">
+                                        <label>@CustomerAccounts.lblInstalmentsNumber</label><span class="red-text"> *</span>
+                                        <input type="number" ng-model="Customer.InstallementNos" class="form-control" name="TxtInstalmentsNumber" placeholder="Number"
+                                               ng-change="InstalmentsNumberChanged()" required ng-pattern="/@Regex.DecimalNumberWithConditionGreaterThanZero/">
+                                        <div class="red-text" ng-messages="FrmContractData.TxtInstalmentsNumber.$error" ng-show="FrmContractData.TxtInstalmentsNumber.$touched">
+                                            <span class="error" ng-message="required">@CustomerAccounts.TxtInstalmentsNumberRequiredErrorMessage</span>
+                                            <span class="error" ng-message="pattern">@CustomerAccounts.TxtInstalmentsNumberPatternErrorMessage</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-8">
+                                    <div class="form-group has-feedback">
+                                        <div class="input-group">
+                                            <button class="btn btn-primary btn-with-icon" ng-click="addCustomerInstallment()"><i class="fa fa-plus" aria-hidden="true"></i>@CustomerAccounts.BtnAdd</button>
+                                        </div>
+
+                                        <table class="table table-bordered table-hover table-condensed" st-table="TableData" st-safe-src="Customer.CustomerInstallments">
+
+                                            <tr>
+                                                <td>#<input type="hidden" st-search="IsDeleted" value="!true" /></td>
+                                                <td>Installment</td>
+                                                <td>Installment Percentage</td>
+                                            </tr>
+                                            <tr ng-repeat="CustomerInstallment in TableData" class="editable-row">
+                                                <td>
+                                                    {{$index+1}}
+                                                </td>
+                                                <td class="select-td">
+                                                    {{$index+1}}{{($index+1)==1?'st':''}} {{($index+1)==2? 'nd' :''}} {{($index+1)==3? 'rd':''}} {{($index+1)>3? 'th':''}}
+                                                </td>
+                                                <td class="select-td">
+                                                    <input class="form-control" type="number" placeholder="Number" ng-model="CustomerInstallment.Percentage" ng-change="PercentageChanged()" />
+                                                </td>
+
+                                            </tr>
+
+                                        </table>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                    </ba-wizard-step>
+
+                </ba-wizard>
+                <div class="row" style="margin-bottom:10px">
+                    <div class="col-md-12 pull-right">
+                        <button ng-click="save()" class="btn btn-primary btn-with-icon pull-right" ng-disabled="ctrl.isFrmContractInvalid||ctrl.isFrmAddUpdateInvalid"><i class="ion-android-checkmark-circle"></i>@CustomerAccounts.btnSaveLbl</button>
+                        <button type="button" ng-click="back()" class="btn btn-default btn-with-icon pull-right"><i class="ion-stats-bars"></i>@CustomerAccounts.btnBack</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+

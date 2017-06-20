@@ -1,0 +1,112 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+@using GMG_Portal.Content;
+@using GMG_Portal.Content.Admin.SystemParameters;
+@using GMG_Portal.Content.Admin;
+<script type="text/javascript" src="~/Scripts/app/services/InvoiceStatuses.js"></script>
+<script type="text/javascript" src="/Scripts/app/pages/InvoiceStatuses/InvoiceStatuses.js"></script>
+<input type="hidden" id="HEnglishNameUnique" value="@InvoiceStatuses.EnglishNameUnique" />
+<input type="hidden" id="HUpdateSuccessMessage" value="@InvoiceStatuses.UpdateSuccessMessage" />
+<input type="hidden" id="HSaveSuccessMessage" value="@InvoiceStatuses.SaveSuccessMessage" />
+<input type="hidden" id="HDeleteSuccessMessage" value="@InvoiceStatuses.DeleteSuccessMessage" />
+<input type="hidden" id="HArabicNameUnique" value="@InvoiceStatuses.ArabicNameUnique" />
+<input type="hidden" id="HCannotDeleted" value="@InvoiceStatuses.CannotDeleted" />
+<div ng-controller="InvoiceStatusesController">
+
+    <div ba-panel>
+        <table class="table table-hover table-condensed" st-table="TableData" st-safe-src="InvoiceStatuses">
+            <thead>
+                <tr class="toolbar">
+                    <th colspan="2">
+                        <div class="input-group">
+                            <span class="input-group-addon addon-left"><i class="fa fa-search" aria-hidden="true"></i></span>
+                            <input st-search="" class="form-control" placeholder="@InvoiceStatuses.txtSearchLbl" type="text" />
+                        </div>
+                    </th>
+                    <th colspan="1"></th>
+                    <th>
+                     
+                    </th>
+                </tr>
+
+                <tr class="sortable">
+                    <th>#</th>
+                    <th st-sort="NameAr">@InvoiceStatuses.NameAr</th>
+                    <th st-sort="NameEn">@InvoiceStatuses.NameEn</th>
+                    @*<th>Actions</th>*@
+                </tr>
+          
+            </thead>
+            <tbody>
+                <tr ng-repeat="InvoiceStatus in TableData">
+                    <td>{{$index+1}}</td>
+                    <td>{{InvoiceStatus.NameAr}}</td>
+                    <td>{{InvoiceStatus.NameEn}}</td>
+
+                </tr>
+                <tr ng-show="TableData.length==0">
+                    <td colspan="4">
+                        @Shared.GridNoData
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3" class="text-center">
+                        <div st-pagination="" st-items-by-page="10"></div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+
+    <form name="FrmAddUpdate" novalidate ng-submit="save()" autocomplete="off">
+
+        <div class="modal fade" id="ModelAddUpdate" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">{{action |uppercase}} @InvoiceStatuses.ModalTitle</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="TxtNameAr">@InvoiceStatuses.NameAr</label><span class="red-text"> *</span>
+                            <input type="text" ng-model="InvoiceStatus.NameAr" not-in-list="InvoiceStatuses" list-item-id="InvoiceStatus.ID" class="form-control" name="TxtNameAr" placeholder="Text" required ng-pattern="/@Regex.NameAr/">
+                            <div class="red-text" ng-messages="FrmAddUpdate.TxtNameAr.$error" ng-show="FrmAddUpdate.TxtNameAr.$touched">
+                                <span class="red-text" ng-message="required">@InvoiceStatuses.TxtNameArRequiredErrorMessage</span>
+                                <span class="red-text" ng-message="pattern">@InvoiceStatuses.TxtNameArPatternErrorMessage</span>
+                                <span class="red-text" ng-message="notInList">@InvoiceStatuses.TxtNameArUniqueErrorMessage</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="TxtNameAr">@InvoiceStatuses.NameEn</label><span class="red-text"> *</span>
+                            <input type="text" ng-model="InvoiceStatus.NameEn" not-in-list="InvoiceStatuses" list-item-id="InvoiceStatus.ID" class="form-control" name="TxtNameEn" placeholder="Text" required ng-pattern="/@Regex.NameEn/">
+                            <div class="red-text" ng-messages="FrmAddUpdate.TxtNameEn.$error" ng-show="FrmAddUpdate.TxtNameEn.$touched">
+                                <span class="red-text" ng-message="required">@InvoiceStatuses.TxtNameEnRequiredErrorMessage</span>
+                                <span class="red-text" ng-message="pattern">@InvoiceStatuses.TxtNameEnPatternErrorMessage</span>
+                                <span class="red-text" ng-message="notInList">@InvoiceStatuses.TxtNameEnUniqueErrorMessage</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary btn-with-icon" ng-disabled="FrmAddUpdate.$invalid"><i class="ion-android-checkmark-circle"></i>@InvoiceStatuses.btnSaveLbl</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+
+</div>
+
+
+
+
+

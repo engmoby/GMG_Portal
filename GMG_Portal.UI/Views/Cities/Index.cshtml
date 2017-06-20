@@ -1,0 +1,140 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+@using GMG_Portal.Content;
+@using GMG_Portal.Content.Admin.SystemParameters;
+@using GMG_Portal.Content.Admin;
+
+<script type="text/javascript" src="~/Scripts/app/services/Cities.js"></script>
+<script type="text/javascript" src="/Scripts/app/pages/Cities/Cities.js"></script>
+<input type="hidden" id="HEnglishNameUnique" value="@Cities.EnglishNameUnique" />
+<input type="hidden" id="HUpdateSuccessMessage" value="@Cities.UpdateSuccessMessage" />
+<input type="hidden" id="HSaveSuccessMessage" value="@Cities.SaveSuccessMessage" />
+<input type="hidden" id="HDeleteSuccessMessage" value="@Cities.DeleteSuccessMessage" />
+<input type="hidden" id="HArabicNameUnique" value="@Cities.ArabicNameUnique" />
+<input type="hidden" id="HCannotDeleted" value="@Cities.CannotDeleted" />
+
+<div ng-controller="CitiesController">
+
+    
+
+    <div ba-panel>
+
+            <div >
+                <div class="col-md-4 form-group">
+                    <h5 >Country</h5>
+                    <select class="form-control" ng-options="country as country.NameAr  for country in Countries"
+                            ng-model="selectedCountry" ng-change="selectedCountryChanged(selectedCountry)">
+                        <option value=''> @Cities.ComboChooseCountry</option>
+                    </select>
+                </div>
+            </div>
+
+        <table class="table table-hover table-condensed" st-table="TableData" st-safe-src="Cities">
+            <thead>
+                <tr class="toolbar">
+                    <th colspan="2">
+                        <div class="input-group">
+                            <span class="input-group-addon addon-left"><i class="fa fa-search" aria-hidden="true"></i></span>
+                            <input st-search="" class="form-control" placeholder="@Cities.txtSearchLbl" type="text" />
+                        </div>
+                    </th>
+                    <th colspan="1"></th>
+                    <th>
+                        <div class="input-group">
+                            <button class="btn btn-primary btn-with-icon" ng-click="open(null)"><i class="fa fa-plus" aria-hidden="true"></i>@Cities.BtnAdd</button>
+                        </div>
+                    </th>
+                </tr>
+
+                <tr class="sortable">
+                    <th>#</th>
+                    <th st-sort="NameAr">@Cities.NameAr</th>
+                    <th st-sort="NameEn">@Cities.NameEn</th>
+                    <th>Actions</th>
+                </tr>
+
+            </thead>
+            <tbody>
+                <tr ng-repeat="City in TableData">
+                    <td ng-class="{'red-text': City.IsDeleted == true}">{{$index+1}}</td>
+                    <td ng-class="{'red-text': City.IsDeleted == true}">{{City.NameAr}}</td>
+                    <td ng-class="{'red-text': City.IsDeleted == true}">{{City.NameEn}}</td>
+                    <td>
+                        <div class="buttons" ng-show="!City.IsDeleted">
+                            <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(City)"><i class="fa fa-pencil" aria-hidden="true"></i>@Cities.TableBtnEdit</button>
+                            <button class="btn btn-danger editable-table-button btn-xs btn-with-icon" ng-confirm="Confirm Delete ?" ng-click="Delete(City)"><i class="fa fa-trash-o" aria-hidden="true"></i>@Cities.TableBtnDelete</button>
+                        </div>
+                        <div class="buttons restore-button" ng-show="City.IsDeleted">
+                            <button class="center-block btn btn-default  restore-button btn-xs btn-with-icon" ng-click="Restore(City)"><i class="fa fa-undo" aria-hidden="true"></i>Restore</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr ng-show="TableData.length==0">
+                    <td colspan="4">
+                        @Shared.GridNoData
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4" class="text-center">
+                        <div st-pagination="" st-items-by-page="10"></div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+
+    </div>
+
+
+
+
+    <form name="FrmAddUpdate" novalidate ng-submit="save()" autocomplete="off">
+        <div class="modal fade" id="ModelAddUpdate" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">{{action |uppercase}} @Cities.ModalTitle</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            <label for="TxtNameAr">@Cities.NameAr</label><span class="red-text"> *</span>
+                            <input type="text" ng-model="City.NameAr" not-in-list="Cities" list-item-id="City.ID" class="form-control" name="TxtNameAr" placeholder="Text" required ng-pattern="/@Regex.NameAr/">
+                            <div class="text-danger" ng-messages="FrmAddUpdate.TxtNameAr.$error" ng-show="FrmAddUpdate.TxtNameAr.$touched">
+                                <span class="red-text" ng-message="required">@Cities.TxtNameArRequiredErrorMessage</span>
+                                <span class="red-text" ng-message="pattern">@Cities.TxtNameArPatternErrorMessage</span>
+                                <span class="red-text" ng-message="notInList">@Cities.ArabicNameUnique</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="TxtNameAr">@Cities.NameEn</label><span class="red-text"> *</span>
+                            <input type="text" ng-model="City.NameEn" not-in-list="Cities" list-item-id="City.ID" class="form-control" name="TxtNameEn" placeholder="Text" required ng-pattern="/@Regex.NameEn/">
+                            <div class="text-danger" ng-messages="FrmAddUpdate.TxtNameEn.$error" ng-show="FrmAddUpdate.TxtNameEn.$touched">
+                                <span class="red-text" ng-message="required">@Cities.TxtNameEnRequiredErrorMessage</span>
+                                <span class="red-text" ng-message="pattern">@Cities.TxtNameEnPatternErrorMessage</span>
+                                <span class="red-text" ng-message="notInList">@Cities.TxtNameEnUniqueErrorMessage</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary btn-with-icon" ng-disabled="FrmAddUpdate.$invalid"><i class="ion-android-checkmark-circle"></i>@Cities.btnSaveLbl</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+
+
+</div>
+
+
+
+

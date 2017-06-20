@@ -1,0 +1,559 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<!-- saved from url=(0050)http://diamondcreative.net/plus-v1.2/category.html -->
+<html  ng-app="CustomerModule">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="description" content="Plus E-Commerce Template">
+    <meta name="author" content="Diamant Gjota">
+    <meta name="keywords" content="plus, html5, css3, template, ecommerce, e-commerce, bootstrap, responsive, creative">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Plus - E-Commerce Template</title>
+
+    <!--Favicon-->
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon-96x96.png">
+
+    <!-- css files -->
+
+    <link rel="stylesheet" href="~/Content/css/bootstrap.css">
+    <link rel="stylesheet" href="~/Content/css/font-awesome.css">
+    <link rel="stylesheet" href="~/Content_Customer/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Content_Customer/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="~/Content_Customer/css/animate.css">
+    <link rel="stylesheet" href="~/Content/css/angular-toastr.css">
+    <link rel="stylesheet" href="~/Content_Customer/css/swiper.css">
+    <link rel="stylesheet" href="~/Content/css/xeditable.css">
+
+    <!-- this is default skin you can replace that with: dark.css, yellow.css, red.css ect -->
+    <link id="pagestyle" rel="stylesheet" type="text/css" href="~/Content_Customer/css/default.css">
+
+    <!-- Google fonts -->
+    <link href="~/Content_Customer/css/1.css" rel="stylesheet" />
+    <link href="~/Content_Customer/css/2.css" rel="stylesheet" />
+    <link href="~/Content_Customer/css/3.css" rel="stylesheet" />
+
+</head>
+<body class="" pace-done">
+    <input type="hidden" id="HServicesURL" value="http://localhost:2798" />
+    <div class="pace  pace-inactive">
+        <div class="pace-progress" data-progress-text="100%" data-progress="99" style="transform: translate3d(100%, 0px, 0px);">
+            <div class="pace-progress-inner"></div>
+        </div>
+        <div class="pace-activity"></div>
+    </div>
+
+    <!-- start topBar -->
+    <div class="topBar" ng-show="false">
+        <div class="container">
+            <ul class="list-inline pull-left hidden-sm hidden-xs">
+                <li><i class="fa fa-phone mr-5"></i>+123 4567 8910</li>
+                <li><i class="fa fa-envelope mr-5"></i>sales@yourdomain.com</li>
+            </ul>
+
+            <ul class="topBarNav pull-right">
+                <li class="linkdown">
+                    <a href="javascript:void(0);">
+                        <i class="fa fa-usd mr-5"></i>
+                        USD
+                        <i class="fa fa-angle-down ml-5"></i>
+                    </a>
+                    <ul class="w-100">
+                        <li><a href="javascript:void(0);"><i class="fa fa-eur mr-5"></i>EUR</a></li>
+                        <li class="active"><a href="javascript:void(0);"><i class="fa fa-usd mr-5"></i>USD</a></li>
+                        <li><a href="javascript:void(0);"><i class="fa fa-gbp mr-5"></i>GBP</a></li>
+                    </ul>
+                </li>
+                <li class="linkdown">
+                    <a href="javascript:void(0);">
+                        <img src="~/Content_Customer/assets/img/flag-french.jpg" class="mr-5" alt="">
+                        <span class="hidden-xs">
+                            French
+                            <i class="fa fa-angle-down ml-5"></i>
+                        </span>
+                    </a>
+                    <ul class="w-100">
+                        <li><a href="javascript:void(0);"><img src="~/Content_Customer/assets/img/flag-english.jpg" class="mr-5" alt="">English</a></li>
+                        <li class="active"><a href="javascript:void(0);"><img src="~/Content_Customer/assets/img/flag-french.jpg" class="mr-5" alt="">French</a></li>
+                        <li><a href="javascript:void(0);"><img src="~/Content_Customer/assets/img/flag-german.jpg" class="mr-5" alt="">German</a></li>
+                        <li><a href="javascript:void(0);"><img src="~/Content_Customer/assets/img/flag-spain.jpg" class="mr-5" alt="">Spain</a></li>
+                    </ul>
+                </li>
+                <li class="linkdown">
+                    <a href="javascript:void(0);">
+                        <i class="fa fa-user mr-5"></i>
+                        <span class="hidden-xs">
+                            My Account
+                            <i class="fa fa-angle-down ml-5"></i>
+                        </span>
+                    </a>
+                    <ul class="w-150">
+                        <li><a href="http://diamondcreative.net/plus-v1.2/login.html">Login</a></li>
+                        <li><a href="http://diamondcreative.net/plus-v1.2/register.html">Create Account</a></li>
+                        <li class="divider"></li>
+                        <li><a href="http://diamondcreative.net/plus-v1.2/wishlist.html">Wishlist (5)</a></li>
+                        <li><a href="http://diamondcreative.net/plus-v1.2/cart.html">My Cart</a></li>
+                        <li><a href="http://diamondcreative.net/plus-v1.2/checkout.html">Checkout</a></li>
+                    </ul>
+                </li>
+                <li class="linkdown">
+                    <a href="javascript:void(0);">
+                        <i class="fa fa-shopping-basket mr-5"></i>
+                        <span class="hidden-xs">
+                            Cart<sup class="text-primary">(3)</sup>
+                            <i class="fa fa-angle-down ml-5"></i>
+                        </span>
+                    </a>
+                    <ul class="cart w-250">
+                        <li>
+                            <div class="cart-items">
+                                <ol class="items">
+                                    <li>
+                                        <a href="http://diamondcreative.net/plus-v1.2/shop-single-product-v1.html" class="product-image">
+                                            <img src="~/Content_Customer/assets/img/men_06.jpg" alt="Sample Product ">
+                                        </a>
+                                        <div class="product-details">
+                                            <div class="close-icon">
+                                                <a href="javascript:void(0);"><i class="fa fa-close"></i></a>
+                                            </div>
+                                            <p class="product-name">
+                                                <a href="http://diamondcreative.net/plus-v1.2/shop-single-product-v1.html">Lorem Ipsum dolor sit</a>
+                                            </p>
+                                            <strong>1</strong> x <span class="price text-primary">$59.99</span>
+                                        </div><!-- end product-details -->
+                                    </li><!-- end item -->
+                                    <li>
+                                        <a href="http://diamondcreative.net/plus-v1.2/shop-single-product-v1.html" class="product-image">
+                                            <img src="~/Content_Customer/assets/img/shoes_01.jpg" alt="Sample Product ">
+                                        </a>
+                                        <div class="product-details">
+                                            <div class="close-icon">
+                                                <a href="javascript:void(0);"><i class="fa fa-close"></i></a>
+                                            </div>
+                                            <p class="product-name">
+                                                <a href="http://diamondcreative.net/plus-v1.2/shop-single-product-v1.html">Lorem Ipsum dolor sit</a>
+                                            </p>
+                                            <strong>1</strong> x <span class="price text-primary">$39.99</span>
+                                        </div><!-- end product-details -->
+                                    </li><!-- end item -->
+                                    <li>
+                                        <a href="http://diamondcreative.net/plus-v1.2/shop-single-product-v1.html" class="product-image">
+                                            <img src="~/Content_Customer/assets/img/bags_07.jpg" alt="Sample Product ">
+                                        </a>
+                                        <div class="product-details">
+                                            <div class="close-icon">
+                                                <a href="javascript:void(0);"><i class="fa fa-close"></i></a>
+                                            </div>
+                                            <p class="product-name">
+                                                <a href="http://diamondcreative.net/plus-v1.2/shop-single-product-v1.html">Lorem Ipsum dolor sit</a>
+                                            </p>
+                                            <strong>1</strong> x <span class="price text-primary">$29.99</span>
+                                        </div><!-- end product-details -->
+                                    </li><!-- end item -->
+                                </ol>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="cart-footer">
+                                <a href="http://diamondcreative.net/plus-v1.2/cart.html" class="pull-left"><i class="fa fa-cart-plus mr-5"></i>View Cart</a>
+                                <a href="http://diamondcreative.net/plus-v1.2/checkout.html" class="pull-right"><i class="fa fa-shopping-basket mr-5"></i>Checkout</a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- end container -->
+    </div>
+    <!-- end topBar -->
+    <!-- start navbar -->
+    <div id="undefined-sticky-wrapper" class="sticky-wrapper " style="height: 70px;">
+        <div class="navbar yamm navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" data-toggle="collapse" data-target="#navbar-collapse-1" class="navbar-toggle">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="javascript:void(0);" class="navbar-brand">
+                        <img src="~/Content_Customer/assets/img/logo.png" alt="logo">
+                    </a>
+                </div>
+                <div id="navbar-collapse-1" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <!-- Home -->
+                        <li class="dropdown">
+                            <a href="http://diamondcreative.net/plus-v1.2/category.html#" data-toggle="dropdown" class="dropdown-toggle">Home<i class="fa fa-angle-down ml-5"></i></a>
+                            <ul role="menu" class="dropdown-menu">
+                                <li><a ui-sref="SearchCategory" href="#">Search</a></li>
+                                <li><a href="http://diamondcreative.net/plus-v1.2/home-v2.html">Home - Version 2</a></li>
+                                <li><a href="http://diamondcreative.net/plus-v1.2/home-v3.html">Home - Version 3</a></li>
+                                <li><a href="http://diamondcreative.net/plus-v1.2/home-v4.html">Home - Version 4 <span class="label primary-background">1.1</span></a></li>
+                                <li><a href="http://diamondcreative.net/plus-v1.2/home-v5.html">Home - Version 5 <span class="label primary-background">1.1</span></a></li>
+                                <li><a href="http://diamondcreative.net/plus-v1.2/home-v6.html">Home - Version 6 <span class="label primary-background">1.2</span></a></li>
+                            </ul><!-- end ul dropdown-menu -->
+                        </li><!-- end li dropdown -->
+                        <!-- Features -->
+                        <li class="dropdown left">
+                            <a href="http://diamondcreative.net/plus-v1.2/category.html#" data-toggle="dropdown" class="dropdown-toggle">Features<i class="fa fa-angle-down ml-5"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="http://diamondcreative.net/plus-v1.2/headers.html">Headers</a></li>
+                                <li><a href="http://diamondcreative.net/plus-v1.2/footers.html">Footers</a></li>
+                                <li><a href="http://diamondcreative.net/plus-v1.2/sliders.html">Sliders</a></li>
+                                <li><a href="http://diamondcreative.net/plus-v1.2/typography.html">Typography</a></li>
+                                <li><a href="http://diamondcreative.net/plus-v1.2/grid.html">Grid</a></li>
+                                <li class="divider"></li>
+                                <li class="dropdown-submenu">
+                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Dropdown Level 1</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="http://diamondcreative.net/plus-v1.2/category.html#">Dropdown Level</a></li>
+                                        <li class="dropdown-submenu">
+                                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Dropdown Level 2</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="javascript:void(0);">Dropdown Level</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul><!-- end ul dropdown-menu -->
+                        </li><!-- end li dropdown -->
+                        <!-- Pages -->
+                        <li class="dropdown yamm-fw active">
+                            <a href="http://diamondcreative.net/plus-v1.2/category.html#" data-toggle="dropdown" class="dropdown-toggle">Pages<i class="fa fa-angle-down ml-5"></i></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <!-- Content container to add padding -->
+                                    <div class="yamm-content">
+                                        <div class="row">
+                                            <ul class="col-sm-3">
+                                                <li class="title">
+                                                    <h6>Shop Pages</h6>
+                                                </li>
+                                                <li><a href="http://diamondcreative.net/plus-v1.2/shop-sidebar-left.html">Sidebar Left</a></li>
+                                                <li><a href="http://diamondcreative.net/plus-v1.2/shop-sidebar-right.html">Sidebar Right</a></li>
+                                                <li><a href="http://diamondcreative.net/plus-v1.2/shop-filter-top.html">Filters Top</a></li>
+                                                <li><a href="http://diamondcreative.net/plus-v1.2/shop-full-width-sidebar-left.html">Full Width Sidebar Left</a></li>
+                                                <li><a href="http://diamondcreative.net/plus-v1.2/shop-full-width-sidebar-right.html">Full Width Sidebar Right</a></li>
+                                                <li><a href="http://diamondcreative.net/plus-v1.2/shop-full-width-filter-top.html">Full Width Filters Top</a></li>
+                                                <li class="active"><a href="http://diamondcreative.net/plus-v1.2/category.html">Category <span class="label primary-background">1.1</span></a></li>
+                                                <li><a href="http://diamondcreative.net/plus-v1.2/shop-single-product-v1.html">Single product</a></li>
+                                                <li class="title">
+                                                    <h6>Contact Pages</h6>
+                                                </li>
+                                                <li><a href="http://diamondcreative.net/plus-v1.2/contact-v1.html">Contact Us Version 1</a></li>
+                                                <li><a href="http://diamondcreative.net/plus-v1.2/contact-v2.html">Contact Us Version 2</a></li>
+                                            </ul><!-- end ul col -->
+                                            <ul class="col-sm-3">
+                                                <li class="title">
+                                                    <h6>About us Pages</h6>
+                                                </li>
+                                                <li><a href="http://diamondcreative.net/plus-v1.2/about-us-v1.html">About Us Version 1</a></li>
+                                                <li><a href="http://diamondcreative.net/plus-v1.2/about-us-v2.html">About Us Version 2</a></li>
+                                                <li><a href="http://diamondcreative.net/plus-v1.2/about-us-v3.html">About Us Version 3</a></li>
+                                                <li class="title">
+                                                    <h6>Blog Pages</h6>
+                                                </li>
+                                                <li><a href="http://diamondcreative.net/plus-v1.2/blog-v1.html">Blog Version 1</a></li>
+                                                <li><a href="http://diamondcreative.net/plus-v1.2/blog-v2.html">Blog Version 2</a></li>
+                                                <li><a href="http://diamondcreative.net/plus-v1.2/blog-v3.html">Blog Version 3</a></li>
+                                                <li><a href="http://diamondcreative.net/plus-v1.2/blog-article-v1.html">Blog article</a></li>
+                                            </ul><!-- end ul col -->
+                                            <ul class="col-sm-3">
+                                                <li class="title">
+                                                    <h6>User account</h6>
+                                                </li>
+                                                <li><a href="http://diamondcreative.net/plus-v1.2/login.html">Login</a></li>
+                                                <li><a href="http://diamondcreative.net/plus-v1.2/register.html">Register</a></li>
+                                                <li><a href="http://diamondcreative.net/plus-v1.2/login-register.html">Login or Register</a></li>
+                                                <li><a href="http://diamondcreative.net/plus-v1.2/my-account.html">My Account</a></li>
+                                                <li><a href="http://diamondcreative.net/plus-v1.2/cart.html">Cart</a></li>
+                                                <li><a href="http://diamondcreative.net/plus-v1.2/wishlist.html">Wishlist</a></li>
+                                                <li><a href="http://diamondcreative.net/plus-v1.2/checkout.html">Checkout</a></li>
+                                                <li><a href="http://diamondcreative.net/plus-v1.2/user-information.html">User Information</a></li>
+                                                <li><a href="http://diamondcreative.net/plus-v1.2/order-list.html">Order List</a></li>
+                                                <li><a href="http://diamondcreative.net/plus-v1.2/order-confirmation.html">Order Confirmation <span class="label primary-background">1.1</span></a></li>
+                                                <li><a href="http://diamondcreative.net/plus-v1.2/forgot-password.html">Forgot Password</a></li>
+                                            </ul><!-- end ul col -->
+                                            <ul class="col-sm-3">
+                                                <li class="title">
+                                                    <h6>Other Pages</h6>
+                                                </li>
+                                                <li><a href="http://diamondcreative.net/plus-v1.2/help.html">Help</a></li>
+                                                <li><a href="http://diamondcreative.net/plus-v1.2/faq.html">Faq</a></li>
+                                                <li><a href="http://diamondcreative.net/plus-v1.2/privacy-policy.html">Privacy Policy</a></li>
+                                                <li><a href="http://diamondcreative.net/plus-v1.2/blank-page.html">Blank Page <span class="label primary-background">1.1</span></a></li>
+                                                <li><a href="http://diamondcreative.net/plus-v1.2/404-error.html">404 Error</a></li>
+                                                <li><a href="http://diamondcreative.net/plus-v1.2/500-error.html">500 Error</a></li>
+                                                <li><a href="http://diamondcreative.net/plus-v1.2/coming-soon.html">Coming soon</a></li>
+                                                <li><a href="http://diamondcreative.net/plus-v1.2/subscribe.html">Subscribe</a></li>
+                                            </ul><!-- end ul col -->
+                                        </div><!-- end row -->
+                                    </div><!-- end yamn-content -->
+                                </li><!-- end li -->
+                            </ul><!-- end ul dropdown-menu -->
+                        </li><!-- end li dropdown -->
+                        <!-- elements -->
+                        <li><a href="http://diamondcreative.net/plus-v1.2/elements.html">Elements</a></li>
+                        <!-- Collections -->
+                        <li class="dropdown yamm-fw">
+                            <a href="http://diamondcreative.net/plus-v1.2/category.html#" data-toggle="dropdown" class="dropdown-toggle">Collections<i class="fa fa-angle-down ml-5"></i></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <div class="yamm-content">
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-3">
+                                                <a href="javascript:void(0);">
+                                                    <figure class="zoom-out">
+                                                        <img alt="" src="~/Content_Customer/assets/img/collection_01.JPG">
+                                                    </figure>
+                                                </a>
+                                            </div><!-- end col -->
+                                            <div class="col-xs-12 col-sm-3">
+                                                <a href="javascript:void(0);">
+                                                    <figure class="zoom-in">
+                                                        <img alt="" src="~/Content_Customer/assets/img/technology_02.jpg">
+                                                    </figure>
+                                                </a>
+                                            </div><!-- end col -->
+                                            <div class="col-xs-12 col-sm-3">
+                                                <a href="javascript:void(0);">
+                                                    <figure class="zoom-out">
+                                                        <img alt="" src="~/Content_Customer/assets/img/bags_07.jpg">
+                                                    </figure>
+                                                </a>
+                                            </div><!-- end col -->
+                                            <div class="col-xs-12 col-sm-3">
+                                                <a href="javascript:void(0);">
+                                                    <figure class="zoom-in">
+                                                        <img alt="" src="~/Content_Customer/assets/img/men_04.jpg">
+                                                    </figure>
+                                                </a>
+                                            </div><!-- end col -->
+                                        </div><!-- end row -->
+
+                                        <hr class="spacer-20 no-border">
+
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-3">
+                                                <h6>Pellentes que nec diam lectus</h6>
+                                                <p>Proin pulvinar libero quis auctor pharet ra. Aenean fermentum met us orci, sedf eugiat augue pulvina r vitae. Nulla dolor nisl, molestie nec aliquam vitae, gravida sodals dolor...</p>
+                                                <button type="button" class="btn btn-default round btn-sm">Read more</button>
+                                            </div><!-- end col -->
+                                            <div class="col-xs-12 col-sm-3">
+                                                <div class="thumbnail store style1">
+                                                    <div class="header">
+                                                        <div class="badges">
+                                                            <span class="product-badge top left white-backgorund text-primary semi-circle">Sale</span>
+                                                            <span class="product-badge top right text-primary">
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star-half-o"></i>
+                                                            </span>
+                                                        </div>
+                                                        <figure class="layer">
+                                                            <img src="~/Content_Customer/assets/img/men_01.jpg" alt="">
+                                                        </figure>
+                                                        <div class="icons">
+                                                            <a class="icon semi-circle" href="javascript:void(0);"><i class="fa fa-heart-o"></i></a>
+                                                            <a class="icon semi-circle" href="javascript:void(0);"><i class="fa fa-gift"></i></a>
+                                                            <a class="icon semi-circle" href="javascript:void(0);" data-toggle="modal" data-target=".productQuickView"><i class="fa fa-search"></i></a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="caption">
+                                                        <h6 class="thin"><a href="javascript:void(0);">Lorem Ipsum dolor sit</a></h6>
+                                                        <div class="price">
+                                                            <small class="amount off">$68.99</small>
+                                                            <span class="amount text-primary">$59.99</span>
+                                                        </div>
+                                                        <a href="javascript:void(0);"><i class="fa fa-cart-plus mr-5"></i>Add to cart</a>
+                                                    </div><!-- end caption -->
+                                                </div><!-- end thumbnail -->
+                                            </div><!-- end col -->
+                                            <div class="col-xs-12 col-sm-3">
+                                                <div class="thumbnail store style1">
+                                                    <div class="header">
+                                                        <div class="badges">
+                                                            <span class="product-badge top left white-backgorund text-primary semi-circle">Sale</span>
+                                                            <span class="product-badge top right text-primary">
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star-half-o"></i>
+                                                            </span>
+                                                        </div>
+                                                        <figure class="layer">
+                                                            <img src="~/Content_Customer/assets/img/women_01.jpg" alt="">
+                                                        </figure>
+                                                        <div class="icons">
+                                                            <a class="icon semi-circle" href="javascript:void(0);"><i class="fa fa-heart-o"></i></a>
+                                                            <a class="icon semi-circle" href="javascript:void(0);"><i class="fa fa-gift"></i></a>
+                                                            <a class="icon semi-circle" href="javascript:void(0);" data-toggle="modal" data-target=".productQuickView"><i class="fa fa-search"></i></a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="caption">
+                                                        <h6 class="thin"><a href="javascript:void(0);">Lorem Ipsum dolor sit</a></h6>
+                                                        <div class="price">
+                                                            <small class="amount off">$68.99</small>
+                                                            <span class="amount text-primary">$59.99</span>
+                                                        </div>
+                                                        <a href="javascript:void(0);"><i class="fa fa-cart-plus mr-5"></i>Add to cart</a>
+                                                    </div><!-- end caption -->
+                                                </div><!-- end thumbnail -->
+                                            </div><!-- end col -->
+                                            <div class="col-xs-12 col-sm-3">
+                                                <div class="thumbnail store style1">
+                                                    <div class="header">
+                                                        <div class="badges">
+                                                            <span class="product-badge top left white-backgorund text-primary semi-circle">Sale</span>
+                                                            <span class="product-badge top right text-primary">
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star-half-o"></i>
+                                                            </span>
+                                                        </div>
+                                                        <figure class="layer">
+                                                            <img src="~/Content_Customer/assets/img/kids_01.jpg" alt="">
+                                                        </figure>
+                                                        <div class="icons">
+                                                            <a class="icon semi-circle" href="javascript:void(0);"><i class="fa fa-heart-o"></i></a>
+                                                            <a class="icon semi-circle" href="javascript:void(0);"><i class="fa fa-gift"></i></a>
+                                                            <a class="icon semi-circle" href="javascript:void(0);" data-toggle="modal" data-target=".productQuickView"><i class="fa fa-search"></i></a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="caption">
+                                                        <h6 class="thin"><a href="javascript:void(0);">Lorem Ipsum dolor sit</a></h6>
+                                                        <div class="price">
+                                                            <small class="amount off">$68.99</small>
+                                                            <span class="amount text-primary">$59.99</span>
+                                                        </div>
+                                                        <a href="javascript:void(0);"><i class="fa fa-cart-plus mr-5"></i>Add to cart</a>
+                                                    </div><!-- end caption -->
+                                                </div><!-- end thumbnail -->
+                                            </div><!-- end col -->
+                                        </div><!-- end row -->
+                                    </div><!-- end yamm-content -->
+                                </li><!-- end li -->
+                            </ul><!-- end dropdown-menu -->
+                        </li><!-- end dropdown -->
+                    </ul><!-- end navbar-nav -->
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown yamm-fw">
+                            <a href="http://diamondcreative.net/plus-v1.2/category.html#" data-toggle="dropdown" class="dropdown-toggle">
+                                <span class="hidden-sm">Categories</span><i class="fa fa-bars ml-5"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <!-- Content container to add padding -->
+                                    <div class="yamm-content">
+                                        <div class="row">
+                                            <ul class="col-xs-12 col-sm-3">
+                                                <li class="title">
+                                                    <h6>Categories</h6>
+                                                </li>
+                                                <li><a href="javascript:void(0);">Mens</a></li>
+                                                <li><a href="javascript:void(0);">Womens</a></li>
+                                                <li><a href="javascript:void(0);">Kids</a></li>
+                                                <li><a href="javascript:void(0);">Fashion</a></li>
+                                                <li><a href="javascript:void(0);">Sportwear</a></li>
+                                                <li><a href="javascript:void(0);">Bags</a></li>
+                                                <li><a href="javascript:void(0);">Shoes</a></li>
+                                                <li><a href="javascript:void(0);">HouseHolds</a></li>
+                                                <li><a href="javascript:void(0);">Technology</a></li>
+                                            </ul>
+                                            <div class="col-sm-9">
+                                                <h6 class="text-center">Men Collection - <span class="text-primary">25% Off</span></h6>
+                                                <figure>
+                                                    <a href="javascript:void(0);">
+                                                        <img alt="" src="~/Content_Customer/assets/img/banner_big.jpg">
+                                                    </a>
+                                                </figure>
+                                            </div><!-- end col -->
+                                        </div><!-- end row -->
+                                    </div><!-- end yamn-content -->
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div><!-- end navbar collapse -->
+            </div><!-- end container -->
+        </div>
+    </div><!-- end navbar -->
+
+    @*@RenderSection("Slider", required: false)*@
+    <div ui-view="slider" autoscroll="true" autoscroll-body-top"></div>
+    <!-- start breadcrumbs -->
+    <div class="breadcrumbs">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <ul>
+                        <li><a href="http://diamondcreative.net/plus-v1.2/category.html#">Home</a></li>
+                        <li><a href="http://diamondcreative.net/plus-v1.2/category.html#">Pages</a></li>
+                        <li class="active">Category</li>
+                    </ul><!-- end breadcrumb -->
+                </div><!-- end col -->
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </div><!-- end breadcrumbs -->
+
+   @* @RenderBody();*@
+    <div ui-view autoscroll="true" autoscroll-body-top ></div>
+    <!-- start footer -->
+    <footer class="footer">
+            <div class="row container text-center">
+                <div class="col-sm-12">
+                    <p class="text-sm">© 2017. Made with <i class="fa fa-heart text-danger"></i> by <a href="javascript:void(0);">DiamondCreative.</a></p>
+                </div><!-- end col -->
+            </div><!-- end row -->
+    </footer>
+    <!-- end footer -->
+    <!-- JavaScript Files -->
+    <script type="text/javascript" src="~/Scripts_Customer/lib/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="~/Scripts_Customer/lib/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Scripts_Customer/lib/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="~/Scripts_Customer/lib/jquery.downCount.js"></script>
+    <script type="text/javascript" src="~/Scripts_Customer/lib/nouislider.min.js"></script>
+    <script type="text/javascript" src="~/Scripts_Customer/lib/jquery.sticky.js"></script>
+    <script type="text/javascript" src="~/Scripts_Customer/lib/pace.min.js"></script>
+    <script type="text/javascript" src="~/Scripts_Customer/lib/star-rating.min.js"></script>
+    <script type="text/javascript" src="~/Scripts_Customer/lib/wow.min.js"></script>
+    <script type="text/javascript" src="~/Scripts_Customer/lib/gmaps.js"></script>
+    <script type="text/javascript" src="~/Scripts_Customer/lib/swiper.min.js"></script>
+    <script type="text/javascript" src="~/Scripts_Customer/lib/main.js"></script>
+    <script src="/scripts/lib/angular.js"></script>
+    <script src="/scripts/lib/angular-messages.js"></script>
+    <script src="/scripts/lib/angular-route.js"></script>
+    <script src="/scripts/lib/smart-table.js"></script>
+    <script src="/scripts/lib/angular-toastr.tpls.js"></script>
+    @*<script src="/scripts/lib/jquery.slimscroll.js"></script>*@
+    <script src="/scripts/lib/angular-slimscroll.js"></script>
+    <script src="/scripts/lib/sortable.js"></script>
+    <script src="/scripts/lib/smart-table.js"></script>
+    <script src="/scripts/lib/angular-route.js"></script>
+    <script src="/scripts/lib/angular-ui-router.js"></script>
+    <script src="/scripts/lib/xeditable.js"></script>
+    <script src="/Scripts/lib/ng-flow-standalone.js"></script>
+
+    <script src="~/Scripts_Customer/app/app.js"></script>
+    <script src="/scripts/app/theme/components/components.module.js"></script>
+    <script src="/scripts/app/theme/components/toastrLibConfig.js"></script>
+
+    <script src="~/Scripts_Customer/app/pages/pages.module.js"></script>
+
+
+    <a href="javascript:void(0);" id="back-to-top" style="display: inline;"><i class="fa fa-angle-up"></i></a>
+
+</body>
+</html>

@@ -1,0 +1,271 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4B6426DE-2EDD-47C5-97A1-4CF4B72C81B5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GMG_Portal.Content</RootNamespace>
+    <AssemblyName>GMG_Portal.Content</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Admin\Customer\MaintenanceContracts.Designer.cs" />
+    <Compile Include="Admin\Customer\PurchaseOrder.Designer.cs">
+      <DependentUpon>PurchaseOrder.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Admin\Inventory\SpareParts.Designer.cs">
+      <DependentUpon>SpareParts.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Admin\Inventory\Products.Designer.cs">
+      <DependentUpon>Products.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Admin\Inventory\ProductCategory.Designer.cs">
+      <DependentUpon>ProductCategory.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Admin\Shared.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Shared.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\SystemParameters\AccountTypes.Designer.cs">
+      <DependentUpon>AccountTypes.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\SystemParameters\CustomerAccounts.Designer.cs">
+      <DependentUpon>CustomerAccounts.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Admin\SystemParameters\CustomerPoints.Designer.cs">
+      <DependentUpon>CustomerPoints.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Admin\SystemParameters\Couriers.Designer.cs">
+      <DependentUpon>Couriers.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Admin\SystemParameters\Departments.Designer.cs">
+      <DependentUpon>Departments.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\SystemParameters\ReturnPolicy.Designer.cs">
+      <DependentUpon>ReturnPolicy.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Admin\SystemParameters\Regions.Designer.cs">
+      <DependentUpon>Regions.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Admin\SystemParameters\Cities.Designer.cs">
+      <DependentUpon>Cities.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Admin\SystemParameters\PaymentTypes.Designer.cs">
+      <DependentUpon>PaymentTypes.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Admin\SystemParameters\PaymentTimes.Designer.cs">
+      <DependentUpon>PaymentTimes.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Admin\SystemParameters\OrderStatuses.Designer.cs">
+      <DependentUpon>OrderStatuses.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Admin\SystemParameters\InvoiceStatuses.Designer.cs">
+      <DependentUpon>InvoiceStatuses.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Admin\SystemParameters\Frequencies.Designer.cs">
+      <DependentUpon>Frequencies.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Admin\SystemParameters\Countries.Designer.cs">
+      <DependentUpon>Countries.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Admin\SystemParameters\ComplaintTypes.Designer.cs">
+      <DependentUpon>ComplaintTypes.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Admin\SystemParameters\Brands.Designer.cs">
+      <DependentUpon>Brands.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Admin\SystemParameters\ProductSizes.Designer.cs">
+      <DependentUpon>ProductSizes.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Menu.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Menu.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Regex.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Regex.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Admin\Customer\MaintenanceContracts.resx" />
+    <EmbeddedResource Include="Admin\Customer\PurchaseOrder.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PurchaseOrder.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\Inventory\SpareParts.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SpareParts.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\Inventory\Products.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Products.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\Inventory\ProductCategory.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProductCategory.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\Shared.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Shared.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\SystemParameters\Departments.resx" />
+    <EmbeddedResource Include="Admin\SystemParameters\AccountTypes.resx" />
+    <EmbeddedResource Include="Admin\SystemParameters\CustomerAccounts.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CustomerAccounts.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\SystemParameters\CustomerPoints.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CustomerPoints.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\SystemParameters\Couriers.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Couriers.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\SystemParameters\ReturnPolicy.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ReturnPolicy.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\SystemParameters\Regions.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Regions.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\SystemParameters\Cities.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Cities.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\SystemParameters\PaymentTypes.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PaymentTypes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\SystemParameters\PaymentTimes.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PaymentTimes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\SystemParameters\OrderStatuses.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>OrderStatuses.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\SystemParameters\InvoiceStatuses.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>InvoiceStatuses.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\SystemParameters\Frequencies.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Frequencies.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\SystemParameters\Countries.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Countries.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\SystemParameters\ComplaintTypes.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ComplaintTypes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\SystemParameters\Brands.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Brands.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\SystemParameters\ProductSizes.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProductSizes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menu.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Menu.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Regex.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Regex.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Resources\Menu.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

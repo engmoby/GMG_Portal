@@ -1,0 +1,125 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+@using GMG_Portal.Content;
+@using GMG_Portal.Content.Admin;
+@using GMG_Portal.Content.Admin.SystemParameters;
+<script type="text/javascript" src="~/Scripts/app/services/AccountTypes.js"></script>
+<script type="text/javascript" src="~/Scripts/app/pages/AccountTypes/AccountType.js"></script>
+<input type="hidden" id="HEnglishNameUnique" value="@AccountTypes.EnglishNameUnique" />
+<input type="hidden" id="HUpdateSuccessMessage" value="@AccountTypes.UpdateSuccessMessage" />
+<input type="hidden" id="HSaveSuccessMessage" value="@AccountTypes.SaveSuccessMessage" />
+<input type="hidden" id="HDeleteSuccessMessage" value="@AccountTypes.DeleteSuccessMessage" />
+<input type="hidden" id="HArabicNameUnique" value="@AccountTypes.ArabicNameUnique" />
+<input type="hidden" id="HCannotDeleted" value="@AccountTypes.CannotDeleted" />
+
+<div ng-controller="AccountTypesController">
+    <div ba-panel>        
+        <table id="TableWithSearch" class="table table-hover table-condensed" st-table="TableData" st-safe-src="AccountTypes">
+            <thead>
+                <tr class="toolbar">
+                    <th colspan="2">
+                        <div class="input-group">
+                            <span class="input-group-addon addon-left"><i class="fa fa-search" aria-hidden="true"></i></span>
+                            <input st-search="" class="form-control" placeholder="@AccountTypes.txtSearchLbl" type="text" />
+                        </div>                        
+                    </th>
+                    <th colspan="1"></th>
+                    <th>
+                        <div class="input-group">                            
+                            <button class="btn btn-primary btn-with-icon" ng-click="open(null)"><i class="fa fa-plus" aria-hidden="true"></i>@AccountTypes.BtnAdd</button>
+                        </div>                        
+                    </th>
+                </tr>
+
+                <tr class="sortable">
+                    <th>#</th>
+                    <th st-sort="NameAr">@AccountTypes.NameAr</th>
+                    <th st-sort="NameEn">@AccountTypes.NameEn</th>
+                    <th>@AccountTypes.Action</th>
+                </tr>
+
+            </thead>
+            <tbody>
+                <tr ng-repeat="AccountType in TableData">
+                    <td ng-class="{'red-text': AccountType.IsDeleted == true}">{{$index+1}}</td>
+                    <td ng-class="{'red-text': AccountType.IsDeleted == true}">{{AccountType.NameAr}}</td>
+                    <td ng-class="{'red-text': AccountType.IsDeleted == true}">{{AccountType.NameEn}}</td>
+                    <td>
+                        <div class="buttons" ng-show="!AccountType.IsDeleted">
+                            <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(AccountType)"><i class="fa fa-pencil" aria-hidden="true"></i>@AccountTypes.TableBtnEdit</button>
+                            <button class="btn btn-danger editable-table-button btn-xs btn-with-icon" ng-confirm="Confirm Delete ?" ng-click="Delete(AccountType)"><i class="fa fa-trash-o" aria-hidden="true"></i>@AccountTypes.TableBtnDelete</button>
+                        </div>
+
+                        <div class="buttons restore-button" ng-show="AccountType.IsDeleted" >
+                            <button class="center-block btn btn-default  restore-button btn-xs btn-with-icon" ng-click="Restore(AccountType)"><i class="fa fa-undo" aria-hidden="true"></i>Restore</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr ng-show="TableData.length==0">
+                    <td colspan="4">
+                        @Shared.GridNoData
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4" class="text-center">
+                        <div st-pagination="" st-items-by-page="10"></div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+
+      
+        
+    </div>
+
+
+    <form name="FrmAddUpdate" novalidate ng-submit="save()" autocomplete="off">
+        <div class="modal fade" id="ModelAddUpdate" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">{{action |uppercase}} @AccountTypes.ModalTitle</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="TxtNameAr">@AccountTypes.NameAr</label><span class="red-text" > *</span>
+                            <input type="text" ng-model="AccountType.NameAr" not-in-list="AccountTypes" list-item-id="AccountType.ID" class="form-control" name="TxtNameAr" placeholder="Text" required ng-pattern="/@Regex.NameAr/">
+                            <div class="red-text" ng-messages="FrmAddUpdate.TxtNameAr.$error" ng-show="FrmAddUpdate.TxtNameEn.$touched">
+                                <span class="error" ng-message="required">@AccountTypes.TxtNameArRequiredErrorMessage</span>
+                                <span class="error" ng-message="pattern">@AccountTypes.TxtNameArPatternErrorMessage</span>
+                                <span class="error" ng-message="notInList">@AccountTypes.TxtNameArUniqueErrorMessage</span>
+                            </div>
+                            <span class="error" ng-show='isNameArDuplicate'>Arabic name is duplicated</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="TxtNameAr">English Name</label><span class="red-text"> *</span>
+                            <input type="text" ng-model="AccountType.NameEn" not-in-list="AccountTypes" list-item-id="AccountType.ID" class="form-control" name="TxtNameEn" placeholder="Text" required ng-pattern="/@Regex.NameEn/">
+                            <div class="red-text" ng-messages="FrmAddUpdate.TxtNameEn.$error" ng-show="FrmAddUpdate.TxtNameEn.$touched">
+                                <span ng-message="required">@AccountTypes.TxtNameEnRequiredErrorMessage</span>
+                                <span ng-message="pattern">@AccountTypes.TxtNameEnPatternErrorMessage</span>
+                                <span ng-message="notInList">@AccountTypes.TxtNameEnUniqueErrorMessage</span>
+                            </div>
+                        </div>
+                     
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary btn-with-icon" ng-disabled="FrmAddUpdate.$invalid"><i class="ion-android-checkmark-circle"></i>@AccountTypes.btnSaveLbl</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>        
+    </div>
+
+
+
+

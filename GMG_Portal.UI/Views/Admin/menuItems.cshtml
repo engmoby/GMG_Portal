@@ -1,0 +1,65 @@
+﻿<script type="text/javascript">
+    var menuItems = [];
+    @if(true)
+    {
+        <text>
+    menuItems.push({ "title": "Home Page", "level": "0", "icon": "ion-android-home", "stateRef": "HomePage", "templateUrl": "/Home/test" });
+    </text>
+    }
+    @if (true)
+    {
+            <text>
+    menuItems.push({
+        "name": "System Parameters", "title": "Parameters", "level": "0", "icon": "ion-gear-a", "subMenu": [
+
+            @if (true)
+            {
+                <text>
+                { "name": "@GMG_Portal.Content.Menu.PaymentTypes", "title": "@GMG_Portal.Content.Menu.PaymentTypes", "level": "1", "stateRef": "PaymentTypes", "templateUrl": "/PaymentTypes" },
+                </text>
+            }
+
+            @if (true)
+            {
+                <text>
+                { "name": "@GMG_Portal.Content.Menu.Countries", "title": "@GMG_Portal.Content.Menu.Countries", "level": "1", "stateRef": "Countries", "templateUrl": "/Countries" },
+                </text>
+            }
+            @if (true)
+            {
+                <text>
+                { "name": "@GMG_Portal.Content.Menu.Cities", "title": "@GMG_Portal.Content.Menu.Cities", "level": "1", "stateRef": "Cities", "templateUrl": "/Cities" },
+                </text>
+            }
+                 
+                  @if (true)
+        {
+                <text>
+                { "name": "@GMG_Portal.Content.Menu.Departments", "title": "@GMG_Portal.Content.Menu.Departments", "level": "1", "stateRef": "Departments", "templateUrl": "/Departments" },
+                </text>
+            }
+        ]
+    });
+    </text>
+    }
+
+
+
+    @if (true)
+        {
+            <text>
+    menuItems.push({
+        "name": "Customer", "title": "Customer", "level": "0", "icon": "ion-gear-a", "subMenu": [
+                        @if (true)
+           {
+
+                                   <text>
+                                    { "name": "@GMG_Portal.Content.Menu.CustomerAccounts", "title": "@GMG_Portal.Content.Menu.CustomerAccounts", "level": "1", "stateRef": "CustomerAccounts", "templateUrl": "/CustomerAccounts" },
+                                </text>
+                           }
+        ]
+    });
+    </text>
+    }
+
+</script>

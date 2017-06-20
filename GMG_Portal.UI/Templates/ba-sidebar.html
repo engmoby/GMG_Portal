@@ -1,0 +1,12 @@
+﻿<aside class="al-sidebar" ng-swipe-right="$baSidebarService.setMenuCollapsed(false)" ng-swipe-left="$baSidebarService.setMenuCollapsed(true)" ng-mouseleave="hoverElemTop=selectElemTop">
+
+    <ul class="al-sidebar-list" slimscroll="{height: '227px'}" slimscroll-watch="menuHeight" style="overflow: hidden; width: auto; height: 227px;">
+        <li>
+            <a ng-mouseenter="hoverItem($event, item)" class="al-sidebar-list-link ng-scope" href="#/AccountType"><i class="ion-android-home"></i><span class="ng-binding">Dashboard</span></a>
+        </li>
+        <li>
+            <a ng-mouseenter="hoverItem($event, item)" class="al-sidebar-list-link ng-scope" href="#/dashboard"><i class="ion-android-home"></i><span class="ng-binding">Forms</span></a>
+        </li>
+    </ul>
+
+</aside>

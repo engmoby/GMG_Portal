@@ -1,0 +1,125 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+@using GMG_Portal.Content;
+@using GMG_Portal.Content.Admin;
+@using GMG_Portal.Content.Admin.SystemParameters;
+<script type="text/javascript" src="~/Scripts/app/services/Departments.js"></script>
+<script type="text/javascript" src="~/Scripts/app/pages/Departments/Department.js"></script>
+<input type="hidden" id="HEnglishNameUnique" value="@Departments.EnglishNameUnique" />
+<input type="hidden" id="HUpdateSuccessMessage" value="@Departments.UpdateSuccessMessage" />
+<input type="hidden" id="HSaveSuccessMessage" value="@Departments.SaveSuccessMessage" />
+<input type="hidden" id="HDeleteSuccessMessage" value="@Departments.DeleteSuccessMessage" />
+<input type="hidden" id="HArabicNameUnique" value="@Departments.ArabicNameUnique" />
+<input type="hidden" id="HCannotDeleted" value="@Departments.CannotDeleted" />
+<input type="hidden" id="HUnDeleteSuccessMessage" value="@Departments.RestoredSuccessMessage" />
+
+<div ng-controller="DepartmentsController">
+    <div ba-panel>        
+        <table id="TableWithSearch" class="table table-hover table-condensed" st-table="TableData" st-safe-src="Departments">
+            <thead>
+                <tr class="toolbar">
+                    <th colspan="2">
+                        <div class="input-group">
+                            <span class="input-group-addon addon-left"><i class="fa fa-search" aria-hidden="true"></i></span>
+                            <input st-search="" class="form-control" placeholder="@Departments.txtSearchLbl" type="text" />
+                        </div>                        
+                    </th>
+                    <th colspan="1"></th>
+                    <th>
+                        <div class="input-group">                            
+                            <button class="btn btn-primary btn-with-icon" ng-click="open(null)"><i class="fa fa-plus" aria-hidden="true"></i>@Departments.BtnAdd</button>
+                        </div>                        
+                    </th>
+                </tr>
+
+                <tr class="sortable">
+                    <th>#</th>
+                    <th st-sort="NameAr">@Departments.NameAr</th>
+                    <th st-sort="NameEn">@Departments.NameEn</th>
+                    <th>@Departments.Action</th>
+                </tr>
+
+            </thead>
+            <tbody>
+                <tr ng-repeat="Department in TableData">
+                    <td ng-class="{'red-text': Department.IsDeleted == true}">{{$index+1}}</td>
+                    <td ng-class="{'red-text': Department.IsDeleted == true}">{{Department.NameAr}}</td>
+                    <td ng-class="{'red-text': Department.IsDeleted == true}">{{Department.NameEn}}</td>                  
+                    <td>
+                        <div class="buttons" >    
+                            <div ng-hide="Department.IsDeleted">
+                                <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(Department)"><i class="fa fa-pencil" aria-hidden="true"></i>@Departments.TableBtnEdit</button>
+                                <button class="btn btn-danger editable-table-button btn-xs btn-with-icon" ng-confirm="Confirm Delete ?" ng-click="Delete(Department)"><i class="fa fa-trash-o" aria-hidden="true"></i>@Departments.TableBtnDelete</button>
+                            </div>
+                            </div>
+                            <div class="buttons restore-button" >  
+                                <div ng-show="Department.IsDeleted" >
+                                    <button class="center-block btn btn-default  restore-button btn-xs btn-with-icon" ng-confirm="Confirm Restore ?" ng-click="Restore(Department)"><i class="fa fa-undo" aria-hidden="true"></i>@Departments.TableBtnRestore</button>
+                                </div>
+                            </div>                   
+                    </td>
+                </tr>
+                <tr ng-show="TableData.length==0">
+                    <td colspan="4">
+                        @Shared.GridNoData
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4" class="text-center">
+                        <div st-pagination="" st-items-by-page="10"></div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+
+    <form name="FrmAddUpdate" novalidate ng-submit="save()" autocomplete="off">
+        <div class="modal fade" id="ModelAddUpdate" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">{{action |uppercase}} @Departments.ModalTitle</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="TxtNameAr">@Departments.NameAr</label><span class="red-text" > *</span>
+                            <input type="text" ng-model="Department.NameAr" not-in-list="Departments" list-item-id="Department.ID" class="form-control" name="TxtNameAr" placeholder="Text" required ng-pattern="/@Regex.NameAr/">
+                            <div class="red-text" ng-messages="FrmAddUpdate.TxtNameAr.$error" ng-show="FrmAddUpdate.TxtNameEn.$touched">
+                                <span class="error" ng-message="required">@Departments.TxtNameArRequiredErrorMessage</span>
+                                <span class="error" ng-message="pattern">@Departments.TxtNameArPatternErrorMessage</span>
+                                <span class="error" ng-message="notInList">@Departments.TxtNameArUniqueErrorMessage</span>
+                            </div>
+                            <span class="error" ng-show='isNameArDuplicate'>Arabic name is duplicated</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="TxtNameAr">English Name</label><span class="red-text"> *</span>
+                            <input type="text" ng-model="Department.NameEn" not-in-list="Departments" list-item-id="Department.ID" class="form-control" name="TxtNameEn" placeholder="Text" required ng-pattern="/@Regex.NameEn/">
+                            <div class="red-text" ng-messages="FrmAddUpdate.TxtNameEn.$error" ng-show="FrmAddUpdate.TxtNameEn.$touched">
+                                <span ng-message="required">@Departments.TxtNameEnRequiredErrorMessage</span>
+                                <span ng-message="pattern">@Departments.TxtNameEnPatternErrorMessage</span>
+                                <span ng-message="notInList">@Departments.TxtNameEnUniqueErrorMessage</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary btn-with-icon" ng-disabled="FrmAddUpdate.$invalid"><i class="ion-android-checkmark-circle"></i>@Departments.btnSaveLbl</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>        
+    </div>
+
+
+
+
