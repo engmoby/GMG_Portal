@@ -13,6 +13,6 @@ namespace GMG_Portal.API.Models.SystemParameters
             public string NameEn { get; set; }
             public bool IsDeleted { get; set; }
             public string OperationStatus { get; set; }
-
+        
     }
 }
