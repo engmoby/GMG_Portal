@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GMG_Portal.Data; 
+using GMG_Portal.Data;
 
 namespace GMG_Portal.Business.Logic.SystemParameters
 {
     public class CountriesLogic
     {
-        GMG_Portal_DBEntities DB;
+        private readonly GMG_Portal_DBEntities _db;
 
         public CountriesLogic()
         {
-            DB = new GMG_Portal_DBEntities();
+            _db = new GMG_Portal_DBEntities();
         }
 
         public List<Countries> GetAllWithDeleted()
@@ -25,18 +25,18 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         public List<Countries> GetAll()
         {
             return null;
-          //  return DB.Countries.Where(p => p.IsDeleted != true).ToList();
+            //  return DB.Countries.Where(p => p.IsDeleted != true).ToList();
         }
         public Countries Get(int ID)
         {
             return null;
-           // return DB.Countries.Find(ID);
+            // return DB.Countries.Find(ID);
         }
         private Countries Save(Countries Country)
         {
             try
             {
-                DB.SaveChanges();
+                _db.SaveChanges();
                 Country.OperationStatus = "Succeded";
                 return Country;
             }
