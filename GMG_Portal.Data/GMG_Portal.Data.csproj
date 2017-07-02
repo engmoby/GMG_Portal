@@ -45,6 +45,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
@@ -56,34 +57,34 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Front_Mission.cs">
-      <DependentUpon>Portal_Entities.tt</DependentUpon>
+      <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Front_Vision.cs">
-      <DependentUpon>Portal_Entities.tt</DependentUpon>
+      <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Hotel.cs">
-      <DependentUpon>Portal_Entities.tt</DependentUpon>
+      <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Hotels_Features.cs">
-      <DependentUpon>Portal_Entities.tt</DependentUpon>
+      <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Hotels_Hotel_Features.cs">
-      <DependentUpon>Portal_Entities.tt</DependentUpon>
+      <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Hotels_Hotel_Images.cs">
-      <DependentUpon>Portal_Entities.tt</DependentUpon>
+      <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Hotels_Hotel_Payments.cs">
-      <DependentUpon>Portal_Entities.tt</DependentUpon>
+      <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Hotels_Hotel_Phones.cs">
-      <DependentUpon>Portal_Entities.tt</DependentUpon>
+      <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Hotels_Hotel_Videos.cs">
-      <DependentUpon>Portal_Entities.tt</DependentUpon>
+      <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Hotles_Hotel_Offers.cs">
-      <DependentUpon>Portal_Entities.tt</DependentUpon>
+      <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Partials\SystemParameters\Departments.cs" />
     <Compile Include="Partials\SystemParameters\AccountTypes.cs" />
@@ -93,39 +94,39 @@
     <Compile Include="Partials\Customer\InvoiceStatuses.cs" />
     <Compile Include="Partials\Customer\InvoiceTypes.cs" />
     <Compile Include="Partials\SystemParameters\PaymentTypes.cs" />
-    <Compile Include="Portal_Entities.Context.cs">
+    <Compile Include="Portal_Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Portal_Entities.Context.tt</DependentUpon>
+      <DependentUpon>Portal_Model.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Portal_Entities.cs">
+    <Compile Include="Portal_Model.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Portal_Entities.tt</DependentUpon>
+      <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Portal_Entities.Designer.cs">
+    <Compile Include="Portal_Model.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Portal_Entities.edmx</DependentUpon>
+      <DependentUpon>Portal_Model.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Systemparameters_Languages.cs">
-      <DependentUpon>Portal_Entities.tt</DependentUpon>
+      <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="SystemParameters_LanguageText.cs">
-      <DependentUpon>Portal_Entities.tt</DependentUpon>
+      <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="SystemParameter_Cities.cs">
-      <DependentUpon>Portal_Entities.tt</DependentUpon>
+      <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="SystemParameter_Countries.cs">
-      <DependentUpon>Portal_Entities.tt</DependentUpon>
+      <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="SystemParameter_Departments.cs">
-      <DependentUpon>Portal_Entities.tt</DependentUpon>
+      <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="SystemParameter_PaymentType.cs">
-      <DependentUpon>Portal_Entities.tt</DependentUpon>
+      <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -135,27 +136,27 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <EntityDeploy Include="Portal_Entities.edmx">
+    <EntityDeploy Include="Portal_Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Portal_Entities.Designer.cs</LastGenOutput>
+      <LastGenOutput>Portal_Model.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Portal_Entities.edmx.diagram">
-      <DependentUpon>Portal_Entities.edmx</DependentUpon>
+    <None Include="Portal_Model.edmx.diagram">
+      <DependentUpon>Portal_Model.edmx</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Portal_Entities.Context.tt">
+    <Content Include="Portal_Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Portal_Entities.edmx</DependentUpon>
-      <LastGenOutput>Portal_Entities.Context.cs</LastGenOutput>
+      <DependentUpon>Portal_Model.edmx</DependentUpon>
+      <LastGenOutput>Portal_Model.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Portal_Entities.tt">
+    <Content Include="Portal_Model.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Portal_Entities.edmx</DependentUpon>
-      <LastGenOutput>Portal_Entities.cs</LastGenOutput>
+      <DependentUpon>Portal_Model.edmx</DependentUpon>
+      <LastGenOutput>Portal_Model.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

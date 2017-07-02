@@ -12,11 +12,11 @@ namespace GMG_Portal.Business.Logic.SystemParameters
 {
   public class AccountTypeLogic
     {
-        GMG_Portal_DBEntities DB;
+        GMG_Portal_DBEntities1 DB;
 
         public AccountTypeLogic()
         {
-            DB = new GMG_Portal_DBEntities();
+            DB = new GMG_Portal_DBEntities1();
         }
 
         public List<AccountTypes> GetAllWithDeleted()

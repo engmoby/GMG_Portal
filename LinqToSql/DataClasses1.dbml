@@ -1,0 +1,286 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="GMG_Portal_DB" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-9341RKA\SQLEXPRESS;Initial Catalog=GMG_Portal_DB;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="GMG_Portal_DBConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Front_Vision" Member="Front_Visions">
+    <Type Name="Front_Vision">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SGuid" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DisplayValue" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="LookupKey" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LookupKeyGuid" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="IsCurrent" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Show" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="DisplayValueDesc" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="LookupKeyDesc" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LookupKeyGuidDesc" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Image" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Front_Mission" Member="Front_Missions">
+    <Type Name="Front_Mission">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SGuid" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DisplayValue" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="LookupKey" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LookupKeyGuid" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="IsCurrent" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Show" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="DisplayValueDesc" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="LookupKeyDesc" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LookupKeyGuidDesc" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Image" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SystemParameters_LanguageText" Member="SystemParameters_LanguageTexts">
+    <Type Name="SystemParameters_LanguageText">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SGuid" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="LanguageKey" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LanguageName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Show" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Value" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Hotels" Member="Hotels">
+    <Type Name="Hotel">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SGuid" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DisplayValue" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="LookupKey" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LookupKeyGuid" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="IsCurrent" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CityId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Rate" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DisplayValueDesc" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="LookupKeyDesc" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LookupKeyGuidDesc" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="CheckIn" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="CheckOut" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="Late" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Long" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="DisplayValueAddress" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="LookupKeyAddress" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LookupKeyGuidAddress" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DistanceDownTown" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="LastModificationTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="LastModifierUserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreationTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatorUserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DeletionTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DeleterUserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Show" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Hotels_Features" Member="Hotels_Features">
+    <Type Name="Hotels_Feature">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SGuid" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DisplayValue" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="LookupKey" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LookupKeyGuid" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="IsCurrent" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Icon" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="LastModificationTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="LastModifierUserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreationTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatorUserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DeletionTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DeleterUserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Show" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Hotels_Hotel_Features" Member="Hotels_Hotel_Features">
+    <Type Name="Hotels_Hotel_Feature">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Hotel_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Feature_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SGuid" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Hotels_Hotel_Images" Member="Hotels_Hotel_Images">
+    <Type Name="Hotels_Hotel_Image">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SGuid" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Image" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Hotel_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="LastModificationTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="LastModifierUserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreationTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatorUserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DeletionTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DeleterUserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Show" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Hotels_Hotel_Payments" Member="Hotels_Hotel_Payments">
+    <Type Name="Hotels_Hotel_Payment">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SGuid" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Hotel_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="payment_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="LastModificationTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="LastModifierUserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreationTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatorUserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DeletionTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DeleterUserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Show" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Hotels_Hotel_Phones" Member="Hotels_Hotel_Phones">
+    <Type Name="Hotels_Hotel_Phone">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SGuid" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Hotel_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="LastModificationTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="LastModifierUserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreationTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatorUserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DeletionTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DeleterUserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Show" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Hotels_Hotel_Videos" Member="Hotels_Hotel_Videos">
+    <Type Name="Hotels_Hotel_Video">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SGuid" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Video" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Hotel_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="LastModificationTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="LastModifierUserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreationTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatorUserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DeletionTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DeleterUserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Show" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Hotles_Hotel_Offers" Member="Hotles_Hotel_Offers">
+    <Type Name="Hotles_Hotel_Offer">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SGuid" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Hotel_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DisplayValue" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="LookupKey" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LookupKeyGuid" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="DisplayValueDesc" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="LookupKeyDesc" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LookupKeyGuidDesc" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Price" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Discount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="StartDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Show" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="LastModificationTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="LastModifierUserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreationTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatorUserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DeletionTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DeleterUserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SystemParameter_Cities" Member="SystemParameter_Cities">
+    <Type Name="SystemParameter_City">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SGuid" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DisplayValue" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="LookupKey" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LookupKeyGuid" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="IsCurrent" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="LastModificationTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="LastModifierUserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreationTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatorUserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DeletionTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DeleterUserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Show" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CountryID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SystemParameter_Countries" Member="SystemParameter_Countries">
+    <Type Name="SystemParameter_Country">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SGuid" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DisplayValue" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="LookupKey" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LookupKeyGuid" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="IsCurrent" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="LastModificationTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="LastModifierUserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreationTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatorUserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DeletionTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DeleterUserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Show" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SystemParameter_Departments" Member="SystemParameter_Departments">
+    <Type Name="SystemParameter_Department">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SGuid" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DisplayValue" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="LookupKey" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LookupKeyGuid" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="IsCurrent" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="LastModificationTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="LastModifierUserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreationTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatorUserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DeletionTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DeleterUserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Show" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SystemParameter_PaymentType" Member="SystemParameter_PaymentTypes">
+    <Type Name="SystemParameter_PaymentType">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SGuid" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DisplayValue" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="LookupKey" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LookupKeyGuid" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="IsCurrent" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Icon" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="LastModificationTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="LastModifierUserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreationTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatorUserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DeletionTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DeleterUserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Show" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Systemparameters_Languages" Member="Systemparameters_Languages">
+    <Type Name="Systemparameters_Language">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SGuid" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Show" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="DisplayName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Icon" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="LastModificationTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="LastModifierUserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreationTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatorUserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DeletionTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DeleterUserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

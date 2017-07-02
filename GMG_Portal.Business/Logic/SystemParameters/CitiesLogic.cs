@@ -9,11 +9,11 @@ namespace GMG_Portal.Business.Logic.SystemParameters
 {
     public class CitiesLogic
     {
-        private readonly GMG_Portal_DBEntities _db;
+        private readonly GMG_Portal_DBEntities1 _db;
 
         public CitiesLogic()
         {
-            _db = new GMG_Portal_DBEntities();
+            _db = new GMG_Portal_DBEntities1();
         }
         public List<SystemParameter_Cities> GetAllWithDeleted()
         {

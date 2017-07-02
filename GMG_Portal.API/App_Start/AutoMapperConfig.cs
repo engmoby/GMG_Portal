@@ -21,8 +21,8 @@ namespace GMG_Portal.API
 
                  
 
-                cfg.CreateMap<GMG_Portal.Data.Countries, GMG_Portal.API.Models.SystemParameters.Countries>();
-                cfg.CreateMap<GMG_Portal.API.Models.SystemParameters.Countries, GMG_Portal.Data.Countries>();
+                cfg.CreateMap<SystemParameter_Countries, GMG_Portal.API.Models.SystemParameters.Countries>();
+                cfg.CreateMap<GMG_Portal.API.Models.SystemParameters.Countries, SystemParameter_Countries>();
 
                 cfg.CreateMap<GMG_Portal.Data.PaymentTypes, GMG_Portal.API.Models.SystemParameters.PaymentTypes>();
                 cfg.CreateMap<GMG_Portal.API.Models.SystemParameters.PaymentTypes, GMG_Portal.Data.PaymentTypes>();

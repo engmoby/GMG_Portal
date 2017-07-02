@@ -12,11 +12,11 @@ namespace GMG_Portal.Business.Logic.SystemParameters
 {
   public class DepartmentLogic
     {
-        GMG_Portal_DBEntities DB;
+        GMG_Portal_DBEntities1 DB;
 
         public DepartmentLogic()
         {
-            DB = new GMG_Portal_DBEntities();
+            DB = new GMG_Portal_DBEntities1();
         }
 
         public List<Departments> GetAll()

@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FFD3F25C-DA81-4DCE-97EF-5D715EC2DD96}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CRM.Data</RootNamespace>
+    <AssemblyName>CRM.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CRM.Data, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Pure CRM\GMG_Portal\Main\CRM.Data\bin\Debug\CRM.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CRM_Model.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRM_Model.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CRM_Model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRM_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CRM_Model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRM_Model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Front_Mission.cs">
+      <DependentUpon>CRM_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Front_Vision.cs">
+      <DependentUpon>CRM_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Hotels.cs">
+      <DependentUpon>CRM_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Hotels_Features.cs">
+      <DependentUpon>CRM_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Hotels_Hotel_Features.cs">
+      <DependentUpon>CRM_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Hotels_Hotel_Images.cs">
+      <DependentUpon>CRM_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Hotels_Hotel_Payments.cs">
+      <DependentUpon>CRM_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Hotels_Hotel_Phones.cs">
+      <DependentUpon>CRM_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Hotels_Hotel_Videos.cs">
+      <DependentUpon>CRM_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Hotles_Hotel_Offers.cs">
+      <DependentUpon>CRM_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Partials\Departments.cs" />
+    <Compile Include="Partials\AccountTypes.cs" />
+    <Compile Include="Partials\Brand.cs" />
+    <Compile Include="Partials\Cities.cs" />
+    <Compile Include="Partials\ComplaintTypes.cs" />
+    <Compile Include="Partials\Countries.cs" />
+    <Compile Include="Partials\CourierDetails.cs" />
+    <Compile Include="Partials\Couriers.cs" />
+    <Compile Include="Partials\CustomerInstallments.cs" />
+    <Compile Include="Partials\CustomerPoints.cs" />
+    <Compile Include="Partials\Customers.cs" />
+    <Compile Include="Partials\Frequencies.cs" />
+    <Compile Include="Partials\InvoiceStatuses.cs" />
+    <Compile Include="Partials\InvoiceTypes.cs" />
+    <Compile Include="Partials\MaintenanceContractProducts.cs" />
+    <Compile Include="Partials\MaintenanceContracts.cs" />
+    <Compile Include="Partials\OrderStatuses.cs" />
+    <Compile Include="Partials\PaymentTimes.cs" />
+    <Compile Include="Partials\PaymentTypes.cs" />
+    <Compile Include="Partials\ProductCategory.cs" />
+    <Compile Include="Partials\Products.cs" />
+    <Compile Include="Partials\ProductSizes.cs" />
+    <Compile Include="Partials\PurchaseOrder.cs" />
+    <Compile Include="Partials\Regions.cs" />
+    <Compile Include="Partials\ReturnPolicy.cs" />
+    <Compile Include="Partials\ShipmentTypes.cs" />
+    <Compile Include="Partials\SpareParts.cs" />
+    <Compile Include="procedure_productCategoryTree_Result.cs">
+      <DependentUpon>CRM_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SP_GetAllCouriers_Result.cs">
+      <DependentUpon>CRM_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_GetCourierDetails_Result.cs">
+      <DependentUpon>CRM_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Systemparameters_Languages.cs">
+      <DependentUpon>CRM_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SystemParameters_LanguageText.cs">
+      <DependentUpon>CRM_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SystemParameter_Cities.cs">
+      <DependentUpon>CRM_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SystemParameter_Countries.cs">
+      <DependentUpon>CRM_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SystemParameter_Departments.cs">
+      <DependentUpon>CRM_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SystemParameter_PaymentType.cs">
+      <DependentUpon>CRM_Model.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="CRM_Model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CRM_Model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="CRM_Model.edmx.diagram">
+      <DependentUpon>CRM_Model.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CRM_Model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CRM_Model.edmx</DependentUpon>
+      <LastGenOutput>CRM_Model.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="CRM_Model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CRM_Model.edmx</DependentUpon>
+      <LastGenOutput>CRM_Model.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

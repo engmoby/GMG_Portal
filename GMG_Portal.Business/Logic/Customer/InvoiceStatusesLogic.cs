@@ -7,11 +7,11 @@ namespace GMG_Portal.Business.Logic.Customer
 {
     public class InvoiceStatusesLogic
     {
-        GMG_Portal_DBEntities DB;
+        GMG_Portal_DBEntities1 DB;
 
         public InvoiceStatusesLogic()
         {
-            DB = new GMG_Portal_DBEntities();
+            DB = new GMG_Portal_DBEntities1();
         }
 
         public List<InvoiceStatuses> GetAll()

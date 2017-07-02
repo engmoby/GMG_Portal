@@ -13,10 +13,10 @@ namespace GMG_Portal.Data
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class GMG_Portal_DBEntities : DbContext
+    public partial class GMG_Portal_DBEntities1 : DbContext
     {
-        public GMG_Portal_DBEntities()
-            : base("name=GMG_Portal_DBEntities")
+        public GMG_Portal_DBEntities1()
+            : base("name=GMG_Portal_DBEntities1")
         {
         }
     
@@ -34,12 +34,12 @@ namespace GMG_Portal.Data
         public virtual DbSet<Hotels_Hotel_Phones> Hotels_Hotel_Phones { get; set; }
         public virtual DbSet<Hotels_Hotel_Videos> Hotels_Hotel_Videos { get; set; }
         public virtual DbSet<Hotles_Hotel_Offers> Hotles_Hotel_Offers { get; set; }
+        public virtual DbSet<SystemParameter_Cities> SystemParameter_Cities { get; set; }
         public virtual DbSet<SystemParameter_Countries> SystemParameter_Countries { get; set; }
         public virtual DbSet<SystemParameter_Departments> SystemParameter_Departments { get; set; }
         public virtual DbSet<SystemParameter_PaymentType> SystemParameter_PaymentType { get; set; }
         public virtual DbSet<Systemparameters_Languages> Systemparameters_Languages { get; set; }
         public virtual DbSet<Hotels_Hotel_Images> Hotels_Hotel_Images { get; set; }
         public virtual DbSet<SystemParameters_LanguageText> SystemParameters_LanguageText { get; set; }
-        public virtual DbSet<SystemParameter_Cities> SystemParameter_Cities { get; set; }
     }
 }

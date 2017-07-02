@@ -9,17 +9,16 @@ namespace GMG_Portal.Business.Logic.SystemParameters
 {
     public class CountriesLogic
     {
-        private readonly GMG_Portal_DBEntities _db;
+        private readonly GMG_Portal_DBEntities1 _db;
 
         public CountriesLogic()
         {
-            _db = new GMG_Portal_DBEntities();
+            _db = new GMG_Portal_DBEntities1();
         }
 
-        public List<Countries> GetAllWithDeleted()
-        {
-            return null;
-            //return DB.SystemParameter_Countries.OrderBy(p => p.IsDeleted).ToList();
+        public List<SystemParameter_Countries> GetAllWithDeleted()
+        { 
+             return _db.SystemParameter_Countries.OrderBy(p => p.IsDeleted).ToList();
         }
 
         public List<Countries> GetAll()

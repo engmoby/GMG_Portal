@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0a9c3b0726af487298b79892bd44c746" Name="Diagram1" ZoomLevel="62">
+        <EntityTypeShape EntityType="CRM_DBModel.Front_Mission" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CRM_DBModel.Front_Vision" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CRM_DBModel.Hotels" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CRM_DBModel.Hotels_Features" Width="1.5" PointX="0.75" PointY="5.75" />
+        <EntityTypeShape EntityType="CRM_DBModel.Hotels_Hotel_Features" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CRM_DBModel.Hotels_Hotel_Payments" Width="1.5" PointX="6.75" PointY="3.75" />
+        <EntityTypeShape EntityType="CRM_DBModel.Hotels_Hotel_Phones" Width="1.5" PointX="8.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CRM_DBModel.Hotels_Hotel_Videos" Width="1.5" PointX="2.75" PointY="8.75" />
+        <EntityTypeShape EntityType="CRM_DBModel.Hotles_Hotel_Offers" Width="1.5" PointX="4.75" PointY="8.75" />
+        <EntityTypeShape EntityType="CRM_DBModel.SystemParameter_Cities" Width="1.5" PointX="8.75" PointY="5.75" />
+        <EntityTypeShape EntityType="CRM_DBModel.SystemParameter_Countries" Width="1.5" PointX="10.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CRM_DBModel.SystemParameter_Departments" Width="1.5" PointX="10.75" PointY="5.75" />
+        <EntityTypeShape EntityType="CRM_DBModel.SystemParameter_PaymentType" Width="1.5" PointX="6.75" PointY="10.75" />
+        <EntityTypeShape EntityType="CRM_DBModel.Systemparameters_Languages" Width="1.5" PointX="8.75" PointY="10.75" />
+        <EntityTypeShape EntityType="CRM_DBModel.Hotels_Hotel_Images" Width="1.5" PointX="10.75" PointY="10.75" />
+        <EntityTypeShape EntityType="CRM_DBModel.SystemParameters_LanguageText" Width="1.5" PointX="12.75" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -10,11 +10,11 @@ namespace GMG_Portal.Business.Logic.Customer
 {
     public class CustomersLogic
     {
-        GMG_Portal_DBEntities DB;
+        GMG_Portal_DBEntities1 DB;
         bool _insert = false;
         public CustomersLogic()
         {
-            DB = new GMG_Portal_DBEntities();
+            DB = new GMG_Portal_DBEntities1();
         }
 
         //public List<View_GetAllCustomersWithLookupsNames> GetAll()
