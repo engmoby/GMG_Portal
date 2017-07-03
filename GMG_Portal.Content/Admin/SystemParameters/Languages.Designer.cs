@@ -106,20 +106,20 @@ namespace GMG_Portal.Content.Admin.SystemParameters {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Display Front.
+        /// </summary>
+        public static string DisplayFront {
+            get {
+                return ResourceManager.GetString("DisplayFront", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Display name must be unique.
         /// </summary>
         public static string EnglishNameUnique {
             get {
                 return ResourceManager.GetString("EnglishNameUnique", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Display Front.
-        /// </summary>
-        public static string FrontName {
-            get {
-                return ResourceManager.GetString("FrontName", resourceCulture);
             }
         }
         
@@ -196,6 +196,24 @@ namespace GMG_Portal.Content.Admin.SystemParameters {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Front Name is required.
+        /// </summary>
+        public static string TxtDisplayFrontRequiredErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtDisplayFrontRequiredErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name is unique.
+        /// </summary>
+        public static string TxtDisplayFrontUniqueErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtDisplayFrontUniqueErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Front Name.
         /// </summary>
         public static string TxtFrontNameLabel {
@@ -210,24 +228,6 @@ namespace GMG_Portal.Content.Admin.SystemParameters {
         public static string TxtFrontNameNotInList {
             get {
                 return ResourceManager.GetString("TxtFrontNameNotInList", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Front Name is required.
-        /// </summary>
-        public static string TxtFrontNameRequiredErrorMessage {
-            get {
-                return ResourceManager.GetString("TxtFrontNameRequiredErrorMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Name is unique.
-        /// </summary>
-        public static string TxtFrontNameUniqueErrorMessage {
-            get {
-                return ResourceManager.GetString("TxtFrontNameUniqueErrorMessage", resourceCulture);
             }
         }
         

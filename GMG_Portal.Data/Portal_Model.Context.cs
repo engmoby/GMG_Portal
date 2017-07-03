@@ -25,8 +25,6 @@ namespace GMG_Portal.Data
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Front_Mission> Front_Mission { get; set; }
-        public virtual DbSet<Front_Vision> Front_Vision { get; set; }
         public virtual DbSet<Hotel> Hotels { get; set; }
         public virtual DbSet<Hotels_Features> Hotels_Features { get; set; }
         public virtual DbSet<Hotels_Hotel_Features> Hotels_Hotel_Features { get; set; }
@@ -41,5 +39,8 @@ namespace GMG_Portal.Data
         public virtual DbSet<Hotels_Hotel_Images> Hotels_Hotel_Images { get; set; }
         public virtual DbSet<SystemParameters_LanguageText> SystemParameters_LanguageText { get; set; }
         public virtual DbSet<Systemparameters_Languages> Systemparameters_Languages { get; set; }
+        public virtual DbSet<Front_Mission> Front_Mission { get; set; }
+        public virtual DbSet<Front_Vision> Front_Vision { get; set; }
+        public virtual DbSet<SystemParamater_HomeSlider> SystemParamater_HomeSlider { get; set; }
     }
 }

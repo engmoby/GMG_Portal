@@ -37,7 +37,7 @@
                     <th>#</th>
                     <th st-sort="NameAr">@Languages.Name</th>
                     <th st-sort="NameEn">@Languages.NameDisplay</th>
-                    <th st-sort="NameEn">@Languages.FrontName</th>
+                    <th st-sort="NameEn">@Languages.DisplayFront</th>
                     <th>Actions</th>
                 </tr>
 
@@ -109,13 +109,13 @@
                         </div>
                         
                         <div class="form-group">
-                            <label for="TxtFrontName">@Languages.FrontName</label><span class="red-text"> *</span>
-                            <input type="text" ng-model="Language.DisplayName" not-in-list="Languages" list-item-id="Language.ID" class="form-control" name="TxtFrontName"
+                            <label for="TxtDisplayFront">@Languages.DisplayFront</label><span class="red-text"> *</span>
+                            <input type="text" ng-model="Language.DisplayFront" not-in-list="Languages" list-item-id="Language.ID" class="form-control" name="TxtDisplayFront"
                                    placeholder="Text" required ng-pattern="/@Regex.NameEn/">
-                            <div class="red-text" ng-messages="FrmAddUpdate.TxtFrontName.$error" ng-show="FrmAddUpdate.TxtFrontName.$touched">
-                                <span class="red-text" ng-message="required">@Languages.TxtFrontNameRequiredErrorMessage</span>
+                            <div class="red-text" ng-messages="FrmAddUpdate.TxtDisplayFront.$error" ng-show="FrmAddUpdate.TxtDisplayFront.$touched">
+                                <span class="red-text" ng-message="required">@Languages.TxtDisplayFrontRequiredErrorMessage</span>
                                 <span class="red-text" ng-message="pattern">@Languages.TxtNameFrontPatternErrorMessage</span>
-                                <span class="red-text" ng-message="notInList">@Languages.TxtFrontNameUniqueErrorMessage</span>
+                                <span class="red-text" ng-message="notInList">@Languages.TxtDisplayFrontUniqueErrorMessage</span>
                             </div>
                         </div>
                     </div>

@@ -26,5 +26,11 @@ namespace GMG_Portal.Data
         public Nullable<int> LookupKeyDesc { get; set; }
         public Nullable<System.Guid> LookupKeyGuidDesc { get; set; }
         public string Image { get; set; }
+        public Nullable<System.DateTime> LastModificationTime { get; set; }
+        public Nullable<int> LastModifierUserId { get; set; }
+        public Nullable<System.DateTime> CreationTime { get; set; }
+        public Nullable<int> CreatorUserId { get; set; }
+        public Nullable<System.DateTime> DeletionTime { get; set; }
+        public Nullable<int> DeleterUserId { get; set; }
     }
 }
