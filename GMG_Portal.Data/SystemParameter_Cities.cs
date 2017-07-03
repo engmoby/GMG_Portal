@@ -21,7 +21,7 @@ namespace GMG_Portal.Data
         public Nullable<System.Guid> LookupKeyGuid { get; set; }
         public Nullable<bool> IsCurrent { get; set; }
         public bool IsDeleted { get; set; }
-        public System.DateTime LastModificationTime { get; set; }
+        public Nullable<System.DateTime> LastModificationTime { get; set; }
         public Nullable<int> LastModifierUserId { get; set; }
         public Nullable<System.DateTime> CreationTime { get; set; }
         public Nullable<int> CreatorUserId { get; set; }

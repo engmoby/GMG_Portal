@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace GMG_Portal.Data
+namespace GMG_Portal.Data.Partials.SystemParameters
 {
     public partial class AccountTypes
     {

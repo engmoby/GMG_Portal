@@ -1,0 +1,126 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+@using GMG_Portal.Content; 
+@using GMG_Portal.Content.Admin
+@using GMG_Portal.Content.Admin.SystemParameters
+<script type="text/javascript" src="~/Scripts/app/services/Languages.js"></script>
+<script type="text/javascript" src="~/Scripts/app/pages/Languages/Languages.js"></script>
+<input type="hidden" id="HEnglishNameUnique" value="@Languages.EnglishNameUnique" />
+<input type="hidden" id="HUpdateSuccessMessage" value="@Languages.UpdateSuccessMessage" />
+<input type="hidden" id="HSaveSuccessMessage" value="@Languages.SaveSuccessMessage" />
+<input type="hidden" id="HDeleteSuccessMessage" value="@Languages.DeleteSuccessMessage" />
+<input type="hidden" id="HArabicNameUnique" value="@Languages.ArabicNameUnique" />
+<input type="hidden" id="HCannotDeleted" value="@Languages.CannotDeleted" />
+<div ng-controller="LanguagesController">
+
+    <div ba-panel>
+        <table class="table table-hover table-condensed" st-table="TableData" st-safe-src="Languages">
+            <thead>
+                <tr class="toolbar">
+                    <th colspan="2">
+                        <div class="input-group">
+                            <span class="input-group-addon addon-left"><i class="fa fa-search" aria-hidden="true"></i></span>
+                            <input st-search="" class="form-control" placeholder="@Languages.txtSearchLbl" type="text" />
+                        </div>
+                    </th>
+                    <th colspan="1"></th>
+                    <th>
+                        <div class="input-group">
+                            <button class="btn btn-primary btn-with-icon" ng-click="open(null)"><i class="fa fa-plus" aria-hidden="true"></i>@Languages.BtnAdd</button>
+                        </div>
+                    </th>
+                </tr>
+
+                <tr class="sortable">
+                    <th>#</th>
+                    <th st-sort="NameAr">@Languages.NameEn</th>
+                    <th st-sort="NameEn">@Languages.NameEn</th>
+                    <th>Actions</th>
+                </tr>
+
+            </thead>
+            <tbody>
+                <tr ng-repeat="Language in TableData">
+                    <td ng-class="{'red-text': Language.IsDeleted == true}">{{$index+1}}</td>
+                    <td ng-class="{'red-text': Language.IsDeleted == true}">{{Language.Name}}</td>
+                    <td ng-class="{'red-text': Language.IsDeleted == true}">{{Language.DisplayName}}</td>
+                    <td>
+                        <div class="buttons" ng-show="!Language.IsDeleted">
+                            <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(Language)"><i class="fa fa-pencil" aria-hidden="true"></i>@Languages.TableBtnEdit</button>
+                            <button class="btn btn-danger editable-table-button btn-xs btn-with-icon" ng-confirm="Confirm Delete ?" ng-click="Delete(Language)"><i class="fa fa-trash-o" aria-hidden="true"></i>@Languages.TableBtnDelete</button>
+                        </div>
+                        <div class="buttons restore-button" ng-show="Language.IsDeleted">
+                            <button class="center-block btn btn-default  restore-button btn-xs btn-with-icon" ng-click="Restore(Language)"><i class="fa fa-undo" aria-hidden="true"></i>Restore</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr ng-show="TableData.length==0">
+                    <td colspan="4">
+                       @Shared.GridNoData
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4" class="text-center">
+                        <div st-pagination="" st-items-by-page="10"></div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+
+    <form name="FrmAddUpdate" novalidate ng-submit="save()" autocomplete="off">
+
+        <div class="modal fade" id="ModelAddUpdate" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">{{action |uppercase}} @Languages.ModalTitle</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="TxtNameAr">@Languages.NameAr</label><span class="red-text"> *</span>
+                            <input type="text" ng-model="Language.Name" not-in-list="Languages" list-item-id="Language.ID" class="form-control" name="TxtNameAr"
+                                    placeholder="Text" required ng-pattern="/@Regex.NameAr/">
+                            <div class="red-text" ng-messages="FrmAddUpdate.TxtNameAr.$error" ng-show="FrmAddUpdate.TxtNameAr.$touched">
+                                <span class="red-text" ng-message="required">@Languages.TxtNameArRequiredErrorMessage</span>
+                                <span class="red-text" ng-message="pattern">@Languages.TxtNameArPatternErrorMessage</span>
+                                <span class="red-text" ng-message="notInList">@Languages.TxtNameArUniqueErrorMessage</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="TxtNameAr">@Languages.NameEn</label><span class="red-text"> *</span>
+                            <input type="text" ng-model="Language.DisplayName" not-in-list="Languages" list-item-id="Language.ID" class="form-control" name="TxtNameEn"
+                                    placeholder="Text" required ng-pattern="/@Regex.NameEn/">
+                            <div class="red-text" ng-messages="FrmAddUpdate.TxtNameEn.$error" ng-show="FrmAddUpdate.TxtNameEn.$touched">
+                                <span class="red-text" ng-message="required">@Languages.TxtNameEnRequiredErrorMessage</span>
+                                <span class="red-text" ng-message="pattern">@Languages.TxtNameEnPatternErrorMessage</span>
+                                <span class="red-text" ng-message="notInList">@Languages.TxtNameEnUniqueErrorMessage</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary btn-with-icon" ng-disabled="FrmAddUpdate.$invalid"><i class="ion-android-checkmark-circle"></i>@Languages.btnSaveLbl</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+
+
+</div>
+
+
+
+
+
+

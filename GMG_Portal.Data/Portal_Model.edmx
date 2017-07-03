@@ -64,7 +64,7 @@
           <Property Name="LookupKeyGuidAddress" Type="uniqueidentifier" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" />
           <Property Name="DistanceDownTown" Type="float" />
-          <Property Name="LastModificationTime" Type="datetime" Nullable="false" />
+          <Property Name="LastModificationTime" Type="datetime" />
           <Property Name="LastModifierUserId" Type="int" />
           <Property Name="CreationTime" Type="datetime" />
           <Property Name="CreatorUserId" Type="int" />
@@ -84,7 +84,7 @@
           <Property Name="IsCurrent" Type="bit" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
           <Property Name="Icon" Type="nvarchar" MaxLength="100" />
-          <Property Name="LastModificationTime" Type="datetime" Nullable="false" />
+          <Property Name="LastModificationTime" Type="datetime" />
           <Property Name="LastModifierUserId" Type="int" />
           <Property Name="CreationTime" Type="datetime" />
           <Property Name="CreatorUserId" Type="int" />
@@ -177,9 +177,9 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.Hotels_Hotel_Images' does no
         </EntityType>
         <EntityType Name="Hotles_Hotel_Offers">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ksa" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ksa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SGuid" Type="uniqueidentifier" />
           <Property Name="Hotel_Id" Type="int" />
           <Property Name="DisplayValue" Type="nvarchar" MaxLength="100" />
@@ -194,7 +194,7 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.Hotels_Hotel_Images' does no
           <Property Name="StartDate" Type="datetime" />
           <Property Name="EndDate" Type="datetime" />
           <Property Name="Show" Type="bit" />
-          <Property Name="LastModificationTime" Type="datetime" Nullable="false" />
+          <Property Name="LastModificationTime" Type="datetime" />
           <Property Name="LastModifierUserId" Type="int" />
           <Property Name="CreationTime" Type="datetime" />
           <Property Name="CreatorUserId" Type="int" />
@@ -212,7 +212,7 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.Hotels_Hotel_Images' does no
           <Property Name="LookupKeyGuid" Type="uniqueidentifier" />
           <Property Name="IsCurrent" Type="bit" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
-          <Property Name="LastModificationTime" Type="datetime" Nullable="false" />
+          <Property Name="LastModificationTime" Type="datetime" />
           <Property Name="LastModifierUserId" Type="int" />
           <Property Name="CreationTime" Type="datetime" />
           <Property Name="CreatorUserId" Type="int" />
@@ -251,7 +251,7 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.Hotels_Hotel_Images' does no
           <Property Name="LookupKeyGuid" Type="uniqueidentifier" />
           <Property Name="IsCurrent" Type="bit" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
-          <Property Name="LastModificationTime" Type="datetime" Nullable="false" />
+          <Property Name="LastModificationTime" Type="datetime" />
           <Property Name="LastModifierUserId" Type="int" />
           <Property Name="CreationTime" Type="datetime" />
           <Property Name="CreatorUserId" Type="int" />
@@ -271,7 +271,7 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.Hotels_Hotel_Images' does no
           <Property Name="IsCurrent" Type="bit" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
           <Property Name="Icon" Type="nvarchar" MaxLength="50" />
-          <Property Name="LastModificationTime" Type="datetime" Nullable="false" />
+          <Property Name="LastModificationTime" Type="datetime" />
           <Property Name="LastModifierUserId" Type="int" />
           <Property Name="CreationTime" Type="datetime" />
           <Property Name="CreatorUserId" Type="int" />
@@ -290,7 +290,7 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.Hotels_Hotel_Images' does no
           <Property Name="Show" Type="bit" />
           <Property Name="DisplayName" Type="nvarchar" MaxLength="100" />
           <Property Name="Icon" Type="nvarchar" MaxLength="150" />
-          <Property Name="LastModificationTime" Type="datetime" Nullable="false" />
+          <Property Name="LastModificationTime" Type="datetime" />
           <Property Name="LastModifierUserId" Type="int" />
           <Property Name="CreationTime" Type="datetime" />
           <Property Name="CreatorUserId" Type="int" />
@@ -436,7 +436,7 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters_LanguageTex
           <Property Name="LookupKeyGuidAddress" Type="Guid" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="DistanceDownTown" Type="Double" />
-          <Property Name="LastModificationTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModificationTime" Type="DateTime" Precision="3" />
           <Property Name="LastModifierUserId" Type="Int32" />
           <Property Name="CreationTime" Type="DateTime" Precision="3" />
           <Property Name="CreatorUserId" Type="Int32" />
@@ -456,7 +456,7 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters_LanguageTex
           <Property Name="IsCurrent" Type="Boolean" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
           <Property Name="Icon" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="LastModificationTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModificationTime" Type="DateTime" Precision="3" />
           <Property Name="LastModifierUserId" Type="Int32" />
           <Property Name="CreationTime" Type="DateTime" Precision="3" />
           <Property Name="CreatorUserId" Type="Int32" />
@@ -527,9 +527,9 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters_LanguageTex
         </EntityType>
         <EntityType Name="Hotles_Hotel_Offers">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ksa" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ksa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SGuid" Type="Guid" />
           <Property Name="Hotel_Id" Type="Int32" />
           <Property Name="DisplayValue" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
@@ -544,7 +544,7 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters_LanguageTex
           <Property Name="StartDate" Type="DateTime" Precision="3" />
           <Property Name="EndDate" Type="DateTime" Precision="3" />
           <Property Name="Show" Type="Boolean" />
-          <Property Name="LastModificationTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModificationTime" Type="DateTime" Precision="3" />
           <Property Name="LastModifierUserId" Type="Int32" />
           <Property Name="CreationTime" Type="DateTime" Precision="3" />
           <Property Name="CreatorUserId" Type="Int32" />
@@ -562,7 +562,7 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters_LanguageTex
           <Property Name="LookupKeyGuid" Type="Guid" />
           <Property Name="IsCurrent" Type="Boolean" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="LastModificationTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModificationTime" Type="DateTime" Precision="3" />
           <Property Name="LastModifierUserId" Type="Int32" />
           <Property Name="CreationTime" Type="DateTime" Precision="3" />
           <Property Name="CreatorUserId" Type="Int32" />
@@ -601,7 +601,7 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters_LanguageTex
           <Property Name="LookupKeyGuid" Type="Guid" />
           <Property Name="IsCurrent" Type="Boolean" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="LastModificationTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModificationTime" Type="DateTime" Precision="3" />
           <Property Name="LastModifierUserId" Type="Int32" />
           <Property Name="CreationTime" Type="DateTime" Precision="3" />
           <Property Name="CreatorUserId" Type="Int32" />
@@ -621,7 +621,7 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters_LanguageTex
           <Property Name="IsCurrent" Type="Boolean" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
           <Property Name="Icon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="LastModificationTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModificationTime" Type="DateTime" Precision="3" />
           <Property Name="LastModifierUserId" Type="Int32" />
           <Property Name="CreationTime" Type="DateTime" Precision="3" />
           <Property Name="CreatorUserId" Type="Int32" />
@@ -640,7 +640,7 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters_LanguageTex
           <Property Name="Show" Type="Boolean" />
           <Property Name="DisplayName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Icon" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="LastModificationTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModificationTime" Type="DateTime" Precision="3" />
           <Property Name="LastModifierUserId" Type="Int32" />
           <Property Name="CreationTime" Type="DateTime" Precision="3" />
           <Property Name="CreatorUserId" Type="Int32" />
@@ -680,7 +680,7 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters_LanguageTex
           <Property Name="Show" Type="Boolean" />
           <Property Name="Value" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -865,7 +865,7 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters_LanguageTex
                 <ScalarProperty Name="DisplayValue" ColumnName="DisplayValue" />
                 <ScalarProperty Name="Hotel_Id" ColumnName="Hotel_Id" />
                 <ScalarProperty Name="SGuid" ColumnName="SGuid" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ksa" ColumnName="ksa" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

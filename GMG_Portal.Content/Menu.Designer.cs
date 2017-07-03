@@ -88,47 +88,11 @@ namespace GMG_Portal.Content {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Complaint Types.
-        /// </summary>
-        public static string ComplaintTypes {
-            get {
-                return ResourceManager.GetString("ComplaintTypes", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Countries.
         /// </summary>
         public static string Countries {
             get {
                 return ResourceManager.GetString("Countries", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Couriers.
-        /// </summary>
-        public static string Couriers {
-            get {
-                return ResourceManager.GetString("Couriers", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Customer Accounts.
-        /// </summary>
-        public static string CustomerAccounts {
-            get {
-                return ResourceManager.GetString("CustomerAccounts", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Customer Points.
-        /// </summary>
-        public static string CustomerPoints {
-            get {
-                return ResourceManager.GetString("CustomerPoints", resourceCulture);
             }
         }
         
@@ -142,15 +106,6 @@ namespace GMG_Portal.Content {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Frequencies.
-        /// </summary>
-        public static string Frequencies {
-            get {
-                return ResourceManager.GetString("Frequencies", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Invoice Statuses.
         /// </summary>
         public static string InvoiceStatuses {
@@ -160,38 +115,11 @@ namespace GMG_Portal.Content {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Maintenance Contracts.
+        ///   Looks up a localized string similar to Languages.
         /// </summary>
-        public static string MaintenanceContract {
+        public static string Languages {
             get {
-                return ResourceManager.GetString("MaintenanceContract", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Maintenance Contracts.
-        /// </summary>
-        public static string MaintenanceContracts {
-            get {
-                return ResourceManager.GetString("MaintenanceContracts", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Order Statuses.
-        /// </summary>
-        public static string OrderStatuses {
-            get {
-                return ResourceManager.GetString("OrderStatuses", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Payment Times.
-        /// </summary>
-        public static string PaymentTimes {
-            get {
-                return ResourceManager.GetString("PaymentTimes", resourceCulture);
+                return ResourceManager.GetString("Languages", resourceCulture);
             }
         }
         
@@ -201,69 +129,6 @@ namespace GMG_Portal.Content {
         public static string PaymentTypes {
             get {
                 return ResourceManager.GetString("PaymentTypes", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Product Category.
-        /// </summary>
-        public static string ProductCategory {
-            get {
-                return ResourceManager.GetString("ProductCategory", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Products.
-        /// </summary>
-        public static string Products {
-            get {
-                return ResourceManager.GetString("Products", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Product Sizes.
-        /// </summary>
-        public static string ProductSizes {
-            get {
-                return ResourceManager.GetString("ProductSizes", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Purchase Order.
-        /// </summary>
-        public static string PurchaseOrder {
-            get {
-                return ResourceManager.GetString("PurchaseOrder", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Regions.
-        /// </summary>
-        public static string Regions {
-            get {
-                return ResourceManager.GetString("Regions", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Return Exchange Policy.
-        /// </summary>
-        public static string ReturnPolicy {
-            get {
-                return ResourceManager.GetString("ReturnPolicy", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Spare Parts.
-        /// </summary>
-        public static string SpareParts {
-            get {
-                return ResourceManager.GetString("SpareParts", resourceCulture);
             }
         }
     }

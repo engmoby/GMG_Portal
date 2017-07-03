@@ -73,33 +73,13 @@
     <Compile Include="Admin\SystemParameters\AccountTypes.Designer.cs">
       <DependentUpon>AccountTypes.resx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\SystemParameters\CustomerAccounts.Designer.cs">
-      <DependentUpon>CustomerAccounts.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Admin\SystemParameters\CustomerPoints.Designer.cs">
-      <DependentUpon>CustomerPoints.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Admin\SystemParameters\Couriers.Designer.cs">
-      <DependentUpon>Couriers.resx</DependentUpon>
+    <Compile Include="Admin\SystemParameters\Languages.Designer.cs">
+      <DependentUpon>Languages.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Admin\SystemParameters\Departments.Designer.cs">
       <DependentUpon>Departments.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\SystemParameters\ReturnPolicy.Designer.cs">
-      <DependentUpon>ReturnPolicy.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Admin\SystemParameters\Regions.Designer.cs">
-      <DependentUpon>Regions.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Admin\SystemParameters\Cities.Designer.cs">
       <DependentUpon>Cities.resx</DependentUpon>
@@ -111,43 +91,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Admin\SystemParameters\PaymentTimes.Designer.cs">
-      <DependentUpon>PaymentTimes.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Admin\SystemParameters\OrderStatuses.Designer.cs">
-      <DependentUpon>OrderStatuses.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Admin\SystemParameters\InvoiceStatuses.Designer.cs">
-      <DependentUpon>InvoiceStatuses.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Admin\SystemParameters\Frequencies.Designer.cs">
-      <DependentUpon>Frequencies.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Admin\SystemParameters\Countries.Designer.cs">
       <DependentUpon>Countries.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Admin\SystemParameters\ComplaintTypes.Designer.cs">
-      <DependentUpon>ComplaintTypes.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Admin\SystemParameters\Brands.Designer.cs">
       <DependentUpon>Brands.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Admin\SystemParameters\ProductSizes.Designer.cs">
-      <DependentUpon>ProductSizes.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -185,28 +135,12 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Shared.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Admin\SystemParameters\Languages.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Languages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Admin\SystemParameters\Departments.resx" />
     <EmbeddedResource Include="Admin\SystemParameters\AccountTypes.resx" />
-    <EmbeddedResource Include="Admin\SystemParameters\CustomerAccounts.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>CustomerAccounts.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Admin\SystemParameters\CustomerPoints.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>CustomerPoints.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Admin\SystemParameters\Couriers.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Couriers.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Admin\SystemParameters\ReturnPolicy.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>ReturnPolicy.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Admin\SystemParameters\Regions.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Regions.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="Admin\SystemParameters\Cities.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Cities.Designer.cs</LastGenOutput>
@@ -215,37 +149,13 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>PaymentTypes.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Admin\SystemParameters\PaymentTimes.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>PaymentTimes.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Admin\SystemParameters\OrderStatuses.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>OrderStatuses.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Admin\SystemParameters\InvoiceStatuses.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>InvoiceStatuses.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Admin\SystemParameters\Frequencies.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Frequencies.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="Admin\SystemParameters\Countries.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Countries.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Admin\SystemParameters\ComplaintTypes.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>ComplaintTypes.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="Admin\SystemParameters\Brands.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Brands.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Admin\SystemParameters\ProductSizes.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>ProductSizes.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

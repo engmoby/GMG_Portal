@@ -120,70 +120,25 @@
   <data name="AccountType" xml:space="preserve">
     <value>Account Type</value>
   </data>
-  <data name="ComplaintTypes" xml:space="preserve">
-    <value>Complaint Types</value>
-  </data>
   <data name="Countries" xml:space="preserve">
     <value>Countries</value>
-  </data>
-  <data name="PaymentTimes" xml:space="preserve">
-    <value>Payment Times</value>
   </data>
   <data name="InvoiceStatuses" xml:space="preserve">
     <value>Invoice Statuses</value>
   </data>
-  <data name="Frequencies" xml:space="preserve">
-    <value>Frequencies</value>
-  </data>
   <data name="PaymentTypes" xml:space="preserve">
     <value>Payment Types</value>
-  </data>
-  <data name="ProductSizes" xml:space="preserve">
-    <value>Product Sizes</value>
-  </data>
-  <data name="OrderStatuses" xml:space="preserve">
-    <value>Order Statuses</value>
   </data>
   <data name="Brands" xml:space="preserve">
     <value>Brands</value>
   </data>
-  <data name="Regions" xml:space="preserve">
-    <value>Regions</value>
-  </data>
   <data name="Cities" xml:space="preserve">
     <value>Cities</value>
-  </data>
-  <data name="ProductCategory" xml:space="preserve">
-    <value>Product Category</value>
-  </data>
-  <data name="Products" xml:space="preserve">
-    <value>Products</value>
-  </data>
-  <data name="SpareParts" xml:space="preserve">
-    <value>Spare Parts</value>
-  </data>
-  <data name="ReturnPolicy" xml:space="preserve">
-    <value>Return Exchange Policy</value>
-  </data>
-  <data name="Couriers" xml:space="preserve">
-    <value>Couriers</value>
-  </data>
-  <data name="CustomerPoints" xml:space="preserve">
-    <value>Customer Points</value>
-  </data>
-  <data name="CustomerAccounts" xml:space="preserve">
-    <value>Customer Accounts</value>
-  </data>
-  <data name="PurchaseOrder" xml:space="preserve">
-    <value>Purchase Order</value>
   </data>
   <data name="Departments" xml:space="preserve">
     <value>Departments</value>
   </data>
-  <data name="MaintenanceContract" xml:space="preserve">
-    <value>Maintenance Contracts</value>
-  </data>
-  <data name="MaintenanceContracts" xml:space="preserve">
-    <value>Maintenance Contracts</value>
+  <data name="Languages" xml:space="preserve">
+    <value>Languages</value>
   </data>
 </root>

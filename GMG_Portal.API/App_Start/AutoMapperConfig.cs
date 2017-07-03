@@ -6,6 +6,7 @@ using System.Web;
 using GMG_Portal.API.Models.SystemParameters;
 using GMG_Portal.Content.Admin.SystemParameters;
 using GMG_Portal.Data;
+using AccountTypes = GMG_Portal.Data.Partials.SystemParameters.AccountTypes;
 using Customer = GMG_Portal.API.Models.Customer.Customers.Customer;
 
 namespace GMG_Portal.API
@@ -16,10 +17,12 @@ namespace GMG_Portal.API
         {
             Mapper.Initialize(cfg => {
 
-                cfg.CreateMap<GMG_Portal.Data.AccountTypes, Models.SystemParameters.AccountType>();
-                cfg.CreateMap<Models.SystemParameters.AccountType, GMG_Portal.Data.AccountTypes>();
+                cfg.CreateMap<AccountTypes, Models.SystemParameters.AccountType>();
+                cfg.CreateMap<Models.SystemParameters.AccountType, AccountTypes>();
 
-                 
+
+                cfg.CreateMap<Systemparameters_Languages, GMG_Portal.API.Models.SystemParameters.Languages>();
+                cfg.CreateMap<GMG_Portal.API.Models.SystemParameters.Languages, Systemparameters_Languages>();
 
                 cfg.CreateMap<SystemParameter_Countries, GMG_Portal.API.Models.SystemParameters.Countries>();
                 cfg.CreateMap<GMG_Portal.API.Models.SystemParameters.Countries, SystemParameter_Countries>();

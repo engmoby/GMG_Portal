@@ -86,6 +86,7 @@
     <Compile Include="Hotles_Hotel_Offers.cs">
       <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Partials\SystemParameters\Languages.cs" />
     <Compile Include="Partials\SystemParameters\Departments.cs" />
     <Compile Include="Partials\SystemParameters\AccountTypes.cs" />
     <Compile Include="Partials\SystemParameters\SystemParameter_Cities.cs" />
