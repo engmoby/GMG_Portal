@@ -60,6 +60,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             {
                 Name = postedLanguage.Name,
                 DisplayName = postedLanguage.DisplayName,
+                DisplayFront = postedLanguage.DisplayFront,
                 IsDeleted = postedLanguage.IsDeleted,
                 Show = postedLanguage.Show,
                 Icon = postedLanguage.Icon,
@@ -76,6 +77,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             Systemparameters_Languages language = Get(postedLanguage.Id);
             language.Name = postedLanguage.Name;
             language.DisplayName = postedLanguage.DisplayName;
+            language.DisplayFront = postedLanguage.DisplayFront;
             language.IsDeleted = postedLanguage.IsDeleted;
             language.Show = postedLanguage.Show;
             language.Icon = postedLanguage.Icon;

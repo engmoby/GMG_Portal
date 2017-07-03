@@ -70,15 +70,6 @@ namespace GMG_Portal.Content.Admin.SystemParameters {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Arabic name must be unique.
-        /// </summary>
-        public static string ArabicNameUnique {
-            get {
-                return ResourceManager.GetString("ArabicNameUnique", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Add.
         /// </summary>
         public static string BtnAdd {
@@ -115,11 +106,29 @@ namespace GMG_Portal.Content.Admin.SystemParameters {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to English name must be unique.
+        ///   Looks up a localized string similar to Display name must be unique.
         /// </summary>
         public static string EnglishNameUnique {
             get {
                 return ResourceManager.GetString("EnglishNameUnique", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display Front.
+        /// </summary>
+        public static string FrontName {
+            get {
+                return ResourceManager.GetString("FrontName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Icon.
+        /// </summary>
+        public static string Icon {
+            get {
+                return ResourceManager.GetString("Icon", resourceCulture);
             }
         }
         
@@ -133,20 +142,29 @@ namespace GMG_Portal.Content.Admin.SystemParameters {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Arabic Name.
+        ///   Looks up a localized string similar to Name.
         /// </summary>
-        public static string NameAr {
+        public static string Name {
             get {
-                return ResourceManager.GetString("NameAr", resourceCulture);
+                return ResourceManager.GetString("Name", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to English Name.
+        ///   Looks up a localized string similar to Display Name.
         /// </summary>
-        public static string NameEn {
+        public static string NameDisplay {
             get {
-                return ResourceManager.GetString("NameEn", resourceCulture);
+                return ResourceManager.GetString("NameDisplay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name must be unique.
+        /// </summary>
+        public static string NameUnique {
+            get {
+                return ResourceManager.GetString("NameUnique", resourceCulture);
             }
         }
         
@@ -178,74 +196,119 @@ namespace GMG_Portal.Content.Admin.SystemParameters {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Arabic Name.
+        ///   Looks up a localized string similar to Front Name.
         /// </summary>
-        public static string TxtNameArLabel {
+        public static string TxtFrontNameLabel {
             get {
-                return ResourceManager.GetString("TxtNameArLabel", resourceCulture);
+                return ResourceManager.GetString("TxtFrontNameLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Front Name must be unique.
+        /// </summary>
+        public static string TxtFrontNameNotInList {
+            get {
+                return ResourceManager.GetString("TxtFrontNameNotInList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Front Name is required.
+        /// </summary>
+        public static string TxtFrontNameRequiredErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtFrontNameRequiredErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name is unique.
+        /// </summary>
+        public static string TxtFrontNameUniqueErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtFrontNameUniqueErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Pattern.
+        /// </summary>
+        public static string TxtNameDisplayPatternErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtNameDisplayPatternErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display name is required.
+        /// </summary>
+        public static string TxtNameDisplayRequiredErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtNameDisplayRequiredErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display Name is unique.
+        /// </summary>
+        public static string TxtNameDisplayUniqueErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtNameDisplayUniqueErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Front Name Invalid Pattern.
+        /// </summary>
+        public static string TxtNameFrontPatternErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtNameFrontPatternErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string TxtNameLabel {
+            get {
+                return ResourceManager.GetString("TxtNameLabel", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Name must be unique.
         /// </summary>
-        public static string TxtNameArNotInList {
+        public static string TxtNameNotInList {
             get {
-                return ResourceManager.GetString("TxtNameArNotInList", resourceCulture);
+                return ResourceManager.GetString("TxtNameNotInList", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Invalid Pattern.
         /// </summary>
-        public static string TxtNameArPatternErrorMessage {
+        public static string TxtNamePatternErrorMessage {
             get {
-                return ResourceManager.GetString("TxtNameArPatternErrorMessage", resourceCulture);
+                return ResourceManager.GetString("TxtNamePatternErrorMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Arabic name is required.
+        ///   Looks up a localized string similar to Name is required.
         /// </summary>
-        public static string TxtNameArRequiredErrorMessage {
+        public static string TxtNameRequiredErrorMessage {
             get {
-                return ResourceManager.GetString("TxtNameArRequiredErrorMessage", resourceCulture);
+                return ResourceManager.GetString("TxtNameRequiredErrorMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Arabic Name is unique.
+        ///   Looks up a localized string similar to Name is unique.
         /// </summary>
-        public static string TxtNameArUniqueErrorMessage {
+        public static string TxtNameUniqueErrorMessage {
             get {
-                return ResourceManager.GetString("TxtNameArUniqueErrorMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Invalid Pattern.
-        /// </summary>
-        public static string TxtNameEnPatternErrorMessage {
-            get {
-                return ResourceManager.GetString("TxtNameEnPatternErrorMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to English name is required.
-        /// </summary>
-        public static string TxtNameEnRequiredErrorMessage {
-            get {
-                return ResourceManager.GetString("TxtNameEnRequiredErrorMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to English Name is unique.
-        /// </summary>
-        public static string TxtNameEnUniqueErrorMessage {
-            get {
-                return ResourceManager.GetString("TxtNameEnUniqueErrorMessage", resourceCulture);
+                return ResourceManager.GetString("TxtNameUniqueErrorMessage", resourceCulture);
             }
         }
         

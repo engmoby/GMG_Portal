@@ -296,6 +296,7 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.Hotels_Hotel_Images' does no
           <Property Name="CreatorUserId" Type="int" />
           <Property Name="DeletionTime" Type="datetime" />
           <Property Name="DeleterUserId" Type="int" />
+          <Property Name="DisplayFront" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters_LanguageText' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -373,9 +374,9 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters_LanguageTex
           <EntitySet Name="SystemParameter_Countries" EntityType="GMG_Portal_DBModel.SystemParameter_Countries" />
           <EntitySet Name="SystemParameter_Departments" EntityType="GMG_Portal_DBModel.SystemParameter_Departments" />
           <EntitySet Name="SystemParameter_PaymentType" EntityType="GMG_Portal_DBModel.SystemParameter_PaymentType" />
-          <EntitySet Name="Systemparameters_Languages" EntityType="GMG_Portal_DBModel.Systemparameters_Languages" />
           <EntitySet Name="Hotels_Hotel_Images" EntityType="GMG_Portal_DBModel.Hotels_Hotel_Images" />
           <EntitySet Name="SystemParameters_LanguageText" EntityType="GMG_Portal_DBModel.SystemParameters_LanguageText" />
+          <EntitySet Name="Systemparameters_Languages" EntityType="GMG_Portal_DBModel.Systemparameters_Languages" />
         </EntityContainer>
         <EntityType Name="Front_Mission">
           <Key>
@@ -629,24 +630,6 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters_LanguageTex
           <Property Name="DeleterUserId" Type="Int32" />
           <Property Name="Show" Type="Boolean" Nullable="false" />
         </EntityType>
-        <EntityType Name="Systemparameters_Languages">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SGuid" Type="Guid" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="Show" Type="Boolean" />
-          <Property Name="DisplayName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Icon" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="LastModificationTime" Type="DateTime" Precision="3" />
-          <Property Name="LastModifierUserId" Type="Int32" />
-          <Property Name="CreationTime" Type="DateTime" Precision="3" />
-          <Property Name="CreatorUserId" Type="Int32" />
-          <Property Name="DeletionTime" Type="DateTime" Precision="3" />
-          <Property Name="DeleterUserId" Type="Int32" />
-        </EntityType>
         <EntityType Name="Hotels_Hotel_Images">
           <Key>
             <PropertyRef Name="Id" />
@@ -679,6 +662,25 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters_LanguageTex
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
           <Property Name="Show" Type="Boolean" />
           <Property Name="Value" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Systemparameters_Languages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SGuid" Type="Guid" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Show" Type="Boolean" />
+          <Property Name="DisplayName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Icon" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="LastModificationTime" Type="DateTime" Precision="3" />
+          <Property Name="LastModifierUserId" Type="Int32" />
+          <Property Name="CreationTime" Type="DateTime" Precision="3" />
+          <Property Name="CreatorUserId" Type="Int32" />
+          <Property Name="DeletionTime" Type="DateTime" Precision="3" />
+          <Property Name="DeleterUserId" Type="Int32" />
+          <Property Name="DisplayFront" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -951,25 +953,6 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters_LanguageTex
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Systemparameters_Languages">
-            <EntityTypeMapping TypeName="GMG_Portal_DBModel.Systemparameters_Languages">
-              <MappingFragment StoreEntitySet="Systemparameters_Languages">
-                <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
-                <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
-                <ScalarProperty Name="CreatorUserId" ColumnName="CreatorUserId" />
-                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
-                <ScalarProperty Name="LastModifierUserId" ColumnName="LastModifierUserId" />
-                <ScalarProperty Name="LastModificationTime" ColumnName="LastModificationTime" />
-                <ScalarProperty Name="Icon" ColumnName="Icon" />
-                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
-                <ScalarProperty Name="Show" ColumnName="Show" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="SGuid" ColumnName="SGuid" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Hotels_Hotel_Images">
             <EntityTypeMapping TypeName="GMG_Portal_DBModel.Hotels_Hotel_Images">
               <MappingFragment StoreEntitySet="Hotels_Hotel_Images">
@@ -996,6 +979,26 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters_LanguageTex
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="LanguageName" ColumnName="LanguageName" />
                 <ScalarProperty Name="LanguageKey" ColumnName="LanguageKey" />
+                <ScalarProperty Name="SGuid" ColumnName="SGuid" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Systemparameters_Languages">
+            <EntityTypeMapping TypeName="GMG_Portal_DBModel.Systemparameters_Languages">
+              <MappingFragment StoreEntitySet="Systemparameters_Languages">
+                <ScalarProperty Name="DisplayFront" ColumnName="DisplayFront" />
+                <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
+                <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
+                <ScalarProperty Name="CreatorUserId" ColumnName="CreatorUserId" />
+                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+                <ScalarProperty Name="LastModifierUserId" ColumnName="LastModifierUserId" />
+                <ScalarProperty Name="LastModificationTime" ColumnName="LastModificationTime" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="Show" ColumnName="Show" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="SGuid" ColumnName="SGuid" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

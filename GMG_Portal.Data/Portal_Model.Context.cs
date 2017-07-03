@@ -38,8 +38,8 @@ namespace GMG_Portal.Data
         public virtual DbSet<SystemParameter_Countries> SystemParameter_Countries { get; set; }
         public virtual DbSet<SystemParameter_Departments> SystemParameter_Departments { get; set; }
         public virtual DbSet<SystemParameter_PaymentType> SystemParameter_PaymentType { get; set; }
-        public virtual DbSet<Systemparameters_Languages> Systemparameters_Languages { get; set; }
         public virtual DbSet<Hotels_Hotel_Images> Hotels_Hotel_Images { get; set; }
         public virtual DbSet<SystemParameters_LanguageText> SystemParameters_LanguageText { get; set; }
+        public virtual DbSet<Systemparameters_Languages> Systemparameters_Languages { get; set; }
     }
 }
