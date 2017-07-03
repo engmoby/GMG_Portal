@@ -5,8 +5,6 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="96baeab8c9ba41f7a601fd76d9d8ee6f" Name="Diagram1">
-        <EntityTypeShape EntityType="GMG_Portal_DBModel.Front_Mission" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="GMG_Portal_DBModel.Front_Vision" Width="1.5" PointX="2.75" PointY="0.75" />
         <EntityTypeShape EntityType="GMG_Portal_DBModel.Hotel" Width="1.5" PointX="4.75" PointY="0.75" />
         <EntityTypeShape EntityType="GMG_Portal_DBModel.Hotels_Features" Width="1.5" PointX="0.75" PointY="5.75" />
         <EntityTypeShape EntityType="GMG_Portal_DBModel.Hotels_Hotel_Features" Width="1.5" PointX="6.75" PointY="0.75" />
@@ -21,6 +19,9 @@
         <EntityTypeShape EntityType="GMG_Portal_DBModel.Hotels_Hotel_Images" Width="1.5" PointX="10.75" PointY="10.75" />
         <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_LanguageText" Width="1.5" PointX="12.75" PointY="0.75" />
         <EntityTypeShape EntityType="GMG_Portal_DBModel.Systemparameters_Languages" Width="1.5" PointX="0.75" PointY="13.75" />
+        <EntityTypeShape EntityType="GMG_Portal_DBModel.Front_Mission" Width="1.5" PointX="13.375" PointY="4.75" />
+        <EntityTypeShape EntityType="GMG_Portal_DBModel.Front_Vision" Width="1.5" PointX="13.375" PointY="10.75" />
+        <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParamater_HomeSlider" Width="1.5" PointX="3.375" PointY="14.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

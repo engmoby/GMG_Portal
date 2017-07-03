@@ -11,6 +11,7 @@ namespace Heloper
     {
         public static int UserId = 1;
         public static DateTime CurrentDateTime = DateTime.Now;
+        public static bool Show = true;
 
     }
 }

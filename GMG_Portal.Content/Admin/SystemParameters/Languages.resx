@@ -186,7 +186,7 @@
   <data name="UpdateSuccessMessage" xml:space="preserve">
     <value>Updated Successfully</value>
   </data>
-  <data name="FrontName" xml:space="preserve">
+  <data name="DisplayFront" xml:space="preserve">
     <value>Display Front</value>
   </data>
   <data name="Icon" xml:space="preserve">
@@ -198,10 +198,10 @@
   <data name="TxtFrontNameNotInList" xml:space="preserve">
     <value>Front Name must be unique</value>
   </data>
-  <data name="TxtFrontNameRequiredErrorMessage" xml:space="preserve">
+  <data name="TxtDisplayFrontRequiredErrorMessage" xml:space="preserve">
     <value>Front Name is required</value>
   </data>
-  <data name="TxtFrontNameUniqueErrorMessage" xml:space="preserve">
+  <data name="TxtDisplayFrontUniqueErrorMessage" xml:space="preserve">
     <value>Name is unique</value>
   </data>
   <data name="TxtNameFrontPatternErrorMessage" xml:space="preserve">

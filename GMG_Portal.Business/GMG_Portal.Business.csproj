@@ -66,6 +66,7 @@
     <Compile Include="Logic\Customer\InvoiceTypesLogic.cs" />
     <Compile Include="Logic\SystemParameters\AccountTypeLogic.cs" />
     <Compile Include="Logic\SystemParameters\CitiesLogic.cs" />
+    <Compile Include="Logic\SystemParameters\HomeSliderLogic.cs" />
     <Compile Include="Logic\SystemParameters\LanguageLogic.cs" />
     <Compile Include="Logic\SystemParameters\CountriesLogic.cs" />
     <Compile Include="Logic\SystemParameters\DepartmentLogic.cs" />

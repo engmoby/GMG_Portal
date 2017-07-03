@@ -62,12 +62,10 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 DisplayName = postedLanguage.DisplayName,
                 DisplayFront = postedLanguage.DisplayFront,
                 IsDeleted = postedLanguage.IsDeleted,
-                Show = postedLanguage.Show,
+                Show = Parameters.Show,
                 Icon = postedLanguage.Icon,
                 CreationTime = Parameters.CurrentDateTime,
-                CreatorUserId = Parameters.UserId,
-
-
+                CreatorUserId = Parameters.UserId, 
             };
             _db.Systemparameters_Languages.Add(language);
             return Save(language);
