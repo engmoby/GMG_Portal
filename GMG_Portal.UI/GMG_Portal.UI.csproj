@@ -209,6 +209,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\Admin\LanguagesController.cs" />
     <Compile Include="Controllers\Admin\DepartmentsController.cs" />
     <Compile Include="Controllers\Admin\AccountTypesController.cs" />
     <Compile Include="Controllers\Admin\AdminController.cs" />
@@ -482,51 +483,22 @@
     </Content>
     <Content Include="Scripts\app\app.js" />
     <Content Include="Scripts\app\Login.js" />
-    <Content Include="Scripts\app\pages\Customer\MaintenanceContracts\MaintenanceContract.js" />
+    <Content Include="Scripts\app\pages\Languages\Languages.js" />
     <Content Include="Scripts\app\pages\Departments\Department.js" />
     <Content Include="Scripts\app\pages\Brands\Brands.js" />
     <Content Include="Scripts\app\pages\Cities\Cities.js" />
-    <Content Include="Scripts\app\pages\ComplaintTypes\ComplaintTypes.js" />
     <Content Include="Scripts\app\pages\Countries\Countries.js" />
-    <Content Include="Scripts\app\pages\Couriers\Couriers.js" />
-    <Content Include="Scripts\app\pages\CustomerAccounts\CustomerAccounts.js" />
-    <Content Include="Scripts\app\pages\CustomerPoints\CustomerPoints.js" />
-    <Content Include="Scripts\app\pages\InvoiceStatuses\InvoiceStatuses.js" />
-    <Content Include="Scripts\app\pages\OrderStatuses\OrderStatuses.js" />
     <Content Include="Scripts\app\pages\pages.module.js" />
-    <Content Include="Scripts\app\pages\Frequencies\Frequencies.js" />
-    <Content Include="Scripts\app\pages\PaymentTimes\PaymentTimes.js" />
     <Content Include="Scripts\app\pages\PaymentTypes\PaymentTypes.js" />
-    <Content Include="Scripts\app\pages\ProductCategory\ProductCategory.js" />
-    <Content Include="Scripts\app\pages\ProductSizes\ProductSizes.js" />
-    <Content Include="Scripts\app\pages\Products\Products.js" />
-    <Content Include="Scripts\app\pages\PurchaseOrder\PurchaseOrder.js" />
-    <Content Include="Scripts\app\pages\Regions\Regions.js" />
-    <Content Include="Scripts\app\pages\ReturnPolicy\ReturnPolicy.js" />
     <Content Include="Scripts\app\pages\Settings.js" />
-    <Content Include="Scripts\app\pages\SpareParts\SpareParts.js" />
-    <Content Include="Scripts\app\services\Customer\MaintenanceContracts\MaintenanceContracts.js" />
+    <Content Include="Scripts\app\services\Languages.js" />
     <Content Include="Scripts\app\services\Departments.js" />
     <Content Include="Scripts\app\services\AccountTypes.js" />
     <Content Include="Scripts\app\services\Brands.js" />
     <Content Include="Scripts\app\services\Cities.js" />
-    <Content Include="Scripts\app\services\ComplaintTypes.js" />
     <Content Include="Scripts\app\services\Countries.js" />
-    <Content Include="Scripts\app\services\PurchaseOrder.js" />
-    <Content Include="Scripts\app\services\Couriers.js" />
-    <Content Include="Scripts\app\services\CustomerAccounts.js" />
-    <Content Include="Scripts\app\services\CustomerPoints.js" />
     <Content Include="Scripts\app\services\InvoiceStatuses.js" />
-    <Content Include="Scripts\app\services\OrderStatuses.js" />
-    <Content Include="Scripts\app\services\Frequencies.js" />
-    <Content Include="Scripts\app\services\PaymentTimes.js" />
     <Content Include="Scripts\app\services\PaymentTypes.js" />
-    <Content Include="Scripts\app\services\ProductCategory.js" />
-    <Content Include="Scripts\app\services\Products.js" />
-    <Content Include="Scripts\app\services\ProductSizes.js" />
-    <Content Include="Scripts\app\services\Regions.js" />
-    <Content Include="Scripts\app\services\ReturnPolicy.js" />
-    <Content Include="Scripts\app\services\SpareParts.js" />
     <Content Include="Scripts\app\theme\components\backTop\backTop.directive.js" />
     <Content Include="Scripts\app\theme\components\backTop\backTop.html" />
     <Content Include="Scripts\app\theme\components\backTop\lib\jquery.backTop.min.js" />
@@ -992,7 +964,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Scripts\app\pages\NewFolder1\" />
     <Folder Include="Scripts_Customer\app\theme\" />
     <Folder Include="Views\AdminLayout\" />
   </ItemGroup>
@@ -1046,6 +1017,7 @@
     <Content Include="Views\Customer\Products.cshtml" />
     <Content Include="Views\Customer\slider.cshtml" />
     <Content Include="Views\Departments\Index.cshtml" />
+    <Content Include="Views\Languages\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GMG_Portal.API\GMG_Portal.API.csproj">

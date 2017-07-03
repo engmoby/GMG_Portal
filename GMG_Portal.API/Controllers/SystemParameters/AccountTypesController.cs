@@ -11,6 +11,7 @@ using AutoMapper;
 using Helpers;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Http.Validation.Providers;
+using GMG_Portal.Data.Partials.SystemParameters;
 
 namespace GMG_Portal.API.Controllers.SystemParameters
 {
@@ -59,20 +60,20 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 if (ModelState.IsValid)
                 {
                     var AccountTypesLogic = new AccountTypeLogic();
-                    Data.AccountTypes AccountType = null;
+                    AccountTypes AccountType = null;
                     if (PostedAccountType.ID.Equals(0))
                     {
-                        AccountType = AccountTypesLogic.Insert(Mapper.Map<GMG_Portal.Data.AccountTypes>(PostedAccountType));
+                        AccountType = AccountTypesLogic.Insert(Mapper.Map<AccountTypes>(PostedAccountType));
                     }
                     else
                     {
                         if (PostedAccountType.IsDeleted)
                         {
-                            AccountType = AccountTypesLogic.Delete(Mapper.Map<GMG_Portal.Data.AccountTypes>(PostedAccountType));
+                            AccountType = AccountTypesLogic.Delete(Mapper.Map<AccountTypes>(PostedAccountType));
                         }
                         else
                         {
-                            AccountType = AccountTypesLogic.Edit(Mapper.Map<GMG_Portal.Data.AccountTypes>(PostedAccountType));
+                            AccountType = AccountTypesLogic.Edit(Mapper.Map<AccountTypes>(PostedAccountType));
                         }
                     }
                     return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<GMG_Portal.API.Models.SystemParameters.AccountType>(AccountType));

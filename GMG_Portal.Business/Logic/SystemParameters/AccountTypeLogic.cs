@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using GMG_Portal.Data;
 using AutoMapper;
 using System.Data;
+using GMG_Portal.Data.Partials.SystemParameters;
 
 
 namespace GMG_Portal.Business.Logic.SystemParameters

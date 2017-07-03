@@ -21,7 +21,7 @@ namespace GMG_Portal.Data
         public Nullable<bool> Show { get; set; }
         public string DisplayName { get; set; }
         public string Icon { get; set; }
-        public System.DateTime LastModificationTime { get; set; }
+        public Nullable<System.DateTime> LastModificationTime { get; set; }
         public Nullable<int> LastModifierUserId { get; set; }
         public Nullable<System.DateTime> CreationTime { get; set; }
         public Nullable<int> CreatorUserId { get; set; }

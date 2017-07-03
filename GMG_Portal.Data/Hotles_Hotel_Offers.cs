@@ -14,7 +14,7 @@ namespace GMG_Portal.Data
     
     public partial class Hotles_Hotel_Offers
     {
-        public int Id { get; set; }
+        public int ksa { get; set; }
         public Nullable<System.Guid> SGuid { get; set; }
         public Nullable<int> Hotel_Id { get; set; }
         public string DisplayValue { get; set; }
@@ -29,7 +29,7 @@ namespace GMG_Portal.Data
         public Nullable<System.DateTime> StartDate { get; set; }
         public Nullable<System.DateTime> EndDate { get; set; }
         public Nullable<bool> Show { get; set; }
-        public System.DateTime LastModificationTime { get; set; }
+        public Nullable<System.DateTime> LastModificationTime { get; set; }
         public Nullable<int> LastModifierUserId { get; set; }
         public Nullable<System.DateTime> CreationTime { get; set; }
         public Nullable<int> CreatorUserId { get; set; }
