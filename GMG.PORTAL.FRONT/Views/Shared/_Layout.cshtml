@@ -81,6 +81,11 @@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)*@
 @RenderBody()
+    
+    
+    
+    
+      <input type="hidden" id="HServicesURL" value="@System.Configuration.ConfigurationManager.AppSettings["ServicesURL"]" />    
 
 <div class="preloader"></div>
 <header class="header transp sticky"> <!-- available class for header: .sticky .center-content .transp -->
