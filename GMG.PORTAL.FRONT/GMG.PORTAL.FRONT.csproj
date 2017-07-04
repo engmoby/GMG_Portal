@@ -324,7 +324,25 @@
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
-    <Content Include="Scripts\app\slider-controller.js" />
+    <Content Include="Scripts\app\app.js" />
+    <Content Include="Scripts\app\pages\AccountTypes\AccountType.js" />
+    <Content Include="Scripts\app\pages\Brands\Brands.js" />
+    <Content Include="Scripts\app\pages\Cities\Cities.js" />
+    <Content Include="Scripts\app\pages\Countries\Countries.js" />
+    <Content Include="Scripts\app\pages\Departments\Department.js" />
+    <Content Include="Scripts\app\pages\Languages\Languages.js" />
+    <Content Include="Scripts\app\pages\pages.module.js" />
+    <Content Include="Scripts\app\pages\PaymentTypes\PaymentTypes.js" />
+    <Content Include="Scripts\app\pages\Settings.js" />
+    <Content Include="Scripts\app\services\AccountTypes.js" />
+    <Content Include="Scripts\app\services\Brands.js" />
+    <Content Include="Scripts\app\services\Cities.js" />
+    <Content Include="Scripts\app\services\Countries.js" />
+    <Content Include="Scripts\app\services\Departments.js" />
+    <Content Include="Scripts\app\services\InvoiceStatuses.js" />
+    <Content Include="Scripts\app\services\Languages.js" />
+    <Content Include="Scripts\app\services\PaymentTypes.js" />
+    <Content Include="Scripts\app\slider.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -392,6 +410,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Scripts\app\pages\HomeSliders\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
