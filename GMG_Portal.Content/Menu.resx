@@ -141,4 +141,16 @@
   <data name="Languages" xml:space="preserve">
     <value>Languages</value>
   </data>
+  <data name="HomeSlider" xml:space="preserve">
+    <value>Home Slider</value>
+  </data>
+  <data name="Mission" xml:space="preserve">
+    <value>Mission</value>
+  </data>
+  <data name="News" xml:space="preserve">
+    <value>News</value>
+  </data>
+  <data name="Vision" xml:space="preserve">
+    <value>Vision</value>
+  </data>
 </root>

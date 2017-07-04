@@ -90,7 +90,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             SystemParamater_HomeSlider language = Get(postedLanguage.Id);
             if (_db.SystemParamater_HomeSlider.Any(p => p.Id == postedLanguage.Id && p.IsDeleted != true))
             {
-                language.OperationStatus = "HasRelationship";
+                  //  language.OperationStatus = "HasRelationship";
                 return language;
             }
 

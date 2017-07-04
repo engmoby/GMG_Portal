@@ -209,6 +209,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\Admin\HomeSliderController.cs" />
     <Compile Include="Controllers\Admin\LanguagesController.cs" />
     <Compile Include="Controllers\Admin\DepartmentsController.cs" />
     <Compile Include="Controllers\Admin\AccountTypesController.cs" />
@@ -229,8 +230,10 @@
     <Compile Include="Controllers\Customer\SearchCategoryController.cs" />
     <Compile Include="Controllers\Customer\TestCustomerController.cs" />
     <Compile Include="Controllers\CutomerHomePageController.cs" />
+    <Compile Include="Controllers\FileUploadController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Custom\CustomUploadMultipartFormProvider.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -483,6 +486,9 @@
     </Content>
     <Content Include="Scripts\app\app.js" />
     <Content Include="Scripts\app\Login.js" />
+    <Content Include="Scripts\app\pages\Mission\Mission.js" />
+    <Content Include="Scripts\app\pages\Vision\Vision.js" />
+    <Content Include="Scripts\app\pages\HomeSlider\HomeSlider.js" />
     <Content Include="Scripts\app\pages\Languages\Languages.js" />
     <Content Include="Scripts\app\pages\Departments\Department.js" />
     <Content Include="Scripts\app\pages\Brands\Brands.js" />
@@ -491,6 +497,9 @@
     <Content Include="Scripts\app\pages\pages.module.js" />
     <Content Include="Scripts\app\pages\PaymentTypes\PaymentTypes.js" />
     <Content Include="Scripts\app\pages\Settings.js" />
+    <Content Include="Scripts\app\services\Mission.js" />
+    <Content Include="Scripts\app\services\Vision.js" />
+    <Content Include="Scripts\app\services\HomeSlider.js" />
     <Content Include="Scripts\app\services\Languages.js" />
     <Content Include="Scripts\app\services\Departments.js" />
     <Content Include="Scripts\app\services\AccountTypes.js" />
@@ -965,6 +974,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Scripts_Customer\app\theme\" />
+    <Folder Include="Uploads\" />
     <Folder Include="Views\AdminLayout\" />
   </ItemGroup>
   <ItemGroup>
@@ -1018,6 +1028,9 @@
     <Content Include="Views\Customer\slider.cshtml" />
     <Content Include="Views\Departments\Index.cshtml" />
     <Content Include="Views\Languages\Index.cshtml" />
+    <Content Include="Views\HomeSlider\Index.cshtml" />
+    <Content Include="Views\Vision\Index.cshtml" />
+    <Content Include="Views\Mission\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GMG_Portal.API\GMG_Portal.API.csproj">

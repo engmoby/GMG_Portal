@@ -21,8 +21,20 @@ namespace GMG_Portal.API
                 cfg.CreateMap<Models.SystemParameters.AccountType, AccountTypes>();
 
 
-                cfg.CreateMap<Systemparameters_Languages, GMG_Portal.API.Models.SystemParameters.Languages>();
+                cfg.CreateMap<Systemparameters_Languages,  Models.SystemParameters.Languages>();
                 cfg.CreateMap<GMG_Portal.API.Models.SystemParameters.Languages, Systemparameters_Languages>();
+
+
+                cfg.CreateMap<SystemParamater_HomeSlider, Models.SystemParameters.HomeSlider>();
+                cfg.CreateMap<Models.SystemParameters.HomeSlider, SystemParamater_HomeSlider>();
+
+
+                cfg.CreateMap<Front_Vision, Vision>();
+                cfg.CreateMap<Vision, Front_Vision>();
+
+                cfg.CreateMap<Front_Mission, Models.SystemParameters.Mission>();
+                cfg.CreateMap<Models.SystemParameters.Mission, Front_Mission>();
+
 
                 cfg.CreateMap<SystemParameter_Countries, GMG_Portal.API.Models.SystemParameters.Countries>();
                 cfg.CreateMap<GMG_Portal.API.Models.SystemParameters.Countries, SystemParameter_Countries>();
