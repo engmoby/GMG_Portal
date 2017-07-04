@@ -1,0 +1,192 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+@using GMG_Portal.Content; 
+@using GMG_Portal.Content.Admin
+@using GMG_Portal.Content.Admin.SystemParameters
+<script type="text/javascript" src="~/Scripts/app/services/HomeSlider.js"></script>
+<script type="text/javascript" src="~/Scripts/app/pages/HomeSlider/HomeSlider.js"></script>
+<input type="hidden" id="HEnglishNameUnique" value="@HomeSlider.EnglishNameUnique" />
+<input type="hidden" id="HUpdateSuccessMessage" value="@HomeSlider.UpdateSuccessMessage" />
+<input type="hidden" id="HSaveSuccessMessage" value="@HomeSlider.SaveSuccessMessage" />
+<input type="hidden" id="HDeleteSuccessMessage" value="@HomeSlider.DeleteSuccessMessage" />
+<input type="hidden" id="HArabicNameUnique" value="@HomeSlider.TxtTitleUniqueErrorMessage" />
+<input type="hidden" id="HCannotDeleted" value="@HomeSlider.CannotDeleted" />
+<style>
+    .btn-file {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .btn-file input[type=file] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        min-width: 100%;
+        min-height: 100%;
+        font-size: 100px;
+        text-align: right;
+        filter: alpha(opacity=0);
+        opacity: 0;
+        background: red;
+        cursor: inherit;
+        display: block;
+    }
+
+    input[readonly] {
+        background-color: white !important;
+        cursor: text !important;
+    }
+</style>
+<div ng-controller="HomeSlidersController">
+
+    <div ba-panel>
+        <table class="table table-hover table-condensed" st-table="TableData" st-safe-src="HomeSliders">
+            <thead>
+                <tr class="toolbar">
+                    <th colspan="2">
+                        <div class="input-group">
+                            <span class="input-group-addon addon-left"><i class="fa fa-search" aria-hidden="true"></i></span>
+                            <input st-search="" class="form-control" placeholder="@HomeSlider.txtSearchLbl" type="text" />
+                        </div>
+                    </th>
+                    <th colspan="1"></th>
+                    <th>
+                        <div class="input-group">
+                            <button class="btn btn-primary btn-with-icon" ng-click="open(null)"><i class="fa fa-plus" aria-hidden="true"></i>@HomeSlider.BtnAdd</button>
+                        </div>
+                    </th>
+                </tr>
+
+                <tr class="sortable">
+                    <th>#</th>
+                    <th st-sort="NameAr">@HomeSlider.Title</th>
+                    <th st-sort="NameEn">@HomeSlider.Desc</th>
+                    <th st-sort="NameEn">@HomeSlider.Rate</th>
+                    <th>Actions</th>
+                </tr>
+
+            </thead>
+            <tbody>
+                <tr ng-repeat="HomeSlider in TableData">
+                    <td ng-class="{'red-text': HomeSlider.IsDeleted == true}">{{$index+1}}</td>
+                    <td ng-class="{'red-text': HomeSlider.IsDeleted == true}">{{HomeSlider.DisplayValue}}</td>
+                    <td ng-class="{'red-text': HomeSlider.IsDeleted == true}">{{HomeSlider.DisplayValueDesc}}</td>
+                    <td ng-class="{'red-text': HomeSlider.IsDeleted == true}">{{HomeSlider.Rating}}</td>
+                    <td>
+                        <div class="buttons" ng-show="!HomeSlider.IsDeleted">
+                            <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(HomeSlider)"><i class="fa fa-pencil" aria-hidden="true"></i>@HomeSlider.TableBtnEdit</button>
+                            <button class="btn btn-danger editable-table-button btn-xs btn-with-icon" ng-confirm="Confirm Delete ?" ng-click="Delete(HomeSlider)"><i class="fa fa-trash-o" aria-hidden="true"></i>@HomeSlider.TableBtnDelete</button>
+                        </div>
+                        <div class="buttons restore-button" ng-show="HomeSlider.IsDeleted">
+                            <button class="center-block btn btn-default  restore-button btn-xs btn-with-icon" ng-click="Restore(HomeSlider)"><i class="fa fa-undo" aria-hidden="true"></i>Restore</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr ng-show="TableData.length==0">
+                    <td colspan="4">
+                       @Shared.GridNoData
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4" class="text-center">
+                        <div st-pagination="" st-items-by-page="10"></div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+
+    <form name="FrmAddUpdate" novalidate ng-submit="save()" autocomplete="off">
+
+        <div class="modal fade" id="ModelAddUpdate" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">{{action |uppercase}} @HomeSlider.ModalTitle</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="TxtTitle">@HomeSlider.Title</label><span class="red-text"> *</span>
+                            <input type="text" ng-model="HomeSlider.DisplayValue" not-in-list="HomeSliders" list-item-id="HomeSlider.ID" class="form-control" Title="TxtTitle"
+                                   placeholder="Text" required ng-pattern="/@Regex.NameAr/">
+
+                            <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
+                                <span class="red-text" ng-message="required">@HomeSlider.TxtTitleRequiredErrorMessage</span>
+                                <span class="red-text" ng-message="pattern">@HomeSlider.TxtTitlePatternErrorMessage</span>
+                                <span class="red-text" ng-message="notInList">@HomeSlider.TxtTitleUniqueErrorMessage</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="TxtDesc">@HomeSlider.Desc</label><span class="red-text"> *</span>
+                            <textarea ng-model="HomeSlider.DisplayValueDesc" not-in-list="HomeSliders" list-item-id="HomeSlider.ID" class="form-control" name="TxtDesc"
+                                      placeholder="Text" required ng-pattern="/@Regex.NameEn/"></textarea>
+                            <div class="red-text" ng-messages="FrmAddUpdate.TxtDesc.$error" ng-show="FrmAddUpdate.TxtDesc.$touched">
+                                <span class="red-text" ng-message="required">@HomeSlider.TxtDescRequiredErrorMessage</span>
+                                <span class="red-text" ng-message="pattern">@HomeSlider.TxtDescPatternErrorMessage</span>
+                                <span class="red-text" ng-message="notInList">@HomeSlider.TxtDescUniqueErrorMessage</span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="TxtUrl">@HomeSlider.Url</label><span class="red-text"> *</span>
+                            <input type="text" ng-model="HomeSlider.URL" not-in-list="HomeSliders" list-item-id="HomeSlider.ID" class="form-control" name="TxtUrl"
+                                   placeholder="Text" required ng-pattern="/@Regex.NameEn/">
+                            <div class="red-text" ng-messages="FrmAddUpdate.TxtUrl.$error" ng-show="FrmAddUpdate.TxtUrl.$touched"> 
+                                <span class="red-text" ng-message="pattern">@HomeSlider.TxtUrlPatternErrorMessage</span> 
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="TxtRate">@HomeSlider.Rate</label><span class="red-text"> *</span>
+                            <input type="text" ng-model="HomeSlider.Rating" not-in-list="HomeSliders" list-item-id="HomeSlider.ID" class="form-control" name="TxtRate"
+                                   placeholder="Text" required ng-pattern="/@Regex.NameEn/">
+                           
+                        </div>
+                        <div class="form-group">
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+
+                                <div class="col-lg-6 col-sm-6 col-12">
+
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <span class="btn btn-primary btn-file">
+                                                Browse...<input type="file" multiple my-directory="getFiles(file)" ng-disabled="uploading" />
+                                            </span>
+
+                                        </span>
+                                        <input type="text" ng-model="countFiles" class="form-control" readonly>
+                                    </div>
+                                    <input type="button" class="btn btn-default  btn-primary" ng-click="uploadFiles()" value="Upload" ng-disabled="uploading || countFiles===''" />
+
+
+                                    <div ng-repeat="file in data ">
+                                        {{file.FileName  + '  ' + file.FileLength + ' bytes'  }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary btn-with-icon" ng-disabled="FrmAddUpdate.$invalid"><i class="ion-android-checkmark-circle"></i>@HomeSlider.btnSaveLbl</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+
+
+</div>
+
+
+
+
+
+

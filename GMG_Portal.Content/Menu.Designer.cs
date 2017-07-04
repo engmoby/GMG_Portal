@@ -106,6 +106,15 @@ namespace GMG_Portal.Content {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Home Slider.
+        /// </summary>
+        public static string HomeSlider {
+            get {
+                return ResourceManager.GetString("HomeSlider", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invoice Statuses.
         /// </summary>
         public static string InvoiceStatuses {
@@ -124,11 +133,38 @@ namespace GMG_Portal.Content {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mission.
+        /// </summary>
+        public static string Mission {
+            get {
+                return ResourceManager.GetString("Mission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to News.
+        /// </summary>
+        public static string News {
+            get {
+                return ResourceManager.GetString("News", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Payment Types.
         /// </summary>
         public static string PaymentTypes {
             get {
                 return ResourceManager.GetString("PaymentTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vision.
+        /// </summary>
+        public static string Vision {
+            get {
+                return ResourceManager.GetString("Vision", resourceCulture);
             }
         }
     }

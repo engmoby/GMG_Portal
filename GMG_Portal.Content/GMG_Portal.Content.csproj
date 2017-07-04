@@ -73,6 +73,21 @@
     <Compile Include="Admin\SystemParameters\AccountTypes.Designer.cs">
       <DependentUpon>AccountTypes.resx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\SystemParameters\Vission.Designer.cs">
+      <DependentUpon>Vission.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Admin\SystemParameters\Mission.Designer.cs">
+      <DependentUpon>Mission.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Admin\SystemParameters\HomeSlider.Designer.cs">
+      <DependentUpon>HomeSlider.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Admin\SystemParameters\Languages.Designer.cs">
       <DependentUpon>Languages.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -134,6 +149,18 @@
     <EmbeddedResource Include="Admin\Shared.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Shared.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\SystemParameters\Vission.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Vission.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\SystemParameters\Mission.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Mission.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\SystemParameters\HomeSlider.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>HomeSlider.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\SystemParameters\Languages.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

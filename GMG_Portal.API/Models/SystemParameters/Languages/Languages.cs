@@ -20,5 +20,7 @@ namespace GMG_Portal.API.Models.SystemParameters
         public int? CreatorUserId { get; set; }
         public DateTime? DeletionTime { get; set; }
         public int? DeleterUserId { get; set; }
+        public string DisplayFront { get; set; }
+        public string OperationStatus { get; set; }
     }
 }
