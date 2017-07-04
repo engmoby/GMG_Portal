@@ -9,7 +9,7 @@ var provide = null;
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages', [
+    angular.module('portalFront.pages', [
       'ui.router',
       'ngMessages'
     ], function ($controllerProvider, $provide) {
