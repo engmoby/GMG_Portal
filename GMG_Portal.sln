@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GMG_Portal.Data", "GMG_Port
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GMG_Portal.UI", "GMG_Portal.UI\GMG_Portal.UI.csproj", "{8FAA1CBC-1ECF-40A0-BEEF-774582CD2464}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GMG_Portal.FRONT", "..\..\..\Downloads\School-SPA\School\GMG_Portal.FRONT.csproj", "{0BADA4E9-6A9C-4DFB-B70C-5424571FEB62}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GMG_Portal.FRONT", "GMG_Portal.Front\GMG_Portal.FRONT.csproj", "{0BADA4E9-6A9C-4DFB-B70C-5424571FEB62}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
