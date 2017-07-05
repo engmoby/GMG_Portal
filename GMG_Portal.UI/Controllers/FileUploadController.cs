@@ -50,8 +50,9 @@ namespace GMG_Portal.UI.Controllers
                 //In Case you want to get the files name
                 string localFileName = multipartFormDataStreamProvider.FileData.Select(multiPartData => multiPartData.LocalFileName).FirstOrDefault();
 
+                return Request.CreateResponse(HttpStatusCode.OK);
 
-                return new HttpResponseMessage(HttpStatusCode.OK) ;
+               // return new HttpResponseMessage(HttpStatusCode.OK, localFileName) ;
                
 
             }

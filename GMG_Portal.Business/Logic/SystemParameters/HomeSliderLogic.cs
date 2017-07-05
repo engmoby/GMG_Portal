@@ -56,6 +56,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         }
         public SystemParamater_HomeSlider Insert(SystemParamater_HomeSlider postedHomeSlider)
         {
+
             var language = new SystemParamater_HomeSlider()
             {
                 DisplayValue = postedHomeSlider.DisplayValue,

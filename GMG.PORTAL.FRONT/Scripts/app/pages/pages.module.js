@@ -46,9 +46,9 @@ var provide = null;
         //      title: menuItem.title
         //  });
 
-        for (var i = 0; i < menuItems.length; i++) {
-            addRouteStates($stateProvider,menuItems[i]);
-        }        
+        //for (var i = 0; i < menuItems.length; i++) {
+        //    addRouteStates($stateProvider,menuItems[i]);
+        //}        
         $urlRouterProvider.otherwise('/HomePage');
     }
 

@@ -61,9 +61,10 @@
 
                 <tr class="sortable">
                     <th>#</th>
-                    <th st-sort="NameAr">@HomeSlider.Title</th>
-                    <th st-sort="NameEn">@HomeSlider.Desc</th>
-                    <th st-sort="NameEn">@HomeSlider.Rate</th>
+                    <th st-sort="Image">@HomeSlider.Image</th>
+                    <th st-sort="Title">@HomeSlider.Title</th>
+                    <th st-sort="Desc">@HomeSlider.Desc</th>
+                    <th st-sort="Rate">@HomeSlider.Rate</th>
                     <th>Actions</th>
                 </tr>
 
@@ -71,6 +72,7 @@
             <tbody>
                 <tr ng-repeat="HomeSlider in TableData">
                     <td ng-class="{'red-text': HomeSlider.IsDeleted == true}">{{$index+1}}</td>
+                    <td ng-class="{'red-text': HomeSlider.IsDeleted == true}"><img width="100px" height="100px" src="http://localhost:19056/Uploads/{{HomeSlider.Image}}"/></td>
                     <td ng-class="{'red-text': HomeSlider.IsDeleted == true}">{{HomeSlider.DisplayValue}}</td>
                     <td ng-class="{'red-text': HomeSlider.IsDeleted == true}">{{HomeSlider.DisplayValueDesc}}</td>
                     <td ng-class="{'red-text': HomeSlider.IsDeleted == true}">{{HomeSlider.Rating}}</td>
@@ -116,7 +118,7 @@
                         <div class="form-group">
                             <label for="TxtTitle">@HomeSlider.Title</label><span class="red-text"> *</span>
                             <input type="text" ng-model="HomeSlider.DisplayValue" not-in-list="HomeSliders" list-item-id="HomeSlider.ID" class="form-control" Title="TxtTitle"
-                                   placeholder="Text" required ng-pattern="/@Regex.NameAr/">
+                                   placeholder="@HomeSlider.Title" required ng-pattern="/@Regex.NameAr/">
 
                             <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
                                 <span class="red-text" ng-message="required">@HomeSlider.TxtTitleRequiredErrorMessage</span>
@@ -136,9 +138,9 @@
                         </div>
                         
                         <div class="form-group">
-                            <label for="TxtUrl">@HomeSlider.Url</label><span class="red-text"> *</span>
+                            <label for="TxtUrl">@HomeSlider.Url</label>
                             <input type="text" ng-model="HomeSlider.URL" not-in-list="HomeSliders" list-item-id="HomeSlider.ID" class="form-control" name="TxtUrl"
-                                   placeholder="Text" required ng-pattern="/@Regex.NameEn/">
+                                   placeholder="@HomeSlider.Url"  ng-pattern="/@Regex.URL/">
                             <div class="red-text" ng-messages="FrmAddUpdate.TxtUrl.$error" ng-show="FrmAddUpdate.TxtUrl.$touched"> 
                                 <span class="red-text" ng-message="pattern">@HomeSlider.TxtUrlPatternErrorMessage</span> 
                             </div>
@@ -146,7 +148,7 @@
                         <div class="form-group">
                             <label for="TxtRate">@HomeSlider.Rate</label><span class="red-text"> *</span>
                             <input type="text" ng-model="HomeSlider.Rating" not-in-list="HomeSliders" list-item-id="HomeSlider.ID" class="form-control" name="TxtRate"
-                                   placeholder="Text" required ng-pattern="/@Regex.NameEn/">
+                                   placeholder="@HomeSlider.Rate" required ng-pattern="/@Regex.Number/">
                            
                         </div>
                         <div class="form-group">
@@ -157,23 +159,24 @@
                                     <div class="input-group">
                                         <span class="input-group-btn">
                                             <span class="btn btn-primary btn-file">
-                                                Browse...<input type="file" multiple my-directory="getFiles(file)" ng-disabled="uploading" />
+                                                Browse...<input type="file"  my-directory="getFiles(file)" ng-click="uploadFiles()" ng-disabled="uploading || Image ===''" />
                                             </span>
 
                                         </span>
-                                        <input type="text" ng-model="countFiles" class="form-control" readonly>
+                                        <input type="text" ng-model="Image" class="form-control" readonly>
                                     </div>
-                                    <input type="button" class="btn btn-default  btn-primary" ng-click="uploadFiles()" value="Upload" ng-disabled="uploading || countFiles===''" />
+                                    @*<input type="button" class="btn btn-default  btn-primary" ng-click="uploadFiles()" value="Upload" ng-disabled="uploading || Image===''" />*@
+                                    <img width="100px" height="100px" src="http://localhost:19056/Uploads/{{HomeSlider.Image}}" />
 
-
-                                    <div ng-repeat="file in data ">
+                                    @*<div ng-repeat="file in data ">
                                         {{file.FileName  + '  ' + file.FileLength + ' bytes'  }}
-                                    </div>
+                                    </div>*@
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
+                         @*<input type="button" class="btn btn-default  btn-primary"  value="@HomeSlider.btnSaveLbl" ng-disabled="FrmAddUpdate.$invalid" />*@
                         <button type="submit" class="btn btn-primary btn-with-icon" ng-disabled="FrmAddUpdate.$invalid"><i class="ion-android-checkmark-circle"></i>@HomeSlider.btnSaveLbl</button>
                     </div>
                 </div>

@@ -1,5 +1,6 @@
-﻿controllerProvider.register('HomeSlidersController', ['$scope', 'HomeSlidersApi','uploadService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', HomeSlidersController]);
-function HomeSlidersController($scope, HomeSlidersApi, uploadService,$rootScope, $timeout, $filter, $uibModal, toastr) {
+﻿controllerProvider.register('HomeSlidersController', ['$scope', 'HomeSlidersApi', 'uploadService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', HomeSlidersController]);
+function HomeSlidersController($scope, HomeSlidersApi, uploadService, $rootScope, $timeout, $filter, $uibModal, toastr) {
+    $scope.Image = "";
     $rootScope.ViewLoading = true;
     HomeSlidersApi.GetAll().then(function (response) {
         $scope.HomeSliders = response.data;
@@ -32,8 +33,11 @@ function HomeSlidersController($scope, HomeSlidersApi, uploadService,$rootScope,
     }
 
     $scope.save = function () {
-
-        uploadFiles();
+        if ($scope.Image) {
+            $scope.HomeSlider.Image = $scope.Image;
+            $scope.Image = ""; 
+        }
+        //  uploadService.uploadFiles();
         debugger;
         $rootScope.ViewLoading = true;
         HomeSlidersApi.Save($scope.HomeSlider).then(function (response) {
@@ -94,7 +98,8 @@ function HomeSlidersController($scope, HomeSlidersApi, uploadService,$rootScope,
         angular.forEach(file, function (value, key) {
             $scope.formdata.append(key, value);
             $scope.data.push({ FileName: value.name, FileLength: value.size });
-
+            $scope.Image = value.name;
+           // console.log($scope.Image);
         });
         //This line is just show you there is possible to
         //send in extra parameter to server.
@@ -103,37 +108,42 @@ function HomeSlidersController($scope, HomeSlidersApi, uploadService,$rootScope,
         $scope.countFiles = $scope.data.length == 0 ? '' : $scope.data.length + ' files selected';
         $scope.$apply();
         $scope.formdata.append('countFiles', $scope.countFiles);
-
+       // console.log($scope.data);
     };
 
     $scope.uploadFiles = function () {
+      //  $scope.save();
         $scope.uploading = true;
         uploadService.uploadFiles($scope)
             // then() called when uploadFiles gets back
             .then(function (data) {
-                    // promise fulfilled
-                    $scope.uploading = false;
-                    if (data === '') {
-                        alert("Done!!!")
-                        $scope.formdata = new FormData();
-                        $scope.data = [];
-                        $scope.countFiles = '';
-                        $scope.$apply;
-                    } else {
-                        //Server Error
-                        alert("Shit, What happended up there!!! " + data);
-                    }
-                }, function (error) {
-                    $scope.uploading = false;
+                // promise fulfilled
+                debugger;
+                $scope.uploading = false;
+                if (data === '') {
+                   // console.log(data);
+                    //   $scope.Image=data.
+                    alert("Done!!!")
+                    $scope.formdata = new FormData();
+                    $scope.data = [];
+                    $scope.countFiles = '';
+                    $scope.$apply;
+                } else {
+                   // console.log(data);
                     //Server Error
-                    alert("Shit, What happended up there!!! " + error);
+                    alert("Shit, What happended up there!!! " + data);
                 }
+            }, function (error) {
+                $scope.uploading = false;
+                //Server Error
+                alert("Shit, What happended up there!!! " + error);
+            }
 
             );
     };
 
 }
- 
+
 
 
 

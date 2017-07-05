@@ -12,8 +12,8 @@ var app = angular.module('portalFront', [
   //'ui.slimscroll',
   //'ngJsTree',
   //'angular-progress-button-styles',
-  //'BlurAdmin.theme',
-  //'BlurAdmin.pages',
+  // 'portalFront.theme',
+ 'portalFront.pages'
   //'flow',
   //'ui.select'
 

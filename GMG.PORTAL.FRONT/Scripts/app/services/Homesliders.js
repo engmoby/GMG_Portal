@@ -1,7 +1,11 @@
-﻿provide.service('HomeSliders', function ($http) {
-    var ApiURL = document.querySelector('#HServicesURL').value;
+﻿
+
+
+var app = angular.module('portalFront', []);
+app.service('HomeSliders', function ($http) {
+    var apiUrl = document.querySelector('#HServicesURL').value;
     this.GetAll = function () {
-        return $http.get(ApiURL + '/SystemParameters/HomeSliders/GetAll');
+        return $http.get(apiUrl + '/SystemParameters/HomeSliders/GetAll');
     }
 
 
