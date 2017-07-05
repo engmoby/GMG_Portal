@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GMG_Portal.Data", "GMG_Port
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GMG_Portal.UI", "GMG_Portal.UI\GMG_Portal.UI.csproj", "{8FAA1CBC-1ECF-40A0-BEEF-774582CD2464}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GMG.PORTAL.FRONT", "GMG.PORTAL.FRONT\GMG.PORTAL.FRONT.csproj", "{89AD9E06-3865-4D04-9009-809C4234328C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GMG_Portal.FRONT", "..\..\..\Downloads\School-SPA\School\GMG_Portal.FRONT.csproj", "{0BADA4E9-6A9C-4DFB-B70C-5424571FEB62}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,10 +47,10 @@ Global
 		{8FAA1CBC-1ECF-40A0-BEEF-774582CD2464}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8FAA1CBC-1ECF-40A0-BEEF-774582CD2464}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8FAA1CBC-1ECF-40A0-BEEF-774582CD2464}.Release|Any CPU.Build.0 = Release|Any CPU
-		{89AD9E06-3865-4D04-9009-809C4234328C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{89AD9E06-3865-4D04-9009-809C4234328C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{89AD9E06-3865-4D04-9009-809C4234328C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{89AD9E06-3865-4D04-9009-809C4234328C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BADA4E9-6A9C-4DFB-B70C-5424571FEB62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BADA4E9-6A9C-4DFB-B70C-5424571FEB62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BADA4E9-6A9C-4DFB-B70C-5424571FEB62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BADA4E9-6A9C-4DFB-B70C-5424571FEB62}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
