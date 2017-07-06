@@ -31,11 +31,12 @@ namespace Front.Controllers
             string _homeSlider = url + "HomeSliders/GetAll";
             string _about = url + "Abouts/GetAll";
             string _HotelFeatures = url + "Features/GetAll";
+            string _Hotel = url + "Hotels/GetAll";
             var homeModels = new HomeModels();
             var homesliders = new List<HomeSlider>();
             var aboutList = new List<About>();
             var hotelFeatures = new List<HotelFeatures>();
-
+            var hotels = new List<Hotel>();
 
             await CallApi(_homeSlider, homesliders, homeModels);
             await CallAbout(_about, aboutList, homeModels);
@@ -49,6 +50,33 @@ namespace Front.Controllers
                 return View("Error");
 
         }
+
+
+        private async Task CallApi(string homeSlider, List<HomeSlider> homesliders, HomeModels homeModels)
+        {
+            HttpResponseMessage responseMessage = await _client.GetAsync(homeSlider);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var responseData = responseMessage.Content.ReadAsStringAsync().Result;
+                var home = JsonConvert.DeserializeObject<List<HomeSlider>>(responseData);
+
+                foreach (var forHomeSlider in home)
+                {
+                    homesliders.Add(new HomeSlider
+                    {
+                        DisplayValue = forHomeSlider.DisplayValue,
+                        Id = forHomeSlider.Id,
+                        DisplayValueDesc = forHomeSlider.DisplayValueDesc,
+                        Image = forHomeSlider.Image
+                    });
+                }
+                homeModels.HomeSliders = homesliders;
+
+                // return View(homeModels);
+            }
+        }
+
+
 
         private async Task CallAbout(string _about, List<About> aboutList, HomeModels homeModels)
         {
@@ -97,30 +125,36 @@ namespace Front.Controllers
             }
         }
 
-        private async Task CallApi(string homeSlider, List<HomeSlider> homesliders, HomeModels homeModels)
-        {
-            HttpResponseMessage responseMessage = await _client.GetAsync(homeSlider);
-            if (responseMessage.IsSuccessStatusCode)
-            {
-                var responseData = responseMessage.Content.ReadAsStringAsync().Result;
-                var home = JsonConvert.DeserializeObject<List<HomeSlider>>(responseData);
 
-                foreach (var forHomeSlider in home)
+        private async Task CallHotels(string _Hotel, List<Hotel> HotelList, HomeModels homeModels)
+        {
+            HttpResponseMessage responseMessageAbout = await _client.GetAsync(_Hotel);
+            if (responseMessageAbout.IsSuccessStatusCode)
+            {
+                var responseData = responseMessageAbout.Content.ReadAsStringAsync().Result;
+                var hotellist = JsonConvert.DeserializeObject<List<Hotel>>(responseData);
+
+
+                foreach (var forhotels in hotellist)
                 {
-                    homesliders.Add(new HomeSlider
+                    HotelList.Add(new Hotel
                     {
-                        DisplayValue = forHomeSlider.DisplayValue,
-                        Id = forHomeSlider.Id,
-                        DisplayValueDesc = forHomeSlider.DisplayValueDesc,
-                        Image = forHomeSlider.Image
+                        DisplayValue = forhotels.DisplayValue,
+                        Id = forhotels.Id,
+                        DisplayValueDesc = forhotels.DisplayValueDesc,
+                        Priceafter = forhotels.Priceafter,
+                        Rate = forhotels.Rate ,
+                       Image = forhotels.Image,
+                        URL = forhotels.URL
                     });
                 }
-                homeModels.HomeSliders = homesliders;
-
-                // return View(homeModels);
+                homeModels.Hotel  = HotelList;
             }
         }
 
+
+
+   
 
     }
 }
