@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace School.Models
+namespace Front.Models
 {
     public class HomeSlider
     {

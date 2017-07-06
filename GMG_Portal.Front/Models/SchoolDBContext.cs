@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 
 
-namespace School.Models
+namespace Front.Models
 {
     public class SchoolDBContext: DbContext
     {

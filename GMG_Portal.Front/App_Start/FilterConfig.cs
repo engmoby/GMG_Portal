@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace School
+namespace Front
 {
     public class FilterConfig
     {

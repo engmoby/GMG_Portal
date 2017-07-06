@@ -30,8 +30,8 @@ namespace GMG_Portal.API
 
 
 
-                cfg.CreateMap<SystemParameter_About, Models.SystemParameters.HomeSlider>();
-                cfg.CreateMap<Models.SystemParameters.HomeSlider, SystemParameter_About>();
+                cfg.CreateMap<SystemParamater_HomeSlider, Models.SystemParameters.HomeSlider>();
+                cfg.CreateMap<Models.SystemParameters.HomeSlider, SystemParamater_HomeSlider>();
 
 
                 cfg.CreateMap<Front_Vision, Vision>();
