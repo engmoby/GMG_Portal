@@ -86,13 +86,16 @@
     <Compile Include="Hotles_Hotel_Offers.cs">
       <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Partials\SystemParameters\HomeSlider.cs" />
-    <Compile Include="Partials\SystemParameters\Misson.cs" />
-    <Compile Include="Partials\SystemParameters\Vision.cs" />
+    <Compile Include="Partials\SystemParameters\News.cs" />
+    <Compile Include="Partials\SystemParameters\Abouts.cs" />
+    <Compile Include="Partials\SystemParameters\Features.cs" />
+    <Compile Include="Partials\SystemParameters\HomeSliders.cs" />
+    <Compile Include="Partials\SystemParameters\Missons.cs" />
+    <Compile Include="Partials\SystemParameters\Visions.cs" />
     <Compile Include="Partials\SystemParameters\Languages.cs" />
     <Compile Include="Partials\SystemParameters\Departments.cs" />
     <Compile Include="Partials\SystemParameters\AccountTypes.cs" />
-    <Compile Include="Partials\SystemParameters\SystemParameter_Cities.cs" />
+    <Compile Include="Partials\SystemParameters\Cities.cs" />
     <Compile Include="Partials\SystemParameters\Countries.cs" />
     <Compile Include="Partials\Customer\Customers.cs" />
     <Compile Include="Partials\Customer\InvoiceStatuses.cs" />
