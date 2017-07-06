@@ -34,6 +34,7 @@ namespace GMG_Portal.Data
         public Nullable<int> LookupKeyAddress { get; set; }
         public Nullable<System.Guid> LookupKeyGuidAddress { get; set; }
         public string Email { get; set; }
+        public Nullable<int> PriceStart { get; set; }
         public Nullable<double> DistanceDownTown { get; set; }
         public Nullable<System.DateTime> LastModificationTime { get; set; }
         public Nullable<int> LastModifierUserId { get; set; }

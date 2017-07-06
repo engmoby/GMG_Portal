@@ -9,5 +9,6 @@ namespace Front.Models
         public List<About> About { get; set; }
         public List<HotelFeatures> Features { get; set; }
         public List<Hotel> Hotel { get; set; }
+        public List<News> News { get; set; }
     }
 }

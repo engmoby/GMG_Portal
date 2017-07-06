@@ -47,6 +47,9 @@ namespace GMG_Portal.API
                 cfg.CreateMap<Features, Hotels_Features>();
 
 
+                cfg.CreateMap<Hotel, Hotels>();
+                cfg.CreateMap<Hotels, Hotel>();
+
                 cfg.CreateMap<SystemParameter_Countries, GMG_Portal.API.Models.SystemParameters.Countries>();
                 cfg.CreateMap<GMG_Portal.API.Models.SystemParameters.Countries, SystemParameter_Countries>();
 
