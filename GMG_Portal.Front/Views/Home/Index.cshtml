@@ -4,7 +4,7 @@
     ViewBag.Title = "School";
 }
 
-<ui-view></ui-view>
+@*<ui-view></ui-view>*@
 
 
 @section scripts {
@@ -81,38 +81,52 @@
 
 
 <div id="mega-slider" class="carousel slide " data-ride="carousel">
-    @{  <!-- Indicators -->
-        foreach (var list in Model)
-        { <ol class="carousel-indicators">
-        <li data-target="#mega-slider" data-slide-to="@list.Id" class="active"></li>
+   <ol class="carousel-indicators">
+        <li data-target="#mega-slider" data-slide-to="0" class="active"></li>
         <li data-target="#mega-slider" data-slide-to="1"></li>
         <li data-target="#mega-slider" data-slide-to="2"></li>
     </ol>
 
     <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
-
-
-
+                
+                
+           
+           
                 <div class="item active beactive">
                     <img src="~/Content/images/slide-4.png" alt="...">
                     <div class="carousel-caption">
-                        <img src="images/stars.png" alt="">
-                        <h2>@list.DisplayValue</h2>
-                        <p>Cogitavisse erant puerilis utrum efficiantur adhuc expeteretur.</p>
+                        <img src="~/Content/images/stars.png" alt="">
+                        <h2>@Model[0].DisplayValue</h2>
+                        <h2>@Model[0].Id</h2>
                     </div>
                 </div>
+          
+                
+
+                @{  <!-- Indicators -->
+
+                    for (var i = 1; i < Model.Count; i++)
+                    {
+                        <div class="item">
+                    <img src="~/Content/images/slide-4.png" alt="...">
+                    <div class="carousel-caption">
+                        <img src="~/Content/images/stars.png" alt="">
+                        <h2>@Model[i].DisplayValue</h2>
+                        <p>@Model[i].Id</p>
+                    </div>
+                </div>
+                    }
+                }
 
 
-
-
-            </div>   }
+            </div>  
 
     <!-- Controls -->
         <a class="left carousel-control" href="#mega-slider" role="button" data-slide="prev">
         </a>
         <a class="right carousel-control" href="#mega-slider" role="button" data-slide="next">
-        </a>        }
+        </a>       
 </div>
 
 @*<div id="mega-slider" class="carousel slide " data-ride="carousel">
