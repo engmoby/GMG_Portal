@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Index";
 }
-@using GMG_Portal.Content; 
+@using GMG_Portal.Content;
 @using GMG_Portal.Content.Admin
 @using GMG_Portal.Content.Admin.SystemParameters
 <script type="text/javascript" src="~/Scripts/app/services/HomeSlider.js"></script>
@@ -19,20 +19,20 @@
         overflow: hidden;
     }
 
-    .btn-file input[type=file] {
-        position: absolute;
-        top: 0;
-        right: 0;
-        min-width: 100%;
-        min-height: 100%;
-        font-size: 100px;
-        text-align: right;
-        filter: alpha(opacity=0);
-        opacity: 0;
-        background: red;
-        cursor: inherit;
-        display: block;
-    }
+        .btn-file input[type=file] {
+            position: absolute;
+            top: 0;
+            right: 0;
+            min-width: 100%;
+            min-height: 100%;
+            font-size: 100px;
+            text-align: right;
+            filter: alpha(opacity=0);
+            opacity: 0;
+            background: red;
+            cursor: inherit;
+            display: block;
+        }
 
     input[readonly] {
         background-color: white !important;
@@ -72,7 +72,7 @@
             <tbody>
                 <tr ng-repeat="HomeSlider in TableData">
                     <td ng-class="{'red-text': HomeSlider.IsDeleted == true}">{{$index+1}}</td>
-                    <td ng-class="{'red-text': HomeSlider.IsDeleted == true}"><img width="100px" height="100px" src="http://localhost:19056/Uploads/{{HomeSlider.Image}}"/></td>
+                    <td ng-class="{'red-text': HomeSlider.IsDeleted == true}"><img width="100px" height="100px" src="http://localhost:19056/Uploads/{{HomeSlider.Image}}" /></td>
                     <td ng-class="{'red-text': HomeSlider.IsDeleted == true}">{{HomeSlider.DisplayValue}}</td>
                     <td ng-class="{'red-text': HomeSlider.IsDeleted == true}">{{HomeSlider.DisplayValueDesc}}</td>
                     <td ng-class="{'red-text': HomeSlider.IsDeleted == true}">{{HomeSlider.Rating}}</td>
@@ -88,7 +88,7 @@
                 </tr>
                 <tr ng-show="TableData.length==0">
                     <td colspan="4">
-                       @Shared.GridNoData
+                        @Shared.GridNoData
                     </td>
                 </tr>
             </tbody>
@@ -103,7 +103,8 @@
     </div>
 
 
-    <form name="FrmAddUpdate" novalidate ng-submit="save()" autocomplete="off">
+    @*<form name="FrmAddUpdate" novalidate ng-submit="save()" autocomplete="off">*@
+    <form name="FrmAddUpdate" novalidate autocomplete="off">
 
         <div class="modal fade" id="ModelAddUpdate" role="dialog">
             <div class="modal-dialog">
@@ -136,48 +137,49 @@
                                 <span class="red-text" ng-message="notInList">@HomeSlider.TxtDescUniqueErrorMessage</span>
                             </div>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="TxtUrl">@HomeSlider.Url</label>
                             <input type="text" ng-model="HomeSlider.URL" not-in-list="HomeSliders" list-item-id="HomeSlider.ID" class="form-control" name="TxtUrl"
-                                   placeholder="@HomeSlider.Url"  ng-pattern="/@Regex.URL/">
-                            <div class="red-text" ng-messages="FrmAddUpdate.TxtUrl.$error" ng-show="FrmAddUpdate.TxtUrl.$touched"> 
-                                <span class="red-text" ng-message="pattern">@HomeSlider.TxtUrlPatternErrorMessage</span> 
+                                   placeholder="@HomeSlider.Url" ng-pattern="/@Regex.Name/">
+                            <div class="red-text" ng-messages="FrmAddUpdate.TxtUrl.$error" ng-show="FrmAddUpdate.TxtUrl.$touched">
+                                <span class="red-text" ng-message="pattern">@HomeSlider.TxtUrlPatternErrorMessage</span>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="TxtRate">@HomeSlider.Rate</label><span class="red-text"> *</span>
                             <input type="text" ng-model="HomeSlider.Rating" not-in-list="HomeSliders" list-item-id="HomeSlider.ID" class="form-control" name="TxtRate"
                                    placeholder="@HomeSlider.Rate" required ng-pattern="/@Regex.Number/">
-                           
+
                         </div>
                         <div class="form-group">
-                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                            <label for="TxtRate">@HomeSlider.Image</label><span class="red-text"> *</span>
+                          
+                            <div class="fileinput fileinput-new" data-provides="fileinput"> 
 
                                 <div class="col-lg-6 col-sm-6 col-12">
 
                                     <div class="input-group">
                                         <span class="input-group-btn">
                                             <span class="btn btn-primary btn-file">
-                                                Browse...<input type="file"  my-directory="getFiles(file)" ng-click="uploadFiles()" ng-disabled="uploading || Image ===''" />
+                                                Browse...<input type="file" my-directory="getFiles(file)" ng-disabled="uploading" />
                                             </span>
 
                                         </span>
-                                        <input type="text" ng-model="Image" class="form-control" readonly>
+                                        <input type="text" ng-model="countFiles" required class="form-control" readonly>
                                     </div>
-                                    @*<input type="button" class="btn btn-default  btn-primary" ng-click="uploadFiles()" value="Upload" ng-disabled="uploading || Image===''" />*@
-                                    <img width="100px" height="100px" src="http://localhost:19056/Uploads/{{HomeSlider.Image}}" />
+                                    @*<input type="button" class="btn btn-default  btn-primary" ng-click="uploadFiles()" value="Upload" ng-disabled="uploading || countFiles===''" />*@
 
-                                    @*<div ng-repeat="file in data ">
-                                        {{file.FileName  + '  ' + file.FileLength + ' bytes'  }}
-                                    </div>*@
+                                    <img style="width: 100px; height: 100px" src="http://localhost:19056/Uploads/{{HomeSlider.DisplayValue}}" ng-show="Image" />
+
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                         @*<input type="button" class="btn btn-default  btn-primary"  value="@HomeSlider.btnSaveLbl" ng-disabled="FrmAddUpdate.$invalid" />*@
-                        <button type="submit" class="btn btn-primary btn-with-icon" ng-disabled="FrmAddUpdate.$invalid"><i class="ion-android-checkmark-circle"></i>@HomeSlider.btnSaveLbl</button>
+                        @*<input type="button" class="btn btn-default  btn-primary" ng-click="uploadFiles()" value="Upload" ng-disabled="uploading || countFiles ==='' && FrmAddUpdate.$invalid" />*@
+                        @*<input type="button" class="btn btn-default  btn-primary"  value="@HomeSlider.btnSaveLbl" ng-disabled="FrmAddUpdate.$invalid" />*@
+                        <button type="submit" class="btn btn-primary btn-with-icon" ng-click="uploadFiles()" ng-disabled="FrmAddUpdate.$invalid"><i class="ion-android-checkmark-circle"></i>@HomeSlider.btnSaveLbl</button>
                     </div>
                 </div>
 

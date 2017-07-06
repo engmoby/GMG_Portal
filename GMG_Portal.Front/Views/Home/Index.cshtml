@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<School.Models.HomeSlider>
+
+@{
     ViewBag.Title = "School";
 }
 
@@ -7,11 +9,11 @@
 
 @section scripts {
 
-    @Scripts.Render("~/Scripts/angular.js")
-    @Scripts.Render("~/Scripts/angular-resource.js")
-    @Scripts.Render("~/Scripts/angular-ui-router.js")
+    @*@Scripts.Render("~/Scripts/angular.js")
+        @Scripts.Render("~/Scripts/angular-resource.js")
+        @Scripts.Render("~/Scripts/angular-ui-router.js")
 
-    @Scripts.Render("~/Scripts/App/controller.js")
+        @Scripts.Render("~/Scripts/App/controller.js")*@
 
 }
 
@@ -78,8 +80,42 @@
 </header>
 
 
+<div id="mega-slider" class="carousel slide " data-ride="carousel">
+    @{  <!-- Indicators -->
+        foreach (var list in Model)
+        { <ol class="carousel-indicators">
+        <li data-target="#mega-slider" data-slide-to="@list.Id" class="active"></li>
+        <li data-target="#mega-slider" data-slide-to="1"></li>
+        <li data-target="#mega-slider" data-slide-to="2"></li>
+    </ol>
 
-    <div id="mega-slider" class="carousel slide " data-ride="carousel">
+    <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+
+
+
+                <div class="item active beactive">
+                    <img src="~/Content/images/slide-4.png" alt="...">
+                    <div class="carousel-caption">
+                        <img src="images/stars.png" alt="">
+                        <h2>@list.DisplayValue</h2>
+                        <p>Cogitavisse erant puerilis utrum efficiantur adhuc expeteretur.</p>
+                    </div>
+                </div>
+
+
+
+
+            </div>   }
+
+    <!-- Controls -->
+        <a class="left carousel-control" href="#mega-slider" role="button" data-slide="prev">
+        </a>
+        <a class="right carousel-control" href="#mega-slider" role="button" data-slide="next">
+        </a>        }
+</div>
+
+@*<div id="mega-slider" class="carousel slide " data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#mega-slider" data-slide-to="0" class="active"></li>
             <li data-target="#mega-slider" data-slide-to="1"></li>
@@ -88,67 +124,67 @@
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
             <div ng-controller="HomeslidersCtrl">
-                
-                 
-                    
-                    <div class="item active beactive" ng-repeat="objHomeSlider in homeSliders">
-                        <img src="~/Content/images/slide-4.png" alt="...">
-                        <div class="carousel-caption">
-                            <img src="~/Content/images/stars.png" alt="">
-                            <h2>{{objHomeSlider.DisplayValue}}</h2>
-                            <p>{{objHomeSlider.DisplayValueDesc}}</p>
-                        </div>
-                    </div>
-
-                  
-              
-                
-            </div>
-            </div>
-    
-        <!-- Controls -->
-        <a class="left carousel-control" href="#mega-slider" role="button" data-slide="prev">
-        </a>
-        <a class="right carousel-control" href="#mega-slider" role="button" data-slide="next">
-        </a>
-    
-    </div>
-    
-    
-    
- 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    @*<div ng-controller="HomeslidersCtrl">
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner" role="listbox">
-                <div ng-repeat="objHomeSlider in homeSliders"></div>
-                <div class="item active" >
 
 
-                    <img src="http://localhost:19056/Uploads/slide2.png" alt="...">
+
+                <div class="item active beactive" ng-repeat="objHomeSlider in homeSliders">
+                    <img src="~/Content/images/slide-4.png" alt="...">
                     <div class="carousel-caption">
                         <img src="~/Content/images/stars.png" alt="">
                         <h2>{{objHomeSlider.DisplayValue}}</h2>
                         <p>{{objHomeSlider.DisplayValueDesc}}</p>
                     </div>
                 </div>
+
+
+
+
             </div>
-            <div>
-            <!-- Controls -->
-            <a class="left carousel-control" href="#mega-slider" role="button" data-slide="prev">
-            </a>
-            <a class="right carousel-control" href="#mega-slider" role="button" data-slide="next">
-            </a>
         </div>
-</div>*@
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#mega-slider" role="button" data-slide="prev">
+        </a>
+        <a class="right carousel-control" href="#mega-slider" role="button" data-slide="next">
+        </a>
+
+    </div>*@
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<div ng-controller="HomeslidersCtrl">
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox">
+                    <div ng-repeat="objHomeSlider in homeSliders"></div>
+                    <div class="item active" >
+
+
+                        <img src="http://localhost:19056/Uploads/slide2.png" alt="...">
+                        <div class="carousel-caption">
+                            <img src="~/Content/images/stars.png" alt="">
+                            <h2>{{objHomeSlider.DisplayValue}}</h2>
+                            <p>{{objHomeSlider.DisplayValueDesc}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                <!-- Controls -->
+                <a class="left carousel-control" href="#mega-slider" role="button" data-slide="prev">
+                </a>
+                <a class="right carousel-control" href="#mega-slider" role="button" data-slide="next">
+                </a>
+            </div>
+    </div>*@
 
 
 
@@ -444,91 +480,91 @@
     </div>
 </div>
 
-    <footer class="mg-footer">
-        <div class="mg-footer-widget">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-3 col-sm-6">
-                        <div class="widget">
-                            <h2 class="mg-widget-title">Contact US</h2>
-                            <address>
-                                <strong>Envato</strong><br>
-                                Level 13, 2 Elizabeth St, Melbourne<br>
-                                Victoria 3000 Australia
-                            </address>
+<footer class="mg-footer">
+    <div class="mg-footer-widget">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="widget">
+                        <h2 class="mg-widget-title">Contact US</h2>
+                        <address>
+                            <strong>Envato</strong><br>
+                            Level 13, 2 Elizabeth St, Melbourne<br>
+                            Victoria 3000 Australia
+                        </address>
 
-                            <p>
-                                +000-123-456-789<br>
-                                +000-123-456-789
-                            </p>
+                        <p>
+                            +000-123-456-789<br>
+                            +000-123-456-789
+                        </p>
 
-                            <p>
-                                <a href="mailto:#">example@example.com</a>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6">
-                        <div class="widget">
-                            <h2 class="mg-widget-title">Instagram</h2>
-                            <ul class="mg-instagram">
-                                <li><a href="#"><img src="~/Content/images/ins-01.png" alt=""></a></li>
-                                <li><a href="#"><img src="~/Content/images/ins-02.png" alt=""></a></li>
-                                <li><a href="#"><img src="~/Content/images/ins-03.png" alt=""></a></li>
-                                <li><a href="#"><img src="~/Content/images/ins-04.png" alt=""></a></li>
-                                <li><a href="#"><img src="~/Content/images/ins-05.png" alt=""></a></li>
-                                <li><a href="#"><img src="~/Content/images/ins-06.png" alt=""></a></li>
-                                <li><a href="#"><img src="~/Content/images/ins-07.png" alt=""></a></li>
-                                <li><a href="#"><img src="~/Content/images/ins-08.png" alt=""></a></li>
-                                <li><a href="#"><img src="~/Content/images/ins-09.png" alt=""></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6">
-                        <div class="widget">
-                            <h2 class="mg-widget-title">Newsletter</h2>
-                            <p>Inbecilloque elegans errorem concedo coniuncta arare dicant etsi electram minimum.</p>
-                            <form>
-                                <p>
-                                    <input type="email" class="form-control" placeholder="Your Email">
-                                </p>
-                                <input type="submit" class="btn btn-main" value="Subscribe">
-                            </form>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6">
-                        <div class="widget">
-                            <h2 class="mg-widget-title">Social Media</h2>
-                            <p>Tibi alienus possimus nomini legendus pariatur, logikh assidua philosophis expectat occultarum accedit suscipit interrogari difficilius reddidisti.</p>
-                            <ul class="mg-footer-social">
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                <li><a href="#"><i class="fa fa-rss"></i></a></li>
-                            </ul>
-                        </div>
+                        <p>
+                            <a href="mailto:#">example@example.com</a>
+                        </p>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="mg-copyright">
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-md-6">
-                        <ul class="mg-footer-nav">
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">About</a></li>
-                            <li><a href="#">Rooms</a></li>
-                            <li><a href="#">Blog</a></li>
-                            <li><a href="#">Contact</a></li>
+                <div class="col-md-3 col-sm-6">
+                    <div class="widget">
+                        <h2 class="mg-widget-title">Instagram</h2>
+                        <ul class="mg-instagram">
+                            <li><a href="#"><img src="~/Content/images/ins-01.png" alt=""></a></li>
+                            <li><a href="#"><img src="~/Content/images/ins-02.png" alt=""></a></li>
+                            <li><a href="#"><img src="~/Content/images/ins-03.png" alt=""></a></li>
+                            <li><a href="#"><img src="~/Content/images/ins-04.png" alt=""></a></li>
+                            <li><a href="#"><img src="~/Content/images/ins-05.png" alt=""></a></li>
+                            <li><a href="#"><img src="~/Content/images/ins-06.png" alt=""></a></li>
+                            <li><a href="#"><img src="~/Content/images/ins-07.png" alt=""></a></li>
+                            <li><a href="#"><img src="~/Content/images/ins-08.png" alt=""></a></li>
+                            <li><a href="#"><img src="~/Content/images/ins-09.png" alt=""></a></li>
                         </ul>
                     </div>
-                    <div class="col-md-6">
-                        <p>&copy; 2015 <a href="http://www.cantothemes.com">CantoThemes</a>. All rights reserved.</p>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="widget">
+                        <h2 class="mg-widget-title">Newsletter</h2>
+                        <p>Inbecilloque elegans errorem concedo coniuncta arare dicant etsi electram minimum.</p>
+                        <form>
+                            <p>
+                                <input type="email" class="form-control" placeholder="Your Email">
+                            </p>
+                            <input type="submit" class="btn btn-main" value="Subscribe">
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="widget">
+                        <h2 class="mg-widget-title">Social Media</h2>
+                        <p>Tibi alienus possimus nomini legendus pariatur, logikh assidua philosophis expectat occultarum accedit suscipit interrogari difficilius reddidisti.</p>
+                        <ul class="mg-footer-social">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
-    </footer>
-    
+    </div>
+    <div class="mg-copyright">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-6">
+                    <ul class="mg-footer-nav">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Rooms</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <p>&copy; 2015 <a href="http://www.cantothemes.com">CantoThemes</a>. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+

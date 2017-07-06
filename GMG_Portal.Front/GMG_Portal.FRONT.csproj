@@ -171,6 +171,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\HomeSlider.cs" />
     <Compile Include="Models\SchoolDBContext.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -363,6 +364,20 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GMG_Portal.API\GMG_Portal.API.csproj">
+      <Project>{d2f9608f-7e2b-48c7-a7b7-5d6f0a2e1bea}</Project>
+      <Name>GMG_Portal.API</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GMG_Portal.Business\GMG_Portal.Business.csproj">
+      <Project>{687e8de2-05b8-448e-a299-257e09d61b21}</Project>
+      <Name>GMG_Portal.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GMG_Portal.Data\GMG_Portal.Data.csproj">
+      <Project>{241A9395-B7C1-4EF8-94B1-C2876AC94771}</Project>
+      <Name>GMG_Portal.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
