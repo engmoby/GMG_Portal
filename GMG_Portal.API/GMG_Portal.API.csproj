@@ -173,6 +173,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\SystemParameters\AboutsController.cs" />
     <Compile Include="Controllers\SystemParameters\MissionController.cs" />
     <Compile Include="Controllers\SystemParameters\VisionController.cs" />
     <Compile Include="Controllers\SystemParameters\HomeSlidersController.cs" />
@@ -193,6 +194,7 @@
     <Compile Include="Models\Customer\Customers\Customer.cs" />
     <Compile Include="Models\SystemParameters\AccountType\AccountType.cs" />
     <Compile Include="Models\SystemParameters\Cities\ViewModelCities.cs" />
+    <Compile Include="Models\SystemParameters\About\About.cs" />
     <Compile Include="Models\SystemParameters\Mission\Mission.cs" />
     <Compile Include="Models\SystemParameters\Vision\Vision.cs" />
     <Compile Include="Models\SystemParameters\HomeSlider\HomeSlider.cs" />

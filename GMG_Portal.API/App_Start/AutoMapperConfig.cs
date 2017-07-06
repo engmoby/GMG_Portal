@@ -25,8 +25,13 @@ namespace GMG_Portal.API
                 cfg.CreateMap<GMG_Portal.API.Models.SystemParameters.Languages, Systemparameters_Languages>();
 
 
-                cfg.CreateMap<SystemParamater_HomeSlider, Models.SystemParameters.HomeSlider>();
-                cfg.CreateMap<Models.SystemParameters.HomeSlider, SystemParamater_HomeSlider>();
+                cfg.CreateMap<SystemParameter_About, About>();
+                cfg.CreateMap<About, SystemParameter_About>();
+
+
+
+                cfg.CreateMap<SystemParameter_About, Models.SystemParameters.HomeSlider>();
+                cfg.CreateMap<Models.SystemParameters.HomeSlider, SystemParameter_About>();
 
 
                 cfg.CreateMap<Front_Vision, Vision>();
