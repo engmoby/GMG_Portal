@@ -37,9 +37,10 @@ namespace School.Controllers
 
                 var home = JsonConvert.DeserializeObject<List<HomeSlider>>(responseData);
                 var homeModels= new HomeModels();
+                var homesliders= new List<HomeSlider>();
                 foreach (var forHomeSlider in home)
                 {
-                    homeModels.HomeSliders.Add(new HomeSlider
+                    homesliders.Add(new HomeSlider
                     {
                         
                         DisplayValue = forHomeSlider.DisplayValue,
@@ -48,7 +49,7 @@ namespace School.Controllers
                         Image = forHomeSlider.Image
                     });
                 }
-
+                homeModels.HomeSliders = homesliders;
 
                 return View(homeModels);
             }
