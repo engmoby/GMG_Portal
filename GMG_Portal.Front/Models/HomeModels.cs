@@ -8,5 +8,6 @@ namespace Front.Models
         public List<HomeSlider> HomeSliders { get; set; }
         public List<About> About { get; set; }
         public List<HotelFeatures> Features { get; set; }
+        public List<News> News { get; set; }
     }
 }

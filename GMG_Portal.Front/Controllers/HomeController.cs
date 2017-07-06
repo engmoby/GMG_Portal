@@ -30,23 +30,22 @@ namespace Front.Controllers
         {
             string _homeSlider = url + "HomeSliders/GetAll";
             string _about = url + "Abouts/GetAll";
-            string _HotelFeatures = url + "Features/GetAll";
+            var _HotelFeatures = url + "Features/GetAll";
+            var _News = url + "News/GetAll";
             var homeModels = new HomeModels();
             var homesliders = new List<HomeSlider>();
             var aboutList = new List<About>();
             var hotelFeatures = new List<HotelFeatures>();
+            var newsList = new List<News>();
 
 
             await CallApi(_homeSlider, homesliders, homeModels);
             await CallAbout(_about, aboutList, homeModels);
             await CallFacilities(_HotelFeatures, hotelFeatures, homeModels);
+            await CallNews(_News, newsList, homeModels);
 
 
-            if (homeModels != null)
-                return View(homeModels);
-
-            else
-                return View("Error");
+            return View(homeModels);
 
         }
 
@@ -72,8 +71,7 @@ namespace Front.Controllers
                 homeModels.About = aboutList;
             }
         }
-
-
+         
         private async Task CallFacilities(string _HotelFeatures, List<HotelFeatures> hotelFeatureslist, HomeModels homeModels)
         {
             HttpResponseMessage responseMessageAbout = await _client.GetAsync(_HotelFeatures);
@@ -121,6 +119,28 @@ namespace Front.Controllers
             }
         }
 
+        private async Task CallNews(string news, List<News> newslist, HomeModels homeModels)
+        {
+            HttpResponseMessage responseMessageNews = await _client.GetAsync(news);
+            if (responseMessageNews.IsSuccessStatusCode)
+            {
+                var responseData = responseMessageNews.Content.ReadAsStringAsync().Result;
+                var retunNewlist = JsonConvert.DeserializeObject<List<News>>(responseData);
+
+
+                foreach (var forAbout in retunNewlist)
+                {
+                    newslist.Add(new News
+                    {
+                        DisplayValue = forAbout.DisplayValue,
+                        Id = forAbout.Id,
+                        DisplayValueDesc = forAbout.DisplayValueDesc,
+                        URL = forAbout.URL
+                    });
+                }
+                homeModels.News = newslist;
+            }
+        }
 
     }
 }

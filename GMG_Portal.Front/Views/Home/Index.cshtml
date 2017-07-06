@@ -240,9 +240,6 @@
         </div>
     </div>
 </div> -->
-
-
-
 <!-- About us Section  -->
 <div class="mg-about parallax">
     <div class="container">
@@ -254,7 +251,7 @@
             <div class="col-md-5">
                 <div class="video-responsive">
                     <div style="position:relative;height:0;padding-bottom:70%"><iframe src="https://www.youtube.com/embed/@Model.About[0].URL?ecver=2" style="position:absolute;width:100%;height:100%;left:0" width="500" height="350" frameborder="0" allowfullscreen></iframe></div>
-                    
+
                 </div>
             </div>
         </div>
@@ -379,7 +376,27 @@
             <div class="col-md-5">
                 <h2 class="mg-sec-left-title">Recent News</h2>
                 <ul class="mg-recnt-posts">
+                    @for (var i = 0; i < Model.News.Count; i++)
+                    { 
+
                     <li>
+                        <div class="mg-recnt-post">
+                
+
+
+                             
+
+                             
+                            <div class="mg-rp-date">
+                                <div class="mg-rp-month">@Model.News[i].LastModificationTime.Date.ToShortDateString()</div>
+                            </div>
+                            <h3><a href="#">@Model.News[i].DisplayValue</a>
+                            </h3>
+                            <p>@Model.News[i].DisplayValueDesc</p>
+                        </div>
+                    </li>
+                    }
+                    @*<li>
                         <div class="mg-recnt-post">
                             <div class="mg-rp-date">27 <div class="mg-rp-month">may</div></div>
                             <h3><a href="#">A Standard Blog Post</a></h3>
@@ -399,7 +416,7 @@
                             <h3><a href="#">A Standard Blog Post</a></h3>
                             <p>Nostram virtutem poterimus quoddam praesertim legendos libero exhorrescere saluti...</p>
                         </div>
-                    </li>
+                    </li>*@
                 </ul>
             </div>
             <div class="col-md-7">
