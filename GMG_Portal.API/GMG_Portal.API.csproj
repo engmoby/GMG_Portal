@@ -173,6 +173,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\Hotel\HotelsController.cs" />
     <Compile Include="Controllers\SystemParameters\FeaturesController.cs" />
     <Compile Include="Controllers\SystemParameters\NewsController.cs" />
     <Compile Include="Controllers\SystemParameters\AboutsController.cs" />
@@ -194,6 +195,7 @@
     </Compile>
     <Compile Include="Helpers\LocalizedRegexAttribute.cs" />
     <Compile Include="Models\Customer\Customers\Customer.cs" />
+    <Compile Include="Models\Hotel\Hotel\Hotels.cs" />
     <Compile Include="Models\SystemParameters\Features\Features.cs" />
     <Compile Include="Models\SystemParameters\News\News.cs" />
     <Compile Include="Models\SystemParameters\AccountType\AccountType.cs" />

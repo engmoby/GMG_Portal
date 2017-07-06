@@ -30,8 +30,8 @@ namespace GMG_Portal.API
 
 
 
-                cfg.CreateMap<SystemParameter_About, Models.SystemParameters.HomeSlider>();
-                cfg.CreateMap<Models.SystemParameters.HomeSlider, SystemParameter_About>();
+                cfg.CreateMap<SystemParamater_HomeSlider, Models.SystemParameters.HomeSlider>();
+                cfg.CreateMap<Models.SystemParameters.HomeSlider, SystemParamater_HomeSlider>();
 
                 cfg.CreateMap<SystemParameter_News, News>();
                 cfg.CreateMap<News, SystemParameter_News>();
@@ -46,6 +46,9 @@ namespace GMG_Portal.API
                 cfg.CreateMap<Hotels_Features, Features>();
                 cfg.CreateMap<Features, Hotels_Features>();
 
+
+                cfg.CreateMap<Hotel, Hotels>();
+                cfg.CreateMap<Hotels, Hotel>();
 
                 cfg.CreateMap<SystemParameter_Countries, GMG_Portal.API.Models.SystemParameters.Countries>();
                 cfg.CreateMap<GMG_Portal.API.Models.SystemParameters.Countries, SystemParameter_Countries>();
