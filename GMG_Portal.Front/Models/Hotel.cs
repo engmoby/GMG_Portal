@@ -16,10 +16,10 @@ namespace Front.Models
         public int? LookupKeyDesc { get; set; }
         public Guid? LookupKeyGuidDesc { get; set; }
         public string Image { get; set; }
-        public string Priceafter{ get; set; }
+        public string PriceStart { get; set; }
         public int? Rating { get; set; }
         public string URL { get; set; }
-        public System.DateTime LastModificationTime { get; set; }
+        public System.DateTime? LastModificationTime { get; set; }
         public int? LastModifierUserId { get; set; }
         public DateTime? CreationTime { get; set; }
         public int? CreatorUserId { get; set; }

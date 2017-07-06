@@ -32,7 +32,7 @@ namespace Front.Controllers
             string _about = url + "Abouts/GetAll";
             var _HotelFeatures = url + "Features/GetAll";
             var _News = url + "News/GetAll";
-            string _HotelFeatures = url + "Features/GetAll";
+       
             string _Hotel = url + "Hotels/GetAll";
             var homeModels = new HomeModels();
             var homesliders = new List<HomeSlider>();
@@ -45,8 +45,8 @@ namespace Front.Controllers
             await CallAbout(_about, aboutList, homeModels);
             await CallFacilities(_HotelFeatures, hotelFeatures, homeModels);
             await CallNews(_News, newsList, homeModels);
-
-
+          
+            await CallHotels(_Hotel, hotels, homeModels);
             return View(homeModels);
 
         }
@@ -141,7 +141,7 @@ namespace Front.Controllers
                         DisplayValue = forhotels.DisplayValue,
                         Id = forhotels.Id,
                         DisplayValueDesc = forhotels.DisplayValueDesc,
-                        Priceafter = forhotels.Priceafter,
+                        PriceStart = forhotels.PriceStart,
                         Rate = forhotels.Rate ,
                        Image = forhotels.Image,
                         URL = forhotels.URL
