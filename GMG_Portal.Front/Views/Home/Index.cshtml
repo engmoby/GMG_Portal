@@ -79,7 +79,7 @@
     </nav>
 </header>
 
-@Model.About.DisplayValue
+@*@Model.About.DisplayValue*@
 <div id="mega-slider" class="carousel slide " data-ride="carousel">
     <ol class="carousel-indicators">
         <li data-target="#mega-slider" data-slide-to="@Model.HomeSliders[0].Id" class="active"></li>
@@ -247,7 +247,8 @@
             </div>
             <div class="col-md-5">
                 <div class="video-responsive">
-                    <iframe src="https://player.vimeo.com/video/134008155" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                    <div style="position:relative;height:0;padding-bottom:70%"><iframe src="https://www.youtube.com/embed/l_t6P3EpCRY?ecver=2" style="position:absolute;width:100%;height:100%;left:0" width="500" height="350" frameborder="0" allowfullscreen></iframe></div>
+                    
                 </div>
             </div>
         </div>
