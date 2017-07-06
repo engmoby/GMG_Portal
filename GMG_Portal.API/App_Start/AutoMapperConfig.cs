@@ -33,12 +33,18 @@ namespace GMG_Portal.API
                 cfg.CreateMap<SystemParameter_About, Models.SystemParameters.HomeSlider>();
                 cfg.CreateMap<Models.SystemParameters.HomeSlider, SystemParameter_About>();
 
+                cfg.CreateMap<SystemParameter_News, News>();
+                cfg.CreateMap<News, SystemParameter_News>();
 
                 cfg.CreateMap<Front_Vision, Vision>();
                 cfg.CreateMap<Vision, Front_Vision>();
 
                 cfg.CreateMap<Front_Mission, Models.SystemParameters.Mission>();
                 cfg.CreateMap<Models.SystemParameters.Mission, Front_Mission>();
+
+
+                cfg.CreateMap<Hotels_Features, Features>();
+                cfg.CreateMap<Features, Hotels_Features>();
 
 
                 cfg.CreateMap<SystemParameter_Countries, GMG_Portal.API.Models.SystemParameters.Countries>();
