@@ -1,6 +1,7 @@
 ﻿controllerProvider.register('HomeSlidersController', ['$scope', 'HomeSlidersApi', 'uploadService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', HomeSlidersController]);
 function HomeSlidersController($scope, HomeSlidersApi, uploadService, $rootScope, $timeout, $filter, $uibModal, toastr) {
     $scope.Image = "";
+    $scope.letterLimit = 20;
     $rootScope.ViewLoading = true;
     HomeSlidersApi.GetAll().then(function (response) {
         $scope.HomeSliders = response.data;

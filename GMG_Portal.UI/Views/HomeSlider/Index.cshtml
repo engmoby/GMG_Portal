@@ -72,9 +72,9 @@
             <tbody>
                 <tr ng-repeat="HomeSlider in TableData">
                     <td ng-class="{'red-text': HomeSlider.IsDeleted == true}">{{$index+1}}</td>
-                    <td ng-class="{'red-text': HomeSlider.IsDeleted == true}"><img width="100px" height="100px" src="http://localhost:19056/Uploads/{{HomeSlider.Image}}" /></td>
+                    <td ng-class="{'red-text': HomeSlider.IsDeleted == true}"><img width="70px" height="70px" src="http://localhost:19056/Uploads/{{HomeSlider.Image}}" /></td>
                     <td ng-class="{'red-text': HomeSlider.IsDeleted == true}">{{HomeSlider.DisplayValue}}</td>
-                    <td ng-class="{'red-text': HomeSlider.IsDeleted == true}">{{HomeSlider.DisplayValueDesc}}</td>
+                    <td ng-class="{'red-text': HomeSlider.IsDeleted == true}">{{HomeSlider.DisplayValueDesc | limitTo:letterLimit}} </td>
                     <td ng-class="{'red-text': HomeSlider.IsDeleted == true}">{{HomeSlider.Rating}}</td>
                     <td>
                         <div class="buttons" ng-show="!HomeSlider.IsDeleted">
@@ -170,15 +170,13 @@
                                     </div>
                                     @*<input type="button" class="btn btn-default  btn-primary" ng-click="uploadFiles()" value="Upload" ng-disabled="uploading || countFiles===''" />*@
 
-                                    <img style="width: 100px; height: 100px" src="http://localhost:19056/Uploads/{{HomeSlider.DisplayValue}}" ng-show="Image" />
+                                    <img style="width: 100px; height: 100px" src="http://localhost:19056/Uploads/{{HomeSlider.Image}}" ng-show="HomeSlider.Image" />
 
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        @*<input type="button" class="btn btn-default  btn-primary" ng-click="uploadFiles()" value="Upload" ng-disabled="uploading || countFiles ==='' && FrmAddUpdate.$invalid" />*@
-                        @*<input type="button" class="btn btn-default  btn-primary"  value="@HomeSlider.btnSaveLbl" ng-disabled="FrmAddUpdate.$invalid" />*@
+                    <div class="modal-footer"> 
                         <button type="submit" class="btn btn-primary btn-with-icon" ng-click="uploadFiles()" ng-disabled="FrmAddUpdate.$invalid"><i class="ion-android-checkmark-circle"></i>@HomeSlider.btnSaveLbl</button>
                     </div>
                 </div>

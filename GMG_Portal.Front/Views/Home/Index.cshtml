@@ -1,10 +1,10 @@
-﻿@model List<School.Models.HomeSlider>
+﻿
+@model  School.Models.HomeModels
 
 @{
-    ViewBag.Title = "School";
+    ViewBag.Title = "Home Page";
 }
 
-@*<ui-view></ui-view>*@
 
 
 @section scripts {
@@ -79,128 +79,48 @@
     </nav>
 </header>
 
-
+@Model.About.DisplayValue
 <div id="mega-slider" class="carousel slide " data-ride="carousel">
-   <ol class="carousel-indicators">
-        <li data-target="#mega-slider" data-slide-to="0" class="active"></li>
-        <li data-target="#mega-slider" data-slide-to="1"></li>
-        <li data-target="#mega-slider" data-slide-to="2"></li>
+    <ol class="carousel-indicators">
+        <li data-target="#mega-slider" data-slide-to="@Model.HomeSliders[0].Id" class="active"></li>
+        @for (var j = 1; j < Model.HomeSliders.Count; j++)
+            {
+            <li data-target="#mega-slider" data-slide-to="@Model.HomeSliders[j].Id"></li>
+        }
     </ol>
 
     <!-- Wrapper for slides -->
-            <div class="carousel-inner" role="listbox">
-                
-                
-           
-           
-                <div class="item active beactive">
-                    <img src="~/Content/images/slide-4.png" alt="...">
-                    <div class="carousel-caption">
-                        <img src="~/Content/images/stars.png" alt="">
-                        <h2>@Model[0].DisplayValue</h2>
-                        <h2>@Model[0].Id</h2>
-                    </div>
-                </div>
-          
-                
-
-                @{  <!-- Indicators -->
-
-                    for (var i = 1; i < Model.Count; i++)
-                    {
-                        <div class="item">
-                    <img src="~/Content/images/slide-4.png" alt="...">
-                    <div class="carousel-caption">
-                        <img src="~/Content/images/stars.png" alt="">
-                        <h2>@Model[i].DisplayValue</h2>
-                        <p>@Model[i].Id</p>
-                    </div>
-                </div>
-                    }
-                }
-
-
-            </div>  
-
-    <!-- Controls -->
-        <a class="left carousel-control" href="#mega-slider" role="button" data-slide="prev">
-        </a>
-        <a class="right carousel-control" href="#mega-slider" role="button" data-slide="next">
-        </a>       
-</div>
-
-@*<div id="mega-slider" class="carousel slide " data-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-target="#mega-slider" data-slide-to="0" class="active"></li>
-            <li data-target="#mega-slider" data-slide-to="1"></li>
-            <li data-target="#mega-slider" data-slide-to="2"></li>
-        </ol>
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner" role="listbox">
-            <div ng-controller="HomeslidersCtrl">
-
-
-
-                <div class="item active beactive" ng-repeat="objHomeSlider in homeSliders">
-                    <img src="~/Content/images/slide-4.png" alt="...">
-                    <div class="carousel-caption">
-                        <img src="~/Content/images/stars.png" alt="">
-                        <h2>{{objHomeSlider.DisplayValue}}</h2>
-                        <p>{{objHomeSlider.DisplayValueDesc}}</p>
-                    </div>
-                </div>
-
-
-
-
+    <div class="carousel-inner" role="listbox">
+        <div class="item active beactive">
+            <img src="http://localhost:19056/Uploads/@Model.HomeSliders[0].Image" style="width: 1920px; height: 900px" alt="...">
+            <div class="carousel-caption">
+                <h2>@Model.HomeSliders[0].DisplayValue</h2>
+                <p>@Model.HomeSliders[0].DisplayValueDesc</p>
             </div>
         </div>
+        @{  <!-- Indicators -->
 
-        <!-- Controls -->
-        <a class="left carousel-control" href="#mega-slider" role="button" data-slide="prev">
-        </a>
-        <a class="right carousel-control" href="#mega-slider" role="button" data-slide="next">
-        </a>
-
-    </div>*@
-
-
-
-
-
-
-
-
-
-
-
-
-
-@*<div ng-controller="HomeslidersCtrl">
-                <!-- Wrapper for slides -->
-                <div class="carousel-inner" role="listbox">
-                    <div ng-repeat="objHomeSlider in homeSliders"></div>
-                    <div class="item active" >
-
-
-                        <img src="http://localhost:19056/Uploads/slide2.png" alt="...">
-                        <div class="carousel-caption">
-                            <img src="~/Content/images/stars.png" alt="">
-                            <h2>{{objHomeSlider.DisplayValue}}</h2>
-                            <p>{{objHomeSlider.DisplayValueDesc}}</p>
-                        </div>
+            for (var i = 1; i < Model.HomeSliders.Count; i++)
+            {
+                <div class="item">
+                    <img src="http://localhost:19056/Uploads/@Model.HomeSliders[i].Image" style="width: 1920px; height: 900px" alt="...">
+                    <div class="carousel-caption">
+                        <h2>@Model.HomeSliders[i].DisplayValue</h2>
+                        <p>@Model.HomeSliders[i].DisplayValueDesc</p>
                     </div>
                 </div>
-                <div>
-                <!-- Controls -->
-                <a class="left carousel-control" href="#mega-slider" role="button" data-slide="prev">
-                </a>
-                <a class="right carousel-control" href="#mega-slider" role="button" data-slide="next">
-                </a>
-            </div>
-    </div>*@
+            }
+        }
 
 
+    </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#mega-slider" role="button" data-slide="prev">
+    </a>
+    <a class="right carousel-control" href="#mega-slider" role="button" data-slide="next">
+    </a>
+</div>
 
 
 <div class="mg-book-now">
