@@ -1,5 +1,5 @@
 ﻿
-@model  School.Models.HomeModels
+@model  Front.Models.HomeModels
 
 @{
     ViewBag.Title = "Home Page";
@@ -178,12 +178,14 @@
     </div>
 </div>
 
+
+<!-- Our Best Rooms -->
 <div class="mg-best-rooms">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="mg-sec-title">
-                    <h2>Our Best Rooms</h2>
+                    <h2>Our Hotels</h2>
                     <p>These best rooms chosen by our customers</p>
                 </div>
                 <div class="row">
@@ -238,22 +240,29 @@
         </div>
     </div>
 </div> -->
+
+
+
+<!-- About us Section  -->
 <div class="mg-about parallax">
     <div class="container">
         <div class="row">
             <div class="col-md-7">
-                <h2 class="mg-sec-left-title">About Mega Hotel</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliqua venandi mutat plerisque nostrum vos, geometria intellegimus percurri mediocritatem aeque suppetet explicatis, praeclaram ambigua cogitavisse vituperatoribus dicent signiferumque alios improbe, reliquisti rudem, consedit pendet circumcisaque amorem patria magnopere inmortalibus dolere. Didicisset labore vitium referenda labor peccant integre turpe est tantopere, eius defuturum sua dolorum crudelis exercitumque, nobis, videntur doloribus patre poetarum omnisque cognitionem primum, atomos certamen possent, adversantur probatum iudicante indicaverunt repugnantibus, operis aequi aequitate clarorum occultarum multa diis sine inter.</p>
+                <h2 class="mg-sec-left-title">@Model.About[0].DisplayValue</h2>
+                <p>@Model.About[0].DisplayValueDesc</p>
             </div>
             <div class="col-md-5">
                 <div class="video-responsive">
-                    <div style="position:relative;height:0;padding-bottom:70%"><iframe src="https://www.youtube.com/embed/l_t6P3EpCRY?ecver=2" style="position:absolute;width:100%;height:100%;left:0" width="500" height="350" frameborder="0" allowfullscreen></iframe></div>
+                    <div style="position:relative;height:0;padding-bottom:70%"><iframe src="https://www.youtube.com/embed/@Model.About[0].URL?ecver=2" style="position:absolute;width:100%;height:100%;left:0" width="500" height="350" frameborder="0" allowfullscreen></iframe></div>
                     
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+<!-- Features  -->
 
 <div class="mg-features">
     <div class="container">
@@ -268,27 +277,27 @@
                         <div class="mg-feature">
                             <div class="mg-feature-icon-title">
                                 <i class="fp-ht-receptionist"></i>
-                                <h3>24-hour reception</h3>
+                                <h3>@Model.Features[0].DisplayValue</h3>
                             </div>
-                            <p>Didicisset labore vitium referenda labor peccant integre turpe est tantopere, eius defuturum sua dolorum.</p>
+                            <p>@Model.Features[0].DisplayValueDesc </p>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="mg-feature">
                             <div class="mg-feature-icon-title">
                                 <i class="fa fa-cogs"></i>
-                                <h3>Room service</h3>
+                                <h3>@Model.Features[1].DisplayValue</h3>
                             </div>
-                            <p>Didicisset labore vitium referenda labor peccant integre turpe est tantopere, eius defuturum sua dolorum.</p>
+                            <p>@Model.Features[1].DisplayValueDesc </p>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="mg-feature">
                             <div class="mg-feature-icon-title">
                                 <i class="fa fa-car"></i>
-                                <h3>Car hire</h3>
+                                <h3>@Model.Features[2].DisplayValue</h3>
                             </div>
-                            <p>Didicisset labore vitium referenda labor peccant integre turpe est tantopere, eius defuturum sua dolorum.</p>
+                            <p>@Model.Features[2].DisplayValueDesc</p>
                         </div>
                     </div>
                 </div>
@@ -297,27 +306,27 @@
                         <div class="mg-feature">
                             <div class="mg-feature-icon-title">
                                 <i class="fa fa-phone"></i>
-                                <h3>Wake-up call</h3>
+                                <h3>@Model.Features[3].DisplayValue</h3>
                             </div>
-                            <p>Didicisset labore vitium referenda labor peccant integre turpe est tantopere, eius defuturum sua dolorum.</p>
+                            <p>@Model.Features[3].DisplayValueDesc</p>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="mg-feature">
                             <div class="mg-feature-icon-title">
                                 <i class="fa fa-coffee"></i>
-                                <h3>Coffee and tea</h3>
+                                <h3>@Model.Features[4].DisplayValue</h3>
                             </div>
-                            <p>Didicisset labore vitium referenda labor peccant integre turpe est tantopere, eius defuturum sua dolorum.</p>
+                            <p>@Model.Features[4].DisplayValueDesc</p>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="mg-feature">
                             <div class="mg-feature-icon-title">
                                 <i class="fa fa-cogs"></i>
-                                <h3>Free Wi-Fi</h3>
+                                <h3>@Model.Features[5].DisplayValue</h3>
                             </div>
-                            <p>Didicisset labore vitium referenda labor peccant integre turpe est tantopere, eius defuturum sua dolorum.</p>
+                            <p>@Model.Features[5].DisplayValueDesc</p>
                         </div>
                     </div>
                 </div>
@@ -325,6 +334,8 @@
         </div>
     </div>
 </div>
+
+<!-- Partners  -->
 
 <div class="mg-testi-partners parallax">
     <div class="container">
@@ -359,6 +370,8 @@
         </div>
     </div>
 </div>
+
+<!-- News Galllery -->
 
 <div class="mg-news-gallery">
     <div class="container">
@@ -414,6 +427,8 @@
         </div>
     </div>
 </div>
+
+<!-- Footer Widgets  -->
 
 <footer class="mg-footer">
     <div class="mg-footer-widget">
@@ -496,7 +511,7 @@
                     </ul>
                 </div>
                 <div class="col-md-6">
-                    <p>&copy; 2015 <a href="http://www.cantothemes.com">CantoThemes</a>. All rights reserved.</p>
+                    <p>&copy; 2017 <a href="#">GMG Technology Group </a>. All rights reserved.</p>
                 </div>
             </div>
         </div>

@@ -2,7 +2,7 @@
 
 namespace Front.Models
 {
-    public class About
+    public class HotelFeatures
     {
         public int Id { get; set; }
         public Guid? SGuid { get; set; }
@@ -14,7 +14,7 @@ namespace Front.Models
         public string DisplayValueDesc { get; set; }
         public int? LookupKeyDesc { get; set; }
         public Guid? LookupKeyGuidDesc { get; set; }
-        public string Image { get; set; }
+        public string Icon { get; set; }
         public int? Rating { get; set; }
         public string URL { get; set; }
         public System.DateTime LastModificationTime { get; set; }
