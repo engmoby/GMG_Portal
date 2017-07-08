@@ -194,7 +194,7 @@
                             <img src="http://localhost:19056/Uploads/@Model.Hotel[0].Image" alt="img11" class="img-responsive">
                             <figcaption>
                                 <h2>@Model.Hotel[0].DisplayValue</h2>
-                                <div class="mg-room-rating"><i class="fa fa-star"></i> 5.00</div>
+                                <div class="mg-room-rating"><i class="fa fa-star"></i> @Model.Hotel[0].Rate</div>
                                 <div class="mg-room-price">@Model.Hotel[0].PriceStart /Night</div>
                                 <p>@Model.Hotel[0].DisplayValueDesc</p>
                                 <a href="#" class="btn btn-link">View Details <i class="fa fa-angle-double-right"></i></a>
@@ -207,7 +207,7 @@
                             <img src="http://localhost:19056/Uploads/@Model.Hotel[1].Image" alt="img11" class="img-responsive">
                             <figcaption>
                                 <h2>@Model.Hotel[0].DisplayValue</h2>
-                                <div class="mg-room-rating"><i class="fa fa-star"></i> 5.00</div>
+                                <div class="mg-room-rating"><i class="fa fa-star"></i> @Model.Hotel[0].Rate</div>
                                 <div class="mg-room-price">@Model.Hotel[1].PriceStart /Night</div>
                                 <p>@Model.Hotel[1].DisplayValueDesc</p>
                                 <a href="#" class="btn btn-link">View Details <i class="fa fa-angle-double-right"></i></a>
@@ -220,7 +220,7 @@
                             <img src="http://localhost:19056/Uploads/@Model.Hotel[2].Image" alt="img11" class="img-responsive">
                             <figcaption>
                                 <h2>@Model.Hotel[2].DisplayValue</h2>
-                                <div class="mg-room-rating"><i class="fa fa-star"></i> 5.00</div>
+                                <div class="mg-room-rating"><i class="fa fa-star"></i> @Model.Hotel[0].Rate</div>
                                 <div class="mg-room-price">@Model.Hotel[2].PriceStart /Night</div>
                                 <p>@Model.Hotel[2].DisplayValueDesc</p>
                                 <a href="#" class="btn btn-link">View Details <i class="fa fa-angle-double-right"></i></a>
@@ -396,27 +396,7 @@
                         </div>
                     </li>
                     }
-                    @*<li>
-                        <div class="mg-recnt-post">
-                            <div class="mg-rp-date">27 <div class="mg-rp-month">may</div></div>
-                            <h3><a href="#">A Standard Blog Post</a></h3>
-                            <p>Nostram virtutem poterimus quoddam praesertim legendos libero exhorrescere saluti...</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="mg-recnt-post">
-                            <div class="mg-rp-date">27 <div class="mg-rp-month">may</div></div>
-                            <h3><a href="#">A Standard Blog Post</a></h3>
-                            <p>Nostram virtutem poterimus quoddam praesertim legendos libero exhorrescere saluti...</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="mg-recnt-post">
-                            <div class="mg-rp-date">27 <div class="mg-rp-month">may</div></div>
-                            <h3><a href="#">A Standard Blog Post</a></h3>
-                            <p>Nostram virtutem poterimus quoddam praesertim legendos libero exhorrescere saluti...</p>
-                        </div>
-                    </li>*@
+                
                 </ul>
             </div>
             <div class="col-md-7">
