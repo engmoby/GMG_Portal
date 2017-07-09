@@ -20,6 +20,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
         {
             try
             {
+                 
                 var AboutLogic = new AboutLogic();
                 var Abouts = AboutLogic.GetAll();
                 return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<About>>(Abouts));
