@@ -7,15 +7,7 @@
 
 
 
-@section scripts {
 
-    @*@Scripts.Render("~/Scripts/angular.js")
-        @Scripts.Render("~/Scripts/angular-resource.js")
-        @Scripts.Render("~/Scripts/angular-ui-router.js")
-
-        @Scripts.Render("~/Scripts/App/controller.js")*@
-
-}
 
 <div class="preloader"></div>
 <header class="header transp sticky">
@@ -79,49 +71,9 @@
     </nav>
 </header>
 
-@*@Model.About.DisplayValue*@
-<div id="mega-slider" class="carousel slide " data-ride="carousel">
-    <ol class="carousel-indicators">
-        <li data-target="#mega-slider" data-slide-to="@Model.HomeSliders[0].Id" class="active"></li>
-        @for (var j = 1; j < Model.HomeSliders.Count; j++)
-            {
-            <li data-target="#mega-slider" data-slide-to="@Model.HomeSliders[j].Id"></li>
-        }
-    </ol>
+<!-- Our Hotels Partial -->
 
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner" role="listbox">
-        <div class="item active beactive">
-            <img src="http://localhost:19056/Uploads/@Model.HomeSliders[0].Image" style="width: 1920px; height: 900px" alt="...">
-            <div class="carousel-caption">
-                <h2>@Model.HomeSliders[0].DisplayValue</h2>
-                <p>@Model.HomeSliders[0].DisplayValueDesc</p>
-            </div>
-        </div>
-        @{  <!-- Indicators -->
-
-            for (var i = 1; i < Model.HomeSliders.Count; i++)
-            {
-                <div class="item">
-                    <img src="http://localhost:19056/Uploads/@Model.HomeSliders[i].Image" style="width: 1920px; height: 900px" alt="...">
-                    <div class="carousel-caption">
-                        <h2>@Model.HomeSliders[i].DisplayValue</h2>
-                        <p>@Model.HomeSliders[i].DisplayValueDesc</p>
-                    </div>
-                </div>
-            }
-        }
-
-
-    </div>
-
-    <!-- Controls -->
-    <a class="left carousel-control" href="#mega-slider" role="button" data-slide="prev">
-    </a>
-    <a class="right carousel-control" href="#mega-slider" role="button" data-slide="next">
-    </a>
-</div>
-
+@Html.Partial("Slider")  
 
 <div class="mg-book-now">
     <div class="container">
@@ -179,327 +131,23 @@
 </div>
 
 
-<!-- Our Hotels -->
-<div class="mg-best-rooms">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="mg-sec-title">
-                    <h2>Our Hotels</h2>
-                    <p>Luxury Hotels</p>
-                </div>
-                <div class="row">
-                    <div class="col-sm-4">
-                        <figure class="mg-room">
-                            <img src="http://localhost:19056/Uploads/@Model.Hotel[0].Image" alt="img11" class="img-responsive">
-                            <figcaption>
-                                <h2>@Model.Hotel[0].DisplayValue</h2>
-                                <div class="mg-room-rating"><i class="fa fa-star"></i> @Model.Hotel[0].Rate</div>
-                                <div class="mg-room-price">@Model.Hotel[0].PriceStart /Night</div>
-                                <p>@Model.Hotel[0].DisplayValueDesc</p>
-                                <a href="#" class="btn btn-link">View Details <i class="fa fa-angle-double-right"></i></a>
-                                <a href="#" class="btn btn-main">Book</a>
-                            </figcaption>
-                        </figure>
-                    </div>
-                    <div class="col-sm-4">
-                        <figure class="mg-room">
-                            <img src="http://localhost:19056/Uploads/@Model.Hotel[1].Image" alt="img11" class="img-responsive">
-                            <figcaption>
-                                <h2>@Model.Hotel[0].DisplayValue</h2>
-                                <div class="mg-room-rating"><i class="fa fa-star"></i> @Model.Hotel[0].Rate</div>
-                                <div class="mg-room-price">@Model.Hotel[1].PriceStart /Night</div>
-                                <p>@Model.Hotel[1].DisplayValueDesc</p>
-                                <a href="#" class="btn btn-link">View Details <i class="fa fa-angle-double-right"></i></a>
-                                <a href="#" class="btn btn-main">Book</a>
-                            </figcaption>
-                        </figure>
-                    </div>
-                    <div class="col-sm-4">
-                        <figure class="mg-room">
-                            <img src="http://localhost:19056/Uploads/@Model.Hotel[2].Image" alt="img11" class="img-responsive">
-                            <figcaption>
-                                <h2>@Model.Hotel[2].DisplayValue</h2>
-                                <div class="mg-room-rating"><i class="fa fa-star"></i> @Model.Hotel[0].Rate</div>
-                                <div class="mg-room-price">@Model.Hotel[2].PriceStart /Night</div>
-                                <p>@Model.Hotel[2].DisplayValueDesc</p>
-                                <a href="#" class="btn btn-link">View Details <i class="fa fa-angle-double-right"></i></a>
-                                <a href="#" class="btn btn-main">Book</a>
-                            </figcaption>
-                        </figure>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <hr>
-        </div>
-    </div>
-</div> -->
-<!-- About us Section  -->
-<div class="mg-about parallax">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-7">
-                <h2 class="mg-sec-left-title">@Model.About[0].DisplayValue</h2>
-                <p>@Model.About[0].DisplayValueDesc</p>
-            </div>
-            <div class="col-md-5">
-                <div class="video-responsive">
-                    <div style="position:relative;height:0;padding-bottom:70%"><iframe src="https://www.youtube.com/embed/@Model.About[0].URL?ecver=2" style="position:absolute;width:100%;height:100%;left:0" width="500" height="350" frameborder="0" allowfullscreen></iframe></div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<!-- Our Hotels Partial -->
+@Html.Partial("OurHotels")  
 
 
-<!-- Features  -->
 
-<div class="mg-features">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="mg-sec-title">
-                    <h2>Hotel facilties</h2>
-                    <p>These best rooms chosen by our customers</p>
-                </div>
-                <div class="row">
-                    <div class="col-sm-4">
-                        <div class="mg-feature">
-                            <div class="mg-feature-icon-title">
-                                <i class="fp-ht-receptionist"></i>
-                                <h3>@Model.Features[0].DisplayValue</h3>
-                            </div>
-                            <p>@Model.Features[0].DisplayValueDesc </p>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="mg-feature">
-                            <div class="mg-feature-icon-title">
-                                <i class="fa fa-cogs"></i>
-                                <h3>@Model.Features[1].DisplayValue</h3>
-                            </div>
-                            <p>@Model.Features[1].DisplayValueDesc </p>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="mg-feature">
-                            <div class="mg-feature-icon-title">
-                                <i class="fa fa-car"></i>
-                                <h3>@Model.Features[2].DisplayValue</h3>
-                            </div>
-                            <p>@Model.Features[2].DisplayValueDesc</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-4">
-                        <div class="mg-feature">
-                            <div class="mg-feature-icon-title">
-                                <i class="fa fa-phone"></i>
-                                <h3>@Model.Features[3].DisplayValue</h3>
-                            </div>
-                            <p>@Model.Features[3].DisplayValueDesc</p>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="mg-feature">
-                            <div class="mg-feature-icon-title">
-                                <i class="fa fa-coffee"></i>
-                                <h3>@Model.Features[4].DisplayValue</h3>
-                            </div>
-                            <p>@Model.Features[4].DisplayValueDesc</p>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="mg-feature">
-                            <div class="mg-feature-icon-title">
-                                <i class="fa fa-cogs"></i>
-                                <h3>@Model.Features[5].DisplayValue</h3>
-                            </div>
-                            <p>@Model.Features[5].DisplayValueDesc</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<!-- About us Partial  -->
+@Html.Partial("AboutHome")  
 
-<!-- Partners  -->
 
-<div class="mg-testi-partners parallax">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <h2 class="mg-sec-left-title">Testimonial</h2>
-                <div class="mg-testimonial-slider" id="mg-testimonial-slider">
-                    <blockquote>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consumeret terminatas oritur euripidis satis. Venisset ipsum.</p>
-                        <footer>John Doe, Example Inc</footer>
-                    </blockquote>
-                    <blockquote>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sol magnum gustare pararetur statuam, morbi patriam omittantur.</p>
-                        <footer>John Doe, Example Inc</footer>
-                    </blockquote>
-                    <blockquote>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Stabilem monet, petat excepturi nudus expeteremus fabellas vexetur.</p>
-                        <footer>John Doe, Example Inc</footer>
-                    </blockquote>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <h2 class="mg-sec-left-title">Our Partners</h2>
-                <ul class="mg-part-logos" id="mg-part-logos">
-                    <li><img src="~/Content/images/part-logo-1.png" alt="Partner Logo"></li>
-                    <li><img src="~/Content/images/part-logo-2.png" alt="Partner Logo"></li>
-                    <li><img src="~/Content/images/part-logo-3.png" alt="Partner Logo"></li>
-                    <li><img src="~/Content/images/part-logo-1.png" alt="Partner Logo"></li>
-                    <li><img src="~/Content/images/part-logo-3.png" alt="Partner Logo"></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
+<!-- Hotel Facilities Partial  -->
+@Html.Partial("HotelFacilities")  
 
-<!-- News Galllery -->
 
-<div class="mg-news-gallery">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-5">
-                <h2 class="mg-sec-left-title">Recent News</h2>
-                <ul class="mg-recnt-posts">
-                    @for (var i = 0; i < Model.News.Count; i++)
-                    { 
+<!-- Owners Introduction Partial  -->
+@Html.Partial("OwnersHome")  
 
-                    <li>
-                        <div class="mg-recnt-post">
-                 
-                             
-                            <div class="mg-rp-date">
-                                <div class="mg-rp-month">1</div>
-                                @*<div class="mg-rp-month">@Model.News[i].LastModificationTime.Date.ToShortDateString()</div>*@
-                            </div>
-                            <h3><a href="#">@Model.News[i].DisplayValue</a>
-                            </h3>
-                            <p>@Model.News[i].DisplayValueDesc</p>
-                        </div>
-                    </li>
-                    }
-                
-                </ul>
-            </div>
-            <div class="col-md-7">
-                <h2 class="mg-sec-left-title">Our Gallery</h2>
 
-                <div class="mg-gallery-container">
-                    <ul class="mg-gallery" id="mg-gallery">
-                        <li><img src="~/Content/images/gallery-01.png" alt="Partner Logo"></li>
-                        <li><img src="~/Content/images/gallery-02.png" alt="Partner Logo"></li>
-                        <li><img src="~/Content/images/gallery-05.png" alt="Partner Logo"></li>
-                        <li><img src="~/Content/images/gallery-06.png" alt="Partner Logo"></li>
-                        <li><img src="~/Content/images/gallery-07.png" alt="Partner Logo"></li>
-                        <li><img src="~/Content/images/gallery-08.png" alt="Partner Logo"></li>
-                    </ul>
-                    <ul class="mg-gallery-thumb" id="mg-gallery-thumb">
-                        <li><img src="~/Content/images/gallery-thumb-01.png" alt="Partner Logo"></li>
-                        <li><img src="~/Content/images/gallery-thumb-02.png" alt="Partner Logo"></li>
-                        <li><img src="~/Content/images/gallery-thumb-05.png" alt="Partner Logo"></li>
-                        <li><img src="~/Content/images/gallery-thumb-06.png" alt="Partner Logo"></li>
-                        <li><img src="~/Content/images/gallery-thumb-07.png" alt="Partner Logo"></li>
-                        <li><img src="~/Content/images/gallery-thumb-08.png" alt="Partner Logo"></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Footer Widgets  -->
-
-<footer class="mg-footer">
-    <div class="mg-footer-widget">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3 col-sm-6">
-                    <div class="widget">
-                        <h2 class="mg-widget-title">Contact US</h2>
-                        <address>
-                            <strong>Envato</strong><br>
-                            Level 13, 2 Elizabeth St, Melbourne<br>
-                            Victoria 3000 Australia
-                        </address>
-
-                        <p>
-                            +000-123-456-789<br>
-                            +000-123-456-789
-                        </p>
-
-                        <p>
-                            <a href="mailto:#">example@example.com</a>
-                        </p>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="widget">
-                        <h2 class="mg-widget-title">Twitter</h2>
-                        <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="twitter-timeline twitter-timeline-rendered" style="position: static; visibility: visible; display: inline-block; width: 300px; height: 200px; padding: 0px; border: none; max-width: 100%; min-width: 180px; margin-top: 0px; margin-bottom: 0px; min-height: 200px;" data-widget-id="profile:mobark_hotel" title="Twitter Timeline"></iframe>
-                        <script async="" src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-                      </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="widget">
-                        <h2 class="mg-widget-title">Newsletter</h2>
-                        <p>Inbecilloque elegans errorem concedo coniuncta arare dicant etsi electram minimum.</p>
-                        <form>
-                            <p>
-                                <input type="email" class="form-control" placeholder="Your Email">
-                            </p>
-                            <input type="submit" class="btn btn-main" value="Subscribe">
-                        </form>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="widget">
-                        <h2 class="mg-widget-title">Social Media</h2>
-                        <p>Tibi alienus possimus nomini legendus pariatur, logikh assidua philosophis expectat occultarum accedit suscipit interrogari difficilius reddidisti.</p>
-                        <ul class="mg-footer-social">
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                            <li><a href="#"><i class="fa fa-rss"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="mg-copyright">
-        <div class="container">
-            <div class="row">
-
-                <div class="col-md-6">
-                    <ul class="mg-footer-nav">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Rooms</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-6">
-                    <p>&copy; 2017 <a href="#">GMG Technology Group </a>. All rights reserved.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
+<!-- News Partial -->
+@Html.Partial("NewsHome")  
 

@@ -166,16 +166,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\News.cs" />
     <Compile Include="Models\HomeModels.cs" />
-    <Compile Include="Models\About.cs" />
-    <Compile Include="Models\Hotel.cs" />
-    <Compile Include="Models\HotelFeatures.cs" />
-    <Compile Include="Models\HomeSlider.cs" />
     <Compile Include="Models\SchoolDBContext.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -359,6 +355,13 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\About\Index.cshtml" />
+    <Content Include="Views\Home\Slider.cshtml" />
+    <Content Include="Views\Home\OurHotels.cshtml" />
+    <Content Include="Views\Home\AboutHome.cshtml" />
+    <Content Include="Views\Home\HotelFacilities.cshtml" />
+    <Content Include="Views\Home\OwnersHome.cshtml" />
+    <Content Include="Views\Home\NewsHome.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

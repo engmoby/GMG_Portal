@@ -1,0 +1,41 @@
+﻿<div id="mega-slider" class="carousel slide " data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#mega-slider" data-slide-to="@Model.HomeSliders[0].Id" class="active"></li>
+        @for (var j = 1; j < Model.HomeSliders.Count; j++)
+        {
+            <li data-target="#mega-slider" data-slide-to="@Model.HomeSliders[j].Id"></li>
+        }
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+        <div class="item active beactive">
+            <img src="http://localhost:19056/Uploads/@Model.HomeSliders[0].Image" style="width: 1920px; height: 900px" alt="...">
+            <div class="carousel-caption">
+                <h2>@Model.HomeSliders[0].DisplayValue</h2>
+                <p>@Model.HomeSliders[0].DisplayValueDesc</p>
+            </div>
+        </div>
+        @{  <!-- Indicators -->
+
+            for (var i = 1; i < Model.HomeSliders.Count; i++)
+            {
+                <div class="item">
+                    <img src="http://localhost:19056/Uploads/@Model.HomeSliders[i].Image" style="width: 1920px; height: 900px" alt="...">
+                    <div class="carousel-caption">
+                        <h2>@Model.HomeSliders[i].DisplayValue</h2>
+                        <p>@Model.HomeSliders[i].DisplayValueDesc</p>
+                    </div>
+                </div>
+            }
+        }
+
+
+    </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#mega-slider" role="button" data-slide="prev">
+    </a>
+    <a class="right carousel-control" href="#mega-slider" role="button" data-slide="next">
+    </a>
+</div>
