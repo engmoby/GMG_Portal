@@ -29,11 +29,11 @@ namespace Front.Controllers
         public async Task<ActionResult> Index()
         {
             string _homeSlider = url + "HomeSliders/GetAll";
-            string _about = url + "Abouts/GetAll";
+            string _about = url + "About/GetAll";
             string _HotelFeatures = url + "Features/GetAll";
             string _News = url + "News/GetAll";
             string _Hotels = url + "Hotels/GetAll";
-
+            string _Owners = url + "Owners/GetAll";
 
 
             var homeModels = new HomeModels();
@@ -44,7 +44,7 @@ namespace Front.Controllers
             await CallFacilities(_HotelFeatures, homeModels);
           //  await CallHotels(_Hotels, homeModels);
             await CallNews(_News, homeModels);
-
+            await Callowners(_Owners, homeModels);
 
             return View(homeModels);
 
@@ -89,7 +89,7 @@ namespace Front.Controllers
 
         private async Task CallHomeSliders(string _homeSlider, HomeModels homeModels)
         {
-            HttpResponseMessage responseMessage = await _client.GetAsync(homeSlider);
+            HttpResponseMessage responseMessage = await _client.GetAsync(_homeSlider);
             if (responseMessage.IsSuccessStatusCode)
             {
                 var responseData = responseMessage.Content.ReadAsStringAsync().Result;
@@ -100,10 +100,10 @@ namespace Front.Controllers
 
         private async Task CallAbout(string _about, HomeModels homeModels)
         {
-            HttpResponseMessage responseMessageAbout = await _client.GetAsync(_about);
-            if (responseMessageAbout.IsSuccessStatusCode)
+            HttpResponseMessage responseMessageApi = await _client.GetAsync(_about);
+            if (responseMessageApi.IsSuccessStatusCode)
             {
-                var responseData = responseMessageAbout.Content.ReadAsStringAsync().Result;
+                var responseData = responseMessageApi.Content.ReadAsStringAsync().Result;
                 var about = JsonConvert.DeserializeObject<List<About>>(responseData);
                 homeModels.About = about;
             }
@@ -111,10 +111,10 @@ namespace Front.Controllers
 
         private async Task CallFacilities(string hotelFeatures, HomeModels homeModels)
         {
-            HttpResponseMessage responseMessageAbout = await _client.GetAsync(hotelFeatures);
-            if (responseMessageAbout.IsSuccessStatusCode)
+            HttpResponseMessage responseMessageApi = await _client.GetAsync(hotelFeatures);
+            if (responseMessageApi.IsSuccessStatusCode)
             {
-                var responseData = responseMessageAbout.Content.ReadAsStringAsync().Result;
+                var responseData = responseMessageApi.Content.ReadAsStringAsync().Result;
                 var features = JsonConvert.DeserializeObject<List<Features>>(responseData);
                 homeModels.Features = features;
             }
@@ -122,21 +122,33 @@ namespace Front.Controllers
 
         private async Task CallHotels(string _Hotels, HomeModels homeModels)
         {
-            HttpResponseMessage responseMessageAbout = await _client.GetAsync(_Hotels);
-            if (responseMessageAbout.IsSuccessStatusCode)
+            HttpResponseMessage responseMessageApi = await _client.GetAsync(_Hotels);
+            if (responseMessageApi.IsSuccessStatusCode)
             {
-                var responseData = responseMessageAbout.Content.ReadAsStringAsync().Result;
+                var responseData = responseMessageApi.Content.ReadAsStringAsync().Result;
                 var hotels = JsonConvert.DeserializeObject<List<Hotels>>(responseData);
                 homeModels.Hotels = hotels;
             }
         }
 
+
+        private async Task Callowners(string _Owners, HomeModels homeModels)
+        {
+            HttpResponseMessage responseMessageApi = await _client.GetAsync(_Owners);
+            if (responseMessageApi.IsSuccessStatusCode)
+            {
+                var responseData = responseMessageApi.Content.ReadAsStringAsync().Result;
+                var Owners = JsonConvert.DeserializeObject<List<Owners>>(responseData);
+                homeModels.Owners  = Owners;
+            }
+        }
+
         private async Task CallNews(string _News, HomeModels homeModels)
         {
-            HttpResponseMessage responseMessageAbout = await _client.GetAsync(_News);
-            if (responseMessageAbout.IsSuccessStatusCode)
+            HttpResponseMessage responseMessageApi = await _client.GetAsync(_News);
+            if (responseMessageApi.IsSuccessStatusCode)
             {
-                var responseData = responseMessageAbout.Content.ReadAsStringAsync().Result;
+                var responseData = responseMessageApi.Content.ReadAsStringAsync().Result;
                 var news = JsonConvert.DeserializeObject<List<News>>(responseData);
                 homeModels.News = news;
             }
