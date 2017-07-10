@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Front.Models;
- using GMG_Portal.API.Models.SystemParameters;
+using GMG_Portal.API.Models.Hotels.Hotel; 
+using GMG_Portal.API.Models.SystemParameters;
 
 
 namespace Front.Models

@@ -16,25 +16,25 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         {
             _db = new GMG_Portal_DBEntities1();
         }
-        public List<SystemParameter_About> GetAllWithDeleted()
+        public List<SystemParameters_About> GetAllWithDeleted()
         {
-            return _db.SystemParameter_About.OrderBy(p => p.IsDeleted).ToList();
+            return _db.SystemParameters_About.OrderBy(p => p.IsDeleted).ToList();
         }
-        public List<SystemParameter_About> GetAll()
+        public List<SystemParameters_About> GetAll()
         {
-            return _db.SystemParameter_About.Where(p => p.IsDeleted != true).ToList();
+            return _db.SystemParameters_About.Where(p => p.IsDeleted != true).ToList();
         }
-        public SystemParameter_About Get(int id)
+        public SystemParameters_About Get(int id)
         {
-            return _db.SystemParameter_About.Find(id);
+            return _db.SystemParameters_About.Find(id);
         }
-        private SystemParameter_About Save(SystemParameter_About homeSlider)
+        private SystemParameters_About Save(SystemParameters_About about)
         {
             try
             {
                 _db.SaveChanges();
-                homeSlider.OperationStatus = "Succeded";
-                return homeSlider;
+                about.OperationStatus = "Succeded";
+                return about;
             }
             catch (Exception e)
             {
@@ -42,61 +42,61 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 {
                     if (e.InnerException.ToString().Contains("IX_Countries_Ar"))
                     {
-                        homeSlider.OperationStatus = "NameArMustBeUnique";
-                        return homeSlider;
+                        about.OperationStatus = "NameArMustBeUnique";
+                        return about;
                     }
                     else if (e.InnerException.ToString().Contains("IX_Countries_En"))
                     {
-                        homeSlider.OperationStatus = "NameEnMustBeUnique";
-                        return homeSlider;
+                        about.OperationStatus = "NameEnMustBeUnique";
+                        return about;
                     }
                 }
                 throw;
             }
         }
-        public SystemParameter_About Insert(SystemParameter_About postedHomeSlider)
+        public SystemParameters_About Insert(SystemParameters_About postedabout)
         {
 
-            var language = new SystemParameter_About()
+            var About = new SystemParameters_About()
             {
-                DisplayValue = postedHomeSlider.DisplayValue,
-                DisplayValueDesc = postedHomeSlider.DisplayValueDesc,
-                Image= postedHomeSlider.Image,
-                IsDeleted = postedHomeSlider.IsDeleted,
+                DisplayValue = postedabout.DisplayValue,
+                DisplayValueDesc = postedabout.DisplayValueDesc,
+                Image= postedabout.Image,
+                IsDeleted = postedabout.IsDeleted,
                 Show = Parameters.Show, 
-                Url = postedHomeSlider.Url,
+                Url = postedabout.Url,
                 CreationTime = Parameters.CurrentDateTime,
                 CreatorUserId = Parameters.UserId, 
             };
-            _db.SystemParameter_About.Add(language);
-            return Save(language);
+            _db.SystemParameters_About.Add(About);
+            return Save(About);
         }
-        public SystemParameter_About Edit(SystemParameter_About postedLanguage)
+        public SystemParameters_About Edit(SystemParameters_About postedAbout)
         {
-            SystemParameter_About language = Get(postedLanguage.Id);
-            language.DisplayValue = postedLanguage.DisplayValue;
-            language.DisplayValueDesc = postedLanguage.DisplayValueDesc;
-            language.Image = postedLanguage.Image;
-            language.Url= postedLanguage.Url; 
-            language.IsDeleted = postedLanguage.IsDeleted;
-            language.Show = postedLanguage.Show; 
-            language.LastModificationTime = Parameters.CurrentDateTime;
-            language.LastModifierUserId = Parameters.UserId;
-            return Save(language);
+            SystemParameters_About about = Get(postedAbout.Id);
+            about.DisplayValue = postedAbout.DisplayValue;
+            about.DisplayValueDesc = postedAbout.DisplayValueDesc;
+            about.Image = postedAbout.Image;
+            about.Url= postedAbout.Url; 
+            about.IsDeleted = postedAbout.IsDeleted;
+            about.Show = postedAbout.Show; 
+            about.LastModificationTime = Parameters.CurrentDateTime;
+            about.LastModifierUserId = Parameters.UserId;
+            return Save(about);
         }
-        public SystemParameter_About Delete(SystemParameter_About postedLanguage)
+        public SystemParameters_About Delete(SystemParameters_About postedAbout)
         {
-            SystemParameter_About language = Get(postedLanguage.Id);
-            if (_db.SystemParameter_About.Any(p => p.Id == postedLanguage.Id && p.IsDeleted != true))
+            SystemParameters_About about = Get(postedAbout.Id);
+            if (_db.SystemParameters_About.Any(p => p.Id == postedAbout.Id && p.IsDeleted != true))
             {
-                  //  language.OperationStatus = "HasRelationship";
-                return language;
+                  //  About.OperationStatus = "HasRelationship";
+                return about;
             }
 
-            language.IsDeleted = true;
-            language.CreationTime = Parameters.CurrentDateTime;
-            language.CreatorUserId = Parameters.UserId;
-            return Save(language);
+            about.IsDeleted = true;
+            about.CreationTime = Parameters.CurrentDateTime;
+            about.CreatorUserId = Parameters.UserId;
+            return Save(about);
         }
 
     }

@@ -12,7 +12,7 @@ namespace GMG_Portal.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class SystemParameter_News
+    public partial class SystemParameters_Cities
     {
         public int Id { get; set; }
         public Nullable<System.Guid> SGuid { get; set; }
@@ -21,16 +21,13 @@ namespace GMG_Portal.Data
         public Nullable<System.Guid> LookupKeyGuid { get; set; }
         public Nullable<bool> IsCurrent { get; set; }
         public bool IsDeleted { get; set; }
-        public Nullable<bool> Show { get; set; }
-        public string DisplayValueDesc { get; set; }
-        public Nullable<int> LookupKeyDesc { get; set; }
-        public Nullable<System.Guid> LookupKeyGuidDesc { get; set; }
-        public string Image { get; set; }
         public Nullable<System.DateTime> LastModificationTime { get; set; }
         public Nullable<int> LastModifierUserId { get; set; }
         public Nullable<System.DateTime> CreationTime { get; set; }
         public Nullable<int> CreatorUserId { get; set; }
         public Nullable<System.DateTime> DeletionTime { get; set; }
         public Nullable<int> DeleterUserId { get; set; }
+        public bool Show { get; set; }
+        public Nullable<int> CountryID { get; set; }
     }
 }

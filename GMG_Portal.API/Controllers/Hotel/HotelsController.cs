@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using GMG_Portal.API.Models.SystemParameters;
-using GMG_Portal.Data;
-using GMG_Portal.Business.Logic.SystemParameters;
 using AutoMapper;
+using GMG_Portal.Business.Logic.SystemParameters;
 using Helpers;
 
-namespace GMG_Portal.API.Controllers.SystemParameters
+namespace GMG_Portal.API.Controllers.Hotel
 {
     [RoutePrefix("SystemParameters/Hotels")]
     [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*")]
@@ -20,9 +17,9 @@ namespace GMG_Portal.API.Controllers.SystemParameters
         {
             try
             {
-                var HotelLogic = new HotelLogic();
-                var Hotels = HotelLogic.GetAll();
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Hotel>>(Hotels));
+                var hotelLogic = new HotelLogic();
+                var hotels = hotelLogic.GetAll();
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Data.Hotel>>(hotels));
             }
             catch (Exception ex)
             {
@@ -36,7 +33,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
             {
                 var HotelLogic = new HotelLogic();
                 var Hotels = HotelLogic.GetAllWithDeleted();
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Hotel>>(Hotels));
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Data.Hotel>>(Hotels));
             }
             catch (Exception ex)
             {
@@ -45,30 +42,30 @@ namespace GMG_Portal.API.Controllers.SystemParameters
             }
         }
         [HttpPost]
-        public HttpResponseMessage Save(Hotel postedHotels)
+        public HttpResponseMessage Save(Data.Hotel postedHotels)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
                     var HotelLogic = new HotelLogic();
-                    Hotel language = null;
+                    Data.Hotel language = null;
                     if (postedHotels.Id.Equals(0))
                     {
-                        language = HotelLogic.Insert(Mapper.Map<Hotel>(postedHotels));
+                        language = HotelLogic.Insert(Mapper.Map<Data.Hotel>(postedHotels));
                     }
                     else
                     {
                         if (postedHotels.IsDeleted)
                         {
-                            language = HotelLogic.Delete(Mapper.Map<Hotel>(postedHotels));
+                            language = HotelLogic.Delete(Mapper.Map<Data.Hotel>(postedHotels));
                         }
                         else
                         {
-                            language = HotelLogic.Edit(Mapper.Map<Hotel>(postedHotels));
+                            language = HotelLogic.Edit(Mapper.Map<Data.Hotel>(postedHotels));
                         }
                     }
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Hotel>(language));
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Data.Hotel>(language));
                 }
                 goto ThrowBadRequest;
             }

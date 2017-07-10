@@ -174,11 +174,12 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\Hotel\HotelsController.cs" />
+    <Compile Include="Controllers\SystemParameters\OwnersController.cs" />
     <Compile Include="Controllers\SystemParameters\FeaturesController.cs" />
     <Compile Include="Controllers\SystemParameters\NewsController.cs" />
-    <Compile Include="Controllers\SystemParameters\AboutsController.cs" />
-    <Compile Include="Controllers\SystemParameters\MissionController.cs" />
-    <Compile Include="Controllers\SystemParameters\VisionController.cs" />
+    <Compile Include="Controllers\SystemParameters\AboutController.cs" />
+    <Compile Include="Controllers\SystemParameters\MissionsController.cs" />
+    <Compile Include="Controllers\SystemParameters\VisionsController.cs" />
     <Compile Include="Controllers\SystemParameters\HomeSlidersController.cs" />
     <Compile Include="Controllers\SystemParameters\LanguagesController.cs" />
     <Compile Include="Controllers\SystemParameters\DepartmentsController.cs" />
@@ -195,7 +196,8 @@
     </Compile>
     <Compile Include="Helpers\LocalizedRegexAttribute.cs" />
     <Compile Include="Models\Customer\Customers\Customer.cs" />
-    <Compile Include="Models\Hotel\Hotel\Hotels.cs" />
+    <Compile Include="Models\Hotels\Hotel\Hotels.cs" />
+    <Compile Include="Models\SystemParameters\Owner\Owners.cs" />
     <Compile Include="Models\SystemParameters\Features\Features.cs" />
     <Compile Include="Models\SystemParameters\News\News.cs" />
     <Compile Include="Models\SystemParameters\AccountType\AccountType.cs" />

@@ -12,7 +12,7 @@ namespace GMG_Portal.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class SystemParameter_PaymentType
+    public partial class SystemParameters_PaymentType
     {
         public int Id { get; set; }
         public Nullable<System.Guid> SGuid { get; set; }

@@ -16,25 +16,25 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         {
             _db = new GMG_Portal_DBEntities1();
         }
-        public List<SystemParameter_News> GetAllWithDeleted()
+        public List<SystemParameters_News> GetAllWithDeleted()
         {
-            return _db.SystemParameter_News.OrderBy(p => p.IsDeleted).ToList();
+            return _db.SystemParameters_News.OrderBy(p => p.IsDeleted).ToList();
         }
-        public List<SystemParameter_News> GetAll()
+        public List<SystemParameters_News> GetAll()
         {
-            return _db.SystemParameter_News.Where(p => p.IsDeleted != true).ToList();
+            return _db.SystemParameters_News.Where(p => p.IsDeleted != true).ToList();
         }
-        public SystemParameter_News Get(int id)
+        public SystemParameters_News Get(int id)
         {
-            return _db.SystemParameter_News.Find(id);
+            return _db.SystemParameters_News.Find(id);
         }
-        private SystemParameter_News Save(SystemParameter_News homeSlider)
+        private SystemParameters_News Save(SystemParameters_News News)
         {
             try
             {
                 _db.SaveChanges();
-                homeSlider.OperationStatus = "Succeded";
-                return homeSlider;
+                News.OperationStatus = "Succeded";
+                return News;
             }
             catch (Exception e)
             {
@@ -42,59 +42,59 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 {
                     if (e.InnerException.ToString().Contains("IX_Countries_Ar"))
                     {
-                        homeSlider.OperationStatus = "NameArMustBeUnique";
-                        return homeSlider;
+                        News.OperationStatus = "NameArMustBeUnique";
+                        return News;
                     }
                     else if (e.InnerException.ToString().Contains("IX_Countries_En"))
                     {
-                        homeSlider.OperationStatus = "NameEnMustBeUnique";
-                        return homeSlider;
+                        News.OperationStatus = "NameEnMustBeUnique";
+                        return News;
                     }
                 }
                 throw;
             }
         }
-        public SystemParameter_News Insert(SystemParameter_News postedHomeSlider)
+        public SystemParameters_News Insert(SystemParameters_News postedNews)
         {
 
-            var language = new SystemParameter_News()
+            var news = new SystemParameters_News()
             {
-                DisplayValue = postedHomeSlider.DisplayValue,
-                DisplayValueDesc = postedHomeSlider.DisplayValueDesc,
-                Image= postedHomeSlider.Image,
-                IsDeleted = postedHomeSlider.IsDeleted,
-                Show = Parameters.Show, 
+                DisplayValue = postedNews.DisplayValue,
+                DisplayValueDesc = postedNews.DisplayValueDesc,
+                Image = postedNews.Image,
+                IsDeleted = postedNews.IsDeleted,
+                Show = Parameters.Show,
                 CreationTime = Parameters.CurrentDateTime,
-                CreatorUserId = Parameters.UserId, 
+                CreatorUserId = Parameters.UserId,
             };
-            _db.SystemParameter_News.Add(language);
-            return Save(language);
+            _db.SystemParameters_News.Add(news);
+            return Save(news);
         }
-        public SystemParameter_News Edit(SystemParameter_News postedLanguage)
+        public SystemParameters_News Edit(SystemParameters_News postednews)
         {
-            SystemParameter_News language = Get(postedLanguage.Id);
-            language.DisplayValue = postedLanguage.DisplayValue;
-            language.DisplayValueDesc = postedLanguage.DisplayValueDesc;
-            language.Image = postedLanguage.Image; 
-            language.IsDeleted = postedLanguage.IsDeleted;
-            language.Show = postedLanguage.Show; 
-            language.LastModificationTime = Parameters.CurrentDateTime;
-            language.LastModifierUserId = Parameters.UserId;
-            return Save(language);
+            SystemParameters_News news = Get(postednews.Id);
+            news.DisplayValue = postednews.DisplayValue;
+            news.DisplayValueDesc = postednews.DisplayValueDesc;
+            news.Image = postednews.Image;
+            news.IsDeleted = postednews.IsDeleted;
+            news.Show = postednews.Show;
+            news.LastModificationTime = Parameters.CurrentDateTime;
+            news.LastModifierUserId = Parameters.UserId;
+            return Save(news);
         }
-        public SystemParameter_News Delete(SystemParameter_News postedLanguage)
+        public SystemParameters_News Delete(SystemParameters_News postednews)
         {
-            SystemParameter_News language = Get(postedLanguage.Id);
-            if (_db.SystemParameter_News.Any(p => p.Id == postedLanguage.Id && p.IsDeleted != true))
+            SystemParameters_News news = Get(postednews.Id);
+            if (_db.SystemParameters_News.Any(p => p.Id == postednews.Id && p.IsDeleted != true))
             {
-                  //  language.OperationStatus = "HasRelationship";
-                return language;
+                //  news.OperationStatus = "HasRelationship";
+                return news;
             }
 
-            language.IsDeleted = true;
-            language.CreationTime = Parameters.CurrentDateTime;
-            language.CreatorUserId = Parameters.UserId;
-            return Save(language);
+            news.IsDeleted = true;
+            news.CreationTime = Parameters.CurrentDateTime;
+            news.CreatorUserId = Parameters.UserId;
+            return Save(news);
         }
 
     }

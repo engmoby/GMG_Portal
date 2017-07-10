@@ -16,9 +16,9 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             _db = new GMG_Portal_DBEntities1();
         }
 
-        public List<SystemParameter_Countries> GetAllWithDeleted()
+        public List<SystemParameters_Countries> GetAllWithDeleted()
         { 
-             return _db.SystemParameter_Countries.OrderBy(p => p.IsDeleted).ToList();
+             return _db.SystemParameters_Countries.OrderBy(p => p.IsDeleted).ToList();
         }
 
         public List<Countries> GetAll()

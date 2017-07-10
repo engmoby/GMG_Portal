@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GMG_Portal.Data
 {
-    public partial class SystemParamater_HomeSlider
+    public partial class SystemParameters_HomeSlider
     {
         [NotMapped]
         public string OperationStatus { get; set; }
