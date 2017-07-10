@@ -51,7 +51,7 @@ namespace Front.Controllers
         }
 
 
-        // Home Partial Views Loading 
+       // Home Partial Views Loading 
         public ActionResult Slider()
         {
             return Slider();
@@ -85,9 +85,9 @@ namespace Front.Controllers
 
 
 
-        //Fill Models with data Retrieved
+         //Fill Models with data Retrieved
 
-        private async Task CallHomeSliders(string homeSlider, HomeModels homeModels)
+        private async Task CallHomeSliders(string _homeSlider, HomeModels homeModels)
         {
             HttpResponseMessage responseMessage = await _client.GetAsync(homeSlider);
             if (responseMessage.IsSuccessStatusCode)
