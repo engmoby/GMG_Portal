@@ -1,62 +1,24 @@
 ﻿
-@*<div class="mg-testi-partners parallax">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <h2 class="mg-sec-left-title">Testimonial</h2>
-                <div class="mg-testimonial-slider" id="mg-testimonial-slider">
-                    <blockquote>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consumeret terminatas oritur euripidis satis. Venisset ipsum.</p>
-                        <footer>John Doe, Example Inc</footer>
-                    </blockquote>
-                    <blockquote>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sol magnum gustare pararetur statuam, morbi patriam omittantur.</p>
-                        <footer>John Doe, Example Inc</footer>
-                    </blockquote>
-                    <blockquote>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Stabilem monet, petat excepturi nudus expeteremus fabellas vexetur.</p>
-                        <footer>John Doe, Example Inc</footer>
-                    </blockquote>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <h2 class="mg-sec-left-title">Our Partners</h2>
-                <ul class="mg-part-logos" id="mg-part-logos">
-                    <li><img src="~/Content/images/part-logo-1.png" alt="Partner Logo"></li>
-                    <li><img src="~/Content/images/part-logo-2.png" alt="Partner Logo"></li>
-                    <li><img src="~/Content/images/part-logo-3.png" alt="Partner Logo"></li>
-                    <li><img src="~/Content/images/part-logo-1.png" alt="Partner Logo"></li>
-                    <li><img src="~/Content/images/part-logo-3.png" alt="Partner Logo"></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>*@
-
-<div class="mg-about-testimonial parallax" style="background-position: 50% 5px;">
+<div class="mg-about-testimonial parallax">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="mg-sec-title">
-                    <h2>Testimonials</h2>
-                    <p>Here is some valuable word from our clients</p>
+                    <h2>Leadership</h2>
+                    <p>Here are the Visionary Minds Behind our Success</p>
                 </div>
-                <div class="mg-testimonial-slider owl-carousel owl-theme" id="mg-testimonial-slider" style="display: block; opacity: 1;">
-                    <div class="owl-wrapper-outer"><div class="owl-wrapper" style="width: 6840px; left: 0px; display: block; transition: all 0ms ease; transform: translate3d(-2280px, 0px, 0px); transform-origin: 2850px center 0px; perspective-origin: 2850px center;"><div class="owl-item" style="width: 1140px;"><blockquote>
-                        <p>Nostram virtutem poterimus quoddam praesertim legendos libero exhorrescere saluti. Coercendi fabulas sequatur dolorem nominant, faciendum dicitis perpauca intervenire calere.</p>
-                        <footer>John Doe, Example Inc</footer>
-                    </blockquote></div><div class="owl-item" style="width: 1140px;"><blockquote>
-                        <p>Nostram virtutem poterimus quoddam praesertim legendos libero exhorrescere saluti. Coercendi fabulas sequatur dolorem nominant, faciendum dicitis perpauca intervenire calere.</p>
-                        <footer>John Doe, Example Inc</footer>
-                    </blockquote></div><div class="owl-item" style="width: 1140px;"><blockquote>
-                        <p>Nostram virtutem poterimus quoddam praesertim legendos libero exhorrescere saluti. Coercendi fabulas sequatur dolorem nominant, faciendum dicitis perpauca intervenire calere.</p>
-                        <footer>John Doe, Example Inc</footer>
-                    </blockquote></div></div></div>
-							
-							
-                    <div class="owl-controls clickable"><div class="owl-buttons"><div class="owl-prev"><i class="fa fa-angle-left"></i></div><div class="owl-next"><i class="fa fa-angle-right"></i></div></div></div></div>
+                <div class="mg-testimonial-slider" id="mg-testimonial-slider">
+                @{ 
+                    for (var i = 1; i < Model.Owners.Count; i++)
+                    {
+                     <blockquote>
+                        <p>@Model.owners[i].DisplayValue</p>
+                        <footer>@Model.owners[i].DisplayValue</footer>
+                    </blockquote>
+                    }
+                } 
+                </div>
             </div>
         </div>
     </div>
 </div>
-

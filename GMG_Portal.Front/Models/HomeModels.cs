@@ -2,6 +2,7 @@
 using Front.Models;
 using GMG_Portal.API.Models.Hotels.Hotel; 
 using GMG_Portal.API.Models.SystemParameters;
+using GMG_Portal.API.Models.SystemParameters.ContactUs;
 
 
 namespace Front.Models
@@ -14,5 +15,6 @@ namespace Front.Models
         public List<Hotels> Hotels { get; set; }
         public List<Owners> Owners { get; set; }
         public List<News> News { get; set; }
+        public List<ContactUs> ContactUs { get; set; }
     }
 }

@@ -9,6 +9,7 @@ using Front.Models;
 using GMG_Portal.API.Models.Hotels.Hotel;  
 using Newtonsoft.Json;
 using GMG_Portal.API.Models.SystemParameters;
+using GMG_Portal.API.Models.SystemParameters.ContactUs;
 
 namespace Front.Controllers
 {
@@ -34,7 +35,7 @@ namespace Front.Controllers
             string _News = url + "News/GetAll";
             string _Hotels = url + "Hotels/GetAll";
             string _Owners = url + "Owners/GetAll";
-
+            string _ContactUs = url + "ContactUs/GetAll";
 
             var homeModels = new HomeModels();
 
@@ -42,10 +43,10 @@ namespace Front.Controllers
             await CallHomeSliders(_homeSlider, homeModels);
             await CallAbout(_about, homeModels);
             await CallFacilities(_HotelFeatures, homeModels);
-          //  await CallHotels(_Hotels, homeModels);
-            await CallNews(_News, homeModels);
+            //  await CallHotels(_Hotels, homeModels);
             await Callowners(_Owners, homeModels);
-
+            await CallNews(_News, homeModels);
+            await CallContactus(_ContactUs, homeModels);
             return View(homeModels);
 
         }
@@ -138,8 +139,8 @@ namespace Front.Controllers
             if (responseMessageApi.IsSuccessStatusCode)
             {
                 var responseData = responseMessageApi.Content.ReadAsStringAsync().Result;
-                var Owners = JsonConvert.DeserializeObject<List<Owners>>(responseData);
-                homeModels.Owners  = Owners;
+                var owners = JsonConvert.DeserializeObject<List<Owners>>(responseData);
+                homeModels.Owners  = owners;
             }
         }
 
@@ -154,6 +155,17 @@ namespace Front.Controllers
             }
         }
 
+
+        private async Task CallContactus(string _ContactUs, HomeModels homeModels)
+        {
+            HttpResponseMessage responseMessageApi = await _client.GetAsync(_ContactUs);
+            if (responseMessageApi.IsSuccessStatusCode)
+            {
+                var responseData = responseMessageApi.Content.ReadAsStringAsync().Result;
+                var contactUs = JsonConvert.DeserializeObject<List<ContactUs>>(responseData);
+                homeModels.ContactUs  = contactUs;
+            }
+        }
 
     }
 }
