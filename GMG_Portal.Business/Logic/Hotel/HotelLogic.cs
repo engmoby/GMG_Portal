@@ -23,7 +23,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         public List<Hotel> GetAll()
         {
             var returnList = new List<Hotel>();
-            var getHotelInfo = _db.Hotels.Where(p => p.IsDeleted != true).ToList();
+            var getHotelInfo = _db.Hotels.Where(p => p.IsDeleted == false && p.Show).ToList();
             foreach (var hotel in getHotelInfo)
             {
                 var getHotelImages = _db.Hotels_Hotel_Images.Where(p => p.IsDeleted != true && p.Hotel_Id == hotel.Id).ToList();

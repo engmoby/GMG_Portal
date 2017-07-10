@@ -12,17 +12,17 @@ using Helpers;
 
 namespace GMG_Portal.API.Controllers.SystemParameters
 {
-    [RoutePrefix("SystemParameters/News")]
+    [RoutePrefix("SystemParameters/Owners")]
     [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*")]
-    public class NewsController : ApiController
+    public class OwnersController : ApiController
     {
         public HttpResponseMessage GetAll()
         {
             try
-            {
-                var newsLogic = new NewsLogic();
-                var news = newsLogic.GetAll();
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<News>>(news));
+            { 
+                var ownerLogic = new OwnerLogic();
+                var owners = ownerLogic.GetAll();
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Owners>>(owners));
             }
             catch (Exception ex)
             {
@@ -34,9 +34,9 @@ namespace GMG_Portal.API.Controllers.SystemParameters
         {
             try
             {
-                var newsLogic = new NewsLogic();
-                var news = newsLogic.GetAllWithDeleted();
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<API.Models.SystemParameters.News>>(news));
+                var ownerLogic = new OwnerLogic();
+                var owners = ownerLogic.GetAllWithDeleted();
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Owners>>(owners));
             }
             catch (Exception ex)
             {
@@ -45,30 +45,30 @@ namespace GMG_Portal.API.Controllers.SystemParameters
             }
         }
         [HttpPost]
-        public HttpResponseMessage Save(News postedNews)
+        public HttpResponseMessage Save(Owners postedOwners)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    var newsLogic = new NewsLogic();
-                    SystemParameters_News language = null;
-                    if (postedNews.Id.Equals(0))
+                    var ownerLogic = new OwnerLogic();
+                    SystemParameters_Owners owner = null;
+                    if (postedOwners.Id.Equals(0))
                     {
-                        language = newsLogic.Insert(Mapper.Map<SystemParameters_News>(postedNews));
+                        owner = ownerLogic.Insert(Mapper.Map<SystemParameters_Owners>(postedOwners));
                     }
                     else
                     {
-                        if (postedNews.IsDeleted)
+                        if (postedOwners.IsDeleted)
                         {
-                            language = newsLogic.Delete(Mapper.Map<SystemParameters_News>(postedNews));
+                            owner = ownerLogic.Delete(Mapper.Map<SystemParameters_Owners>(postedOwners));
                         }
                         else
                         {
-                            language = newsLogic.Edit(Mapper.Map<SystemParameters_News>(postedNews));
+                            owner = ownerLogic.Edit(Mapper.Map<SystemParameters_Owners>(postedOwners));
                         }
                     }
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<News>(language));
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Owners>(owner));
                 }
                 goto ThrowBadRequest;
             }

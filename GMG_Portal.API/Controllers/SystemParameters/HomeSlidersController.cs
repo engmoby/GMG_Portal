@@ -52,20 +52,20 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 if (ModelState.IsValid)
                 {
                     var homeSlidersLogic = new HomeSlidersLogic();
-                    SystemParamater_HomeSlider language = null;
+                    SystemParameters_HomeSlider language = null;
                     if (postedHomeSliders.Id.Equals(0))
                     {
-                        language = homeSlidersLogic.Insert(Mapper.Map<SystemParamater_HomeSlider>(postedHomeSliders));
+                        language = homeSlidersLogic.Insert(Mapper.Map<SystemParameters_HomeSlider>(postedHomeSliders));
                     }
                     else
                     {
                         if (postedHomeSliders.IsDeleted)
                         {
-                            language = homeSlidersLogic.Delete(Mapper.Map<SystemParamater_HomeSlider>(postedHomeSliders));
+                            language = homeSlidersLogic.Delete(Mapper.Map<SystemParameters_HomeSlider>(postedHomeSliders));
                         }
                         else
                         {
-                            language = homeSlidersLogic.Edit(Mapper.Map<SystemParamater_HomeSlider>(postedHomeSliders));
+                            language = homeSlidersLogic.Edit(Mapper.Map<SystemParameters_HomeSlider>(postedHomeSliders));
                         }
                     }
                     return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<HomeSlider>(language));

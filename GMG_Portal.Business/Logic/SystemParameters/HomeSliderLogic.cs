@@ -16,19 +16,19 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         {
             _db = new GMG_Portal_DBEntities1();
         }
-        public List<SystemParamater_HomeSlider> GetAllWithDeleted()
+        public List<SystemParameters_HomeSlider> GetAllWithDeleted()
         {
-            return _db.SystemParamater_HomeSlider.OrderBy(p => p.IsDeleted).ToList();
+            return _db.SystemParameters_HomeSlider.OrderBy(p => p.IsDeleted).ToList();
         }
-        public List<SystemParamater_HomeSlider> GetAll()
+        public List<SystemParameters_HomeSlider> GetAll()
         {
-            return _db.SystemParamater_HomeSlider.Where(p => p.IsDeleted != true).ToList();
+            return _db.SystemParameters_HomeSlider.Where(p => p.IsDeleted != true).ToList();
         }
-        public SystemParamater_HomeSlider Get(int id)
+        public SystemParameters_HomeSlider Get(int id)
         {
-            return _db.SystemParamater_HomeSlider.Find(id);
+            return _db.SystemParameters_HomeSlider.Find(id);
         }
-        private SystemParamater_HomeSlider Save(SystemParamater_HomeSlider homeSlider)
+        private SystemParameters_HomeSlider Save(SystemParameters_HomeSlider homeSlider)
         {
             try
             {
@@ -54,10 +54,10 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 throw;
             }
         }
-        public SystemParamater_HomeSlider Insert(SystemParamater_HomeSlider postedHomeSlider)
+        public SystemParameters_HomeSlider Insert(SystemParameters_HomeSlider postedHomeSlider)
         {
 
-            var language = new SystemParamater_HomeSlider()
+            var homeSlider = new SystemParameters_HomeSlider()
             {
                 DisplayValue = postedHomeSlider.DisplayValue,
                 DisplayValueDesc = postedHomeSlider.DisplayValueDesc,
@@ -69,36 +69,36 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 CreationTime = Parameters.CurrentDateTime,
                 CreatorUserId = Parameters.UserId, 
             };
-            _db.SystemParamater_HomeSlider.Add(language);
-            return Save(language);
+            _db.SystemParameters_HomeSlider.Add(homeSlider);
+            return Save(homeSlider);
         }
-        public SystemParamater_HomeSlider Edit(SystemParamater_HomeSlider postedLanguage)
+        public SystemParameters_HomeSlider Edit(SystemParameters_HomeSlider postedhomeSlider)
         {
-            SystemParamater_HomeSlider language = Get(postedLanguage.Id);
-            language.DisplayValue = postedLanguage.DisplayValue;
-            language.DisplayValueDesc = postedLanguage.DisplayValueDesc;
-            language.Image = postedLanguage.Image;
-            language.URL = postedLanguage.URL;
-            language.Rating = postedLanguage.Rating;
-            language.IsDeleted = postedLanguage.IsDeleted;
-            language.Show = postedLanguage.Show; 
-            language.LastModificationTime = Parameters.CurrentDateTime;
-            language.LastModifierUserId = Parameters.UserId;
-            return Save(language);
+            SystemParameters_HomeSlider homeSlider = Get(postedhomeSlider.Id);
+            homeSlider.DisplayValue = postedhomeSlider.DisplayValue;
+            homeSlider.DisplayValueDesc = postedhomeSlider.DisplayValueDesc;
+            homeSlider.Image = postedhomeSlider.Image;
+            homeSlider.URL = postedhomeSlider.URL;
+            homeSlider.Rating = postedhomeSlider.Rating;
+            homeSlider.IsDeleted = postedhomeSlider.IsDeleted;
+            homeSlider.Show = postedhomeSlider.Show; 
+            homeSlider.LastModificationTime = Parameters.CurrentDateTime;
+            homeSlider.LastModifierUserId = Parameters.UserId;
+            return Save(homeSlider);
         }
-        public SystemParamater_HomeSlider Delete(SystemParamater_HomeSlider postedLanguage)
+        public SystemParameters_HomeSlider Delete(SystemParameters_HomeSlider postedhomeSlider)
         {
-            SystemParamater_HomeSlider language = Get(postedLanguage.Id);
-            if (_db.SystemParamater_HomeSlider.Any(p => p.Id == postedLanguage.Id && p.IsDeleted != true))
+            SystemParameters_HomeSlider homeSlider = Get(postedhomeSlider.Id);
+            if (_db.SystemParameters_HomeSlider.Any(p => p.Id == postedhomeSlider.Id && p.IsDeleted != true))
             {
-                  //  language.OperationStatus = "HasRelationship";
-                return language;
+                  //  homeSlider.OperationStatus = "HasRelationship";
+                return homeSlider;
             }
 
-            language.IsDeleted = true;
-            language.CreationTime = Parameters.CurrentDateTime;
-            language.CreatorUserId = Parameters.UserId;
-            return Save(language);
+            homeSlider.IsDeleted = true;
+            homeSlider.CreationTime = Parameters.CurrentDateTime;
+            homeSlider.CreatorUserId = Parameters.UserId;
+            return Save(homeSlider);
         }
 
     }

@@ -12,18 +12,18 @@ using Helpers;
 
 namespace GMG_Portal.API.Controllers.SystemParameters
 {
-    [RoutePrefix("SystemParameters/Abouts")]
+    [RoutePrefix("SystemParameters/About")]
     [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*")]
-    public class AboutsController : ApiController
+    public class AboutController : ApiController
     {
         public HttpResponseMessage GetAll()
         {
             try
             {
                  
-                var AboutLogic = new AboutLogic();
-                var Abouts = AboutLogic.GetAll();
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<About>>(Abouts));
+                var aboutLogic = new AboutLogic();
+                var about = aboutLogic.GetAll();
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<About>>(about));
             }
             catch (Exception ex)
             {
@@ -52,24 +52,24 @@ namespace GMG_Portal.API.Controllers.SystemParameters
             {
                 if (ModelState.IsValid)
                 {
-                    var AboutLogic = new AboutLogic();
-                    SystemParameter_About language = null;
+                    var aboutLogic = new AboutLogic();
+                    SystemParameters_About about = null;
                     if (postedAbouts.Id.Equals(0))
                     {
-                        language = AboutLogic.Insert(Mapper.Map<SystemParameter_About>(postedAbouts));
+                        about = aboutLogic.Insert(Mapper.Map<SystemParameters_About>(postedAbouts));
                     }
                     else
                     {
                         if (postedAbouts.IsDeleted)
                         {
-                            language = AboutLogic.Delete(Mapper.Map<SystemParameter_About>(postedAbouts));
+                            about = aboutLogic.Delete(Mapper.Map<SystemParameters_About>(postedAbouts));
                         }
                         else
                         {
-                            language = AboutLogic.Edit(Mapper.Map<SystemParameter_About>(postedAbouts));
+                            about = aboutLogic.Edit(Mapper.Map<SystemParameters_About>(postedAbouts));
                         }
                     }
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<About>(language));
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<About>(about));
                 }
                 goto ThrowBadRequest;
             }

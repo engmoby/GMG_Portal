@@ -83,20 +83,20 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 if (ModelState.IsValid)
                 {
                     var CitiesLogic = new CitiesLogic();
-                    SystemParameter_Cities City = null;
+                    SystemParameters_Cities City = null;
                     if (postedCity.ID.Equals(0))
                     {
-                        City = CitiesLogic.Insert(Mapper.Map<SystemParameter_Cities>(postedCity));
+                        City = CitiesLogic.Insert(Mapper.Map<SystemParameters_Cities>(postedCity));
                     }
                     else
                     {
                         if (postedCity.IsDeleted)
                         {
-                            City = CitiesLogic.Delete(Mapper.Map<SystemParameter_Cities>(postedCity));
+                            City = CitiesLogic.Delete(Mapper.Map<SystemParameters_Cities>(postedCity));
                         }
                         else
                         {
-                            City = CitiesLogic.Edit(Mapper.Map<SystemParameter_Cities>(postedCity));
+                            City = CitiesLogic.Edit(Mapper.Map<SystemParameters_Cities>(postedCity));
                         }
                     }
                     return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<ViewModelCities>(City));

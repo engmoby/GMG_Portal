@@ -185,6 +185,25 @@
           <Property Name="DeleterUserId" Type="int" />
           <Property Name="Show" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="Hotels_Reservation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="150" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="150" />
+          <Property Name="Email" Type="nvarchar" MaxLength="150" />
+          <Property Name="Phone" Type="int" />
+          <Property Name="CheckIn" Type="datetime" />
+          <Property Name="CheckOut" Type="datetime" />
+          <Property Name="Adult" Type="int" />
+          <Property Name="Child" Type="int" />
+          <Property Name="HotelId" Type="int" />
+          <Property Name="CountryId" Type="int" />
+          <Property Name="SeenDate" Type="datetime" />
+          <Property Name="SeenBy" Type="int" />
+          <Property Name="CreationTime" Type="datetime" />
+        </EntityType>
         <EntityType Name="Hotles_Hotel_Offers">
           <Key>
             <PropertyRef Name="ksa" />
@@ -211,7 +230,160 @@
           <Property Name="DeletionTime" Type="datetime" />
           <Property Name="DeleterUserId" Type="int" />
         </EntityType>
-        <EntityType Name="SystemParamater_HomeSlider">
+        <EntityType Name="SystemParameters_About">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SGuid" Type="uniqueidentifier" />
+          <Property Name="DisplayValue" Type="nvarchar" MaxLength="50" />
+          <Property Name="LookupKey" Type="int" />
+          <Property Name="LookupKeyGuid" Type="uniqueidentifier" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Show" Type="bit" />
+          <Property Name="DisplayValueDesc" Type="nvarchar(max)" />
+          <Property Name="LookupKeyDesc" Type="int" />
+          <Property Name="LookupKeyGuidDesc" Type="uniqueidentifier" />
+          <Property Name="Image" Type="nvarchar" MaxLength="100" />
+          <Property Name="Url" Type="nvarchar" MaxLength="100" />
+          <Property Name="LastModificationTime" Type="datetime" />
+          <Property Name="LastModifierUserId" Type="int" />
+          <Property Name="CreationTime" Type="datetime" />
+          <Property Name="CreatorUserId" Type="int" />
+          <Property Name="DeletionTime" Type="datetime" />
+          <Property Name="DeleterUserId" Type="int" />
+        </EntityType>
+        <EntityType Name="SystemParameters_Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SGuid" Type="uniqueidentifier" />
+          <Property Name="DisplayValue" Type="nvarchar" MaxLength="50" />
+          <Property Name="LookupKey" Type="int" />
+          <Property Name="LookupKeyGuid" Type="uniqueidentifier" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Show" Type="bit" />
+          <Property Name="DisplayValueDesc" Type="nvarchar(max)" />
+          <Property Name="LookupKeyDesc" Type="int" />
+          <Property Name="LookupKeyGuidDesc" Type="uniqueidentifier" />
+          <Property Name="Image" Type="nvarchar" MaxLength="100" />
+          <Property Name="LastModificationTime" Type="datetime" />
+          <Property Name="LastModifierUserId" Type="int" />
+          <Property Name="CreationTime" Type="datetime" />
+          <Property Name="CreatorUserId" Type="int" />
+          <Property Name="DeletionTime" Type="datetime" />
+          <Property Name="DeleterUserId" Type="int" />
+        </EntityType>
+        <EntityType Name="SystemParameters_Cities">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SGuid" Type="uniqueidentifier" />
+          <Property Name="DisplayValue" Type="nvarchar" MaxLength="50" />
+          <Property Name="LookupKey" Type="int" />
+          <Property Name="LookupKeyGuid" Type="uniqueidentifier" />
+          <Property Name="IsCurrent" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="LastModificationTime" Type="datetime" />
+          <Property Name="LastModifierUserId" Type="int" />
+          <Property Name="CreationTime" Type="datetime" />
+          <Property Name="CreatorUserId" Type="int" />
+          <Property Name="DeletionTime" Type="datetime" />
+          <Property Name="DeleterUserId" Type="int" />
+          <Property Name="Show" Type="bit" Nullable="false" />
+          <Property Name="CountryID" Type="int" />
+        </EntityType>
+        <EntityType Name="SystemParameters_ContactForm">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="150" />
+          <Property Name="LastNamr" Type="nvarchar" MaxLength="150" />
+          <Property Name="Email" Type="nvarchar" MaxLength="150" />
+          <Property Name="PhoneNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Message" Type="nvarchar(max)" />
+          <Property Name="CreationTime" Type="datetime" />
+          <Property Name="SeenDate" Type="datetime" />
+          <Property Name="SeenBy" Type="int" />
+        </EntityType>
+        <EntityType Name="SystemParameters_ContactUs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SGuid" Type="uniqueidentifier" />
+          <Property Name="DisplayValueAddress" Type="nvarchar(max)" />
+          <Property Name="LookupKeyAddress" Type="int" />
+          <Property Name="LookupKeyGuidAddress" Type="uniqueidentifier" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Show" Type="bit" />
+          <Property Name="DisplayValueDesc" Type="nvarchar(max)" />
+          <Property Name="LookupKeyDesc" Type="int" />
+          <Property Name="LookupKeyGuidDesc" Type="uniqueidentifier" />
+          <Property Name="Image" Type="nvarchar" MaxLength="100" />
+          <Property Name="Url" Type="nvarchar" MaxLength="150" />
+          <Property Name="Facebook" Type="nvarchar" MaxLength="150" />
+          <Property Name="Twitter" Type="nvarchar" MaxLength="150" />
+          <Property Name="Instgram" Type="nvarchar" MaxLength="150" />
+          <Property Name="Youtube" Type="nvarchar" MaxLength="150" />
+          <Property Name="Snapchat" Type="nvarchar" MaxLength="150" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="50" />
+          <Property Name="WhatsApp" Type="nvarchar" MaxLength="50" />
+          <Property Name="PhoneNo1" Type="nvarchar" MaxLength="50" />
+          <Property Name="PhoneNo2" Type="nvarchar" MaxLength="50" />
+          <Property Name="PostalCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mailbox" Type="nvarchar" MaxLength="50" />
+          <Property Name="Late" Type="float" />
+          <Property Name="Long" Type="float" />
+          <Property Name="LastModificationTime" Type="datetime" />
+          <Property Name="LastModifierUserId" Type="int" />
+          <Property Name="CreationTime" Type="datetime" />
+          <Property Name="CreatorUserId" Type="int" />
+          <Property Name="DeletionTime" Type="datetime" />
+          <Property Name="DeleterUserId" Type="int" />
+        </EntityType>
+        <EntityType Name="SystemParameters_Countries">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SGuid" Type="uniqueidentifier" />
+          <Property Name="DisplayValue" Type="nvarchar" MaxLength="50" />
+          <Property Name="LookupKey" Type="int" />
+          <Property Name="LookupKeyGuid" Type="uniqueidentifier" />
+          <Property Name="IsCurrent" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="LastModificationTime" Type="datetime" Nullable="false" />
+          <Property Name="LastModifierUserId" Type="int" />
+          <Property Name="CreationTime" Type="datetime" />
+          <Property Name="CreatorUserId" Type="int" />
+          <Property Name="DeletionTime" Type="datetime" />
+          <Property Name="DeleterUserId" Type="int" />
+          <Property Name="Show" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SystemParameters_Departments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SGuid" Type="uniqueidentifier" />
+          <Property Name="DisplayValue" Type="nvarchar" MaxLength="50" />
+          <Property Name="LookupKey" Type="int" />
+          <Property Name="LookupKeyGuid" Type="uniqueidentifier" />
+          <Property Name="IsCurrent" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="LastModificationTime" Type="datetime" />
+          <Property Name="LastModifierUserId" Type="int" />
+          <Property Name="CreationTime" Type="datetime" />
+          <Property Name="CreatorUserId" Type="int" />
+          <Property Name="DeletionTime" Type="datetime" />
+          <Property Name="DeleterUserId" Type="int" />
+          <Property Name="Show" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SystemParameters_HomeSlider">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -235,130 +407,6 @@
           <Property Name="DeletionTime" Type="datetime" />
           <Property Name="DeleterUserId" Type="int" />
         </EntityType>
-        <EntityType Name="SystemParameter_About">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="SGuid" Type="uniqueidentifier" />
-          <Property Name="DisplayValue" Type="nvarchar" MaxLength="50" />
-          <Property Name="LookupKey" Type="int" />
-          <Property Name="LookupKeyGuid" Type="uniqueidentifier" />
-          <Property Name="IsDeleted" Type="bit" Nullable="false" />
-          <Property Name="Show" Type="bit" />
-          <Property Name="DisplayValueDesc" Type="nvarchar(max)" />
-          <Property Name="LookupKeyDesc" Type="int" />
-          <Property Name="LookupKeyGuidDesc" Type="uniqueidentifier" />
-          <Property Name="Image" Type="nvarchar" MaxLength="100" />
-          <Property Name="Url" Type="nvarchar" MaxLength="100" />
-          <Property Name="LastModificationTime" Type="datetime" />
-          <Property Name="LastModifierUserId" Type="int" />
-          <Property Name="CreationTime" Type="datetime" />
-          <Property Name="CreatorUserId" Type="int" />
-          <Property Name="DeletionTime" Type="datetime" />
-          <Property Name="DeleterUserId" Type="int" />
-        </EntityType>
-        <EntityType Name="SystemParameter_Cities">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="SGuid" Type="uniqueidentifier" />
-          <Property Name="DisplayValue" Type="nvarchar" MaxLength="50" />
-          <Property Name="LookupKey" Type="int" />
-          <Property Name="LookupKeyGuid" Type="uniqueidentifier" />
-          <Property Name="IsCurrent" Type="bit" />
-          <Property Name="IsDeleted" Type="bit" Nullable="false" />
-          <Property Name="LastModificationTime" Type="datetime" />
-          <Property Name="LastModifierUserId" Type="int" />
-          <Property Name="CreationTime" Type="datetime" />
-          <Property Name="CreatorUserId" Type="int" />
-          <Property Name="DeletionTime" Type="datetime" />
-          <Property Name="DeleterUserId" Type="int" />
-          <Property Name="Show" Type="bit" Nullable="false" />
-          <Property Name="CountryID" Type="int" />
-        </EntityType>
-        <EntityType Name="SystemParameter_Countries">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="SGuid" Type="uniqueidentifier" />
-          <Property Name="DisplayValue" Type="nvarchar" MaxLength="50" />
-          <Property Name="LookupKey" Type="int" />
-          <Property Name="LookupKeyGuid" Type="uniqueidentifier" />
-          <Property Name="IsCurrent" Type="bit" />
-          <Property Name="IsDeleted" Type="bit" Nullable="false" />
-          <Property Name="LastModificationTime" Type="datetime" Nullable="false" />
-          <Property Name="LastModifierUserId" Type="int" />
-          <Property Name="CreationTime" Type="datetime" />
-          <Property Name="CreatorUserId" Type="int" />
-          <Property Name="DeletionTime" Type="datetime" />
-          <Property Name="DeleterUserId" Type="int" />
-          <Property Name="Show" Type="bit" Nullable="false" />
-        </EntityType>
-        <EntityType Name="SystemParameter_Departments">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="SGuid" Type="uniqueidentifier" />
-          <Property Name="DisplayValue" Type="nvarchar" MaxLength="50" />
-          <Property Name="LookupKey" Type="int" />
-          <Property Name="LookupKeyGuid" Type="uniqueidentifier" />
-          <Property Name="IsCurrent" Type="bit" />
-          <Property Name="IsDeleted" Type="bit" Nullable="false" />
-          <Property Name="LastModificationTime" Type="datetime" />
-          <Property Name="LastModifierUserId" Type="int" />
-          <Property Name="CreationTime" Type="datetime" />
-          <Property Name="CreatorUserId" Type="int" />
-          <Property Name="DeletionTime" Type="datetime" />
-          <Property Name="DeleterUserId" Type="int" />
-          <Property Name="Show" Type="bit" Nullable="false" />
-        </EntityType>
-        <EntityType Name="SystemParameter_News">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="SGuid" Type="uniqueidentifier" />
-          <Property Name="DisplayValue" Type="nvarchar" MaxLength="50" />
-          <Property Name="LookupKey" Type="int" />
-          <Property Name="LookupKeyGuid" Type="uniqueidentifier" />
-          <Property Name="IsCurrent" Type="bit" />
-          <Property Name="IsDeleted" Type="bit" Nullable="false" />
-          <Property Name="Show" Type="bit" />
-          <Property Name="DisplayValueDesc" Type="nvarchar(max)" />
-          <Property Name="LookupKeyDesc" Type="int" />
-          <Property Name="LookupKeyGuidDesc" Type="uniqueidentifier" />
-          <Property Name="Image" Type="nvarchar" MaxLength="100" />
-          <Property Name="LastModificationTime" Type="datetime" />
-          <Property Name="LastModifierUserId" Type="int" />
-          <Property Name="CreationTime" Type="datetime" />
-          <Property Name="CreatorUserId" Type="int" />
-          <Property Name="DeletionTime" Type="datetime" />
-          <Property Name="DeleterUserId" Type="int" />
-        </EntityType>
-        <EntityType Name="SystemParameter_PaymentType">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="SGuid" Type="uniqueidentifier" />
-          <Property Name="DisplayValue" Type="nvarchar" MaxLength="50" />
-          <Property Name="LookupKey" Type="int" />
-          <Property Name="LookupKeyGuid" Type="uniqueidentifier" />
-          <Property Name="IsCurrent" Type="bit" />
-          <Property Name="IsDeleted" Type="bit" Nullable="false" />
-          <Property Name="Icon" Type="nvarchar" MaxLength="50" />
-          <Property Name="LastModificationTime" Type="datetime" />
-          <Property Name="LastModifierUserId" Type="int" />
-          <Property Name="CreationTime" Type="datetime" />
-          <Property Name="CreatorUserId" Type="int" />
-          <Property Name="DeletionTime" Type="datetime" />
-          <Property Name="DeleterUserId" Type="int" />
-          <Property Name="Show" Type="bit" Nullable="false" />
-        </EntityType>
         <EntityType Name="Systemparameters_Languages">
           <Key>
             <PropertyRef Name="Id" />
@@ -379,7 +427,7 @@
           <Property Name="DisplayFront" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters_LanguageText' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters.LanguageText' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="SystemParameters_LanguageText">
           <Key>
             <PropertyRef Name="Id" />
@@ -393,6 +441,85 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters_LanguageTex
           <Property Name="Show" Type="bit" />
           <Property Name="Value" Type="nchar" MaxLength="10" />
         </EntityType>
+        <EntityType Name="SystemParameters_News">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SGuid" Type="uniqueidentifier" />
+          <Property Name="DisplayValue" Type="nvarchar" MaxLength="50" />
+          <Property Name="LookupKey" Type="int" />
+          <Property Name="LookupKeyGuid" Type="uniqueidentifier" />
+          <Property Name="IsCurrent" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Show" Type="bit" />
+          <Property Name="DisplayValueDesc" Type="nvarchar(max)" />
+          <Property Name="LookupKeyDesc" Type="int" />
+          <Property Name="LookupKeyGuidDesc" Type="uniqueidentifier" />
+          <Property Name="Image" Type="nvarchar" MaxLength="100" />
+          <Property Name="LastModificationTime" Type="datetime" />
+          <Property Name="LastModifierUserId" Type="int" />
+          <Property Name="CreationTime" Type="datetime" />
+          <Property Name="CreatorUserId" Type="int" />
+          <Property Name="DeletionTime" Type="datetime" />
+          <Property Name="DeleterUserId" Type="int" />
+          <Property Name="Tags" Type="nvarchar(max)" />
+          <Property Name="CategoryId" Type="int" />
+        </EntityType>
+        <EntityType Name="SystemParameters_Newsletter">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Mail" Type="nvarchar" MaxLength="150" />
+          <Property Name="CreationTime" Type="datetime" />
+          <Property Name="SeenDate" Type="datetime" />
+          <Property Name="SeenBy" Type="int" />
+        </EntityType>
+        <EntityType Name="SystemParameters_Owners">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DisplayValueName" Type="nvarchar(max)" />
+          <Property Name="LookupKeyName" Type="int" />
+          <Property Name="LookupKeyGuidName" Type="uniqueidentifier" />
+          <Property Name="DisplayValuePosition" Type="nvarchar(max)" />
+          <Property Name="LookupKeyPosition" Type="int" />
+          <Property Name="LookupKeyGuidPosition" Type="uniqueidentifier" />
+          <Property Name="DisplayValueDesc" Type="nvarchar(max)" />
+          <Property Name="LookupKeyDesc" Type="int" />
+          <Property Name="LookupKeyGuidDesc" Type="uniqueidentifier" />
+          <Property Name="Image" Type="nvarchar" MaxLength="150" />
+          <Property Name="CreationTime" Type="datetime" />
+          <Property Name="CreatorUserId" Type="int" />
+          <Property Name="LastModificationTime" Type="datetime" />
+          <Property Name="LastModifierUserId" Type="int" />
+          <Property Name="DeletionTime" Type="datetime" />
+          <Property Name="DeleterUserId" Type="int" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Show" Type="bit" />
+        </EntityType>
+        <EntityType Name="SystemParameters_PaymentType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SGuid" Type="uniqueidentifier" />
+          <Property Name="DisplayValue" Type="nvarchar" MaxLength="50" />
+          <Property Name="LookupKey" Type="int" />
+          <Property Name="LookupKeyGuid" Type="uniqueidentifier" />
+          <Property Name="IsCurrent" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Icon" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModificationTime" Type="datetime" />
+          <Property Name="LastModifierUserId" Type="int" />
+          <Property Name="CreationTime" Type="datetime" />
+          <Property Name="CreatorUserId" Type="int" />
+          <Property Name="DeletionTime" Type="datetime" />
+          <Property Name="DeleterUserId" Type="int" />
+          <Property Name="Show" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityContainer Name="GMG_Portal_DBModelStoreContainer">
           <EntitySet Name="Front_Mission" EntityType="Self.Front_Mission" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Front_Vision" EntityType="Self.Front_Vision" Schema="dbo" store:Type="Tables" />
@@ -403,16 +530,22 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters_LanguageTex
           <EntitySet Name="Hotels_Hotel_Payments" EntityType="Self.Hotels_Hotel_Payments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Hotels_Hotel_Phones" EntityType="Self.Hotels_Hotel_Phones" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Hotels_Hotel_Videos" EntityType="Self.Hotels_Hotel_Videos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hotels_Reservation" EntityType="Self.Hotels_Reservation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Hotles_Hotel_Offers" EntityType="Self.Hotles_Hotel_Offers" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SystemParamater_HomeSlider" EntityType="Self.SystemParamater_HomeSlider" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SystemParameter_About" EntityType="Self.SystemParameter_About" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SystemParameter_Cities" EntityType="Self.SystemParameter_Cities" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SystemParameter_Countries" EntityType="Self.SystemParameter_Countries" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SystemParameter_Departments" EntityType="Self.SystemParameter_Departments" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SystemParameter_News" EntityType="Self.SystemParameter_News" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SystemParameter_PaymentType" EntityType="Self.SystemParameter_PaymentType" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Systemparameters_Languages" EntityType="Self.Systemparameters_Languages" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SystemParameters_LanguageText" EntityType="Self.SystemParameters_LanguageText" store:Type="Tables" store:Schema="dbo">
+          <EntitySet Name="SystemParameters_About" EntityType="Self.SystemParameters_About" Schema="dbo" Table="SystemParameters.About" store:Type="Tables" />
+          <EntitySet Name="SystemParameters_Category" EntityType="Self.SystemParameters_Category" Schema="dbo" Table="SystemParameters.Category" store:Type="Tables" />
+          <EntitySet Name="SystemParameters_Cities" EntityType="Self.SystemParameters_Cities" Schema="dbo" Table="SystemParameters.Cities" store:Type="Tables" />
+          <EntitySet Name="SystemParameters_ContactForm" EntityType="Self.SystemParameters_ContactForm" Schema="dbo" Table="SystemParameters.ContactForm" store:Type="Tables" />
+          <EntitySet Name="SystemParameters_ContactUs" EntityType="Self.SystemParameters_ContactUs" Schema="dbo" Table="SystemParameters.ContactUs" store:Type="Tables" />
+          <EntitySet Name="SystemParameters_Countries" EntityType="Self.SystemParameters_Countries" Schema="dbo" Table="SystemParameters.Countries" store:Type="Tables" />
+          <EntitySet Name="SystemParameters_Departments" EntityType="Self.SystemParameters_Departments" Schema="dbo" Table="SystemParameters.Departments" store:Type="Tables" />
+          <EntitySet Name="SystemParameters_HomeSlider" EntityType="Self.SystemParameters_HomeSlider" Schema="dbo" Table="SystemParameters.HomeSlider" store:Type="Tables" />
+          <EntitySet Name="Systemparameters_Languages" EntityType="Self.Systemparameters_Languages" Schema="dbo" Table="Systemparameters.Languages" store:Type="Tables" />
+          <EntitySet Name="SystemParameters_News" EntityType="Self.SystemParameters_News" Schema="dbo" Table="SystemParameters.News" store:Type="Tables" />
+          <EntitySet Name="SystemParameters_Newsletter" EntityType="Self.SystemParameters_Newsletter" Schema="dbo" Table="SystemParameters.Newsletter" store:Type="Tables" />
+          <EntitySet Name="SystemParameters_Owners" EntityType="Self.SystemParameters_Owners" Schema="dbo" Table="SystemParameters.Owners" store:Type="Tables" />
+          <EntitySet Name="SystemParameters_PaymentType" EntityType="Self.SystemParameters_PaymentType" Schema="dbo" Table="SystemParameters.PaymentType" store:Type="Tables" />
+          <EntitySet Name="SystemParameters_LanguageText" EntityType="Self.SystemParameters_LanguageText" store:Type="Tables" store:Schema="dbo" store:Name="SystemParameters.LanguageText">
             <DefiningQuery>SELECT 
     [SystemParameters_LanguageText].[Id] AS [Id], 
     [SystemParameters_LanguageText].[SGuid] AS [SGuid], 
@@ -421,7 +554,7 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters_LanguageTex
     [SystemParameters_LanguageText].[IsDeleted] AS [IsDeleted], 
     [SystemParameters_LanguageText].[Show] AS [Show], 
     [SystemParameters_LanguageText].[Value] AS [Value]
-    FROM [dbo].[SystemParameters_LanguageText] AS [SystemParameters_LanguageText]</DefiningQuery>
+    FROM [dbo].[SystemParameters.LanguageText] AS [SystemParameters_LanguageText]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -429,223 +562,32 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters_LanguageTex
     <edmx:ConceptualModels>
       <Schema Namespace="GMG_Portal_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="GMG_Portal_DBEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Front_Mission" EntityType="GMG_Portal_DBModel.Front_Mission" />
+          <EntitySet Name="Front_Vision" EntityType="GMG_Portal_DBModel.Front_Vision" />
+          <EntitySet Name="Hotels" EntityType="GMG_Portal_DBModel.Hotel" />
+          <EntitySet Name="Hotels_Features" EntityType="GMG_Portal_DBModel.Hotels_Features" />
           <EntitySet Name="Hotels_Hotel_Features" EntityType="GMG_Portal_DBModel.Hotels_Hotel_Features" />
+          <EntitySet Name="Hotels_Hotel_Images" EntityType="GMG_Portal_DBModel.Hotels_Hotel_Images" />
           <EntitySet Name="Hotels_Hotel_Payments" EntityType="GMG_Portal_DBModel.Hotels_Hotel_Payments" />
           <EntitySet Name="Hotels_Hotel_Phones" EntityType="GMG_Portal_DBModel.Hotels_Hotel_Phones" />
           <EntitySet Name="Hotels_Hotel_Videos" EntityType="GMG_Portal_DBModel.Hotels_Hotel_Videos" />
+          <EntitySet Name="Hotels_Reservation" EntityType="GMG_Portal_DBModel.Hotels_Reservation" />
           <EntitySet Name="Hotles_Hotel_Offers" EntityType="GMG_Portal_DBModel.Hotles_Hotel_Offers" />
-          <EntitySet Name="SystemParameter_Cities" EntityType="GMG_Portal_DBModel.SystemParameter_Cities" />
-          <EntitySet Name="SystemParameter_Countries" EntityType="GMG_Portal_DBModel.SystemParameter_Countries" />
-          <EntitySet Name="SystemParameter_Departments" EntityType="GMG_Portal_DBModel.SystemParameter_Departments" />
-          <EntitySet Name="SystemParameter_PaymentType" EntityType="GMG_Portal_DBModel.SystemParameter_PaymentType" />
-          <EntitySet Name="SystemParameters_LanguageText" EntityType="GMG_Portal_DBModel.SystemParameters_LanguageText" />
+          <EntitySet Name="SystemParameters_About" EntityType="GMG_Portal_DBModel.SystemParameters_About" />
+          <EntitySet Name="SystemParameters_Category" EntityType="GMG_Portal_DBModel.SystemParameters_Category" />
+          <EntitySet Name="SystemParameters_Cities" EntityType="GMG_Portal_DBModel.SystemParameters_Cities" />
+          <EntitySet Name="SystemParameters_ContactForm" EntityType="GMG_Portal_DBModel.SystemParameters_ContactForm" />
+          <EntitySet Name="SystemParameters_ContactUs" EntityType="GMG_Portal_DBModel.SystemParameters_ContactUs" />
+          <EntitySet Name="SystemParameters_Countries" EntityType="GMG_Portal_DBModel.SystemParameters_Countries" />
+          <EntitySet Name="SystemParameters_Departments" EntityType="GMG_Portal_DBModel.SystemParameters_Departments" />
+          <EntitySet Name="SystemParameters_HomeSlider" EntityType="GMG_Portal_DBModel.SystemParameters_HomeSlider" />
           <EntitySet Name="Systemparameters_Languages" EntityType="GMG_Portal_DBModel.Systemparameters_Languages" />
-          <EntitySet Name="Front_Mission" EntityType="GMG_Portal_DBModel.Front_Mission" />
-          <EntitySet Name="Front_Vision" EntityType="GMG_Portal_DBModel.Front_Vision" />
-          <EntitySet Name="SystemParamater_HomeSlider" EntityType="GMG_Portal_DBModel.SystemParamater_HomeSlider" />
-          <EntitySet Name="Hotels_Features" EntityType="GMG_Portal_DBModel.Hotels_Features" />
-          <EntitySet Name="SystemParameter_About" EntityType="GMG_Portal_DBModel.SystemParameter_About" />
-          <EntitySet Name="SystemParameter_News" EntityType="GMG_Portal_DBModel.SystemParameter_News" />
-          <EntitySet Name="Hotels" EntityType="GMG_Portal_DBModel.Hotel" />
-          <EntitySet Name="Hotels_Hotel_Images" EntityType="GMG_Portal_DBModel.Hotels_Hotel_Images" />
+          <EntitySet Name="SystemParameters_News" EntityType="GMG_Portal_DBModel.SystemParameters_News" />
+          <EntitySet Name="SystemParameters_Newsletter" EntityType="GMG_Portal_DBModel.SystemParameters_Newsletter" />
+          <EntitySet Name="SystemParameters_Owners" EntityType="GMG_Portal_DBModel.SystemParameters_Owners" />
+          <EntitySet Name="SystemParameters_PaymentType" EntityType="GMG_Portal_DBModel.SystemParameters_PaymentType" />
+          <EntitySet Name="SystemParameters_LanguageText" EntityType="GMG_Portal_DBModel.SystemParameters_LanguageText" />
         </EntityContainer>
-        <EntityType Name="Hotels_Hotel_Features">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Hotel_Id" Type="Int32" />
-          <Property Name="Feature_Id" Type="Int32" />
-          <Property Name="SGuid" Type="Guid" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Hotels_Hotel_Payments">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SGuid" Type="Guid" />
-          <Property Name="Hotel_Id" Type="Int32" />
-          <Property Name="payment_Id" Type="Int32" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="LastModificationTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="LastModifierUserId" Type="Int32" />
-          <Property Name="CreationTime" Type="DateTime" Precision="3" />
-          <Property Name="CreatorUserId" Type="Int32" />
-          <Property Name="DeletionTime" Type="DateTime" Precision="3" />
-          <Property Name="DeleterUserId" Type="Int32" />
-          <Property Name="Show" Type="Boolean" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Hotels_Hotel_Phones">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SGuid" Type="Guid" />
-          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Hotel_Id" Type="Int32" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="LastModificationTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="LastModifierUserId" Type="Int32" />
-          <Property Name="CreationTime" Type="DateTime" Precision="3" />
-          <Property Name="CreatorUserId" Type="Int32" />
-          <Property Name="DeletionTime" Type="DateTime" Precision="3" />
-          <Property Name="DeleterUserId" Type="Int32" />
-          <Property Name="Show" Type="Boolean" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Hotels_Hotel_Videos">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SGuid" Type="Guid" />
-          <Property Name="Video" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Hotel_Id" Type="Int32" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="LastModificationTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="LastModifierUserId" Type="Int32" />
-          <Property Name="CreationTime" Type="DateTime" Precision="3" />
-          <Property Name="CreatorUserId" Type="Int32" />
-          <Property Name="DeletionTime" Type="DateTime" Precision="3" />
-          <Property Name="DeleterUserId" Type="Int32" />
-          <Property Name="Show" Type="Boolean" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Hotles_Hotel_Offers">
-          <Key>
-            <PropertyRef Name="ksa" />
-          </Key>
-          <Property Name="ksa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SGuid" Type="Guid" />
-          <Property Name="Hotel_Id" Type="Int32" />
-          <Property Name="DisplayValue" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="LookupKey" Type="Int32" />
-          <Property Name="LookupKeyGuid" Type="Guid" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="DisplayValueDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="LookupKeyDesc" Type="Int32" />
-          <Property Name="LookupKeyGuidDesc" Type="Guid" />
-          <Property Name="Price" Type="Int32" />
-          <Property Name="Discount" Type="Int32" />
-          <Property Name="StartDate" Type="DateTime" Precision="3" />
-          <Property Name="EndDate" Type="DateTime" Precision="3" />
-          <Property Name="Show" Type="Boolean" />
-          <Property Name="LastModificationTime" Type="DateTime" Precision="3" />
-          <Property Name="LastModifierUserId" Type="Int32" />
-          <Property Name="CreationTime" Type="DateTime" Precision="3" />
-          <Property Name="CreatorUserId" Type="Int32" />
-          <Property Name="DeletionTime" Type="DateTime" Precision="3" />
-          <Property Name="DeleterUserId" Type="Int32" />
-        </EntityType>
-        <EntityType Name="SystemParameter_Cities">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SGuid" Type="Guid" />
-          <Property Name="DisplayValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="LookupKey" Type="Int32" />
-          <Property Name="LookupKeyGuid" Type="Guid" />
-          <Property Name="IsCurrent" Type="Boolean" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="LastModificationTime" Type="DateTime" Precision="3" />
-          <Property Name="LastModifierUserId" Type="Int32" />
-          <Property Name="CreationTime" Type="DateTime" Precision="3" />
-          <Property Name="CreatorUserId" Type="Int32" />
-          <Property Name="DeletionTime" Type="DateTime" Precision="3" />
-          <Property Name="DeleterUserId" Type="Int32" />
-          <Property Name="Show" Type="Boolean" Nullable="false" />
-          <Property Name="CountryID" Type="Int32" />
-        </EntityType>
-        <EntityType Name="SystemParameter_Countries">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SGuid" Type="Guid" />
-          <Property Name="DisplayValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="LookupKey" Type="Int32" />
-          <Property Name="LookupKeyGuid" Type="Guid" />
-          <Property Name="IsCurrent" Type="Boolean" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="LastModificationTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="LastModifierUserId" Type="Int32" />
-          <Property Name="CreationTime" Type="DateTime" Precision="3" />
-          <Property Name="CreatorUserId" Type="Int32" />
-          <Property Name="DeletionTime" Type="DateTime" Precision="3" />
-          <Property Name="DeleterUserId" Type="Int32" />
-          <Property Name="Show" Type="Boolean" Nullable="false" />
-        </EntityType>
-        <EntityType Name="SystemParameter_Departments">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SGuid" Type="Guid" />
-          <Property Name="DisplayValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="LookupKey" Type="Int32" />
-          <Property Name="LookupKeyGuid" Type="Guid" />
-          <Property Name="IsCurrent" Type="Boolean" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="LastModificationTime" Type="DateTime" Precision="3" />
-          <Property Name="LastModifierUserId" Type="Int32" />
-          <Property Name="CreationTime" Type="DateTime" Precision="3" />
-          <Property Name="CreatorUserId" Type="Int32" />
-          <Property Name="DeletionTime" Type="DateTime" Precision="3" />
-          <Property Name="DeleterUserId" Type="Int32" />
-          <Property Name="Show" Type="Boolean" Nullable="false" />
-        </EntityType>
-        <EntityType Name="SystemParameter_PaymentType">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SGuid" Type="Guid" />
-          <Property Name="DisplayValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="LookupKey" Type="Int32" />
-          <Property Name="LookupKeyGuid" Type="Guid" />
-          <Property Name="IsCurrent" Type="Boolean" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="Icon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="LastModificationTime" Type="DateTime" Precision="3" />
-          <Property Name="LastModifierUserId" Type="Int32" />
-          <Property Name="CreationTime" Type="DateTime" Precision="3" />
-          <Property Name="CreatorUserId" Type="Int32" />
-          <Property Name="DeletionTime" Type="DateTime" Precision="3" />
-          <Property Name="DeleterUserId" Type="Int32" />
-          <Property Name="Show" Type="Boolean" Nullable="false" />
-        </EntityType>
-        <EntityType Name="SystemParameters_LanguageText">
-          <Key>
-            <PropertyRef Name="Id" />
-            <PropertyRef Name="IsDeleted" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="SGuid" Type="Guid" />
-          <Property Name="LanguageKey" Type="Int32" />
-          <Property Name="LanguageName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="Show" Type="Boolean" />
-          <Property Name="Value" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Systemparameters_Languages">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SGuid" Type="Guid" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="Show" Type="Boolean" />
-          <Property Name="DisplayName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Icon" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="LastModificationTime" Type="DateTime" Precision="3" />
-          <Property Name="LastModifierUserId" Type="Int32" />
-          <Property Name="CreationTime" Type="DateTime" Precision="3" />
-          <Property Name="CreatorUserId" Type="Int32" />
-          <Property Name="DeletionTime" Type="DateTime" Precision="3" />
-          <Property Name="DeleterUserId" Type="Int32" />
-          <Property Name="DisplayFront" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="Front_Mission">
           <Key>
             <PropertyRef Name="Id" />
@@ -670,98 +612,6 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters_LanguageTex
           <Property Name="DeleterUserId" Type="Int32" />
         </EntityType>
         <EntityType Name="Front_Vision">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SGuid" Type="Guid" />
-          <Property Name="DisplayValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="LookupKey" Type="Int32" />
-          <Property Name="LookupKeyGuid" Type="Guid" />
-          <Property Name="IsCurrent" Type="Boolean" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="Show" Type="Boolean" />
-          <Property Name="DisplayValueDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="LookupKeyDesc" Type="Int32" />
-          <Property Name="LookupKeyGuidDesc" Type="Guid" />
-          <Property Name="Image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="LastModificationTime" Type="DateTime" Precision="3" />
-          <Property Name="LastModifierUserId" Type="Int32" />
-          <Property Name="CreationTime" Type="DateTime" Precision="3" />
-          <Property Name="CreatorUserId" Type="Int32" />
-          <Property Name="DeletionTime" Type="DateTime" Precision="3" />
-          <Property Name="DeleterUserId" Type="Int32" />
-        </EntityType>
-        <EntityType Name="SystemParamater_HomeSlider">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SGuid" Type="Guid" />
-          <Property Name="DisplayValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="LookupKey" Type="Int32" />
-          <Property Name="LookupKeyGuid" Type="Guid" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="Show" Type="Boolean" />
-          <Property Name="DisplayValueDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="LookupKeyDesc" Type="Int32" />
-          <Property Name="LookupKeyGuidDesc" Type="Guid" />
-          <Property Name="Image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Rating" Type="Int32" />
-          <Property Name="URL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="LastModificationTime" Type="DateTime" Precision="3" />
-          <Property Name="LastModifierUserId" Type="Int32" />
-          <Property Name="CreationTime" Type="DateTime" Precision="3" />
-          <Property Name="CreatorUserId" Type="Int32" />
-          <Property Name="DeletionTime" Type="DateTime" Precision="3" />
-          <Property Name="DeleterUserId" Type="Int32" />
-        </EntityType>
-        <EntityType Name="Hotels_Features">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SGuid" Type="Guid" />
-          <Property Name="DisplayValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="LookupKey" Type="Int32" />
-          <Property Name="LookupKeyGuid" Type="Guid" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="Icon" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="DisplayValueDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="LookupKeyDesc" Type="Int32" />
-          <Property Name="LookupKeyGuidDesc" Type="Guid" />
-          <Property Name="LastModificationTime" Type="DateTime" Precision="3" />
-          <Property Name="LastModifierUserId" Type="Int32" />
-          <Property Name="CreationTime" Type="DateTime" Precision="3" />
-          <Property Name="CreatorUserId" Type="Int32" />
-          <Property Name="DeletionTime" Type="DateTime" Precision="3" />
-          <Property Name="DeleterUserId" Type="Int32" />
-          <Property Name="Show" Type="Boolean" Nullable="false" />
-        </EntityType>
-        <EntityType Name="SystemParameter_About">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SGuid" Type="Guid" />
-          <Property Name="DisplayValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="LookupKey" Type="Int32" />
-          <Property Name="LookupKeyGuid" Type="Guid" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="Show" Type="Boolean" />
-          <Property Name="DisplayValueDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="LookupKeyDesc" Type="Int32" />
-          <Property Name="LookupKeyGuidDesc" Type="Guid" />
-          <Property Name="Image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Url" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="LastModificationTime" Type="DateTime" Precision="3" />
-          <Property Name="LastModifierUserId" Type="Int32" />
-          <Property Name="CreationTime" Type="DateTime" Precision="3" />
-          <Property Name="CreatorUserId" Type="Int32" />
-          <Property Name="DeletionTime" Type="DateTime" Precision="3" />
-          <Property Name="DeleterUserId" Type="Int32" />
-        </EntityType>
-        <EntityType Name="SystemParameter_News">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -818,6 +668,38 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters_LanguageTex
           <Property Name="DeleterUserId" Type="Int32" />
           <Property Name="Show" Type="Boolean" Nullable="false" />
         </EntityType>
+        <EntityType Name="Hotels_Features">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SGuid" Type="Guid" />
+          <Property Name="DisplayValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LookupKey" Type="Int32" />
+          <Property Name="LookupKeyGuid" Type="Guid" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Icon" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DisplayValueDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LookupKeyDesc" Type="Int32" />
+          <Property Name="LookupKeyGuidDesc" Type="Guid" />
+          <Property Name="LastModificationTime" Type="DateTime" Precision="3" />
+          <Property Name="LastModifierUserId" Type="Int32" />
+          <Property Name="CreationTime" Type="DateTime" Precision="3" />
+          <Property Name="CreatorUserId" Type="Int32" />
+          <Property Name="DeletionTime" Type="DateTime" Precision="3" />
+          <Property Name="DeleterUserId" Type="Int32" />
+          <Property Name="Show" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Hotels_Hotel_Features">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Hotel_Id" Type="Int32" />
+          <Property Name="Feature_Id" Type="Int32" />
+          <Property Name="SGuid" Type="Guid" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+        </EntityType>
         <EntityType Name="Hotels_Hotel_Images">
           <Key>
             <PropertyRef Name="Id" />
@@ -835,12 +717,502 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters_LanguageTex
           <Property Name="DeleterUserId" Type="Int32" />
           <Property Name="Show" Type="Boolean" Nullable="false" />
         </EntityType>
+        <EntityType Name="Hotels_Hotel_Payments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SGuid" Type="Guid" />
+          <Property Name="Hotel_Id" Type="Int32" />
+          <Property Name="payment_Id" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="LastModificationTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModifierUserId" Type="Int32" />
+          <Property Name="CreationTime" Type="DateTime" Precision="3" />
+          <Property Name="CreatorUserId" Type="Int32" />
+          <Property Name="DeletionTime" Type="DateTime" Precision="3" />
+          <Property Name="DeleterUserId" Type="Int32" />
+          <Property Name="Show" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Hotels_Hotel_Phones">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SGuid" Type="Guid" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Hotel_Id" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="LastModificationTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModifierUserId" Type="Int32" />
+          <Property Name="CreationTime" Type="DateTime" Precision="3" />
+          <Property Name="CreatorUserId" Type="Int32" />
+          <Property Name="DeletionTime" Type="DateTime" Precision="3" />
+          <Property Name="DeleterUserId" Type="Int32" />
+          <Property Name="Show" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Hotels_Hotel_Videos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SGuid" Type="Guid" />
+          <Property Name="Video" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Hotel_Id" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="LastModificationTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModifierUserId" Type="Int32" />
+          <Property Name="CreationTime" Type="DateTime" Precision="3" />
+          <Property Name="CreatorUserId" Type="Int32" />
+          <Property Name="DeletionTime" Type="DateTime" Precision="3" />
+          <Property Name="DeleterUserId" Type="Int32" />
+          <Property Name="Show" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Hotels_Reservation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="Int32" />
+          <Property Name="CheckIn" Type="DateTime" Precision="3" />
+          <Property Name="CheckOut" Type="DateTime" Precision="3" />
+          <Property Name="Adult" Type="Int32" />
+          <Property Name="Child" Type="Int32" />
+          <Property Name="HotelId" Type="Int32" />
+          <Property Name="CountryId" Type="Int32" />
+          <Property Name="SeenDate" Type="DateTime" Precision="3" />
+          <Property Name="SeenBy" Type="Int32" />
+          <Property Name="CreationTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Hotles_Hotel_Offers">
+          <Key>
+            <PropertyRef Name="ksa" />
+          </Key>
+          <Property Name="ksa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SGuid" Type="Guid" />
+          <Property Name="Hotel_Id" Type="Int32" />
+          <Property Name="DisplayValue" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LookupKey" Type="Int32" />
+          <Property Name="LookupKeyGuid" Type="Guid" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="DisplayValueDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LookupKeyDesc" Type="Int32" />
+          <Property Name="LookupKeyGuidDesc" Type="Guid" />
+          <Property Name="Price" Type="Int32" />
+          <Property Name="Discount" Type="Int32" />
+          <Property Name="StartDate" Type="DateTime" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="Show" Type="Boolean" />
+          <Property Name="LastModificationTime" Type="DateTime" Precision="3" />
+          <Property Name="LastModifierUserId" Type="Int32" />
+          <Property Name="CreationTime" Type="DateTime" Precision="3" />
+          <Property Name="CreatorUserId" Type="Int32" />
+          <Property Name="DeletionTime" Type="DateTime" Precision="3" />
+          <Property Name="DeleterUserId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SystemParameters_About">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SGuid" Type="Guid" />
+          <Property Name="DisplayValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LookupKey" Type="Int32" />
+          <Property Name="LookupKeyGuid" Type="Guid" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Show" Type="Boolean" />
+          <Property Name="DisplayValueDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LookupKeyDesc" Type="Int32" />
+          <Property Name="LookupKeyGuidDesc" Type="Guid" />
+          <Property Name="Image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Url" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LastModificationTime" Type="DateTime" Precision="3" />
+          <Property Name="LastModifierUserId" Type="Int32" />
+          <Property Name="CreationTime" Type="DateTime" Precision="3" />
+          <Property Name="CreatorUserId" Type="Int32" />
+          <Property Name="DeletionTime" Type="DateTime" Precision="3" />
+          <Property Name="DeleterUserId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SystemParameters_Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SGuid" Type="Guid" />
+          <Property Name="DisplayValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LookupKey" Type="Int32" />
+          <Property Name="LookupKeyGuid" Type="Guid" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Show" Type="Boolean" />
+          <Property Name="DisplayValueDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LookupKeyDesc" Type="Int32" />
+          <Property Name="LookupKeyGuidDesc" Type="Guid" />
+          <Property Name="Image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LastModificationTime" Type="DateTime" Precision="3" />
+          <Property Name="LastModifierUserId" Type="Int32" />
+          <Property Name="CreationTime" Type="DateTime" Precision="3" />
+          <Property Name="CreatorUserId" Type="Int32" />
+          <Property Name="DeletionTime" Type="DateTime" Precision="3" />
+          <Property Name="DeleterUserId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SystemParameters_Cities">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SGuid" Type="Guid" />
+          <Property Name="DisplayValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LookupKey" Type="Int32" />
+          <Property Name="LookupKeyGuid" Type="Guid" />
+          <Property Name="IsCurrent" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="LastModificationTime" Type="DateTime" Precision="3" />
+          <Property Name="LastModifierUserId" Type="Int32" />
+          <Property Name="CreationTime" Type="DateTime" Precision="3" />
+          <Property Name="CreatorUserId" Type="Int32" />
+          <Property Name="DeletionTime" Type="DateTime" Precision="3" />
+          <Property Name="DeleterUserId" Type="Int32" />
+          <Property Name="Show" Type="Boolean" Nullable="false" />
+          <Property Name="CountryID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SystemParameters_ContactForm">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="LastNamr" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreationTime" Type="DateTime" Precision="3" />
+          <Property Name="SeenDate" Type="DateTime" Precision="3" />
+          <Property Name="SeenBy" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SystemParameters_ContactUs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SGuid" Type="Guid" />
+          <Property Name="DisplayValueAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LookupKeyAddress" Type="Int32" />
+          <Property Name="LookupKeyGuidAddress" Type="Guid" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Show" Type="Boolean" />
+          <Property Name="DisplayValueDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LookupKeyDesc" Type="Int32" />
+          <Property Name="LookupKeyGuidDesc" Type="Guid" />
+          <Property Name="Image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Url" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Facebook" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Twitter" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Instgram" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Youtube" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Snapchat" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WhatsApp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNo1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNo2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PostalCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mailbox" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Late" Type="Double" />
+          <Property Name="Long" Type="Double" />
+          <Property Name="LastModificationTime" Type="DateTime" Precision="3" />
+          <Property Name="LastModifierUserId" Type="Int32" />
+          <Property Name="CreationTime" Type="DateTime" Precision="3" />
+          <Property Name="CreatorUserId" Type="Int32" />
+          <Property Name="DeletionTime" Type="DateTime" Precision="3" />
+          <Property Name="DeleterUserId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SystemParameters_Countries">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SGuid" Type="Guid" />
+          <Property Name="DisplayValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LookupKey" Type="Int32" />
+          <Property Name="LookupKeyGuid" Type="Guid" />
+          <Property Name="IsCurrent" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="LastModificationTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModifierUserId" Type="Int32" />
+          <Property Name="CreationTime" Type="DateTime" Precision="3" />
+          <Property Name="CreatorUserId" Type="Int32" />
+          <Property Name="DeletionTime" Type="DateTime" Precision="3" />
+          <Property Name="DeleterUserId" Type="Int32" />
+          <Property Name="Show" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SystemParameters_Departments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SGuid" Type="Guid" />
+          <Property Name="DisplayValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LookupKey" Type="Int32" />
+          <Property Name="LookupKeyGuid" Type="Guid" />
+          <Property Name="IsCurrent" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="LastModificationTime" Type="DateTime" Precision="3" />
+          <Property Name="LastModifierUserId" Type="Int32" />
+          <Property Name="CreationTime" Type="DateTime" Precision="3" />
+          <Property Name="CreatorUserId" Type="Int32" />
+          <Property Name="DeletionTime" Type="DateTime" Precision="3" />
+          <Property Name="DeleterUserId" Type="Int32" />
+          <Property Name="Show" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SystemParameters_HomeSlider">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SGuid" Type="Guid" />
+          <Property Name="DisplayValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LookupKey" Type="Int32" />
+          <Property Name="LookupKeyGuid" Type="Guid" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Show" Type="Boolean" />
+          <Property Name="DisplayValueDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LookupKeyDesc" Type="Int32" />
+          <Property Name="LookupKeyGuidDesc" Type="Guid" />
+          <Property Name="Image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Rating" Type="Int32" />
+          <Property Name="URL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastModificationTime" Type="DateTime" Precision="3" />
+          <Property Name="LastModifierUserId" Type="Int32" />
+          <Property Name="CreationTime" Type="DateTime" Precision="3" />
+          <Property Name="CreatorUserId" Type="Int32" />
+          <Property Name="DeletionTime" Type="DateTime" Precision="3" />
+          <Property Name="DeleterUserId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Systemparameters_Languages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SGuid" Type="Guid" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Show" Type="Boolean" />
+          <Property Name="DisplayName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Icon" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="LastModificationTime" Type="DateTime" Precision="3" />
+          <Property Name="LastModifierUserId" Type="Int32" />
+          <Property Name="CreationTime" Type="DateTime" Precision="3" />
+          <Property Name="CreatorUserId" Type="Int32" />
+          <Property Name="DeletionTime" Type="DateTime" Precision="3" />
+          <Property Name="DeleterUserId" Type="Int32" />
+          <Property Name="DisplayFront" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SystemParameters_News">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SGuid" Type="Guid" />
+          <Property Name="DisplayValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LookupKey" Type="Int32" />
+          <Property Name="LookupKeyGuid" Type="Guid" />
+          <Property Name="IsCurrent" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Show" Type="Boolean" />
+          <Property Name="DisplayValueDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LookupKeyDesc" Type="Int32" />
+          <Property Name="LookupKeyGuidDesc" Type="Guid" />
+          <Property Name="Image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LastModificationTime" Type="DateTime" Precision="3" />
+          <Property Name="LastModifierUserId" Type="Int32" />
+          <Property Name="CreationTime" Type="DateTime" Precision="3" />
+          <Property Name="CreatorUserId" Type="Int32" />
+          <Property Name="DeletionTime" Type="DateTime" Precision="3" />
+          <Property Name="DeleterUserId" Type="Int32" />
+          <Property Name="Tags" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SystemParameters_Newsletter">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Mail" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="CreationTime" Type="DateTime" Precision="3" />
+          <Property Name="SeenDate" Type="DateTime" Precision="3" />
+          <Property Name="SeenBy" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SystemParameters_Owners">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DisplayValueName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LookupKeyName" Type="Int32" />
+          <Property Name="LookupKeyGuidName" Type="Guid" />
+          <Property Name="DisplayValuePosition" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LookupKeyPosition" Type="Int32" />
+          <Property Name="LookupKeyGuidPosition" Type="Guid" />
+          <Property Name="DisplayValueDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LookupKeyDesc" Type="Int32" />
+          <Property Name="LookupKeyGuidDesc" Type="Guid" />
+          <Property Name="Image" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="CreationTime" Type="DateTime" Precision="3" />
+          <Property Name="CreatorUserId" Type="Int32" />
+          <Property Name="LastModificationTime" Type="DateTime" Precision="3" />
+          <Property Name="LastModifierUserId" Type="Int32" />
+          <Property Name="DeletionTime" Type="DateTime" Precision="3" />
+          <Property Name="DeleterUserId" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Show" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="SystemParameters_PaymentType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SGuid" Type="Guid" />
+          <Property Name="DisplayValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LookupKey" Type="Int32" />
+          <Property Name="LookupKeyGuid" Type="Guid" />
+          <Property Name="IsCurrent" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Icon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastModificationTime" Type="DateTime" Precision="3" />
+          <Property Name="LastModifierUserId" Type="Int32" />
+          <Property Name="CreationTime" Type="DateTime" Precision="3" />
+          <Property Name="CreatorUserId" Type="Int32" />
+          <Property Name="DeletionTime" Type="DateTime" Precision="3" />
+          <Property Name="DeleterUserId" Type="Int32" />
+          <Property Name="Show" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SystemParameters_LanguageText">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="IsDeleted" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="SGuid" Type="Guid" />
+          <Property Name="LanguageKey" Type="Int32" />
+          <Property Name="LanguageName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Show" Type="Boolean" />
+          <Property Name="Value" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="GMG_Portal_DBModelStoreContainer" CdmEntityContainer="GMG_Portal_DBEntities1">
+          <EntitySetMapping Name="Front_Mission">
+            <EntityTypeMapping TypeName="GMG_Portal_DBModel.Front_Mission">
+              <MappingFragment StoreEntitySet="Front_Mission">
+                <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
+                <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
+                <ScalarProperty Name="CreatorUserId" ColumnName="CreatorUserId" />
+                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+                <ScalarProperty Name="LastModifierUserId" ColumnName="LastModifierUserId" />
+                <ScalarProperty Name="LastModificationTime" ColumnName="LastModificationTime" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="LookupKeyGuidDesc" ColumnName="LookupKeyGuidDesc" />
+                <ScalarProperty Name="LookupKeyDesc" ColumnName="LookupKeyDesc" />
+                <ScalarProperty Name="DisplayValueDesc" ColumnName="DisplayValueDesc" />
+                <ScalarProperty Name="Show" ColumnName="Show" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsCurrent" ColumnName="IsCurrent" />
+                <ScalarProperty Name="LookupKeyGuid" ColumnName="LookupKeyGuid" />
+                <ScalarProperty Name="LookupKey" ColumnName="LookupKey" />
+                <ScalarProperty Name="DisplayValue" ColumnName="DisplayValue" />
+                <ScalarProperty Name="SGuid" ColumnName="SGuid" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Front_Vision">
+            <EntityTypeMapping TypeName="GMG_Portal_DBModel.Front_Vision">
+              <MappingFragment StoreEntitySet="Front_Vision">
+                <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
+                <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
+                <ScalarProperty Name="CreatorUserId" ColumnName="CreatorUserId" />
+                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+                <ScalarProperty Name="LastModifierUserId" ColumnName="LastModifierUserId" />
+                <ScalarProperty Name="LastModificationTime" ColumnName="LastModificationTime" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="LookupKeyGuidDesc" ColumnName="LookupKeyGuidDesc" />
+                <ScalarProperty Name="LookupKeyDesc" ColumnName="LookupKeyDesc" />
+                <ScalarProperty Name="DisplayValueDesc" ColumnName="DisplayValueDesc" />
+                <ScalarProperty Name="Show" ColumnName="Show" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsCurrent" ColumnName="IsCurrent" />
+                <ScalarProperty Name="LookupKeyGuid" ColumnName="LookupKeyGuid" />
+                <ScalarProperty Name="LookupKey" ColumnName="LookupKey" />
+                <ScalarProperty Name="DisplayValue" ColumnName="DisplayValue" />
+                <ScalarProperty Name="SGuid" ColumnName="SGuid" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hotels">
+            <EntityTypeMapping TypeName="GMG_Portal_DBModel.Hotel">
+              <MappingFragment StoreEntitySet="Hotels">
+                <ScalarProperty Name="Show" ColumnName="Show" />
+                <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
+                <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
+                <ScalarProperty Name="CreatorUserId" ColumnName="CreatorUserId" />
+                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+                <ScalarProperty Name="LastModifierUserId" ColumnName="LastModifierUserId" />
+                <ScalarProperty Name="LastModificationTime" ColumnName="LastModificationTime" />
+                <ScalarProperty Name="DistanceDownTown" ColumnName="DistanceDownTown" />
+                <ScalarProperty Name="PriceStart" ColumnName="PriceStart" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LookupKeyGuidAddress" ColumnName="LookupKeyGuidAddress" />
+                <ScalarProperty Name="LookupKeyAddress" ColumnName="LookupKeyAddress" />
+                <ScalarProperty Name="DisplayValueAddress" ColumnName="DisplayValueAddress" />
+                <ScalarProperty Name="Long" ColumnName="Long" />
+                <ScalarProperty Name="Late" ColumnName="Late" />
+                <ScalarProperty Name="CheckOut" ColumnName="CheckOut" />
+                <ScalarProperty Name="CheckIn" ColumnName="CheckIn" />
+                <ScalarProperty Name="LookupKeyGuidDesc" ColumnName="LookupKeyGuidDesc" />
+                <ScalarProperty Name="LookupKeyDesc" ColumnName="LookupKeyDesc" />
+                <ScalarProperty Name="DisplayValueDesc" ColumnName="DisplayValueDesc" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsCurrent" ColumnName="IsCurrent" />
+                <ScalarProperty Name="LookupKeyGuid" ColumnName="LookupKeyGuid" />
+                <ScalarProperty Name="LookupKey" ColumnName="LookupKey" />
+                <ScalarProperty Name="DisplayValue" ColumnName="DisplayValue" />
+                <ScalarProperty Name="SGuid" ColumnName="SGuid" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hotels_Features">
+            <EntityTypeMapping TypeName="GMG_Portal_DBModel.Hotels_Features">
+              <MappingFragment StoreEntitySet="Hotels_Features">
+                <ScalarProperty Name="Show" ColumnName="Show" />
+                <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
+                <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
+                <ScalarProperty Name="CreatorUserId" ColumnName="CreatorUserId" />
+                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+                <ScalarProperty Name="LastModifierUserId" ColumnName="LastModifierUserId" />
+                <ScalarProperty Name="LastModificationTime" ColumnName="LastModificationTime" />
+                <ScalarProperty Name="LookupKeyGuidDesc" ColumnName="LookupKeyGuidDesc" />
+                <ScalarProperty Name="LookupKeyDesc" ColumnName="LookupKeyDesc" />
+                <ScalarProperty Name="DisplayValueDesc" ColumnName="DisplayValueDesc" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="LookupKeyGuid" ColumnName="LookupKeyGuid" />
+                <ScalarProperty Name="LookupKey" ColumnName="LookupKey" />
+                <ScalarProperty Name="DisplayValue" ColumnName="DisplayValue" />
+                <ScalarProperty Name="SGuid" ColumnName="SGuid" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Hotels_Hotel_Features">
             <EntityTypeMapping TypeName="GMG_Portal_DBModel.Hotels_Hotel_Features">
               <MappingFragment StoreEntitySet="Hotels_Hotel_Features">
@@ -848,6 +1220,24 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters_LanguageTex
                 <ScalarProperty Name="SGuid" ColumnName="SGuid" />
                 <ScalarProperty Name="Feature_Id" ColumnName="Feature_Id" />
                 <ScalarProperty Name="Hotel_Id" ColumnName="Hotel_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hotels_Hotel_Images">
+            <EntityTypeMapping TypeName="GMG_Portal_DBModel.Hotels_Hotel_Images">
+              <MappingFragment StoreEntitySet="Hotels_Hotel_Images">
+                <ScalarProperty Name="Show" ColumnName="Show" />
+                <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
+                <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
+                <ScalarProperty Name="CreatorUserId" ColumnName="CreatorUserId" />
+                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+                <ScalarProperty Name="LastModifierUserId" ColumnName="LastModifierUserId" />
+                <ScalarProperty Name="LastModificationTime" ColumnName="LastModificationTime" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Hotel_Id" ColumnName="Hotel_Id" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="SGuid" ColumnName="SGuid" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -906,6 +1296,26 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters_LanguageTex
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Hotels_Reservation">
+            <EntityTypeMapping TypeName="GMG_Portal_DBModel.Hotels_Reservation">
+              <MappingFragment StoreEntitySet="Hotels_Reservation">
+                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+                <ScalarProperty Name="SeenBy" ColumnName="SeenBy" />
+                <ScalarProperty Name="SeenDate" ColumnName="SeenDate" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="HotelId" ColumnName="HotelId" />
+                <ScalarProperty Name="Child" ColumnName="Child" />
+                <ScalarProperty Name="Adult" ColumnName="Adult" />
+                <ScalarProperty Name="CheckOut" ColumnName="CheckOut" />
+                <ScalarProperty Name="CheckIn" ColumnName="CheckIn" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Hotles_Hotel_Offers">
             <EntityTypeMapping TypeName="GMG_Portal_DBModel.Hotles_Hotel_Offers">
               <MappingFragment StoreEntitySet="Hotles_Hotel_Offers">
@@ -933,9 +1343,56 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters_LanguageTex
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SystemParameter_Cities">
-            <EntityTypeMapping TypeName="GMG_Portal_DBModel.SystemParameter_Cities">
-              <MappingFragment StoreEntitySet="SystemParameter_Cities">
+          <EntitySetMapping Name="SystemParameters_About">
+            <EntityTypeMapping TypeName="GMG_Portal_DBModel.SystemParameters_About">
+              <MappingFragment StoreEntitySet="SystemParameters_About">
+                <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
+                <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
+                <ScalarProperty Name="CreatorUserId" ColumnName="CreatorUserId" />
+                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+                <ScalarProperty Name="LastModifierUserId" ColumnName="LastModifierUserId" />
+                <ScalarProperty Name="LastModificationTime" ColumnName="LastModificationTime" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="LookupKeyGuidDesc" ColumnName="LookupKeyGuidDesc" />
+                <ScalarProperty Name="LookupKeyDesc" ColumnName="LookupKeyDesc" />
+                <ScalarProperty Name="DisplayValueDesc" ColumnName="DisplayValueDesc" />
+                <ScalarProperty Name="Show" ColumnName="Show" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="LookupKeyGuid" ColumnName="LookupKeyGuid" />
+                <ScalarProperty Name="LookupKey" ColumnName="LookupKey" />
+                <ScalarProperty Name="DisplayValue" ColumnName="DisplayValue" />
+                <ScalarProperty Name="SGuid" ColumnName="SGuid" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SystemParameters_Category">
+            <EntityTypeMapping TypeName="GMG_Portal_DBModel.SystemParameters_Category">
+              <MappingFragment StoreEntitySet="SystemParameters_Category">
+                <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
+                <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
+                <ScalarProperty Name="CreatorUserId" ColumnName="CreatorUserId" />
+                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+                <ScalarProperty Name="LastModifierUserId" ColumnName="LastModifierUserId" />
+                <ScalarProperty Name="LastModificationTime" ColumnName="LastModificationTime" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="LookupKeyGuidDesc" ColumnName="LookupKeyGuidDesc" />
+                <ScalarProperty Name="LookupKeyDesc" ColumnName="LookupKeyDesc" />
+                <ScalarProperty Name="DisplayValueDesc" ColumnName="DisplayValueDesc" />
+                <ScalarProperty Name="Show" ColumnName="Show" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="LookupKeyGuid" ColumnName="LookupKeyGuid" />
+                <ScalarProperty Name="LookupKey" ColumnName="LookupKey" />
+                <ScalarProperty Name="DisplayValue" ColumnName="DisplayValue" />
+                <ScalarProperty Name="SGuid" ColumnName="SGuid" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SystemParameters_Cities">
+            <EntityTypeMapping TypeName="GMG_Portal_DBModel.SystemParameters_Cities">
+              <MappingFragment StoreEntitySet="SystemParameters_Cities">
                 <ScalarProperty Name="CountryID" ColumnName="CountryID" />
                 <ScalarProperty Name="Show" ColumnName="Show" />
                 <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
@@ -954,9 +1411,61 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters_LanguageTex
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SystemParameter_Countries">
-            <EntityTypeMapping TypeName="GMG_Portal_DBModel.SystemParameter_Countries">
-              <MappingFragment StoreEntitySet="SystemParameter_Countries">
+          <EntitySetMapping Name="SystemParameters_ContactForm">
+            <EntityTypeMapping TypeName="GMG_Portal_DBModel.SystemParameters_ContactForm">
+              <MappingFragment StoreEntitySet="SystemParameters_ContactForm">
+                <ScalarProperty Name="SeenBy" ColumnName="SeenBy" />
+                <ScalarProperty Name="SeenDate" ColumnName="SeenDate" />
+                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LastNamr" ColumnName="LastNamr" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SystemParameters_ContactUs">
+            <EntityTypeMapping TypeName="GMG_Portal_DBModel.SystemParameters_ContactUs">
+              <MappingFragment StoreEntitySet="SystemParameters_ContactUs">
+                <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
+                <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
+                <ScalarProperty Name="CreatorUserId" ColumnName="CreatorUserId" />
+                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+                <ScalarProperty Name="LastModifierUserId" ColumnName="LastModifierUserId" />
+                <ScalarProperty Name="LastModificationTime" ColumnName="LastModificationTime" />
+                <ScalarProperty Name="Long" ColumnName="Long" />
+                <ScalarProperty Name="Late" ColumnName="Late" />
+                <ScalarProperty Name="Mailbox" ColumnName="Mailbox" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="PhoneNo2" ColumnName="PhoneNo2" />
+                <ScalarProperty Name="PhoneNo1" ColumnName="PhoneNo1" />
+                <ScalarProperty Name="WhatsApp" ColumnName="WhatsApp" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Snapchat" ColumnName="Snapchat" />
+                <ScalarProperty Name="Youtube" ColumnName="Youtube" />
+                <ScalarProperty Name="Instgram" ColumnName="Instgram" />
+                <ScalarProperty Name="Twitter" ColumnName="Twitter" />
+                <ScalarProperty Name="Facebook" ColumnName="Facebook" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="LookupKeyGuidDesc" ColumnName="LookupKeyGuidDesc" />
+                <ScalarProperty Name="LookupKeyDesc" ColumnName="LookupKeyDesc" />
+                <ScalarProperty Name="DisplayValueDesc" ColumnName="DisplayValueDesc" />
+                <ScalarProperty Name="Show" ColumnName="Show" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="LookupKeyGuidAddress" ColumnName="LookupKeyGuidAddress" />
+                <ScalarProperty Name="LookupKeyAddress" ColumnName="LookupKeyAddress" />
+                <ScalarProperty Name="DisplayValueAddress" ColumnName="DisplayValueAddress" />
+                <ScalarProperty Name="SGuid" ColumnName="SGuid" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SystemParameters_Countries">
+            <EntityTypeMapping TypeName="GMG_Portal_DBModel.SystemParameters_Countries">
+              <MappingFragment StoreEntitySet="SystemParameters_Countries">
                 <ScalarProperty Name="Show" ColumnName="Show" />
                 <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
                 <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
@@ -974,9 +1483,9 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters_LanguageTex
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SystemParameter_Departments">
-            <EntityTypeMapping TypeName="GMG_Portal_DBModel.SystemParameter_Departments">
-              <MappingFragment StoreEntitySet="SystemParameter_Departments">
+          <EntitySetMapping Name="SystemParameters_Departments">
+            <EntityTypeMapping TypeName="GMG_Portal_DBModel.SystemParameters_Departments">
+              <MappingFragment StoreEntitySet="SystemParameters_Departments">
                 <ScalarProperty Name="Show" ColumnName="Show" />
                 <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
                 <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
@@ -994,9 +1503,116 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters_LanguageTex
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SystemParameter_PaymentType">
-            <EntityTypeMapping TypeName="GMG_Portal_DBModel.SystemParameter_PaymentType">
-              <MappingFragment StoreEntitySet="SystemParameter_PaymentType">
+          <EntitySetMapping Name="SystemParameters_HomeSlider">
+            <EntityTypeMapping TypeName="GMG_Portal_DBModel.SystemParameters_HomeSlider">
+              <MappingFragment StoreEntitySet="SystemParameters_HomeSlider">
+                <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
+                <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
+                <ScalarProperty Name="CreatorUserId" ColumnName="CreatorUserId" />
+                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+                <ScalarProperty Name="LastModifierUserId" ColumnName="LastModifierUserId" />
+                <ScalarProperty Name="LastModificationTime" ColumnName="LastModificationTime" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="LookupKeyGuidDesc" ColumnName="LookupKeyGuidDesc" />
+                <ScalarProperty Name="LookupKeyDesc" ColumnName="LookupKeyDesc" />
+                <ScalarProperty Name="DisplayValueDesc" ColumnName="DisplayValueDesc" />
+                <ScalarProperty Name="Show" ColumnName="Show" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="LookupKeyGuid" ColumnName="LookupKeyGuid" />
+                <ScalarProperty Name="LookupKey" ColumnName="LookupKey" />
+                <ScalarProperty Name="DisplayValue" ColumnName="DisplayValue" />
+                <ScalarProperty Name="SGuid" ColumnName="SGuid" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Systemparameters_Languages">
+            <EntityTypeMapping TypeName="GMG_Portal_DBModel.Systemparameters_Languages">
+              <MappingFragment StoreEntitySet="Systemparameters_Languages">
+                <ScalarProperty Name="DisplayFront" ColumnName="DisplayFront" />
+                <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
+                <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
+                <ScalarProperty Name="CreatorUserId" ColumnName="CreatorUserId" />
+                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+                <ScalarProperty Name="LastModifierUserId" ColumnName="LastModifierUserId" />
+                <ScalarProperty Name="LastModificationTime" ColumnName="LastModificationTime" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="Show" ColumnName="Show" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SGuid" ColumnName="SGuid" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SystemParameters_News">
+            <EntityTypeMapping TypeName="GMG_Portal_DBModel.SystemParameters_News">
+              <MappingFragment StoreEntitySet="SystemParameters_News">
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="Tags" ColumnName="Tags" />
+                <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
+                <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
+                <ScalarProperty Name="CreatorUserId" ColumnName="CreatorUserId" />
+                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+                <ScalarProperty Name="LastModifierUserId" ColumnName="LastModifierUserId" />
+                <ScalarProperty Name="LastModificationTime" ColumnName="LastModificationTime" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="LookupKeyGuidDesc" ColumnName="LookupKeyGuidDesc" />
+                <ScalarProperty Name="LookupKeyDesc" ColumnName="LookupKeyDesc" />
+                <ScalarProperty Name="DisplayValueDesc" ColumnName="DisplayValueDesc" />
+                <ScalarProperty Name="Show" ColumnName="Show" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsCurrent" ColumnName="IsCurrent" />
+                <ScalarProperty Name="LookupKeyGuid" ColumnName="LookupKeyGuid" />
+                <ScalarProperty Name="LookupKey" ColumnName="LookupKey" />
+                <ScalarProperty Name="DisplayValue" ColumnName="DisplayValue" />
+                <ScalarProperty Name="SGuid" ColumnName="SGuid" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SystemParameters_Newsletter">
+            <EntityTypeMapping TypeName="GMG_Portal_DBModel.SystemParameters_Newsletter">
+              <MappingFragment StoreEntitySet="SystemParameters_Newsletter">
+                <ScalarProperty Name="SeenBy" ColumnName="SeenBy" />
+                <ScalarProperty Name="SeenDate" ColumnName="SeenDate" />
+                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SystemParameters_Owners">
+            <EntityTypeMapping TypeName="GMG_Portal_DBModel.SystemParameters_Owners">
+              <MappingFragment StoreEntitySet="SystemParameters_Owners">
+                <ScalarProperty Name="Show" ColumnName="Show" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
+                <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
+                <ScalarProperty Name="LastModifierUserId" ColumnName="LastModifierUserId" />
+                <ScalarProperty Name="LastModificationTime" ColumnName="LastModificationTime" />
+                <ScalarProperty Name="CreatorUserId" ColumnName="CreatorUserId" />
+                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="LookupKeyGuidDesc" ColumnName="LookupKeyGuidDesc" />
+                <ScalarProperty Name="LookupKeyDesc" ColumnName="LookupKeyDesc" />
+                <ScalarProperty Name="DisplayValueDesc" ColumnName="DisplayValueDesc" />
+                <ScalarProperty Name="LookupKeyGuidPosition" ColumnName="LookupKeyGuidPosition" />
+                <ScalarProperty Name="LookupKeyPosition" ColumnName="LookupKeyPosition" />
+                <ScalarProperty Name="DisplayValuePosition" ColumnName="DisplayValuePosition" />
+                <ScalarProperty Name="LookupKeyGuidName" ColumnName="LookupKeyGuidName" />
+                <ScalarProperty Name="LookupKeyName" ColumnName="LookupKeyName" />
+                <ScalarProperty Name="DisplayValueName" ColumnName="DisplayValueName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SystemParameters_PaymentType">
+            <EntityTypeMapping TypeName="GMG_Portal_DBModel.SystemParameters_PaymentType">
+              <MappingFragment StoreEntitySet="SystemParameters_PaymentType">
                 <ScalarProperty Name="Show" ColumnName="Show" />
                 <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
                 <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
@@ -1023,223 +1639,6 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters_LanguageTex
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="LanguageName" ColumnName="LanguageName" />
                 <ScalarProperty Name="LanguageKey" ColumnName="LanguageKey" />
-                <ScalarProperty Name="SGuid" ColumnName="SGuid" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Systemparameters_Languages">
-            <EntityTypeMapping TypeName="GMG_Portal_DBModel.Systemparameters_Languages">
-              <MappingFragment StoreEntitySet="Systemparameters_Languages">
-                <ScalarProperty Name="DisplayFront" ColumnName="DisplayFront" />
-                <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
-                <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
-                <ScalarProperty Name="CreatorUserId" ColumnName="CreatorUserId" />
-                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
-                <ScalarProperty Name="LastModifierUserId" ColumnName="LastModifierUserId" />
-                <ScalarProperty Name="LastModificationTime" ColumnName="LastModificationTime" />
-                <ScalarProperty Name="Icon" ColumnName="Icon" />
-                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
-                <ScalarProperty Name="Show" ColumnName="Show" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="SGuid" ColumnName="SGuid" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Front_Mission">
-            <EntityTypeMapping TypeName="GMG_Portal_DBModel.Front_Mission">
-              <MappingFragment StoreEntitySet="Front_Mission">
-                <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
-                <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
-                <ScalarProperty Name="CreatorUserId" ColumnName="CreatorUserId" />
-                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
-                <ScalarProperty Name="LastModifierUserId" ColumnName="LastModifierUserId" />
-                <ScalarProperty Name="LastModificationTime" ColumnName="LastModificationTime" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="LookupKeyGuidDesc" ColumnName="LookupKeyGuidDesc" />
-                <ScalarProperty Name="LookupKeyDesc" ColumnName="LookupKeyDesc" />
-                <ScalarProperty Name="DisplayValueDesc" ColumnName="DisplayValueDesc" />
-                <ScalarProperty Name="Show" ColumnName="Show" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="IsCurrent" ColumnName="IsCurrent" />
-                <ScalarProperty Name="LookupKeyGuid" ColumnName="LookupKeyGuid" />
-                <ScalarProperty Name="LookupKey" ColumnName="LookupKey" />
-                <ScalarProperty Name="DisplayValue" ColumnName="DisplayValue" />
-                <ScalarProperty Name="SGuid" ColumnName="SGuid" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Front_Vision">
-            <EntityTypeMapping TypeName="GMG_Portal_DBModel.Front_Vision">
-              <MappingFragment StoreEntitySet="Front_Vision">
-                <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
-                <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
-                <ScalarProperty Name="CreatorUserId" ColumnName="CreatorUserId" />
-                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
-                <ScalarProperty Name="LastModifierUserId" ColumnName="LastModifierUserId" />
-                <ScalarProperty Name="LastModificationTime" ColumnName="LastModificationTime" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="LookupKeyGuidDesc" ColumnName="LookupKeyGuidDesc" />
-                <ScalarProperty Name="LookupKeyDesc" ColumnName="LookupKeyDesc" />
-                <ScalarProperty Name="DisplayValueDesc" ColumnName="DisplayValueDesc" />
-                <ScalarProperty Name="Show" ColumnName="Show" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="IsCurrent" ColumnName="IsCurrent" />
-                <ScalarProperty Name="LookupKeyGuid" ColumnName="LookupKeyGuid" />
-                <ScalarProperty Name="LookupKey" ColumnName="LookupKey" />
-                <ScalarProperty Name="DisplayValue" ColumnName="DisplayValue" />
-                <ScalarProperty Name="SGuid" ColumnName="SGuid" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SystemParamater_HomeSlider">
-            <EntityTypeMapping TypeName="GMG_Portal_DBModel.SystemParamater_HomeSlider">
-              <MappingFragment StoreEntitySet="SystemParamater_HomeSlider">
-                <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
-                <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
-                <ScalarProperty Name="CreatorUserId" ColumnName="CreatorUserId" />
-                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
-                <ScalarProperty Name="LastModifierUserId" ColumnName="LastModifierUserId" />
-                <ScalarProperty Name="LastModificationTime" ColumnName="LastModificationTime" />
-                <ScalarProperty Name="URL" ColumnName="URL" />
-                <ScalarProperty Name="Rating" ColumnName="Rating" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="LookupKeyGuidDesc" ColumnName="LookupKeyGuidDesc" />
-                <ScalarProperty Name="LookupKeyDesc" ColumnName="LookupKeyDesc" />
-                <ScalarProperty Name="DisplayValueDesc" ColumnName="DisplayValueDesc" />
-                <ScalarProperty Name="Show" ColumnName="Show" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="LookupKeyGuid" ColumnName="LookupKeyGuid" />
-                <ScalarProperty Name="LookupKey" ColumnName="LookupKey" />
-                <ScalarProperty Name="DisplayValue" ColumnName="DisplayValue" />
-                <ScalarProperty Name="SGuid" ColumnName="SGuid" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Hotels_Features">
-            <EntityTypeMapping TypeName="GMG_Portal_DBModel.Hotels_Features">
-              <MappingFragment StoreEntitySet="Hotels_Features">
-                <ScalarProperty Name="Show" ColumnName="Show" />
-                <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
-                <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
-                <ScalarProperty Name="CreatorUserId" ColumnName="CreatorUserId" />
-                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
-                <ScalarProperty Name="LastModifierUserId" ColumnName="LastModifierUserId" />
-                <ScalarProperty Name="LastModificationTime" ColumnName="LastModificationTime" />
-                <ScalarProperty Name="LookupKeyGuidDesc" ColumnName="LookupKeyGuidDesc" />
-                <ScalarProperty Name="LookupKeyDesc" ColumnName="LookupKeyDesc" />
-                <ScalarProperty Name="DisplayValueDesc" ColumnName="DisplayValueDesc" />
-                <ScalarProperty Name="Icon" ColumnName="Icon" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="LookupKeyGuid" ColumnName="LookupKeyGuid" />
-                <ScalarProperty Name="LookupKey" ColumnName="LookupKey" />
-                <ScalarProperty Name="DisplayValue" ColumnName="DisplayValue" />
-                <ScalarProperty Name="SGuid" ColumnName="SGuid" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SystemParameter_About">
-            <EntityTypeMapping TypeName="GMG_Portal_DBModel.SystemParameter_About">
-              <MappingFragment StoreEntitySet="SystemParameter_About">
-                <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
-                <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
-                <ScalarProperty Name="CreatorUserId" ColumnName="CreatorUserId" />
-                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
-                <ScalarProperty Name="LastModifierUserId" ColumnName="LastModifierUserId" />
-                <ScalarProperty Name="LastModificationTime" ColumnName="LastModificationTime" />
-                <ScalarProperty Name="Url" ColumnName="Url" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="LookupKeyGuidDesc" ColumnName="LookupKeyGuidDesc" />
-                <ScalarProperty Name="LookupKeyDesc" ColumnName="LookupKeyDesc" />
-                <ScalarProperty Name="DisplayValueDesc" ColumnName="DisplayValueDesc" />
-                <ScalarProperty Name="Show" ColumnName="Show" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="LookupKeyGuid" ColumnName="LookupKeyGuid" />
-                <ScalarProperty Name="LookupKey" ColumnName="LookupKey" />
-                <ScalarProperty Name="DisplayValue" ColumnName="DisplayValue" />
-                <ScalarProperty Name="SGuid" ColumnName="SGuid" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SystemParameter_News">
-            <EntityTypeMapping TypeName="GMG_Portal_DBModel.SystemParameter_News">
-              <MappingFragment StoreEntitySet="SystemParameter_News">
-                <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
-                <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
-                <ScalarProperty Name="CreatorUserId" ColumnName="CreatorUserId" />
-                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
-                <ScalarProperty Name="LastModifierUserId" ColumnName="LastModifierUserId" />
-                <ScalarProperty Name="LastModificationTime" ColumnName="LastModificationTime" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="LookupKeyGuidDesc" ColumnName="LookupKeyGuidDesc" />
-                <ScalarProperty Name="LookupKeyDesc" ColumnName="LookupKeyDesc" />
-                <ScalarProperty Name="DisplayValueDesc" ColumnName="DisplayValueDesc" />
-                <ScalarProperty Name="Show" ColumnName="Show" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="IsCurrent" ColumnName="IsCurrent" />
-                <ScalarProperty Name="LookupKeyGuid" ColumnName="LookupKeyGuid" />
-                <ScalarProperty Name="LookupKey" ColumnName="LookupKey" />
-                <ScalarProperty Name="DisplayValue" ColumnName="DisplayValue" />
-                <ScalarProperty Name="SGuid" ColumnName="SGuid" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Hotels">
-            <EntityTypeMapping TypeName="GMG_Portal_DBModel.Hotel">
-              <MappingFragment StoreEntitySet="Hotels">
-                <ScalarProperty Name="Show" ColumnName="Show" />
-                <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
-                <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
-                <ScalarProperty Name="CreatorUserId" ColumnName="CreatorUserId" />
-                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
-                <ScalarProperty Name="LastModifierUserId" ColumnName="LastModifierUserId" />
-                <ScalarProperty Name="LastModificationTime" ColumnName="LastModificationTime" />
-                <ScalarProperty Name="DistanceDownTown" ColumnName="DistanceDownTown" />
-                <ScalarProperty Name="PriceStart" ColumnName="PriceStart" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="LookupKeyGuidAddress" ColumnName="LookupKeyGuidAddress" />
-                <ScalarProperty Name="LookupKeyAddress" ColumnName="LookupKeyAddress" />
-                <ScalarProperty Name="DisplayValueAddress" ColumnName="DisplayValueAddress" />
-                <ScalarProperty Name="Long" ColumnName="Long" />
-                <ScalarProperty Name="Late" ColumnName="Late" />
-                <ScalarProperty Name="CheckOut" ColumnName="CheckOut" />
-                <ScalarProperty Name="CheckIn" ColumnName="CheckIn" />
-                <ScalarProperty Name="LookupKeyGuidDesc" ColumnName="LookupKeyGuidDesc" />
-                <ScalarProperty Name="LookupKeyDesc" ColumnName="LookupKeyDesc" />
-                <ScalarProperty Name="DisplayValueDesc" ColumnName="DisplayValueDesc" />
-                <ScalarProperty Name="Rate" ColumnName="Rate" />
-                <ScalarProperty Name="CityId" ColumnName="CityId" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="IsCurrent" ColumnName="IsCurrent" />
-                <ScalarProperty Name="LookupKeyGuid" ColumnName="LookupKeyGuid" />
-                <ScalarProperty Name="LookupKey" ColumnName="LookupKey" />
-                <ScalarProperty Name="DisplayValue" ColumnName="DisplayValue" />
-                <ScalarProperty Name="SGuid" ColumnName="SGuid" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Hotels_Hotel_Images">
-            <EntityTypeMapping TypeName="GMG_Portal_DBModel.Hotels_Hotel_Images">
-              <MappingFragment StoreEntitySet="Hotels_Hotel_Images">
-                <ScalarProperty Name="Show" ColumnName="Show" />
-                <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
-                <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
-                <ScalarProperty Name="CreatorUserId" ColumnName="CreatorUserId" />
-                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
-                <ScalarProperty Name="LastModifierUserId" ColumnName="LastModifierUserId" />
-                <ScalarProperty Name="LastModificationTime" ColumnName="LastModificationTime" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="Hotel_Id" ColumnName="Hotel_Id" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="SGuid" ColumnName="SGuid" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

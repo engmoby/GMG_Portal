@@ -25,24 +25,30 @@ namespace GMG_Portal.Data
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Front_Mission> Front_Mission { get; set; }
+        public virtual DbSet<Front_Vision> Front_Vision { get; set; }
+        public virtual DbSet<Hotel> Hotels { get; set; }
+        public virtual DbSet<Hotels_Features> Hotels_Features { get; set; }
         public virtual DbSet<Hotels_Hotel_Features> Hotels_Hotel_Features { get; set; }
+        public virtual DbSet<Hotels_Hotel_Images> Hotels_Hotel_Images { get; set; }
         public virtual DbSet<Hotels_Hotel_Payments> Hotels_Hotel_Payments { get; set; }
         public virtual DbSet<Hotels_Hotel_Phones> Hotels_Hotel_Phones { get; set; }
         public virtual DbSet<Hotels_Hotel_Videos> Hotels_Hotel_Videos { get; set; }
+        public virtual DbSet<Hotels_Reservation> Hotels_Reservation { get; set; }
         public virtual DbSet<Hotles_Hotel_Offers> Hotles_Hotel_Offers { get; set; }
-        public virtual DbSet<SystemParameter_Cities> SystemParameter_Cities { get; set; }
-        public virtual DbSet<SystemParameter_Countries> SystemParameter_Countries { get; set; }
-        public virtual DbSet<SystemParameter_Departments> SystemParameter_Departments { get; set; }
-        public virtual DbSet<SystemParameter_PaymentType> SystemParameter_PaymentType { get; set; }
-        public virtual DbSet<SystemParameters_LanguageText> SystemParameters_LanguageText { get; set; }
+        public virtual DbSet<SystemParameters_About> SystemParameters_About { get; set; }
+        public virtual DbSet<SystemParameters_Category> SystemParameters_Category { get; set; }
+        public virtual DbSet<SystemParameters_Cities> SystemParameters_Cities { get; set; }
+        public virtual DbSet<SystemParameters_ContactForm> SystemParameters_ContactForm { get; set; }
+        public virtual DbSet<SystemParameters_ContactUs> SystemParameters_ContactUs { get; set; }
+        public virtual DbSet<SystemParameters_Countries> SystemParameters_Countries { get; set; }
+        public virtual DbSet<SystemParameters_Departments> SystemParameters_Departments { get; set; }
+        public virtual DbSet<SystemParameters_HomeSlider> SystemParameters_HomeSlider { get; set; }
         public virtual DbSet<Systemparameters_Languages> Systemparameters_Languages { get; set; }
-        public virtual DbSet<Front_Mission> Front_Mission { get; set; }
-        public virtual DbSet<Front_Vision> Front_Vision { get; set; }
-        public virtual DbSet<SystemParamater_HomeSlider> SystemParamater_HomeSlider { get; set; }
-        public virtual DbSet<Hotels_Features> Hotels_Features { get; set; }
-        public virtual DbSet<SystemParameter_About> SystemParameter_About { get; set; }
-        public virtual DbSet<SystemParameter_News> SystemParameter_News { get; set; }
-        public virtual DbSet<Hotel> Hotels { get; set; }
-        public virtual DbSet<Hotels_Hotel_Images> Hotels_Hotel_Images { get; set; }
+        public virtual DbSet<SystemParameters_News> SystemParameters_News { get; set; }
+        public virtual DbSet<SystemParameters_Newsletter> SystemParameters_Newsletter { get; set; }
+        public virtual DbSet<SystemParameters_Owners> SystemParameters_Owners { get; set; }
+        public virtual DbSet<SystemParameters_PaymentType> SystemParameters_PaymentType { get; set; }
+        public virtual DbSet<SystemParameters_LanguageText> SystemParameters_LanguageText { get; set; }
     }
 }

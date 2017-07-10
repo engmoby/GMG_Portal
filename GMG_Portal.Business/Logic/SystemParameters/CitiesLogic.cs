@@ -15,27 +15,27 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         {
             _db = new GMG_Portal_DBEntities1();
         }
-        public List<SystemParameter_Cities> GetAllWithDeleted()
+        public List<SystemParameters_Cities> GetAllWithDeleted()
         {
-            return _db.SystemParameter_Cities.OrderBy(p => p.IsDeleted).ToList();
+            return _db.SystemParameters_Cities.OrderBy(p => p.IsDeleted).ToList();
         }
-        public List<SystemParameter_Cities> GetAll()
+        public List<SystemParameters_Cities> GetAll()
         {
-            return _db.SystemParameter_Cities.Where(p => p.IsDeleted != true).ToList();
+            return _db.SystemParameters_Cities.Where(p => p.IsDeleted != true).ToList();
         }
-        public List<SystemParameter_Cities> GetAll(int countryId)
+        public List<SystemParameters_Cities> GetAll(int countryId)
         {
-            return _db.SystemParameter_Cities.Where(ps =>  ps.CountryID == countryId && ps.IsDeleted!=true).ToList();
+            return _db.SystemParameters_Cities.Where(ps =>  ps.CountryID == countryId && ps.IsDeleted!=true).ToList();
         }
-        public List<SystemParameter_Cities> GetAllWithDeleted(int countryId)
+        public List<SystemParameters_Cities> GetAllWithDeleted(int countryId)
         {
-            return _db.SystemParameter_Cities.Where(ps =>  ps.CountryID== countryId).OrderBy(p => p.IsDeleted).ToList();
+            return _db.SystemParameters_Cities.Where(ps =>  ps.CountryID== countryId).OrderBy(p => p.IsDeleted).ToList();
         }
-        public SystemParameter_Cities Get(int id)
+        public SystemParameters_Cities Get(int id)
         {
-            return _db.SystemParameter_Cities.Find(id);
+            return _db.SystemParameters_Cities.Find(id);
         }
-        private SystemParameter_Cities Save(SystemParameter_Cities city)
+        private SystemParameters_Cities Save(SystemParameters_Cities city)
         {
             try
             {
@@ -47,12 +47,12 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             {
                 if (e.InnerException != null)
                 {
-                    if (e.InnerException.ToString().Contains("IX_SystemParameter_Cities_Ar"))
+                    if (e.InnerException.ToString().Contains("IX_SystemParameters_Cities_Ar"))
                     {
                         city.OperationStatus = "NameArMustBeUnique";
                         return city;
                     }
-                    else if (e.InnerException.ToString().Contains("IX_SystemParameter_Cities_En"))
+                    else if (e.InnerException.ToString().Contains("IX_SystemParameters_Cities_En"))
                     {
                         city.OperationStatus = "NameEnMustBeUnique";
                         return city;
@@ -62,9 +62,9 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             }
         }
 
-        public SystemParameter_Cities Insert(SystemParameter_Cities postedSystemParameterCities)
+        public SystemParameters_Cities Insert(SystemParameters_Cities postedSystemParameterCities)
         {
-            var city = new SystemParameter_Cities()
+            var city = new SystemParameters_Cities()
             {
                 CountryID=postedSystemParameterCities.CountryID,
                 //NameAr = postedSystemParameterCities.NameAr,
@@ -73,23 +73,23 @@ namespace GMG_Portal.Business.Logic.SystemParameters
 
             };
         
-            _db.SystemParameter_Cities.Add(city);
+            _db.SystemParameters_Cities.Add(city);
             return Save(city);
         }
-        public SystemParameter_Cities Edit(SystemParameter_Cities postedCity)
+        public SystemParameters_Cities Edit(SystemParameters_Cities postedCity)
         {
             return null;
-            //SystemParameter_Cities City = Get(postedCity.ID);
+            //SystemParameters_Cities City = Get(postedCity.ID);
             //City.CountryID = postedCity.CountryID;
             //City. = postedCity.NameEn;
             //City.NameAr = postedCity.NameAr;
             //City.IsDeleted = postedCity.IsDeleted;
             //return Save(City);
         }
-        public SystemParameter_Cities Delete(SystemParameter_Cities PostedCity)
+        public SystemParameters_Cities Delete(SystemParameters_Cities PostedCity)
         {
             return null;
-            //SystemParameter_Cities City = Get(PostedCity.ID);
+            //SystemParameters_Cities City = Get(PostedCity.ID);
             //if (_db.CourierDetails.Where(p => p.CityID == PostedCity.ID && p.IsDeleted != true).Count() > 0
             //        || _db.Regions.Where(c => c.CityID == PostedCity.ID && c.IsDeleted != true).Count() > 0)
             //{
@@ -103,32 +103,32 @@ namespace GMG_Portal.Business.Logic.SystemParameters
 
     }
 
-    //public class SystemParameter_CitiesLogic
+    //public class SystemParameters_CitiesLogic
     //{
     //    GMG_Portal_DBEntities DB = new GMG_Portal_DBEntities();
-    //    public List<SystemParameter_Cities> GetAll()
+    //    public List<SystemParameters_Cities> GetAll()
     //    {
-    //        return DB.SystemParameter_Cities.Where(C => C.IsDeleted != true).ToList();
+    //        return DB.SystemParameters_Cities.Where(C => C.IsDeleted != true).ToList();
     //    }
 
-    //    public List<SystemParameter_Cities> GetAll(int countryId)
+    //    public List<SystemParameters_Cities> GetAll(int countryId)
     //    {
-    //        return DB.SystemParameter_Cities.Where(cty => cty.CountryID == countryId).ToList();
+    //        return DB.SystemParameters_Cities.Where(cty => cty.CountryID == countryId).ToList();
     //    }
 
-    //    public SystemParameter_Cities Get(int ID)
+    //    public SystemParameters_Cities Get(int ID)
     //    {
-    //        return DB.SystemParameter_Cities.Find(ID);
+    //        return DB.SystemParameters_Cities.Find(ID);
     //    }
 
-    //    public SystemParameter_Cities Save(SystemParameter_Cities PostedCity)
+    //    public SystemParameters_Cities Save(SystemParameters_Cities PostedCity)
     //    {
     //        var city = PostedCity.ID == 0 ? null : Get(PostedCity.ID);
 
     //        if (city == null)
     //        {
-    //            city = new SystemParameter_Cities();
-    //            DB.SystemParameter_Cities.Add(city);
+    //            city = new SystemParameters_Cities();
+    //            DB.SystemParameters_Cities.Add(city);
     //        }
 
     //        city.NameAr = PostedCity.NameAr;

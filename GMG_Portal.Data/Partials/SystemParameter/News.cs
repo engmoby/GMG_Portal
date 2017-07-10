@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GMG_Portal.Data
 {
-    public partial class SystemParameter_About
+    public partial class SystemParameters_News
     {
         [NotMapped]
         public string OperationStatus { get; set; }
