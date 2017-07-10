@@ -29,7 +29,7 @@ namespace Front.Controllers
         public async Task<ActionResult> Index()
         {
             string _homeSlider = url + "HomeSliders/GetAll";
-            string _about = url + "Abouts/GetAll";
+            string _about = url + "About/GetAll";
             string _HotelFeatures = url + "Features/GetAll";
             string _News = url + "News/GetAll";
             string _Hotels = url + "Hotels/GetAll";
@@ -89,7 +89,7 @@ namespace Front.Controllers
 
         private async Task CallHomeSliders(string _homeSlider, HomeModels homeModels)
         {
-            HttpResponseMessage responseMessage = await _client.GetAsync(homeSlider);
+            HttpResponseMessage responseMessage = await _client.GetAsync(_homeSlider);
             if (responseMessage.IsSuccessStatusCode)
             {
                 var responseData = responseMessage.Content.ReadAsStringAsync().Result;

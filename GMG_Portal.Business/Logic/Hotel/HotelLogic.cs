@@ -38,7 +38,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 });
             }
             return returnList;
-           // return _db.Hotels.Where(p => p.IsDeleted != true).ToList();
+            // return _db.Hotels.Where(p => p.IsDeleted != true).ToList();
         }
         public Hotel Get(int id)
         {
@@ -46,7 +46,11 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         }
         public IQueryable<Hotels_Hotel_Images> HotelImages(int hotelId)
         {
-            return _db.Hotels_Hotel_Images.Where(x => x.Hotel_Id == hotelId);
+            return _db.Hotels_Hotel_Images.Where(x => x.Hotel_Id == hotelId && x.Show);
+        }
+        public IQueryable<Hotels_Hotel_Images> GetAllImages()
+        {
+            return _db.Hotels_Hotel_Images.Where(x => x.Show);
         }
         private Hotel Save(Hotel homeSlider)
         {

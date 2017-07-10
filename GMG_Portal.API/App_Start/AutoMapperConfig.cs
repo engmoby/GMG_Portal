@@ -7,6 +7,7 @@ using GMG_Portal.API.Models.Hotels.Hotel;
 using GMG_Portal.API.Models.Hotels.Hotel;
 using GMG_Portal.API.Models.SystemParameters;
 using GMG_Portal.API.Models.SystemParameters.ContactUs;
+using GMG_Portal.API.Models.SystemParameters.Newsletter;
 using GMG_Portal.Content.Admin.SystemParameters;
 using GMG_Portal.Data;
 using AccountTypes = GMG_Portal.Data.Partials.SystemParameters.AccountTypes;
@@ -55,11 +56,18 @@ namespace GMG_Portal.API
                 cfg.CreateMap<Data.Hotel, Hotels>();
                 cfg.CreateMap<Hotels, Data.Hotel>();
 
+                cfg.CreateMap<Hotels_Hotel_Images, HotelImages>();
+                cfg.CreateMap<HotelImages, Hotels_Hotel_Images>();
+
                 cfg.CreateMap<SystemParameters_Owners, Owners>();
                 cfg.CreateMap<Owners, SystemParameters_Owners>();
 
                 cfg.CreateMap<SystemParameters_ContactUs, ContactUs>();
                 cfg.CreateMap<ContactUs, SystemParameters_ContactUs>();
+
+                cfg.CreateMap<SystemParameters_Newsletter, Newsletter>();
+                cfg.CreateMap<Newsletter, SystemParameters_Newsletter>();
+
 
                 cfg.CreateMap<SystemParameters_Countries, GMG_Portal.API.Models.SystemParameters.Countries>();
                 cfg.CreateMap<GMG_Portal.API.Models.SystemParameters.Countries, SystemParameters_Countries>();

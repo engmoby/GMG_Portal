@@ -8,22 +8,22 @@ using GMG_Portal.API.Models.SystemParameters;
 using GMG_Portal.Data;
 using GMG_Portal.Business.Logic.SystemParameters;
 using AutoMapper;
-using GMG_Portal.API.Models.SystemParameters.ContactUs;
+using GMG_Portal.API.Models.SystemParameters.Newsletter;
 using Helpers;
 
 namespace GMG_Portal.API.Controllers.SystemParameters
 {
-    [RoutePrefix("SystemParameters/ContactUs")]
+    [RoutePrefix("SystemParameters/Newsletter")]
     [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*")]
-    public class ContactUsController : ApiController
+    public class NewsletterController : ApiController
     {
         public HttpResponseMessage GetAll()
         {
             try
             {
-                var contactUsLogic = new ContactUsLogic();
-                var contactUs = contactUsLogic.GetAll();
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<ContactUs>>(contactUs));
+                var newsletterLogic = new NewsletterLogic();
+                var newsletter = newsletterLogic.GetAll();
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Newsletter>>(newsletter));
             }
             catch (Exception ex)
             {
@@ -35,9 +35,9 @@ namespace GMG_Portal.API.Controllers.SystemParameters
         {
             try
             {
-                var contactUsLogic = new ContactUsLogic();
-                var contactUss = contactUsLogic.GetAllWithDeleted();
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<ContactUs>>(contactUss));
+                var newsletterLogic = new NewsletterLogic();
+                var newsletters = newsletterLogic.GetAllWithSeen();
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Newsletter>>(newsletters));
             }
             catch (Exception ex)
             {
@@ -46,30 +46,25 @@ namespace GMG_Portal.API.Controllers.SystemParameters
             }
         }
         [HttpPost]
-        public HttpResponseMessage Save(ContactUs postedContactUss)
+        public HttpResponseMessage Save(Newsletter postedNewsletters)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    var contactUsLogic = new ContactUsLogic();
-                    SystemParameters_ContactUs contactUs = null;
-                    if (postedContactUss.Id.Equals(0))
+                    var newsletterLogic = new NewsletterLogic();
+                    SystemParameters_Newsletter newsletter = null;
+                    if (postedNewsletters.Id.Equals(0))
                     {
-                        contactUs = contactUsLogic.Insert(Mapper.Map<SystemParameters_ContactUs>(postedContactUss));
+                        newsletter = newsletterLogic.Insert(Mapper.Map<SystemParameters_Newsletter>(postedNewsletters));
                     }
                     else
                     {
-                        if (postedContactUss.IsDeleted)
-                        {
-                            contactUs = contactUsLogic.Delete(Mapper.Map<SystemParameters_ContactUs>(postedContactUss));
-                        }
-                        else
-                        {
-                            contactUs = contactUsLogic.Edit(Mapper.Map<SystemParameters_ContactUs>(postedContactUss));
-                        }
+
+                        newsletter = newsletterLogic.Edit(Mapper.Map<SystemParameters_Newsletter>(postedNewsletters));
+
                     }
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<ContactUs>(contactUs));
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Newsletter>(newsletter));
                 }
                 goto ThrowBadRequest;
             }

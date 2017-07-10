@@ -65,6 +65,7 @@
     <Compile Include="Logic\Customer\InvoiceStatusesLogic.cs" />
     <Compile Include="Logic\Customer\InvoiceTypesLogic.cs" />
     <Compile Include="Logic\Hotel\HotelLogic.cs" />
+    <Compile Include="Logic\SystemParameters\NewsletterLogic.cs" />
     <Compile Include="Logic\SystemParameters\ContactUsLogic.cs" />
     <Compile Include="Logic\SystemParameters\OwnerLogic.cs" />
     <Compile Include="Logic\SystemParameters\CatrgoryLogic.cs" />

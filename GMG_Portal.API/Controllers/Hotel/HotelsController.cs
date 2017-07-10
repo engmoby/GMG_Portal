@@ -4,6 +4,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using AutoMapper;
+using GMG_Portal.API.Models.Hotels.Hotel;
 using GMG_Portal.Business.Logic.SystemParameters;
 using Helpers;
 
@@ -19,7 +20,7 @@ namespace GMG_Portal.API.Controllers.Hotel
             {
                 var hotelLogic = new HotelLogic();
                 var hotels = hotelLogic.GetAll();
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Data.Hotel>>(hotels));
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Hotels>>(hotels));
             }
             catch (Exception ex)
             {
@@ -31,9 +32,9 @@ namespace GMG_Portal.API.Controllers.Hotel
         {
             try
             {
-                var HotelLogic = new HotelLogic();
-                var Hotels = HotelLogic.GetAllWithDeleted();
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Data.Hotel>>(Hotels));
+                var hotelLogic = new HotelLogic();
+                var hotels = hotelLogic.GetAllWithDeleted();
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Hotels>>(hotels));
             }
             catch (Exception ex)
             {
@@ -41,6 +42,22 @@ namespace GMG_Portal.API.Controllers.Hotel
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
+
+        public HttpResponseMessage GetAllImages()
+        {
+            try
+            {
+                var hotelLogic = new HotelLogic();
+                var hotels = hotelLogic.GetAllImages();
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<HotelImages>>(hotels));
+            }
+            catch (Exception ex)
+            {
+                Log.LogError(ex);
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+            }
+        }
+
         [HttpPost]
         public HttpResponseMessage Save(Data.Hotel postedHotels)
         {
