@@ -34,7 +34,8 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                     DisplayValueDesc = hotel.DisplayValueDesc,
                     Rate = hotel.Rate,
                     PriceStart = hotel.PriceStart,
-                    Image = getHotelImages[0].Image
+                    Image = getHotelImages[0].Image,
+                    Bootstrap = 12 / getHotelInfo.Count
                 });
             }
             return returnList;

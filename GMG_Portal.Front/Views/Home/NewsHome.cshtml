@@ -14,10 +14,13 @@
                  
                              
                                 <div class="mg-rp-date">
-                                    <div class="mg-rp-month">@t.</div>
-                                    @*<div class="mg-rp-month">@Model.News[i].LastModificationTime.Date.ToShortDateString()</div>*@
+                                  
+                                    <div class="mg-rp-date">@t.CreationTime.Value.Day <div class="mg-rp-month">@t.CreationTime.Value.ToString("MMM")</div></div>
+                                     
                                 </div>
-                                <h3><a href="#">@t.DisplayValue</a>
+                                <h3> 
+                                    
+                                    <a href="/News/NewsDetails/newsId=@t.Id">@t.DisplayValue</a>
                                 </h3>
                                 <p>@t.DisplayValueDesc</p>
                             </div>

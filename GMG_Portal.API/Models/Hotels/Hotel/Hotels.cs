@@ -34,5 +34,6 @@ namespace GMG_Portal.API.Models.Hotels.Hotel
         public string Email { get; set; }
         public double? DistanceDownTown { get; set; }
         public string OperationStatus { get; set; }
+        public int Bootstrap { get; set; }
     }
 }
