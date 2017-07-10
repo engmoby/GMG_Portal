@@ -43,7 +43,27 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         }
         public Hotel Get(int id)
         {
-            return _db.Hotels.Find(id);
+            var returnList = new Hotel();
+
+            var getHotelInfo = _db.Hotels.FirstOrDefault(p => p.Id== id&& p.IsDeleted == false && p.Show);
+
+            var getHotelImages = _db.Hotels_Hotel_Images.Where(p => p.IsDeleted != true && p.Hotel_Id == getHotelInfo.Id).ToList();
+
+            if (getHotelInfo != null)
+            {
+                returnList.Id = getHotelInfo.Id;
+                returnList.DisplayValue = getHotelInfo.DisplayValue;
+                returnList.DisplayValueDesc = getHotelInfo.DisplayValueDesc;
+                returnList.Rate = getHotelInfo.Rate;
+                returnList.PriceStart = getHotelInfo.PriceStart;
+                returnList.Image = getHotelImages[0].Image; 
+                //returnList.ImageList = getHotelImages[0].Image; 
+
+
+                return returnList;
+            }
+            else return null;
+
         }
         public IQueryable<Hotels_Hotel_Images> HotelImages(int hotelId)
         {

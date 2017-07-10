@@ -58,6 +58,20 @@ namespace GMG_Portal.API.Controllers.Hotel
             }
         }
 
+        public HttpResponseMessage GetHotelDetails(int id)
+        {
+            try
+            {
+                var hotelLogic = new HotelLogic();
+                var hotels = hotelLogic.Get(id);
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Hotels>(hotels));
+            }
+            catch (Exception ex)
+            {
+                Log.LogError(ex);
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+            }
+        }
         [HttpPost]
         public HttpResponseMessage Save(Data.Hotel postedHotels)
         {

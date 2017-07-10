@@ -1,4 +1,4 @@
-﻿@using GMG_Portal.API.Models.Hotels.Hotel
+﻿@*//@using GMG_Portal.API.Models.Hotels.Hotel*@
 @model  Front.Models.HomeModels
 <div class="mg-best-rooms">
     <div class="container">
@@ -9,35 +9,35 @@
                     <p>Luxury Hotelss</p>
                 </div>
                 <div class="row">
-            
+
                     @{
-                        
-                      
+
+
 
                     }
 
 
-                    
-                            
-                    @foreach (Hotels  hotel in Model.Hotels )
-                {
-                    <div class="col-sm-@hotel.Bootstrap">
-                        <figure class="mg-room">
-                            <img src="http://localhost:19056/Uploads/@hotel.Image" alt="img11" class="img-responsive">
-                            <figcaption>
-                                <h2>@hotel.DisplayValue</h2>
-                                <div class="mg-room-rating"><i class="fa fa-star"></i> @hotel.Rate</div>
-                                <div class="mg-room-price">@hotel.PriceStart /Night</div>
-                                <p>@hotel.DisplayValueDesc</p>
-                                <a href="#" class="btn btn-link">View Details <i class="fa fa-angle-double-right"></i></a>
-                                <a href="#" class="btn btn-main">Book</a>
-                            </figcaption>
-                        </figure>
-                    </div>
-                }
-                    
 
-                  
+
+                    @foreach (var hotel in Model.Hotels)
+                    {
+                        <div class="col-sm-@hotel.Bootstrap">
+                            <figure class="mg-room">
+                                <img src="http://localhost:19056/Uploads/@hotel.Image" alt="img11" class="img-responsive">
+                                <figcaption>
+                                    <h2>@hotel.DisplayValue</h2>
+                                    <div class="mg-room-rating"><i class="fa fa-star"></i> @hotel.Rate</div>
+                                    <div class="mg-room-price">@hotel.PriceStart /Night</div>
+                                    <p>@hotel.DisplayValueDesc</p>
+                                    <a href="#" class="btn btn-link">View Details <i class="fa fa-angle-double-right"></i></a>
+                                    <a href="#" class="btn btn-main">Book</a>
+                                </figcaption>
+                            </figure>
+                        </div>
+                    }
+
+
+
                 </div>
             </div>
         </div>

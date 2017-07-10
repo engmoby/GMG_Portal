@@ -12,7 +12,6 @@ namespace GMG_Portal.Data
         [NotMapped]
         public string Image { get; set; }
         public string OperationStatus { get; set; }
-        public int Bootstrap { get; set; }
-
+        public int Bootstrap { get; set; } 
     }
 }
