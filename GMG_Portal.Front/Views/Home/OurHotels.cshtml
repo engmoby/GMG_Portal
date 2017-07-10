@@ -1,4 +1,5 @@
-﻿@model  Front.Models.HomeModels
+﻿@using GMG_Portal.API.Models.Hotels.Hotel
+@model  Front.Models.HomeModels
 <div class="mg-best-rooms">
     <div class="container">
         <div class="row">
@@ -8,45 +9,35 @@
                     <p>Luxury Hotelss</p>
                 </div>
                 <div class="row">
+            
+                    @{
+                        
+                      
+
+                    }
+
+
+                    
+                            
+                    @foreach (Hotels  hotel in Model.Hotels )
+                {
                     <div class="col-sm-4">
                         <figure class="mg-room">
-                            <img src="http://localhost:19056/Uploads/@Model.Hotels[0].Image" alt="img11" class="img-responsive">
+                            <img src="http://localhost:19056/Uploads/@hotel.Image" alt="img11" class="img-responsive">
                             <figcaption>
-                                <h2>@Model.Hotels[0].DisplayValue</h2>
-                                <div class="mg-room-rating"><i class="fa fa-star"></i> @Model.Hotels[0].Rate</div>
-                                <div class="mg-room-price">@Model.Hotels[0].PriceStart /Night</div>
-                                <p>@Model.Hotels[0].DisplayValueDesc</p>
+                                <h2>@hotel.DisplayValue</h2>
+                                <div class="mg-room-rating"><i class="fa fa-star"></i> @hotel.Rate</div>
+                                <div class="mg-room-price">@hotel.PriceStart /Night</div>
+                                <p>@hotel.DisplayValueDesc</p>
                                 <a href="#" class="btn btn-link">View Details <i class="fa fa-angle-double-right"></i></a>
                                 <a href="#" class="btn btn-main">Book</a>
                             </figcaption>
                         </figure>
                     </div>
-                    <div class="col-sm-4">
-                        <figure class="mg-room">
-                            <img src="http://localhost:19056/Uploads/@Model.Hotels[1].Image" alt="img11" class="img-responsive">
-                            <figcaption>
-                                <h2>@Model.Hotels[0].DisplayValue</h2>
-                                <div class="mg-room-rating"><i class="fa fa-star"></i> @Model.Hotels[0].Rate</div>
-                                <div class="mg-room-price">@Model.Hotels[1].PriceStart /Night</div>
-                                <p>@Model.Hotels[1].DisplayValueDesc</p>
-                                <a href="#" class="btn btn-link">View Details <i class="fa fa-angle-double-right"></i></a>
-                                <a href="#" class="btn btn-main">Book</a>
-                            </figcaption>
-                        </figure>
-                    </div>
-                    <div class="col-sm-4">
-                        <figure class="mg-room">
-                            <img src="http://localhost:19056/Uploads/@Model.Hotels[2].Image" alt="img11" class="img-responsive">
-                            <figcaption>
-                                <h2>@Model.Hotels[2].DisplayValue</h2>
-                                <div class="mg-room-rating"><i class="fa fa-star"></i> @Model.Hotels[0].Rate</div>
-                                <div class="mg-room-price">@Model.Hotels[2].PriceStart /Night</div>
-                                <p>@Model.Hotels[2].DisplayValueDesc</p>
-                                <a href="#" class="btn btn-link">View Details <i class="fa fa-angle-double-right"></i></a>
-                                <a href="#" class="btn btn-main">Book</a>
-                            </figcaption>
-                        </figure>
-                    </div>
+                }
+                    
+
+                  
                 </div>
             </div>
         </div>
