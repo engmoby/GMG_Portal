@@ -43,7 +43,7 @@ namespace Front.Controllers
             await CallHomeSliders(_homeSlider, homeModels);
             await CallAbout(_about, homeModels);
             await CallFacilities(_HotelFeatures, homeModels);
-            //  await CallHotels(_Hotels, homeModels);
+             await CallHotels(_Hotels, homeModels);
             await Callowners(_Owners, homeModels);
             await CallNews(_News, homeModels);
             await CallContactus(_ContactUs, homeModels);
@@ -58,10 +58,10 @@ namespace Front.Controllers
             return Slider();
         }
 
-        //public ActionResult OurHotels()
-        //{
-        //    return OurHotels();
-        //}
+        public ActionResult OurHotels()
+        {
+            return OurHotels();
+        }
 
         public ActionResult AboutHome()
         {

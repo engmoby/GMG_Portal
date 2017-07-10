@@ -1,4 +1,5 @@
-﻿
+﻿@model  Front.Models.HomeModels
+
 <div class="mg-about-testimonial parallax">
     <div class="container">
         <div class="row">
@@ -9,11 +10,11 @@
                 </div>
                 <div class="mg-testimonial-slider" id="mg-testimonial-slider">
                 @{ 
-                    for (var i = 1; i < Model.Owners.Count; i++)
+                    for (var i = 0; i < Model.Owners.Count; i++)
                     {
                      <blockquote>
-                        <p>@Model.owners[i].DisplayValue</p>
-                        <footer>@Model.owners[i].DisplayValue</footer>
+                        <p>@Model.Owners[i].DisplayValueName</p>
+                        <footer>@Model.Owners[i].DisplayValueDesc</footer>
                     </blockquote>
                     }
                 } 

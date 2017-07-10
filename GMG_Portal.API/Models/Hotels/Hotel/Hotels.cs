@@ -14,6 +14,7 @@ namespace GMG_Portal.API.Models.Hotels.Hotel
         public string DisplayValueDesc { get; set; }
         public int? LookupKeyDesc { get; set; }
         public Guid? LookupKeyGuidDesc { get; set; }
+        public int? PriceStart { get; set; }
         public string Image { get; set; }
         public int? CityId { get; set; }
         public int? Rate { get; set; }

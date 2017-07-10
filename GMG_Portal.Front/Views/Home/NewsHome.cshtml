@@ -1,27 +1,29 @@
-﻿<div class="mg-news-gallery">
+﻿@using GMG_Portal.API.Models.SystemParameters
+@model  Front.Models.HomeModels
+
+<div class="mg-news-gallery">
     <div class="container">
         <div class="row">
             <div class="col-md-5">
                 <h2 class="mg-sec-left-title">Recent News</h2>
                 <ul class="mg-recnt-posts">
-                    @for (var i = 0; i < Model.News.Count; i++)
-                    { 
-
+                    @foreach (News t in Model.News)
+                    {
                         <li>
                             <div class="mg-recnt-post">
                  
                              
                                 <div class="mg-rp-date">
-                                    <div class="mg-rp-month">1</div>
+                                    <div class="mg-rp-month">@t.</div>
                                     @*<div class="mg-rp-month">@Model.News[i].LastModificationTime.Date.ToShortDateString()</div>*@
                                 </div>
-                                <h3><a href="#">@Model.News[i].DisplayValue</a>
+                                <h3><a href="#">@t.DisplayValue</a>
                                 </h3>
-                                <p>@Model.News[i].DisplayValueDesc</p>
+                                <p>@t.DisplayValueDesc</p>
                             </div>
                         </li>
                     }
-                
+
                 </ul>
             </div>
             <div class="col-md-7">

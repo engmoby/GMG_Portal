@@ -1,20 +1,21 @@
-﻿<div class="mg-best-rooms">
+﻿@model  Front.Models.HomeModels
+<div class="mg-best-rooms">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="mg-sec-title">
-                    <h2>Our Hotels</h2>
-                    <p>Luxury Hotels</p>
+                    <h2>Our Hotelss</h2>
+                    <p>Luxury Hotelss</p>
                 </div>
                 <div class="row">
                     <div class="col-sm-4">
                         <figure class="mg-room">
-                            <img src="http://localhost:19056/Uploads/@Model.Hotel[0].Image" alt="img11" class="img-responsive">
+                            <img src="http://localhost:19056/Uploads/@Model.Hotels[0].Image" alt="img11" class="img-responsive">
                             <figcaption>
-                                <h2>@Model.Hotel[0].DisplayValue</h2>
-                                <div class="mg-room-rating"><i class="fa fa-star"></i> @Model.Hotel[0].Rate</div>
-                                <div class="mg-room-price">@Model.Hotel[0].PriceStart /Night</div>
-                                <p>@Model.Hotel[0].DisplayValueDesc</p>
+                                <h2>@Model.Hotels[0].DisplayValue</h2>
+                                <div class="mg-room-rating"><i class="fa fa-star"></i> @Model.Hotels[0].Rate</div>
+                                <div class="mg-room-price">@Model.Hotels[0].PriceStart /Night</div>
+                                <p>@Model.Hotels[0].DisplayValueDesc</p>
                                 <a href="#" class="btn btn-link">View Details <i class="fa fa-angle-double-right"></i></a>
                                 <a href="#" class="btn btn-main">Book</a>
                             </figcaption>
@@ -22,12 +23,12 @@
                     </div>
                     <div class="col-sm-4">
                         <figure class="mg-room">
-                            <img src="http://localhost:19056/Uploads/@Model.Hotel[1].Image" alt="img11" class="img-responsive">
+                            <img src="http://localhost:19056/Uploads/@Model.Hotels[1].Image" alt="img11" class="img-responsive">
                             <figcaption>
-                                <h2>@Model.Hotel[0].DisplayValue</h2>
-                                <div class="mg-room-rating"><i class="fa fa-star"></i> @Model.Hotel[0].Rate</div>
-                                <div class="mg-room-price">@Model.Hotel[1].PriceStart /Night</div>
-                                <p>@Model.Hotel[1].DisplayValueDesc</p>
+                                <h2>@Model.Hotels[0].DisplayValue</h2>
+                                <div class="mg-room-rating"><i class="fa fa-star"></i> @Model.Hotels[0].Rate</div>
+                                <div class="mg-room-price">@Model.Hotels[1].PriceStart /Night</div>
+                                <p>@Model.Hotels[1].DisplayValueDesc</p>
                                 <a href="#" class="btn btn-link">View Details <i class="fa fa-angle-double-right"></i></a>
                                 <a href="#" class="btn btn-main">Book</a>
                             </figcaption>
@@ -35,12 +36,12 @@
                     </div>
                     <div class="col-sm-4">
                         <figure class="mg-room">
-                            <img src="http://localhost:19056/Uploads/@Model.Hotel[2].Image" alt="img11" class="img-responsive">
+                            <img src="http://localhost:19056/Uploads/@Model.Hotels[2].Image" alt="img11" class="img-responsive">
                             <figcaption>
-                                <h2>@Model.Hotel[2].DisplayValue</h2>
-                                <div class="mg-room-rating"><i class="fa fa-star"></i> @Model.Hotel[0].Rate</div>
-                                <div class="mg-room-price">@Model.Hotel[2].PriceStart /Night</div>
-                                <p>@Model.Hotel[2].DisplayValueDesc</p>
+                                <h2>@Model.Hotels[2].DisplayValue</h2>
+                                <div class="mg-room-rating"><i class="fa fa-star"></i> @Model.Hotels[0].Rate</div>
+                                <div class="mg-room-price">@Model.Hotels[2].PriceStart /Night</div>
+                                <p>@Model.Hotels[2].DisplayValueDesc</p>
                                 <a href="#" class="btn btn-link">View Details <i class="fa fa-angle-double-right"></i></a>
                                 <a href="#" class="btn btn-main">Book</a>
                             </figcaption>

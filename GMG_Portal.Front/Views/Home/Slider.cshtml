@@ -1,4 +1,6 @@
-﻿<div id="mega-slider" class="carousel slide " data-ride="carousel">
+﻿@model  Front.Models.HomeModels
+
+<div id="mega-slider" class="carousel slide " data-ride="carousel">
     <ol class="carousel-indicators">
         <li data-target="#mega-slider" data-slide-to="@Model.HomeSliders[0].Id" class="active"></li>
         @for (var j = 1; j < Model.HomeSliders.Count; j++)
