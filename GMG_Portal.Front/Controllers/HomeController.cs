@@ -6,6 +6,7 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Front.Models;
+using GMG_Portal.API.Models.Hotels.Hotel;  
 using Newtonsoft.Json;
 using GMG_Portal.API.Models.SystemParameters;
 
@@ -14,11 +15,11 @@ namespace Front.Controllers
     public class HomeController : Controller
     {
         readonly HttpClient _client;
-       
+
         string url = System.Configuration.ConfigurationManager.AppSettings["ServerIp"] + "/SystemParameters/";
         public HomeController()
         {
-          
+
             _client = new HttpClient();
             _client.BaseAddress = new Uri(url);
             _client.DefaultRequestHeaders.Accept.Clear();
@@ -36,28 +37,30 @@ namespace Front.Controllers
 
 
             var homeModels = new HomeModels();
-        
+
 
             await CallHomeSliders(_homeSlider, homeModels);
             await CallAbout(_about, homeModels);
             await CallFacilities(_HotelFeatures, homeModels);
-            await CallHotels(_Hotels, homeModels);
+          //  await CallHotels(_Hotels, homeModels);
             await CallNews(_News, homeModels);
 
 
             return View(homeModels);
 
         }
+
+
        // Home Partial Views Loading 
         public ActionResult Slider()
         {
             return Slider();
         }
 
-        public ActionResult OurHotels()
-        {
-            return OurHotels();
-        }
+        //public ActionResult OurHotels()
+        //{
+        //    return OurHotels();
+        //}
 
         public ActionResult AboutHome()
         {
@@ -82,19 +85,19 @@ namespace Front.Controllers
 
 
 
-
          //Fill Models with data Retrieved
+
         private async Task CallHomeSliders(string _homeSlider, HomeModels homeModels)
         {
-            HttpResponseMessage responseMessageAbout = await _client.GetAsync(_homeSlider);
-            if (responseMessageAbout.IsSuccessStatusCode)
+            HttpResponseMessage responseMessage = await _client.GetAsync(homeSlider);
+            if (responseMessage.IsSuccessStatusCode)
             {
-                var responseData = responseMessageAbout.Content.ReadAsStringAsync().Result;
+                var responseData = responseMessage.Content.ReadAsStringAsync().Result;
                 var homesliders = JsonConvert.DeserializeObject<List<HomeSlider>>(responseData);
                 homeModels.HomeSliders = homesliders;
             }
         }
-    
+
         private async Task CallAbout(string _about, HomeModels homeModels)
         {
             HttpResponseMessage responseMessageAbout = await _client.GetAsync(_about);
@@ -106,9 +109,9 @@ namespace Front.Controllers
             }
         }
 
-        private async Task CallFacilities(string _HotelFeatures, HomeModels homeModels)
+        private async Task CallFacilities(string hotelFeatures, HomeModels homeModels)
         {
-            HttpResponseMessage responseMessageAbout = await _client.GetAsync(_HotelFeatures);
+            HttpResponseMessage responseMessageAbout = await _client.GetAsync(hotelFeatures);
             if (responseMessageAbout.IsSuccessStatusCode)
             {
                 var responseData = responseMessageAbout.Content.ReadAsStringAsync().Result;
