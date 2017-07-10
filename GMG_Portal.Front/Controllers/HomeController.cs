@@ -15,7 +15,7 @@ namespace Front.Controllers
     {
         readonly HttpClient _client;
        
-        string url = System.Configuration.ConfigurationManager.AppSettings["ServicesURL"] + "/SystemParameters/";
+        string url = System.Configuration.ConfigurationManager.AppSettings["ServerIp"] + "/SystemParameters/";
         public HomeController()
         {
           
