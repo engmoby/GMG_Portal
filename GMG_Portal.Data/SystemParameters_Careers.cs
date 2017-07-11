@@ -12,7 +12,7 @@ namespace GMG_Portal.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class Front_Vision
+    public partial class SystemParameters_Careers
     {
         public int Id { get; set; }
         public Nullable<System.Guid> SGuid { get; set; }
@@ -25,6 +25,15 @@ namespace GMG_Portal.Data
         public Nullable<int> LookupKeyDesc { get; set; }
         public Nullable<System.Guid> LookupKeyGuidDesc { get; set; }
         public string Image { get; set; }
+        public string SalaryAverage { get; set; }
+        public string Experience { get; set; }
+        public string CareerLevel { get; set; }
+        public string JobType { get; set; }
+        public string EducationLevel { get; set; }
+        public Nullable<int> Vacancies { get; set; }
+        public string DisplayValueRequirements { get; set; }
+        public Nullable<int> LookupKeyRequirements { get; set; }
+        public Nullable<System.Guid> LookupKeyGuidRequirements { get; set; }
         public Nullable<System.DateTime> LastModificationTime { get; set; }
         public Nullable<int> LastModifierUserId { get; set; }
         public Nullable<System.DateTime> CreationTime { get; set; }
