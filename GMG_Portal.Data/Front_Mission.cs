@@ -19,7 +19,6 @@ namespace GMG_Portal.Data
         public string DisplayValue { get; set; }
         public Nullable<int> LookupKey { get; set; }
         public Nullable<System.Guid> LookupKeyGuid { get; set; }
-        public Nullable<bool> IsCurrent { get; set; }
         public bool IsDeleted { get; set; }
         public Nullable<bool> Show { get; set; }
         public string DisplayValueDesc { get; set; }

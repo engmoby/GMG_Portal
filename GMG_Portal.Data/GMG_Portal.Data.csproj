@@ -91,6 +91,8 @@
     </Compile>
     <Compile Include="Partials\Hotel\HotelsImages.cs" />
     <Compile Include="Partials\Hotel\Hotel.cs" />
+    <Compile Include="Partials\SystemParameter\CareerForm.cs" />
+    <Compile Include="Partials\SystemParameter\Careers.cs" />
     <Compile Include="Partials\SystemParameter\ContactForm.cs" />
     <Compile Include="Partials\SystemParameter\Owners.cs" />
     <Compile Include="Partials\SystemParameter\ContactUs.cs" />
@@ -129,6 +131,12 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SystemParameters_About.cs">
+      <DependentUpon>Portal_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SystemParameters_CareerForm.cs">
+      <DependentUpon>Portal_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SystemParameters_Careers.cs">
       <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="SystemParameters_Category.cs">

@@ -70,6 +70,13 @@ namespace GMG_Portal.API
                 cfg.CreateMap<SystemParameters_ContactForm, ContactForm>();
                 cfg.CreateMap<ContactForm, SystemParameters_ContactForm>();
 
+
+                cfg.CreateMap<SystemParameters_Careers, Career>();
+                cfg.CreateMap<Career, SystemParameters_Careers>();
+
+                cfg.CreateMap<SystemParameters_CareerForm, CareerForm>();
+                cfg.CreateMap<CareerForm, SystemParameters_CareerForm>();
+
                 cfg.CreateMap<SystemParameters_Countries, GMG_Portal.API.Models.SystemParameters.Countries>();
                 cfg.CreateMap<GMG_Portal.API.Models.SystemParameters.Countries, SystemParameters_Countries>();
 
