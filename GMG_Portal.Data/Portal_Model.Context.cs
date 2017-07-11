@@ -42,7 +42,6 @@ namespace GMG_Portal.Data
         public virtual DbSet<SystemParameters_HomeSlider> SystemParameters_HomeSlider { get; set; }
         public virtual DbSet<Systemparameters_Languages> Systemparameters_Languages { get; set; }
         public virtual DbSet<SystemParameters_News> SystemParameters_News { get; set; }
-        public virtual DbSet<SystemParameters_Owners> SystemParameters_Owners { get; set; }
         public virtual DbSet<SystemParameters_PaymentType> SystemParameters_PaymentType { get; set; }
         public virtual DbSet<SystemParameters_LanguageText> SystemParameters_LanguageText { get; set; }
         public virtual DbSet<SystemParameters_ContactUs> SystemParameters_ContactUs { get; set; }
@@ -52,5 +51,6 @@ namespace GMG_Portal.Data
         public virtual DbSet<Front_Vision> Front_Vision { get; set; }
         public virtual DbSet<SystemParameters_CareerForm> SystemParameters_CareerForm { get; set; }
         public virtual DbSet<SystemParameters_Careers> SystemParameters_Careers { get; set; }
+        public virtual DbSet<SystemParameters_Owners> SystemParameters_Owners { get; set; }
     }
 }

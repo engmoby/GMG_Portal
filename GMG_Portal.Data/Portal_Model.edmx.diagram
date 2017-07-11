@@ -22,7 +22,6 @@
         <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_HomeSlider" Width="1.5" PointX="12.75" PointY="13.75" />
         <EntityTypeShape EntityType="GMG_Portal_DBModel.Systemparameters_Languages" Width="1.5" PointX="14.75" PointY="0.75" />
         <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_News" Width="1.5" PointX="14.75" PointY="5.75" />
-        <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_Owners" Width="1.5" PointX="14.75" PointY="14.75" />
         <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_PaymentType" Width="1.5" PointX="16.75" PointY="0.75" />
         <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_LanguageText" Width="1.5" PointX="16.75" PointY="5.75" />
         <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_ContactUs" Width="1.5" PointX="3.375" PointY="17.75" />
@@ -32,6 +31,7 @@
         <EntityTypeShape EntityType="GMG_Portal_DBModel.Front_Vision" Width="1.5" PointX="5.75" PointY="17.75" />
         <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_CareerForm" Width="1.5" PointX="17.75" PointY="9.75" />
         <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_Careers" Width="1.5" PointX="17.375" PointY="14.75" />
+        <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_Owners" Width="1.5" PointX="0.75" PointY="18.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

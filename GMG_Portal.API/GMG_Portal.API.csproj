@@ -175,6 +175,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\Hotel\HotelsController.cs" />
     <Compile Include="Controllers\SystemParameters\CareerController.cs" />
+    <Compile Include="Controllers\SystemParameters\CareerFormController.cs" />
     <Compile Include="Controllers\SystemParameters\ContactFormController.cs" />
     <Compile Include="Controllers\SystemParameters\NewsletterController.cs" />
     <Compile Include="Controllers\SystemParameters\ContactUsController.cs" />

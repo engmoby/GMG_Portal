@@ -66,6 +66,7 @@
     <Compile Include="Logic\Customer\InvoiceTypesLogic.cs" />
     <Compile Include="Logic\Hotel\HotelLogic.cs" />
     <Compile Include="Logic\SystemParameters\CareerLogic.cs" />
+    <Compile Include="Logic\SystemParameters\CareerFormLogic.cs" />
     <Compile Include="Logic\SystemParameters\ContactFormLogic.cs" />
     <Compile Include="Logic\SystemParameters\NewsletterLogic.cs" />
     <Compile Include="Logic\SystemParameters\ContactUsLogic.cs" />

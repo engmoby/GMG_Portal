@@ -33,5 +33,8 @@ namespace GMG_Portal.Data
         public Nullable<int> DeleterUserId { get; set; }
         public bool IsDeleted { get; set; }
         public Nullable<bool> Show { get; set; }
+        public string Facebook { get; set; }
+        public string Twitter { get; set; }
+        public string LinkedIn { get; set; }
     }
 }

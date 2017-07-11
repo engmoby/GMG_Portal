@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GMG_Portal.Data;
-using Heloper;
+using Heloper; 
 
 namespace GMG_Portal.Business.Logic.SystemParameters
 {
@@ -22,7 +22,26 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         }
         public List<SystemParameters_Owners> GetAll()
         {
-            return _db.SystemParameters_Owners.Where(p => p.IsDeleted == false && (bool) p.Show).ToList();
+            var returnList = new List<SystemParameters_Owners>();
+            var getOwnerList = _db.SystemParameters_Owners.Where(p => p.IsDeleted == false && p.Show == true).ToList();
+            foreach (var ownerse in getOwnerList)
+            {
+
+                returnList.Add(new SystemParameters_Owners
+                {
+                    Id = ownerse.Id, 
+                    DisplayValueName = ownerse.DisplayValueName,
+                    DisplayValuePosition= ownerse.DisplayValuePosition,
+                    DisplayValueDesc = ownerse.DisplayValueDesc, 
+                    Image = ownerse.Image,
+                    Facebook = ownerse.Facebook,
+                    Twitter = ownerse.Twitter,
+                    LinkedIn = ownerse.LinkedIn,
+                    Bootstrap = 12 / getOwnerList.Count
+                });
+            }
+            return returnList;
+            //return _db.SystemParameters_Owners.Where(p => p.IsDeleted == false && (bool) p.Show).ToList();
         }
         public SystemParameters_Owners Get(int id)
         {

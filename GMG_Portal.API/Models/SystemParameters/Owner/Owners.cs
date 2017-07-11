@@ -28,5 +28,9 @@ namespace GMG_Portal.API.Models.SystemParameters
         public DateTime? DeletionTime { get; set; }
         public int? DeleterUserId { get; set; }
         public string OperationStatus { get; set; }
+        public int Bootstrap { get; set; }
+        public string Facebook { get; set; }
+        public string Twitter { get; set; }
+        public string LinkedIn { get; set; }
     }
 }

@@ -11,5 +11,6 @@ namespace GMG_Portal.Data
     {
         [NotMapped]
         public string OperationStatus { get; set; }
+        public int Bootstrap { get; set; }
     }
 }
