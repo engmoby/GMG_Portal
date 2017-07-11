@@ -48,8 +48,8 @@ namespace GMG_Portal.API
                 cfg.CreateMap<Models.SystemParameters.Mission, Front_Mission>();
 
 
-                cfg.CreateMap<Hotels_Features, Features>();
-                cfg.CreateMap<Features, Hotels_Features>();
+                cfg.CreateMap<SystemParameters_Features, Features>();
+                cfg.CreateMap<Features, SystemParameters_Features>();
 
 
                 cfg.CreateMap<Data.Hotel, Hotels>();
