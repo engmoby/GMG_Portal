@@ -16,12 +16,13 @@ namespace GMG_Portal.Data
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
-        public string LastNamr { get; set; }
+        public string LastName { get; set; }
         public string Email { get; set; }
         public string PhoneNo { get; set; }
         public string Message { get; set; }
         public Nullable<System.DateTime> CreationTime { get; set; }
-        public Nullable<System.DateTime> SeenDate { get; set; }
         public Nullable<int> SeenBy { get; set; }
+        public Nullable<System.DateTime> SeenDate { get; set; }
+        public Nullable<bool> Seen { get; set; }
     }
 }

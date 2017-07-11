@@ -67,6 +67,8 @@ namespace GMG_Portal.API
                 cfg.CreateMap<SystemParameters_Newsletter, Newsletter>();
                 cfg.CreateMap<Newsletter, SystemParameters_Newsletter>();
 
+                cfg.CreateMap<SystemParameters_ContactForm, ContactForm>();
+                cfg.CreateMap<ContactForm, SystemParameters_ContactForm>();
 
                 cfg.CreateMap<SystemParameters_Countries, GMG_Portal.API.Models.SystemParameters.Countries>();
                 cfg.CreateMap<GMG_Portal.API.Models.SystemParameters.Countries, SystemParameters_Countries>();

@@ -301,13 +301,14 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FirstName" Type="nvarchar" MaxLength="150" />
-          <Property Name="LastNamr" Type="nvarchar" MaxLength="150" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="150" />
           <Property Name="Email" Type="nvarchar" MaxLength="150" />
           <Property Name="PhoneNo" Type="nvarchar" MaxLength="50" />
           <Property Name="Message" Type="nvarchar(max)" />
           <Property Name="CreationTime" Type="datetime" />
-          <Property Name="SeenDate" Type="datetime" />
           <Property Name="SeenBy" Type="int" />
+          <Property Name="SeenDate" Type="datetime" />
+          <Property Name="Seen" Type="bit" />
         </EntityType>
         <EntityType Name="SystemParameters_ContactUs">
           <Key>
@@ -344,6 +345,8 @@
           <Property Name="CreatorUserId" Type="int" />
           <Property Name="DeletionTime" Type="datetime" />
           <Property Name="DeleterUserId" Type="int" />
+          <Property Name="MailNo1" Type="nvarchar" MaxLength="50" />
+          <Property Name="MailNo2" Type="nchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="SystemParameters_Countries">
           <Key>
@@ -473,6 +476,7 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters.LanguageTex
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Mail" Type="nvarchar" MaxLength="150" />
           <Property Name="CreationTime" Type="datetime" />
+          <Property Name="Seen" Type="bit" />
           <Property Name="SeenDate" Type="datetime" />
           <Property Name="SeenBy" Type="int" />
         </EntityType>
@@ -576,17 +580,17 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters.LanguageTex
           <EntitySet Name="SystemParameters_About" EntityType="GMG_Portal_DBModel.SystemParameters_About" />
           <EntitySet Name="SystemParameters_Category" EntityType="GMG_Portal_DBModel.SystemParameters_Category" />
           <EntitySet Name="SystemParameters_Cities" EntityType="GMG_Portal_DBModel.SystemParameters_Cities" />
-          <EntitySet Name="SystemParameters_ContactForm" EntityType="GMG_Portal_DBModel.SystemParameters_ContactForm" />
-          <EntitySet Name="SystemParameters_ContactUs" EntityType="GMG_Portal_DBModel.SystemParameters_ContactUs" />
           <EntitySet Name="SystemParameters_Countries" EntityType="GMG_Portal_DBModel.SystemParameters_Countries" />
           <EntitySet Name="SystemParameters_Departments" EntityType="GMG_Portal_DBModel.SystemParameters_Departments" />
           <EntitySet Name="SystemParameters_HomeSlider" EntityType="GMG_Portal_DBModel.SystemParameters_HomeSlider" />
           <EntitySet Name="Systemparameters_Languages" EntityType="GMG_Portal_DBModel.Systemparameters_Languages" />
           <EntitySet Name="SystemParameters_News" EntityType="GMG_Portal_DBModel.SystemParameters_News" />
-          <EntitySet Name="SystemParameters_Newsletter" EntityType="GMG_Portal_DBModel.SystemParameters_Newsletter" />
           <EntitySet Name="SystemParameters_Owners" EntityType="GMG_Portal_DBModel.SystemParameters_Owners" />
           <EntitySet Name="SystemParameters_PaymentType" EntityType="GMG_Portal_DBModel.SystemParameters_PaymentType" />
           <EntitySet Name="SystemParameters_LanguageText" EntityType="GMG_Portal_DBModel.SystemParameters_LanguageText" />
+          <EntitySet Name="SystemParameters_ContactUs" EntityType="GMG_Portal_DBModel.SystemParameters_ContactUs" />
+          <EntitySet Name="SystemParameters_ContactForm" EntityType="GMG_Portal_DBModel.SystemParameters_ContactForm" />
+          <EntitySet Name="SystemParameters_Newsletter" EntityType="GMG_Portal_DBModel.SystemParameters_Newsletter" />
         </EntityContainer>
         <EntityType Name="Front_Mission">
           <Key>
@@ -878,56 +882,6 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters.LanguageTex
           <Property Name="Show" Type="Boolean" Nullable="false" />
           <Property Name="CountryID" Type="Int32" />
         </EntityType>
-        <EntityType Name="SystemParameters_ContactForm">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="LastNamr" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CreationTime" Type="DateTime" Precision="3" />
-          <Property Name="SeenDate" Type="DateTime" Precision="3" />
-          <Property Name="SeenBy" Type="Int32" />
-        </EntityType>
-        <EntityType Name="SystemParameters_ContactUs">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SGuid" Type="Guid" />
-          <Property Name="DisplayValueAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="LookupKeyAddress" Type="Int32" />
-          <Property Name="LookupKeyGuidAddress" Type="Guid" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="Show" Type="Boolean" />
-          <Property Name="DisplayValueDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="LookupKeyDesc" Type="Int32" />
-          <Property Name="LookupKeyGuidDesc" Type="Guid" />
-          <Property Name="Image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Url" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Facebook" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Twitter" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Instgram" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Youtube" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Snapchat" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="WhatsApp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNo1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNo2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PostalCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Mailbox" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Late" Type="Double" />
-          <Property Name="Long" Type="Double" />
-          <Property Name="LastModificationTime" Type="DateTime" Precision="3" />
-          <Property Name="LastModifierUserId" Type="Int32" />
-          <Property Name="CreationTime" Type="DateTime" Precision="3" />
-          <Property Name="CreatorUserId" Type="Int32" />
-          <Property Name="DeletionTime" Type="DateTime" Precision="3" />
-          <Property Name="DeleterUserId" Type="Int32" />
-        </EntityType>
         <EntityType Name="SystemParameters_Countries">
           <Key>
             <PropertyRef Name="Id" />
@@ -1034,16 +988,6 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters.LanguageTex
           <Property Name="Tags" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CategoryId" Type="Int32" />
         </EntityType>
-        <EntityType Name="SystemParameters_Newsletter">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Mail" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="CreationTime" Type="DateTime" Precision="3" />
-          <Property Name="SeenDate" Type="DateTime" Precision="3" />
-          <Property Name="SeenBy" Type="Int32" />
-        </EntityType>
         <EntityType Name="SystemParameters_Owners">
           <Key>
             <PropertyRef Name="Id" />
@@ -1100,6 +1044,70 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters.LanguageTex
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
           <Property Name="Show" Type="Boolean" />
           <Property Name="Value" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SystemParameters_ContactUs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SGuid" Type="Guid" />
+          <Property Name="DisplayValueAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LookupKeyAddress" Type="Int32" />
+          <Property Name="LookupKeyGuidAddress" Type="Guid" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Show" Type="Boolean" />
+          <Property Name="DisplayValueDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LookupKeyDesc" Type="Int32" />
+          <Property Name="LookupKeyGuidDesc" Type="Guid" />
+          <Property Name="Image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Url" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Facebook" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Twitter" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Instgram" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Youtube" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Snapchat" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WhatsApp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNo1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNo2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PostalCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mailbox" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Late" Type="Double" />
+          <Property Name="Long" Type="Double" />
+          <Property Name="LastModificationTime" Type="DateTime" Precision="3" />
+          <Property Name="LastModifierUserId" Type="Int32" />
+          <Property Name="CreationTime" Type="DateTime" Precision="3" />
+          <Property Name="CreatorUserId" Type="Int32" />
+          <Property Name="DeletionTime" Type="DateTime" Precision="3" />
+          <Property Name="DeleterUserId" Type="Int32" />
+          <Property Name="MailNo1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MailNo2" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SystemParameters_ContactForm">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreationTime" Type="DateTime" Precision="3" />
+          <Property Name="SeenBy" Type="Int32" />
+          <Property Name="SeenDate" Type="DateTime" Precision="3" />
+          <Property Name="Seen" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="SystemParameters_Newsletter">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Mail" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="CreationTime" Type="DateTime" Precision="3" />
+          <Property Name="Seen" Type="Boolean" />
+          <Property Name="SeenDate" Type="DateTime" Precision="3" />
+          <Property Name="SeenBy" Type="Int32" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -1411,58 +1419,6 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters.LanguageTex
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SystemParameters_ContactForm">
-            <EntityTypeMapping TypeName="GMG_Portal_DBModel.SystemParameters_ContactForm">
-              <MappingFragment StoreEntitySet="SystemParameters_ContactForm">
-                <ScalarProperty Name="SeenBy" ColumnName="SeenBy" />
-                <ScalarProperty Name="SeenDate" ColumnName="SeenDate" />
-                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
-                <ScalarProperty Name="Message" ColumnName="Message" />
-                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="LastNamr" ColumnName="LastNamr" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SystemParameters_ContactUs">
-            <EntityTypeMapping TypeName="GMG_Portal_DBModel.SystemParameters_ContactUs">
-              <MappingFragment StoreEntitySet="SystemParameters_ContactUs">
-                <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
-                <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
-                <ScalarProperty Name="CreatorUserId" ColumnName="CreatorUserId" />
-                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
-                <ScalarProperty Name="LastModifierUserId" ColumnName="LastModifierUserId" />
-                <ScalarProperty Name="LastModificationTime" ColumnName="LastModificationTime" />
-                <ScalarProperty Name="Long" ColumnName="Long" />
-                <ScalarProperty Name="Late" ColumnName="Late" />
-                <ScalarProperty Name="Mailbox" ColumnName="Mailbox" />
-                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
-                <ScalarProperty Name="PhoneNo2" ColumnName="PhoneNo2" />
-                <ScalarProperty Name="PhoneNo1" ColumnName="PhoneNo1" />
-                <ScalarProperty Name="WhatsApp" ColumnName="WhatsApp" />
-                <ScalarProperty Name="Fax" ColumnName="Fax" />
-                <ScalarProperty Name="Snapchat" ColumnName="Snapchat" />
-                <ScalarProperty Name="Youtube" ColumnName="Youtube" />
-                <ScalarProperty Name="Instgram" ColumnName="Instgram" />
-                <ScalarProperty Name="Twitter" ColumnName="Twitter" />
-                <ScalarProperty Name="Facebook" ColumnName="Facebook" />
-                <ScalarProperty Name="Url" ColumnName="Url" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="LookupKeyGuidDesc" ColumnName="LookupKeyGuidDesc" />
-                <ScalarProperty Name="LookupKeyDesc" ColumnName="LookupKeyDesc" />
-                <ScalarProperty Name="DisplayValueDesc" ColumnName="DisplayValueDesc" />
-                <ScalarProperty Name="Show" ColumnName="Show" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="LookupKeyGuidAddress" ColumnName="LookupKeyGuidAddress" />
-                <ScalarProperty Name="LookupKeyAddress" ColumnName="LookupKeyAddress" />
-                <ScalarProperty Name="DisplayValueAddress" ColumnName="DisplayValueAddress" />
-                <ScalarProperty Name="SGuid" ColumnName="SGuid" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="SystemParameters_Countries">
             <EntityTypeMapping TypeName="GMG_Portal_DBModel.SystemParameters_Countries">
               <MappingFragment StoreEntitySet="SystemParameters_Countries">
@@ -1574,17 +1530,6 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters.LanguageTex
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SystemParameters_Newsletter">
-            <EntityTypeMapping TypeName="GMG_Portal_DBModel.SystemParameters_Newsletter">
-              <MappingFragment StoreEntitySet="SystemParameters_Newsletter">
-                <ScalarProperty Name="SeenBy" ColumnName="SeenBy" />
-                <ScalarProperty Name="SeenDate" ColumnName="SeenDate" />
-                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
-                <ScalarProperty Name="Mail" ColumnName="Mail" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="SystemParameters_Owners">
             <EntityTypeMapping TypeName="GMG_Portal_DBModel.SystemParameters_Owners">
               <MappingFragment StoreEntitySet="SystemParameters_Owners">
@@ -1640,6 +1585,73 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters.LanguageTex
                 <ScalarProperty Name="LanguageName" ColumnName="LanguageName" />
                 <ScalarProperty Name="LanguageKey" ColumnName="LanguageKey" />
                 <ScalarProperty Name="SGuid" ColumnName="SGuid" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SystemParameters_ContactUs">
+            <EntityTypeMapping TypeName="GMG_Portal_DBModel.SystemParameters_ContactUs">
+              <MappingFragment StoreEntitySet="SystemParameters_ContactUs">
+                <ScalarProperty Name="MailNo2" ColumnName="MailNo2" />
+                <ScalarProperty Name="MailNo1" ColumnName="MailNo1" />
+                <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
+                <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
+                <ScalarProperty Name="CreatorUserId" ColumnName="CreatorUserId" />
+                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+                <ScalarProperty Name="LastModifierUserId" ColumnName="LastModifierUserId" />
+                <ScalarProperty Name="LastModificationTime" ColumnName="LastModificationTime" />
+                <ScalarProperty Name="Long" ColumnName="Long" />
+                <ScalarProperty Name="Late" ColumnName="Late" />
+                <ScalarProperty Name="Mailbox" ColumnName="Mailbox" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="PhoneNo2" ColumnName="PhoneNo2" />
+                <ScalarProperty Name="PhoneNo1" ColumnName="PhoneNo1" />
+                <ScalarProperty Name="WhatsApp" ColumnName="WhatsApp" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Snapchat" ColumnName="Snapchat" />
+                <ScalarProperty Name="Youtube" ColumnName="Youtube" />
+                <ScalarProperty Name="Instgram" ColumnName="Instgram" />
+                <ScalarProperty Name="Twitter" ColumnName="Twitter" />
+                <ScalarProperty Name="Facebook" ColumnName="Facebook" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="LookupKeyGuidDesc" ColumnName="LookupKeyGuidDesc" />
+                <ScalarProperty Name="LookupKeyDesc" ColumnName="LookupKeyDesc" />
+                <ScalarProperty Name="DisplayValueDesc" ColumnName="DisplayValueDesc" />
+                <ScalarProperty Name="Show" ColumnName="Show" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="LookupKeyGuidAddress" ColumnName="LookupKeyGuidAddress" />
+                <ScalarProperty Name="LookupKeyAddress" ColumnName="LookupKeyAddress" />
+                <ScalarProperty Name="DisplayValueAddress" ColumnName="DisplayValueAddress" />
+                <ScalarProperty Name="SGuid" ColumnName="SGuid" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SystemParameters_ContactForm">
+            <EntityTypeMapping TypeName="GMG_Portal_DBModel.SystemParameters_ContactForm">
+              <MappingFragment StoreEntitySet="SystemParameters_ContactForm">
+                <ScalarProperty Name="Seen" ColumnName="Seen" />
+                <ScalarProperty Name="SeenDate" ColumnName="SeenDate" />
+                <ScalarProperty Name="SeenBy" ColumnName="SeenBy" />
+                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SystemParameters_Newsletter">
+            <EntityTypeMapping TypeName="GMG_Portal_DBModel.SystemParameters_Newsletter">
+              <MappingFragment StoreEntitySet="SystemParameters_Newsletter">
+                <ScalarProperty Name="SeenBy" ColumnName="SeenBy" />
+                <ScalarProperty Name="SeenDate" ColumnName="SeenDate" />
+                <ScalarProperty Name="Seen" ColumnName="Seen" />
+                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

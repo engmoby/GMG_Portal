@@ -22,7 +22,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         }
         public List<SystemParameters_Newsletter> GetAll()
         {
-            return _db.SystemParameters_Newsletter.Where(p => p.SeenBy != 0).ToList();
+            return _db.SystemParameters_Newsletter.Where(p => p.Seen != true).ToList();
         }
         public SystemParameters_Newsletter Get(int id)
         {
@@ -70,6 +70,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             SystemParameters_Newsletter newsletter = Get(postedNewsletter.Id);
             newsletter.SeenDate = Parameters.CurrentDateTime;
             newsletter.SeenBy = Parameters.UserId; 
+            newsletter.Seen = postedNewsletter.Seen;
             return Save(newsletter);
         }
        

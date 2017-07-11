@@ -39,16 +39,16 @@ namespace GMG_Portal.Data
         public virtual DbSet<SystemParameters_About> SystemParameters_About { get; set; }
         public virtual DbSet<SystemParameters_Category> SystemParameters_Category { get; set; }
         public virtual DbSet<SystemParameters_Cities> SystemParameters_Cities { get; set; }
-        public virtual DbSet<SystemParameters_ContactForm> SystemParameters_ContactForm { get; set; }
-        public virtual DbSet<SystemParameters_ContactUs> SystemParameters_ContactUs { get; set; }
         public virtual DbSet<SystemParameters_Countries> SystemParameters_Countries { get; set; }
         public virtual DbSet<SystemParameters_Departments> SystemParameters_Departments { get; set; }
         public virtual DbSet<SystemParameters_HomeSlider> SystemParameters_HomeSlider { get; set; }
         public virtual DbSet<Systemparameters_Languages> Systemparameters_Languages { get; set; }
         public virtual DbSet<SystemParameters_News> SystemParameters_News { get; set; }
-        public virtual DbSet<SystemParameters_Newsletter> SystemParameters_Newsletter { get; set; }
         public virtual DbSet<SystemParameters_Owners> SystemParameters_Owners { get; set; }
         public virtual DbSet<SystemParameters_PaymentType> SystemParameters_PaymentType { get; set; }
         public virtual DbSet<SystemParameters_LanguageText> SystemParameters_LanguageText { get; set; }
+        public virtual DbSet<SystemParameters_ContactUs> SystemParameters_ContactUs { get; set; }
+        public virtual DbSet<SystemParameters_ContactForm> SystemParameters_ContactForm { get; set; }
+        public virtual DbSet<SystemParameters_Newsletter> SystemParameters_Newsletter { get; set; }
     }
 }

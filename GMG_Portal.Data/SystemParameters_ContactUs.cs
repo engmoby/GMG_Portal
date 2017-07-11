@@ -45,5 +45,7 @@ namespace GMG_Portal.Data
         public Nullable<int> CreatorUserId { get; set; }
         public Nullable<System.DateTime> DeletionTime { get; set; }
         public Nullable<int> DeleterUserId { get; set; }
+        public string MailNo1 { get; set; }
+        public string MailNo2 { get; set; }
     }
 }

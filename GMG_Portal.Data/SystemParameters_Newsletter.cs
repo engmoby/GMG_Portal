@@ -17,6 +17,7 @@ namespace GMG_Portal.Data
         public int Id { get; set; }
         public string Mail { get; set; }
         public Nullable<System.DateTime> CreationTime { get; set; }
+        public Nullable<bool> Seen { get; set; }
         public Nullable<System.DateTime> SeenDate { get; set; }
         public Nullable<int> SeenBy { get; set; }
     }

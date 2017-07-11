@@ -77,6 +77,8 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 Long = postedContactUs.Long,
                 Mailbox = postedContactUs.Mailbox,
                 WhatsApp = postedContactUs.WhatsApp,
+                MailNo1 = postedContactUs.MailNo1,
+                MailNo2 = postedContactUs.MailNo2,
                 CreationTime = Parameters.CurrentDateTime,
                 CreatorUserId = Parameters.UserId,
             };
