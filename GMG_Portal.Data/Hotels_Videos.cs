@@ -12,7 +12,7 @@ namespace GMG_Portal.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class Hotels_Hotel_Videos
+    public partial class Hotels_Videos
     {
         public int Id { get; set; }
         public Nullable<System.Guid> SGuid { get; set; }

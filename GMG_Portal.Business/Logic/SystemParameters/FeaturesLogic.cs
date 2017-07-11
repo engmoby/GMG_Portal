@@ -16,19 +16,19 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         {
             _db = new GMG_Portal_DBEntities1();
         }
-        public List<Hotels_Features> GetAllWithDeleted()
+        public List<SystemParameters_Features> GetAllWithDeleted()
         {
-            return _db.Hotels_Features.OrderBy(p => p.IsDeleted).ToList();
+            return _db.SystemParameters_Features.OrderBy(p => p.IsDeleted).ToList();
         }
-        public List<Hotels_Features> GetAll()
+        public List<SystemParameters_Features> GetAll()
         {
-            return _db.Hotels_Features.Where(p => p.IsDeleted != true).ToList();
+            return _db.SystemParameters_Features.Where(p => p.IsDeleted != true).ToList();
         }
-        public Hotels_Features Get(int id)
+        public SystemParameters_Features Get(int id)
         {
-            return _db.Hotels_Features.Find(id);
+            return _db.SystemParameters_Features.Find(id);
         }
-        private Hotels_Features Save(Hotels_Features homeSlider)
+        private SystemParameters_Features Save(SystemParameters_Features homeSlider)
         {
             try
             {
@@ -54,10 +54,10 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 throw;
             }
         }
-        public Hotels_Features Insert(Hotels_Features postedHomeSlider)
+        public SystemParameters_Features Insert(SystemParameters_Features postedHomeSlider)
         {
 
-            var language = new Hotels_Features()
+            var language = new SystemParameters_Features()
             {
                 DisplayValue = postedHomeSlider.DisplayValue,
                 DisplayValueDesc = postedHomeSlider.DisplayValueDesc,
@@ -67,12 +67,12 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 CreationTime = Parameters.CurrentDateTime,
                 CreatorUserId = Parameters.UserId,
             };
-            _db.Hotels_Features.Add(language);
+            _db.SystemParameters_Features.Add(language);
             return Save(language);
         }
-        public Hotels_Features Edit(Hotels_Features postedLanguage)
+        public SystemParameters_Features Edit(SystemParameters_Features postedLanguage)
         {
-            Hotels_Features language = Get(postedLanguage.Id);
+            SystemParameters_Features language = Get(postedLanguage.Id);
             language.DisplayValue = postedLanguage.DisplayValue;
             language.DisplayValueDesc = postedLanguage.DisplayValueDesc;
             language.Icon = postedLanguage.Icon; 
@@ -82,10 +82,10 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             language.LastModifierUserId = Parameters.UserId;
             return Save(language);
         }
-        public Hotels_Features Delete(Hotels_Features postedLanguage)
+        public SystemParameters_Features Delete(SystemParameters_Features postedLanguage)
         {
-            Hotels_Features language = Get(postedLanguage.Id);
-            if (_db.Hotels_Features.Any(p => p.Id == postedLanguage.Id && p.IsDeleted != true))
+            SystemParameters_Features language = Get(postedLanguage.Id);
+            if (_db.SystemParameters_Features.Any(p => p.Id == postedLanguage.Id && p.IsDeleted != true))
             {
                 //  language.OperationStatus = "HasRelationship";
                 return language;

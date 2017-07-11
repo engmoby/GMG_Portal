@@ -26,7 +26,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             var getHotelInfo = _db.Hotels.Where(p => p.IsDeleted == false && p.Show).ToList();
             foreach (var hotel in getHotelInfo)
             {
-                var getHotelImages = _db.Hotels_Hotel_Images.Where(p => p.IsDeleted != true && p.Hotel_Id == hotel.Id).ToList();
+                var getHotelImages = _db.Hotels_Images.Where(p => p.IsDeleted != true && p.Hotel_Id == hotel.Id).ToList();
                 returnList.Add(new Hotel
                 {
                     Id = hotel.Id,
@@ -47,7 +47,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
 
             var getHotelInfo = _db.Hotels.FirstOrDefault(p => p.Id== id&& p.IsDeleted == false && p.Show);
 
-            var getHotelImages = _db.Hotels_Hotel_Images.Where(p => p.IsDeleted != true && p.Hotel_Id == getHotelInfo.Id).ToList();
+            var getHotelImages = _db.Hotels_Images.Where(p => p.IsDeleted != true && p.Hotel_Id == getHotelInfo.Id).ToList();
 
             if (getHotelInfo != null)
             {
@@ -65,21 +65,21 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             else return null;
 
         }
-        public IQueryable<Hotels_Hotel_Images> HotelImages(int hotelId)
+        public IQueryable<Hotels_Images> HotelImages(int hotelId)
         {
-            return _db.Hotels_Hotel_Images.Where(x => x.Hotel_Id == hotelId && x.Show);
+            return _db.Hotels_Images.Where(x => x.Hotel_Id == hotelId && x.Show);
         }
-        public IQueryable<Hotels_Hotel_Images> GetAllImages()
+        public IQueryable<Hotels_Images> GetAllImages()
         {
-            return _db.Hotels_Hotel_Images.Where(x => x.Show);
+            return _db.Hotels_Images.Where(x => x.Show);
         }
-        private Hotel Save(Hotel homeSlider)
+        private Hotel Save(Hotel hotel)
         {
             try
             {
                 _db.SaveChanges();
-                homeSlider.OperationStatus = "Succeded";
-                return homeSlider;
+                hotel.OperationStatus = "Succeded";
+                return hotel;
             }
             catch (Exception e)
             {
@@ -87,27 +87,27 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 {
                     if (e.InnerException.ToString().Contains("IX_Countries_Ar"))
                     {
-                        homeSlider.OperationStatus = "NameArMustBeUnique";
-                        return homeSlider;
+                        hotel.OperationStatus = "NameArMustBeUnique";
+                        return hotel;
                     }
                     else if (e.InnerException.ToString().Contains("IX_Countries_En"))
                     {
-                        homeSlider.OperationStatus = "NameEnMustBeUnique";
-                        return homeSlider;
+                        hotel.OperationStatus = "NameEnMustBeUnique";
+                        return hotel;
                     }
                 }
                 throw;
             }
         }
-        public Hotel Insert(Hotel postedHomeSlider)
+        public Hotel Insert(Hotel postedhotel)
         {
 
             var Hotel = new Hotel()
             {
-                DisplayValue = postedHomeSlider.DisplayValue,
-                DisplayValueDesc = postedHomeSlider.DisplayValueDesc,
+                DisplayValue = postedhotel.DisplayValue,
+                DisplayValueDesc = postedhotel.DisplayValueDesc,
 
-                IsDeleted = postedHomeSlider.IsDeleted,
+                IsDeleted = postedhotel.IsDeleted,
                 Show = Parameters.Show,
                 CreationTime = Parameters.CurrentDateTime,
                 CreatorUserId = Parameters.UserId,

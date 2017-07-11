@@ -12,12 +12,19 @@ namespace GMG_Portal.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class Hotels_Hotel_Features
+    public partial class Hotels_Images
     {
         public int Id { get; set; }
-        public Nullable<int> Hotel_Id { get; set; }
-        public Nullable<int> Feature_Id { get; set; }
         public Nullable<System.Guid> SGuid { get; set; }
+        public string Image { get; set; }
+        public Nullable<int> Hotel_Id { get; set; }
         public bool IsDeleted { get; set; }
+        public System.DateTime LastModificationTime { get; set; }
+        public Nullable<int> LastModifierUserId { get; set; }
+        public Nullable<System.DateTime> CreationTime { get; set; }
+        public Nullable<int> CreatorUserId { get; set; }
+        public Nullable<System.DateTime> DeletionTime { get; set; }
+        public Nullable<int> DeleterUserId { get; set; }
+        public bool Show { get; set; }
     }
 }
