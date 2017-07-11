@@ -1,4 +1,7 @@
-﻿
+﻿@using GMG_Portal.API.Models.SystemParameters
+@using GMG_Portal.API.Models.SystemParameters.ContactUs
+@model  Front.Models.HomeModels
+
 @{
     ViewBag.Title = "Owners";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -25,15 +28,17 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-3 col-sm-6">
+        @foreach (Owners owner in Model.Owners)
+        {
+            <div class="col-md-@owner.Bootstrap">
                 <div class="mg-team-member">
                     <figure>
-                        <img src="images/member1.png" alt="" class="img-responsive">
+                        <img src="~/content/images/member1.png" alt="" class="img-responsive">
                     </figure>
                     <div class="mg-team-member-overlayer"></div>
                     <div class="mg-team-info">
-                        <h3>Joseph Gonzales</h3>
-                        <strong>Manager</strong>
+                        <h3>@owner.DisplayValueName</h3>
+                        <strong>@owner.DisplayValuePosition</strong>
                         <ul class="mg-team-member-social">
                             <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                             <li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -42,57 +47,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="mg-team-member">
-                    <figure>
-                        <img src="images/member2.png" alt="" class="img-responsive">
-                    </figure>
-                    <div class="mg-team-member-overlayer"></div>
-                    <div class="mg-team-info">
-                        <h3>Joseph Gonzales</h3>
-                        <strong>Manager</strong>
-                        <ul class="mg-team-member-social">
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="mg-team-member">
-                    <figure>
-                        <img src="images/member3.png" alt="" class="img-responsive">
-                    </figure>
-                    <div class="mg-team-member-overlayer"></div>
-                    <div class="mg-team-info">
-                        <h3>Joseph Gonzales</h3>
-                        <strong>Manager</strong>
-                        <ul class="mg-team-member-social">
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="mg-team-member">
-                    <figure>
-                        <img src="images/member4.png" alt="" class="img-responsive">
-                    </figure>
-                    <div class="mg-team-member-overlayer"></div>
-                    <div class="mg-team-info">
-                        <h3>Joseph Gonzales</h3>
-                        <strong>Manager</strong>
-                        <ul class="mg-team-member-social">
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+        }
         </div>
     </div>
 </div>
