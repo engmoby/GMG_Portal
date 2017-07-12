@@ -22,11 +22,67 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         }
         public List<SystemParameters_News> GetAll()
         {
-            return _db.SystemParameters_News.Where(p => p.IsDeleted != true).ToList();
+            var returnList = new List<SystemParameters_News>();
+
+            var list = _db.SystemParameters_News.Where(p => p.IsDeleted != true).ToList();
+            foreach (var systemParametersNewse in list)
+            {
+                var getCatrogryInfo = _db.SystemParameters_Category.FirstOrDefault(p => p.IsDeleted != true && p.Id == systemParametersNewse.CategoryId);
+                returnList.Add(new SystemParameters_News
+                {
+                    Id = systemParametersNewse.Id,
+                    DisplayValue = systemParametersNewse.DisplayValue,
+                    DisplayValueDesc = systemParametersNewse.DisplayValueDesc,
+                    CreationTime = systemParametersNewse.CreationTime,
+                    CreatorUserName = "Administrator",
+                    CategoryName = getCatrogryInfo.DisplayValue,
+                    Tags = systemParametersNewse.Tags,
+                    Image = systemParametersNewse.Image,
+                    Categories = GetAllCatrogry()
+                });
+            }
+
+            return returnList;
+        }
+
+        private List<SystemParameters_Category> GetAllCatrogry()
+        {
+            var getAllCatrogry = _db.SystemParameters_Category.Where(p => p.IsDeleted != true).ToList();
+            return getAllCatrogry;
+        }
+
+        public List<SystemParameters_News> GetAllByCatrgoryId(int categoryId)
+        {
+            var returnList = new List<SystemParameters_News>();
+
+            var list = _db.SystemParameters_News.Where(p => p.IsDeleted != true && p.CategoryId == categoryId).ToList();
+            foreach (var systemParametersNewse in list)
+            {
+                var getCatrogryInfo = _db.SystemParameters_Category.FirstOrDefault(p => p.IsDeleted != true && p.Id == systemParametersNewse.CategoryId);
+                returnList.Add(new SystemParameters_News
+                {
+                    Id = systemParametersNewse.Id,
+                    DisplayValue = systemParametersNewse.DisplayValue,
+                    DisplayValueDesc = systemParametersNewse.DisplayValueDesc,
+                    CreationTime = systemParametersNewse.CreationTime,
+                    CreatorUserName = "Administrator",
+                    CategoryName = getCatrogryInfo.DisplayValue,
+                    Tags = systemParametersNewse.Tags,
+                    Image = systemParametersNewse.Image,
+                    Categories = GetAllCatrogry()
+
+                });
+            }
+
+            return returnList;
         }
         public SystemParameters_News Get(int id)
         {
             return _db.SystemParameters_News.Find(id);
+        }
+        public List<SystemParameters_News> SearchNews(string keyword)
+        {
+            return _db.SystemParameters_News.Where(x => x.DisplayValue.Contains(keyword) || x.DisplayValueDesc.Contains(keyword)).ToList();
         }
         private SystemParameters_News Save(SystemParameters_News News)
         {

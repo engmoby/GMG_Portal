@@ -1,22 +1,88 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using GMG_Portal.API.Models.SystemParameters;
+using Newtonsoft.Json;
 
 namespace Front.Controllers
 {
     public class NewsController : Controller
     {
-        // GET: News
-        public ActionResult Index()
-        {
-            return View();
-        }
+        readonly HttpClient _client;
 
-        public ActionResult NewsDetails(int newsId)
+        string url = System.Configuration.ConfigurationManager.AppSettings["ServerIp"] + "/SystemParameters/";
+        public NewsController()
         {
-            return View();
+
+            _client = new HttpClient();
+            _client.BaseAddress = new Uri(url);
+            _client.DefaultRequestHeaders.Accept.Clear();
+            _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+        }
+        // GET: news
+        public async Task<ActionResult> Index()
+        {
+            string news = "";
+
+            news = url + "News/GetAll";
+
+            var newsModels = new List<News>();
+
+            if (news == null) throw new ArgumentNullException(nameof(news));
+            HttpResponseMessage responseMessageApi = await _client.GetAsync(news);
+            if (responseMessageApi.IsSuccessStatusCode)
+            {
+                var responseData = responseMessageApi.Content.ReadAsStringAsync().Result;
+                var newsList = JsonConvert.DeserializeObject<List<News>>(responseData);
+                newsModels = newsList;
+            }
+
+            return View(newsModels);
+
+        }
+        public async Task<ActionResult> IndexCat(int id)
+        {
+            string news = "";
+            if (id == 0)
+                news = url + "News/GetAll";
+            else
+                news = url + "News/GetAllByCatrgoryId?categoryId=" + id;
+               // news = "http://localhost:2798/SystemParameters/News/GetAllByCatrgoryId?categoryId=2";
+            var newsModels = new List<News>();
+
+
+            if (news == null) throw new ArgumentNullException(nameof(news));
+            HttpResponseMessage responseMessageApi = await _client.GetAsync(news);
+            if (responseMessageApi.IsSuccessStatusCode)
+            {
+                var responseData = responseMessageApi.Content.ReadAsStringAsync().Result;
+                var newsList = JsonConvert.DeserializeObject<List<News>>(responseData);
+                newsModels = newsList;
+            }
+
+            return View(newsModels);
+
+        }
+        public async Task<ActionResult> Details(int id)
+        {
+            string newsDetails = url + "News/GetNewsDetails/" + id;
+            var newsModels = new News();
+
+            if (newsDetails == null) throw new ArgumentNullException(nameof(newsDetails));
+            HttpResponseMessage responseMessageApi = await _client.GetAsync(newsDetails);
+            if (responseMessageApi.IsSuccessStatusCode)
+            {
+                var responseData = responseMessageApi.Content.ReadAsStringAsync().Result;
+                newsModels = JsonConvert.DeserializeObject<News>(responseData);
+
+            }
+
+            return View(newsModels);
         }
     }
 }
