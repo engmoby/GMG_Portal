@@ -41,6 +41,10 @@ namespace GMG_Portal.API
                 cfg.CreateMap<SystemParameters_News, News>();
                 cfg.CreateMap<News, SystemParameters_News>();
 
+                cfg.CreateMap<SystemParameters_Category, Category>();
+                cfg.CreateMap<Category, SystemParameters_Category>();
+
+
                 cfg.CreateMap<Front_Vision, Vision>();
                 cfg.CreateMap<Vision, Front_Vision>();
 
@@ -55,8 +59,8 @@ namespace GMG_Portal.API
                 cfg.CreateMap<Data.Hotel, Hotels>();
                 cfg.CreateMap<Hotels, Data.Hotel>();
 
-                cfg.CreateMap<Hotels_Hotel_Images, HotelImages>();
-                cfg.CreateMap<HotelImages, Hotels_Hotel_Images>();
+                cfg.CreateMap<Hotels_Images, HotelImages>();
+                cfg.CreateMap<HotelImages, Hotels_Images>();
 
                 cfg.CreateMap<SystemParameters_Owners, Owners>();
                 cfg.CreateMap<Owners, SystemParameters_Owners>();

@@ -69,9 +69,9 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         {
             return _db.Hotels_Images.Where(x => x.Hotel_Id == hotelId && x.Show);
         }
-        public IQueryable<Hotels_Images> GetAllImages()
+        public List<Hotels_Images> GetAllImages()
         {
-            return _db.Hotels_Images.Where(x => x.Show);
+            return _db.Hotels_Images.Where(x => x.Show).ToList();
         }
         private Hotel Save(Hotel hotel)
         {

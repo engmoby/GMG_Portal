@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -34,6 +35,7 @@ namespace Front.Controllers
             string _HotelFeatures = url + "Features/GetAll";
             string _News = url + "News/GetAll";
             string _Hotels = url + "Hotels/GetAll";
+            string gallery = url + "Hotels/GetAllImages";
             string _Owners = url + "Owners/GetAll";
             string _ContactUs = url + "ContactUs/GetAll";
 
@@ -45,23 +47,24 @@ namespace Front.Controllers
             await CallFacilities(_HotelFeatures, homeModels);
             await CallHotels(_Hotels, homeModels);
             await Callowners(_Owners, homeModels);
-            await CallNews(_News, homeModels);
+            await CallNews(_News, gallery, homeModels);
             await CallContactus(_ContactUs, homeModels);
+            //if (CallHomeSliders(_homeSlider, homeModels).Result== "500")
+            //{
+
+            //}
+            //else
+            //{
+            //    RedirectToAction("Error","Home");
+
+            //}
             return View(homeModels);
 
         }
-
-        //[ChildActionOnly]
-        //public ActionResult TopMenu()
-        //{
-        //    return PartialView("TopBar", db.TopMenu);
-        //}  
-        public ActionResult Footer()
+        public ActionResult Error()
         {
-            string contactUs = url + "ContactUs/GetAll";
-            var homeModels = new HomeModels();
-            CallContactus(contactUs, homeModels);
-            return PartialView("_Footer", homeModels);
+            return View();
+
         }
         // Home Partial Views Loading 
         public ActionResult Slider()
@@ -97,19 +100,27 @@ namespace Front.Controllers
 
         //Fill Models with data Retrieved
 
-        private async Task CallHomeSliders(string _homeSlider, HomeModels homeModels)
+        private async Task<string> CallHomeSliders(string homeSlider, HomeModels homeModels)
         {
-            HttpResponseMessage responseMessage = await _client.GetAsync(_homeSlider);
+            var returnValue = "";
+            HttpResponseMessage responseMessage = await _client.GetAsync(homeSlider);
             if (responseMessage.IsSuccessStatusCode)
             {
                 var responseData = responseMessage.Content.ReadAsStringAsync().Result;
                 var homesliders = JsonConvert.DeserializeObject<List<HomeSlider>>(responseData);
                 homeModels.HomeSliders = homesliders;
+                returnValue = HttpStatusCode.OK.ToString();
             }
+            if (responseMessage.StatusCode == HttpStatusCode.InternalServerError)
+            {
+                returnValue = HttpStatusCode.InternalServerError.ToString();
+            }
+            return returnValue;
         }
 
         private async Task CallAbout(string _about, HomeModels homeModels)
         {
+            if (_about == null) throw new ArgumentNullException(nameof(_about));
             HttpResponseMessage responseMessageApi = await _client.GetAsync(_about);
             if (responseMessageApi.IsSuccessStatusCode)
             {
@@ -153,7 +164,7 @@ namespace Front.Controllers
             }
         }
 
-        private async Task CallNews(string _News, HomeModels homeModels)
+        private async Task CallNews(string _News, string gallery, HomeModels homeModels)
         {
             HttpResponseMessage responseMessageApi = await _client.GetAsync(_News);
             if (responseMessageApi.IsSuccessStatusCode)
@@ -161,6 +172,14 @@ namespace Front.Controllers
                 var responseData = responseMessageApi.Content.ReadAsStringAsync().Result;
                 var news = JsonConvert.DeserializeObject<List<News>>(responseData);
                 homeModels.News = news;
+            }
+
+            HttpResponseMessage responseMessageGallery = await _client.GetAsync(gallery);
+            if (responseMessageApi.IsSuccessStatusCode)
+            {
+                var responseDataGallery = responseMessageGallery.Content.ReadAsStringAsync().Result;
+                homeModels.Gallery = JsonConvert.DeserializeObject<List<HotelImages>>(responseDataGallery);
+
             }
         }
 

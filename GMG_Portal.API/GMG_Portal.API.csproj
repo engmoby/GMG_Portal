@@ -209,6 +209,7 @@
     <Compile Include="Models\SystemParameters\Career\Career.cs" />
     <Compile Include="Models\SystemParameters\CareerForm\CareerForm.cs" />
     <Compile Include="Models\SystemParameters\ContactForm\ContactForm.cs" />
+    <Compile Include="Models\SystemParameters\Category\Category.cs" />
     <Compile Include="Models\SystemParameters\Newsletter\Newsletter.cs" />
     <Compile Include="Models\SystemParameters\ContactUs\ContactUs.cs" />
     <Compile Include="Models\SystemParameters\Owner\Owners.cs" />

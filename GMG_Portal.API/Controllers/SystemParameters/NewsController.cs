@@ -30,6 +30,36 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
+        public HttpResponseMessage GetAllByCatrgoryId(int categoryId)
+        {
+            try
+            {
+                var newsLogic = new NewsLogic();
+                var news = newsLogic.GetAllByCatrgoryId(categoryId);
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<News>>(news));
+            }
+            catch (Exception ex)
+            {
+                Log.LogError(ex);
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+            }
+        }
+
+        public HttpResponseMessage SearchNews(string keyword)
+        {
+            try
+            {
+                var newsLogic = new NewsLogic();
+                var news = newsLogic.SearchNews(keyword);
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<News>>(news));
+            }
+            catch (Exception ex)
+            {
+                Log.LogError(ex);
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+            }
+        }
+
         public HttpResponseMessage GetAllWithDeleted()
         {
             try
@@ -44,6 +74,21 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
+        public HttpResponseMessage GetNewsDetails(int id)
+        {
+            try
+            {
+                var newsLogic = new NewsLogic();
+                var newss = newsLogic.Get(id);
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<News>(newss));
+            }
+            catch (Exception ex)
+            {
+                Log.LogError(ex);
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+            }
+        }
+
         [HttpPost]
         public HttpResponseMessage Save(News postedNews)
         {
