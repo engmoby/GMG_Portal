@@ -6,7 +6,7 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Front.Models;
-using GMG_Portal.API.Models.Hotels.Hotel;  
+using GMG_Portal.API.Models.Hotels.Hotel;
 using Newtonsoft.Json;
 using GMG_Portal.API.Models.SystemParameters;
 using GMG_Portal.API.Models.SystemParameters.ContactUs;
@@ -43,7 +43,7 @@ namespace Front.Controllers
             await CallHomeSliders(_homeSlider, homeModels);
             await CallAbout(_about, homeModels);
             await CallFacilities(_HotelFeatures, homeModels);
-             await CallHotels(_Hotels, homeModels);
+            await CallHotels(_Hotels, homeModels);
             await Callowners(_Owners, homeModels);
             await CallNews(_News, homeModels);
             await CallContactus(_ContactUs, homeModels);
@@ -51,8 +51,19 @@ namespace Front.Controllers
 
         }
 
-
-       // Home Partial Views Loading 
+        //[ChildActionOnly]
+        //public ActionResult TopMenu()
+        //{
+        //    return PartialView("TopBar", db.TopMenu);
+        //}  
+        public ActionResult Footer()
+        {
+            string contactUs = url + "ContactUs/GetAll";
+            var homeModels = new HomeModels();
+            CallContactus(contactUs, homeModels);
+            return PartialView("_Footer", homeModels);
+        }
+        // Home Partial Views Loading 
         public ActionResult Slider()
         {
             return Slider();
@@ -84,9 +95,7 @@ namespace Front.Controllers
         }
 
 
-
-
-         //Fill Models with data Retrieved
+        //Fill Models with data Retrieved
 
         private async Task CallHomeSliders(string _homeSlider, HomeModels homeModels)
         {
@@ -140,7 +149,7 @@ namespace Front.Controllers
             {
                 var responseData = responseMessageApi.Content.ReadAsStringAsync().Result;
                 var owners = JsonConvert.DeserializeObject<List<Owners>>(responseData);
-                homeModels.Owners  = owners;
+                homeModels.Owners = owners;
             }
         }
 
@@ -155,7 +164,6 @@ namespace Front.Controllers
             }
         }
 
-
         private async Task CallContactus(string _ContactUs, HomeModels homeModels)
         {
             HttpResponseMessage responseMessageApi = await _client.GetAsync(_ContactUs);
@@ -163,7 +171,7 @@ namespace Front.Controllers
             {
                 var responseData = responseMessageApi.Content.ReadAsStringAsync().Result;
                 var contactUs = JsonConvert.DeserializeObject<List<ContactUs>>(responseData);
-                homeModels.ContactUs  = contactUs;
+                homeModels.ContactUs = contactUs;
             }
         }
 
