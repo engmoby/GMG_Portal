@@ -1,13 +1,12 @@
-﻿
-@*@using GMG_Portal.API.Models.SystemParameters
-@model  Front.Models.HomeModels*@
+﻿@using GMG_Portal.API.Models.SystemParameters
+@model  List<Owners>
 
 @{
     ViewBag.Title = "Owners";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@*<div class="mg-page-title parallax">
+<div class="mg-page-title parallax">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -28,27 +27,27 @@
             </div>
         </div>
         <div class="row">
-        @foreach (Owners owner in Model.Owners)
-        {
-            <div class="col-md-@owner.Bootstrap">
-                <div class="mg-team-member">
-                    <figure>
-                        <img src="~/content/images/member1.png" alt="" class="img-responsive">
-                    </figure>
-                    <div class="mg-team-member-overlayer"></div>
-                    <div class="mg-team-info">
-                        <h3>@owner.DisplayValueName</h3>
-                        <strong>@owner.DisplayValuePosition</strong>
-                        <ul class="mg-team-member-social">
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                        </ul>
+            @for (int i = 0; i < Model.Count; i++) 
+            {
+                <div class="col-md-3">
+                    <div class="mg-team-member">
+                        <figure>
+                            <img src="http://localhost:19056/Uploads/Owners/@Model[i].Image" alt="" class="img-responsive">
+                        </figure>
+                        <div class="mg-team-member-overlayer"></div>
+                        <div class="mg-team-info">
+                            <h3>@Model[i].DisplayValueName</h3>
+                            <strong>@Model[i].DisplayValuePosition</strong>
+                            <ul class="mg-team-member-social">
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
-        }
+            }
         </div>
     </div>
-</div>*@
+</div>
 

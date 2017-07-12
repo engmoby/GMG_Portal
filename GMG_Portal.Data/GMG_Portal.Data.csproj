@@ -68,32 +68,31 @@
     <Compile Include="Hotels_Features.cs">
       <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Hotels_Hotel_Features.cs">
+    <Compile Include="Hotels_Images.cs">
       <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Hotels_Hotel_Images.cs">
+    <Compile Include="Hotels_Payments.cs">
       <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Hotels_Hotel_Payments.cs">
-      <DependentUpon>Portal_Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Hotels_Hotel_Phones.cs">
-      <DependentUpon>Portal_Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Hotels_Hotel_Videos.cs">
+    <Compile Include="Hotels_Phones.cs">
       <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Hotels_Reservation.cs">
       <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Hotles_Hotel_Offers.cs">
+    <Compile Include="Hotels_Videos.cs">
       <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Hotles_Offers.cs">
+      <DependentUpon>Portal_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Partials\Hotel\Offrer.cs" />
     <Compile Include="Partials\Hotel\HotelsImages.cs" />
     <Compile Include="Partials\Hotel\Hotel.cs" />
     <Compile Include="Partials\SystemParameter\CareerForm.cs" />
     <Compile Include="Partials\SystemParameter\Careers.cs" />
     <Compile Include="Partials\SystemParameter\ContactForm.cs" />
+    <Compile Include="Partials\SystemParameter\Features.cs" />
     <Compile Include="Partials\SystemParameter\Owners.cs" />
     <Compile Include="Partials\SystemParameter\ContactUs.cs" />
     <Compile Include="Partials\SystemParameter\Newsletter.cs" />
@@ -101,7 +100,7 @@
     <Compile Include="Partials\SystemParameter\Category.cs" />
     <Compile Include="Partials\SystemParameter\News.cs" />
     <Compile Include="Partials\SystemParameter\About.cs" />
-    <Compile Include="Partials\SystemParameter\Features.cs" />
+    <Compile Include="Partials\SystemParameter\HotelFeatures.cs" />
     <Compile Include="Partials\SystemParameter\HomeSliders.cs" />
     <Compile Include="Partials\SystemParameter\Missons.cs" />
     <Compile Include="Partials\SystemParameter\Visions.cs" />
@@ -155,6 +154,9 @@
       <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="SystemParameters_Departments.cs">
+      <DependentUpon>Portal_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SystemParameters_Features.cs">
       <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="SystemParameters_HomeSlider.cs">

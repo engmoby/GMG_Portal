@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace GMG_Portal.Data
 {
-    public partial class SystemParameters_Features
+    public partial class Hotles_Offers
     {
-        [NotMapped]
-        public string OperationStatus { get; set; }
+        [NotMapped] 
+        public string OperationStatus { get; set; } 
     }
 }

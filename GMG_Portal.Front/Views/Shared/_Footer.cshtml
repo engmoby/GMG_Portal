@@ -1,0 +1,85 @@
+﻿@model  Front.Models.HomeModels
+
+    
+    
+<!-- Footer Content  -->
+<footer class="mg-footer">
+    <div class="mg-footer-widget">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="widget">
+                        <h2 class="mg-widget-title">Contact US</h2>
+                        <address>
+                            @Model.ContactUs[0].DisplayValueAddress
+                          
+                        </address>
+
+                        <p>
+                            @Model.ContactUs[0].PhoneNo1<br>
+                            @Model.ContactUs[0].PhoneNo2
+                        </p>
+
+                        <p>
+                            <a href="mailto:#">@Model.ContactUs[0].Mailbox</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="widget">
+                        <h2 class="mg-widget-title">Twitter</h2>
+                        <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="twitter-timeline twitter-timeline-rendered" style="position: static; visibility: visible; display: inline-block; width: 300px; height: 200px; padding: 0px; border: none; max-width: 100%; min-width: 180px; margin-top: 0px; margin-bottom: 0px; min-height: 200px;" data-widget-id="profile:mobark_hotel" title="Twitter Timeline"></iframe>
+                        <script async="" src="https//platform.twitter.com/widgets.js" charset="utf-8"></script>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="widget">
+                        <h2 class="mg-widget-title">Newsletter</h2>
+                        <p>Inbecilloque elegans errorem concedo coniuncta arare dicant etsi electram minimum.</p>
+                        <form>
+                            <p>
+                                <input type="email" class="form-control" placeholder="Your Email">
+                            </p>
+                            <input type="submit" class="btn btn-main" value="Subscribe">
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="widget">
+                        <h2 class="mg-widget-title">Social Media</h2>
+                        <p>Tibi alienus possimus nomini legendus pariatur, logikh assidua philosophis expectat occultarum accedit suscipit interrogari difficilius reddidisti.</p>
+                        <ul class="mg-footer-social">
+                            <li><a href="@Model.ContactUs[0].Facebook"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="@Model.ContactUs[0].Twitter"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="@Model.ContactUs[0].Instgram"><i class="fa fa-pinterest"></i></a></li>
+                            <li><a href="@Model.ContactUs[0].Snapchat"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="@Model.ContactUs[0].Youtube"><i class="fa fa-rss"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mg-copyright">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-6">
+                    <ul class="mg-footer-nav">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Rooms</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <p>&copy; 2017 <a href="#">GMG Technology Group </a>. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    

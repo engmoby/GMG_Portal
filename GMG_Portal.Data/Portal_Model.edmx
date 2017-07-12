@@ -88,34 +88,12 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="SGuid" Type="uniqueidentifier" />
-          <Property Name="DisplayValue" Type="nvarchar" MaxLength="50" />
-          <Property Name="LookupKey" Type="int" />
-          <Property Name="LookupKeyGuid" Type="uniqueidentifier" />
-          <Property Name="IsDeleted" Type="bit" Nullable="false" />
-          <Property Name="Icon" Type="nvarchar" MaxLength="100" />
-          <Property Name="DisplayValueDesc" Type="nvarchar(max)" />
-          <Property Name="LookupKeyDesc" Type="int" />
-          <Property Name="LookupKeyGuidDesc" Type="uniqueidentifier" />
-          <Property Name="LastModificationTime" Type="datetime" />
-          <Property Name="LastModifierUserId" Type="int" />
-          <Property Name="CreationTime" Type="datetime" />
-          <Property Name="CreatorUserId" Type="int" />
-          <Property Name="DeletionTime" Type="datetime" />
-          <Property Name="DeleterUserId" Type="int" />
-          <Property Name="Show" Type="bit" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Hotels_Hotel_Features">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Hotel_Id" Type="int" />
           <Property Name="Feature_Id" Type="int" />
           <Property Name="SGuid" Type="uniqueidentifier" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
         </EntityType>
-        <EntityType Name="Hotels_Hotel_Images">
+        <EntityType Name="Hotels_Images">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -132,7 +110,7 @@
           <Property Name="DeleterUserId" Type="int" />
           <Property Name="Show" Type="bit" Nullable="false" />
         </EntityType>
-        <EntityType Name="Hotels_Hotel_Payments">
+        <EntityType Name="Hotels_Payments">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -149,7 +127,7 @@
           <Property Name="DeleterUserId" Type="int" />
           <Property Name="Show" Type="bit" Nullable="false" />
         </EntityType>
-        <EntityType Name="Hotels_Hotel_Phones">
+        <EntityType Name="Hotels_Phones">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -166,7 +144,7 @@
           <Property Name="DeleterUserId" Type="int" />
           <Property Name="Show" Type="bit" Nullable="false" />
         </EntityType>
-        <EntityType Name="Hotels_Hotel_Videos">
+        <EntityType Name="Hotels_Videos">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -202,11 +180,11 @@
           <Property Name="SeenBy" Type="int" />
           <Property Name="CreationTime" Type="datetime" />
         </EntityType>
-        <EntityType Name="Hotles_Hotel_Offers">
+        <EntityType Name="Hotles_Offers">
           <Key>
-            <PropertyRef Name="ksa" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="ksa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SGuid" Type="uniqueidentifier" />
           <Property Name="Hotel_Id" Type="int" />
           <Property Name="DisplayValue" Type="nvarchar" MaxLength="100" />
@@ -227,6 +205,7 @@
           <Property Name="CreatorUserId" Type="int" />
           <Property Name="DeletionTime" Type="datetime" />
           <Property Name="DeleterUserId" Type="int" />
+          <Property Name="Image" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="SystemParameters_About">
           <Key>
@@ -432,6 +411,28 @@
           <Property Name="DeleterUserId" Type="int" />
           <Property Name="Show" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="SystemParameters_Features">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SGuid" Type="uniqueidentifier" />
+          <Property Name="DisplayValue" Type="nvarchar" MaxLength="50" />
+          <Property Name="LookupKey" Type="int" />
+          <Property Name="LookupKeyGuid" Type="uniqueidentifier" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Icon" Type="nvarchar" MaxLength="100" />
+          <Property Name="DisplayValueDesc" Type="nvarchar(max)" />
+          <Property Name="LookupKeyDesc" Type="int" />
+          <Property Name="LookupKeyGuidDesc" Type="uniqueidentifier" />
+          <Property Name="LastModificationTime" Type="datetime" />
+          <Property Name="LastModifierUserId" Type="int" />
+          <Property Name="CreationTime" Type="datetime" />
+          <Property Name="CreatorUserId" Type="int" />
+          <Property Name="DeletionTime" Type="datetime" />
+          <Property Name="DeleterUserId" Type="int" />
+          <Property Name="Show" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="SystemParameters_HomeSlider">
           <Key>
             <PropertyRef Name="Id" />
@@ -577,14 +578,13 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters.LanguageTex
           <EntitySet Name="Front_Mission" EntityType="Self.Front_Mission" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Front_Vision" EntityType="Self.Front_Vision" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Hotels" EntityType="Self.Hotels" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Hotels_Features" EntityType="Self.Hotels_Features" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Hotels_Hotel_Features" EntityType="Self.Hotels_Hotel_Features" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Hotels_Hotel_Images" EntityType="Self.Hotels_Hotel_Images" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Hotels_Hotel_Payments" EntityType="Self.Hotels_Hotel_Payments" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Hotels_Hotel_Phones" EntityType="Self.Hotels_Hotel_Phones" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Hotels_Hotel_Videos" EntityType="Self.Hotels_Hotel_Videos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hotels_Features" EntityType="Self.Hotels_Features" Schema="dbo" Table="Hotels.Features" store:Type="Tables" />
+          <EntitySet Name="Hotels_Images" EntityType="Self.Hotels_Images" Schema="dbo" Table="Hotels.Images" store:Type="Tables" />
+          <EntitySet Name="Hotels_Payments" EntityType="Self.Hotels_Payments" Schema="dbo" Table="Hotels.Payments" store:Type="Tables" />
+          <EntitySet Name="Hotels_Phones" EntityType="Self.Hotels_Phones" Schema="dbo" Table="Hotels.Phones" store:Type="Tables" />
+          <EntitySet Name="Hotels_Videos" EntityType="Self.Hotels_Videos" Schema="dbo" Table="Hotels.Videos" store:Type="Tables" />
           <EntitySet Name="Hotels_Reservation" EntityType="Self.Hotels_Reservation" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Hotles_Hotel_Offers" EntityType="Self.Hotles_Hotel_Offers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hotles_Offers" EntityType="Self.Hotles_Offers" Schema="dbo" Table="Hotles.Offers" store:Type="Tables" />
           <EntitySet Name="SystemParameters_About" EntityType="Self.SystemParameters_About" Schema="dbo" Table="SystemParameters.About" store:Type="Tables" />
           <EntitySet Name="SystemParameters_CareerForm" EntityType="Self.SystemParameters_CareerForm" Schema="dbo" Table="SystemParameters.CareerForm" store:Type="Tables" />
           <EntitySet Name="SystemParameters_Careers" EntityType="Self.SystemParameters_Careers" Schema="dbo" Table="SystemParameters.Careers" store:Type="Tables" />
@@ -594,6 +594,7 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters.LanguageTex
           <EntitySet Name="SystemParameters_ContactUs" EntityType="Self.SystemParameters_ContactUs" Schema="dbo" Table="SystemParameters.ContactUs" store:Type="Tables" />
           <EntitySet Name="SystemParameters_Countries" EntityType="Self.SystemParameters_Countries" Schema="dbo" Table="SystemParameters.Countries" store:Type="Tables" />
           <EntitySet Name="SystemParameters_Departments" EntityType="Self.SystemParameters_Departments" Schema="dbo" Table="SystemParameters.Departments" store:Type="Tables" />
+          <EntitySet Name="SystemParameters_Features" EntityType="Self.SystemParameters_Features" Schema="dbo" Table="SystemParameters.Features" store:Type="Tables" />
           <EntitySet Name="SystemParameters_HomeSlider" EntityType="Self.SystemParameters_HomeSlider" Schema="dbo" Table="SystemParameters.HomeSlider" store:Type="Tables" />
           <EntitySet Name="Systemparameters_Languages" EntityType="Self.Systemparameters_Languages" Schema="dbo" Table="Systemparameters.Languages" store:Type="Tables" />
           <EntitySet Name="SystemParameters_News" EntityType="Self.SystemParameters_News" Schema="dbo" Table="SystemParameters.News" store:Type="Tables" />
@@ -618,14 +619,7 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters.LanguageTex
       <Schema Namespace="GMG_Portal_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="GMG_Portal_DBEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Hotels" EntityType="GMG_Portal_DBModel.Hotel" />
-          <EntitySet Name="Hotels_Features" EntityType="GMG_Portal_DBModel.Hotels_Features" />
-          <EntitySet Name="Hotels_Hotel_Features" EntityType="GMG_Portal_DBModel.Hotels_Hotel_Features" />
-          <EntitySet Name="Hotels_Hotel_Images" EntityType="GMG_Portal_DBModel.Hotels_Hotel_Images" />
-          <EntitySet Name="Hotels_Hotel_Payments" EntityType="GMG_Portal_DBModel.Hotels_Hotel_Payments" />
-          <EntitySet Name="Hotels_Hotel_Phones" EntityType="GMG_Portal_DBModel.Hotels_Hotel_Phones" />
-          <EntitySet Name="Hotels_Hotel_Videos" EntityType="GMG_Portal_DBModel.Hotels_Hotel_Videos" />
           <EntitySet Name="Hotels_Reservation" EntityType="GMG_Portal_DBModel.Hotels_Reservation" />
-          <EntitySet Name="Hotles_Hotel_Offers" EntityType="GMG_Portal_DBModel.Hotles_Hotel_Offers" />
           <EntitySet Name="SystemParameters_About" EntityType="GMG_Portal_DBModel.SystemParameters_About" />
           <EntitySet Name="SystemParameters_Category" EntityType="GMG_Portal_DBModel.SystemParameters_Category" />
           <EntitySet Name="SystemParameters_Cities" EntityType="GMG_Portal_DBModel.SystemParameters_Cities" />
@@ -644,6 +638,13 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters.LanguageTex
           <EntitySet Name="SystemParameters_CareerForm" EntityType="GMG_Portal_DBModel.SystemParameters_CareerForm" />
           <EntitySet Name="SystemParameters_Careers" EntityType="GMG_Portal_DBModel.SystemParameters_Careers" />
           <EntitySet Name="SystemParameters_Owners" EntityType="GMG_Portal_DBModel.SystemParameters_Owners" />
+          <EntitySet Name="Hotels_Images" EntityType="GMG_Portal_DBModel.Hotels_Images" />
+          <EntitySet Name="Hotels_Payments" EntityType="GMG_Portal_DBModel.Hotels_Payments" />
+          <EntitySet Name="Hotels_Phones" EntityType="GMG_Portal_DBModel.Hotels_Phones" />
+          <EntitySet Name="Hotels_Videos" EntityType="GMG_Portal_DBModel.Hotels_Videos" />
+          <EntitySet Name="Hotels_Features" EntityType="GMG_Portal_DBModel.Hotels_Features" />
+          <EntitySet Name="Hotles_Offers" EntityType="GMG_Portal_DBModel.Hotles_Offers" />
+          <EntitySet Name="SystemParameters_Features" EntityType="GMG_Portal_DBModel.SystemParameters_Features" />
         </EntityContainer>
         <EntityType Name="Hotel">
           <Key>
@@ -679,106 +680,6 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters.LanguageTex
           <Property Name="DeleterUserId" Type="Int32" />
           <Property Name="Show" Type="Boolean" Nullable="false" />
         </EntityType>
-        <EntityType Name="Hotels_Features">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SGuid" Type="Guid" />
-          <Property Name="DisplayValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="LookupKey" Type="Int32" />
-          <Property Name="LookupKeyGuid" Type="Guid" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="Icon" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="DisplayValueDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="LookupKeyDesc" Type="Int32" />
-          <Property Name="LookupKeyGuidDesc" Type="Guid" />
-          <Property Name="LastModificationTime" Type="DateTime" Precision="3" />
-          <Property Name="LastModifierUserId" Type="Int32" />
-          <Property Name="CreationTime" Type="DateTime" Precision="3" />
-          <Property Name="CreatorUserId" Type="Int32" />
-          <Property Name="DeletionTime" Type="DateTime" Precision="3" />
-          <Property Name="DeleterUserId" Type="Int32" />
-          <Property Name="Show" Type="Boolean" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Hotels_Hotel_Features">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Hotel_Id" Type="Int32" />
-          <Property Name="Feature_Id" Type="Int32" />
-          <Property Name="SGuid" Type="Guid" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Hotels_Hotel_Images">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SGuid" Type="Guid" />
-          <Property Name="Image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Hotel_Id" Type="Int32" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="LastModificationTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="LastModifierUserId" Type="Int32" />
-          <Property Name="CreationTime" Type="DateTime" Precision="3" />
-          <Property Name="CreatorUserId" Type="Int32" />
-          <Property Name="DeletionTime" Type="DateTime" Precision="3" />
-          <Property Name="DeleterUserId" Type="Int32" />
-          <Property Name="Show" Type="Boolean" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Hotels_Hotel_Payments">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SGuid" Type="Guid" />
-          <Property Name="Hotel_Id" Type="Int32" />
-          <Property Name="payment_Id" Type="Int32" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="LastModificationTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="LastModifierUserId" Type="Int32" />
-          <Property Name="CreationTime" Type="DateTime" Precision="3" />
-          <Property Name="CreatorUserId" Type="Int32" />
-          <Property Name="DeletionTime" Type="DateTime" Precision="3" />
-          <Property Name="DeleterUserId" Type="Int32" />
-          <Property Name="Show" Type="Boolean" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Hotels_Hotel_Phones">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SGuid" Type="Guid" />
-          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Hotel_Id" Type="Int32" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="LastModificationTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="LastModifierUserId" Type="Int32" />
-          <Property Name="CreationTime" Type="DateTime" Precision="3" />
-          <Property Name="CreatorUserId" Type="Int32" />
-          <Property Name="DeletionTime" Type="DateTime" Precision="3" />
-          <Property Name="DeleterUserId" Type="Int32" />
-          <Property Name="Show" Type="Boolean" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Hotels_Hotel_Videos">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SGuid" Type="Guid" />
-          <Property Name="Video" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Hotel_Id" Type="Int32" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="LastModificationTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="LastModifierUserId" Type="Int32" />
-          <Property Name="CreationTime" Type="DateTime" Precision="3" />
-          <Property Name="CreatorUserId" Type="Int32" />
-          <Property Name="DeletionTime" Type="DateTime" Precision="3" />
-          <Property Name="DeleterUserId" Type="Int32" />
-          <Property Name="Show" Type="Boolean" Nullable="false" />
-        </EntityType>
         <EntityType Name="Hotels_Reservation">
           <Key>
             <PropertyRef Name="Id" />
@@ -797,32 +698,6 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters.LanguageTex
           <Property Name="SeenDate" Type="DateTime" Precision="3" />
           <Property Name="SeenBy" Type="Int32" />
           <Property Name="CreationTime" Type="DateTime" Precision="3" />
-        </EntityType>
-        <EntityType Name="Hotles_Hotel_Offers">
-          <Key>
-            <PropertyRef Name="ksa" />
-          </Key>
-          <Property Name="ksa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SGuid" Type="Guid" />
-          <Property Name="Hotel_Id" Type="Int32" />
-          <Property Name="DisplayValue" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="LookupKey" Type="Int32" />
-          <Property Name="LookupKeyGuid" Type="Guid" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="DisplayValueDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="LookupKeyDesc" Type="Int32" />
-          <Property Name="LookupKeyGuidDesc" Type="Guid" />
-          <Property Name="Price" Type="Int32" />
-          <Property Name="Discount" Type="Int32" />
-          <Property Name="StartDate" Type="DateTime" Precision="3" />
-          <Property Name="EndDate" Type="DateTime" Precision="3" />
-          <Property Name="Show" Type="Boolean" />
-          <Property Name="LastModificationTime" Type="DateTime" Precision="3" />
-          <Property Name="LastModifierUserId" Type="Int32" />
-          <Property Name="CreationTime" Type="DateTime" Precision="3" />
-          <Property Name="CreatorUserId" Type="Int32" />
-          <Property Name="DeletionTime" Type="DateTime" Precision="3" />
-          <Property Name="DeleterUserId" Type="Int32" />
         </EntityType>
         <EntityType Name="SystemParameters_About">
           <Key>
@@ -1211,6 +1086,133 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters.LanguageTex
           <Property Name="Twitter" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="LinkedIn" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="Hotels_Images">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SGuid" Type="Guid" />
+          <Property Name="Image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Hotel_Id" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="LastModificationTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModifierUserId" Type="Int32" />
+          <Property Name="CreationTime" Type="DateTime" Precision="3" />
+          <Property Name="CreatorUserId" Type="Int32" />
+          <Property Name="DeletionTime" Type="DateTime" Precision="3" />
+          <Property Name="DeleterUserId" Type="Int32" />
+          <Property Name="Show" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Hotels_Payments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SGuid" Type="Guid" />
+          <Property Name="Hotel_Id" Type="Int32" />
+          <Property Name="payment_Id" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="LastModificationTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModifierUserId" Type="Int32" />
+          <Property Name="CreationTime" Type="DateTime" Precision="3" />
+          <Property Name="CreatorUserId" Type="Int32" />
+          <Property Name="DeletionTime" Type="DateTime" Precision="3" />
+          <Property Name="DeleterUserId" Type="Int32" />
+          <Property Name="Show" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Hotels_Phones">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SGuid" Type="Guid" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Hotel_Id" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="LastModificationTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModifierUserId" Type="Int32" />
+          <Property Name="CreationTime" Type="DateTime" Precision="3" />
+          <Property Name="CreatorUserId" Type="Int32" />
+          <Property Name="DeletionTime" Type="DateTime" Precision="3" />
+          <Property Name="DeleterUserId" Type="Int32" />
+          <Property Name="Show" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Hotels_Videos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SGuid" Type="Guid" />
+          <Property Name="Video" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Hotel_Id" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="LastModificationTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModifierUserId" Type="Int32" />
+          <Property Name="CreationTime" Type="DateTime" Precision="3" />
+          <Property Name="CreatorUserId" Type="Int32" />
+          <Property Name="DeletionTime" Type="DateTime" Precision="3" />
+          <Property Name="DeleterUserId" Type="Int32" />
+          <Property Name="Show" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Hotels_Features">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Hotel_Id" Type="Int32" />
+          <Property Name="Feature_Id" Type="Int32" />
+          <Property Name="SGuid" Type="Guid" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Hotles_Offers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SGuid" Type="Guid" />
+          <Property Name="Hotel_Id" Type="Int32" />
+          <Property Name="DisplayValue" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LookupKey" Type="Int32" />
+          <Property Name="LookupKeyGuid" Type="Guid" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="DisplayValueDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LookupKeyDesc" Type="Int32" />
+          <Property Name="LookupKeyGuidDesc" Type="Guid" />
+          <Property Name="Price" Type="Int32" />
+          <Property Name="Discount" Type="Int32" />
+          <Property Name="StartDate" Type="DateTime" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="Show" Type="Boolean" />
+          <Property Name="LastModificationTime" Type="DateTime" Precision="3" />
+          <Property Name="LastModifierUserId" Type="Int32" />
+          <Property Name="CreationTime" Type="DateTime" Precision="3" />
+          <Property Name="CreatorUserId" Type="Int32" />
+          <Property Name="DeletionTime" Type="DateTime" Precision="3" />
+          <Property Name="DeleterUserId" Type="Int32" />
+          <Property Name="Image" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SystemParameters_Features">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SGuid" Type="Guid" />
+          <Property Name="DisplayValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LookupKey" Type="Int32" />
+          <Property Name="LookupKeyGuid" Type="Guid" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Icon" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DisplayValueDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LookupKeyDesc" Type="Int32" />
+          <Property Name="LookupKeyGuidDesc" Type="Guid" />
+          <Property Name="LastModificationTime" Type="DateTime" Precision="3" />
+          <Property Name="LastModifierUserId" Type="Int32" />
+          <Property Name="CreationTime" Type="DateTime" Precision="3" />
+          <Property Name="CreatorUserId" Type="Int32" />
+          <Property Name="DeletionTime" Type="DateTime" Precision="3" />
+          <Property Name="DeleterUserId" Type="Int32" />
+          <Property Name="Show" Type="Boolean" Nullable="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1252,112 +1254,6 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters.LanguageTex
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Hotels_Features">
-            <EntityTypeMapping TypeName="GMG_Portal_DBModel.Hotels_Features">
-              <MappingFragment StoreEntitySet="Hotels_Features">
-                <ScalarProperty Name="Show" ColumnName="Show" />
-                <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
-                <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
-                <ScalarProperty Name="CreatorUserId" ColumnName="CreatorUserId" />
-                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
-                <ScalarProperty Name="LastModifierUserId" ColumnName="LastModifierUserId" />
-                <ScalarProperty Name="LastModificationTime" ColumnName="LastModificationTime" />
-                <ScalarProperty Name="LookupKeyGuidDesc" ColumnName="LookupKeyGuidDesc" />
-                <ScalarProperty Name="LookupKeyDesc" ColumnName="LookupKeyDesc" />
-                <ScalarProperty Name="DisplayValueDesc" ColumnName="DisplayValueDesc" />
-                <ScalarProperty Name="Icon" ColumnName="Icon" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="LookupKeyGuid" ColumnName="LookupKeyGuid" />
-                <ScalarProperty Name="LookupKey" ColumnName="LookupKey" />
-                <ScalarProperty Name="DisplayValue" ColumnName="DisplayValue" />
-                <ScalarProperty Name="SGuid" ColumnName="SGuid" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Hotels_Hotel_Features">
-            <EntityTypeMapping TypeName="GMG_Portal_DBModel.Hotels_Hotel_Features">
-              <MappingFragment StoreEntitySet="Hotels_Hotel_Features">
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="SGuid" ColumnName="SGuid" />
-                <ScalarProperty Name="Feature_Id" ColumnName="Feature_Id" />
-                <ScalarProperty Name="Hotel_Id" ColumnName="Hotel_Id" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Hotels_Hotel_Images">
-            <EntityTypeMapping TypeName="GMG_Portal_DBModel.Hotels_Hotel_Images">
-              <MappingFragment StoreEntitySet="Hotels_Hotel_Images">
-                <ScalarProperty Name="Show" ColumnName="Show" />
-                <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
-                <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
-                <ScalarProperty Name="CreatorUserId" ColumnName="CreatorUserId" />
-                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
-                <ScalarProperty Name="LastModifierUserId" ColumnName="LastModifierUserId" />
-                <ScalarProperty Name="LastModificationTime" ColumnName="LastModificationTime" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="Hotel_Id" ColumnName="Hotel_Id" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="SGuid" ColumnName="SGuid" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Hotels_Hotel_Payments">
-            <EntityTypeMapping TypeName="GMG_Portal_DBModel.Hotels_Hotel_Payments">
-              <MappingFragment StoreEntitySet="Hotels_Hotel_Payments">
-                <ScalarProperty Name="Show" ColumnName="Show" />
-                <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
-                <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
-                <ScalarProperty Name="CreatorUserId" ColumnName="CreatorUserId" />
-                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
-                <ScalarProperty Name="LastModifierUserId" ColumnName="LastModifierUserId" />
-                <ScalarProperty Name="LastModificationTime" ColumnName="LastModificationTime" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="payment_Id" ColumnName="payment_Id" />
-                <ScalarProperty Name="Hotel_Id" ColumnName="Hotel_Id" />
-                <ScalarProperty Name="SGuid" ColumnName="SGuid" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Hotels_Hotel_Phones">
-            <EntityTypeMapping TypeName="GMG_Portal_DBModel.Hotels_Hotel_Phones">
-              <MappingFragment StoreEntitySet="Hotels_Hotel_Phones">
-                <ScalarProperty Name="Show" ColumnName="Show" />
-                <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
-                <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
-                <ScalarProperty Name="CreatorUserId" ColumnName="CreatorUserId" />
-                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
-                <ScalarProperty Name="LastModifierUserId" ColumnName="LastModifierUserId" />
-                <ScalarProperty Name="LastModificationTime" ColumnName="LastModificationTime" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="Hotel_Id" ColumnName="Hotel_Id" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="SGuid" ColumnName="SGuid" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Hotels_Hotel_Videos">
-            <EntityTypeMapping TypeName="GMG_Portal_DBModel.Hotels_Hotel_Videos">
-              <MappingFragment StoreEntitySet="Hotels_Hotel_Videos">
-                <ScalarProperty Name="Show" ColumnName="Show" />
-                <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
-                <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
-                <ScalarProperty Name="CreatorUserId" ColumnName="CreatorUserId" />
-                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
-                <ScalarProperty Name="LastModifierUserId" ColumnName="LastModifierUserId" />
-                <ScalarProperty Name="LastModificationTime" ColumnName="LastModificationTime" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="Hotel_Id" ColumnName="Hotel_Id" />
-                <ScalarProperty Name="Video" ColumnName="Video" />
-                <ScalarProperty Name="SGuid" ColumnName="SGuid" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Hotels_Reservation">
             <EntityTypeMapping TypeName="GMG_Portal_DBModel.Hotels_Reservation">
               <MappingFragment StoreEntitySet="Hotels_Reservation">
@@ -1375,33 +1271,6 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters.LanguageTex
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Hotles_Hotel_Offers">
-            <EntityTypeMapping TypeName="GMG_Portal_DBModel.Hotles_Hotel_Offers">
-              <MappingFragment StoreEntitySet="Hotles_Hotel_Offers">
-                <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
-                <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
-                <ScalarProperty Name="CreatorUserId" ColumnName="CreatorUserId" />
-                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
-                <ScalarProperty Name="LastModifierUserId" ColumnName="LastModifierUserId" />
-                <ScalarProperty Name="LastModificationTime" ColumnName="LastModificationTime" />
-                <ScalarProperty Name="Show" ColumnName="Show" />
-                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
-                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-                <ScalarProperty Name="Discount" ColumnName="Discount" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="LookupKeyGuidDesc" ColumnName="LookupKeyGuidDesc" />
-                <ScalarProperty Name="LookupKeyDesc" ColumnName="LookupKeyDesc" />
-                <ScalarProperty Name="DisplayValueDesc" ColumnName="DisplayValueDesc" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="LookupKeyGuid" ColumnName="LookupKeyGuid" />
-                <ScalarProperty Name="LookupKey" ColumnName="LookupKey" />
-                <ScalarProperty Name="DisplayValue" ColumnName="DisplayValue" />
-                <ScalarProperty Name="Hotel_Id" ColumnName="Hotel_Id" />
-                <ScalarProperty Name="SGuid" ColumnName="SGuid" />
-                <ScalarProperty Name="ksa" ColumnName="ksa" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1805,6 +1674,140 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters.LanguageTex
                 <ScalarProperty Name="LookupKeyGuidName" ColumnName="LookupKeyGuidName" />
                 <ScalarProperty Name="LookupKeyName" ColumnName="LookupKeyName" />
                 <ScalarProperty Name="DisplayValueName" ColumnName="DisplayValueName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hotels_Images">
+            <EntityTypeMapping TypeName="GMG_Portal_DBModel.Hotels_Images">
+              <MappingFragment StoreEntitySet="Hotels_Images">
+                <ScalarProperty Name="Show" ColumnName="Show" />
+                <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
+                <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
+                <ScalarProperty Name="CreatorUserId" ColumnName="CreatorUserId" />
+                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+                <ScalarProperty Name="LastModifierUserId" ColumnName="LastModifierUserId" />
+                <ScalarProperty Name="LastModificationTime" ColumnName="LastModificationTime" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Hotel_Id" ColumnName="Hotel_Id" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="SGuid" ColumnName="SGuid" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hotels_Payments">
+            <EntityTypeMapping TypeName="GMG_Portal_DBModel.Hotels_Payments">
+              <MappingFragment StoreEntitySet="Hotels_Payments">
+                <ScalarProperty Name="Show" ColumnName="Show" />
+                <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
+                <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
+                <ScalarProperty Name="CreatorUserId" ColumnName="CreatorUserId" />
+                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+                <ScalarProperty Name="LastModifierUserId" ColumnName="LastModifierUserId" />
+                <ScalarProperty Name="LastModificationTime" ColumnName="LastModificationTime" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="payment_Id" ColumnName="payment_Id" />
+                <ScalarProperty Name="Hotel_Id" ColumnName="Hotel_Id" />
+                <ScalarProperty Name="SGuid" ColumnName="SGuid" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hotels_Phones">
+            <EntityTypeMapping TypeName="GMG_Portal_DBModel.Hotels_Phones">
+              <MappingFragment StoreEntitySet="Hotels_Phones">
+                <ScalarProperty Name="Show" ColumnName="Show" />
+                <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
+                <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
+                <ScalarProperty Name="CreatorUserId" ColumnName="CreatorUserId" />
+                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+                <ScalarProperty Name="LastModifierUserId" ColumnName="LastModifierUserId" />
+                <ScalarProperty Name="LastModificationTime" ColumnName="LastModificationTime" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Hotel_Id" ColumnName="Hotel_Id" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="SGuid" ColumnName="SGuid" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hotels_Videos">
+            <EntityTypeMapping TypeName="GMG_Portal_DBModel.Hotels_Videos">
+              <MappingFragment StoreEntitySet="Hotels_Videos">
+                <ScalarProperty Name="Show" ColumnName="Show" />
+                <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
+                <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
+                <ScalarProperty Name="CreatorUserId" ColumnName="CreatorUserId" />
+                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+                <ScalarProperty Name="LastModifierUserId" ColumnName="LastModifierUserId" />
+                <ScalarProperty Name="LastModificationTime" ColumnName="LastModificationTime" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Hotel_Id" ColumnName="Hotel_Id" />
+                <ScalarProperty Name="Video" ColumnName="Video" />
+                <ScalarProperty Name="SGuid" ColumnName="SGuid" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hotels_Features">
+            <EntityTypeMapping TypeName="GMG_Portal_DBModel.Hotels_Features">
+              <MappingFragment StoreEntitySet="Hotels_Features">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="SGuid" ColumnName="SGuid" />
+                <ScalarProperty Name="Feature_Id" ColumnName="Feature_Id" />
+                <ScalarProperty Name="Hotel_Id" ColumnName="Hotel_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hotles_Offers">
+            <EntityTypeMapping TypeName="GMG_Portal_DBModel.Hotles_Offers">
+              <MappingFragment StoreEntitySet="Hotles_Offers">
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
+                <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
+                <ScalarProperty Name="CreatorUserId" ColumnName="CreatorUserId" />
+                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+                <ScalarProperty Name="LastModifierUserId" ColumnName="LastModifierUserId" />
+                <ScalarProperty Name="LastModificationTime" ColumnName="LastModificationTime" />
+                <ScalarProperty Name="Show" ColumnName="Show" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="LookupKeyGuidDesc" ColumnName="LookupKeyGuidDesc" />
+                <ScalarProperty Name="LookupKeyDesc" ColumnName="LookupKeyDesc" />
+                <ScalarProperty Name="DisplayValueDesc" ColumnName="DisplayValueDesc" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="LookupKeyGuid" ColumnName="LookupKeyGuid" />
+                <ScalarProperty Name="LookupKey" ColumnName="LookupKey" />
+                <ScalarProperty Name="DisplayValue" ColumnName="DisplayValue" />
+                <ScalarProperty Name="Hotel_Id" ColumnName="Hotel_Id" />
+                <ScalarProperty Name="SGuid" ColumnName="SGuid" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SystemParameters_Features">
+            <EntityTypeMapping TypeName="GMG_Portal_DBModel.SystemParameters_Features">
+              <MappingFragment StoreEntitySet="SystemParameters_Features">
+                <ScalarProperty Name="Show" ColumnName="Show" />
+                <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
+                <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
+                <ScalarProperty Name="CreatorUserId" ColumnName="CreatorUserId" />
+                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+                <ScalarProperty Name="LastModifierUserId" ColumnName="LastModifierUserId" />
+                <ScalarProperty Name="LastModificationTime" ColumnName="LastModificationTime" />
+                <ScalarProperty Name="LookupKeyGuidDesc" ColumnName="LookupKeyGuidDesc" />
+                <ScalarProperty Name="LookupKeyDesc" ColumnName="LookupKeyDesc" />
+                <ScalarProperty Name="DisplayValueDesc" ColumnName="DisplayValueDesc" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="LookupKeyGuid" ColumnName="LookupKeyGuid" />
+                <ScalarProperty Name="LookupKey" ColumnName="LookupKey" />
+                <ScalarProperty Name="DisplayValue" ColumnName="DisplayValue" />
+                <ScalarProperty Name="SGuid" ColumnName="SGuid" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

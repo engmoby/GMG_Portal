@@ -12,9 +12,9 @@ namespace GMG_Portal.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class Hotles_Hotel_Offers
+    public partial class Hotles_Offers
     {
-        public int ksa { get; set; }
+        public int Id { get; set; }
         public Nullable<System.Guid> SGuid { get; set; }
         public Nullable<int> Hotel_Id { get; set; }
         public string DisplayValue { get; set; }
@@ -35,5 +35,6 @@ namespace GMG_Portal.Data
         public Nullable<int> CreatorUserId { get; set; }
         public Nullable<System.DateTime> DeletionTime { get; set; }
         public Nullable<int> DeleterUserId { get; set; }
+        public string Image { get; set; }
     }
 }
