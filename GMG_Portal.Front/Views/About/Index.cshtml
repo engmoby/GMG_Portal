@@ -1,8 +1,111 @@
-﻿
+﻿@using GMG_Portal.API.Models.SystemParameters
+@model  List<About>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<div class="mg-page-title parallax">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Mobark International Company</h2>
+                <p>for Trading & Real Estate Investment Ltd</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mg-about-features">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mg-about-us-txt">
+                    <div class="mg-sec-title">
+                        <h2>About Mubarak</h2>
+                   
+                    </div>
+                    <p>@Model[0].DisplayValueDesc</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="video-responsive">
+                    <div style="position:relative;height:0;padding-bottom:70%"><iframe src="https://www.youtube.com/embed/@Model[0].Url?ecver=2" style="position:absolute;width:100%;height:100%;left:0" width="500" height="350" frameborder="0" allowfullscreen></iframe></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
+
+<div class="mg-about-features">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mg-about-us-txt">
+                    <div class="mg-sec-title">
+                        <h2>Vision</h2>
+                        <p>Vision Desc</p>
+                    </div>
+                    <p>Consectetur adipisicing elit. Concursionibus iudicabit fastidii victi iniurias eadem, fecisse odit miserius corporum dictum ponit disputatione magnos pauca divinum, diceretur quaerimus quaeri quicquam gratissimo qua operam imperiis minuit institutionem, securi terentii caelo maiorem nixam democritus quaeso. Lineam pellat simplicem quaerendi laborat pluribus indoctis.</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mg-about-us-txt">
+                    <div class="mg-sec-title">
+                        <h2>Mission</h2>
+                        <p>Mission Desc</p>
+                    </div>
+                    <p>Consectetur adipisicing elit. Concursionibus iudicabit fastidii victi iniurias eadem, fecisse odit miserius corporum dictum ponit disputatione magnos pauca divinum, diceretur quaerimus quaeri quicquam gratissimo qua operam imperiis minuit institutionem, securi terentii caelo maiorem nixam democritus quaeso. Lineam pellat simplicem quaerendi laborat pluribus indoctis.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@*Our Values*@ 
+
+<div class="mg-about-features">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="mg-sec-title">
+                    <h2>Our Core Values</h2>
+                </div>
+                <hr />
+            </div>
+            <div class="col-sm-4">
+                <div class="mg-feature">
+                    <div class="mg-feature-icon-title">
+                 
+                        <h3>Room service</h3>
+                    </div>
+                    <p>Didicisset labore vitium referenda labor peccant integre turpe est tantopere, eius defuturum sua dolorum.</p>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="mg-feature">
+                    <div class="mg-feature-icon-title">
+                   
+                        <h3>Wi-fi service</h3>
+                    </div>
+                    <p>Didicisset labore vitium referenda labor peccant integre turpe est tantopere, eius defuturum sua dolorum.</p>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="mg-feature">
+                    <div class="mg-feature-icon-title">
+                  
+                        <h3>Free Parking</h3>
+                    </div>
+                    <p>Didicisset labore vitium referenda labor peccant integre turpe est tantopere, eius defuturum sua dolorum.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+	

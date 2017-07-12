@@ -30,12 +30,12 @@
             
                 <div class="col-sm-4">
                     <figure class="mg-room">
-                        <img src="images/room-1.png" alt="img11" class="img-responsive">
+                        <img src="http://localhost:19056/Uploads/slide2.png" alt="img11" class="img-responsive">
                         <figcaption>
                             <h2>@Model[i].DisplayValue</h2>
                             <div class="mg-room-rating">@Model[i].Hotel_Id</div>
                             <div class="mg-room-price">@Model[i].Price<sup></sup></div>
-                            <p>@Model[i].DisplayValueDesc</p>
+                            <p>@Model[i].DisplayValueDesc.Substring(0,40) ..</p>
                             <a href="#" class="btn btn-link">View Details <i class="fa fa-angle-double-right"></i></a>
                             <a href="#" class="btn btn-main">Book</a>
                         </figcaption>			
