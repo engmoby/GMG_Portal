@@ -98,6 +98,9 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             about.CreatorUserId = Parameters.UserId;
             return Save(about);
         }
-
+        public List<SystemParameters_About> GetAboutAll()
+        {
+            return _db.SystemParameters_About.Where(p => p.IsDeleted != true).ToList();
+        }
     }
 }

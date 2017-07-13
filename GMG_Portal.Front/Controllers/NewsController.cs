@@ -82,6 +82,21 @@ namespace Front.Controllers
 
             }
 
+            string news = "";
+
+            news = url + "News/GetAll";
+
+            var newsModelList = new List<News>();
+
+            if (news == null) throw new ArgumentNullException(nameof(news));
+            HttpResponseMessage responseMessage = await _client.GetAsync(news);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var responseData = responseMessage.Content.ReadAsStringAsync().Result;
+                ViewBag.NewsList = JsonConvert.DeserializeObject<List<News>>(responseData);
+                
+            }
+
             return View(newsModels);
         }
     }
