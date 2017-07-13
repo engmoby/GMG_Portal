@@ -1,5 +1,5 @@
 ﻿@using GMG_Portal.API.Models.SystemParameters
-@model  List<About>
+@model  List<AboutAll>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -24,7 +24,7 @@
                         <h2>About Mubarak</h2>
                    
                     </div>
-                    <p>@Model[0].DisplayValueDesc</p>
+                    <p>@Model[0].AboutDesc </p>
                 </div>
             </div>
             <div class="col-md-6">
@@ -43,19 +43,19 @@
             <div class="col-md-6">
                 <div class="mg-about-us-txt">
                     <div class="mg-sec-title">
-                        <h2>Vision</h2>
-                        <p>Vision Desc</p>
+                        <h2>@Model[0].VisionTitle</h2>
+                        <p></p>
                     </div>
-                    <p>Consectetur adipisicing elit. Concursionibus iudicabit fastidii victi iniurias eadem, fecisse odit miserius corporum dictum ponit disputatione magnos pauca divinum, diceretur quaerimus quaeri quicquam gratissimo qua operam imperiis minuit institutionem, securi terentii caelo maiorem nixam democritus quaeso. Lineam pellat simplicem quaerendi laborat pluribus indoctis.</p>
+                    <p>@Model[0].VisionDesc</p>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="mg-about-us-txt">
                     <div class="mg-sec-title">
-                        <h2>Mission</h2>
-                        <p>Mission Desc</p>
+                        <h2>@Model[0].MissionTitle </h2>
+                        <p></p>
                     </div>
-                    <p>Consectetur adipisicing elit. Concursionibus iudicabit fastidii victi iniurias eadem, fecisse odit miserius corporum dictum ponit disputatione magnos pauca divinum, diceretur quaerimus quaeri quicquam gratissimo qua operam imperiis minuit institutionem, securi terentii caelo maiorem nixam democritus quaeso. Lineam pellat simplicem quaerendi laborat pluribus indoctis.</p>
+                    <p>@Model[0].MissionDesc </p>
                 </div>
             </div>
         </div>

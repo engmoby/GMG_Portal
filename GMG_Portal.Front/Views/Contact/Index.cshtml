@@ -25,11 +25,11 @@
                 <form class="clearfix">
                     <div class="mg-contact-form-input">
                         <label for="full-name">Full Name</label>
-                        <input type="text" class="form-control" id="full-name">
+                        <input type="text" class="form-control" id="FirstName">
                     </div>
                     <div class="mg-contact-form-input">
                         <label for="email">E-mail</label>
-                        <input type="text" class="form-control" id="email">
+                        <input type="text" class="form-control" id="Email">
                     </div>
                     <div class="mg-contact-form-input">
                         <label for="subject">Subject</label>
@@ -37,9 +37,9 @@
                     </div>
                     <div class="mg-contact-form-input">
                         <label for="subject">Message</label>
-                        <textarea class="form-control" id="subject" rows="5"></textarea>
+                        <textarea class="form-control" id="Message" rows="5"></textarea>
                     </div>
-                    <input type="submit" class="btn btn-dark-main pull-right" value="Send">
+                    <input type="submit" id="btnSubmit" class="btn btn-dark-main pull-right" value="Send">
                 </form>
             </div>
             <div class="col-md-7">
@@ -49,11 +49,31 @@
                     <li><i class="fa fa-map-marker"></i> @Model[0].DisplayValueAddress</li>
                     <li><i class="fa fa-phone"></i> @Model[0].PhoneNo1 </li>
                     <li><i class="fa fa-phone"></i> @Model[0].PhoneNo2 </li>
-                    <li><i class="fa fa-envelope"></i> <a href="mailto:#">   <li><i class="fa fa-phone"></i> @Model[0].PhoneNo2 </li></a></li>
+                    <li><i class="fa fa-envelope"></i> <a href="mailto:#"> @Model[0].MailNo1 </a></li>
                 </ul>
                 <div id="mg-map" class="mg-map"></div>
             </div>
         </div>
     </div>
 </div>
-
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnSubmit").click(function () {
+            var FirstName = $("#FirstName").val();
+            var Email = $("#Email").val();
+            var Message = $("#Message").val();
+            $.ajax({
+                url: "http://localhost:2798/SystemParameters/ContactForm/Save",
+                type: "Post",
+                data: JSON.stringify([FirstName, Email, Message]), //{ Name: name, Address: address, DOB: dob },
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    alert('Created Successfully');
+                  //  window.location.href = "../Index";
+                },
+                error: function () { alert('error'); }
+            });
+        });
+    });
+</script>
