@@ -44,11 +44,12 @@
             </div>
             <div class="col-md-7">
                 <h2 class="mg-sec-left-title">Office Address</h2>
-                <p>Consulatu quietem ipsas obruamus. Controversia unam queo firmam videri, afranius derigatur sine sentit inliberali beatam scribendi splendide. Recusabo maximisque ferentur arbitraretur vellem oritur cupiditatibus copulatas.</p>
+                <p>@Model[0].DisplayValueAddress</p>
                 <ul class="mg-contact-info">
-                    <li><i class="fa fa-map-marker"></i> Level 13, 2 Elizabeth St, Melbourne, Victoria 3000 Australia</li>
-                    <li><i class="fa fa-phone"></i> +000-123-456-789 (Sale)</li>
-                    <li><i class="fa fa-envelope"></i> <a href="mailto:#">example@example.com</a></li>
+                    <li><i class="fa fa-map-marker"></i> @Model[0].DisplayValueAddress</li>
+                    <li><i class="fa fa-phone"></i> @Model[0].PhoneNo1 </li>
+                    <li><i class="fa fa-phone"></i> @Model[0].PhoneNo2 </li>
+                    <li><i class="fa fa-envelope"></i> <a href="mailto:#">   <li><i class="fa fa-phone"></i> @Model[0].PhoneNo2 </li></a></li>
                 </ul>
                 <div id="mg-map" class="mg-map"></div>
             </div>

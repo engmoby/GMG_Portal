@@ -27,13 +27,19 @@
                 </div>
             </div>
         </div>
+        
+
         <div class="row">
-            @for (int i = 0; i < Model.Count; i++) 
+            @for (int i = 0; i < Model.Count; i++)
             {
+                if (i > 0 && i % 4 == 0)
+                {
+                    @:</div><div class="row"> 
+                }
                 <div class="col-md-3">
                     <div class="mg-team-member">
                         <figure>
-                            <img src="http://localhost:19056/Uploads/Owners/@Model[i].Image" alt="" class="img-responsive">
+                            <img src="http://localhost:19056/Uploads/Owners/@Model[i].Image" alt="" class="img-responsive" style="width: 262px;height: 262px;">
                         </figure>
                         <div class="mg-team-member-overlayer"></div>
                         <div class="mg-team-info">
@@ -49,6 +55,9 @@
                 </div>
             }
         </div>
+        
+        
+
     </div>
 </div>
 
