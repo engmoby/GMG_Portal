@@ -11,7 +11,8 @@ using GMG_Portal.Content.Admin.SystemParameters;
 using GMG_Portal.Data;
 using AccountTypes = GMG_Portal.Data.Partials.SystemParameters.AccountTypes;
 using Customer = GMG_Portal.API.Models.Customer.Customers.Customer;
-using HomeSlider = GMG_Portal.API.Models.SystemParameters.HomeSlider; 
+using HomeSlider = GMG_Portal.API.Models.SystemParameters.HomeSlider;
+using HotelFeatures = GMG_Portal.API.Models.Hotels.Hotel.HotelFeatures;
 
 namespace GMG_Portal.API
 {
@@ -61,6 +62,11 @@ namespace GMG_Portal.API
 
                 cfg.CreateMap<Hotels_Images, HotelImages>();
                 cfg.CreateMap<HotelImages, Hotels_Images>();
+
+                cfg.CreateMap<Hotels_Features, HotelFeatures>();
+                cfg.CreateMap<HotelFeatures, Hotels_Features>();
+                 
+
 
                 cfg.CreateMap<SystemParameters_Owners, Owners>();
                 cfg.CreateMap<Owners, SystemParameters_Owners>();

@@ -34,17 +34,22 @@
             <div class="col-md-7">
                 <h2 class="mg-sec-left-title">Our Gallery</h2>
                 <div class="mg-gallery-container">
-                    @foreach (HotelImages gallery in Model.Gallery)
-            {
-                <ul class="mg-gallery" id="mg-gallery">
-                    <li><img src="http://localhost:19056/Uploads/@gallery.Image"   alt="Partner Logo"></li>
-                </ul>
-                    }
-                    @foreach (HotelImages gallery in Model.Gallery)
-                    { <ul class="mg-gallery-thumb" id="mg-gallery-thumb">
-                        <li><img src="http://localhost:19056/Uploads/@gallery.Image"   alt="Partner Logo"></li>
+                    <ul class="mg-gallery" id="mg-gallery">
+                        @foreach (HotelImages gallery in Model.Gallery)
+                        {
+
+                            <li><img src="http://localhost:19056/Uploads/@gallery.Image" style="width: 103%; height: 362px;" alt=""></li>
+
+                        }
                     </ul>
-                    }
+                    <ul class="mg-gallery-thumb" id="mg-gallery-thumb">
+                        @foreach (HotelImages gallery in Model.Gallery)
+                        {
+                            <li><img src="http://localhost:19056/Uploads/@gallery.Image" style="width: 98px;
+                                                                                                           height: 80px;" alt=" "></li>
+
+                        }
+                    </ul>
 
                 </div>
             </div>

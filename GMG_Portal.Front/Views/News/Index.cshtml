@@ -62,9 +62,10 @@
                         <aside class="mg-widget">
                             <h2 class="mg-widget-title">Recent Posts</h2>
                             <ul class="mg-recnt-posts">
-                                @foreach (News t in Model)
+                                @foreach (News t in Model.Take(3))
                                 {
-                                    <li>
+                                   
+                                     <li>
                                         <div class="mg-recnt-post">
                                             <div class="mg-rp-date">
                                                 <div class="mg-rp-date">@t.CreationTime.Value.Day <div class="mg-rp-month">@t.CreationTime.Value.ToString("MMM")</div></div>
@@ -84,7 +85,7 @@
                             <ul>
                                 @if (Model != null)
                                 {
-                                    foreach (Category cat in Model[0].Categories)
+                                    foreach (Category cat in Model[0].Categories.Take(4))
                                     {
 
                                         <li>

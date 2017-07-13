@@ -19,7 +19,7 @@
 
 
 
-                    @foreach (var hotel in Model.Hotels)
+                    @foreach (var hotel in Model.Hotels.Take(3))
                     {
                         <div class="col-sm-@hotel.Bootstrap">
                             <figure class="mg-room">

@@ -27,10 +27,8 @@ namespace Front.Controllers
         // GET: news
         public async Task<ActionResult> Index()
         {
-            string news = "";
-
-            news = url + "News/GetAll";
-
+            string news = ""; 
+            news = url + "News/GetAll"; 
             var newsModels = new List<News>();
 
             if (news == null) throw new ArgumentNullException(nameof(news));

@@ -21,7 +21,7 @@
                     <div class="mg-avl-room">
                         <div class="row">
                             <div class="col-sm-5">
-                                <a href=""><img src="http://localhost:19056/Uploads/@hotel.Image" alt="" style="height: 350px; width: 475px;" class="img-responsive"></a>
+                                <a href="/Hotel/Details/@hotel.Id"><img src="http://localhost:19056/Uploads/@hotel.Image" alt="" style="height: 350px; width: 475px;" class="img-responsive"></a>
                             </div>
                             <div class="col-sm-7">
                                 <h3 class="mg-avl-room-title">
@@ -29,22 +29,21 @@
                                 </h3>
                                 <p>@hotel.DisplayValueDesc</p>
                                 <div class="row mg-room-fecilities">
-                                    <div class="col-sm-6">
-                                        <ul>
-                                            <li><i class="fp-ht-bed"></i> 2 King Beds</li>
-                                            <li><i class="fp-ht-food"></i> Breakfast</li>
-                                            <li><i class="fa fa-sun-o"></i> Air conditioning</li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <ul>
-                                            <li><i class="fp-ht-dumbbell"></i> GYM fecility</li>
-                                            <li><i class="fp-ht-tv"></i> TV LCD</li>
-                                            <li><i class="fp-ht-computer"></i> Wi-fi service</li>
-                                        </ul>
-                                    </div>
+                                    @for (int i = 0; i < hotel.FeaturesList.Count; i++)
+                                    {
+                                        if (i > 0 && i % 2 == 0)
+                                        {
+                                            @:</div><div class="row"> 
+                                        }
+
+                                        <div class="col-xs-6">
+                                            <ul>
+                                                <li><i class="@Model.FeaturesList[i].Icon"></i> @Model.FeaturesList[i].DisplayValue</li>
+                                            </ul>
+                                        </div>
+                                    } 
                                 </div>
-                                <a href="#" class="btn btn-dark ">View Details <i class="fa fa-angle-double-right"></i></a>
+                                <a href="/Hotel/Details/@hotel.Id" class="btn btn-dark ">View Details <i class="fa fa-angle-double-right"></i></a>
                                 <a href="#" class="btn btn-main pull-right">Book Now</a>
 
                             </div>

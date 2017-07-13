@@ -28,7 +28,7 @@
                         <header>
                             @if (Model.Image != null)
                             {
-                                <a href="/News/Details/@Model.Id"><img src="http://localhost:19056/Uploads/News/@Model.Image" alt="" class="img-responsive"></a>
+                                 <img src="http://localhost:19056/Uploads/News/@Model.Image" alt="" class="img-responsive"> 
                             }
                             <h2 class="mg-post-title">@Model.DisplayValue</h2> 
                                 <div class="mg-post-meta">
@@ -101,9 +101,10 @@
         if (event.keyCode == 13) {
             //alert(ele.value);
             $.ajax({
-                url: "http://localhost:2798/SystemParameters/News/SearchNews",
+                url: "http://localhost:2798/SystemParameters/News/SearchNews/",
                 type: "Post",
-                data: JSON.stringify([ele.value]), //{ Name: name, Address: address, DOB: dob },
+               // data: JSON.stringify([ele.value]), //{ Name: name, Address: address, DOB: dob },
+                data: { 'keyword': 'bar' }, //{ Name: name, Address: address, DOB: dob },
                 contentType: 'application/json; charset=utf-8',
                 success: function (data) {
                     alert('Created Successfully');
@@ -119,7 +120,7 @@
             url: "http://localhost:2798/SystemParameters/News/GetAll",
             type: "Get",
             success: function (data) {
-                for (var i = 0; i < data.length; i++) {
+                for (var i = 0; i < data.length.takeRecords(3); i++) {
                     $(
                         //"<tr><td>" + data[i].Name + "</td><td>" + data[i].Address + "</td><td>" + data[i].DOB + "</td></tr>"
 
