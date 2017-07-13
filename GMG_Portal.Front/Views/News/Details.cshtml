@@ -1,163 +1,172 @@
-﻿@model GMG_Portal.API.Models.SystemParameters.News
+﻿@using GMG_Portal.API.Models.SystemParameters
+@model GMG_Portal.API.Models.SystemParameters.News
 
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="preloader"></div>
 
-<h2>Details</h2>
-
-<div>
-    <h4>News</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.SGuid)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SGuid)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DisplayValue)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DisplayValue)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LookupKey)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LookupKey)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LookupKeyGuid)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LookupKeyGuid)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsDeleted)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsDeleted)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Show)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Show)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DisplayValueDesc)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DisplayValueDesc)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LookupKeyDesc)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LookupKeyDesc)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LookupKeyGuidDesc)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LookupKeyGuidDesc)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Image)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Image)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Url)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Url)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LastModificationTime)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LastModificationTime)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LastModifierUserId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LastModifierUserId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreationTime)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreationTime)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatorUserId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreatorUserId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DeletionTime)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DeletionTime)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DeleterUserId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DeleterUserId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.OperationStatus)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.OperationStatus)
-        </dd>
-
-    </dl>
+<div class="mg-page-title parallax">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>A standard blog post with image</h2>
+                <p>Cogitavisse erant puerilis utrum efficiantur adhuc expeteretur.</p>
+            </div>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+<div class="mg-blog-list">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <main>
+
+                    <article class="mg-post">
+                        <header>
+                            @if (Model.Image != null)
+                            {
+                                <a href="/News/Details/@Model.Id"><img src="http://localhost:19056/Uploads/News/@Model.Image" alt="" class="img-responsive"></a>
+                            }
+                            <h2 class="mg-post-title">@Model.DisplayValue</h2> 
+                                <div class="mg-post-meta">
+                                    <span>@Model.CreationTime.Value.ToString("D")</span>
+                                    <span>by  @Model.CreatorUserName </span>
+                                    <span><a href="/News/IndexCat/@Model.CategoryId">@Model.CategoryName</a> </span>
+                                </div> 
+                        </header>
+                        <div>
+                            <p>@Model.DisplayValueDesc.</p>
+                        </div>
+                     
+                    </article>
+                </main>
+
+                @*<div class="clearfix mg-post-nav">
+                        <div class="pull-left">
+                            <a href="#"><i class="fa fa-angle-left"></i> Necesse directam consecutionem</a>
+                        </div>
+                        <div class="pull-right">
+                            <a href="#">Disciplinae principes tertium parentes <i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div>*@
+
+
+            </div>
+            <div class="col-md-4">
+                <div class="mg-widget-area">
+                    <aside class="mg-widget">
+                        <input id="txtSearch" type="text" placeholder="Search..." class="form-control"  onkeydown="search(this)">
+
+                    </aside>
+                    <aside class="mg-widget">
+                        <h2 class="mg-widget-title">Recent Posts</h2>
+                        <ul class="mg-recnt-posts" id="ulAllNews">
+                            @*@{
+                                    var Users = (List<News>)ViewBag.NewsList;
+
+                                    for (int i = 0; i < Users.Count; i++)
+                                    {
+                                        <li>
+                                            <div class="mg-recnt-post">
+                                                <div class="mg-rp-date">
+                                                    <div class="mg-rp-date">@ViewBag.NewsList[i].CreationTime.Value.Day <div class="mg-rp-month">@ViewBag.NewsList[i].CreationTime.Value.ToString("MMM")</div></div>
+                                                </div>
+                                                <h3>
+                                                    <a href="/News/Details/@ViewBag.NewsList[i].Id">@ViewBag.NewsList[i].DisplayValue</a>
+                                                </h3>
+                                                <p>@ViewBag.NewsList[i].DisplayValueDesc.ToString().Substring(0, 30)</p>
+                                            </div>
+                                        </li>
+                                    }
+                                }*@
+                        </ul>
+                    </aside>
+                    <aside class="mg-widget">
+                        <h2 class="mg-widget-title">Category</h2>
+                        <ul id="ulCategory"></ul>
+                    </aside>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+<script>
+    function search(ele) {
+        if (event.keyCode == 13) {
+            //alert(ele.value);
+            $.ajax({
+                url: "http://localhost:2798/SystemParameters/News/SearchNews",
+                type: "Post",
+                data: JSON.stringify([ele.value]), //{ Name: name, Address: address, DOB: dob },
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    alert('Created Successfully');
+                    window.location.href = "../Index";
+                },
+                error: function () { alert('error'); }
+            });
+
+        }
+    }
+    $(document).ready(function () {
+        $.ajax({
+            url: "http://localhost:2798/SystemParameters/News/GetAll",
+            type: "Get",
+            success: function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    $(
+                        //"<tr><td>" + data[i].Name + "</td><td>" + data[i].Address + "</td><td>" + data[i].DOB + "</td></tr>"
+
+                        "<li>" +
+                         "<div class='mg-recnt-post'>" +
+                        "<div class='mg-rp-date'>" +
+                        "<div class='mg-rp-date'>" + data[i].CreationDay +
+                        "<div class='mg-rp-month'>" + data[i].CreationMonth + "</div></div> </div>" +
+                       "<h3>" +
+                        "<a href='/News/Details/" + data[i].Id + "'>" + data[i].DisplayValue + "</a></h3>" +
+                        "<p>" + data[i].DisplayValueDesc + "</p></div></li>"
+
+
+                        ).appendTo("#ulAllNews");
+
+
+
+                }
+                for (var j = 0; j < data[0].Categories.length; j++) {
+                    $(
+                        "<li>" +
+                        "<a href='/News/IndexCat/" + data[0].Categories[j].Id + "'>" + data[0].Categories[j].DisplayValue + "</a>" +
+                        " </li>"
+
+
+                    ).appendTo("#ulCategory");
+                }
+            },
+            error: function (msg) { alert(msg); }
+        });
+      
+        $("#btnSubmit").click(function () {
+            var name = $("#Name").val();
+            var address = $("#Address").val();
+            var dob = $("#DOB").val();
+            $.ajax({
+                url: "http://localhost:49493/api/Values",
+                type: "Post",
+                data: JSON.stringify([name, address, dob]), //{ Name: name, Address: address, DOB: dob },
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    alert('Created Successfully');
+                    window.location.href = "../Index";
+                },
+                error: function () { alert('error'); }
+            });
+        });
+
+    });
+</script>

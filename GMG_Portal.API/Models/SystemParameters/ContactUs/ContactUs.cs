@@ -37,5 +37,7 @@ namespace GMG_Portal.API.Models.SystemParameters.ContactUs
         public DateTime? DeletionTime { get; set; }
         public int? DeleterUserId { get; set; }
         public string OperationStatus { get; set; }
+        public string MailNo1 { get; set; }
+        public string MailNo2 { get; set; }
     }
 }

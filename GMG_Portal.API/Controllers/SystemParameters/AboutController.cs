@@ -83,6 +83,38 @@ namespace GMG_Portal.API.Controllers.SystemParameters
             ThrowBadRequest:
             return Request.CreateResponse(HttpStatusCode.BadRequest);
         }
+
+        public HttpResponseMessage GetAboutAll()
+        {
+            try
+            {
+                var retunAboutAll= new AboutAll();
+                var aboutLogic = new AboutLogic();
+                var about = aboutLogic.GetAll();
+                retunAboutAll.AboutTitle = about[0].DisplayValue;
+                retunAboutAll.AboutDesc = about[0].DisplayValueDesc;
+                retunAboutAll.AboutVideoUrl = about[0].Url;
+
+                var visionLogic = new VisionsLogic();
+                var vision = visionLogic.GetAll();
+                retunAboutAll.VisionTitle = vision[0].DisplayValue;
+                retunAboutAll.VisionDesc= vision[0].DisplayValueDesc;
+
+
+                var missionLogic = new MissionsLogic();
+                var mission = missionLogic.GetAll();
+                retunAboutAll.MissionTitle = mission[0].DisplayValue;
+                retunAboutAll.MissionDesc = mission[0].DisplayValueDesc;
+
+                return Request.CreateResponse(HttpStatusCode.OK, retunAboutAll);
+            }
+            catch (Exception ex)
+            {
+                Log.LogError(ex);
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+            }
+        }
+
     }
 
 }
