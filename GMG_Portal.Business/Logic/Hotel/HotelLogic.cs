@@ -23,9 +23,30 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         public List<Hotel> GetAll()
         {
             var returnList = new List<Hotel>();
+            var featuresList = new List<SystemParameters_Features>();
             var getHotelInfo = _db.Hotels.Where(p => p.IsDeleted == false && p.Show).ToList();
             foreach (var hotel in getHotelInfo)
             {
+                //var getHotelFeatures = _db.Hotels_Features.Where(p => p.IsDeleted != true && p.Hotel_Id == hotel.Id).ToList();
+                //returnList.Add(new Hotel
+                //{
+                //    FeaturesList = getHotelFeatures
+                //});
+
+                var getHotelFeatures = _db.Hotels_Features.Where(p => p.IsDeleted != true && p.Hotel_Id == hotel.Id).ToList();
+                foreach (var hotelFeature in getHotelFeatures)
+                {
+                    var getFeatures = _db.SystemParameters_Features.Where(p => p.IsDeleted != true && p.Id == hotelFeature.Feature_Id).ToList();
+                    foreach (var feature in getFeatures)
+                    {
+                        featuresList.Add(new SystemParameters_Features
+                        {
+                            DisplayValue = feature.DisplayValue,
+                            Icon = feature.Icon
+                        });
+                    }
+                }
+
                 var getHotelImages = _db.Hotels_Images.Where(p => p.IsDeleted != true && p.Hotel_Id == hotel.Id).ToList();
                 returnList.Add(new Hotel
                 {
@@ -34,19 +55,33 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                     DisplayValueDesc = hotel.DisplayValueDesc,
                     Rate = hotel.Rate,
                     PriceStart = hotel.PriceStart,
+                    FeaturesList = featuresList,
                     Image = getHotelImages[0].Image,
                     Bootstrap = 12 / getHotelInfo.Count
                 });
             }
+
             return returnList;
-            // return _db.Hotels.Where(p => p.IsDeleted != true).ToList();
         }
         public Hotel Get(int id)
         {
             var returnList = new Hotel();
+            var featuresList = new List<SystemParameters_Features>();
 
-            var getHotelInfo = _db.Hotels.FirstOrDefault(p => p.Id== id&& p.IsDeleted == false && p.Show);
-
+            var getHotelInfo = _db.Hotels.FirstOrDefault(p => p.Id == id && p.IsDeleted == false && p.Show);
+            var getHotelFeatures = _db.Hotels_Features.Where(p => p.IsDeleted != true && p.Hotel_Id == getHotelInfo.Id).ToList();
+            foreach (var hotelFeature in getHotelFeatures)
+            {
+                var getFeatures = _db.SystemParameters_Features.Where(p => p.IsDeleted != true && p.Id == hotelFeature.Feature_Id).ToList();
+                foreach (var feature in getFeatures)
+                {
+                    featuresList.Add(new SystemParameters_Features
+                    {
+                        DisplayValue = feature.DisplayValue,
+                        Icon = feature.Icon
+                    });
+                }
+            }
             var getHotelImages = _db.Hotels_Images.Where(p => p.IsDeleted != true && p.Hotel_Id == getHotelInfo.Id).ToList();
 
             if (getHotelInfo != null)
@@ -56,13 +91,14 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 returnList.DisplayValueDesc = getHotelInfo.DisplayValueDesc;
                 returnList.Rate = getHotelInfo.Rate;
                 returnList.PriceStart = getHotelInfo.PriceStart;
-                returnList.Image = getHotelImages[0].Image; 
-                //returnList.ImageList = getHotelImages[0].Image; 
-
-
+                returnList.Image = getHotelImages[0].Image;
+                returnList.ImageList = getHotelImages;
+                returnList.FeaturesList = featuresList;
                 return returnList;
             }
             else return null;
+
+
 
         }
         public IQueryable<Hotels_Images> HotelImages(int hotelId)
