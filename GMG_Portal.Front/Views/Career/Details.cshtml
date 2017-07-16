@@ -1,14 +1,10 @@
-﻿@using GMG_Portal.API.Models.SystemParameters
-@model List<GMG_Portal.API.Models.SystemParameters.Career>
+﻿@model GMG_Portal.API.Models.SystemParameters.Career
+
 @{
-    ViewBag.Title = "Career";
+    ViewBag.Title = ViewBag.Title;
     Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
-
-
-
-
-
 <div class="mg-page">
     <div class="container">
         <div class="row">
@@ -40,19 +36,16 @@
                                         <div class="row">
                                             <div class="col-md-3">
                                             </div>
-                                            @foreach (Career careerObj in Model)
-
-                                            {
+                                         
                                                 <div class="col-md-9">
-                                                    <h3 class="mg-avl-room-title"> @careerObj.DisplayValue </h3>
+                                                    <h3 class="mg-avl-room-title"> @Model.DisplayValue </h3>
 
-                                                    <p>@careerObj.DisplayValueDesc.</p>
+                                                    <p>@Model.DisplayValueDesc.</p>
 
-                                                    <a href="/News/Details/@careerObj.Id" class="btn btn-main btn-next-tab">Apply to this Job</a>
+                                                    
                                                 </div>
 
-
-                                            }
+                                             
                                         </div>
                                     </div>
 

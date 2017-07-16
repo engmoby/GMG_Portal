@@ -172,6 +172,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\Hotel\ReservationController.cs" />
     <Compile Include="Controllers\Hotel\OffersController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\Hotel\HotelsController.cs" />
@@ -203,6 +204,7 @@
     <Compile Include="Helpers\LocalizedRegexAttribute.cs" />
     <Compile Include="Models\Customer\Customers\Customer.cs" />
     <Compile Include="Models\General\AboutAll\AboutAll.cs" />
+    <Compile Include="Models\Hotels\Reservation\Reservation.cs" />
     <Compile Include="Models\Hotels\Hotel\HotelFeatures.cs" />
     <Compile Include="Models\Hotels\Offer\Offer.cs" />
     <Compile Include="Models\Hotels\HotelFeatures\HotelFeatures.cs" />

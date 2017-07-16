@@ -26,7 +26,6 @@ namespace GMG_Portal.Data
         }
     
         public virtual DbSet<Hotel> Hotels { get; set; }
-        public virtual DbSet<Hotels_Reservation> Hotels_Reservation { get; set; }
         public virtual DbSet<SystemParameters_About> SystemParameters_About { get; set; }
         public virtual DbSet<SystemParameters_Category> SystemParameters_Category { get; set; }
         public virtual DbSet<SystemParameters_Cities> SystemParameters_Cities { get; set; }
@@ -52,5 +51,6 @@ namespace GMG_Portal.Data
         public virtual DbSet<Hotels_Features> Hotels_Features { get; set; }
         public virtual DbSet<Hotles_Offers> Hotles_Offers { get; set; }
         public virtual DbSet<SystemParameters_Features> SystemParameters_Features { get; set; }
+        public virtual DbSet<Hotels_Reservation> Hotels_Reservation { get; set; }
     }
 }
