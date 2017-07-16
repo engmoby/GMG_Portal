@@ -31,6 +31,21 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
+        public HttpResponseMessage GetCareerDetails(int id)
+        {
+            try
+            {
+
+                var careerLogic = new CareerLogic();
+                var career = careerLogic.Get(id);
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Career>(career));
+            }
+            catch (Exception ex)
+            {
+                Log.LogError(ex);
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+            }
+        }
         public HttpResponseMessage GetAllWithDeleted()
         {
             try

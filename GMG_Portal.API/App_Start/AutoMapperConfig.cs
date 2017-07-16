@@ -3,7 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using GMG_Portal.API.Models.Hotels.Hotel; 
+using GMG_Portal.API.Models.Hotels.Hotel;
+using GMG_Portal.API.Models.Hotels.Reservation;
 using GMG_Portal.API.Models.SystemParameters;
 using GMG_Portal.API.Models.SystemParameters.ContactUs;
 using GMG_Portal.API.Models.SystemParameters.Newsletter;
@@ -90,6 +91,9 @@ namespace GMG_Portal.API
                 cfg.CreateMap<Hotles_Offers, Offer>();
                 cfg.CreateMap<Offer, Hotles_Offers>();
 
+
+                cfg.CreateMap<Hotels_Reservation, Reservation>();
+                cfg.CreateMap<Reservation, Hotels_Reservation>();
 
                 cfg.CreateMap<SystemParameters_Countries, GMG_Portal.API.Models.SystemParameters.Countries>();
                 cfg.CreateMap<GMG_Portal.API.Models.SystemParameters.Countries, SystemParameters_Countries>();

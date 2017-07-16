@@ -6,7 +6,6 @@
     <edmx:Diagrams>
       <Diagram DiagramId="96baeab8c9ba41f7a601fd76d9d8ee6f" Name="Diagram1" ZoomLevel="95">
         <EntityTypeShape EntityType="GMG_Portal_DBModel.Hotel" Width="1.5" PointX="3.375" PointY="0.5" />
-        <EntityTypeShape EntityType="GMG_Portal_DBModel.Hotels_Reservation" Width="1.5" PointX="5.125" PointY="0.5" />
         <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_About" Width="1.5" PointX="4.75" PointY="11.75" />
         <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_Category" Width="1.5" PointX="6.75" PointY="11.75" />
         <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_Cities" Width="1.5" PointX="8.75" PointY="11.75" />
@@ -32,6 +31,7 @@
         <EntityTypeShape EntityType="GMG_Portal_DBModel.Hotels_Features" Width="1.5" PointX="12.375" PointY="0.75" />
         <EntityTypeShape EntityType="GMG_Portal_DBModel.Hotles_Offers" Width="1.5" PointX="14.375" PointY="0.75" />
         <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_Features" Width="1.5" PointX="16.375" PointY="0.75" />
+        <EntityTypeShape EntityType="GMG_Portal_DBModel.Hotels_Reservation" Width="1.5" PointX="17.375" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

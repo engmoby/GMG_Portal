@@ -176,6 +176,7 @@
           <Property Name="Child" Type="int" />
           <Property Name="HotelId" Type="int" />
           <Property Name="CountryId" Type="int" />
+          <Property Name="Notes" Type="nvarchar(max)" />
           <Property Name="SeenDate" Type="datetime" />
           <Property Name="SeenBy" Type="int" />
           <Property Name="CreationTime" Type="datetime" />
@@ -619,7 +620,6 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters.LanguageTex
       <Schema Namespace="GMG_Portal_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="GMG_Portal_DBEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Hotels" EntityType="GMG_Portal_DBModel.Hotel" />
-          <EntitySet Name="Hotels_Reservation" EntityType="GMG_Portal_DBModel.Hotels_Reservation" />
           <EntitySet Name="SystemParameters_About" EntityType="GMG_Portal_DBModel.SystemParameters_About" />
           <EntitySet Name="SystemParameters_Category" EntityType="GMG_Portal_DBModel.SystemParameters_Category" />
           <EntitySet Name="SystemParameters_Cities" EntityType="GMG_Portal_DBModel.SystemParameters_Cities" />
@@ -645,6 +645,7 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters.LanguageTex
           <EntitySet Name="Hotels_Features" EntityType="GMG_Portal_DBModel.Hotels_Features" />
           <EntitySet Name="Hotles_Offers" EntityType="GMG_Portal_DBModel.Hotles_Offers" />
           <EntitySet Name="SystemParameters_Features" EntityType="GMG_Portal_DBModel.SystemParameters_Features" />
+          <EntitySet Name="Hotels_Reservation" EntityType="GMG_Portal_DBModel.Hotels_Reservation" />
         </EntityContainer>
         <EntityType Name="Hotel">
           <Key>
@@ -679,25 +680,6 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters.LanguageTex
           <Property Name="DeletionTime" Type="DateTime" Precision="3" />
           <Property Name="DeleterUserId" Type="Int32" />
           <Property Name="Show" Type="Boolean" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Hotels_Reservation">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="LastName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Phone" Type="Int32" />
-          <Property Name="CheckIn" Type="DateTime" Precision="3" />
-          <Property Name="CheckOut" Type="DateTime" Precision="3" />
-          <Property Name="Adult" Type="Int32" />
-          <Property Name="Child" Type="Int32" />
-          <Property Name="HotelId" Type="Int32" />
-          <Property Name="CountryId" Type="Int32" />
-          <Property Name="SeenDate" Type="DateTime" Precision="3" />
-          <Property Name="SeenBy" Type="Int32" />
-          <Property Name="CreationTime" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="SystemParameters_About">
           <Key>
@@ -1213,6 +1195,26 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters.LanguageTex
           <Property Name="DeleterUserId" Type="Int32" />
           <Property Name="Show" Type="Boolean" Nullable="false" />
         </EntityType>
+        <EntityType Name="Hotels_Reservation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="Int32" />
+          <Property Name="CheckIn" Type="DateTime" Precision="3" />
+          <Property Name="CheckOut" Type="DateTime" Precision="3" />
+          <Property Name="Adult" Type="Int32" />
+          <Property Name="Child" Type="Int32" />
+          <Property Name="HotelId" Type="Int32" />
+          <Property Name="CountryId" Type="Int32" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SeenDate" Type="DateTime" Precision="3" />
+          <Property Name="SeenBy" Type="Int32" />
+          <Property Name="CreationTime" Type="DateTime" Precision="3" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1250,26 +1252,6 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters.LanguageTex
                 <ScalarProperty Name="LookupKey" ColumnName="LookupKey" />
                 <ScalarProperty Name="DisplayValue" ColumnName="DisplayValue" />
                 <ScalarProperty Name="SGuid" ColumnName="SGuid" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Hotels_Reservation">
-            <EntityTypeMapping TypeName="GMG_Portal_DBModel.Hotels_Reservation">
-              <MappingFragment StoreEntitySet="Hotels_Reservation">
-                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
-                <ScalarProperty Name="SeenBy" ColumnName="SeenBy" />
-                <ScalarProperty Name="SeenDate" ColumnName="SeenDate" />
-                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
-                <ScalarProperty Name="HotelId" ColumnName="HotelId" />
-                <ScalarProperty Name="Child" ColumnName="Child" />
-                <ScalarProperty Name="Adult" ColumnName="Adult" />
-                <ScalarProperty Name="CheckOut" ColumnName="CheckOut" />
-                <ScalarProperty Name="CheckIn" ColumnName="CheckIn" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1808,6 +1790,27 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters.LanguageTex
                 <ScalarProperty Name="LookupKey" ColumnName="LookupKey" />
                 <ScalarProperty Name="DisplayValue" ColumnName="DisplayValue" />
                 <ScalarProperty Name="SGuid" ColumnName="SGuid" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hotels_Reservation">
+            <EntityTypeMapping TypeName="GMG_Portal_DBModel.Hotels_Reservation">
+              <MappingFragment StoreEntitySet="Hotels_Reservation">
+                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+                <ScalarProperty Name="SeenBy" ColumnName="SeenBy" />
+                <ScalarProperty Name="SeenDate" ColumnName="SeenDate" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="HotelId" ColumnName="HotelId" />
+                <ScalarProperty Name="Child" ColumnName="Child" />
+                <ScalarProperty Name="Adult" ColumnName="Adult" />
+                <ScalarProperty Name="CheckOut" ColumnName="CheckOut" />
+                <ScalarProperty Name="CheckIn" ColumnName="CheckIn" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

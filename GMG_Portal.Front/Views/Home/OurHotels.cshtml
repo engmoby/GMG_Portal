@@ -18,9 +18,10 @@
 
 
 
-
-                    @foreach (var hotel in Model.Hotels.Take(3))
+                    @if (Model != null)
                     {
+                        foreach (var hotel in Model.Hotels.Take(3))
+                        {
                         <div class="col-sm-@hotel.Bootstrap">
                             <figure class="mg-room">
                                 <img src="http://localhost:19056/Uploads/@hotel.Image" alt="img11" class="img-responsive">
@@ -37,7 +38,7 @@
                     }
 
 
-
+                    }
                 </div>
             </div>
         </div>
