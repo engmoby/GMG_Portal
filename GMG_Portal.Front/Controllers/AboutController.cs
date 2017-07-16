@@ -31,15 +31,15 @@ namespace Front.Controllers
 
 
 
-            string About = url + "About/GetAll";
-            var AboutModels = new List<About>();
+            string About = url + "About/Aboutall";
+            var AboutModels = new List<AboutAll>();
 
             if (About == null) throw new ArgumentNullException(nameof(About));
             HttpResponseMessage responseMessageApi = await _client.GetAsync(About);
             if (responseMessageApi.IsSuccessStatusCode)
             {
                 var responseData = responseMessageApi.Content.ReadAsStringAsync().Result;
-                var AboutList = JsonConvert.DeserializeObject<List<About>>(responseData);
+                var AboutList = JsonConvert.DeserializeObject<List<AboutAll>>(responseData);
                 AboutModels = AboutList;
             }
             return View(AboutModels);
