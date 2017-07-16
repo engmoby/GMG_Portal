@@ -28,9 +28,8 @@ namespace Front.Controllers
 
 
 
-                var dd = collection.FirstName;
-                // TODO: Add insert logic here
-             
+               // TODO: Add insert logic here
+                            
                 return RedirectToAction("Index");
             }
             catch
