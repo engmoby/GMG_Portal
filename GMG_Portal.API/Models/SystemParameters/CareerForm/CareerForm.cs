@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GMG_Portal.API.Models.SystemParameters.ContactUs
+namespace GMG_Portal.API.Models.SystemParameters.CareerForm
 {
     public class CareerForm
     {
@@ -16,5 +16,7 @@ namespace GMG_Portal.API.Models.SystemParameters.ContactUs
         public bool? Seen { get; set; }
         public string OperationStatus { get; set; }
         public string Attach { get; set; }
+        public string CareerTitle { get; set; }
+        public int CareerId { get; set; }
     }
 }

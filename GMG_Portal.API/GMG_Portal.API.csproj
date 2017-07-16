@@ -204,6 +204,7 @@
     <Compile Include="Helpers\LocalizedRegexAttribute.cs" />
     <Compile Include="Models\Customer\Customers\Customer.cs" />
     <Compile Include="Models\General\AboutAll\AboutAll.cs" />
+    <Compile Include="Models\General\FileDetail.cs" />
     <Compile Include="Models\Hotels\Reservation\Reservation.cs" />
     <Compile Include="Models\Hotels\Hotel\HotelFeatures.cs" />
     <Compile Include="Models\Hotels\Offer\Offer.cs" />

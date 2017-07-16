@@ -1,12 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
+using GMG_Portal.API.Models.General;
 using GMG_Portal.API.Models.SystemParameters;
+using GMG_Portal.API.Models.SystemParameters.CareerForm;
+using GMG_Portal.Business.Logic.SystemParameters;
+using GMG_Portal.Data;
 using Newtonsoft.Json;
 
 namespace Front.Controllers
@@ -43,11 +49,12 @@ namespace Front.Controllers
 
             return View(careerModels);
 
-        } 
+        }
         public async Task<ActionResult> Details(int id)
         {
             string careerDetails = url + "Career/GetCareerDetails/" + id;
             var careerModels = new Career();
+            var careerForm = new CareerForm();
 
             if (careerDetails == null) throw new ArgumentNullException(nameof(careerDetails));
             HttpResponseMessage responseMessageApi = await _client.GetAsync(careerDetails);
@@ -55,25 +62,75 @@ namespace Front.Controllers
             {
                 var responseData = responseMessageApi.Content.ReadAsStringAsync().Result;
                 careerModels = JsonConvert.DeserializeObject<Career>(responseData);
-
+                careerForm.CareerId = careerModels.Id;
+                careerForm.CareerTitle = careerModels.DisplayValue;
             }
             ViewBag.Title = careerModels.DisplayValue;
-            string career = "";
+            return RedirectToAction("Upload", careerForm);
 
-            career = url + "Career/GetAll";
+            //return View(careerForm);
+        }
 
-            var CareerModelList = new List<Career>();
 
-            if (career == null) throw new ArgumentNullException(nameof(career));
-            HttpResponseMessage responseMessage = await _client.GetAsync(career);
-            if (responseMessage.IsSuccessStatusCode)
+        public ActionResult Upload(CareerForm careerForm)
+        {
+            ViewBag.CareerId = careerForm.CareerId;
+            ViewBag.CareerTitle = careerForm.CareerTitle;
+            return View(careerForm);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Upload(CareerForm careerForm, HttpPostedFileBase file)
+        {
+
+            //  if (careerForm == null) throw new ArgumentNullException(nameof(careerForm));
+
+            string fileName = "";
+            if (ModelState.IsValid)
             {
-                var responseData = responseMessage.Content.ReadAsStringAsync().Result;
-                ViewBag.CareerList = JsonConvert.DeserializeObject<List<Career>>(responseData);
+                List<FileDetail> fileDetails = new List<FileDetail>();
+                for (int i = 0; i < Request.Files.Count; i++)
+                {
+                    // var file = Request.Files[i];
 
+                    if (file != null && file.ContentLength > 0)
+                    {
+                        fileName = Path.GetFileName(file.FileName);
+                        FileDetail fileDetail = new FileDetail()
+                        {
+                            FileName = fileName,
+                            Extension = Path.GetExtension(fileName),
+                            Id = Guid.NewGuid()
+                        };
+                        fileDetails.Add(fileDetail);
+
+                        var path = Path.Combine(Server.MapPath("~/App_Data/"), fileDetail.Id + fileDetail.Extension);
+                        file.SaveAs(path);
+                    }
+                }
+                careerForm.Attach = fileName;
+                careerForm.CareerId = careerForm.CareerId;
+
+                var careerFormLogic = new CareerFormLogic();
+                SystemParameters_CareerForm careerFormaaaCareerForm = null;
+
+                careerFormaaaCareerForm = careerFormLogic.Insert(Mapper.Map<SystemParameters_CareerForm>(careerForm));
+
+
+                //string careerDetails = url + "Career/Save/" + careerForm;
+
+                //HttpResponseMessage responseMessageApi = await _client.GetAsync(careerDetails);
+                //if (responseMessageApi.IsSuccessStatusCode)
+                //{
+                //    var responseData = responseMessageApi.Content.ReadAsStringAsync().Result;
+                //    careerForm = JsonConvert.DeserializeObject<CareerForm>(responseData);
+
+                //}
+                return RedirectToAction("Index");
             }
 
-            return View(careerModels);
+            return View(careerForm);
         }
     }
 }

@@ -7,8 +7,8 @@ using System.Web.Http;
 using GMG_Portal.API.Models.SystemParameters;
 using GMG_Portal.Data;
 using GMG_Portal.Business.Logic.SystemParameters;
-using AutoMapper; 
-using GMG_Portal.API.Models.SystemParameters.ContactUs;
+using AutoMapper;
+using GMG_Portal.API.Models.SystemParameters.CareerForm; 
 using Helpers;
 
 namespace GMG_Portal.API.Controllers.SystemParameters
