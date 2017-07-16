@@ -383,6 +383,7 @@
     <Content Include="Views\News\Index.cshtml" />
     <Content Include="Views\News\IndexCat.cshtml" />
     <Content Include="Views\Career\Details.cshtml" />
+    <Content Include="Views\BookingLite\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
