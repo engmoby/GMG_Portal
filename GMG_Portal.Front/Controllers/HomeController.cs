@@ -58,6 +58,15 @@ namespace Front.Controllers
             }
 
            // return View(homeModels);
+            await CallHomeSliders(_homeSlider, homeModels);
+            await CallAbout(_about, homeModels);
+            await CallFacilities(_HotelFeatures, homeModels);
+            await CallHotels(_Hotels, homeModels);
+            await Callowners(_Owners, homeModels);
+            await CallNews(_News, gallery, homeModels);
+            await CallContactus(_ContactUs, homeModels);
+            ViewBag["movies"] = homeModels;
+                //get schoolModel  
             return PartialView("_HeaderNavBar");
         }
         public async Task<ActionResult> Index()
@@ -90,6 +99,7 @@ namespace Front.Controllers
                 homeModels = homesliders; 
             }
 
+            //}
             return View(homeModels);
 
         }
@@ -130,6 +140,8 @@ namespace Front.Controllers
             return NewsHome();
         }
 
+
+        //Fill Models with data Retrieved
 
         private async Task<string> CallHomeSliders(string homeSlider, HomeModels homeModels)
         {

@@ -287,6 +287,7 @@
 
 			// $('.mg-check-out').datepicker('clearDates');
 			$('.mg-check-out').datepicker('setStartDate', strDate);
+
 		}
 
 		$(e.currentTarget).removeClass('focus');

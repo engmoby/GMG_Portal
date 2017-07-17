@@ -16,64 +16,33 @@
 @Html.Partial("Slider")  
 
 
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
 
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script type="text/javascript">
 
     $(document).ready(function () {
-        $("#gotourl").click(function () {
-            var checkin = $("#checkin").val();
-            var checkout = $("#checkout").val();
-            var adult = $("#adult").val();
-            var child = $("#child").val();
-            var surl = "/bookinglite/Index?checkin=" +
-                checkin +
-                "&checkout=" +
-                checkout +
-                "&adult=" +
-                adult +
-                "&child=" +
-                child;
-            alert(surl);
-
-            window.location.href = "/BookingLite/Index?checkin=07/18/2017&checkout=07/19/2017&adult=2&child=1";
-           @*location.href = '@Html.GetUrl("Action", "Controller", new { foo=Model.Foo })';*@
-
-         //   window.location = surl;
-
+        $('#input-group.mg-check-in').datepicker().on('changeDate', function (ev) {
+            $('#checkin').change();
         });
+      
+        $('#input-group.mg-check-out').datepicker().on('changeDate', function (ev) {
+            $('#checkout').change();
+        });
+
+
+
+        $('#checkin').change(function () {
+            $('#checkindate').val($('#checkin').val());
+        });
+
+
+        $('#checkout').change(function () {         
+            $('#checkoutdate').val($('#checkout').val());
+        });
+
     });
-
-
-
-
-
-
-
-
-
-
-        //var checkin = $("#checkin").val();
-        //var checkout = $("#checkout").val();
-        //var adult = $("#adult").val();
-        //var child = $("#child").val();
-        //var surl = "bookinglite/Index?checkin=" +
-        //    checkin +
-        //    "&checkout=" +
-        //    checkout +
-        //    "&adult=" +
-        //    adult +
-        //    "&child=" +
-        //    child;
-        //alert(surl);
-
-        //$("btnSubmit").prop("href", "12123132131313122");
-
-
-
-
+  
 </script>
 
 <div class="mg-book-now">
@@ -90,12 +59,15 @@
                                 <div class="input-group date mg-check-in">
                                     <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
                                     <input type="text" class="form-control" id="checkin" placeholder="Check In">
+                                    <input type="hidden" id="checkindate"/>
                                 </div>
                             </div>
                             <div class="col-md-3 col-xs-6">
                                 <div class="input-group date mg-check-out">
                                     <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
                                     <input type="text" class="form-control" id="checkout" placeholder="Check Out">
+                                    <input type="hidden" id="checkoutdate"/>
+                                
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -121,7 +93,17 @@
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <a href="" class="btn btn-main btn-block" id="gotourl" > Check Now </a>
+                             
+                                
+                                
+                          
+                                <button class="btn btn-main btn-block" type="button" id="addressSearch"   
+                                        onclick="location.href='@Url.Action("Index", "BookingLite")?checkin=' + $('#checkindate').val() + '&checkout=' + $('#checkoutdate').val() + '&adult=' +  $('#adult').val() + '&child=' + $('#child').val() ">Check Now</button>
+
+                              
+                      
+                                
+                           
                             </div>
                         </div>
                     </form>
