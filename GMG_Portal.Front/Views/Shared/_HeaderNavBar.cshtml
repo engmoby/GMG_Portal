@@ -1,5 +1,4 @@
-﻿@using Front.Models
-@*@model Front.Models.HomeModels*@
+﻿ 
 
 <nav class="navbar navbar-inverse">
     <div class="container">
@@ -34,21 +33,20 @@
                     </li>*@
                 <li class="dropdown">
                     <a href="/Hotel/Index" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hotels <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        @foreach (HomeModels c in (IEnumerable<HomeModels>)ViewData["movies"])
+                    <ul class="dropdown-menu" id="ulAllHotels">
+                        @*@foreach (var c in Model.Hotels)
                         {
-                         
-                            foreach (var h in c.Hotels)
-                             {
-                                 <li><a href="/Hotel/Details/@h.Id">@h.DisplayValue</a></li>
 
-                             }
-                        }
+                            <li><a href="/Hotel/Details/@c.Id">@c.DisplayValue</a></li>
+
+                        }*@
                     </ul>
                 </li>
+                <li><a href="/Offers/Index">Offers</a></li>
                 <li><a href="/News/Index">News</a></li>
                 <li><a href="/About/Index">About</a></li>
                 <li><a href="/Contact/Index">Contact</a></li>
+                <li><a href="/Career/Index">Careers</a></li>
             </ul>
         </div><!-- /.navbar-collapse -->
         <div class="mg-search-box-cont pull-right">

@@ -1,5 +1,5 @@
 ﻿@using GMG_Portal.API.Models.SystemParameters
-@model  List<AboutAll>
+@model  AboutAll
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -24,12 +24,12 @@
                         <h2>About Mubarak</h2>
                    
                     </div>
-                    <p>@Model[0].AboutDesc </p>
+                   <p>@Model.AboutDesc </p> 
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="video-responsive">
-                    <div style="position:relative;height:0;padding-bottom:70%"><iframe src="https://www.youtube.com/embed/@Model[0].AboutVideoUrl?ecver=2" style="position:absolute;width:100%;height:100%;left:0" width="500" height="350" frameborder="0" allowfullscreen></iframe></div>
+                    <div style="position:relative;height:0;padding-bottom:70%"><iframe src="https://www.youtube.com/embed/@Model.AboutVideoUrl?ecver=2" style="position:absolute;width:100%;height:100%;left:0" width="500" height="350" frameborder="0" allowfullscreen></iframe></div>
                 </div>
             </div>
         </div>

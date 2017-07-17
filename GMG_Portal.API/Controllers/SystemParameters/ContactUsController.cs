@@ -23,7 +23,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
             {
                 var contactUsLogic = new ContactUsLogic();
                 var contactUs = contactUsLogic.GetAll();
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<ContactUs>>(contactUs));
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<ContactUs>(contactUs));
             }
             catch (Exception ex)
             {

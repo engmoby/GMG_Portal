@@ -81,49 +81,47 @@ namespace Front.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Upload(CareerForm careerForm, HttpPostedFileBase file)
-        { 
+        public async Task<ActionResult> Upload(CareerForm careerForm, HttpPostedFileBase file)
+        {
             string fileName = "";
             var fileDetails = new List<FileDetail>();
+
+
+
+            if (file != null && file.ContentLength > 0)
+            {
+                fileName = Path.GetFileName(file.FileName);
+                FileDetail fileDetail = new FileDetail()
+                {
+                    FileName = fileName,
+                    Extension = Path.GetExtension(fileName),
+                    Id = Guid.NewGuid()
+                };
+                fileDetails.Add(fileDetail);
+
+                var path = Path.Combine(Server.MapPath("~/App_Data/"), fileDetail.Id + fileDetail.Extension);
+                file.SaveAs(path);
+            }
+
+            careerForm.Attach = fileName;
+            careerForm.CareerId = careerForm.CareerId;
             if (ModelState.IsValid)
             {
-                for (int i = 0; i < Request.Files.Count; i++)
+
+
+                string careerDetails = url + "CareerForm/Save/" + careerForm;
+
+                HttpResponseMessage responseMessageApi = await _client.PostAsJsonAsync("CareerForm/Save/", careerForm);
+                if (responseMessageApi.IsSuccessStatusCode)
                 {
-                    // var file = Request.Files[i];
-
-                    if (file != null && file.ContentLength > 0)
+                    var responseData = responseMessageApi.Content.ReadAsStringAsync().Result;
+                    careerForm = JsonConvert.DeserializeObject<CareerForm>(responseData);
+                    if (careerForm != null)
                     {
-                        fileName = Path.GetFileName(file.FileName);
-                        FileDetail fileDetail = new FileDetail()
-                        {
-                            FileName = fileName,
-                            Extension = Path.GetExtension(fileName),
-                            Id = Guid.NewGuid()
-                        };
-                        fileDetails.Add(fileDetail);
+                        TempData["alertMessage"] = "ok";
 
-                        var path = Path.Combine(Server.MapPath("~/App_Data/"), fileDetail.Id + fileDetail.Extension);
-                        file.SaveAs(path);
                     }
                 }
-                careerForm.Attach = fileName;
-                careerForm.CareerId = careerForm.CareerId;
-
-                var careerFormLogic = new CareerFormLogic();
-                SystemParameters_CareerForm careerFormaaaCareerForm = null;
-
-                careerFormaaaCareerForm = careerFormLogic.Insert(Mapper.Map<SystemParameters_CareerForm>(careerForm));
-
-
-                //string careerDetails = url + "Career/Save/" + careerForm;
-
-                //HttpResponseMessage responseMessageApi = await _client.GetAsync(careerDetails);
-                //if (responseMessageApi.IsSuccessStatusCode)
-                //{
-                //    var responseData = responseMessageApi.Content.ReadAsStringAsync().Result;
-                //    careerForm = JsonConvert.DeserializeObject<CareerForm>(responseData);
-
-                //}
                 return RedirectToAction("Index");
             }
 

@@ -5,8 +5,8 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using System.Web.Mvc;
-using Front.Models;
+using System.Web.Mvc; 
+using GMG_Portal.API.Models.General;
 using GMG_Portal.API.Models.Hotels.Hotel;
 using Newtonsoft.Json;
 using GMG_Portal.API.Models.SystemParameters;
@@ -29,59 +29,67 @@ namespace Front.Controllers
         }
         public async Task<ActionResult> HeaderNavBar()
         {
-            string _homeSlider = url + "HomeSliders/GetAll";
-            string _about = url + "About/GetAll";
-            string _HotelFeatures = url + "Features/GetAll";
-            string _News = url + "News/GetAll";
-            string _Hotels = url + "Hotels/GetAll";
-            string gallery = url + "Hotels/GetAllImages";
-            string _Owners = url + "Owners/GetAll";
-            string _ContactUs = url + "ContactUs/GetAll";
+            string General = url + "General/GetAll";
+            //string _homeSlider = url + "HomeSliders/GetAll";
+            //string _about = url + "About/GetAll";
+            //string _HotelFeatures = url + "Features/GetAll";
+            //string _News = url + "News/GetAll";
+            //string _Hotels = url + "Hotels/GetAll";
+            //string gallery = url + "Hotels/GetAllImages";
+            //string _Owners = url + "Owners/GetAll";
+            //string _ContactUs = url + "ContactUs/GetAll";
+            //await CallHomeSliders(_homeSlider, homeModels);
+            //await CallAbout(_about, homeModels);
+            //await CallFacilities(_HotelFeatures, homeModels);
+            //await CallHotels(_Hotels, homeModels);
+            //await Callowners(_Owners, homeModels);
+            //await CallNews(_News, gallery, homeModels);
+            //await CallContactus(_ContactUs, homeModels);
 
             var homeModels = new HomeModels();
 
 
-            await CallHomeSliders(_homeSlider, homeModels);
-            await CallAbout(_about, homeModels);
-            await CallFacilities(_HotelFeatures, homeModels);
-            await CallHotels(_Hotels, homeModels);
-            await Callowners(_Owners, homeModels);
-            await CallNews(_News, gallery, homeModels);
-            await CallContactus(_ContactUs, homeModels);
-            ViewData["movies"] = homeModels;
-                //get schoolModel  
+            HttpResponseMessage responseMessage = await _client.GetAsync(General);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var responseData = responseMessage.Content.ReadAsStringAsync().Result;
+                var homesliders = JsonConvert.DeserializeObject<HomeModels>(responseData);
+                homeModels = homesliders;
+            }
+
+           // return View(homeModels);
             return PartialView("_HeaderNavBar");
         }
         public async Task<ActionResult> Index()
         {
-            string _homeSlider = url + "HomeSliders/GetAll";
-            string _about = url + "About/GetAll";
-            string _HotelFeatures = url + "Features/GetAll";
-            string _News = url + "News/GetAll";
-            string _Hotels = url + "Hotels/GetAll";
-            string gallery = url + "Hotels/GetAllImages";
-            string _Owners = url + "Owners/GetAll";
-            string _ContactUs = url + "ContactUs/GetAll";
+            string General = url + "General/GetAll";
+            //string _homeSlider = url + "HomeSliders/GetAll";
+            //string _about = url + "About/GetAll";
+            //string _HotelFeatures = url + "Features/GetAll";
+            //string _News = url + "News/GetAll";
+            //string _Hotels = url + "Hotels/GetAll";
+            //string gallery = url + "Hotels/GetAllImages";
+            //string _Owners = url + "Owners/GetAll";
+            //string _ContactUs = url + "ContactUs/GetAll";
+            //await CallHomeSliders(_homeSlider, homeModels);
+            //await CallAbout(_about, homeModels);
+            //await CallFacilities(_HotelFeatures, homeModels);
+            //await CallHotels(_Hotels, homeModels);
+            //await Callowners(_Owners, homeModels);
+            //await CallNews(_News, gallery, homeModels);
+            //await CallContactus(_ContactUs, homeModels);
 
             var homeModels = new HomeModels();
 
+             
+            HttpResponseMessage responseMessage = await _client.GetAsync(General);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var responseData = responseMessage.Content.ReadAsStringAsync().Result;
+                var homesliders = JsonConvert.DeserializeObject<HomeModels>(responseData);
+                homeModels = homesliders; 
+            }
 
-            await CallHomeSliders(_homeSlider, homeModels);
-            await CallAbout(_about, homeModels);
-            await CallFacilities(_HotelFeatures, homeModels);
-            await CallHotels(_Hotels, homeModels);
-            await Callowners(_Owners, homeModels);
-            await CallNews(_News, gallery, homeModels);
-            await CallContactus(_ContactUs, homeModels);
-            //if (CallHomeSliders(_homeSlider, homeModels).Result== "500")
-            //{
-
-            //}
-            //else
-            //{
-            //    RedirectToAction("Error","Home");
-
-            //}
             return View(homeModels);
 
         }
@@ -97,10 +105,10 @@ namespace Front.Controllers
             return Slider();
         }
 
-        public ActionResult OurHotels()
-        {
-            return OurHotels();
-        }
+        //public ActionResult OurHotels()
+        //{
+        //    return OurHotels();
+        //}
 
         public ActionResult AboutHome()
         {
@@ -123,8 +131,6 @@ namespace Front.Controllers
         }
 
 
-        //Fill Models with data Retrieved
-
         private async Task<string> CallHomeSliders(string homeSlider, HomeModels homeModels)
         {
             var returnValue = "";
@@ -143,16 +149,36 @@ namespace Front.Controllers
             return returnValue;
         }
 
+        //Fill Models with data Retrieved
+
+        private async Task<string> CallGeneral(string general)
+        {
+            var returnValue = "";
+            HttpResponseMessage responseMessage = await _client.GetAsync(general);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var responseData = responseMessage.Content.ReadAsStringAsync().Result;
+                //var homesliders = JsonConvert.DeserializeObject<List<HomeSlider>>(responseData);
+                //homeModels.HomeSliders = homesliders;
+                //returnValue = HttpStatusCode.OK.ToString();
+            }
+            if (responseMessage.StatusCode == HttpStatusCode.InternalServerError)
+            {
+                returnValue = HttpStatusCode.InternalServerError.ToString();
+            }
+            return returnValue;
+        }
+
         private async Task CallAbout(string _about, HomeModels homeModels)
         {
-            if (_about == null) throw new ArgumentNullException(nameof(_about));
-            HttpResponseMessage responseMessageApi = await _client.GetAsync(_about);
-            if (responseMessageApi.IsSuccessStatusCode)
-            {
-                var responseData = responseMessageApi.Content.ReadAsStringAsync().Result;
-                var about = JsonConvert.DeserializeObject<List<About>>(responseData);
-                homeModels.About = about;
-            }
+            //if (_about == null) throw new ArgumentNullException(nameof(_about));
+            //HttpResponseMessage responseMessageApi = await _client.GetAsync(_about);
+            //if (responseMessageApi.IsSuccessStatusCode)
+            //{
+            //    var responseData = responseMessageApi.Content.ReadAsStringAsync().Result;
+            //    var about = JsonConvert.DeserializeObject<List<About>>(responseData);
+            //    homeModels.About = about;
+            //}
         }
 
         private async Task CallFacilities(string hotelFeatures, HomeModels homeModels)
@@ -210,13 +236,13 @@ namespace Front.Controllers
 
         private async Task CallContactus(string _ContactUs, HomeModels homeModels)
         {
-            HttpResponseMessage responseMessageApi = await _client.GetAsync(_ContactUs);
-            if (responseMessageApi.IsSuccessStatusCode)
-            {
-                var responseData = responseMessageApi.Content.ReadAsStringAsync().Result;
-                var contactUs = JsonConvert.DeserializeObject<List<ContactUs>>(responseData);
-                homeModels.ContactUs = contactUs;
-            }
+            //HttpResponseMessage responseMessageApi = await _client.GetAsync(_ContactUs);
+            //if (responseMessageApi.IsSuccessStatusCode)
+            //{
+            //    var responseData = responseMessageApi.Content.ReadAsStringAsync().Result;
+            //    var contactUs = JsonConvert.DeserializeObject<List<ContactUs>>(responseData);
+            //    homeModels.ContactUs = contactUs;
+            //}
         }
 
     }

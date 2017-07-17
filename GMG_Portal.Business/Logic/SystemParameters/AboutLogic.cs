@@ -20,9 +20,9 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         {
             return _db.SystemParameters_About.OrderBy(p => p.IsDeleted).ToList();
         }
-        public List<SystemParameters_About> GetAll()
+        public SystemParameters_About GetAll()
         {
-            return _db.SystemParameters_About.Where(p => p.IsDeleted != true).ToList();
+            return _db.SystemParameters_About.FirstOrDefault(p => p.IsDeleted != true);
         }
         public SystemParameters_About Get(int id)
         {

@@ -1,13 +1,14 @@
-﻿@*@model Front.Models.HomeModels*@
+﻿
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Mobarak  </title>
-   
-  
-    
+    <link rel="shortcut icon" href="~/Content/images/favicon.ico">
+
+
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic|Playfair+Display:400,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
     <!-- Bootstrap -->
     <link href="~/Content/css/bootstrap.min.css" rel="stylesheet">
@@ -20,76 +21,134 @@
     <link href="~/Content/css/bootstrap-datepicker3.min.css" rel="stylesheet">
     <link href="~/Content/css/freepik.hotels.css" rel="stylesheet">
     <link href="~/Content/css/style.css" rel="stylesheet">
-    
+
     <script src="~/Content/js/modernizr.custom.min.js"></script>
 </head>
 <body>
-  
-    
-<!-- Menu and Search Button -->
-<div class="preloader"></div>
-<header class="header transp sticky">
-    <!-- available class for header: .sticky .center-content .transp -->
-    @*@Html.Action("HeaderNavBar", "Home")*@
+
+
+    <!-- Menu and Search Button -->
+    <div class="preloader"></div>
+    <header class="header transp sticky">
+        <!-- available class for header: .sticky .center-content .transp -->
+        @*@Html.Action("HeaderNavBar", "Home")*@
+
+        @{
+            Html.RenderPartial("_HeaderNavBar");
+        }
+        @*@Html.Partial("_HeaderNavBar", Model)
+
+
+            @{ Html.RenderAction("HeaderNavBar", "Home"); }*@
+
+
+    </header>
+
+
+
+    <!-- Loaded Body Content   -->
+    @RenderBody()
+
+
+
+
+
+
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="~/Content/js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Content/js/owl.carousel.min.js"></script>
+    <script src="~/Content/js/jssor.slider.mini.js"></script>
+    <script src="~/Content/js/classie.js"></script>
+    <script src="~/Content/js/selectFx.js"></script>
+    <script src="~/Content/js/bootstrap-datepicker.min.js"></script>
+    <script src="~/Content/js/starrr.min.js"></script>
+    <script src="~/Content/js/nivo-lightbox.min.js"></script>
+    <script src="~/Content/js/jquery.shuffle.min.js"></script>
+    <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+    <script src="~/Content/js/gmaps.min.js"></script>
+    <script src="~/Content/js/jquery.parallax-1.1.3.js"></script>
+    <script src="~/Content/js/script.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
     @{
-        Html.RenderPartial("_HeaderNavBar");   
+        Html.RenderPartial("_Footer");
     }
-    @*@{Html.RenderAction("TopMenu", "Home");}*@
-
-
-</header>
-
-    
-
-<!-- Loaded Body Content   -->  
-@RenderBody()
 
 
 
+    @*@{Html.RenderAction("Footer", "Home");}*@
 
 
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $.ajax({
+                url: "http://localhost:2798/SystemParameters/Hotels/GetAll",
+                type: "Get",
+                success: function (data) {
+                    for (var i = 0; i < data.length; i++) {
+                        console.log(data[i].DisplayValue);
+
+                        $(
+                            "<li>" +
+                            "<a href='/Hotel/Details/" + data[i].Id + "'>" + data[i].DisplayValue + "</i></a>"
 
 
-
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="~/Content/js/jquery.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="~/Content/js/bootstrap.min.js"></script>
-<script src="~/Content/js/owl.carousel.min.js"></script>
-<script src="~/Content/js/jssor.slider.mini.js"></script>
-<script src="~/Content/js/classie.js"></script>
-<script src="~/Content/js/selectFx.js"></script>
-<script src="~/Content/js/bootstrap-datepicker.min.js"></script>
-<script src="~/Content/js/starrr.min.js"></script>
-<script src="~/Content/js/nivo-lightbox.min.js"></script>
-<script src="~/Content/js/jquery.shuffle.min.js"></script>
-<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
-<script src="~/Content/js/gmaps.min.js"></script>
-<script src="~/Content/js/jquery.parallax-1.1.3.js"></script>
-<script src="~/Content/js/script.js"></script>
-
-    
-    
-    
+                        ).appendTo("#ulAllHotels");
 
 
-    
-    
-    
-    
-    
-
-    
-@{
-    Html.RenderPartial("_Footer");   
-}
+                    }
+                },
+                error: function (msg) { alert(msg); }
+            });
 
 
+            /*load footer data*/
+            $.ajax({
+                url: "http://localhost:2798/SystemParameters/ContactUs/GetAll",
+                type: "Get",
+                success: function (data) {
+                    $(
+                        "<p>" + data.DisplayValueAddress + "</p>"
+                     ).appendTo("#divAddress");
+                    $(
+                        "<p>" + data.PhoneNo1 + "<br>" + data.PhoneNo2 + "</p>"
+                     ).appendTo("#divphones");
+                    $(
+                        "<p>" +
+                        "<a href='mailto:#'>" + data.Mailbox + "</i>"
+                       + "</p>"
+                    ).appendTo("#divmail");
 
-@*@{Html.RenderAction("Footer", "Home");}*@
+                    $(
+                        "<li>" + "<a href='" + data.Facebook + "'>" + "<i class='fa fa-facebook'></i>" + "</i></a>"
+                        + "<li>" + "<a href='" + data.Twitter + "'>" + "<i class='fa fa-twitter'></i>" + "</i></a>"
+                        + "<li>" + "<a href='" + data.Instgram + "'>" + "<i class='fa fa-pinterest'></i>" + "</i></a>"
+                        + "<li>" + "<a href='" + data.Snapchat + "'>" + "<i class='fa fa-google-plus'></i>" + "</i></a>"
+                        + "<li>" + "<a href='" + data.Youtube + "'>" + "<i class='fa fa-rss'></i>" + "</i></a>"
+                    ).appendTo("#divsocial");
+                },
+                error: function (msg) { alert(msg); }
+            });
 
+        });
 
-
+    </script>
 
 </body>
 </html>

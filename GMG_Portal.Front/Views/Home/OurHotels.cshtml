@@ -1,5 +1,6 @@
 ﻿@*//@using GMG_Portal.API.Models.Hotels.Hotel*@
-@model  Front.Models.HomeModels
+@model GMG_Portal.API.Models.General.HomeModels
+
 <div class="mg-best-rooms">
     <div class="container">
         <div class="row">
@@ -29,9 +30,9 @@
                                     <h2>@hotel.DisplayValue</h2>
                                     <div class="mg-room-rating"><i class="fa fa-star"></i> @hotel.Rate</div>
                                     <div class="mg-room-price">@hotel.PriceStart /Night</div>
-                                    <p>@hotel.DisplayValueDesc</p>
-                                    <a href="#" class="btn btn-link">View Details <i class="fa fa-angle-double-right"></i></a>
-                                    <a href="#" class="btn btn-main">Book</a>
+                                    <p>@hotel.DisplayValueDesc</p> 
+                                    <a href="/Hotel/Details/@hotel.Id" class="btn btn-link ">View Details <i class="fa fa-angle-double-right"></i></a>
+                                    @*<a href="#" class="btn btn-main">Book</a>*@
                                 </figcaption>
                             </figure>
                         </div>

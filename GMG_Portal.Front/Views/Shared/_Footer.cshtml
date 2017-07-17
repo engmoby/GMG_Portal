@@ -1,4 +1,4 @@
-﻿@model  Front.Models.HomeModels
+﻿@*@model  Front.Models.HomeModels*@
 
     
     
@@ -10,18 +10,16 @@
                 <div class="col-md-3 col-sm-6">
                     <div class="widget">
                         <h2 class="mg-widget-title">Contact US</h2>
-                        <address>
-                            @Model.ContactUs[0].DisplayValueAddress
-                          
+                        <address id="divAddress"> 
                         </address>
 
-                        <p>
-                             @Model.ContactUs[0].PhoneNo1<br>
-                             @Model.ContactUs[0].PhoneNo2
+                        <p id="divphones">
+                             @*@Model.ContactUs[0].PhoneNo1<br>
+                             @Model.ContactUs[0].PhoneNo2*@
                         </p>
 
-                        <p>
-                            <a href="mailto:#"> @Model.ContactUs[0].Mailbox</a>
+                        <p id="divmail">
+                            @*<a href="mailto:#"> @Model.ContactUs[0].Mailbox</a>*@
                         </p>
                     </div>
                 </div>
@@ -48,12 +46,12 @@
                     <div class="widget">
                         <h2 class="mg-widget-title">Social Media</h2>
                         <p>.</p>
-                        <ul class="mg-footer-social">
-                            <li><a href="@Model.ContactUs[0].Facebook"><i class="fa fa-facebook"></i></a></li>
+                        <ul class="mg-footer-social" id="divsocial">
+                            @*<li><a href="@Model.ContactUs[0].Facebook"><i class="fa fa-facebook"></i></a></li>
                             <li><a href="@Model.ContactUs[0].Twitter"><i class="fa fa-twitter"></i></a></li>
                             <li><a href="@Model.ContactUs[0].Instgram"><i class="fa fa-pinterest"></i></a></li>
                             <li><a href="@Model.ContactUs[0].Snapchat"><i class="fa fa-google-plus"></i></a></li>
-                            <li><a href="@Model.ContactUs[0].Youtube"><i class="fa fa-rss"></i></a></li>
+                            <li><a href="@Model.ContactUs[0].Youtube"><i class="fa fa-rss"></i></a></li>*@
                         </ul>
                     </div>
                 </div>

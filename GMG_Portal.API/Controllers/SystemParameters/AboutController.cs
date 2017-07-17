@@ -91,9 +91,9 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 var retunAboutAll= new AboutAll();
                 var aboutLogic = new AboutLogic();
                 var about = aboutLogic.GetAll();
-                retunAboutAll.AboutTitle = about[0].DisplayValue;
-                retunAboutAll.AboutDesc = about[0].DisplayValueDesc;
-                retunAboutAll.AboutVideoUrl = about[0].Url;
+                retunAboutAll.AboutTitle = about.DisplayValue;
+                retunAboutAll.AboutDesc = about.DisplayValueDesc;
+                retunAboutAll.AboutVideoUrl = about.Url;
 
                 var visionLogic = new VisionsLogic();
                 var vision = visionLogic.GetAll();

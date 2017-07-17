@@ -20,9 +20,9 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         {
             return _db.SystemParameters_ContactUs.OrderBy(p => p.IsDeleted).ToList();
         }
-        public List<SystemParameters_ContactUs> GetAll()
+        public  SystemParameters_ContactUs GetAll()
         {
-            return _db.SystemParameters_ContactUs.Where(p => p.IsDeleted != true).ToList();
+            return _db.SystemParameters_ContactUs.FirstOrDefault(p => p.IsDeleted != true);
         }
         public SystemParameters_ContactUs Get(int id)
         {

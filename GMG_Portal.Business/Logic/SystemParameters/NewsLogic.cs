@@ -50,7 +50,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             return returnList;
         }
 
-        private List<SystemParameters_Category> GetAllCatrogry()
+        public List<SystemParameters_Category> GetAllCatrogry()
         {
             var getAllCatrogry = _db.SystemParameters_Category.Where(p => p.IsDeleted != true).ToList();
             return getAllCatrogry;

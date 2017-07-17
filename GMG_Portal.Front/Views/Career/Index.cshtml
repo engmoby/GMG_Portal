@@ -5,9 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
-
-
+ 
 
 <div class="mg-page">
     <div class="container">
@@ -83,7 +81,11 @@
                                                         <p>@careerObj.EducationLevel </p>
                                                         <h4>Vacancies :</h4>
                                                         <p>@careerObj.Vacancies </p>
-                                                    </div>
+                                                        <a href="/Career/Details/@careerObj.Id" style="font-size: 16px;
+                                      padding: 10px 35px;
+                                      color: #FFF;
+                                      background-color: #e7b315;
+                                      border-color: #e7b315;">Apply to this Job</a></div>
                                                     <div role="tabpanel" class="tab-pane fade" id="@careerObj.Id-2">
                                                         <p>@careerObj.DisplayValueDesc </p>
                                                     </div>
@@ -106,15 +108,15 @@
                                                     </div>
                                                     <div role="tabpanel" class="tab-pane fade" id="@careerObj.Id-8">
                                                         <p>@careerObj.DisplayValueRequirements </p>
-                                                    </div>
+                                                        <a href="/Career/Details/@careerObj.Id" style="font-size: 16px;
+                                                                                                     padding: 10px 35px;
+                                                                                                     color: #FFF;
+                                                                                                     background-color: #e7b315;
+                                                                                                     border-color: #e7b315;">Apply to this Job</a> </div>
                                                 </div>
-                                                <a href="/Career/Details/@careerObj.Id" style="font-size: 16px;
-                                      padding: 10px 35px;
-                                      color: #FFF;
-                                      background-color: #e7b315;
-                                      border-color: #e7b315;">Apply to this Job</a>
+                                             
                                             </div>
-
+                                           
                                         }
                                         @*</div>*@
                                     </div>
