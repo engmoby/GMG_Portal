@@ -31,20 +31,20 @@
                                 <div class="row mg-room-fecilities">
                                     @for (int i = 0; i < hotel.FeaturesList.Count; i++)
                                     {
-                                        if (i > 0 && i % 2 == 0)
+                                        if (i > 0 && i % 10 == 0)
                                         {
                                             @:</div><div class="row"> 
                                         }
 
                                         <div class="col-xs-6">
                                             <ul>
-                                                <li><i class="@Model.FeaturesList[i].Icon"></i> @Model.FeaturesList[i].DisplayValue</li>
+                                                <li><i class="@hotel.FeaturesList[i].Icon"></i> @hotel.FeaturesList[i].DisplayValue</li>
                                             </ul>
                                         </div>
                                     } 
                                 </div>
                                 <a href="/Hotel/Details/@hotel.Id" class="btn btn-dark ">View Details <i class="fa fa-angle-double-right"></i></a>
-                                <a href="#" class="btn btn-main pull-right">Book Now</a>
+                                @*<a href="#" class="btn btn-main pull-right">Book Now</a>*@
 
                             </div>
                         </div>

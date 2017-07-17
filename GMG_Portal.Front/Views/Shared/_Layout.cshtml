@@ -1,4 +1,4 @@
-﻿
+﻿@*@model Front.Models.HomeModels*@
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,7 +30,7 @@
 <div class="preloader"></div>
 <header class="header transp sticky">
     <!-- available class for header: .sticky .center-content .transp -->
-  
+    @*@Html.Action("HeaderNavBar", "Home")*@
     @{
         Html.RenderPartial("_HeaderNavBar");   
     }
@@ -80,9 +80,9 @@
     
 
     
-@*@{
+@{
     Html.RenderPartial("_Footer");   
-}*@
+}
 
 
 

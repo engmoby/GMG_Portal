@@ -27,7 +27,31 @@ namespace Front.Controllers
             _client.DefaultRequestHeaders.Accept.Clear();
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
+        public async Task<ActionResult> HeaderNavBar()
+        {
+            string _homeSlider = url + "HomeSliders/GetAll";
+            string _about = url + "About/GetAll";
+            string _HotelFeatures = url + "Features/GetAll";
+            string _News = url + "News/GetAll";
+            string _Hotels = url + "Hotels/GetAll";
+            string gallery = url + "Hotels/GetAllImages";
+            string _Owners = url + "Owners/GetAll";
+            string _ContactUs = url + "ContactUs/GetAll";
 
+            var homeModels = new HomeModels();
+
+
+            await CallHomeSliders(_homeSlider, homeModels);
+            await CallAbout(_about, homeModels);
+            await CallFacilities(_HotelFeatures, homeModels);
+            await CallHotels(_Hotels, homeModels);
+            await Callowners(_Owners, homeModels);
+            await CallNews(_News, gallery, homeModels);
+            await CallContactus(_ContactUs, homeModels);
+            ViewData["movies"] = homeModels;
+                //get schoolModel  
+            return PartialView("_HeaderNavBar");
+        }
         public async Task<ActionResult> Index()
         {
             string _homeSlider = url + "HomeSliders/GetAll";
@@ -61,6 +85,7 @@ namespace Front.Controllers
             return View(homeModels);
 
         }
+     
         public ActionResult Error()
         {
             return View();

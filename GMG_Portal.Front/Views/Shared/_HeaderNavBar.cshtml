@@ -1,4 +1,6 @@
-﻿
+﻿@using Front.Models
+@*@model Front.Models.HomeModels*@
+
 <nav class="navbar navbar-inverse">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -14,35 +16,39 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="index.html">Home</a></li>
+                <li class="active"><a href="/Home/Index">Home</a></li>
+                @*<li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="404.html">404 Error</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="about2.html">About Us 2</a></li>
+                            <li><a href="booking-system.html">Booking System</a></li>
+                            <li><a href="fullwidth.html">Fullwidth Page</a></li>
+                            <li><a href="right-sidebar.html">Right Sidebar Page</a></li>
+                            <li><a href="left-sidebar.html">Left Sidebar Page</a></li>
+                            <li><a href="shortcodes.html">Shortcodes</a></li>
+                            <li><a href="gallery-col-3.html">Gallery 3 Columns</a></li>
+                            <li><a href="blog-single.html">Blog Single Post</a></li>
+                        </ul>
+                    </li>*@
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages <span class="caret"></span></a>
+                    <a href="/Hotel/Index" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hotels <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="404.html">404 Error</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="about2.html">About Us 2</a></li>
-                        <li><a href="booking-system.html">Booking System</a></li>
-                        <li><a href="fullwidth.html">Fullwidth Page</a></li>
-                        <li><a href="right-sidebar.html">Right Sidebar Page</a></li>
-                        <li><a href="left-sidebar.html">Left Sidebar Page</a></li>
-                        <li><a href="shortcodes.html">Shortcodes</a></li>
-                        <li><a href="gallery-col-3.html">Gallery 3 Columns</a></li>
-                        <li><a href="blog-single.html">Blog Single Post</a></li>
+                        @foreach (HomeModels c in (IEnumerable<HomeModels>)ViewData["movies"])
+                        {
+                         
+                            foreach (var h in c.Hotels)
+                             {
+                                 <li><a href="/Hotel/Details/@h.Id">@h.DisplayValue</a></li>
+
+                             }
+                        }
                     </ul>
                 </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Rooms <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="rooms-col-1.html">1 Column</a></li>
-                        <li><a href="rooms-col-2.html">2 Column</a></li>
-                        <li><a href="rooms-col-3.html">3 Column</a></li>
-                        <li><a href="rooms-col-4.html">4 Column</a></li>
-                        <li><a href="rooms-single.html">Single Room</a></li>
-                    </ul>
-                </li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="/News/Index">News</a></li>
+                <li><a href="/About/Index">About</a></li>
+                <li><a href="/Contact/Index">Contact</a></li>
             </ul>
         </div><!-- /.navbar-collapse -->
         <div class="mg-search-box-cont pull-right">

@@ -82,14 +82,11 @@ namespace Front.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Upload(CareerForm careerForm, HttpPostedFileBase file)
-        {
-
-            //  if (careerForm == null) throw new ArgumentNullException(nameof(careerForm));
-
+        { 
             string fileName = "";
+            var fileDetails = new List<FileDetail>();
             if (ModelState.IsValid)
             {
-                List<FileDetail> fileDetails = new List<FileDetail>();
                 for (int i = 0; i < Request.Files.Count; i++)
                 {
                     // var file = Request.Files[i];
