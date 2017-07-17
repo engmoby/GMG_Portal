@@ -13,8 +13,8 @@ namespace Front.Controllers
         public ActionResult Index(string checkin, string checkout, string adult, string child)
         {
             var reservation = new Reservation();
-            reservation.CheckIn = Convert.ToDateTime(checkin);
-            reservation.CheckOut = Convert.ToDateTime(checkout);
+           // reservation.CheckIn = Convert.ToDateTime(checkin);
+           // reservation.CheckOut = Convert.ToDateTime(checkout);
             reservation.Child = Convert.ToInt32(child);
             reservation.Adult = Convert.ToInt32(adult);
             return View(reservation);

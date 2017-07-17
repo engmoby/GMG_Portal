@@ -1,4 +1,5 @@
 ﻿@using Front.Models
+@using GMG_Portal.API.Models.Hotels.Hotel
 @*@model Front.Models.HomeModels*@
 
 <nav class="navbar navbar-inverse">
@@ -35,14 +36,16 @@
                 <li class="dropdown">
                     <a href="/Hotel/Index" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hotels <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        @foreach (HomeModels c in (IEnumerable<HomeModels>)ViewData["movies"])
+                           @{
+                            var viewDataMyObj = ViewBag["movies"] as HomeModels;
+                        }
+                        @foreach (Hotels c in viewDataMyObj.Hotels)
                         {
-                         
-                            foreach (var h in c.Hotels)
-                             {
-                                 <li><a href="/Hotel/Details/@h.Id">@h.DisplayValue</a></li>
 
-                             }
+
+                            <li><a href="/Hotel/Details/@c.Id">@c.DisplayValue</a></li>
+
+
                         }
                     </ul>
                 </li>

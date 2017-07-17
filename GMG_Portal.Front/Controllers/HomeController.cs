@@ -48,7 +48,7 @@ namespace Front.Controllers
             await Callowners(_Owners, homeModels);
             await CallNews(_News, gallery, homeModels);
             await CallContactus(_ContactUs, homeModels);
-            ViewData["movies"] = homeModels;
+            ViewBag["movies"] = homeModels;
                 //get schoolModel  
             return PartialView("_HeaderNavBar");
         }
@@ -82,6 +82,7 @@ namespace Front.Controllers
             //    RedirectToAction("Error","Home");
 
             //}
+            //ViewBag["movies"] = homeModels;
             return View(homeModels);
 
         }
@@ -121,6 +122,13 @@ namespace Front.Controllers
         {
             return NewsHome();
         }
+
+
+
+      
+
+
+
 
 
         //Fill Models with data Retrieved
