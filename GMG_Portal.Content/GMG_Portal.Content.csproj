@@ -192,10 +192,12 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Regex.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Resources\Menu.resx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

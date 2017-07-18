@@ -1,5 +1,5 @@
 ﻿@using GMG_Portal.API.Models.SystemParameters
-@model  List<GMG_Portal.API.Models.SystemParameters.ContactUs.ContactUs>
+@model   GMG_Portal.API.Models.SystemParameters.ContactUs.ContactUs
 @{
     ViewBag.Title = "Contact";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -44,12 +44,12 @@
             </div>
             <div class="col-md-7">
                 <h2 class="mg-sec-left-title">Office Address</h2>
-                <p>@Model[0].DisplayValueAddress</p>
+                <p>@Model.DisplayValueAddress</p>
                 <ul class="mg-contact-info">
-                    <li><i class="fa fa-map-marker"></i> @Model[0].DisplayValueAddress</li>
-                    <li><i class="fa fa-phone"></i> @Model[0].PhoneNo1 </li>
-                    <li><i class="fa fa-phone"></i> @Model[0].PhoneNo2 </li>
-                    <li><i class="fa fa-envelope"></i> <a href="mailto:#"> @Model[0].MailNo1 </a></li>
+                    <li><i class="fa fa-map-marker"></i> @Model.DisplayValueAddress</li>
+                    <li><i class="fa fa-phone"></i> @Model.PhoneNo1 </li>
+                    <li><i class="fa fa-phone"></i> @Model.PhoneNo2 </li>
+                    <li><i class="fa fa-envelope"></i> <a href="mailto:#"> @Model.MailNo1 </a></li>
                 </ul>
                 <div id="mg-map" class="mg-map"></div>
             </div>

@@ -70,11 +70,29 @@ namespace GMG_Portal.Content {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Brands.
+        ///   Looks up a localized string similar to Career Form.
         /// </summary>
-        public static string Brands {
+        public static string CareerForm {
             get {
-                return ResourceManager.GetString("Brands", resourceCulture);
+                return ResourceManager.GetString("CareerForm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Careers.
+        /// </summary>
+        public static string Careers {
+            get {
+                return ResourceManager.GetString("Careers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Categories.
+        /// </summary>
+        public static string Categories {
+            get {
+                return ResourceManager.GetString("Categories", resourceCulture);
             }
         }
         
@@ -84,6 +102,24 @@ namespace GMG_Portal.Content {
         public static string Cities {
             get {
                 return ResourceManager.GetString("Cities", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contact Form.
+        /// </summary>
+        public static string ContactForm {
+            get {
+                return ResourceManager.GetString("ContactForm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ContactUs.
+        /// </summary>
+        public static string ContactUs {
+            get {
+                return ResourceManager.GetString("ContactUs", resourceCulture);
             }
         }
         
@@ -106,6 +142,15 @@ namespace GMG_Portal.Content {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Features.
+        /// </summary>
+        public static string Features {
+            get {
+                return ResourceManager.GetString("Features", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Home Slider.
         /// </summary>
         public static string HomeSlider {
@@ -115,11 +160,11 @@ namespace GMG_Portal.Content {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invoice Statuses.
+        ///   Looks up a localized string similar to Hotels.
         /// </summary>
-        public static string InvoiceStatuses {
+        public static string Hotels {
             get {
-                return ResourceManager.GetString("InvoiceStatuses", resourceCulture);
+                return ResourceManager.GetString("Hotels", resourceCulture);
             }
         }
         
@@ -151,11 +196,47 @@ namespace GMG_Portal.Content {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to NewsLetter.
+        /// </summary>
+        public static string NewsLetter {
+            get {
+                return ResourceManager.GetString("NewsLetter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Offers.
+        /// </summary>
+        public static string Offers {
+            get {
+                return ResourceManager.GetString("Offers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ownsers.
+        /// </summary>
+        public static string Ownsers {
+            get {
+                return ResourceManager.GetString("Ownsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Payment Types.
         /// </summary>
         public static string PaymentTypes {
             get {
                 return ResourceManager.GetString("PaymentTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reservation.
+        /// </summary>
+        public static string Reservation {
+            get {
+                return ResourceManager.GetString("Reservation", resourceCulture);
             }
         }
         

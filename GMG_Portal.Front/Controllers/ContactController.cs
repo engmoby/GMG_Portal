@@ -29,21 +29,17 @@ namespace Front.Controllers
         }
         // GET: About Content
         public async Task<ActionResult> Index()
-        {
-
-
-
-
+        { 
 
             string contactUs = url + "ContactUs/GetAll";
-            var contactUsModels = new List<ContactUs>();
+            var contactUsModels = new ContactUs();
 
             if (contactUs == null) throw new ArgumentNullException(nameof(contactUs));
             HttpResponseMessage responseMessageApi = await _client.GetAsync(contactUs);
             if (responseMessageApi.IsSuccessStatusCode)
             {
                 var responseData = responseMessageApi.Content.ReadAsStringAsync().Result;
-                var contactUsList = JsonConvert.DeserializeObject<List<ContactUs>>(responseData);
+                var contactUsList = JsonConvert.DeserializeObject<ContactUs>(responseData);
                 contactUsModels = contactUsList;
             }
             return View(contactUsModels);
