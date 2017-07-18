@@ -28,19 +28,19 @@
                         <header>
                             @if (Model.Image != null)
                             {
-                                 <img src="http://localhost:19056/Uploads/News/@Model.Image" alt="" class="img-responsive"> 
+                                <img src="http://localhost:19056/Uploads/News/@Model.Image" alt="" class="img-responsive">
                             }
-                            <h2 class="mg-post-title">@Model.DisplayValue</h2> 
-                                <div class="mg-post-meta">
-                                    <span>@Model.CreationTime.Value.ToString("D")</span>
-                                    <span>by  @Model.CreatorUserName </span>
-                                    <span><a href="/News/IndexCat/@Model.CategoryId">@Model.CategoryName</a> </span>
-                                </div> 
+                            <h2 class="mg-post-title">@Model.DisplayValue</h2>
+                            <div class="mg-post-meta">
+                                <span>@Model.CreationTime.Value.ToString("D")</span>
+                                <span>by  @Model.CreatorUserName </span>
+                                <span><a href="/News/IndexCat/@Model.CategoryId">@Model.CategoryName</a> </span>
+                            </div>
                         </header>
                         <div>
                             <p>@Model.DisplayValueDesc.</p>
                         </div>
-                     
+
                     </article>
                 </main>
 
@@ -58,7 +58,7 @@
             <div class="col-md-4">
                 <div class="mg-widget-area">
                     <aside class="mg-widget">
-                        <input id="txtSearch" type="text" placeholder="Search..." class="form-control"  onkeydown="search(this)">
+                        <input id="txtSearch" type="text" placeholder="Search..." class="form-control" onkeydown="search(this)">
 
                     </aside>
                     <aside class="mg-widget">
@@ -99,16 +99,17 @@
 <script>
     function search(ele) {
         if (event.keyCode == 13) {
-            //alert(ele.value);
+           alert(ele.value);
             $.ajax({
-                url: "http://localhost:2798/SystemParameters/News/SearchNews/",
+                url: '@Url.Action("Search", "News")?keyword=' + ele.value,
+                //url: "http://localhost:2798/SystemParameters/News/SearchNews/",
                 type: "Post",
-               // data: JSON.stringify([ele.value]), //{ Name: name, Address: address, DOB: dob },
-                data: { 'keyword': 'bar' }, //{ Name: name, Address: address, DOB: dob },
+                 data: JSON.stringify([ele.value]), //{ Name: name, Address: address, DOB: dob },
+               // data: { 'keyWord': ele.value }, //{ Name: name, Address: address, DOB: dob },
                 contentType: 'application/json; charset=utf-8',
                 success: function (data) {
                     alert('Created Successfully');
-                    window.location.href = "../Index";
+                   // window.location.href = "../Index";
                 },
                 error: function () { alert('error'); }
             });
@@ -121,20 +122,26 @@
             type: "Get",
             success: function (data) {
                 for (var i = 0; i < data.length; i++) {
-                    $(
-                        //"<tr><td>" + data[i].Name + "</td><td>" + data[i].Address + "</td><td>" + data[i].DOB + "</td></tr>"
+                    if (i < 1) {
 
-                        "<li>" +
-                         "<div class='mg-recnt-post'>" +
-                        "<div class='mg-rp-date'>" +
-                        "<div class='mg-rp-date'>" + data[i].CreationDay +
-                        "<div class='mg-rp-month'>" + data[i].CreationMonth + "</div></div> </div>" +
-                       "<h3>" +
-                        "<a href='/News/Details/" + data[i].Id + "'>" + data[i].DisplayValue + "</a></h3>" +
-                        "<p>" + data[i].DisplayValueDesc + "</p></div></li>"
+                    }
+                    else {
+
+                        $(
+                            //"<tr><td>" + data[i].Name + "</td><td>" + data[i].Address + "</td><td>" + data[i].DOB + "</td></tr>"
+
+                            "<li>" +
+                             "<div class='mg-recnt-post'>" +
+                            "<div class='mg-rp-date'>" +
+                            "<div class='mg-rp-date'>" + data[i].CreationDay +
+                            "<div class='mg-rp-month'>" + data[i].CreationMonth + "</div></div> </div>" +
+                           "<h3>" +
+                            "<a href='/News/Details/" + data[i].Id + "'>" + data[i].DisplayValue.toString().substring(20, 0) + "</a></h3>" +
+                            "<p>" + data[i].DisplayValueDesc.substring(50, 0) + "</p></div></li>"
 
 
-                        ).appendTo("#ulAllNews");
+                            ).appendTo("#ulAllNews");
+                    }
 
 
 
@@ -151,23 +158,7 @@
             },
             error: function (msg) { alert(msg); }
         });
-      
-        $("#btnSubmit").click(function () {
-            var name = $("#Name").val();
-            var address = $("#Address").val();
-            var dob = $("#DOB").val();
-            $.ajax({
-                url: "http://localhost:49493/api/Values",
-                type: "Post",
-                data: JSON.stringify([name, address, dob]), //{ Name: name, Address: address, DOB: dob },
-                contentType: 'application/json; charset=utf-8',
-                success: function (data) {
-                    alert('Created Successfully');
-                    window.location.href = "../Index";
-                },
-                error: function () { alert('error'); }
-            });
-        });
+
 
     });
 </script>

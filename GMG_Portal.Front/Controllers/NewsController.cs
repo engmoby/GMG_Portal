@@ -25,11 +25,16 @@ namespace Front.Controllers
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
         // GET: news
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int id)
         {
-            string news = ""; 
-            news = url + "News/GetAll"; 
+            string news = "";
+            if (id == 0)
+                news = url + "News/GetAll";
+            else
+                news = url + "News/GetAllByCatrgoryId?categoryId=" + id;
+            // news = "http://localhost:2798/SystemParameters/News/GetAllByCatrgoryId?categoryId=2";
             var newsModels = new List<News>();
+
 
             if (news == null) throw new ArgumentNullException(nameof(news));
             HttpResponseMessage responseMessageApi = await _client.GetAsync(news);
@@ -43,6 +48,7 @@ namespace Front.Controllers
             return View(newsModels);
 
         }
+
         public async Task<ActionResult> IndexCat(int id)
         {
             string news = "";
@@ -96,6 +102,33 @@ namespace Front.Controllers
             }
 
             return View(newsModels);
+        }
+
+        public async Task<ActionResult> Search(string keyWord)
+        {
+            string  news = url + "News/SearchNews?keyword=" + keyWord;
+            // news = "http://localhost:2798/SystemParameters/News/GetAllByCatrgoryId?categoryId=2";
+            var newsModels = new List<News>();
+
+
+            if (news == null) throw new ArgumentNullException(nameof(news));
+           // HttpResponseMessage responseMessageApi = await _client.GetAsync(news);
+                HttpResponseMessage responseMessageApi = await _client.GetAsync(news);
+            if (responseMessageApi.IsSuccessStatusCode)
+            {
+                var responseData = responseMessageApi.Content.ReadAsStringAsync().Result;
+                var newsList = JsonConvert.DeserializeObject<List<News>>(responseData);
+                newsModels = newsList;
+            }
+            return RedirectToAction("SearchResult", newsModels);
+
+            //return View(newsModels);
+
+        }
+        public ActionResult SearchResult(List<News> newsList)
+        {
+            return View(newsList);
+
         }
     }
 }
