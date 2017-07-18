@@ -392,6 +392,7 @@
     <Content Include="Views\BookingLite\Index.cshtml" />
     <Content Include="Views\Test\Create.cshtml" />
     <Content Include="Views\Career\Upload.cshtml" />
+    <Content Include="Views\BookingLite\Confirm.cshtml" />
     <Content Include="Views\News\SearchResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
