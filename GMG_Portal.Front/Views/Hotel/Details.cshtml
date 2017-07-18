@@ -5,6 +5,40 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
+
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#input-group.mg-check-in').datepicker().on('changeDate', function (ev) {
+            $('#checkin').change();
+        });
+
+        $('#input-group.mg-check-out').datepicker().on('changeDate', function (ev) {
+            $('#checkout').change();
+        });
+
+
+
+        $('#checkin').change(function () {
+            $('#checkindate').val($('#checkin').val());
+        });
+
+
+        $('#checkout').change(function () {
+            $('#checkoutdate').val($('#checkout').val());
+        });
+
+    });
+
+</script>
+
+
+
+
 <div class="mg-page-title parallax">
     <div class="container">
         <div class="row">
@@ -83,19 +117,21 @@
                                         <div class="col-md-3 col-xs-6">
                                             <div class="input-group date mg-check-in">
                                                 <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Check In">
+                                                <input type="text" class="form-control" id="checkin" placeholder="Check In">
+                                                <input type="hidden" id="checkindate"/>
                                             </div>
                                         </div>
                                         <div class="col-md-3 col-xs-6">
                                             <div class="input-group date mg-check-out">
                                                 <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Check Out">
+                                                <input type="text" class="form-control" id="checkout" placeholder="Check Out">
+                                                <input type="hidden" id="checkoutdate"/>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="row">
                                                 <div class="col-xs-6">
-                                                    <select class="cs-select cs-skin-elastic">
+                                                    <select class="cs-select cs-skin-elastic" id="adult">
                                                         <option value="" disabled selected>Adult</option>
                                                         <option value="1">1</option>
                                                         <option value="2">2</option>
@@ -104,7 +140,7 @@
                                                     </select>
                                                 </div>
                                                 <div class="col-xs-6">
-                                                    <select class="cs-select cs-skin-elastic">
+                                                    <select class="cs-select cs-skin-elastic" id="child">
                                                         <option value="" disabled selected>Child</option>
                                                         <option value="0">0</option>
                                                         <option value="1">1</option>
@@ -115,7 +151,9 @@
                                             </div>
                                         </div>
                                         <div class="col-md-3">
-                                            <button type="submit" class="btn btn-main btn-block">Check Now</button>
+                                            <button class="btn btn-main btn-block" type="button" id="addressSearch"   
+                                                    onclick="location.href='@Url.Action("Index", "BookingLite")?checkin=' + $('#checkindate').val() + '&checkout=' + $('#checkoutdate').val() + '&adult=' +  $('#adult').val() + '&child=' + $('#child').val() + '&hotelid=' + @Model.Id ">Check Now</button>
+
                                         </div>
                                     </div>
                                 </form>

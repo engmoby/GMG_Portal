@@ -46,10 +46,10 @@ namespace Front.Controllers
 
 
 
-        public ActionResult Confirm(string checkin, string checkout, string adult, string child)
+        public ActionResult Confirm(Reservation reservation)
         {
            
-            return View(confirm);
+            return View(reservation);
         }
 
 
@@ -62,7 +62,7 @@ namespace Front.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ViewResult> Index(Reservation reservation)
+        public async Task<RedirectToRouteResult> Index(Reservation reservation)
         { 
             if (ModelState.IsValid)
                 {
@@ -81,11 +81,11 @@ namespace Front.Controllers
 
                         }
                     }
-                return View(reservation);
-
+                   
             }
+            return RedirectToAction("Confirm", reservation);
 
-            return View(reservation);
+            //return View(reservation);
         }
     }
 }
