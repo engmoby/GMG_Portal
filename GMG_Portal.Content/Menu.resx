@@ -123,15 +123,6 @@
   <data name="Countries" xml:space="preserve">
     <value>Countries</value>
   </data>
-  <data name="InvoiceStatuses" xml:space="preserve">
-    <value>Invoice Statuses</value>
-  </data>
-  <data name="PaymentTypes" xml:space="preserve">
-    <value>Payment Types</value>
-  </data>
-  <data name="Brands" xml:space="preserve">
-    <value>Brands</value>
-  </data>
   <data name="Cities" xml:space="preserve">
     <value>Cities</value>
   </data>
@@ -152,5 +143,41 @@
   </data>
   <data name="Vision" xml:space="preserve">
     <value>Vision</value>
+  </data>
+  <data name="CareerForm" xml:space="preserve">
+    <value>Career Form</value>
+  </data>
+  <data name="Careers" xml:space="preserve">
+    <value>Careers</value>
+  </data>
+  <data name="Categories" xml:space="preserve">
+    <value>Categories</value>
+  </data>
+  <data name="ContactForm" xml:space="preserve">
+    <value>Contact Form</value>
+  </data>
+  <data name="ContactUs" xml:space="preserve">
+    <value>ContactUs</value>
+  </data>
+  <data name="Features" xml:space="preserve">
+    <value>Features</value>
+  </data>
+  <data name="Hotels" xml:space="preserve">
+    <value>Hotels</value>
+  </data>
+  <data name="NewsLetter" xml:space="preserve">
+    <value>NewsLetter</value>
+  </data>
+  <data name="Offers" xml:space="preserve">
+    <value>Offers</value>
+  </data>
+  <data name="Ownsers" xml:space="preserve">
+    <value>Ownsers</value>
+  </data>
+  <data name="PaymentTypes" xml:space="preserve">
+    <value>Payment Types</value>
+  </data>
+  <data name="Reservation" xml:space="preserve">
+    <value>Reservation</value>
   </data>
 </root>

@@ -11,14 +11,38 @@
             <text>
     menuItems.push({
         "name": "System Parameters", "title": "Parameters", "level": "0", "icon": "ion-gear-a", "subMenu": [
+            @if (true)
+        {
+                <text>
+                    { "name": "@GMG_Portal.Content.Menu.HomeSlider", "title": "@GMG_Portal.Content.Menu.HomeSlider", "level": "1", "stateRef": "HomeSlider", "templateUrl": "/HomeSlider" },
+                </text>
+            }
+            @if (true)
+        {
+                <text>
+                    { "name": "@GMG_Portal.Content.Menu.Categories", "title": "@GMG_Portal.Content.Menu.Categories", "level": "1", "stateRef": "Categories", "templateUrl": "/Categories" },
+                </text>
+            }
 
             @if (true)
+        {
+                <text>
+                    { "name": "@GMG_Portal.Content.Menu.News", "title": "@GMG_Portal.Content.Menu.News", "level": "1", "stateRef": "News", "templateUrl": "/News" },
+                </text>
+            }
+
+            @*@if (true)
             {
                 <text>
                 { "name": "@GMG_Portal.Content.Menu.PaymentTypes", "title": "@GMG_Portal.Content.Menu.PaymentTypes", "level": "1", "stateRef": "PaymentTypes", "templateUrl": "/PaymentTypes" },
                 </text>
-            }
-
+            }*@
+                     @*@if (true)
+        {
+                <text>
+                { "name": "@GMG_Portal.Content.Menu.Departments", "title": "@GMG_Portal.Content.Menu.Departments", "level": "1", "stateRef": "Departments", "templateUrl": "/Departments" },
+                </text>
+            }*@
             @if (true)
             {
                 <text>
@@ -32,12 +56,7 @@
                 </text>
             }
 
-                  @if (true)
-        {
-                <text>
-                { "name": "@GMG_Portal.Content.Menu.Departments", "title": "@GMG_Portal.Content.Menu.Departments", "level": "1", "stateRef": "Departments", "templateUrl": "/Departments" },
-                </text>
-            }
+
             @if (true)
         {
                 <text>
@@ -45,12 +64,7 @@
                 </text>
             }
 
-            @if (true)
-        {
-                <text>
-                    { "name": "@GMG_Portal.Content.Menu.HomeSlider", "title": "@GMG_Portal.Content.Menu.HomeSlider", "level": "1", "stateRef": "HomeSlider", "templateUrl": "/HomeSlider" },
-                </text>
-            }
+
 
                     @if (true)
     {
@@ -80,13 +94,20 @@
         {
             <text>
     menuItems.push({
-        "name": "Customer", "title": "Customer", "level": "0", "icon": "ion-gear-a", "subMenu": [
+        "name": "Hotel", "title": "Hotel", "level": "0", "icon": "ion-gear-a", "subMenu": [
                         @if (true)
            {
 
                                    <text>
-                                    @*{ "name": "@GMG_Portal.Content.Menu.CustomerAccounts", "title": "@GMG_Portal.Content.Menu.CustomerAccounts", "level": "1", "stateRef": "CustomerAccounts", "templateUrl": "/CustomerAccounts" },*@
+                                    { "name": "@GMG_Portal.Content.Menu.Hotels", "title": "@GMG_Portal.Content.Menu.Hotels", "level": "1", "stateRef": "Hotels", "templateUrl": "/Hotels" },
                                 </text>
+                           }
+            @if (true)
+        {
+
+                                   <text>
+                                       { "name": "@GMG_Portal.Content.Menu.Offers", "title": "@GMG_Portal.Content.Menu.Offers", "level": "1", "stateRef": "Offers", "templateUrl": "/Offers" },
+                                   </text>
                            }
         ]
     });
