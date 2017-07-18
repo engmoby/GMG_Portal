@@ -27,49 +27,7 @@ namespace Front.Controllers
             _client.DefaultRequestHeaders.Accept.Clear();
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
-        public async Task<ActionResult> HeaderNavBar()
-        {
-            string General = url + "General/GetAll";
-            //string _homeSlider = url + "HomeSliders/GetAll";
-            //string _about = url + "About/GetAll";
-            //string _HotelFeatures = url + "Features/GetAll";
-            //string _News = url + "News/GetAll";
-            //string _Hotels = url + "Hotels/GetAll";
-            //string gallery = url + "Hotels/GetAllImages";
-            //string _Owners = url + "Owners/GetAll";
-            //string _ContactUs = url + "ContactUs/GetAll";
-            //await CallHomeSliders(_homeSlider, homeModels);
-            //await CallAbout(_about, homeModels);
-            //await CallFacilities(_HotelFeatures, homeModels);
-            //await CallHotels(_Hotels, homeModels);
-            //await Callowners(_Owners, homeModels);
-            //await CallNews(_News, gallery, homeModels);
-            //await CallContactus(_ContactUs, homeModels);
-
-            var homeModels = new HomeModels();
-
-
-            HttpResponseMessage responseMessage = await _client.GetAsync(General);
-            if (responseMessage.IsSuccessStatusCode)
-            {
-                var responseData = responseMessage.Content.ReadAsStringAsync().Result;
-                var homesliders = JsonConvert.DeserializeObject<HomeModels>(responseData);
-                homeModels = homesliders;
-            }
-
-           // return View(homeModels);
-            await CallHomeSliders(_homeSlider, homeModels);
-            await CallAbout(_about, homeModels);
-            await CallFacilities(_HotelFeatures, homeModels);
-            await CallHotels(_Hotels, homeModels);
-            await Callowners(_Owners, homeModels);
-            await CallNews(_News, gallery, homeModels);
-            await CallContactus(_ContactUs, homeModels);
-            ViewBag["movies"] = homeModels;
-                //get schoolModel  
-            return PartialView("_HeaderNavBar");
-        }
-        public async Task<ActionResult> Index()
+       public async Task<ActionResult> Index()
         {
             string General = url + "General/GetAll";
             //string _homeSlider = url + "HomeSliders/GetAll";

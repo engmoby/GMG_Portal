@@ -74,8 +74,7 @@ namespace Front.Controllers
 
         public ActionResult Upload(CareerForm careerForm)
         {
-            ViewBag.CareerId = careerForm.CareerId;
-            ViewBag.CareerTitle = careerForm.CareerTitle;
+
             return View(careerForm);
         }
 
