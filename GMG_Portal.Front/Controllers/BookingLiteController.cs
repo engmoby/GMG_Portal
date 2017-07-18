@@ -43,6 +43,23 @@ namespace Front.Controllers
             return View(reservation);
         }
 
+
+
+
+        public ActionResult Confirm(string checkin, string checkout, string adult, string child)
+        {
+           
+            return View(confirm);
+        }
+
+
+
+
+
+
+
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ViewResult> Index(Reservation reservation)
