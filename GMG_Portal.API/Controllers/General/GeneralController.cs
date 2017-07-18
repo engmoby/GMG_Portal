@@ -88,7 +88,9 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                         Id = systemParametersHotels.Id,
                         DisplayValue = systemParametersHotels.DisplayValue,
                         DisplayValueDesc = systemParametersHotels.DisplayValueDesc,
-                        Image = systemParametersHotels.Image
+                        Image = systemParametersHotels.Image,
+                        Rate = systemParametersHotels.Rate,
+                        PriceStart = systemParametersHotels.PriceStart
                     });
                 }
                 retunGeneralAll.Hotels = returnHotels;

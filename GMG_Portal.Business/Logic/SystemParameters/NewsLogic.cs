@@ -41,6 +41,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                             CreationMonth = systemParametersNewse.CreationTime.Value.Month,
                             CreatorUserName = "Administrator",
                             CategoryName = getCatrogryInfo.DisplayValue,
+                            CategoryId = getCatrogryInfo.Id,
                             Tags = systemParametersNewse.Tags,
                             Image = systemParametersNewse.Image,
                             Categories = GetAllCatrogry()

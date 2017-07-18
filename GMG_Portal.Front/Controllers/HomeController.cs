@@ -27,7 +27,7 @@ namespace Front.Controllers
             _client.DefaultRequestHeaders.Accept.Clear();
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
-       public async Task<ActionResult> Index()
+         public async Task<ActionResult> Index()
         {
             string General = url + "General/GetAll";
             //string _homeSlider = url + "HomeSliders/GetAll";
