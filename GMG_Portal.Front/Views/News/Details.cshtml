@@ -99,7 +99,7 @@
 <script>
     function search(ele) {
         if (event.keyCode == 13) {
-           alert(ele.value);
+           //alert(ele.value);
             $.ajax({
                 url: '@Url.Action("Search", "News")?keyword=' + ele.value,
                 //url: "http://localhost:2798/SystemParameters/News/SearchNews/",
@@ -108,7 +108,7 @@
                // data: { 'keyWord': ele.value }, //{ Name: name, Address: address, DOB: dob },
                 contentType: 'application/json; charset=utf-8',
                 success: function (data) {
-                    alert('Created Successfully');
+                   // alert('Created Successfully');
                    // window.location.href = "../Index";
                 },
                 error: function () { alert('error'); }
@@ -156,7 +156,9 @@
                     ).appendTo("#ulCategory");
                 }
             },
-            error: function (msg) { alert(msg); }
+            error: function(msg) {
+                 alert("error news category");
+            }
         });
 
 

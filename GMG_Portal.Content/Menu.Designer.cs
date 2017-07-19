@@ -223,11 +223,11 @@ namespace GMG_Portal.Content {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ownsers.
+        ///   Looks up a localized string similar to Owners.
         /// </summary>
-        public static string Ownsers {
+        public static string Owners {
             get {
-                return ResourceManager.GetString("Ownsers", resourceCulture);
+                return ResourceManager.GetString("Owners", resourceCulture);
             }
         }
         

@@ -167,7 +167,9 @@
 
                     }
                 },
-                error: function (msg) { alert(msg); }
+                error: function (msg) {
+                    alert("hotel error");
+                }
             });
 
 
@@ -201,7 +203,9 @@
                     $(document).ajaxStop($.unblockUI);
 
                 },
-                error: function (msg) { alert(msg); }
+                error: function(msg) {
+                     alert("error footer");
+                }
             });
 
         });

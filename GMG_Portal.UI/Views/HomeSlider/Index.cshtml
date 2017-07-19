@@ -72,7 +72,7 @@
             <tbody>
                 <tr ng-repeat="HomeSlider in TableData">
                     <td ng-class="{'red-text': HomeSlider.IsDeleted == true}">{{$index+1}}</td>
-                    <td ng-class="{'red-text': HomeSlider.IsDeleted == true}"><img width="70px" height="70px" src="http://localhost:19056/Uploads/{{HomeSlider.Image}}" /></td>
+                    <td ng-class="{'red-text': HomeSlider.IsDeleted == true}"><img ng-click="openImage(HomeSlider)" width="70px" height="70px" src="http://localhost:19056/Uploads/{{HomeSlider.Image}}" /></td>
                     <td ng-class="{'red-text': HomeSlider.IsDeleted == true}">{{HomeSlider.DisplayValue}}</td>
                     <td ng-class="{'red-text': HomeSlider.IsDeleted == true}">{{HomeSlider.DisplayValueDesc | limitTo:letterLimit}} </td>
                     <td ng-class="{'red-text': HomeSlider.IsDeleted == true}">{{HomeSlider.Rating}}</td>
@@ -102,6 +102,12 @@
         </table>
     </div>
 
+    <div class="modal fade" id="ModelImage" role="dialog">
+        <div class="modal-dialog">
+            <img src="http://localhost:19056/Uploads/{{HomeSlider.Image}}" />
+            @*<img src="http://localhost:19056/Uploads/5.jpg" />*@
+        </div>
+    </div>
 
     @*<form name="FrmAddUpdate" novalidate ng-submit="save()" autocomplete="off">*@
     <form name="FrmAddUpdate" novalidate autocomplete="off">

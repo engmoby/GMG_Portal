@@ -1,47 +1,47 @@
-﻿controllerProvider.register('HomeSlidersController', ['$scope', 'HomeSlidersApi', 'uploadService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', HomeSlidersController]);
-function HomeSlidersController($scope, HomeSlidersApi, uploadService, $rootScope, $timeout, $filter, $uibModal, toastr) {
+﻿controllerProvider.register('OwnersController', ['$scope', 'OwnersApi', 'uploadService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', OwnersController]);
+function OwnersController($scope, OwnersApi, uploadService, $rootScope, $timeout, $filter, $uibModal, toastr) {
     $scope.Image = "";
     $scope.letterLimit = 20;
     $rootScope.ViewLoading = true;
-    HomeSlidersApi.GetAll().then(function (response) {
-        $scope.HomeSliders = response.data;
+    OwnersApi.GetAll().then(function (response) {
+        $scope.Owners = response.data;
         $rootScope.ViewLoading = false;
     });
-    $scope.open = function (homeSlider) {
+    $scope.open = function (Owner) {
         debugger;
         $scope.countFiles = '';
         $scope.invalidupdateAddFrm = true;
         $('#ModelAddUpdate').modal('show');
-        $scope.action = homeSlider == null ? 'add' : 'edit';
+        $scope.action = Owner == null ? 'add' : 'edit';
         $scope.FrmAddUpdate.$setPristine();
         $scope.FrmAddUpdate.$setUntouched();
-        if (homeSlider == null) homeSlider = {};
-        $scope.HomeSlider = angular.copy(homeSlider);
-        if ($scope.HomeSlider.Image)
-            $scope.countFiles = $scope.HomeSlider.Image;
+        if (Owner == null) Owner = {};
+        $scope.Owner = angular.copy(Owner);
+        if ($scope.Owner.Image)
+            $scope.countFiles = $scope.Owner.Image;
 
         $timeout(function () {
             document.querySelector('input[name="TxtNameAr"]').focus();
         }, 1000);
     }
-    $scope.openImage = function (homeSlider) {
-        debugger;
+    $scope.openImage = function (Owner) {
+        debugger; 
         $('#ModelImage').modal('show');
-        //$scope.action = homeSlider == null ? 'add' : 'edit';
-        if (homeSlider == null) homeSlider = {};
-        $scope.homeSlider = angular.copy(homeSlider);
-        //if ($scope.homeSlider.Image)
-        //    $scope.countFiles = $scope.homeSlider.Image;
-
+        $scope.action = Owner == null ? 'add' : 'edit'; 
+        if (Owner == null) Owner = {};
+        $scope.Owner = angular.copy(Owner);
+        if ($scope.Owner.Image)
+            $scope.countFiles = $scope.Owner.Image;
+         
     }
     $scope.back = function () {
         $('#ModelAddUpdate').modal('hide');
     }
 
-    $scope.Restore = function (homeSlider) {
+    $scope.Restore = function (Owner) {
         debugger;
-        $scope.HomeSlider = angular.copy(homeSlider);
-        $scope.HomeSlider.IsDeleted = false;
+        $scope.Owner = angular.copy(Owner);
+        $scope.Owner.IsDeleted = false;
         $scope.action = 'edit';
         $scope.save();
     }
@@ -49,38 +49,38 @@ function HomeSlidersController($scope, HomeSlidersApi, uploadService, $rootScope
     $scope.save = function () {
         $rootScope.ViewLoading = true;
         if ($scope.Image) {
-            $scope.HomeSlider.Image = $scope.Image;
+            $scope.Owner.Image = $scope.Image;
             $scope.Image = "";
         }
         //  uploadService.uploadFiles();
         debugger;
-        HomeSlidersApi.Save($scope.HomeSlider).then(function (response) {
+        OwnersApi.Save($scope.Owner).then(function (response) {
 
             switch (response.data.OperationStatus) {
                 case "Succeded":
                     var index;
                     switch ($scope.action) {
                         case 'edit':
-                            index = $scope.HomeSliders.indexOf($filter('filter')($scope.HomeSliders, { 'ID': $scope.HomeSlider.ID }, true)[0]);
-                           // $scope.HomeSliders[index] = angular.copy(response.data);
-                            HomeSlidersApi.GetAll().then(function (response) {
-                                $scope.HomeSliders = response.data; 
+                            index = $scope.Owners.indexOf($filter('filter')($scope.Owners, { 'ID': $scope.Owner.ID }, true)[0]);
+                           // $scope.Owners[index] = angular.copy(response.data);
+                            OwnersApi.GetAll().then(function (response) {
+                                $scope.Owners = response.data; 
                             }); 
                             toastr.success($('#HUpdateSuccessMessage').val(), 'Success');
                             break;
                         case 'delete':
-                            index = $scope.HomeSliders.indexOf($filter('filter')($scope.HomeSliders, { 'ID': $scope.HomeSlider.ID }, true)[0]);
-                           // $scope.HomeSliders[index] = angular.copy(response.data);
-                            HomeSlidersApi.GetAll().then(function (response) {
-                                $scope.HomeSliders = response.data;
+                            index = $scope.Owners.indexOf($filter('filter')($scope.Owners, { 'ID': $scope.Owner.ID }, true)[0]);
+                           // $scope.Owners[index] = angular.copy(response.data);
+                            OwnersApi.GetAll().then(function (response) {
+                                $scope.Owners = response.data;
                             });
                             toastr.success($('#HDeleteSuccessMessage').val(), 'Success');
                             break;
                         case 'add':
-                            HomeSlidersApi.GetAll().then(function (response) {
-                                $scope.HomeSliders = response.data;
+                            OwnersApi.GetAll().then(function (response) {
+                                $scope.Owners = response.data;
                             });
-                            // $scope.HomeSliders.push(angular.copy(response.data));
+                            // $scope.Owners.push(angular.copy(response.data));
                             toastr.success($('#HSaveSuccessMessage').val(), 'Success');
                             break;
                     }
@@ -107,10 +107,10 @@ function HomeSlidersController($scope, HomeSlidersApi, uploadService, $rootScope
         });
     }
 
-    $scope.Delete = function (homeSlider) {
+    $scope.Delete = function (Owner) {
         $scope.action = 'delete';
-        $scope.HomeSlider = homeSlider;
-        $scope.HomeSlider.IsDeleted = true;
+        $scope.Owner = Owner;
+        $scope.Owner.IsDeleted = true;
         $scope.save();
     }
     $scope.uploading = false;
