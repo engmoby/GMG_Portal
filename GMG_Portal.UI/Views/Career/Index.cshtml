@@ -1,0 +1,254 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+@using GMG_Portal.Content;
+@using GMG_Portal.Content.Admin
+@using GMG_Portal.Content.Admin.SystemParameters
+<script type="text/javascript" src="~/Scripts/app/services/Career.js"></script>
+<script type="text/javascript" src="~/Scripts/app/pages/Career/Career.js"></script>
+<input type="hidden" id="HEnglishNameUnique" value="@Career.EnglishNameUnique" />
+<input type="hidden" id="HUpdateSuccessMessage" value="@Career.UpdateSuccessMessage" />
+<input type="hidden" id="HSaveSuccessMessage" value="@Career.SaveSuccessMessage" />
+<input type="hidden" id="HDeleteSuccessMessage" value="@Career.DeleteSuccessMessage" />
+@*<input type="hidden" id="HArabicNameUnique" value="@Career.TxtTitleUniqueErrorMessage" />*@
+<input type="hidden" id="HCannotDeleted" value="@Career.CannotDeleted" />
+<style>
+    .btn-file {
+        position: relative;
+        overflow: hidden;
+    }
+
+        .btn-file input[type=file] {
+            position: absolute;
+            top: 0;
+            right: 0;
+            min-width: 100%;
+            min-height: 100%;
+            font-size: 100px;
+            text-align: right;
+            filter: alpha(opacity=0);
+            opacity: 0;
+            background: red;
+            cursor: inherit;
+            display: block;
+        }
+
+    input[readonly] {
+        background-color: white !important;
+        cursor: text !important;
+    }
+</style>
+<div ng-controller="CareersController">
+
+    <div ba-panel>
+        <table class="table table-hover table-condensed" st-table="TableData" st-safe-src="Careers">
+            <thead>
+                <tr class="toolbar">
+                    <th colspan="2">
+                        <div class="input-group">
+                            <span class="input-group-addon addon-left"><i class="fa fa-search" aria-hidden="true"></i></span>
+                            <input st-search="" class="form-control" placeholder="@Career.txtSearchLbl" type="text" />
+                        </div>
+                    </th>
+                    <th colspan="1"></th>
+                    <th>
+                        <div class="input-group">
+                            <button class="btn btn-primary btn-with-icon" ng-click="open(null)"><i class="fa fa-plus" aria-hidden="true"></i>@Career.BtnAdd</button>
+                        </div>
+                    </th>
+                </tr>
+
+                <tr class="sortable">
+                    <th>#</th>
+                    <th st-sort="Image">@Career.TitleDisplay</th>
+                    <th st-sort="Title">@Career.Experience</th>
+                    <th st-sort="Desc">@Career.ApplyCount</th>
+                    <th>Actions</th>
+                </tr>
+
+            </thead>
+            <tbody>
+                <tr ng-repeat="Career in TableData">
+                    <td ng-class="{'red-text': Career.IsDeleted == true}">{{$index+1}}</td>
+                    <td ng-class="{'red-text': Career.IsDeleted == true}">{{Career.DisplayValue}}</td>
+                    <td ng-class="{'red-text': Career.IsDeleted == true}">{{Career.Experience}}</td>
+                    <td ng-class="{'red-text': Career.IsDeleted == true}">{{Career.ApplyCount}}</td>
+                    <td>
+                        <div class="buttons" ng-show="!Career.IsDeleted">
+                            <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(Career)"><i class="fa fa-pencil" aria-hidden="true"></i>@Career.TableBtnEdit</button>
+                            <button class="btn btn-danger editable-table-button btn-xs btn-with-icon" ng-confirm="Confirm Delete ?" ng-click="Delete(Career)"><i class="fa fa-trash-o" aria-hidden="true"></i>@Career.TableBtnDelete</button>
+                        </div>
+                        <div class="buttons restore-button" ng-show="Career.IsDeleted">
+                            <button class="center-block btn btn-default  restore-button btn-xs btn-with-icon" ng-click="Restore(Career)"><i class="fa fa-undo" aria-hidden="true"></i>Restore</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr ng-show="TableData.length==0">
+                    <td colspan="4">
+                        @Shared.GridNoData
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4" class="text-center">
+                        <div st-pagination="" st-items-by-page="10"></div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+
+    @*<form name="FrmAddUpdate" novalidate ng-submit="save()" autocomplete="off">*@
+    <form name="FrmAddUpdate" novalidate autocomplete="off">
+
+        <div class="modal fade" id="ModelAddUpdate" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">{{action |uppercase}} @Career.ModalTitle</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="TxtTitle">@Career.Postion</label><span class="red-text"> *</span>
+                            <input type="text" ng-model="Career.DisplayValue" not-in-list="Careers" list-item-id="Career.ID" class="form-control" Title="TxtTitle"
+                                   placeholder="@Career.Postion" required ng-pattern="/@Regex.NameAr/">
+
+                            <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
+                                <span class="red-text" ng-message="required">@Career.TxtPostionRequiredErrorMessage</span>
+                                <span class="red-text" ng-message="pattern">@Career.TxtPostionPatternErrorMessage</span>
+                                <span class="red-text" ng-message="notInList">@Career.TxtPostionUniqueErrorMessage</span>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="TxtTitle">@Career.Experience</label><span class="red-text"> *</span>
+                                    <input type="text" ng-model="Career.Experience" not-in-list="Careers" list-item-id="Career.ID" class="form-control" Title="TxtTitle"
+                                           placeholder="@Career.Experience" required ng-pattern="/@Regex.NameAr/">
+
+                                    <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
+                                        <span class="red-text" ng-message="required">@Career.TxtPostionRequiredErrorMessage</span>
+                                        <span class="red-text" ng-message="pattern">@Career.TxtPostionPatternErrorMessage</span>
+                                        <span class="red-text" ng-message="notInList">@Career.TxtPostionUniqueErrorMessage</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="TxtTitle">@Career.CareerLevel</label><span class="red-text"> *</span>
+                                    <input type="text" ng-model="Career.CareerLevel" not-in-list="Careers" list-item-id="Career.ID" class="form-control" Title="TxtTitle"
+                                           placeholder="@Career.CareerLevel" required ng-pattern="/@Regex.NameAr/">
+
+                                    <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
+                                        <span class="red-text" ng-message="required">@Career.TxtPostionRequiredErrorMessage</span>
+                                        <span class="red-text" ng-message="pattern">@Career.TxtPostionPatternErrorMessage</span>
+                                        <span class="red-text" ng-message="notInList">@Career.TxtPostionUniqueErrorMessage</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="TxtTitle">@Career.JobType</label><span class="red-text"> *</span>
+                                    <input type="text" ng-model="Career.JobType"  class="form-control" Title="TxtTitle"
+                                           placeholder="@Career.JobType" required ng-pattern="/@Regex.NameAr/">
+
+                                    <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
+                                        <span class="red-text" ng-message="required">@Career.TxtPostionRequiredErrorMessage</span>
+                                        <span class="red-text" ng-message="pattern">@Career.TxtPostionPatternErrorMessage</span>
+                                        <span class="red-text" ng-message="notInList">@Career.TxtPostionUniqueErrorMessage</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="TxtTitle">@Career.EducationLevel</label><span class="red-text"> *</span>
+                                    <input type="text" ng-model="Career.EducationLevel" not-in-list="Careers" list-item-id="Career.ID" class="form-control" Title="TxtTitle"
+                                           placeholder="@Career.EducationLevel" required ng-pattern="/@Regex.NameAr/">
+
+                                    <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
+                                        <span class="red-text" ng-message="required">@Career.TxtPostionRequiredErrorMessage</span>
+                                        <span class="red-text" ng-message="pattern">@Career.TxtPostionPatternErrorMessage</span>
+                                        <span class="red-text" ng-message="notInList">@Career.TxtPostionUniqueErrorMessage</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="TxtTitle">@Career.Vacancies</label><span class="red-text"> *</span>
+                                    <input type="number" ng-model="Career.Vacancies" not-in-list="Careers" list-item-id="Career.ID" class="form-control" Title="TxtTitle"
+                                           placeholder="@Career.Vacancies" required ng-pattern="/@Regex.Number/">
+
+                                    <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
+                                        <span class="red-text" ng-message="required">@Career.TxtPostionRequiredErrorMessage</span>
+                                        <span class="red-text" ng-message="pattern">@Career.TxtPostionPatternErrorMessage</span>
+                                        <span class="red-text" ng-message="notInList">@Career.TxtPostionUniqueErrorMessage</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="TxtTitle">@Career.SalaryAverage</label><span class="red-text"> *</span>
+                                    <input type="text" ng-model="Career.SalaryAverage" not-in-list="Careers" list-item-id="Career.ID" class="form-control" Title="TxtTitle"
+                                           placeholder="@Career.SalaryAverage" required ng-pattern="/@Regex.NameAr/">
+
+                                    <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
+                                        <span class="red-text" ng-message="required">@Career.TxtPostionRequiredErrorMessage</span>
+                                        <span class="red-text" ng-message="pattern">@Career.TxtPostionPatternErrorMessage</span>
+                                        <span class="red-text" ng-message="notInList">@Career.TxtPostionUniqueErrorMessage</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="TxtDesc">@Career.Desc</label><span class="red-text"> *</span>
+                            <textarea ng-model="Career.DisplayValueDesc" not-in-list="Careers" list-item-id="Career.ID" class="form-control" name="TxtDesc"
+                                      placeholder="Text" required ng-pattern="/@Regex.NameEn/"></textarea>
+                            <div class="red-text" ng-messages="FrmAddUpdate.TxtDesc.$error" ng-show="FrmAddUpdate.TxtDesc.$touched">
+                                <span class="red-text" ng-message="required">@Career.TxtDescRequiredErrorMessage</span>
+                                <span class="red-text" ng-message="pattern">@Career.TxtDescPatternErrorMessage</span>
+                                <span class="red-text" ng-message="notInList">@Career.TxtDescUniqueErrorMessage</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="TxtRequirment">@Career.Requirements</label><span class="red-text"> *</span>
+                            <textarea ng-model="Career.DisplayValueRequirements" not-in-list="Careers" list-item-id="Career.ID" class="form-control" name="TxtRequirment"
+                                      placeholder="Text" required ng-pattern="/@Regex.NameEn/"></textarea>
+                            <div class="red-text" ng-messages="FrmAddUpdate.TxtRequirment.$error" ng-show="FrmAddUpdate.TxtRequirment.$touched">
+                                @*<span class="red-text" ng-message="required">@Career.TxtRequirmentRequiredErrorMessage</span>
+                                    <span class="red-text" ng-message="pattern">@Career.TxtRequirmentPatternErrorMessage</span>
+                                    <span class="red-text" ng-message="notInList">@Career.TxtRequirmentUniqueErrorMessage</span>*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary btn-with-icon" ng-click="uploadFiles()" ng-disabled="FrmAddUpdate.$invalid"><i class="ion-android-checkmark-circle"></i>@Career.btnSaveLbl</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+
+
+</div>
+
+
+
+
+
+

@@ -18,7 +18,30 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         }
         public List<SystemParameters_Careers> GetAllWithDeleted()
         {
-            return _db.SystemParameters_Careers.OrderBy(p => p.IsDeleted).ToList();
+            var returnList = new List<SystemParameters_Careers>(); 
+            var getCareersList = _db.SystemParameters_Careers.Where(p => p.IsDeleted == false && p.Show== true).ToList();
+            foreach (var caeerCareerse in getCareersList)
+            {
+
+                var getCareerForms = _db.SystemParameters_CareerForm.Where(p => p.CareerId== caeerCareerse.Id).ToList();
+           
+                returnList.Add(new SystemParameters_Careers
+                {
+                    Id = caeerCareerse.Id,
+                    DisplayValue = caeerCareerse.DisplayValue,
+                    DisplayValueDesc = caeerCareerse.DisplayValueDesc, 
+                    Experience = caeerCareerse.Experience, 
+                    EducationLevel = caeerCareerse.EducationLevel, 
+                    DisplayValueRequirements = caeerCareerse.DisplayValueRequirements, 
+                    SalaryAverage = caeerCareerse.SalaryAverage, 
+                    CareerLevel = caeerCareerse.CareerLevel, 
+                    Vacancies = caeerCareerse.Vacancies,  
+                    JobType = caeerCareerse.JobType,
+                    ApplyCount = getCareerForms.Count
+                });
+            }
+
+            return returnList;
         }
         public List<SystemParameters_Careers> GetAll()
         {
@@ -88,7 +111,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             career.Image = postedCareer.Image;
             career.SalaryAverage= postedCareer.SalaryAverage; 
             career.IsDeleted = postedCareer.IsDeleted;
-            career.Show = postedCareer.Show; 
+           // career.Show = postedCareer.Show; 
             career.LastModificationTime = Parameters.CurrentDateTime;
             career.LastModifierUserId = Parameters.UserId;
             return Save(career);

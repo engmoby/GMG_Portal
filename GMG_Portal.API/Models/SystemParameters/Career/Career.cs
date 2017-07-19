@@ -35,6 +35,7 @@ namespace GMG_Portal.API.Models.SystemParameters
         public int? DeleterUserId { get; set; }
         public string OperationStatus { get; set; }
         public string SalaryAverage { get; set; }
+        public int ApplyCount { get; set; }
 
     }
 }

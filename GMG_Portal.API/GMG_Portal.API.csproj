@@ -190,15 +190,10 @@
     <Compile Include="Controllers\SystemParameters\VisionsController.cs" />
     <Compile Include="Controllers\SystemParameters\HomeSlidersController.cs" />
     <Compile Include="Controllers\SystemParameters\LanguagesController.cs" />
-    <Compile Include="Controllers\SystemParameters\DepartmentsController.cs" />
     <Compile Include="Helpers\CorsFilterAttribute.cs" />
-    <Compile Include="Controllers\SystemParameters\AccountTypesController.cs" />
-    <Compile Include="Controllers\SystemParameters\CitiesController.cs" />
-    <Compile Include="Controllers\SystemParameters\CountriesController.cs" />
     <Compile Include="Controllers\Customer\CustomersController.cs" />
     <Compile Include="Controllers\Customer\InvoiceStatusesController.cs" />
     <Compile Include="Controllers\Customer\InvoiceTypesController.cs" />
-    <Compile Include="Controllers\SystemParameters\PaymentTypesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

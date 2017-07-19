@@ -10,6 +10,7 @@ namespace GMG_Portal.Data
     public partial class SystemParameters_Careers
     {
         [NotMapped]
+        public int ApplyCount { get; set; }
         public string OperationStatus { get; set; }
     }
 }

@@ -26,12 +26,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             var featuresList = new List<SystemParameters_Features>();
             var getHotelInfo = _db.Hotels.Where(p => p.IsDeleted == false && p.Show).ToList();
             foreach (var hotel in getHotelInfo)
-            {
-                //var getHotelFeatures = _db.Hotels_Features.Where(p => p.IsDeleted != true && p.Hotel_Id == hotel.Id).ToList();
-                //returnList.Add(new Hotel
-                //{
-                //    FeaturesList = getHotelFeatures
-                //});
+            { 
 
                 var getHotelFeatures = _db.Hotels_Features.Where(p => p.IsDeleted != true && p.Hotel_Id == hotel.Id).ToList();
                 foreach (var hotelFeature in getHotelFeatures)

@@ -209,6 +209,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\Admin\CareerController.cs" />
+    <Compile Include="Controllers\Admin\CareerFormController.cs" />
     <Compile Include="Controllers\Admin\OwnersController.cs" />
     <Compile Include="Controllers\Admin\Mission.cs" />
     <Compile Include="Controllers\Admin\Vision.cs" />
@@ -218,6 +220,7 @@
     <Compile Include="Controllers\Admin\InvoiceStatusesController.cs" />
     <Compile Include="Controllers\FileUploadController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Hotel\HotelController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Custom\CustomUploadMultipartFormProvider.cs" />
     <Compile Include="Global.asax.cs">
@@ -472,6 +475,8 @@
     </Content>
     <Content Include="Scripts\app\app.js" />
     <Content Include="Scripts\app\Login.js" />
+    <Content Include="Scripts\app\pages\CareerForm\CareerForm.js" />
+    <Content Include="Scripts\app\pages\Career\Career.js" />
     <Content Include="Scripts\app\pages\Owner\Owner.js" />
     <Content Include="Scripts\app\pages\Mission\Mission.js" />
     <Content Include="Scripts\app\pages\Vision\Vision.js" />
@@ -479,6 +484,8 @@
     <Content Include="Scripts\app\pages\Languages\Languages.js" />
     <Content Include="Scripts\app\pages\pages.module.js" />
     <Content Include="Scripts\app\pages\Settings.js" />
+    <Content Include="Scripts\app\services\CareerForm.js" />
+    <Content Include="Scripts\app\services\Career.js" />
     <Content Include="Scripts\app\services\Owner.js" />
     <Content Include="Scripts\app\services\Mission.js" />
     <Content Include="Scripts\app\services\Vision.js" />
@@ -1009,6 +1016,9 @@
     <Content Include="Views\Vision\Index.cshtml" />
     <Content Include="Views\Mission\Index.cshtml" />
     <Content Include="Views\Owners\Index.cshtml" />
+    <Content Include="Views\Career\Index.cshtml" />
+    <Content Include="Views\Hotel\Index.cshtml" />
+    <Content Include="Views\CareerForm\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GMG_Portal.API\GMG_Portal.API.csproj">

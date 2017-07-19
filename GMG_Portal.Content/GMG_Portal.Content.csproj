@@ -70,6 +70,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Shared.resx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\SystemParameters\Career.Designer.cs">
+      <DependentUpon>Career.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Admin\SystemParameters\Owner.Designer.cs">
       <DependentUpon>Owner.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -128,6 +133,11 @@
     <EmbeddedResource Include="Admin\Shared.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Shared.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\SystemParameters\Career.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Career.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\SystemParameters\Owner.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
