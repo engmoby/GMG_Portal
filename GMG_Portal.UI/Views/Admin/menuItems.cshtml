@@ -17,17 +17,10 @@
                     { "name": "@GMG_Portal.Content.Menu.HomeSlider", "title": "@GMG_Portal.Content.Menu.HomeSlider", "level": "1", "stateRef": "HomeSlider", "templateUrl": "/HomeSlider" },
                 </text>
             }
-            @if (true)
-        {
+             @if (true)
+            {
                 <text>
-                    { "name": "@GMG_Portal.Content.Menu.Categories", "title": "@GMG_Portal.Content.Menu.Categories", "level": "1", "stateRef": "Categories", "templateUrl": "/Categories" },
-                </text>
-            }
-
-            @if (true)
-        {
-                <text>
-                    { "name": "@GMG_Portal.Content.Menu.News", "title": "@GMG_Portal.Content.Menu.News", "level": "1", "stateRef": "News", "templateUrl": "/News" },
+                { "name": "@GMG_Portal.Content.Menu.Ownsers", "title": "@GMG_Portal.Content.Menu.Ownsers", "level": "1", "stateRef": "Ownsers", "templateUrl": "/Ownsers" },
                 </text>
             }
 
@@ -89,24 +82,54 @@
     }
 
 
+    @if (true)
+    {
+        <text>
+    menuItems.push({
+        "name": "Hotel", "title": "Hotel", "level": "0", "icon": "ion-gear-a", "subMenu": [
+            @if (true)
+    {
+
+                               <text>
+                           { "name": "@GMG_Portal.Content.Menu.Hotels", "title": "@GMG_Portal.Content.Menu.Hotels", "level": "1", "stateRef": "Hotels", "templateUrl": "/Hotels" },
+                       </text>
+                           }
+            @if (true)
+    {
+
+                               <text>
+                           { "name": "@GMG_Portal.Content.Menu.Offers", "title": "@GMG_Portal.Content.Menu.Offers", "level": "1", "stateRef": "Offers", "templateUrl": "/Offers" },
+                       </text>
+        }
+            @if (true)
+    {
+
+                               <text>
+                                   { "name": "@GMG_Portal.Content.Menu.Features", "title": "@GMG_Portal.Content.Menu.Features", "level": "1", "stateRef": "Features", "templateUrl": "/Features" },
+                               </text>
+        }
+        ]
+    });
+    </text>
+    }
 
     @if (true)
         {
             <text>
     menuItems.push({
-        "name": "Hotel", "title": "Hotel", "level": "0", "icon": "ion-gear-a", "subMenu": [
+        "name": "Careers", "title": "Careers", "level": "0", "icon": "ion-gear-a", "subMenu": [
                         @if (true)
            {
 
                                    <text>
-                                    { "name": "@GMG_Portal.Content.Menu.Hotels", "title": "@GMG_Portal.Content.Menu.Hotels", "level": "1", "stateRef": "Hotels", "templateUrl": "/Hotels" },
+                                    { "name": "@GMG_Portal.Content.Menu.Careers", "title": "@GMG_Portal.Content.Menu.Careers", "level": "1", "stateRef": "Careers", "templateUrl": "/Careers" },
                                 </text>
                            }
             @if (true)
         {
 
                                    <text>
-                                       { "name": "@GMG_Portal.Content.Menu.Offers", "title": "@GMG_Portal.Content.Menu.Offers", "level": "1", "stateRef": "Offers", "templateUrl": "/Offers" },
+                                       { "name": "@GMG_Portal.Content.Menu.CareerForm", "title": "@GMG_Portal.Content.Menu.CareerForm", "level": "1", "stateRef": "CareerForm", "templateUrl": "/CareerForm" }
                                    </text>
                            }
         ]
@@ -114,4 +137,28 @@
     </text>
     }
 
+
+    @if (true)
+    {
+        <text>
+    menuItems.push({
+        "name": "News", "title": "News", "level": "0", "icon": "ion-gear-a", "subMenu": [
+            @if (true)
+    {
+
+                               <text>
+                                   { "name": "@GMG_Portal.Content.Menu.News", "title": "@GMG_Portal.Content.Menu.News", "level": "1", "stateRef": "News", "templateUrl": "/News" },
+                               </text>
+                           }
+            @if (true)
+    {
+
+                               <text>
+                                   { "name": "@GMG_Portal.Content.Menu.Categories", "title": "@GMG_Portal.Content.Menu.Categories", "level": "1", "stateRef": "Categories", "templateUrl": "/Categories" }
+                               </text>
+        }
+        ]
+    });
+    </text>
+    }
 </script>
