@@ -28,30 +28,29 @@
                     <th colspan="1"></th>
                     <th>
                         <div class="input-group">
-                            <button class="btn btn-primary btn-with-icon" ng-click="open(null)"><i class="fa fa-plus" aria-hidden="true"></i>@Vission.BtnAdd</button>
+                            @*<button class="btn btn-primary btn-with-icon" ng-click="open(null)"><i class="fa fa-plus" aria-hidden="true"></i>@Vission.BtnAdd</button>*@
                         </div>
                     </th>
                 </tr>
 
                 <tr class="sortable">
-                    <th>#</th>
+                   
                     <th st-sort="NameAr">@Vission.Title</th>
                     <th st-sort="NameEn">@Vission.Desc</th>
-                    <th st-sort="NameEn">@Vission.Rate</th>
-                    <th>Actions</th>
+                    @*<th st-sort="NameEn">@Vission.Rate</th>*@
+                    
                 </tr>
 
             </thead>
             <tbody>
                 <tr ng-repeat="Vision in TableData">
-                    <td ng-class="{'red-text': Vision.IsDeleted == true}">{{$index+1}}</td>
                     <td ng-class="{'red-text': Vision.IsDeleted == true}">{{Vision.DisplayValue}}</td>
                     <td ng-class="{'red-text': Vision.IsDeleted == true}">{{Vision.DisplayValueDesc}}</td>
-                    <td ng-class="{'red-text': Vision.IsDeleted == true}">{{Vision.Rating}}</td>
+           
                     <td>
                         <div class="buttons" ng-show="!Vision.IsDeleted">
                             <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(Vision)"><i class="fa fa-pencil" aria-hidden="true"></i>@Vission.TableBtnEdit</button>
-                            <button class="btn btn-danger editable-table-button btn-xs btn-with-icon" ng-confirm="Confirm Delete ?" ng-click="Delete(Vision)"><i class="fa fa-trash-o" aria-hidden="true"></i>@Vission.TableBtnDelete</button>
+                            @*<button class="btn btn-danger editable-table-button btn-xs btn-with-icon" ng-confirm="Confirm Delete ?" ng-click="Delete(Vision)"><i class="fa fa-trash-o" aria-hidden="true"></i>@Vission.TableBtnDelete</button>*@
                         </div>
                         <div class="buttons restore-button" ng-show="Vision.IsDeleted">
                             <button class="center-block btn btn-default  restore-button btn-xs btn-with-icon" ng-click="Restore(Vision)"><i class="fa fa-undo" aria-hidden="true"></i>Restore</button>
@@ -100,8 +99,8 @@
                         </div>`
                         <div class="form-group">
                             <label for="TxtDesc">@Vission.Desc</label><span class="red-text"> *</span>
-                            <input type="text" ng-model="Vision.DisplayValueDesc" not-in-list="Visions" list-item-id="Vision.ID" class="form-control" name="TxtDesc"
-                                    placeholder="Text" required ng-pattern="/@Regex.NameEn/">
+                            <textarea ng-model="Vision.DisplayValueDesc" not-in-list="Visions" list-item-id="Vision.ID" class="form-control" name="TxtDesc"
+                                    placeholder="Text" required ng-pattern="/@Regex.NameEn/"></textarea>
                             <div class="red-text" ng-messages="FrmAddUpdate.TxtDesc.$error" ng-show="FrmAddUpdate.TxtDesc.$touched">
                                 <span class="red-text" ng-message="required">@Vission.TxtDescRequiredErrorMessage</span>
                                 <span class="red-text" ng-message="pattern">@Vission.TxtDescPatternErrorMessage</span>
@@ -109,45 +108,8 @@
                             </div>
                         </div>
                         
-                        <div class="form-group">
-                            <label for="TxtUrl">@Vission.Url</label><span class="red-text"> *</span>
-                            <input type="text" ng-model="Vision.URL" not-in-list="Visions" list-item-id="Vision.ID" class="form-control" name="TxtUrl"
-                                   placeholder="Text" required ng-pattern="/@Regex.NameEn/">
-                            <div class="red-text" ng-messages="FrmAddUpdate.TxtUrl.$error" ng-show="FrmAddUpdate.TxtUrl.$touched"> 
-                                <span class="red-text" ng-message="pattern">@Vission.TxtUrlPatternErrorMessage</span> 
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="TxtRate">@Vission.Rate</label><span class="red-text"> *</span>
-                            <input type="text" ng-model="Vision.Rating" not-in-list="Visions" list-item-id="Vision.ID" class="form-control" name="TxtRate"
-                                   placeholder="Text" required ng-pattern="/@Regex.NameEn/">
-                           
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <label for="fileToUpload">Select a File to Upload</label><br />
-                                <input type="file" ng-model-instant id="fileToUpload" multiple onchange="angular.element(this).scope().setFiles(this)" />
-                            </div>
-                            <div id="dropbox" class="dropbox" ng-class="dropClass"><span>{{dropText}}</span></div>
-                            <div ng-show="files.length">
-                                <div ng-repeat="file in files.slice(0)">
-                                    <span>{{file.webkitRelativePath || file.name}}</span>
-                                    (<span ng-switch="file.size > 1024*1024">
-                                        <span ng-switch-when="true">{{file.size / 1024 / 1024 | number:2}} MB</span>
-                                        <span ng-switch-default>{{file.size / 1024 | number:2}} kB</span>
-                                    </span>)
-                                </div>
-                                <input type="button" ng-click="uploadFile()" value="Upload" />
-                                <div ng-show="progressVisible">
-                                    <div class="percent">{{progress}}%</div>
-                                    <div class="progress-bar">
-                                        <div class="uploaded" ng-style="{'width': progress+'%'}"></div>
-                                    </div>
-                                </div>
-                            </div>
+                 
 
-                            @*<custom-Uploader images-bases="Vision.Image"></custom-Uploader>*@
-                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary btn-with-icon" ng-disabled="FrmAddUpdate.$invalid"><i class="ion-android-checkmark-circle"></i>@Vission.btnSaveLbl</button>

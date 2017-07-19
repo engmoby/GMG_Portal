@@ -160,7 +160,7 @@ namespace GMG_Portal.Content.Admin.SystemParameters {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Country.
+        ///   Looks up a localized string similar to Vision.
         /// </summary>
         public static string ModalTitle {
             get {
