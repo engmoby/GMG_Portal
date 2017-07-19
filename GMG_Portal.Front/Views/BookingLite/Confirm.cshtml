@@ -1,4 +1,5 @@
-﻿
+﻿@model GMG_Portal.API.Models.Hotels.Reservation.Reservation
+
 @{
     ViewBag.Title = "Confirm";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -54,12 +55,12 @@
                                                 <h3 class="mg-payment-id">Your Reservatiom ID: #105152396140</h3>
                                                 <div class="mg-widget-cart-row">
                                                     <strong>First Name:</strong>
-                                                    <span></span>
+                                                    <span>@Model.FirstName</span>
                                                 </div>
 
                                                 <div class="mg-widget-cart-row">
                                                     <strong>last Name:</strong>
-                                                    <span></span>
+                                                    <span>@Model.LastName</span>
                                                 </div>
 
                                                 <div class="mg-widget-cart-row">
