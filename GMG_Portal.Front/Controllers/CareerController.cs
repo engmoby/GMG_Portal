@@ -73,8 +73,7 @@ namespace Front.Controllers
 
 
         public ActionResult Upload(CareerForm careerForm)
-        {
-
+        { 
             return View(careerForm);
         }
 
@@ -117,7 +116,10 @@ namespace Front.Controllers
                     careerForm = JsonConvert.DeserializeObject<CareerForm>(responseData);
                     if (careerForm != null)
                     {
-                        TempData["alertMessage"] = "ok";
+                        TempData["" +
+                                 "alert" +
+                                 "" +
+                                 "Message"] = "ok";
 
                     }
                 }

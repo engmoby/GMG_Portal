@@ -70,8 +70,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Shared.resx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\SystemParameters\AccountTypes.Designer.cs">
-      <DependentUpon>AccountTypes.resx</DependentUpon>
+    <Compile Include="Admin\SystemParameters\Owner.Designer.cs">
+      <DependentUpon>Owner.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Admin\SystemParameters\Vission.Designer.cs">
       <DependentUpon>Vission.resx</DependentUpon>
@@ -90,29 +92,6 @@
     </Compile>
     <Compile Include="Admin\SystemParameters\Languages.Designer.cs">
       <DependentUpon>Languages.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Admin\SystemParameters\Departments.Designer.cs">
-      <DependentUpon>Departments.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\SystemParameters\Cities.Designer.cs">
-      <DependentUpon>Cities.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Admin\SystemParameters\PaymentTypes.Designer.cs">
-      <DependentUpon>PaymentTypes.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Admin\SystemParameters\Countries.Designer.cs">
-      <DependentUpon>Countries.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Admin\SystemParameters\Brands.Designer.cs">
-      <DependentUpon>Brands.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -150,6 +129,11 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Shared.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Admin\SystemParameters\Owner.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Owner.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Admin\SystemParameters\Vission.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Vission.Designer.cs</LastGenOutput>
@@ -165,24 +149,6 @@
     <EmbeddedResource Include="Admin\SystemParameters\Languages.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Languages.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Admin\SystemParameters\Departments.resx" />
-    <EmbeddedResource Include="Admin\SystemParameters\AccountTypes.resx" />
-    <EmbeddedResource Include="Admin\SystemParameters\Cities.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Cities.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Admin\SystemParameters\PaymentTypes.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>PaymentTypes.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Admin\SystemParameters\Countries.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Countries.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Admin\SystemParameters\Brands.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Brands.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

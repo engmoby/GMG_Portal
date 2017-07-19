@@ -105,11 +105,11 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         public SystemParameters_Owners Delete(SystemParameters_Owners postedOwner)
         {
             SystemParameters_Owners owner = Get(postedOwner.Id);
-            if (_db.SystemParameters_Owners.Any(p => p.Id == postedOwner.Id && p.IsDeleted != true))
-            {
-                  //  Owner.OperationStatus = "HasRelationship";
-                return owner;
-            }
+            //if (_db.SystemParameters_Owners.Any(p => p.Id == postedOwner.Id && p.IsDeleted != true))
+            //{
+            //      //  Owner.OperationStatus = "HasRelationship";
+            //    return owner;
+            //}
 
             owner.IsDeleted = true;
             owner.CreationTime = Parameters.CurrentDateTime;

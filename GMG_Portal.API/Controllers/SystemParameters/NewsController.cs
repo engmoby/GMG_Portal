@@ -45,6 +45,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
             }
         }
 
+        [HttpGet]
         public HttpResponseMessage SearchNews(string keyword)
         {
             try

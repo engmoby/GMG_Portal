@@ -2,6 +2,194 @@
 @{
     ViewBag.Title = "Index";
 }
+@using GMG_Portal.Content;
+@using GMG_Portal.Content.Admin
+@using GMG_Portal.Content.Admin.SystemParameters
+<script type="text/javascript" src="~/Scripts/app/services/Owner.js"></script>
+<script type="text/javascript" src="~/Scripts/app/pages/Owner/Owner.js"></script>
+<input type="hidden" id="HEnglishNameUnique" value="@Owner.EnglishNameUnique" />
+<input type="hidden" id="HUpdateSuccessMessage" value="@Owner.UpdateSuccessMessage" />
+<input type="hidden" id="HSaveSuccessMessage" value="@Owner.SaveSuccessMessage" />
+<input type="hidden" id="HDeleteSuccessMessage" value="@Owner.DeleteSuccessMessage" />
+<input type="hidden" id="HArabicNameUnique" value="@Owner.TxtNameUniqueErrorMessage" />
+<input type="hidden" id="HCannotDeleted" value="@Owner.CannotDeleted" />
+<style>
+    .btn-file {
+        position: relative;
+        overflow: hidden;
+    }
 
-<h2>Index</h2>
+        .btn-file input[type=file] {
+            position: absolute;
+            top: 0;
+            right: 0;
+            min-width: 100%;
+            min-height: 100%;
+            font-size: 100px;
+            text-align: right;
+            filter: alpha(opacity=0);
+            opacity: 0;
+            background: red;
+            cursor: inherit;
+            display: block;
+        }
+
+    input[readonly] {
+        background-color: white !important;
+        cursor: text !important;
+    }
+</style>
+<div ng-controller="OwnersController">
+
+    <div ba-panel>
+        <table class="table table-hover table-condensed" st-table="TableData" st-safe-src="Owners">
+            <thead>
+                <tr class="toolbar">
+                    <th colspan="2">
+                        <div class="input-group">
+                            <span class="input-group-addon addon-left"><i class="fa fa-search" aria-hidden="true"></i></span>
+                            <input st-search="" class="form-control" placeholder="@Owner.txtSearchLbl" type="text" />
+                        </div>
+                    </th>
+                    <th colspan="1"></th>
+                    <th>
+                        <div class="input-group">
+                            <button class="btn btn-primary btn-with-icon" ng-click="open(null)"><i class="fa fa-plus" aria-hidden="true"></i>@Owner.BtnAdd</button>
+                        </div>
+                    </th>
+                </tr>
+
+                <tr class="sortable">
+                    <th>#</th>
+                    <th st-sort="Image">@Owner.Image</th>
+                    <th st-sort="Title">@Owner.Name</th>
+                    <th st-sort="Rate">@Owner.Postion</th>
+                    <th st-sort="Desc">@Owner.Desc</th>
+                    <th>Actions</th>
+                </tr>
+
+            </thead>
+            <tbody>
+                <tr ng-repeat="Owner in TableData">
+                    <td ng-class="{'red-text': Owner.IsDeleted == true}">{{$index+1}}</td>
+                    <td style="width: 50px;" ng-class="{'red-text': Owner.IsDeleted == true}"><img ng-click="openImage(Owner)" width="70px" height="70px" src="http://localhost:19056/Uploads/Owners/{{Owner.Image}}" /></td>
+                    <td ng-class="{'red-text': Owner.IsDeleted == true}">{{Owner.DisplayValueName}}</td>
+                    <td ng-class="{'red-text': Owner.IsDeleted == true}">{{Owner.DisplayValuePosition}}</td>
+                    <td ng-class="{'red-text': Owner.IsDeleted == true}">{{Owner.DisplayValueDesc | limitTo:letterLimit}} </td>
+                    <td>
+                        <div class="buttons" ng-show="!Owner.IsDeleted">
+                            <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(Owner)"><i class="fa fa-pencil" aria-hidden="true"></i>@Owner.TableBtnEdit</button>
+                            <button class="btn btn-danger editable-table-button btn-xs btn-with-icon" ng-confirm="Confirm Delete ?" ng-click="Delete(Owner)"><i class="fa fa-trash-o" aria-hidden="true"></i>@Owner.TableBtnDelete</button>
+                        </div>
+                        <div class="buttons restore-button" ng-show="Owner.IsDeleted">
+                            <button class="center-block btn btn-default  restore-button btn-xs btn-with-icon" ng-click="Restore(Owner)"><i class="fa fa-undo" aria-hidden="true"></i>Restore</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr ng-show="TableData.length==0">
+                    <td colspan="4">
+                        @Shared.GridNoData
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4" class="text-center">
+                        <div st-pagination="" st-items-by-page="10"></div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <div class="modal fade" id="ModelImage" role="dialog">
+        <div class="modal-dialog">
+            <img   src="http://localhost:19056/Uploads/Owners/{{Owner.Image}}" /> </div>
+    </div>
+    
+    @*<form name="FrmAddUpdate" novalidate ng-submit="save()" autocomplete="off">*@
+    <form name="FrmAddUpdate" novalidate autocomplete="off">
+
+        <div class="modal fade" id="ModelAddUpdate" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">{{action |uppercase}} @Owner.ModalTitle</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="TxtName">@Owner.Name</label><span class="red-text"> *</span>
+                            <input type="text" ng-model="Owner.DisplayValueName" not-in-list="Owners" list-item-id="Owner.ID" class="form-control" name="TxtName"
+                                   placeholder="@Owner.Name" required ng-pattern="/@Regex.NameAr/">
+
+                            <div class="red-text" ng-messages="FrmAddUpdate.TxtName.$error" ng-show="FrmAddUpdate.TxtName.$touched">
+                                <span class="red-text" ng-message="required">@Owner.TxtNameRequiredErrorMessage</span>
+                                <span class="red-text" ng-message="pattern">@Owner.TxtNamePatternErrorMessage</span>
+                                <span class="red-text" ng-message="notInList">@Owner.TxtNameUniqueErrorMessage</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="TxtPostion">@Owner.Postion</label><span class="red-text"> *</span>
+                            <input ng-model="Owner.DisplayValuePosition" not-in-list="Owners" list-item-id="Owner.ID" class="form-control" name="TxtPostion"
+                                   placeholder="Text" required ng-pattern="/@Regex.NameEn/"/>
+                            <div class="red-text" ng-messages="FrmAddUpdate.TxtPostion.$error" ng-show="FrmAddUpdate.TxtPostion.$touched">
+                                <span class="red-text" ng-message="required">@Owner.TxtPostionRequiredErrorMessage</span>
+                                <span class="red-text" ng-message="pattern">@Owner.TxtPostionPatternErrorMessage</span>
+                                <span class="red-text" ng-message="notInList">@Owner.TxtPostionUniqueErrorMessage</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="TxtDesc">@Owner.Desc</label><span class="red-text"> *</span>
+                            <textarea ng-model="Owner.DisplayValueDesc" not-in-list="Owners" list-item-id="Owner.ID" class="form-control" name="TxtDesc"
+                                      placeholder="Text" required ng-pattern="/@Regex.NameEn/"></textarea>
+                            <div class="red-text" ng-messages="FrmAddUpdate.TxtDesc.$error" ng-show="FrmAddUpdate.TxtDesc.$touched">
+                                <span class="red-text" ng-message="required">@Owner.TxtDescRequiredErrorMessage</span>
+                                <span class="red-text" ng-message="pattern">@Owner.TxtDescPatternErrorMessage</span>
+                                <span class="red-text" ng-message="notInList">@Owner.TxtDescUniqueErrorMessage</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="TxtRate">@Owner.Image</label><span class="red-text"> *</span>
+
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+
+                                <div class="col-lg-6 col-sm-6 col-12">
+
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <span class="btn btn-primary btn-file">
+                                                Browse...<input type="file" my-directory="getFiles(file)" ng-disabled="uploading"/>
+                                            </span>
+
+                                        </span>
+                                        <input type="text" ng-model="countFiles" required class="form-control" readonly>
+                                    </div>
+                                    @*<input type="button" class="btn btn-default  btn-primary" ng-click="uploadFiles()" value="Upload" ng-disabled="uploading || countFiles===''" />*@
+
+                                    <img style="width: 100px; height: 100px" src="http://localhost:19056/Uploads/{{Owner.Image}}" ng-show="Owner.Image"/>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary btn-with-icon" ng-click="uploadFiles()" ng-disabled="FrmAddUpdate.$invalid"><i class="ion-android-checkmark-circle"></i>@Owner.btnSaveLbl</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+
+
+</div>
+
+
+
+
+
 
