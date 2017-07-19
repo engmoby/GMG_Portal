@@ -209,16 +209,13 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\Admin\Owners.cs" />
+    <Compile Include="Controllers\Admin\Mission.cs" />
+    <Compile Include="Controllers\Admin\Vision.cs" />
     <Compile Include="Controllers\Admin\HomeSliderController.cs" />
     <Compile Include="Controllers\Admin\LanguagesController.cs" />
-    <Compile Include="Controllers\Admin\DepartmentsController.cs" />
-    <Compile Include="Controllers\Admin\AccountTypesController.cs" />
     <Compile Include="Controllers\Admin\AdminController.cs" />
-    <Compile Include="Controllers\Admin\CitiesController.cs" />
-    <Compile Include="Controllers\Admin\CountriesController.cs" />
-    <Compile Include="Controllers\Admin\CustomerAccountsController.cs" />
     <Compile Include="Controllers\Admin\InvoiceStatusesController.cs" />
-    <Compile Include="Controllers\Admin\PaymentTypesController.cs" />
     <Compile Include="Controllers\BrandsController.cs" />
     <Compile Include="Controllers\Customer\MaintenanceContractsController.cs" />
     <Compile Include="Controllers\Customer\PurchaseOrderController.cs" />
@@ -491,9 +488,6 @@
     <Content Include="Scripts\app\pages\HomeSlider\HomeSlider.js" />
     <Content Include="Scripts\app\pages\Languages\Languages.js" />
     <Content Include="Scripts\app\pages\Departments\Department.js" />
-    <Content Include="Scripts\app\pages\Brands\Brands.js" />
-    <Content Include="Scripts\app\pages\Cities\Cities.js" />
-    <Content Include="Scripts\app\pages\Countries\Countries.js" />
     <Content Include="Scripts\app\pages\pages.module.js" />
     <Content Include="Scripts\app\pages\PaymentTypes\PaymentTypes.js" />
     <Content Include="Scripts\app\pages\Settings.js" />
@@ -845,7 +839,6 @@
     <Content Include="Scripts\app\theme\theme.module.js" />
     <Content Include="Scripts\app\theme\theme.run.js" />
     <Content Include="Scripts\app\theme\theme.service.js" />
-    <Content Include="Scripts\app\pages\AccountTypes\AccountType.js" />
     <Content Include="Scripts\lib\amcharts.js" />
     <Content Include="Scripts\lib\ammap.js" />
     <Content Include="Scripts\lib\amstock.js" />
@@ -1031,6 +1024,7 @@
     <Content Include="Views\HomeSlider\Index.cshtml" />
     <Content Include="Views\Vision\Index.cshtml" />
     <Content Include="Views\Mission\Index.cshtml" />
+    <Content Include="Views\Owners\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GMG_Portal.API\GMG_Portal.API.csproj">

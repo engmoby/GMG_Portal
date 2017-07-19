@@ -36,7 +36,7 @@
                 { "name": "@GMG_Portal.Content.Menu.Departments", "title": "@GMG_Portal.Content.Menu.Departments", "level": "1", "stateRef": "Departments", "templateUrl": "/Departments" },
                 </text>
             }*@
-            @if (true)
+            @*@if (true)
             {
                 <text>
                 { "name": "@GMG_Portal.Content.Menu.Countries", "title": "@GMG_Portal.Content.Menu.Countries", "level": "1", "stateRef": "Countries", "templateUrl": "/Countries" },
@@ -47,7 +47,7 @@
                 <text>
                 { "name": "@GMG_Portal.Content.Menu.Cities", "title": "@GMG_Portal.Content.Menu.Cities", "level": "1", "stateRef": "Cities", "templateUrl": "/Cities" },
                 </text>
-            }
+            }*@
 
 
             @if (true)
@@ -70,9 +70,17 @@
                 @if (true)
             {
                 <text>
-                    { "name": "@GMG_Portal.Content.Menu.Mission", "title": "@GMG_Portal.Content.Menu.Mission", "level": "1", "stateRef": "Mission", "templateUrl": "/Mission" }
+                    { "name": "@GMG_Portal.Content.Menu.Mission", "title": "@GMG_Portal.Content.Menu.Mission", "level": "1", "stateRef": "Mission", "templateUrl": "/Mission" },
                 </text>
             }
+
+
+                    @if (true)
+    {
+        <text>
+                    { "name": "@GMG_Portal.Content.Menu.About", "title": "@GMG_Portal.Content.Menu.About", "level": "1", "stateRef": "About", "templateUrl": "/About" }
+        </text>
+    }
 
 
 
@@ -155,6 +163,31 @@
 
                                <text>
                                    { "name": "@GMG_Portal.Content.Menu.Categories", "title": "@GMG_Portal.Content.Menu.Categories", "level": "1", "stateRef": "Categories", "templateUrl": "/Categories" }
+                               </text>
+        }
+        ]
+    });
+    </text>
+    }
+
+
+    @if (true)
+    {
+        <text>
+    menuItems.push({
+        "name": "Contactus", "title": "News", "level": "0", "icon": "ion-gear-a", "subMenu": [
+            @if (true)
+        {
+
+                               <text>
+                                   { "name": "@GMG_Portal.Content.Menu.ContactUs", "title": "@GMG_Portal.Content.Menu.ContactUs", "level": "1", "stateRef": "ContactUs", "templateUrl": "/ContactUs" },
+                               </text>
+                           }
+            @if (true)
+    {
+
+                               <text>
+                                   { "name": "@GMG_Portal.Content.Menu.ContactForm", "title": "@GMG_Portal.Content.Menu.ContactForm", "level": "1", "stateRef": "ContactForm", "templateUrl": "/ContactForm" }
                                </text>
         }
         ]

@@ -180,4 +180,7 @@
   <data name="Reservation" xml:space="preserve">
     <value>Reservation</value>
   </data>
+  <data name="About" xml:space="preserve">
+    <value>About</value>
+  </data>
 </root>
