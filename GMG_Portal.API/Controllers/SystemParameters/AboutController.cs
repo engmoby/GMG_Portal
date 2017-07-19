@@ -20,7 +20,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
         {
             try
             {
-                 
+
                 var aboutLogic = new AboutLogic();
                 var about = aboutLogic.GetAll();
                 return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<About>>(about));
@@ -80,15 +80,15 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
 
-            ThrowBadRequest:
+        ThrowBadRequest:
             return Request.CreateResponse(HttpStatusCode.BadRequest);
         }
-
-        public HttpResponseMessage GetAboutAll()
+        [HttpGet]
+        public HttpResponseMessage Aboutall()
         {
             try
             {
-                var retunAboutAll= new AboutAll();
+                var retunAboutAll = new AboutAll();
                 var aboutLogic = new AboutLogic();
                 var about = aboutLogic.GetAll();
                 retunAboutAll.AboutTitle = about.DisplayValue;
@@ -98,7 +98,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 var visionLogic = new VisionsLogic();
                 var vision = visionLogic.GetAll();
                 retunAboutAll.VisionTitle = vision[0].DisplayValue;
-                retunAboutAll.VisionDesc= vision[0].DisplayValueDesc;
+                retunAboutAll.VisionDesc = vision[0].DisplayValueDesc;
 
 
                 var missionLogic = new MissionsLogic();

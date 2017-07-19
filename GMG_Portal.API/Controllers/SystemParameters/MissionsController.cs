@@ -22,7 +22,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
             {
                 var missionsLogic = new MissionsLogic();
                 var missions = missionsLogic.GetAll();
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<HomeSlider>>(missions));
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Mission>>(missions));
             }
             catch (Exception ex)
             {
@@ -36,7 +36,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
             {
                 var missionsLogic = new MissionsLogic();
                 var missions = missionsLogic.GetAllWithDeleted();
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<API.Models.SystemParameters.HomeSlider>>(missions));
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<API.Models.SystemParameters.Mission>>(missions));
             }
             catch (Exception ex)
             {
@@ -45,7 +45,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
             }
         }
         [HttpPost]
-        public HttpResponseMessage Save(HomeSlider postedMissions)
+        public HttpResponseMessage Save(Mission postedMissions)
         {
             try
             {
@@ -68,7 +68,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                             mission = missionsLogic.Edit(Mapper.Map<Front_Mission>(postedMissions));
                         }
                     }
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<HomeSlider>(mission));
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Mission>(mission));
                 }
                 goto ThrowBadRequest;
             }

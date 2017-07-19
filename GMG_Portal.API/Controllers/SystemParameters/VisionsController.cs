@@ -22,7 +22,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
             {
                 var visionsLogic = new VisionsLogic();
                 var visions = visionsLogic.GetAll();
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<HomeSlider>>(visions));
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Vision>>(visions));
             }
             catch (Exception ex)
             {
@@ -36,7 +36,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
             {
                 var VisionsLogic = new VisionsLogic();
                 var Visions = VisionsLogic.GetAllWithDeleted();
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<API.Models.SystemParameters.HomeSlider>>(Visions));
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<API.Models.SystemParameters.Vision>>(Visions));
             }
             catch (Exception ex)
             {
@@ -45,7 +45,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
             }
         }
         [HttpPost]
-        public HttpResponseMessage Save(HomeSlider postedVisions)
+        public HttpResponseMessage Save(Vision postedVisions)
         {
             try
             {
@@ -68,7 +68,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                             vision = visionsLogic.Edit(Mapper.Map<Front_Vision>(postedVisions));
                         }
                     }
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<HomeSlider>(vision));
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Vision>(vision));
                 }
                 goto ThrowBadRequest;
             }
