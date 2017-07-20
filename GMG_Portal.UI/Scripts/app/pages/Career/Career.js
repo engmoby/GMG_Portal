@@ -47,12 +47,7 @@ function CareersController($scope, CareersApi, uploadService, $rootScope, $timeo
     }
 
     $scope.save = function () {
-        $rootScope.ViewLoading = true;
-        if ($scope.Image) {
-            $scope.Career.Image = $scope.Image;
-            $scope.Image = "";
-        }
-        //  uploadService.uploadFiles();
+        $rootScope.ViewLoading = true; 
         debugger;
         CareersApi.Save($scope.Career).then(function (response) {
 
@@ -98,8 +93,9 @@ function CareersController($scope, CareersApi, uploadService, $rootScope, $timeo
 
             }
 
-            $rootScope.ViewLoading = false;
+           
             $scope.back();
+            $rootScope.ViewLoading = false;
         },
         function (response) {
             debugger;

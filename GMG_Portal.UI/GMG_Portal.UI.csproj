@@ -213,7 +213,7 @@
     <Compile Include="Controllers\Admin\CareerFormController.cs" />
     <Compile Include="Controllers\Admin\OwnersController.cs" />
     <Compile Include="Controllers\Admin\Mission.cs" />
-    <Compile Include="Controllers\Admin\Vision.cs" />
+    <Compile Include="Controllers\Admin\VisionController.cs" />
     <Compile Include="Controllers\Admin\HomeSliderController.cs" />
     <Compile Include="Controllers\Admin\LanguagesController.cs" />
     <Compile Include="Controllers\Admin\AdminController.cs" />
@@ -959,7 +959,6 @@
     <Folder Include="Models\" />
     <Folder Include="Scripts_Customer\app\theme\" />
     <Folder Include="Uploads\" />
-    <Folder Include="Views\AdminLayout\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -983,14 +982,9 @@
     <Content Include="Views\Admin\ContentTop.cshtml" />
     <Content Include="Views\Admin\MsgCenter.cshtml" />
     <Content Include="Views\Admin\BaSidebar.cshtml" />
-    <Content Include="Views\AccountTypes\Index.cshtml" />
     <Content Include="Views\Home\Test.cshtml" />
-    <Content Include="Views\Countries\Index.cshtml" />
-    <Content Include="Views\PaymentTypes\Index.cshtml" />
-    <Content Include="Views\InvoiceStatuses\Index.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\menuItems.cshtml" />
-    <Content Include="Views\Cities\Index.cshtml" />
     <Content Include="Scripts\app\theme\components\ckeditor\CHANGES.md" />
     <Content Include="Scripts\app\theme\components\ckeditor\LICENSE.md" />
     <Content Include="Scripts\app\theme\components\ckeditor\plugins\scayt\LICENSE.md" />
@@ -999,20 +993,11 @@
     <Content Include="Scripts\app\theme\components\ckeditor\plugins\wsc\README.md" />
     <Content Include="Scripts\app\theme\components\ckeditor\README.md" />
     <Content Include="Scripts\app\theme\components\ckeditor\skins\moono\readme.md" />
-    <Content Include="Views\CustomerAccounts\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <None Include="Properties\PublishProfiles\CRM_UI.pubxml" />
-    <Content Include="Views\TestCustomer\Index.cshtml" />
     <Content Include="Views\LoginCustomer\Index.cshtml" />
-    <Content Include="Views\HomeWithSearch\Index.cshtml" />
-    <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Scripts_Customer\app\pages\pages.module.js" />
-    <Content Include="Views\CutomerHomePage\Index.cshtml" />
-    <Content Include="Views\Customer\Products.cshtml" />
-    <Content Include="Views\Customer\slider.cshtml" />
-    <Content Include="Views\Departments\Index.cshtml" />
     <Content Include="Views\Languages\Index.cshtml" />
-    <Content Include="Views\HomeSlider\Index.cshtml" />
     <Content Include="Views\Vision\Index.cshtml" />
     <Content Include="Views\Mission\Index.cshtml" />
     <Content Include="Views\Owners\Index.cshtml" />
