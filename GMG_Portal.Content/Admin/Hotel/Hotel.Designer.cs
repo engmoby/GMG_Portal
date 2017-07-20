@@ -79,6 +79,15 @@ namespace GMG_Portal.Content.Admin.Hotel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Back.
+        /// </summary>
+        public static string btnBack {
+            get {
+                return ResourceManager.GetString("btnBack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         public static string btnSaveLbl {
@@ -93,6 +102,24 @@ namespace GMG_Portal.Content.Admin.Hotel {
         public static string CannotDeleted {
             get {
                 return ResourceManager.GetString("CannotDeleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check In.
+        /// </summary>
+        public static string Checkin {
+            get {
+                return ResourceManager.GetString("Checkin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check Out.
+        /// </summary>
+        public static string CheckOut {
+            get {
+                return ResourceManager.GetString("CheckOut", resourceCulture);
             }
         }
         
@@ -151,6 +178,33 @@ namespace GMG_Portal.Content.Admin.Hotel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Latetiute.
+        /// </summary>
+        public static string Late {
+            get {
+                return ResourceManager.GetString("Late", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Logtiute.
+        /// </summary>
+        public static string Long {
+            get {
+                return ResourceManager.GetString("Long", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mail.
+        /// </summary>
+        public static string Mail {
+            get {
+                return ResourceManager.GetString("Mail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Home Slider.
         /// </summary>
         public static string ModalTitle {
@@ -174,6 +228,15 @@ namespace GMG_Portal.Content.Admin.Hotel {
         public static string SaveSuccessMessage {
             get {
                 return ResourceManager.GetString("SaveSuccessMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Basic Information.
+        /// </summary>
+        public static string TabBasicInformationTitle {
+            get {
+                return ResourceManager.GetString("TabBasicInformationTitle", resourceCulture);
             }
         }
         
@@ -210,6 +273,42 @@ namespace GMG_Portal.Content.Admin.Hotel {
         public static string TitleDisplay {
             get {
                 return ResourceManager.GetString("TitleDisplay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Checkin Invalid Pattern.
+        /// </summary>
+        public static string TxtCheckinPatternErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtCheckinPatternErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Checkin is required.
+        /// </summary>
+        public static string TxtCheckinRequiredErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtCheckinRequiredErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Checkout Invalid Pattern.
+        /// </summary>
+        public static string TxtCheckoutPatternErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtCheckoutPatternErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Checkout is required.
+        /// </summary>
+        public static string TxtCheckoutRequiredErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtCheckoutRequiredErrorMessage", resourceCulture);
             }
         }
         
@@ -268,6 +367,60 @@ namespace GMG_Portal.Content.Admin.Hotel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Late is required.
+        /// </summary>
+        public static string TxtLatRequiredErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtLatRequiredErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Long is required.
+        /// </summary>
+        public static string TxtLongRequiredErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtLongRequiredErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mail Invalid Pattern.
+        /// </summary>
+        public static string TxtMailPatternErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtMailPatternErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mail is required.
+        /// </summary>
+        public static string TxtMailRequiredErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtMailRequiredErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Price Invalid Pattern.
+        /// </summary>
+        public static string TxtPricePatternErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtPricePatternErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Price is required.
+        /// </summary>
+        public static string TxtPriceRequiredErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtPriceRequiredErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to search ....
         /// </summary>
         public static string txtSearchLbl {
@@ -286,7 +439,7 @@ namespace GMG_Portal.Content.Admin.Hotel {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Title is required.
+        ///   Looks up a localized string similar to Hotel Title is required.
         /// </summary>
         public static string TxtTitleRequiredErrorMessage {
             get {
@@ -295,7 +448,7 @@ namespace GMG_Portal.Content.Admin.Hotel {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Title  is unique.
+        ///   Looks up a localized string similar to Hotel Title is unique.
         /// </summary>
         public static string TxtTitleUniqueErrorMessage {
             get {

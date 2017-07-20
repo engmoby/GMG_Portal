@@ -26,7 +26,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             var featuresList = new List<SystemParameters_Features>();
             var getHotelInfo = _db.Hotels.Where(p => p.IsDeleted == false && p.Show).ToList();
             foreach (var hotel in getHotelInfo)
-            { 
+            {
 
                 var getHotelFeatures = _db.Hotels_Features.Where(p => p.IsDeleted != true && p.Hotel_Id == hotel.Id).ToList();
                 foreach (var hotelFeature in getHotelFeatures)
@@ -43,17 +43,34 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 }
 
                 var getHotelImages = _db.Hotels_Images.Where(p => p.IsDeleted != true && p.Hotel_Id == hotel.Id).ToList();
-                returnList.Add(new Hotel
+
+                if (getHotelImages.Any())
+                { 
+                    returnList.Add(new Hotel
+                    {
+                        Id = hotel.Id,
+                        DisplayValue = hotel.DisplayValue,
+                        DisplayValueDesc = hotel.DisplayValueDesc,
+                        Rate = hotel.Rate,
+                        PriceStart = hotel.PriceStart,
+                        FeaturesList = featuresList,
+                        Image = getHotelImages[0].Image,
+                        Bootstrap = 12 / getHotelInfo.Count
+                    });
+                }
+                else
                 {
-                    Id = hotel.Id,
-                    DisplayValue = hotel.DisplayValue,
-                    DisplayValueDesc = hotel.DisplayValueDesc,
-                    Rate = hotel.Rate,
-                    PriceStart = hotel.PriceStart,
-                    FeaturesList = featuresList,
-                    Image = getHotelImages[0].Image,
-                    Bootstrap = 12 / getHotelInfo.Count
-                });
+                    returnList.Add(new Hotel
+                    {
+                        Id = hotel.Id,
+                        DisplayValue = hotel.DisplayValue,
+                        DisplayValueDesc = hotel.DisplayValueDesc,
+                        Rate = hotel.Rate,
+                        PriceStart = hotel.PriceStart,
+                        FeaturesList = featuresList, 
+                        Bootstrap = 12 / getHotelInfo.Count
+                    });
+                }
             }
 
             return returnList;
@@ -81,14 +98,18 @@ namespace GMG_Portal.Business.Logic.SystemParameters
 
             if (getHotelInfo != null)
             {
+                if (getHotelImages.Any())
+                {
+                    returnList.Image = getHotelImages[0].Image;
+                    returnList.ImageList = getHotelImages;
+                }
                 returnList.Id = getHotelInfo.Id;
                 returnList.DisplayValue = getHotelInfo.DisplayValue;
                 returnList.DisplayValueDesc = getHotelInfo.DisplayValueDesc;
                 returnList.Rate = getHotelInfo.Rate;
                 returnList.PriceStart = getHotelInfo.PriceStart;
-                returnList.Image = getHotelImages[0].Image;
-                returnList.ImageList = getHotelImages;
                 returnList.FeaturesList = featuresList;
+
                 return returnList;
             }
             else return null;
@@ -137,9 +158,9 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             {
                 DisplayValue = postedhotel.DisplayValue,
                 DisplayValueDesc = postedhotel.DisplayValueDesc,
-
                 IsDeleted = postedhotel.IsDeleted,
                 Show = Parameters.Show,
+                PriceStart = postedhotel.PriceStart,
                 CreationTime = Parameters.CurrentDateTime,
                 CreatorUserId = Parameters.UserId,
             };
@@ -148,14 +169,14 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         }
         public Hotel Edit(Hotel postedHotel)
         {
-            Hotel Hotel = Get(postedHotel.Id);
-            Hotel.DisplayValue = postedHotel.DisplayValue;
-            Hotel.DisplayValueDesc = postedHotel.DisplayValueDesc;
-            Hotel.IsDeleted = postedHotel.IsDeleted;
-            Hotel.Show = postedHotel.Show;
-            Hotel.LastModificationTime = Parameters.CurrentDateTime;
-            Hotel.LastModifierUserId = Parameters.UserId;
-            return Save(Hotel);
+            Hotel hotel = Get(postedHotel.Id);
+            hotel.DisplayValue = postedHotel.DisplayValue;
+            hotel.DisplayValueDesc = postedHotel.DisplayValueDesc;
+            hotel.IsDeleted = postedHotel.IsDeleted;
+            hotel.PriceStart = postedHotel.PriceStart;
+            hotel.LastModificationTime = Parameters.CurrentDateTime;
+            hotel.LastModifierUserId = Parameters.UserId;
+            return Save(hotel);
         }
         public Hotel Delete(Hotel postedHotel)
         {

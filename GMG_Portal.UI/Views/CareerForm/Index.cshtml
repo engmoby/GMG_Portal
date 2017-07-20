@@ -49,11 +49,14 @@
                     <td>{{CareerForm.FirstName +' '+ CareerForm.LastName}}</td>
                     <td>{{CareerForm.CreationTime}}</td>
                     <td>
-                        <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="downloadFile(CareerForm)" style="width: 94px;">
-                            <i class="fa fa-cloud-download" aria-hidden="true"></i>@CareerForm.Download
-                            @*<a target="_self" href="http://localhost:19056/Uploads/{{CareerForm.Attach}}" download="{{CareerForm.Attach}}"></a>*@
+                        <a class="btn btn-primary editable-table-button btn-xs btn-with-icon" style="width: 94px;" target="_top" href="http://localhost:19056/Uploads/{{CareerForm.Attach}}"
+                            download="{{CareerForm.Attach}}"><i class="fa fa-cloud-download" aria-hidden="true"></i>@CareerForm.Download</a>
 
-                        </button>
+                        @*<button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="downloadFile(CareerForm)" style="width: 94px;">
+                            <i class="fa fa-cloud-download" aria-hidden="true"></i>@CareerForm.Download
+
+
+                        </button>*@
                         <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(CareerForm)"><i class="fa fa-pencil" aria-hidden="true"></i>@CareerForm.View</button>
                     </td>
                     <td>

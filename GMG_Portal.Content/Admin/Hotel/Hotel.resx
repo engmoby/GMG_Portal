@@ -151,7 +151,7 @@
     <value>Display Front</value>
   </data>
   <data name="TxtTitleUniqueErrorMessage" xml:space="preserve">
-    <value>Title  is unique</value>
+    <value>Hotel Title is unique</value>
   </data>
   <data name="Desc" xml:space="preserve">
     <value>Description</value>
@@ -193,7 +193,7 @@
     <value>search ...</value>
   </data>
   <data name="TxtTitleRequiredErrorMessage" xml:space="preserve">
-    <value>Title is required</value>
+    <value>Hotel Title is required</value>
   </data>
   <data name="TxtUrlPatternErrorMessage" xml:space="preserve">
     <value>Url Invalid Pattern</value>
@@ -201,7 +201,58 @@
   <data name="UpdateSuccessMessage" xml:space="preserve">
     <value>Updated Successfully</value>
   </data>
+  <data name="btnBack" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="Checkin" xml:space="preserve">
+    <value>Check In</value>
+  </data>
+  <data name="CheckOut" xml:space="preserve">
+    <value>Check Out</value>
+  </data>
+  <data name="Late" xml:space="preserve">
+    <value>Latetiute</value>
+  </data>
+  <data name="Long" xml:space="preserve">
+    <value>Logtiute</value>
+  </data>
+  <data name="Mail" xml:space="preserve">
+    <value>Mail</value>
+  </data>
   <data name="Price" xml:space="preserve">
     <value>Price</value>
+  </data>
+  <data name="TabBasicInformationTitle" xml:space="preserve">
+    <value>Basic Information</value>
+  </data>
+  <data name="TxtCheckinPatternErrorMessage" xml:space="preserve">
+    <value>Checkin Invalid Pattern</value>
+  </data>
+  <data name="TxtCheckinRequiredErrorMessage" xml:space="preserve">
+    <value>Checkin is required</value>
+  </data>
+  <data name="TxtCheckoutPatternErrorMessage" xml:space="preserve">
+    <value>Checkout Invalid Pattern</value>
+  </data>
+  <data name="TxtCheckoutRequiredErrorMessage" xml:space="preserve">
+    <value>Checkout is required</value>
+  </data>
+  <data name="TxtLatRequiredErrorMessage" xml:space="preserve">
+    <value>Late is required</value>
+  </data>
+  <data name="TxtLongRequiredErrorMessage" xml:space="preserve">
+    <value>Long is required</value>
+  </data>
+  <data name="TxtMailPatternErrorMessage" xml:space="preserve">
+    <value>Mail Invalid Pattern</value>
+  </data>
+  <data name="TxtMailRequiredErrorMessage" xml:space="preserve">
+    <value>Mail is required</value>
+  </data>
+  <data name="TxtPricePatternErrorMessage" xml:space="preserve">
+    <value>Price Invalid Pattern</value>
+  </data>
+  <data name="TxtPriceRequiredErrorMessage" xml:space="preserve">
+    <value>Price is required</value>
   </data>
 </root>

@@ -2,6 +2,8 @@
 function HotelsController($scope, HotelsApi, uploadService, $rootScope, $timeout, $filter, $uibModal, toastr) {
     $scope.Image = "";
     $scope.letterLimit = 20;
+    $scope.ShowTableData = true;
+    $scope.ShowFrmAddUpdate = false;
     $rootScope.ViewLoading = true;
     HotelsApi.GetAll().then(function (response) {
         $scope.Hotels = response.data;
@@ -9,21 +11,44 @@ function HotelsController($scope, HotelsApi, uploadService, $rootScope, $timeout
     });
     $scope.open = function (Hotel) {
         debugger;
-        $scope.countFiles = '';
         $scope.invalidupdateAddFrm = true;
-        $('#ModelAddUpdate').modal('show');
-        $scope.action = Hotel == null ? 'add' : 'edit';
-        $scope.FrmAddUpdate.$setPristine();
-        $scope.FrmAddUpdate.$setUntouched();
-        if (Hotel == null) Hotel = {};
-        $scope.Hotel = angular.copy(Hotel);
-        if ($scope.Hotel.Image)
-            $scope.countFiles = $scope.Hotel.Image;
+        $scope.ShowTableData = false;
+        $scope.ShowFrmAddUpdate = true;
+      $scope.action = Hotel == null ? 'add' : 'edit';
 
-        $timeout(function () {
-            document.querySelector('input[name="TxtNameAr"]').focus();
-        }, 1000);
+        this.isFrmAddUpdateInvalid = false;
+        $scope.isFrmRowformInvalid = false;
+        $scope.isSecondFrmRowformInvalid = false;
+       
+        if (Hotel == null) Hotel = {};
+            $scope.Hotel = angular.copy(Hotel);
+            if ($scope.Hotel.Image)
+                $scope.countFiles = $scope.Hotel.Image;
+
+            $timeout(function () {
+                document.querySelector('input[name="TxtNameAr"]').focus();
+            }, 1000);
+
+
     }
+
+    //$scope.open = function (Hotel) {
+    //    debugger;
+    //    $scope.countFiles = '';
+    //    $scope.invalidupdateAddFrm = true;
+    //    $('#ModelAddUpdate').modal('show');
+    //    $scope.action = Hotel == null ? 'add' : 'edit';
+    //    $scope.FrmAddUpdate.$setPristine();
+    //    $scope.FrmAddUpdate.$setUntouched();
+    //    if (Hotel == null) Hotel = {};
+    //    $scope.Hotel = angular.copy(Hotel);
+    //    if ($scope.Hotel.Image)
+    //        $scope.countFiles = $scope.Hotel.Image;
+
+    //    $timeout(function () {
+    //        document.querySelector('input[name="TxtNameAr"]').focus();
+    //    }, 1000);
+    //}
     $scope.openImage = function (Hotel) {
         debugger;
         $('#ModelImage').modal('show');
@@ -34,10 +59,13 @@ function HotelsController($scope, HotelsApi, uploadService, $rootScope, $timeout
         //    $scope.countFiles = $scope.Hotel.Image;
 
     }
+    //$scope.back = function () {
+    //    $('#ModelAddUpdate').modal('hide');
+    //}
     $scope.back = function () {
-        $('#ModelAddUpdate').modal('hide');
+        $scope.ShowFrmAddUpdate = false;
+        $scope.ShowTableData = true;
     }
-
     $scope.Restore = function (Hotel) {
         debugger;
         $scope.Hotel = angular.copy(Hotel);
