@@ -117,73 +117,169 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AccountType" xml:space="preserve">
-    <value>Account Type</value>
+  <data name="Action" xml:space="preserve">
+    <value>Actions</value>
   </data>
-  <data name="Countries" xml:space="preserve">
-    <value>Countries</value>
+  <data name="BtnAdd" xml:space="preserve">
+    <value>Add</value>
   </data>
-  <data name="Cities" xml:space="preserve">
-    <value>Cities</value>
+  <data name="btnSaveLbl" xml:space="preserve">
+    <value>Save</value>
   </data>
-  <data name="Departments" xml:space="preserve">
-    <value>Departments</value>
+  <data name="CannotDeleted" xml:space="preserve">
+    <value>Can't be deleted</value>
   </data>
-  <data name="Languages" xml:space="preserve">
-    <value>Languages</value>
+  <data name="DeleteSuccessMessage" xml:space="preserve">
+    <value>Deleted Successfully</value>
   </data>
-  <data name="HomeSlider" xml:space="preserve">
-    <value>Home Slider</value>
+  <data name="EnglishNameUnique" xml:space="preserve">
+    <value>Display name must be unique</value>
   </data>
-  <data name="Mission" xml:space="preserve">
-    <value>Mission</value>
+  <data name="ModalTitle" xml:space="preserve">
+    <value>Contact</value>
   </data>
-  <data name="News" xml:space="preserve">
-    <value>News</value>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
   </data>
-  <data name="Vision" xml:space="preserve">
-    <value>Vision</value>
+  <data name="TitleDisplay" xml:space="preserve">
+    <value>Title</value>
   </data>
-  <data name="CareerForm" xml:space="preserve">
-    <value>Career Form</value>
+  <data name="TxtNamePatternErrorMessage" xml:space="preserve">
+    <value>Invalid Pattern</value>
   </data>
-  <data name="Careers" xml:space="preserve">
-    <value>Careers</value>
+  <data name="DisplayFront" xml:space="preserve">
+    <value>Display Front</value>
   </data>
-  <data name="Categories" xml:space="preserve">
-    <value>Categories</value>
+  <data name="Icon" xml:space="preserve">
+    <value>Icon</value>
   </data>
-  <data name="ContactForm" xml:space="preserve">
-    <value>Contact Form</value>
+  <data name="TxtNameUniqueErrorMessage" xml:space="preserve">
+    <value>Name  is unique</value>
   </data>
-  <data name="ContactUs" xml:space="preserve">
-    <value>ContactUs</value>
+  <data name="Desc" xml:space="preserve">
+    <value>Description</value>
   </data>
-  <data name="Features" xml:space="preserve">
-    <value>Features</value>
+  <data name="DescDisplay" xml:space="preserve">
+    <value>Description</value>
   </data>
-  <data name="Hotels" xml:space="preserve">
-    <value>Hotels</value>
+  <data name="Image" xml:space="preserve">
+    <value>Image</value>
   </data>
-  <data name="NewsLetter" xml:space="preserve">
-    <value>NewsLetter</value>
+  <data name="SaveSuccessMessage" xml:space="preserve">
+    <value>Save Done Successfully</value>
   </data>
-  <data name="Offers" xml:space="preserve">
-    <value>Offers</value>
+  <data name="TableBtnDelete" xml:space="preserve">
+    <value>Delete</value>
   </data>
-  <data name="Owners" xml:space="preserve">
-    <value>Owners</value>
+  <data name="TableBtnEdit" xml:space="preserve">
+    <value>Edit</value>
   </data>
-  <data name="PaymentTypes" xml:space="preserve">
-    <value>Payment Types</value>
+  <data name="TxtDescPatternErrorMessage" xml:space="preserve">
+    <value>Description Invalid Pattern</value>
   </data>
-  <data name="Reservation" xml:space="preserve">
-    <value>Reservation</value>
+  <data name="TxtDescRequiredErrorMessage" xml:space="preserve">
+    <value>Descriptionis required</value>
   </data>
-  <data name="About" xml:space="preserve">
-    <value>About</value>
+  <data name="TxtDescUniqueErrorMessage" xml:space="preserve">
+    <value>Description is unique</value>
   </data>
-  <data name="NewsCategory" xml:space="preserve">
-    <value>NewsCategory</value>
+  <data name="TxtImagePatternErrorMessage" xml:space="preserve">
+    <value>Image Invalid Pattern</value>
+  </data>
+  <data name="TxtImageRequiredErrorMessage" xml:space="preserve">
+    <value>Image required</value>
+  </data>
+  <data name="TxtImageUniqueErrorMessage" xml:space="preserve">
+    <value>Image is unique</value>
+  </data>
+  <data name="txtSearchLbl" xml:space="preserve">
+    <value>search ...</value>
+  </data>
+  <data name="TxtNameRequiredErrorMessage" xml:space="preserve">
+    <value>Name is required</value>
+  </data>
+  <data name="TxtUrlPatternErrorMessage" xml:space="preserve">
+    <value>Url Invalid Pattern</value>
+  </data>
+  <data name="UpdateSuccessMessage" xml:space="preserve">
+    <value>Updated Successfully</value>
+  </data>
+  <data name="Requirements" xml:space="preserve">
+    <value>Requirements</value>
+  </data>
+  <data name="TxtPostionPatternErrorMessage" xml:space="preserve">
+    <value>Invalid Pattern</value>
+  </data>
+  <data name="TxtPostionRequiredErrorMessage" xml:space="preserve">
+    <value>Postion is required</value>
+  </data>
+  <data name="TxtPostionUniqueErrorMessage" xml:space="preserve">
+    <value>Postion  is unique</value>
+  </data>
+  <data name="Postion" xml:space="preserve">
+    <value>Postion</value>
+  </data>
+  <data name="ApplyCount" xml:space="preserve">
+    <value>Apply Count</value>
+  </data>
+  <data name="CareerLevel" xml:space="preserve">
+    <value>Career Level</value>
+  </data>
+  <data name="EducationLevel" xml:space="preserve">
+    <value>Education Level</value>
+  </data>
+  <data name="Experience" xml:space="preserve">
+    <value>Experience</value>
+  </data>
+  <data name="JobType" xml:space="preserve">
+    <value>Job Type</value>
+  </data>
+  <data name="SalaryAverage" xml:space="preserve">
+    <value>Salary Average</value>
+  </data>
+  <data name="Vacancies" xml:space="preserve">
+    <value>Vacancies</value>
+  </data>
+  <data name="Url" xml:space="preserve">
+    <value>Url</value>
+  </data>
+  <data name="Facebook" xml:space="preserve">
+    <value>Facebook</value>
+  </data>
+  <data name="Fax" xml:space="preserve">
+    <value>Fax</value>
+  </data>
+  <data name="Instgram" xml:space="preserve">
+    <value>Instgram</value>
+  </data>
+  <data name="Late" xml:space="preserve">
+    <value>Late</value>
+  </data>
+  <data name="Long" xml:space="preserve">
+    <value>Long</value>
+  </data>
+  <data name="Mailbox" xml:space="preserve">
+    <value>Mailbox</value>
+  </data>
+  <data name="PhoneNo1" xml:space="preserve">
+    <value>PhoneNo1</value>
+  </data>
+  <data name="PhoneNo2" xml:space="preserve">
+    <value>PhoneNo2</value>
+  </data>
+  <data name="PostalCode" xml:space="preserve">
+    <value>PostalCode</value>
+  </data>
+  <data name="Snapchat" xml:space="preserve">
+    <value>Snapchat</value>
+  </data>
+  <data name="Twitter" xml:space="preserve">
+    <value>Twitter</value>
+  </data>
+  <data name="WhatsApp" xml:space="preserve">
+    <value>WhatsApp</value>
+  </data>
+  <data name="Youtube" xml:space="preserve">
+    <value>Youtube</value>
   </data>
 </root>

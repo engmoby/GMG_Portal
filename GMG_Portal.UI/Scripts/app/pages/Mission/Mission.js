@@ -2,7 +2,6 @@
 function MissionsController($scope, MissionsApi, $rootScope, $timeout, $filter, $uibModal, toastr) {
     $rootScope.ViewLoading = true;
     MissionsApi.GetAll().then(function (response) {
-        debugger;
         $scope.Missions = response.data;
         $rootScope.ViewLoading = false;
     });
@@ -84,8 +83,8 @@ function MissionsController($scope, MissionsApi, $rootScope, $timeout, $filter, 
         $scope.Mission = Mission;
         $scope.Mission.IsDeleted = true;
         $scope.save();
-    } 
-
+    }
+    
     $scope.setFiles = function (element) {
         $scope.$apply(function ($scope) {
             console.log('files:', element.files);

@@ -84,7 +84,7 @@ function VisionsController($scope, VisionsApi, $rootScope, $timeout, $filter, $u
         $scope.Vision.IsDeleted = true;
         $scope.save();
     }
-     
+  
     $scope.setFiles = function (element) {
         $scope.$apply(function ($scope) {
             console.log('files:', element.files);

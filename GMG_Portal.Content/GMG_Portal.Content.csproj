@@ -75,6 +75,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Shared.resx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\SystemParameters\Contact.Designer.cs">
+      <DependentUpon>Contact.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Admin\SystemParameters\CareerForm.Designer.cs">
       <DependentUpon>CareerForm.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -82,6 +87,11 @@
     </Compile>
     <Compile Include="Admin\SystemParameters\Career.Designer.cs">
       <DependentUpon>Career.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Admin\SystemParameters\NewsCategory.Designer.cs">
+      <DependentUpon>NewsCategory.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -158,6 +168,11 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Shared.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Admin\SystemParameters\Contact.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Contact.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Admin\SystemParameters\CareerForm.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>CareerForm.Designer.cs</LastGenOutput>
@@ -167,6 +182,10 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Career.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\SystemParameters\NewsCategory.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>NewsCategory.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\SystemParameters\News.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

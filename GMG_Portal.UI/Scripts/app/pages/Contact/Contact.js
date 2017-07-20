@@ -1,86 +1,81 @@
-﻿controllerProvider.register('NewsController', ['$scope', 'NewsApi', 'uploadService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', NewsController]);
-function NewsController($scope, NewsApi, uploadService, $rootScope, $timeout, $filter, $uibModal, toastr) {
+﻿controllerProvider.register('ContactController', ['$scope', 'ContactApi', 'uploadService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', ContactController]);
+function ContactController($scope, ContactApi, uploadService, $rootScope, $timeout, $filter, $uibModal, toastr) {
     $scope.Image = "";
     $scope.letterLimit = 20;
     $rootScope.ViewLoading = true;
-    NewsApi.GetAll().then(function (response) {
-        $scope.news = response.data;
+    ContactApi.GetAll().then(function (response) {
+        $scope.Contacts = response.data;
         $rootScope.ViewLoading = false;
     });
-    $scope.open = function (news) {
+    $scope.open = function (Contact) {
         debugger;
         $scope.countFiles = '';
         $scope.invalidupdateAddFrm = true;
         $('#ModelAddUpdate').modal('show');
-        $scope.action = news == null ? 'add' : 'edit';
+        $scope.action = Contact == null ? 'add' : 'edit';
         $scope.FrmAddUpdate.$setPristine();
         $scope.FrmAddUpdate.$setUntouched();
-        if (news == null) news = {};
-        $scope.news = angular.copy(news);
-        if ($scope.news.Image)
-            $scope.countFiles = $scope.news.Image;
+        if (Contact == null) Contact = {};
+        $scope.Contact = angular.copy(Contact);
+        if ($scope.Contact.Image)
+            $scope.countFiles = $scope.Contact.Image;
 
         $timeout(function () {
             document.querySelector('input[name="TxtNameAr"]').focus();
         }, 1000);
     }
-    $scope.openImage = function (news) {
+    $scope.openImage = function (Contact) {
         debugger;
         $('#ModelImage').modal('show');
-        //$scope.action = homeSlider == null ? 'add' : 'edit';
-        if (news == null) news = {};
-        $scope.news = angular.copy(news);
-        //if ($scope.homeSlider.Image)
-        //    $scope.countFiles = $scope.homeSlider.Image;
+        //$scope.action = Contact == null ? 'add' : 'edit';
+        if (Contact == null) Contact = {};
+        $scope.Contact = angular.copy(Contact);
+        //if ($scope.Contact.Image)
+        //    $scope.countFiles = $scope.Contact.Image;
 
     }
     $scope.back = function () {
         $('#ModelAddUpdate').modal('hide');
     }
 
-    $scope.Restore = function (news) {
+    $scope.Restore = function (Contact) {
         debugger;
-        $scope.news = angular.copy(news);
-        $scope.news.IsDeleted = false;
+        $scope.Contact = angular.copy(Contact);
+        $scope.Contact.IsDeleted = false;
         $scope.action = 'edit';
         $scope.save();
     }
 
     $scope.save = function () {
-        $rootScope.ViewLoading = true;
-        if ($scope.Image) {
-            $scope.news.Image = $scope.Image;
-            $scope.Image = "";
-        }
-        //  uploadService.uploadFiles();
+        $rootScope.ViewLoading = true; 
         debugger;
-        NewsApi.Save($scope.news).then(function (response) {
+        ContactsApi.Save($scope.Contact).then(function (response) {
 
             switch (response.data.OperationStatus) {
                 case "Succeded":
                     var index;
                     switch ($scope.action) {
                         case 'edit':
-                            index = $scope.news.indexOf($filter('filter')($scope.news, { 'ID': $scope.news.ID }, true)[0]);
-                           // $scope.news[index] = angular.copy(response.data);
-                            NewsApi.GetAll().then(function (response) {
-                                $scope.news = response.data;
+                            index = $scope.Contacts.indexOf($filter('filter')($scope.Contacts, { 'ID': $scope.Contact.ID }, true)[0]);
+                           // $scope.Contacts[index] = angular.copy(response.data);
+                            ContactsApi.GetAll().then(function (response) {
+                                $scope.Contacts = response.data; 
                             }); 
                             toastr.success($('#HUpdateSuccessMessage').val(), 'Success');
                             break;
                         case 'delete':
-                            index = $scope.news.indexOf($filter('filter')($scope.news, { 'ID': $scope.news.ID }, true)[0]);
-                           // $scope.news[index] = angular.copy(response.data);
-                            NewsApi.GetAll().then(function (response) {
-                                $scope.news = response.data;
+                            index = $scope.Contacts.indexOf($filter('filter')($scope.Contacts, { 'ID': $scope.Contact.ID }, true)[0]);
+                           // $scope.Contacts[index] = angular.copy(response.data);
+                            ContactsApi.GetAll().then(function (response) {
+                                $scope.Contacts = response.data;
                             });
                             toastr.success($('#HDeleteSuccessMessage').val(), 'Success');
                             break;
                         case 'add':
-                            NewsApi.GetAll().then(function (response) {
-                                $scope.news = response.data;
+                            ContactsApi.GetAll().then(function (response) {
+                                $scope.Contacts = response.data;
                             });
-                            // $scope.news.push(angular.copy(response.data));
+                            // $scope.Contacts.push(angular.copy(response.data));
                             toastr.success($('#HSaveSuccessMessage').val(), 'Success');
                             break;
                     }
@@ -98,8 +93,9 @@ function NewsController($scope, NewsApi, uploadService, $rootScope, $timeout, $f
 
             }
 
-            $rootScope.ViewLoading = false;
+           
             $scope.back();
+            $rootScope.ViewLoading = false;
         },
         function (response) {
             debugger;
@@ -107,10 +103,10 @@ function NewsController($scope, NewsApi, uploadService, $rootScope, $timeout, $f
         });
     }
 
-    $scope.Delete = function (news) {
+    $scope.Delete = function (Contact) {
         $scope.action = 'delete';
-        $scope.news = news;
-        $scope.news.IsDeleted = true;
+        $scope.Contact = Contact;
+        $scope.Contact.IsDeleted = true;
         $scope.save();
     }
     $scope.uploading = false;
