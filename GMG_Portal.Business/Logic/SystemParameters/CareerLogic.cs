@@ -19,7 +19,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         public List<SystemParameters_Careers> GetAllWithDeleted()
         {
             var returnList = new List<SystemParameters_Careers>(); 
-            var getCareersList = _db.SystemParameters_Careers.Where(p => p.IsDeleted == false && p.Show== true).ToList();
+            var getCareersList = _db.SystemParameters_Careers.ToList();
             foreach (var caeerCareerse in getCareersList)
             {
 
@@ -37,6 +37,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                     CareerLevel = caeerCareerse.CareerLevel, 
                     Vacancies = caeerCareerse.Vacancies,  
                     JobType = caeerCareerse.JobType,
+                    IsDeleted = caeerCareerse.IsDeleted,
                     ApplyCount = getCareerForms.Count
                 });
             }
@@ -108,6 +109,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             career.JobType = postedCareer.JobType;
             career.EducationLevel = postedCareer.EducationLevel;
             career.Vacancies = postedCareer.Vacancies;
+            career.Experience = postedCareer.Experience;
             career.Image = postedCareer.Image;
             career.SalaryAverage= postedCareer.SalaryAverage; 
             career.IsDeleted = postedCareer.IsDeleted;

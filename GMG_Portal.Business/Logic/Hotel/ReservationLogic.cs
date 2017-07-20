@@ -56,6 +56,8 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         }
         public Hotels_Reservation Insert(Hotels_Reservation postedReservation)
         {
+             Random _r = new Random();
+            int n = _r.Next();
 
             var reservation = new Hotels_Reservation()
             {
@@ -70,6 +72,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 Notes = postedReservation.Notes,
                 HotelId = postedReservation.HotelId,
                 CountryId = postedReservation.CountryId,
+                OperationId = n,
                 CreationTime = Parameters.CurrentDateTime
             };
             _db.Hotels_Reservation.Add(reservation);

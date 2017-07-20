@@ -2,6 +2,156 @@
 @{
     ViewBag.Title = "Index";
 }
+@using GMG_Portal.Content;
+@using GMG_Portal.Content.Admin
+@using GMG_Portal.Content.Admin.SystemParameters
+<script type="text/javascript" src="~/Scripts/app/services/CareerForm.js"></script>
+<script type="text/javascript" src="~/Scripts/app/pages/CareerForm/CareerForm.js"></script>
+<input type="hidden" id="HEnglishNameUnique" value="@CareerForm.EnglishNameUnique" />
+<input type="hidden" id="HUpdateSuccessMessage" value="@CareerForm.UpdateSuccessMessage" />
+<input type="hidden" id="HSaveSuccessMessage" value="@CareerForm.SaveSuccessMessage" />
+<input type="hidden" id="HDeleteSuccessMessage" value="@CareerForm.DeleteSuccessMessage" />
+@*<input type="hidden" id="HArabicNameUnique" value="@CareerForm.TxtTitleUniqueErrorMessage" />*@
+<input type="hidden" id="HCannotDeleted" value="@CareerForm.CannotDeleted" />
 
-<h2>Index</h2>
+<div ng-controller="CareerFormsController">
+
+    <div ba-panel>
+        <table class="table table-hover table-condensed" st-table="TableData" st-safe-src="CareerForms">
+            <thead>
+                <tr class="toolbar">
+                    <th colspan="2">
+                        <div class="input-group">
+                            <span class="input-group-addon addon-left"><i class="fa fa-search" aria-hidden="true"></i></span>
+                            <input st-search="" class="form-control" placeholder="@CareerForm.txtSearchLbl" type="text" />
+                        </div>
+                    </th>
+                    <th colspan="1"></th>
+
+                </tr>
+
+                <tr class="sortable">
+                    <th>#</th>
+                    <th st-sort="Postion">@CareerForm.Postion</th>
+                    <th st-sort="Title">@CareerForm.Name</th>
+                    <th st-sort="Desc">@CareerForm.Date</th>
+                    <th>@CareerForm.Action</th>
+                    <th>@CareerForm.Action</th>
+                    @*<th ng-show="CareerForm.Seen">@CareerForm.Seen By</th>*@
+
+                </tr>
+
+            </thead>
+            <tbody>
+                <tr ng-class="{'red-text': CareerForm.Seen == false}" ng-repeat="CareerForm in TableData">
+                    <td>{{$index+1}}</td>
+                    <td>{{CareerForm.CareerTitle}}</td>
+                    <td>{{CareerForm.FirstName +' '+ CareerForm.LastName}}</td>
+                    <td>{{CareerForm.CreationTime}}</td>
+                    <td>
+                        <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="downloadFile(CareerForm)" style="width: 94px;">
+                            <i class="fa fa-cloud-download" aria-hidden="true"></i>@CareerForm.Download
+                            @*<a target="_self" href="http://localhost:19056/Uploads/{{CareerForm.Attach}}" download="{{CareerForm.Attach}}"></a>*@
+
+                        </button>
+                        <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(CareerForm)"><i class="fa fa-pencil" aria-hidden="true"></i>@CareerForm.View</button>
+                    </td>
+                    <td>
+                        <div class="buttons" ng-show="!CareerForm.Seen">
+                            <button class="center-block btn btn-default  restore-button btn-xs btn-with-icon" ng-click="Seen(CareerForm)"><i class="fa fa-undo" aria-hidden="true"></i>@CareerForm.Seen</button>
+                        </div>
+                        <div class="buttons" ng-show="CareerForm.Seen">
+                            {{CareerForm.SeenBy}}
+                        </div>
+                    </td>
+                </tr>
+                <tr ng-show="TableData.length==0">
+                    <td colspan="4">
+                        @Shared.GridNoData
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4" class="text-center">
+                        <div st-pagination="" st-items-by-page="10"></div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <form name="FrmAddUpdate" ng-submit="save()" novalidate autocomplete="off">
+
+        <div class="modal fade" id="ModelAddUpdate" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">{{action |uppercase}} @CareerForm.ModalTitle</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="TxtTitle">@CareerForm.Postion</label><span class="red-text"> *</span>
+                            <input type="text" ng-model="CareerForm.CareerTitle" class="form-control" Title="TxtTitle"
+                                   placeholder="@CareerForm.Postion" required ng-pattern="/@Regex.NameAr/">
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="TxtTitle">@CareerForm.FirstName</label><span class="red-text"> *</span>
+                                    <input type="text" ng-model="CareerForm.FirstName" class="form-control" Title="TxtTitle" readonly="readonly"
+                                           placeholder="@CareerForm.FirstName" required ng-pattern="/@Regex.NameAr/">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="TxtTitle">@CareerForm.LastName</label><span class="red-text"> *</span>
+                                    <input type="text" ng-model="CareerForm.LastName" class="form-control" Title="TxtTitle" readonly="readonly"
+                                           placeholder="@CareerForm.LastName" required ng-pattern="/@Regex.NameAr/">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="TxtTitle">@CareerForm.Phone</label><span class="red-text"> *</span>
+                                    <input type="text" ng-model="CareerForm.PhoneNo" class="form-control" Title="TxtTitle"
+                                           placeholder="@CareerForm.Phone" required ng-pattern="/@Regex.Number/">
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="TxtTitle">@CareerForm.Mail</label><span class="red-text"> *</span>
+                                    <input type="text" ng-model="CareerForm.Email" class="form-control" Title="TxtTitle" readonly="readonly"
+                                           placeholder="@CareerForm.Mail" required ng-pattern="/@Regex.NameAr/">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="TxtDesc">@CareerForm.Desc</label><span class="red-text"> *</span>
+                            <textarea ng-model="CareerForm.Message" class="form-control" name="TxtDesc" readonly="readonly"
+                                      placeholder="Text" required ng-pattern="/@Regex.NameEn/"></textarea>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </form>
+
+
+</div>
+
+
+
+
+
 

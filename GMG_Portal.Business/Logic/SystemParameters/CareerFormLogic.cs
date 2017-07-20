@@ -17,8 +17,33 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             _db = new GMG_Portal_DBEntities1();
         }
         public List<SystemParameters_CareerForm> GetAllWithSeen()
-        {
-            return _db.SystemParameters_CareerForm.OrderBy(p => p.SeenBy).ToList();
+        { 
+            var returnList = new List<SystemParameters_CareerForm>();
+            var getCareerFormList = _db.SystemParameters_CareerForm.ToList();
+            foreach (var caeerCareerse in getCareerFormList)
+            {
+                var getCareerForms = _db.SystemParameters_Careers.FirstOrDefault(p => p.Id == caeerCareerse.CareerId);
+
+                if (getCareerForms != null)
+                    returnList.Add(new SystemParameters_CareerForm
+                    {
+                        Id = caeerCareerse.Id,
+                        CareerId = caeerCareerse.CareerId,
+                        CareerTitle = getCareerForms.DisplayValue,
+                        FirstName = caeerCareerse.FirstName,
+                        LastName = caeerCareerse.LastName,
+                        Email = caeerCareerse.Email,
+                        PhoneNo = caeerCareerse.PhoneNo,
+                        Message = caeerCareerse.Message,
+                        Attach = caeerCareerse.Attach,
+                        Seen = caeerCareerse.Seen,
+                        SeenBy = caeerCareerse.SeenBy,
+                        SeenDate = caeerCareerse.SeenDate,
+                        CreationTime = caeerCareerse.CreationTime
+                    });
+            }
+
+            return returnList; 
         }
         public List<SystemParameters_CareerForm> GetAll()
         {

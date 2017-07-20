@@ -4,6 +4,7 @@ function CareerFormsController($scope, CareerFormsApi, uploadService, $rootScope
     $scope.letterLimit = 20;
     $rootScope.ViewLoading = true;
     CareerFormsApi.GetAll().then(function (response) {
+        debugger;
         $scope.CareerForms = response.data;
         $rootScope.ViewLoading = false;
     });
@@ -24,6 +25,38 @@ function CareerFormsController($scope, CareerFormsApi, uploadService, $rootScope
             document.querySelector('input[name="TxtNameAr"]').focus();
         }, 1000);
     }
+    $scope.downloadFile = function (name) {
+        CareerFormsApi.Download(name).then(function (data, status, headers) {
+            headers = headers();
+
+                var filename = headers['x-filename'];
+                var contentType = headers['content-type'];
+
+                var linkElement = document.createElement('a');
+                try {
+                    var blob = new Blob([data], { type: contentType });
+                    var url = window.URL.createObjectURL(blob);
+
+                    linkElement.setAttribute('href', url);
+                    linkElement.setAttribute("download", filename);
+
+                    var clickEvent = new MouseEvent("click", {
+                        "view": window,
+                        "bubbles": true,
+                        "cancelable": false
+                    });
+                    linkElement.dispatchEvent(clickEvent);
+                } catch (ex) {
+                    console.log(ex);
+                }
+                $rootScope.ViewLoading = false;
+                $scope.back();
+            },
+            function (data) {
+                debugger; 
+            });
+         
+    };
     $scope.openImage = function (CareerForm) {
         debugger;
         $('#ModelImage').modal('show');
@@ -37,11 +70,27 @@ function CareerFormsController($scope, CareerFormsApi, uploadService, $rootScope
     $scope.back = function () {
         $('#ModelAddUpdate').modal('hide');
     }
-
+    $scope.downloadFileImage = function (downloadPath) {
+        window.open(downloadPath.Attach, '_blank', '');
+    }
     $scope.Restore = function (CareerForm) {
         debugger;
         $scope.CareerForm = angular.copy(CareerForm);
         $scope.CareerForm.IsDeleted = false;
+        $scope.action = 'edit';
+        $scope.save();
+    }
+
+    $scope.Seen = function (CareerForm) {
+        debugger;
+        $scope.CareerForm = angular.copy(CareerForm);
+        if (CareerForm.Seen === true) {
+        $scope.CareerForm.Seen = false;
+            
+        } else {
+            
+            $scope.CareerForm.Seen = true;
+        }
         $scope.action = 'edit';
         $scope.save();
     }
