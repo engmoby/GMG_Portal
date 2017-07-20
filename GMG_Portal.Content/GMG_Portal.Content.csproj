@@ -80,8 +80,18 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Admin\SystemParameters\News.Designer.cs">
+      <DependentUpon>News.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Admin\SystemParameters\Owner.Designer.cs">
       <DependentUpon>Owner.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Admin\SystemParameters\About.Designer.cs">
+      <DependentUpon>About.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -149,10 +159,18 @@
       <LastGenOutput>Career.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Admin\SystemParameters\News.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>News.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Admin\SystemParameters\Owner.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Owner.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\SystemParameters\About.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>About.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\SystemParameters\Vission.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

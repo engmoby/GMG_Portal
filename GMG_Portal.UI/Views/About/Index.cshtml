@@ -1,0 +1,130 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+@using GMG_Portal.Content; 
+@using GMG_Portal.Content.Admin
+@using GMG_Portal.Content.Admin.SystemParameters
+<script type="text/javascript" src="~/Scripts/app/services/About.js"></script>
+<script type="text/javascript" src="~/Scripts/app/pages/About/About.js"></script>
+<input type="hidden" id="HEnglishNameUnique" value="@About.EnglishNameUnique" />
+<input type="hidden" id="HUpdateSuccessMessage" value="@About.UpdateSuccessMessage" />
+<input type="hidden" id="HSaveSuccessMessage" value="@About.SaveSuccessMessage" />
+<input type="hidden" id="HDeleteSuccessMessage" value="@About.DeleteSuccessMessage" />
+<input type="hidden" id="HArabicNameUnique" value="@About.TxtTitleUniqueErrorMessage" />
+<input type="hidden" id="HCannotDeleted" value="@About.CannotDeleted" />
+<div ng-controller="AboutController">
+
+    <div ba-panel>
+        <table class="table table-hover table-condensed" st-table="TableData" st-safe-src="About">
+            <thead>
+            <tr class="toolbar">
+                <th colspan="2">
+                    <div class="input-group">
+                        <span class="input-group-addon addon-left"><i class="fa fa-search" aria-hidden="true"></i></span>
+                        <input st-search="" class="form-control" placeholder="@About.txtSearchLbl" type="text" />
+                    </div>
+                </th>
+                <th colspan="1"></th>
+                <th>
+                    <div class="input-group">
+                        @*<button class="btn btn-primary btn-with-icon" ng-click="open(null)"><i class="fa fa-plus" aria-hidden="true"></i>@Vission.BtnAdd</button>*@
+                    </div>
+                </th>
+            </tr>
+
+            <tr class="sortable">
+                   
+                <th st-sort="NameAr">@About.Title</th>
+                <th st-sort="NameEn">@About.Desc</th>
+           
+                    
+            </tr>
+
+            </thead>
+            <tbody>
+            <tr ng-repeat="About in TableData">
+                <td ng-class="{'red-text': About.IsDeleted == true}">{{About.DisplayValue}}</td>
+                <td ng-class="{'red-text': About.IsDeleted == true}">{{About.DisplayValueDesc}}</td>
+           
+                <td>
+                    <div class="buttons" ng-show="!About.IsDeleted">
+                        <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(About)"><i class="fa fa-pencil" aria-hidden="true"></i>@About.TableBtnEdit</button>
+                        @*<button class="btn btn-danger editable-table-button btn-xs btn-with-icon" ng-confirm="Confirm Delete ?" ng-click="Delete(Vision)"><i class="fa fa-trash-o" aria-hidden="true"></i>@Vission.TableBtnDelete</button>*@
+                    </div>
+                    <div class="buttons restore-button" ng-show="About.IsDeleted">
+                        <button class="center-block btn btn-default  restore-button btn-xs btn-with-icon" ng-click="Restore(About)"><i class="fa fa-undo" aria-hidden="true"></i>Restore</button>
+                    </div>
+                </td>
+            </tr>
+            <tr ng-show="TableData.length==0">
+                <td colspan="4">
+                    @Shared.GridNoData
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="4" class="text-center">
+                    <div st-pagination="" st-items-by-page="10"></div>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+
+
+    <form name="FrmAddUpdate" novalidate ng-submit="save()" autocomplete="off">
+
+        <div class="modal fade" id="ModelAddUpdate" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">{{action |uppercase}} @About.ModalTitle</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="TxtTitle">@About.Title</label><span class="red-text"> *</span>
+                            <input type="text" ng-model="About.DisplayValue" not-in-list="About" list-item-id="About.ID" class="form-control" Title="TxtTitle"
+                                   placeholder="Text" required ng-pattern="/@Regex.NameAr/">
+
+                            <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
+                                <span class="red-text" ng-message="required">@About.TxtTitleRequiredErrorMessage</span>
+                                <span class="red-text" ng-message="pattern">@About.TxtTitlePatternErrorMessage</span>
+                                <span class="red-text" ng-message="notInList">@About.TxtTitleUniqueErrorMessage</span>
+                            </div>
+                        </div>`
+                        <div class="form-group">
+                            <label for="TxtDesc">@About.Desc</label><span class="red-text"> *</span>
+                            <textarea ng-model="About.DisplayValueDesc" not-in-list="About" list-item-id="About.ID" class="form-control" name="TxtDesc"
+                                    placeholder="Text" required ng-pattern="/@Regex.NameEn/"></textarea>
+                            <div class="red-text" ng-messages="FrmAddUpdate.TxtDesc.$error" ng-show="FrmAddUpdate.TxtDesc.$touched">
+                                <span class="red-text" ng-message="required">@About.TxtDescRequiredErrorMessage</span>
+                                <span class="red-text" ng-message="pattern">@About.TxtDescPatternErrorMessage</span>
+                                <span class="red-text" ng-message="notInList">@About.TxtDescUniqueErrorMessage</span>
+                            </div>
+                        </div>
+                        
+                 
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary btn-with-icon" ng-disabled="FrmAddUpdate.$invalid"><i class="ion-android-checkmark-circle"></i>@About.btnSaveLbl</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+
+
+</div>
+
+
+
+
+
+
