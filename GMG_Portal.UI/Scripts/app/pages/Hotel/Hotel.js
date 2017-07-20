@@ -1,96 +1,47 @@
-﻿controllerProvider.register('CareerFormsController', ['$scope', 'CareerFormsApi', 'uploadService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', CareerFormsController]);
-function CareerFormsController($scope, CareerFormsApi, uploadService, $rootScope, $timeout, $filter, $uibModal, toastr) {
+﻿controllerProvider.register('HotelsController', ['$scope', 'HotelsApi', 'uploadService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', HotelsController]);
+function HotelsController($scope, HotelsApi, uploadService, $rootScope, $timeout, $filter, $uibModal, toastr) {
     $scope.Image = "";
     $scope.letterLimit = 20;
     $rootScope.ViewLoading = true;
-    CareerFormsApi.GetAll().then(function (response) {
-        debugger;
-        $scope.CareerForms = response.data;
+    HotelsApi.GetAll().then(function (response) {
+        $scope.Hotels = response.data;
         $rootScope.ViewLoading = false;
     });
-    $scope.open = function (CareerForm) {
+    $scope.open = function (Hotel) {
         debugger;
         $scope.countFiles = '';
         $scope.invalidupdateAddFrm = true;
         $('#ModelAddUpdate').modal('show');
-        $scope.action = CareerForm == null ? 'add' : 'edit';
+        $scope.action = Hotel == null ? 'add' : 'edit';
         $scope.FrmAddUpdate.$setPristine();
         $scope.FrmAddUpdate.$setUntouched();
-        if (CareerForm == null) CareerForm = {};
-        $scope.CareerForm = angular.copy(CareerForm);
-        if ($scope.CareerForm.Image)
-            $scope.countFiles = $scope.CareerForm.Image;
+        if (Hotel == null) Hotel = {};
+        $scope.Hotel = angular.copy(Hotel);
+        if ($scope.Hotel.Image)
+            $scope.countFiles = $scope.Hotel.Image;
 
         $timeout(function () {
             document.querySelector('input[name="TxtNameAr"]').focus();
         }, 1000);
     }
-    $scope.downloadFile = function (name) {
-        CareerFormsApi.Download(name).then(function (data, status, headers) {
-            headers = headers();
-
-                var filename = headers['x-filename'];
-                var contentType = headers['content-type'];
-
-                var linkElement = document.createElement('a');
-                try {
-                    var blob = new Blob([data], { type: contentType });
-                    var url = window.URL.createObjectURL(blob);
-
-                    linkElement.setAttribute('href', url);
-                    linkElement.setAttribute("download", filename);
-
-                    var clickEvent = new MouseEvent("click", {
-                        "view": window,
-                        "bubbles": true,
-                        "cancelable": false
-                    });
-                    linkElement.dispatchEvent(clickEvent);
-                } catch (ex) {
-                    console.log(ex);
-                }
-                $rootScope.ViewLoading = false;
-                $scope.back();
-            },
-            function (data) {
-                debugger; 
-            });
-         
-    };
-    $scope.openImage = function (CareerForm) {
+    $scope.openImage = function (Hotel) {
         debugger;
         $('#ModelImage').modal('show');
-        //$scope.action = CareerForm == null ? 'add' : 'edit';
-        if (CareerForm == null) CareerForm = {};
-        $scope.CareerForm = angular.copy(CareerForm);
-        //if ($scope.CareerForm.Image)
-        //    $scope.countFiles = $scope.CareerForm.Image;
+        //$scope.action = Hotel == null ? 'add' : 'edit';
+        if (Hotel == null) Hotel = {};
+        $scope.Hotel = angular.copy(Hotel);
+        //if ($scope.Hotel.Image)
+        //    $scope.countFiles = $scope.Hotel.Image;
 
     }
     $scope.back = function () {
         $('#ModelAddUpdate').modal('hide');
     }
-    $scope.downloadFileImage = function (downloadPath) {
-        window.open(downloadPath.Attach, '_blank', '');
-    }
-    $scope.Restore = function (CareerForm) {
-        debugger;
-        $scope.CareerForm = angular.copy(CareerForm);
-        $scope.CareerForm.IsDeleted = false;
-        $scope.action = 'edit';
-        $scope.save();
-    }
 
-    $scope.Seen = function (CareerForm) {
+    $scope.Restore = function (Hotel) {
         debugger;
-        $scope.CareerForm = angular.copy(CareerForm);
-        if (CareerForm.Seen === true) {
-        $scope.CareerForm.Seen = false;
-            
-        } else {
-            
-            $scope.CareerForm.Seen = true;
-        }
+        $scope.Hotel = angular.copy(Hotel);
+        $scope.Hotel.IsDeleted = false;
         $scope.action = 'edit';
         $scope.save();
     }
@@ -98,38 +49,38 @@ function CareerFormsController($scope, CareerFormsApi, uploadService, $rootScope
     $scope.save = function () {
         $rootScope.ViewLoading = true;
         if ($scope.Image) {
-            $scope.CareerForm.Image = $scope.Image;
+            $scope.Hotel.Image = $scope.Image;
             $scope.Image = "";
         }
         //  uploadService.uploadFiles();
         debugger;
-        CareerFormsApi.Save($scope.CareerForm).then(function (response) {
+        HotelsApi.Save($scope.Hotel).then(function (response) {
 
             switch (response.data.OperationStatus) {
                 case "Succeded":
                     var index;
                     switch ($scope.action) {
                         case 'edit':
-                            index = $scope.CareerForms.indexOf($filter('filter')($scope.CareerForms, { 'ID': $scope.CareerForm.ID }, true)[0]);
-                           // $scope.CareerForms[index] = angular.copy(response.data);
-                            CareerFormsApi.GetAll().then(function (response) {
-                                $scope.CareerForms = response.data; 
+                            index = $scope.Hotels.indexOf($filter('filter')($scope.Hotels, { 'ID': $scope.Hotel.ID }, true)[0]);
+                           // $scope.Hotels[index] = angular.copy(response.data);
+                            HotelsApi.GetAll().then(function (response) {
+                                $scope.Hotels = response.data; 
                             }); 
                             toastr.success($('#HUpdateSuccessMessage').val(), 'Success');
                             break;
                         case 'delete':
-                            index = $scope.CareerForms.indexOf($filter('filter')($scope.CareerForms, { 'ID': $scope.CareerForm.ID }, true)[0]);
-                           // $scope.CareerForms[index] = angular.copy(response.data);
-                            CareerFormsApi.GetAll().then(function (response) {
-                                $scope.CareerForms = response.data;
+                            index = $scope.Hotels.indexOf($filter('filter')($scope.Hotels, { 'ID': $scope.Hotel.ID }, true)[0]);
+                           // $scope.Hotels[index] = angular.copy(response.data);
+                            HotelsApi.GetAll().then(function (response) {
+                                $scope.Hotels = response.data;
                             });
                             toastr.success($('#HDeleteSuccessMessage').val(), 'Success');
                             break;
                         case 'add':
-                            CareerFormsApi.GetAll().then(function (response) {
-                                $scope.CareerForms = response.data;
+                            HotelsApi.GetAll().then(function (response) {
+                                $scope.Hotels = response.data;
                             });
-                            // $scope.CareerForms.push(angular.copy(response.data));
+                            // $scope.Hotels.push(angular.copy(response.data));
                             toastr.success($('#HSaveSuccessMessage').val(), 'Success');
                             break;
                     }
@@ -156,10 +107,10 @@ function CareerFormsController($scope, CareerFormsApi, uploadService, $rootScope
         });
     }
 
-    $scope.Delete = function (CareerForm) {
+    $scope.Delete = function (Hotel) {
         $scope.action = 'delete';
-        $scope.CareerForm = CareerForm;
-        $scope.CareerForm.IsDeleted = true;
+        $scope.Hotel = Hotel;
+        $scope.Hotel.IsDeleted = true;
         $scope.save();
     }
     $scope.uploading = false;

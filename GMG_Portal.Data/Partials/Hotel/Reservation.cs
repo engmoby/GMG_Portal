@@ -9,7 +9,7 @@ namespace GMG_Portal.Data
 {
     public partial class Hotels_Reservation
     {
-        [NotMapped]
+        [NotMapped] 
         public string OperationStatus { get; set; }
     }
 }

@@ -18,8 +18,7 @@ namespace GMG_Portal.API.Models.Hotels.Hotel
         public Guid? LookupKeyGuidDesc { get; set; }
         public int? PriceStart { get; set; }
         public string Image { get; set; }
-        public int? CityId { get; set; }
-        public int? Rate { get; set; }
+        public int? CityId { get; set; } 
         public System.DateTime? LastModificationTime { get; set; }
         public int? LastModifierUserId { get; set; }
         public DateTime? CreationTime { get; set; }
@@ -39,5 +38,6 @@ namespace GMG_Portal.API.Models.Hotels.Hotel
         public List<Hotels_Images> ImageList { get; set; }
         public List<SystemParameters_Features> FeaturesList { get; set; }
         public int Bootstrap { get; set; }
+        public int? Rate { get; set; }
     }
 }

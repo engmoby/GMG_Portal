@@ -180,6 +180,7 @@
           <Property Name="SeenDate" Type="datetime" />
           <Property Name="SeenBy" Type="int" />
           <Property Name="CreationTime" Type="datetime" />
+          <Property Name="OperationId" Type="int" />
         </EntityType>
         <EntityType Name="Hotles_Offers">
           <Key>
@@ -1214,6 +1215,7 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters.LanguageTex
           <Property Name="SeenDate" Type="DateTime" Precision="3" />
           <Property Name="SeenBy" Type="Int32" />
           <Property Name="CreationTime" Type="DateTime" Precision="3" />
+          <Property Name="OperationId" Type="Int32" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -1797,6 +1799,7 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters.LanguageTex
           <EntitySetMapping Name="Hotels_Reservation">
             <EntityTypeMapping TypeName="GMG_Portal_DBModel.Hotels_Reservation">
               <MappingFragment StoreEntitySet="Hotels_Reservation">
+                <ScalarProperty Name="OperationId" ColumnName="OperationId" />
                 <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
                 <ScalarProperty Name="SeenBy" ColumnName="SeenBy" />
                 <ScalarProperty Name="SeenDate" ColumnName="SeenDate" />

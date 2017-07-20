@@ -29,5 +29,6 @@ namespace GMG_Portal.Data
         public Nullable<System.DateTime> SeenDate { get; set; }
         public Nullable<int> SeenBy { get; set; }
         public Nullable<System.DateTime> CreationTime { get; set; }
+        public Nullable<int> OperationId { get; set; }
     }
 }
