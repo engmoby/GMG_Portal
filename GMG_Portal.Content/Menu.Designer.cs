@@ -205,6 +205,15 @@ namespace GMG_Portal.Content {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to NewsCategory.
+        /// </summary>
+        public static string NewsCategory {
+            get {
+                return ResourceManager.GetString("NewsCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to NewsLetter.
         /// </summary>
         public static string NewsLetter {
