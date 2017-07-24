@@ -4,7 +4,6 @@ using System.Web.Mvc;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using GMG_Portal.API.Models.Hotels.Hotel;
 using Newtonsoft.Json;
 using GMG_Portal.API.Models.SystemParameters;
 
