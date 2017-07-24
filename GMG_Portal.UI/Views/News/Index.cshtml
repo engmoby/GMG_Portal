@@ -125,7 +125,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="TxtTitle">@News.Title</label><span class="red-text"> *</span>
-                            <input type="text" ng-model="news.DisplayValue" not-in-list="news" list-item-id="news.ID" class="form-control" Title="TxtTitle"
+                            <input type="text" ng-model="news.DisplayValue"   class="form-control" Title="TxtTitle"
                                    placeholder="@News.Title" required ng-pattern="/@Regex.NameAr/">
 
                             <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
@@ -136,7 +136,7 @@
                         </div>
                         <div class="form-group">
                             <label for="TxtDesc">@News.Desc</label><span class="red-text"> *</span>
-                            <textarea ng-model="news.DisplayValueDesc" not-in-list="news" list-item-id="news.ID" class="form-control" name="TxtDesc"
+                            <textarea ng-model="news.DisplayValueDesc"   class="form-control" name="TxtDesc"
                                       placeholder="Text" required ng-pattern="/@Regex.NameEn/"></textarea>
                             <div class="red-text" ng-messages="FrmAddUpdate.TxtDesc.$error" ng-show="FrmAddUpdate.TxtDesc.$touched">
                                 <span class="red-text" ng-message="required">@News.TxtDescRequiredErrorMessage</span>
@@ -145,7 +145,16 @@
                             </div>
                         </div>
 
-                        
+                        <div class="form-group">
+                            <label for="TxtDesc">@News.Desc</label><span class="red-text"> *</span>
+                            <select name="LstCategory" class="form-control" ng-options="Category as Category.DisplayValue  for Category in Categorys"
+                                    ng-model="SelectedCategory" ng-change="selectedCategorysChanged(SelectedCategory)" required>
+                                <option value=''> choose</option>
+                            </select>
+                            <div class="red-text" ng-messages="FrmAddUpdate.LstCategory.$error" ng-show="FrmAddUpdate.LstCategory.$touched">
+                                <span class="error" ng-message="required">required</span>
+                            </div>
+                        </div>
                      
                         <div class="form-group">
                             <label for="TxtRate">@News.Image</label><span class="red-text"> *</span>

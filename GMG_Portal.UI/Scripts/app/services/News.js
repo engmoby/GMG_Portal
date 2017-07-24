@@ -12,4 +12,8 @@
             data: JSON.stringify(news)
         });
     }
+
+    this.GetAllCategories = function () {
+        return $http.get(apiUrl + '/SystemParameters/NewsCategory/GetAllWithDeleted');
+    }
 });

@@ -7,6 +7,13 @@ function NewsController($scope, NewsApi, uploadService, $rootScope, $timeout, $f
         $scope.news = response.data;
         $rootScope.ViewLoading = false;
     });
+
+    //get Categories
+
+    NewsApi.GetAllCategories().then(function (response) {
+        debugger;
+        $scope.Categorys = response.data;
+    });
     $scope.open = function (news) {
         debugger;
         $scope.countFiles = '';
@@ -15,7 +22,12 @@ function NewsController($scope, NewsApi, uploadService, $rootScope, $timeout, $f
         $scope.action = news == null ? 'add' : 'edit';
         $scope.FrmAddUpdate.$setPristine();
         $scope.FrmAddUpdate.$setUntouched();
-        if (news == null) news = {};
+        if (news == null)news = {};
+        else
+        {
+            var categoryIndex = $scope.Categorys.indexOf($filter('filter')($scope.Categorys, { 'Id': news.CategoryId }, true)[0]);
+            $scope.SelectedCategory = $scope.Categorys[categoryIndex];
+        };
         $scope.news = angular.copy(news);
         if ($scope.news.Image)
             $scope.countFiles = $scope.news.Image;
@@ -24,6 +36,13 @@ function NewsController($scope, NewsApi, uploadService, $rootScope, $timeout, $f
             document.querySelector('input[name="TxtNameAr"]').focus();
         }, 1000);
     }
+
+
+    $scope.selectedCategorysChanged = function (SelectedCategory) {
+        debugger;
+        $scope.SelectedCategory = SelectedCategory;
+    }
+
     $scope.openImage = function (news) {
         debugger;
         $('#ModelImage').modal('show');
@@ -48,6 +67,9 @@ function NewsController($scope, NewsApi, uploadService, $rootScope, $timeout, $f
 
     $scope.save = function () {
         $rootScope.ViewLoading = true;
+        if ($scope.action != 'delete' && $scope.action != 'restore') {
+            $scope.news.CategoryId = $scope.SelectedCategory.Id;
+        }
         if ($scope.Image) {
             $scope.news.Image = $scope.Image;
             $scope.Image = "";
@@ -170,6 +192,12 @@ function NewsController($scope, NewsApi, uploadService, $rootScope, $timeout, $f
 
             );
     };
+
+
+    $scope.CategoryObject = {
+        selectedCategory: [{}]
+    };
+     
 
 }
 

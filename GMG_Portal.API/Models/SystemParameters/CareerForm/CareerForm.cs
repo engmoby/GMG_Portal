@@ -6,8 +6,8 @@ namespace GMG_Portal.API.Models.SystemParameters.CareerForm
     public class CareerForm
     {
         public int Id { get; set; }
-        //[Required(ErrorMessage = "Please Enter FirstName")]
-        //[Display(Name = "FirstName")]
+        [Required(ErrorMessage = "Please Enter FirstName")]
+        [Display(Name = "FirstName")]
         public string FirstName { get; set; }
         //[Required(ErrorMessage = "Please Enter LastName")]
         //[Display(Name = "LastName")]
