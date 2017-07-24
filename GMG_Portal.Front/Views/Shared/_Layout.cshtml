@@ -166,6 +166,9 @@
 
 
                     }
+
+                    // unblock when ajax activity stops 
+                    $(document).ajaxStop($.unblockUI);
                 },
                 error: function (msg) {
                     alert("hotel error");
@@ -199,8 +202,6 @@
                     ).appendTo("#divsocial");
 
 
-                    // unblock when ajax activity stops 
-                    $(document).ajaxStop($.unblockUI);
 
                 },
                 error: function(msg) {
