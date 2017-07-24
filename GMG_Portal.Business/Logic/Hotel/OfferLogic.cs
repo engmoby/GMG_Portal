@@ -23,30 +23,31 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         public List<Hotles_Offers> GetAll()
         {
             var returnList = new List<Hotles_Offers>();
-            returnList = _db.Hotles_Offers.Where(p => p.IsDeleted == false && p.Show == true).ToList();
-            //foreach (var offer in getOfferInfo)
-            //{
-            //    var getOfferImages = _db.Offers_Offer_Images.Where(p => p.IsDeleted != true && p.Offer_Id == offer.Id).ToList();
-            //    returnList.Add(new Offer
-            //    {
-            //        Id = offer.Id,
-            //        DisplayValue = offer.DisplayValue,
-            //        DisplayValueDesc = offer.DisplayValueDesc,
-            //        Rate = offer.Rate,
-            //        PriceStart = offer.PriceStart,
-            //        Image = getOfferImages[0].Image,
-            //        Bootstrap = 12 / getOfferInfo.Count
-            //    });
-            //}
+            var offerList = _db.Hotles_Offers.Where(p => p.IsDeleted == false && p.Show == true).ToList();
+            foreach (var offer in offerList)
+            {
+                var getHotelInfo = _db.Hotels.Where(p => p.IsDeleted != true && p.Id == offer.Hotel_Id).ToList();
+                returnList.Add(new Hotles_Offers
+                {
+                    Id = offer.Id,
+                    DisplayValue = offer.DisplayValue,
+                    DisplayValueDesc = offer.DisplayValueDesc,
+                    Image = offer.Image,
+                    StartDate = offer.StartDate,
+                    EndDate = offer.EndDate,
+                    Price = offer.Price,
+                    HotelTitle = getHotelInfo[0].DisplayValue,
+                });
+            }
             return returnList;
             // return _db.Offers.Where(p => p.IsDeleted != true).ToList();
         }
         public Hotles_Offers Get(int id)
         {
             var returnList = new Hotles_Offers();
-             
-            var getOfferInfo = _db.Hotles_Offers.FirstOrDefault(p => p.Id== id&& p.IsDeleted == false && p.Show== true);
-            var getOfferhotel= _db.Hotels.FirstOrDefault(p => p.IsDeleted != true && p.Id == getOfferInfo.Hotel_Id);
+
+            var getOfferInfo = _db.Hotles_Offers.FirstOrDefault(p => p.Id == id && p.IsDeleted == false && p.Show == true);
+            var getOfferhotel = _db.Hotels.FirstOrDefault(p => p.IsDeleted != true && p.Id == getOfferInfo.Hotel_Id);
 
             var getOfferImages = _db.Hotels_Images.Where(p => p.IsDeleted != true && p.Hotel_Id == getOfferhotel.Id).ToList();
 
@@ -58,7 +59,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 returnList.Price = getOfferInfo.Price;
                 returnList.StartDate = getOfferInfo.StartDate;
                 returnList.EndDate = getOfferInfo.EndDate;
-                returnList.Image = getOfferImages[0].Image; 
+                returnList.Image = getOfferImages[0].Image;
                 //returnList.ImageList = getOfferImages[0].Image; 
 
 
@@ -66,7 +67,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             }
             else return null;
 
-        } 
+        }
         private Hotles_Offers Save(Hotles_Offers offer)
         {
             try
@@ -94,13 +95,13 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             }
         }
         public Hotles_Offers Insert(Hotles_Offers postedoffer)
-        { 
+        {
             var offer = new Hotles_Offers()
             {
                 DisplayValue = postedoffer.DisplayValue,
-                DisplayValueDesc = postedoffer.DisplayValueDesc, 
-                StartDate = postedoffer.StartDate, 
-                EndDate = postedoffer.EndDate, 
+                DisplayValueDesc = postedoffer.DisplayValueDesc,
+                StartDate = postedoffer.StartDate,
+                EndDate = postedoffer.EndDate,
                 Price = postedoffer.Price,
                 Image = postedoffer.Image,
                 IsDeleted = postedoffer.IsDeleted,

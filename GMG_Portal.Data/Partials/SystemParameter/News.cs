@@ -11,7 +11,7 @@ namespace GMG_Portal.Data
     {
         [NotMapped]
         public string OperationStatus { get; set; }
-
+         
         public string CreatorUserName { get; set; } 
         public string CategoryName { get; set; }
         public int CreationDay { get; set; }

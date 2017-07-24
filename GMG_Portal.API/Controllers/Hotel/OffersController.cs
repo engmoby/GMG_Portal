@@ -20,7 +20,7 @@ namespace GMG_Portal.API.Controllers.Offer
             {
                 var offerLogic = new OfferLogic();
                 var offers = offerLogic.GetAll();
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Hotles_Offers>>(offers));
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Models.SystemParameters.Offer>>(offers));
             }
             catch (Exception ex)
             {
@@ -51,7 +51,7 @@ namespace GMG_Portal.API.Controllers.Offer
             {
                 var offerLogic = new OfferLogic();
                 var offers = offerLogic.Get(id);
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Hotles_Offers>(offers));
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Models.SystemParameters.Offer>(offers));
             }
             catch (Exception ex)
             {
