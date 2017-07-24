@@ -28,13 +28,13 @@
 
 
     <!-- Menu and Search Button -->
- 
-   
 
-        @{
-            Html.RenderPartial("_HeaderNavBar");
-        }
-     
+
+
+    @{
+        Html.RenderPartial("_HeaderNavBar");
+    }
+
 
 
 
@@ -69,9 +69,12 @@
     <script src="~/Content/js/script.js"></script>
 
 
+    <script src="~/Content/js/jquery.localstorage.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jasmine/2.0.0/jasmine.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jasmine/2.0.0/jasmine-html.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jasmine/2.0.0/boot.js"></script>
 
 
-     
 
 
 
@@ -86,129 +89,167 @@
     @*<script type="text/javascript">
 
 
-    // unblock when ajax activity stops
-    $(document).ajaxStop($.unblockUI);
+        // unblock when ajax activity stops
+        $(document).ajaxStop($.unblockUI);
 
-    function test() {
-        $.ajax({ url: 'wait.php', cache: false });
-    }
+        function test() {
+            $.ajax({ url: 'wait.php', cache: false });
+        }
 
-    $(document).ready(function() {
-        $('#pageDemo1').click(function() {
-            $.blockUI(); 
-        });
-        $('#pageDemo2').click(function() {
-            $.blockUI({ message: '<h1><img src="/Content/images/Preloader_7.gif" /> Just a moment...</h1>' });
-        });
-        $('#pageDemo3').click(function() {
-            $.blockUI({ css: { backgroundColor: '#f00', color: '#fff' } }); 
+        $(document).ready(function() {
+            $('#pageDemo1').click(function() {
+                $.blockUI();
+            });
+            $('#pageDemo2').click(function() {
+                $.blockUI({ message: '<h1><img src="/Content/images/Preloader_7.gif" /> Just a moment...</h1>' });
+            });
+            $('#pageDemo3').click(function() {
+                $.blockUI({ css: { backgroundColor: '#f00', color: '#fff' } });
+            });
+
+            $('#pageDemo4').click(function() {
+                $.blockUI({ message: $('#domMessage') });
+            });
         });
 
-        $('#pageDemo4').click(function() {
-            $.blockUI({ message: $('#domMessage') }); 
-        });
-    });
-
-    </script>*@
+        </script>*@
     @*<script type="text/javascript">
 
 
-    $(document).ajaxStop(function () {
-        console.debug("ajaxStop");
-        $("#ajax_loader").hide();
-    });
-    $(document).ajaxStart(function () {
-        console.debug("ajaxStart");
-        $("#ajax_loader").show();
-    });
-    $('#btnStart').click(function (e) {
-        console.debug("click start");
-        jQuery.event.trigger("ajaxStart");
-        e.preventDefault();
-    });
-    $('#btnStop').click(function (e) {
-        console.debug("click stop");
-        jQuery.event.trigger("ajaxStop");
-        e.preventDefault();
-    });
+        $(document).ajaxStop(function () {
+            console.debug("ajaxStop");
+            $("#ajax_loader").hide();
+        });
+        $(document).ajaxStart(function () {
+            console.debug("ajaxStart");
+            $("#ajax_loader").show();
+        });
+        $('#btnStart').click(function (e) {
+            console.debug("click start");
+            jQuery.event.trigger("ajaxStart");
+            e.preventDefault();
+        });
+        $('#btnStop').click(function (e) {
+            console.debug("click stop");
+            jQuery.event.trigger("ajaxStop");
+            e.preventDefault();
+        });
 
-    </script>*@
+        </script>*@
     <script type="text/javascript">
-
-        $(document).ready(function () {
-            //$.blockUI({ message: '<img src="/Content/images/Preloader_7.gif" /> ' });
-            //$.blockUI({ message: ' <div class="preloader"></div>' });
-            $.blockUI({ css: { position: 'fixed',
-            top: '0',
-            left: '0',
-            'z-index': '999999',
-            width: '100%',
-            height: '100%',
-            'background-color': '#fff',
-            'background-image': 'url(/Content/images/Preloader_7.gif)',
-            'background-repeat': 'no-repeat',
-            'background-position': 'center center'
-            }
+        describe('LocalStorage', function () {
+            it('support flag property', function () {
+                expect($.support.localStorage).toBeTruthy();
+                expect($.support.localStorage).toBe(true);
             });
+            it('write method', function () {
+                var result = $.localStorage('test2', 'test');
+                expect(result).toBe('test');
+            });
+            it('read method', function () {
+                expect($.localStorage('test2')).toBe('test');
+            });
+            it('remove method', function () {
+                expect($.removeLocalStorage('test2')).toBeUndefined();
+                expect($.localStorage('test2')).toBeUndefined();
+            });
+            it('io method', function () {
+                var io = $.localStorage.io('key3');
+                expect(io.key).toBe('key3');
+                expect(io.write('test3')).toBe('test3');
+                expect(io.read()).toBe('test3');
+                expect(io.remove()).toBeUndefined();
+                expect(io.read()).toBeUndefined();
+            });
+            $(document).ready(function () {
+                //$.blockUI({
+                //    css: {
+                //        position: 'fixed',
+                //        top: '0',
+                //        left: '0',
+                //        'z-index': '999999',
+                //        width: '100%',
+                //        height: '100%',
+                //        'background-color': '#fff',
+                //        'background-image': 'url(/Content/images/Preloader_7.gif)',
+                //        'background-repeat': 'no-repeat',
+                //        'background-position': 'center center'
+                //    }
+                //});
+                $.getJSON("http://localhost:2798/File/Home.json", function (json) {
+                    console.log(json); // this will show the info it in firebug console
+                });
+                $.ajax({
+                    url: "http://localhost:2798/SystemParameters/Hotels/GetAll",
+                    type: "Get",
+                    success: function (data) {
+                        var list=[];
+                        tete();
+                        function tete() {
+                            $.localStorage('hotelList', data);
 
-            $.ajax({
-                url: "http://localhost:2798/SystemParameters/Hotels/GetAll",
-                type: "Get",
-                success: function (data) {
-                    for (var i = 0; i < data.length; i++) {
+                            for (var i = 0; i < data.length; i++) {
+                                $(
+                                    "<li>" +
+                                    "<a href='/Hotel/Details/" + data[i].Id + "'>" + data[i].DisplayValue + "</i></a>"
+
+
+                                ).appendTo("#ulAllHotels");
+                                var result = $.localStorage('hotelId', data[i].Id);
+                                list.push(data[i].Id);
+                            }
+                            $.localStorage('listlist', list); 
+
+                        };
+
+                        var value = $.localStorage('hotelList');
+                        for (var i = 0; i < value.length; i++) {
+                            console.log(value[i].DisplayValue);
+                            $.localStorage('hotelListRead', value[i].DisplayValue);
+                        }
+                        // unblock when ajax activity stops
+                        $(document).ajaxStop($.unblockUI);
+                    },
+                    error: function (msg) {
+                        alert("hotel error");
+                    }
+                });
+
+
+                /*load footer data*/
+                $.ajax({
+                    url: "http://localhost:2798/SystemParameters/ContactUs/GetAll",
+                    type: "Get",
+                    success: function (data) {
+                        $(
+                            "<p>" + data.DisplayValueAddress + "</p>"
+                         ).appendTo("#divAddress");
+                        $(
+                            "<p>" + data.PhoneNo1 + "<br>" + data.PhoneNo2 + "</p>"
+                         ).appendTo("#divphones");
+                        $(
+                            "<p>" +
+                            "<a href='mailto:#'>" + data.Mailbox + "</i>"
+                           + "</p>"
+                        ).appendTo("#divmail");
 
                         $(
-                            "<li>" +
-                            "<a href='/Hotel/Details/" + data[i].Id + "'>" + data[i].DisplayValue + "</i></a>"
+                            "<li>" + "<a href='" + data.Facebook + "'>" + "<i class='fa fa-facebook'></i>" + "</i></a>"
+                            + "<li>" + "<a href='" + data.Twitter + "'>" + "<i class='fa fa-twitter'></i>" + "</i></a>"
+                            + "<li>" + "<a href='" + data.Instgram + "'>" + "<i class='fa fa-pinterest'></i>" + "</i></a>"
+                            + "<li>" + "<a href='" + data.Snapchat + "'>" + "<i class='fa fa-google-plus'></i>" + "</i></a>"
+                            + "<li>" + "<a href='" + data.Youtube + "'>" + "<i class='fa fa-rss'></i>" + "</i></a>"
+                        ).appendTo("#divsocial");
 
 
-                        ).appendTo("#ulAllHotels");
 
-
+                    },
+                    error: function (msg) {
+                        alert("error footer");
                     }
+                });
 
-                    // unblock when ajax activity stops 
-                    $(document).ajaxStop($.unblockUI);
-                },
-                error: function (msg) {
-                    alert("hotel error");
-                }
             });
-
-
-            /*load footer data*/
-            $.ajax({
-                url: "http://localhost:2798/SystemParameters/ContactUs/GetAll",
-                type: "Get",
-                success: function (data) {
-                    $(
-                        "<p>" + data.DisplayValueAddress + "</p>"
-                     ).appendTo("#divAddress");
-                    $(
-                        "<p>" + data.PhoneNo1 + "<br>" + data.PhoneNo2 + "</p>"
-                     ).appendTo("#divphones");
-                    $(
-                        "<p>" +
-                        "<a href='mailto:#'>" + data.Mailbox + "</i>"
-                       + "</p>"
-                    ).appendTo("#divmail");
-
-                    $(
-                        "<li>" + "<a href='" + data.Facebook + "'>" + "<i class='fa fa-facebook'></i>" + "</i></a>"
-                        + "<li>" + "<a href='" + data.Twitter + "'>" + "<i class='fa fa-twitter'></i>" + "</i></a>"
-                        + "<li>" + "<a href='" + data.Instgram + "'>" + "<i class='fa fa-pinterest'></i>" + "</i></a>"
-                        + "<li>" + "<a href='" + data.Snapchat + "'>" + "<i class='fa fa-google-plus'></i>" + "</i></a>"
-                        + "<li>" + "<a href='" + data.Youtube + "'>" + "<i class='fa fa-rss'></i>" + "</i></a>"
-                    ).appendTo("#divsocial");
-
-
-
-                },
-                error: function(msg) {
-                     alert("error footer");
-                }
-            });
-
         });
 
     </script>
