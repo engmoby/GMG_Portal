@@ -36,8 +36,8 @@
                             <div class="mg-room-rating">@Model[i].Hotel_Id</div>
                             <div class="mg-room-price">@Model[i].Price<sup></sup></div>
                             <p>@Model[i].DisplayValueDesc.Substring(0,40) ..</p>
-                            @*<a href="#" class="btn btn-link">View Details <i class="fa fa-angle-double-right"></i></a>
-                            <a href="#" class="btn btn-main">Book</a>*@
+                            <a href="/Offers/offerdetails/@Model[i].Id" class="btn btn-link">View Details <i class="fa fa-angle-double-right"></i></a>
+                            @*<a href="#" class="btn btn-main">Book</a>*@
                         </figcaption>			
                     </figure>
                 </div>

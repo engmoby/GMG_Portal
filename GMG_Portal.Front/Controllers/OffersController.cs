@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using GMG_Portal.API.Models.Hotels.Hotel;
 using Newtonsoft.Json;
 using GMG_Portal.API.Models.SystemParameters;
 
@@ -44,10 +45,21 @@ namespace Front.Controllers
         }
 
 
-        public ActionResult OfferDetails()
+        public async Task<ActionResult> OfferDetails(int id)
         {
+            string offerdetails = url + "Offers/GetOfferDetails/" + id;
+            var offersModel = new Offer();
 
-            return View();
+            if (offerdetails == null) throw new ArgumentNullException(nameof(offerdetails));
+            HttpResponseMessage responseMessageApi = await _client.GetAsync(offerdetails);
+            if (responseMessageApi.IsSuccessStatusCode)
+            {
+                var responseData = responseMessageApi.Content.ReadAsStringAsync().Result;
+                offersModel = JsonConvert.DeserializeObject<Offer>(responseData);
+
+            }
+
+            return View(offersModel);
         }
 
 
