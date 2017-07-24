@@ -38,9 +38,9 @@ function NewsController($scope, NewsApi, uploadService, $rootScope, $timeout, $f
     }
 
 
-    $scope.selectedCategorysChanged = function (SelectedCategory) {
+    $scope.selectedCategorysChanged = function (selectedCategory) {
         debugger;
-        $scope.SelectedCategory = SelectedCategory;
+        $scope.SelectedCategory = selectedCategory;
     }
 
     $scope.openImage = function (news) {

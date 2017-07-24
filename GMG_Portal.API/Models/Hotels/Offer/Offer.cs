@@ -9,6 +9,8 @@ namespace GMG_Portal.API.Models.SystemParameters
     {
         public int Id { get; set; }
         public int? Hotel_Id { get; set; }
+        public string HotelTitle { get; set; }
+
         public Guid? SGuid { get; set; }
         public string DisplayValue { get; set; }
         public int? LookupKey { get; set; }

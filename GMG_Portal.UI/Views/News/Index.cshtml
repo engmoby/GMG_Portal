@@ -148,7 +148,7 @@
                         <div class="form-group">
                             <label for="TxtDesc">@News.Desc</label><span class="red-text"> *</span>
                             <select name="LstCategory" class="form-control" ng-options="Category as Category.DisplayValue  for Category in Categorys"
-                                    ng-model="SelectedCategory" ng-change="selectedCategorysChanged(SelectedCategory)" required>
+                                    ng-model="selectedCategory" ng-change="selectedCategorysChanged(selectedCategory)" required>
                                 <option value=''> choose</option>
                             </select>
                             <div class="red-text" ng-messages="FrmAddUpdate.LstCategory.$error" ng-show="FrmAddUpdate.LstCategory.$touched">

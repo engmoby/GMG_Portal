@@ -152,6 +152,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 DisplayValueDesc = postedNews.DisplayValueDesc,
                 Image = postedNews.Image,
                 IsDeleted = postedNews.IsDeleted,
+                CategoryId = postedNews.CategoryId,
                 Show = Parameters.Show,
                 CreationTime = Parameters.CurrentDateTime,
                 CreatorUserId = Parameters.UserId,

@@ -153,9 +153,9 @@
                 //        'background-position': 'center center'
                 //    }
                 //});
-                $.getJSON("http://localhost:2798/File/Home.json", function (json) {
-                    console.log(json); // this will show the info it in firebug console
-                });
+                //$.getJSON("http://localhost:2798/File/Home.json", function (json) {
+                //    console.log(json); // this will show the info it in firebug console
+                //});
                 $.ajax({
                     url: "http://localhost:2798/SystemParameters/Hotels/GetAll",
                     type: "Get",
@@ -163,7 +163,7 @@
                         var list=[];
                         tete();
                         function tete() {
-                            $.localStorage('hotelList', data);
+                           // $.localStorage('hotelList', data);
 
                             for (var i = 0; i < data.length; i++) {
                                 $(
@@ -172,18 +172,18 @@
 
 
                                 ).appendTo("#ulAllHotels");
-                                var result = $.localStorage('hotelId', data[i].Id);
+                             //  var result = $.localStorage('hotelId', data[i].Id);
                                 list.push(data[i].Id);
                             }
-                            $.localStorage('listlist', list); 
+                           // $.localStorage('listlist', list); 
 
                         };
 
-                        var value = $.localStorage('hotelList');
-                        for (var i = 0; i < value.length; i++) {
-                            console.log(value[i].DisplayValue);
-                            $.localStorage('hotelListRead', value[i].DisplayValue);
-                        }
+                      //  var value = $.localStorage('hotelList');
+                        //for (var i = 0; i < value.length; i++) {
+                        //  //  console.log(value[i].DisplayValue);
+                        //  //  $.localStorage('hotelListRead', value[i].DisplayValue);
+                        //}
                         // unblock when ajax activity stops
                         $(document).ajaxStop($.unblockUI);
                     },
