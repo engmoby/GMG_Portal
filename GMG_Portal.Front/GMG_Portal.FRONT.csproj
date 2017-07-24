@@ -394,6 +394,7 @@
     <Content Include="Views\Career\Upload.cshtml" />
     <Content Include="Views\BookingLite\Confirm.cshtml" />
     <Content Include="Views\News\SearchResult.cshtml" />
+    <Content Include="Views\Offers\OfferDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
