@@ -44,6 +44,13 @@ namespace Front.Controllers
         }
 
 
+        public ActionResult OfferDetails()
+        {
+
+            return View();
+        }
+
+
 
 
 
