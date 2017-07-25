@@ -224,7 +224,7 @@
     <Compile Include="Controllers\Admin\InvoiceStatusesController.cs" />
     <Compile Include="Controllers\FileUploadController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\Hotel\FeaturesController.cs" />
+    <Compile Include="Controllers\Hotel\FeatureController.cs" />
     <Compile Include="Controllers\Hotel\HotelController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Custom\CustomUploadMultipartFormProvider.cs" />
@@ -484,9 +484,11 @@
     <Content Include="Scripts\app\pages\Contact\Contact.js" />
     <Content Include="Scripts\app\pages\CareerForm\CareerForm.js" />
     <Content Include="Scripts\app\pages\Career\Career.js" />
+    <Content Include="Scripts\app\pages\Feature\Feature.js" />
+    <Content Include="Scripts\app\pages\News\News.js" />
     <Content Include="Scripts\app\pages\NewsCategory\NewsCategory.js" />
     <Content Include="Scripts\app\pages\Hotel\Hotel.js" />
-    <Content Include="Scripts\app\pages\News\news.js" />
+    <Content Include="Scripts\app\pages\_News\news.js" />
     <Content Include="Scripts\app\pages\Owner\Owner.js" />
     <Content Include="Scripts\app\pages\Mission\Mission.js" />
     <Content Include="Scripts\app\pages\HomeSlider\HomeSlider.js" />
@@ -498,9 +500,11 @@
     <Content Include="Scripts\app\services\Contact.js" />
     <Content Include="Scripts\app\services\CareerForm.js" />
     <Content Include="Scripts\app\services\Career.js" />
+    <Content Include="Scripts\app\services\Feature.js" />
+    <Content Include="Scripts\app\services\News.js" />
     <Content Include="Scripts\app\services\NewsCategory.js" />
     <Content Include="Scripts\app\services\Hotel.js" />
-    <Content Include="Scripts\app\services\News.js" />
+    <Content Include="Scripts\app\services\_News.js" />
     <Content Include="Scripts\app\services\Owner.js" />
     <Content Include="Scripts\app\services\Mission.js" />
     <Content Include="Scripts\app\services\HomeSlider.js" />
@@ -1036,10 +1040,11 @@
     <Content Include="Views\Career\Index.cshtml" />
     <Content Include="Views\Hotel\Index.cshtml" />
     <Content Include="Views\CareerForm\Index.cshtml" />
-    <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\_News\Index.cshtml" />
     <Content Include="Views\NewsCategory\Index.cshtml" />
     <Content Include="Views\Contact\Index.cshtml" />
-    <Content Include="Views\Features\Index.cshtml" />
+    <Content Include="Views\Feature\Index.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GMG_Portal.API\GMG_Portal.API.csproj">

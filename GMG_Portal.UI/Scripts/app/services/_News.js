@@ -4,12 +4,12 @@
         return $http.get(apiUrl + '/SystemParameters/News/GetAllWithDeleted');
     }
 
-    this.Save = function (New) {
+    this.Save = function (news) {
         return $http({
             url: apiUrl + '/SystemParameters/News/Save',
             method: 'POST',
             contentType: "application/json; charset=utf-8",
-            data: JSON.stringify(New)
+            data: JSON.stringify(news)
         });
     }
 

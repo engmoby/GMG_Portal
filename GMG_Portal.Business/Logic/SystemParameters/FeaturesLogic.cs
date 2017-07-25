@@ -55,8 +55,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             }
         }
         public SystemParameters_Features Insert(SystemParameters_Features postedHomeSlider)
-        {
-
+        { 
             var language = new SystemParameters_Features()
             {
                 DisplayValue = postedHomeSlider.DisplayValue,
@@ -85,11 +84,11 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         public SystemParameters_Features Delete(SystemParameters_Features postedLanguage)
         {
             SystemParameters_Features language = Get(postedLanguage.Id);
-            if (_db.SystemParameters_Features.Any(p => p.Id == postedLanguage.Id && p.IsDeleted != true))
-            {
-                //  language.OperationStatus = "HasRelationship";
-                return language;
-            }
+            //if (_db.SystemParameters_Features.Any(p => p.Id == postedLanguage.Id && p.IsDeleted != true))
+            //{
+            //    //  language.OperationStatus = "HasRelationship";
+            //    return language;
+            //}
 
             language.IsDeleted = true;
             language.CreationTime = Parameters.CurrentDateTime;

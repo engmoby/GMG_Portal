@@ -258,4 +258,7 @@
   <data name="HotelGallery" xml:space="preserve">
     <value>Hotel Gallery</value>
   </data>
+  <data name="Icon" xml:space="preserve">
+    <value>Icon</value>
+  </data>
 </root>

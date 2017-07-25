@@ -52,23 +52,23 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 if (ModelState.IsValid)
                 {
                     var featuresLogic = new FeaturesLogic();
-                    SystemParameters_Features language = null;
+                    SystemParameters_Features Feature = null;
                     if (postedFeatures.Id.Equals(0))
                     {
-                        language = featuresLogic.Insert(Mapper.Map<SystemParameters_Features>(postedFeatures));
+                        Feature = featuresLogic.Insert(Mapper.Map<SystemParameters_Features>(postedFeatures));
                     }
                     else
                     {
                         if (postedFeatures.IsDeleted)
                         {
-                            language = featuresLogic.Delete(Mapper.Map<SystemParameters_Features>(postedFeatures));
+                            Feature = featuresLogic.Delete(Mapper.Map<SystemParameters_Features>(postedFeatures));
                         }
                         else
                         {
-                            language = featuresLogic.Edit(Mapper.Map<SystemParameters_Features>(postedFeatures));
+                            Feature = featuresLogic.Edit(Mapper.Map<SystemParameters_Features>(postedFeatures));
                         }
                     }
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Features>(language));
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Features>(Feature));
                 }
                 goto ThrowBadRequest;
             }

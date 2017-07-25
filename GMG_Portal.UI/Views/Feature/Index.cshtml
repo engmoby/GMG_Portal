@@ -4,7 +4,7 @@
 }
 @using GMG_Portal.Content;
 @using GMG_Portal.Content.Admin
-@using GMG_Portal.Content.Admin.SystemParameters
+@using GMG_Portal.Content.Admin.Hotel 
 <script type="text/javascript" src="~/Scripts/app/services/Feature.js"></script>
 <script type="text/javascript" src="~/Scripts/app/pages/Feature/Feature.js"></script>
 <input type="hidden" id="HEnglishNameUnique" value="@Feature.EnglishNameUnique" />
@@ -60,11 +60,9 @@
             </tr>
 
             <tr class="sortable">
-                <th>#</th>
-                <th st-sort="Image">@Feature.Image</th>
+                <th>#</th> 
                 <th st-sort="Title">@Feature.Title</th>
-                <th st-sort="Desc">@Feature.Desc</th>
-                <th st-sort="Rate">@Feature.Rate</th>
+                <th st-sort="Desc">@Feature.Desc</th> 
                 <th>Actions</th>
             </tr>
 
@@ -72,11 +70,9 @@
             <tbody>
             <tr ng-repeat="Feature in TableData">
                 <td ng-class="{'red-text': Feature.IsDeleted == true}">{{$index+1}}</td>
-                <td ng-class="{'red-text': Feature.IsDeleted == true}"><img ng-click="openImage(Feature)" width="70px" height="70px" src="http://localhost:19056/Uploads/{{Feature.Image}}" /></td>
-                <td ng-class="{'red-text': Feature.IsDeleted == true}">{{Feature.DisplayValue}}</td>
+                 <td ng-class="{'red-text': Feature.IsDeleted == true}">{{Feature.DisplayValue}}</td>
                 <td ng-class="{'red-text': Feature.IsDeleted == true}">{{Feature.DisplayValueDesc | limitTo:letterLimit}} </td>
-                <td ng-class="{'red-text': Feature.IsDeleted == true}">{{Feature.Rating}}</td>
-                <td>
+                 <td>
                     <div class="buttons" ng-show="!Feature.IsDeleted">
                         <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(Feature)"><i class="fa fa-pencil" aria-hidden="true"></i>@Feature.TableBtnEdit</button>
                         <button class="btn btn-danger editable-table-button btn-xs btn-with-icon" ng-confirm="Confirm Delete ?" ng-click="Delete(Feature)"><i class="fa fa-trash-o" aria-hidden="true"></i>@Feature.TableBtnDelete</button>
@@ -110,8 +106,8 @@
         </div>
     </div>
 
-    @*<form name="FrmAddUpdate" novalidate ng-submit="save()" autocomplete="off">*@
-    <form name="FrmAddUpdate" novalidate autocomplete="off">
+    <form name="FrmAddUpdate" novalidate ng-submit="save()" autocomplete="off">
+    @*<form name="FrmAddUpdate" novalidate autocomplete="off">*@
 
         <div class="modal fade" id="ModelAddUpdate" role="dialog">
             <div class="modal-dialog">
@@ -146,45 +142,18 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="TxtUrl">@Feature.Url</label>
-                            <input type="text" ng-model="Feature.URL" not-in-list="Features" list-item-id="Feature.ID" class="form-control" name="TxtUrl"
-                                   placeholder="@Feature.Url" ng-pattern="/@Regex.Name/">
-                            <div class="red-text" ng-messages="FrmAddUpdate.TxtUrl.$error" ng-show="FrmAddUpdate.TxtUrl.$touched">
+                            <label for="TxtIcon">@Feature.Icon</label>
+                            <input type="text" ng-model="Feature.Icon" not-in-list="Features" list-item-id="Feature.ID" class="form-control" name="TxtIcon"
+                                   placeholder="@Feature.Icon" ng-pattern="/@Regex.Name/">
+                            <div class="red-text" ng-messages="FrmAddUpdate.TxtIcon.$error" ng-show="FrmAddUpdate.TxtUrl.$touched">
                                 <span class="red-text" ng-message="pattern">@Feature.TxtUrlPatternErrorMessage</span>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="TxtRate">@Feature.Rate</label><span class="red-text"> *</span>
-                            <input type="text" ng-model="Feature.Rating" not-in-list="Features" list-item-id="Feature.ID" class="form-control" name="TxtRate"
-                                   placeholder="@Feature.Rate" required ng-pattern="/@Regex.Number/">
-
-                        </div>
-                        <div class="form-group">
-                            <label for="TxtRate">@Feature.Image</label><span class="red-text"> *</span>
-                          
-                            <div class="fileinput fileinput-new" data-provides="fileinput"> 
-
-                                <div class="col-lg-6 col-sm-6 col-12">
-
-                                    <div class="input-group">
-                                        <span class="input-group-btn">
-                                            <span class="btn btn-primary btn-file">
-                                                Browse...<input type="file" my-directory="getFiles(file)" ng-disabled="uploading" />
-                                            </span>
-
-                                        </span>
-                                        <input type="text" ng-model="countFiles" required class="form-control" readonly>
-                                    </div>
-                                    @*<input type="button" class="btn btn-default  btn-primary" ng-click="uploadFiles()" value="Upload" ng-disabled="uploading || countFiles===''" />*@
-
-                                    <img style="width: 100px; height: 100px" src="http://localhost:19056/Uploads/{{Feature.Image}}" ng-show="Feature.Image" />
-
-                                </div>
-                            </div>
-                        </div>
+                       
+                         
                     </div>
                     <div class="modal-footer"> 
-                        <button type="submit" class="btn btn-primary btn-with-icon" ng-click="uploadFiles()" ng-disabled="FrmAddUpdate.$invalid"><i class="ion-android-checkmark-circle"></i>@Feature.btnSaveLbl</button>
+                        <button type="submit" class="btn btn-primary btn-with-icon"   ng-disabled="FrmAddUpdate.$invalid"><i class="ion-android-checkmark-circle"></i>@Feature.btnSaveLbl</button>
                     </div>
                 </div>
 

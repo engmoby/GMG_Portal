@@ -113,6 +113,12 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             return returnObj;
 
         }
+
+        public SystemParameters_News GetNewsInfoById(int id)
+        {
+            return _db.SystemParameters_News.Find(id);
+        }
+
         public List<SystemParameters_News> SearchNews(string keyword)
         {
             return _db.SystemParameters_News.Where(x => x.DisplayValue.Contains(keyword) || x.DisplayValueDesc.Contains(keyword)).ToList();
@@ -162,7 +168,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         }
         public SystemParameters_News Edit(SystemParameters_News postednews)
         {
-            SystemParameters_News news = Get(postednews.Id);
+            SystemParameters_News news = GetNewsInfoById(postednews.Id);
             news.DisplayValue = postednews.DisplayValue;
             news.DisplayValueDesc = postednews.DisplayValueDesc;
             news.Image = postednews.Image;
@@ -174,7 +180,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         }
         public SystemParameters_News Delete(SystemParameters_News postednews)
         {
-            SystemParameters_News news = Get(postednews.Id);
+            SystemParameters_News news = GetNewsInfoById(postednews.Id);
             if (_db.SystemParameters_News.Any(p => p.Id == postednews.Id && p.IsDeleted != true))
             {
                 //  news.OperationStatus = "HasRelationship";

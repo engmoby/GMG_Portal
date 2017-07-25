@@ -6,7 +6,7 @@
 @using GMG_Portal.Content.Admin
 @using GMG_Portal.Content.Admin.SystemParameters
 <script type="text/javascript" src="~/Scripts/app/services/News.js"></script>
-<script type="text/javascript" src="~/Scripts/app/pages/News/News.js"></script>
+<script type="text/javascript" src="~/Scripts/app/pages/News/news.js"></script>
 <input type="hidden" id="HEnglishNameUnique" value="@News.EnglishNameUnique" />
 <input type="hidden" id="HUpdateSuccessMessage" value="@News.UpdateSuccessMessage" />
 <input type="hidden" id="HSaveSuccessMessage" value="@News.SaveSuccessMessage" />
@@ -42,7 +42,7 @@
 <div ng-controller="NewsController">
 
     <div ba-panel>
-        <table class="table table-hover table-condensed" st-table="TableData" st-safe-src="News">
+        <table class="table table-hover table-condensed" st-table="TableData" st-safe-src="news">
             <thead>
                 <tr class="toolbar">
                     <th colspan="2">
@@ -63,24 +63,26 @@
                     <th>#</th>
                     <th st-sort="Image">@News.Image</th>
                     <th st-sort="Title">@News.Title</th>
-                    <th st-sort="Desc">@News.Desc</th> 
+                    <th st-sort="Desc">@News.Desc</th>
+                    @*<th st-sort="Rate">@News.Rate</th>*@
                     <th>Actions</th>
                 </tr>
 
             </thead>
             <tbody>
-                <tr ng-repeat="New in TableData">
-                    <td ng-class="{'red-text': New.IsDeleted == true}">{{$index+1}}</td>
-                    <td ng-class="{'red-text': New.IsDeleted == true}"><img ng-click="openImage(New)" width="70px" height="70px" src="http://localhost:19056/Uploads/{{New.Image}}" /></td>
-                    <td ng-class="{'red-text': New.IsDeleted == true}">{{New.DisplayValue}}</td>
-                    <td ng-class="{'red-text': New.IsDeleted == true}">{{New.DisplayValueDesc | limitTo:letterLimit}} </td> 
+                <tr ng-repeat="news in TableData">
+                    <td ng-class="{'red-text': news.IsDeleted == true}">{{$index+1}}</td>
+                    <td ng-class="{'red-text': news.IsDeleted == true}"><img ng-click="openImage(news)" width="70px" height="70px" src="http://localhost:19056/Uploads/{{news.Image}}" /></td>
+                    <td ng-class="{'red-text': news.IsDeleted == true}">{{news.DisplayValue}}</td>
+                    <td ng-class="{'red-text': news.IsDeleted == true}">{{news.DisplayValueDesc | limitTo:letterLimit}} </td>
+                    @*<td ng-class="{'red-text': news.IsDeleted == true}">{{news.CategoryName}}</td>*@
                     <td>
-                        <div class="buttons" ng-show="!New.IsDeleted">
-                            <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(New)"><i class="fa fa-pencil" aria-hidden="true"></i>@News.TableBtnEdit</button>
-                            <button class="btn btn-danger editable-table-button btn-xs btn-with-icon" ng-confirm="Confirm Delete ?" ng-click="Delete(New)"><i class="fa fa-trash-o" aria-hidden="true"></i>@News.TableBtnDelete</button>
+                        <div class="buttons" ng-show="!news.IsDeleted">
+                            <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(news)"><i class="fa fa-pencil" aria-hidden="true"></i>@News.TableBtnEdit</button>
+                            <button class="btn btn-danger editable-table-button btn-xs btn-with-icon" ng-confirm="Confirm Delete ?" ng-click="Delete(news)"><i class="fa fa-trash-o" aria-hidden="true"></i>@News.TableBtnDelete</button>
                         </div>
-                        <div class="buttons restore-button" ng-show="New.IsDeleted">
-                            <button class="center-block btn btn-default  restore-button btn-xs btn-with-icon" ng-click="Restore(New)"><i class="fa fa-undo" aria-hidden="true"></i>Restore</button>
+                        <div class="buttons restore-button" ng-show="news.IsDeleted">
+                            <button class="center-block btn btn-default  restore-button btn-xs btn-with-icon" ng-click="Restore(news)"><i class="fa fa-undo" aria-hidden="true"></i>Restore</button>
                         </div>
                     </td>
                 </tr>
@@ -103,8 +105,8 @@
     <div class="modal fade" id="ModelImage" role="dialog">
         <div class="modal-dialog">
             <img style="width: 100%;
-                                       height: 65%;" src="http://localhost:19056/Uploads/{{New.Image}}" />
-            @*<img src="http://localhost:19056/Uploads/5.jpg" />*@
+                                       height: 65%;" src="http://localhost:19056/Uploads/{{news.Image}}" />
+
         </div>
     </div>
 
@@ -123,7 +125,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="TxtTitle">@News.Title</label><span class="red-text"> *</span>
-                            <input type="text" ng-model="New.DisplayValue" not-in-list="News" list-item-id="New.ID" class="form-control" Title="TxtTitle"
+                            <input type="text" ng-model="news.DisplayValue" class="form-control" Title="TxtTitle"
                                    placeholder="@News.Title" required ng-pattern="/@Regex.NameAr/">
 
                             <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
@@ -134,7 +136,7 @@
                         </div>
                         <div class="form-group">
                             <label for="TxtDesc">@News.Desc</label><span class="red-text"> *</span>
-                            <textarea ng-model="New.DisplayValueDesc" not-in-list="News" list-item-id="New.ID" class="form-control" name="TxtDesc"
+                            <textarea ng-model="news.DisplayValueDesc" class="form-control" name="TxtDesc"
                                       placeholder="Text" required ng-pattern="/@Regex.NameEn/"></textarea>
                             <div class="red-text" ng-messages="FrmAddUpdate.TxtDesc.$error" ng-show="FrmAddUpdate.TxtDesc.$touched">
                                 <span class="red-text" ng-message="required">@News.TxtDescRequiredErrorMessage</span>
@@ -144,7 +146,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="TxtDesc">@NewsCategory.Title</label><span class="red-text"> *</span>
+                            <label for="TxtDesc">@News.Desc</label><span class="red-text"> *</span>
                             <select name="LstCategory" class="form-control" ng-options="Category as Category.DisplayValue  for Category in Categorys"
                                     ng-model="selectedCategory" ng-change="selectedCategorysChanged(selectedCategory)" required>
                                 <option value=''> choose</option>
@@ -153,11 +155,11 @@
                                 <span class="error" ng-message="required">required</span>
                             </div>
                         </div>
-                     
+
                         <div class="form-group">
                             <label for="TxtRate">@News.Image</label><span class="red-text"> *</span>
-                          
-                            <div class="fileinput fileinput-new" data-provides="fileinput"> 
+
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
 
                                 <div class="col-lg-6 col-sm-6 col-12">
 
@@ -172,13 +174,13 @@
                                     </div>
                                     @*<input type="button" class="btn btn-default  btn-primary" ng-click="uploadFiles()" value="Upload" ng-disabled="uploading || countFiles===''" />*@
 
-                                    <img style="width: 100px; height: 100px" src="http://localhost:19056/Uploads/{{New.Image}}" ng-show="New.Image" />
+                                    <img style="width: 100px; height: 100px" src="http://localhost:19056/Uploads/{{news.Image}}" ng-show="news.Image" />
 
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer"> 
+                    <div class="modal-footer">
                         <button type="submit" class="btn btn-primary btn-with-icon" ng-click="uploadFiles()" ng-disabled="FrmAddUpdate.$invalid"><i class="ion-android-checkmark-circle"></i>@News.btnSaveLbl</button>
                     </div>
                 </div>

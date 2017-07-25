@@ -17,8 +17,7 @@ namespace GMG_Portal.API.Models.SystemParameters
         public string DisplayValueDesc { get; set; }
         public int? LookupKeyDesc { get; set; }
         public Guid? LookupKeyGuidDesc { get; set; }
-        public string Icon { get; set; }
-        public string Url { get; set; }
+        public string Icon { get; set; } 
         public System.DateTime LastModificationTime { get; set; }
         public int? LastModifierUserId { get; set; }
         public DateTime? CreationTime { get; set; }
