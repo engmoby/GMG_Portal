@@ -50,6 +50,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Admin\Hotel\Feature.Designer.cs">
+      <DependentUpon>Feature.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Admin\Hotel\Hotel.Designer.cs">
       <DependentUpon>Hotel.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -147,6 +152,10 @@
     <EmbeddedResource Include="Admin\Customer\PurchaseOrder.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>PurchaseOrder.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\Hotel\Feature.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Feature.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\Hotel\Hotel.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

@@ -224,6 +224,7 @@
     <Compile Include="Controllers\Admin\InvoiceStatusesController.cs" />
     <Compile Include="Controllers\FileUploadController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Hotel\FeaturesController.cs" />
     <Compile Include="Controllers\Hotel\HotelController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Custom\CustomUploadMultipartFormProvider.cs" />
@@ -1038,8 +1039,7 @@
     <Content Include="Views\News\Index.cshtml" />
     <Content Include="Views\NewsCategory\Index.cshtml" />
     <Content Include="Views\Contact\Index.cshtml" />
-    <None Include="Properties\PublishProfiles\gmgportal-stag - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\gmgportal-stag - Web Deploy.pubxml" />
+    <Content Include="Views\Features\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GMG_Portal.API\GMG_Portal.API.csproj">

@@ -229,6 +229,32 @@
 
                         </div>
                     </ba-wizard-step>
+                    <ba-wizard-step title="@Hotel.HotelGallery">
+                        <div class="form-group">
+                            <label for="TxtRate">@HomeSlider.Image</label><span class="red-text"> *</span>
+                          
+                            <div class="fileinput fileinput-new" data-provides="fileinput"> 
+
+                                <div class="col-lg-6 col-sm-6 col-12">
+
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <span class="btn btn-primary btn-file">
+                                                Browse...<input type="file" my-directory="getFiles(file)" ng-disabled="uploading" />
+                                            </span>
+
+                                        </span>
+                                        <input type="text" ng-model="countFiles" required class="form-control" readonly>
+                                    </div>
+                                    @*<input type="button" class="btn btn-default  btn-primary" ng-click="uploadFiles()" value="Upload" ng-disabled="uploading || countFiles===''" />*@
+
+                                    <img style="width: 100px; height: 100px" src="http://localhost:19056/Uploads/{{HomeSlider.Image}}" ng-show="HomeSlider.Image" />
+
+                                </div>
+                            </div>
+                        </div>
+                    </ba-wizard-step>
+
                 </ba-wizard>
                 <div class="row" style="margin-bottom:10px">
                     <div class="col-md-12 pull-right">

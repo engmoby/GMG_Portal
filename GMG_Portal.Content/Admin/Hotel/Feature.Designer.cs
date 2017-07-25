@@ -22,14 +22,14 @@ namespace GMG_Portal.Content.Admin.Hotel {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Hotel {
+    public class Feature {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Hotel() {
+        internal Feature() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace GMG_Portal.Content.Admin.Hotel {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("GMG_Portal.Content.Admin.Hotel.Hotel", typeof(Hotel).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("GMG_Portal.Content.Admin.Hotel.Feature", typeof(Feature).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
