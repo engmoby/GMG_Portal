@@ -1038,6 +1038,8 @@
     <Content Include="Views\News\Index.cshtml" />
     <Content Include="Views\NewsCategory\Index.cshtml" />
     <Content Include="Views\Contact\Index.cshtml" />
+    <None Include="Properties\PublishProfiles\gmgportal-stag - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\gmgportal-stag - Web Deploy.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GMG_Portal.API\GMG_Portal.API.csproj">
