@@ -6,6 +6,7 @@ using System.Web.Http;
 using AutoMapper;
 using GMG_Portal.API.Models.Hotels.Hotel;
 using GMG_Portal.Business.Logic.SystemParameters;
+using GMG_Portal.Data;
 using Helpers;
 
 namespace GMG_Portal.API.Controllers.Hotel
@@ -73,30 +74,30 @@ namespace GMG_Portal.API.Controllers.Hotel
             }
         }
         [HttpPost]
-        public HttpResponseMessage Save(Data.Hotel postedHotels)
+        public HttpResponseMessage Save(Hotels postedHotels)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    var HotelLogic = new HotelLogic();
-                    Data.Hotel language = null;
+                    var hotelLogic = new HotelLogic();
+                     Data.Hotel hotel = null;
                     if (postedHotels.Id.Equals(0))
                     {
-                        language = HotelLogic.Insert(Mapper.Map<Data.Hotel>(postedHotels));
+                        hotel = hotelLogic.Insert(Mapper.Map<Data.Hotel>(postedHotels));
                     }
                     else
                     {
                         if (postedHotels.IsDeleted)
                         {
-                            language = HotelLogic.Delete(Mapper.Map<Data.Hotel>(postedHotels));
+                            hotel = hotelLogic.Delete(Mapper.Map<Data.Hotel>(postedHotels));
                         }
                         else
                         {
-                            language = HotelLogic.Edit(Mapper.Map<Data.Hotel>(postedHotels));
+                            hotel = hotelLogic.Edit(Mapper.Map<Data.Hotel>(postedHotels));
                         }
                     }
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Data.Hotel>(language));
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Data.Hotel>(hotel));
                 }
                 goto ThrowBadRequest;
             }

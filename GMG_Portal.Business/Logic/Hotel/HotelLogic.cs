@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Objects;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,7 +46,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 var getHotelImages = _db.Hotels_Images.Where(p => p.IsDeleted != true && p.Hotel_Id == hotel.Id).ToList();
 
                 if (getHotelImages.Any())
-                { 
+                {
                     returnList.Add(new Hotel
                     {
                         Id = hotel.Id,
@@ -67,7 +68,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                         DisplayValueDesc = hotel.DisplayValueDesc,
                         Rate = hotel.Rate,
                         PriceStart = hotel.PriceStart,
-                        FeaturesList = featuresList, 
+                        FeaturesList = featuresList,
                         Bootstrap = 12 / getHotelInfo.Count
                     });
                 }
@@ -80,7 +81,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             var returnList = new Hotel();
             var featuresList = new List<SystemParameters_Features>();
 
-            var getHotelInfo = _db.Hotels.FirstOrDefault(p => p.Id == id && p.IsDeleted == false && p.Show);
+            var getHotelInfo = _db.Hotels.FirstOrDefault(p => p.Id == id);
             var getHotelFeatures = _db.Hotels_Features.Where(p => p.IsDeleted != true && p.Hotel_Id == getHotelInfo.Id).ToList();
             foreach (var hotelFeature in getHotelFeatures)
             {
@@ -115,6 +116,12 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             else return null;
 
 
+
+        }
+        public Hotel GetHotelInfoById(int id)
+        {
+
+            return _db.Hotels.Find(id);
 
         }
         public IQueryable<Hotels_Images> HotelImages(int hotelId)
@@ -153,43 +160,53 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         }
         public Hotel Insert(Hotel postedhotel)
         {
-
-            var Hotel = new Hotel()
+            var hotel = new Hotel()
             {
                 DisplayValue = postedhotel.DisplayValue,
                 DisplayValueDesc = postedhotel.DisplayValueDesc,
                 IsDeleted = postedhotel.IsDeleted,
                 Show = Parameters.Show,
                 PriceStart = postedhotel.PriceStart,
+                ImageList = postedhotel.ImageList,
                 CreationTime = Parameters.CurrentDateTime,
                 CreatorUserId = Parameters.UserId,
             };
-            _db.Hotels.Add(Hotel);
-            return Save(Hotel);
+            _db.Hotels.Add(hotel);
+            return Save(hotel);
         }
         public Hotel Edit(Hotel postedHotel)
         {
-            Hotel hotel = Get(postedHotel.Id);
+            var hotel = GetHotelInfoById(postedHotel.Id);
             hotel.DisplayValue = postedHotel.DisplayValue;
             hotel.DisplayValueDesc = postedHotel.DisplayValueDesc;
             hotel.IsDeleted = postedHotel.IsDeleted;
+            hotel.ImageList = postedHotel.ImageList;
             hotel.PriceStart = postedHotel.PriceStart;
             hotel.LastModificationTime = Parameters.CurrentDateTime;
             hotel.LastModifierUserId = Parameters.UserId;
+
+            // _db.Hotels.Attach(hotel);
+            //var entry = _db.Entry(hotel);
+            //entry.Property(e => e.IsDeleted).IsModified = true;
+            // other changed properties
+            //_db.SaveChanges();
+
             return Save(hotel);
         }
+
         public Hotel Delete(Hotel postedHotel)
         {
             Hotel hotel = Get(postedHotel.Id);
-            if (_db.Hotels.Any(p => p.Id == postedHotel.Id && p.IsDeleted != true))
-            {
-                //  Hotel.OperationStatus = "HasRelationship";
-                return hotel;
-            }
+            //if (_db.Hotels.Any(p => p.Id == postedHotel.Id))
+            //{
+            //    //  Hotel.OperationStatus = "HasRelationship";
+            //    return hotel;
+            //}
 
             hotel.IsDeleted = true;
             hotel.CreationTime = Parameters.CurrentDateTime;
             hotel.CreatorUserId = Parameters.UserId;
+            _db.SaveChanges();
             return Save(hotel);
         }
 

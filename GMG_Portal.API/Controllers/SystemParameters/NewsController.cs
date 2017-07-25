@@ -98,23 +98,23 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 if (ModelState.IsValid)
                 {
                     var newsLogic = new NewsLogic();
-                    SystemParameters_News language = null;
+                    SystemParameters_News Hotel = null;
                     if (postedNews.Id.Equals(0))
                     {
-                        language = newsLogic.Insert(Mapper.Map<SystemParameters_News>(postedNews));
+                        Hotel = newsLogic.Insert(Mapper.Map<SystemParameters_News>(postedNews));
                     }
                     else
                     {
                         if (postedNews.IsDeleted)
                         {
-                            language = newsLogic.Delete(Mapper.Map<SystemParameters_News>(postedNews));
+                            Hotel = newsLogic.Delete(Mapper.Map<SystemParameters_News>(postedNews));
                         }
                         else
                         {
-                            language = newsLogic.Edit(Mapper.Map<SystemParameters_News>(postedNews));
+                            Hotel = newsLogic.Edit(Mapper.Map<SystemParameters_News>(postedNews));
                         }
                     }
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<News>(language));
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<News>(Hotel));
                 }
                 goto ThrowBadRequest;
             }

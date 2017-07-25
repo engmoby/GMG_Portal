@@ -101,7 +101,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         }
         public SystemParameters_Careers Edit(SystemParameters_Careers postedCareer)
         {
-            SystemParameters_Careers career = Get(postedCareer.Id);
+            var career = Get(postedCareer.Id);
             career.DisplayValue = postedCareer.DisplayValue;
             career.DisplayValueDesc = postedCareer.DisplayValueDesc;
             career.DisplayValueRequirements = postedCareer.DisplayValueRequirements;

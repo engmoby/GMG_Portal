@@ -11,7 +11,7 @@ namespace GMG_Portal.API.Models.Hotels.Hotel
         public string DisplayValue { get; set; }
         public int? LookupKey { get; set; }
         public Guid? LookupKeyGuid { get; set; }
-        public bool? IsDeleted { get; set; }
+        public bool IsDeleted { get; set; }
         public bool? Show { get; set; }
         public string DisplayValueDesc { get; set; }
         public int? LookupKeyDesc { get; set; }
