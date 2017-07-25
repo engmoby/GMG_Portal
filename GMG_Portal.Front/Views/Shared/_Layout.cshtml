@@ -25,6 +25,7 @@
     <script src="~/Content/js/modernizr.custom.min.js"></script>
 </head>
 <body>
+    <input type="hidden" id="HServicesURL" value="@System.Configuration.ConfigurationManager.AppSettings["ServerIp"]" />
 
 
     <!-- Menu and Search Button -->
@@ -70,9 +71,9 @@
 
 
     @*<script src="~/Content/js/jquery.localstorage.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jasmine/2.0.0/jasmine.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jasmine/2.0.0/jasmine-html.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jasmine/2.0.0/boot.js"></script>*@
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jasmine/2.0.0/jasmine.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jasmine/2.0.0/jasmine-html.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jasmine/2.0.0/boot.js"></script>*@
 
 
 
@@ -136,98 +137,103 @@
         });
 
         </script>*@
-    <script type="text/javascript"> 
-          
-            $(document).ready(function () {
-                //$.blockUI({
-                //    css: {
-                //        position: 'fixed',
-                //        top: '0',
-                //        left: '0',
-                //        'z-index': '999999',
-                //        width: '100%',
-                //        height: '100%',
-                //        'background-color': '#fff',
-                //        'background-image': 'url(/Content/images/Preloader_7.gif)',
-                //        'background-repeat': 'no-repeat',
-                //        'background-position': 'center center'
-                //    }
-                //});
-                //$.getJSON("http://localhost:2798/File/Home.json", function (json) {
-                //    console.log(json); // this will show the info it in firebug console
-                //});
-                $.ajax({
-                    url: "http://localhost:2798/SystemParameters/Hotels/GetAll",
-                    type: "Get",
-                    success: function (data) {
-                        var list=[];
-                        tete();
-                        function tete() {
-                           // $.localStorage('hotelList', data);
+    <script type="text/javascript">
 
-                            for (var i = 0; i < data.length; i++) {
-                                $(
-                                    "<li>" +
-                                    "<a href='/Hotel/Details/" + data[i].Id + "'>" + data[i].DisplayValue + "</i></a>"
+        $(document).ready(function () {
+            var apiUrl = document.querySelector('#HServicesURL').value;
 
+            //$.blockUI({
+            //    css: {
+            //        position: 'fixed',
+            //        top: '0',
+            //        left: '0',
+            //        'z-index': '999999',
+            //        width: '100%',
+            //        height: '100%',
+            //        'background-color': '#fff',
+            //        'background-image': 'url(/Content/images/Preloader_7.gif)',
+            //        'background-repeat': 'no-repeat',
+            //        'background-position': 'center center'
+            //    }
+            //});
+            //$.getJSON("http://localhost:2798/File/Home.json", function (json) {
+            //    console.log(json); // this will show the info it in firebug console
+            //});
+            $.ajax({
+                url: apiUrl + "/SystemParameters/Hotels/GetAll",
+                type: "Get",
+                success: function (data) {
+                    var list = [];
+                    tete();
+                    function tete() {
+                        // $.localStorage('hotelList', data);
+                        if (data.length === 0) {
+                            document.getElementById("hotelMenu").style.display = "none";
 
-                                ).appendTo("#ulAllHotels");
-                             //  var result = $.localStorage('hotelId', data[i].Id);
-                                list.push(data[i].Id);
-                            }
-                           // $.localStorage('listlist', list); 
-
-                        };
-
-                      //  var value = $.localStorage('hotelList');
-                        //for (var i = 0; i < value.length; i++) {
-                        //  //  console.log(value[i].DisplayValue);
-                        //  //  $.localStorage('hotelListRead', value[i].DisplayValue);
-                        //}
-                        // unblock when ajax activity stops
-                        $(document).ajaxStop($.unblockUI);
-                    },
-                    error: function (msg) {
-                        alert("hotel error");
-                    }
-                });
+                        }
+                        for (var i = 0; i < data.length; i++) {
+                            $(
+                                "<li>" +
+                                "<a href='/Hotel/Details/" + data[i].Id + "'>" + data[i].DisplayValue + "</i></a>"
 
 
-                /*load footer data*/
-                $.ajax({
-                    url: "http://localhost:2798/SystemParameters/ContactUs/GetAll",
-                    type: "Get",
-                    success: function (data) {
-                        $(
-                            "<p>" + data.DisplayValueAddress + "</p>"
-                         ).appendTo("#divAddress");
-                        $(
-                            "<p>" + data.PhoneNo1 + "<br>" + data.PhoneNo2 + "</p>"
-                         ).appendTo("#divphones");
-                        $(
-                            "<p>" +
-                            "<a href='mailto:#'>" + data.Mailbox + "</i>"
-                           + "</p>"
-                        ).appendTo("#divmail");
+                            ).appendTo("#ulAllHotels");
+                            //  var result = $.localStorage('hotelId', data[i].Id);
+                            list.push(data[i].Id);
+                        }
+                        // $.localStorage('listlist', list);
 
-                        $(
-                            "<li>" + "<a href='" + data.Facebook + "'>" + "<i class='fa fa-facebook'></i>" + "</i></a>"
-                            + "<li>" + "<a href='" + data.Twitter + "'>" + "<i class='fa fa-twitter'></i>" + "</i></a>"
-                            + "<li>" + "<a href='" + data.Instgram + "'>" + "<i class='fa fa-pinterest'></i>" + "</i></a>"
-                            + "<li>" + "<a href='" + data.Snapchat + "'>" + "<i class='fa fa-google-plus'></i>" + "</i></a>"
-                            + "<li>" + "<a href='" + data.Youtube + "'>" + "<i class='fa fa-rss'></i>" + "</i></a>"
-                        ).appendTo("#divsocial");
+                    };
 
-
-
-                    },
-                    error: function (msg) {
-                        alert("error footer");
-                    }
-                });
-
+                    //  var value = $.localStorage('hotelList');
+                    //for (var i = 0; i < value.length; i++) {
+                    //  //  console.log(value[i].DisplayValue);
+                    //  //  $.localStorage('hotelListRead', value[i].DisplayValue);
+                    //}
+                    // unblock when ajax activity stops
+                    $(document).ajaxStop($.unblockUI);
+                },
+                error: function (msg) {
+                    // alert("hotel error");
+                }
             });
-         
+
+
+            /*load footer data*/
+            $.ajax({
+                url: "http://localhost:2798/SystemParameters/ContactUs/GetAll",
+                type: "Get",
+                success: function (data) {
+                    $(
+                        "<p>" + data.DisplayValueAddress + "</p>"
+                     ).appendTo("#divAddress");
+                    $(
+                        "<p>" + data.PhoneNo1 + "<br>" + data.PhoneNo2 + "</p>"
+                     ).appendTo("#divphones");
+                    $(
+                        "<p>" +
+                        "<a href='mailto:#'>" + data.Mailbox + "</i>"
+                       + "</p>"
+                    ).appendTo("#divmail");
+
+                    $(
+                        "<li>" + "<a href='" + data.Facebook + "'>" + "<i class='fa fa-facebook'></i>" + "</i></a>"
+                        + "<li>" + "<a href='" + data.Twitter + "'>" + "<i class='fa fa-twitter'></i>" + "</i></a>"
+                        + "<li>" + "<a href='" + data.Instgram + "'>" + "<i class='fa fa-pinterest'></i>" + "</i></a>"
+                        + "<li>" + "<a href='" + data.Snapchat + "'>" + "<i class='fa fa-google-plus'></i>" + "</i></a>"
+                        + "<li>" + "<a href='" + data.Youtube + "'>" + "<i class='fa fa-rss'></i>" + "</i></a>"
+                    ).appendTo("#divsocial");
+
+
+
+                },
+                error: function (msg) {
+                    alert("error footer");
+                }
+            });
+
+        });
+
 
     </script>
 

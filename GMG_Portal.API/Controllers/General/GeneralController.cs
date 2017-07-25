@@ -168,7 +168,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
 
                 #region Gallery
                 var galleryLogic = new HotelLogic();
-                var gallery = galleryLogic.GetAll();
+                var gallery = galleryLogic.GetAllImages();
                 foreach (var systemParametersGallery in gallery)
                 {
                     returnHotelImages.Add(new HotelImages

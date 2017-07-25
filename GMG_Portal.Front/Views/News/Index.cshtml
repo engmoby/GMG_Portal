@@ -29,11 +29,19 @@
                                 <header>
                                     @if (newsObj.Image != null)
                                     {
-                                        <a href="/News/Details/@newsObj.Id"><img src="http://localhost:19056/Uploads/News/@newsObj.Image" alt="" class="img-responsive"></a>
+                                        <a href="/News/Details/@newsObj.Id"><img src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/News/@newsObj.Image" alt="" class="img-responsive"></a>
                                     }
                                     <h2 class="mg-post-title">
                                         <a href="/News/Details/@newsObj.Id" rel="bookmark">
+                                           @if (@newsObj.DisplayValue.Length >= 20)
+                                           {
+
                                             @newsObj.DisplayValue.ToString().Substring(0, 20)
+                                           }
+                                           else
+                                           {
+                                               @newsObj.DisplayValue
+                                           }
                                         </a>
                                     </h2>
                                     <div class="mg-post-meta">
@@ -44,7 +52,14 @@
                                     </div>
                                 </header>
                                 <div>
+                                @if (@newsObj.DisplayValueDesc.Length >= 50)
+                                {
                                     <p>@newsObj.DisplayValueDesc.Substring(0, 50).</p>
+                                }
+                                else
+                                {
+                                    @newsObj.DisplayValueDesc
+                                }
                                 </div>
                                 <footer class="clearfix">
                                     <a href="/News/Details/@newsObj.Id" class="mg-read-more">Continue Reading <i class="fa fa-long-arrow-right"></i></a>
@@ -56,9 +71,9 @@
                 </div>
                 <div class="col-md-4">
                     <div class="mg-widget-area">
-                        <aside class="mg-widget">
+                        @*<aside class="mg-widget">
                             <input type="text" placeholder="Search..." class="form-control">
-                        </aside>
+                        </aside>*@
                         <aside class="mg-widget">
                             <h2 class="mg-widget-title">Recent Posts</h2>
                             <ul class="mg-recnt-posts">

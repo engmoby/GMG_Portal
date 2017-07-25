@@ -29,7 +29,7 @@
                                 <header>
                                     @if (newsObj.Image != null)
                                     {
-                                        <a href="/News/Details/@newsObj.Id"><img src="http://localhost:19056/Uploads/News/@newsObj.Image" alt="" class="img-responsive"></a>
+                                        <a href="/News/Details/@newsObj.Id"><img src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/News/@newsObj.Image" alt="" class="img-responsive"></a>
                                     }
                                     <h2 class="mg-post-title">
                                         <a href="/News/Details/@newsObj.Id" rel="bookmark">

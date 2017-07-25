@@ -39,58 +39,58 @@
                                 <div class="form-horizontal">
                                     <hr />
                                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
-                                        <div class="col-md-10">
+                                    <div class="mg-contact-form-input">
+                                        <label for="subject">@Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })</label>
+                                          
                                             @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
                                             @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
-                                        </div>
+                                       
                                     </div>
-
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
-                                        <div class="col-md-10">
+                                    <div class="mg-contact-form-input">
+                                        <label for="subject">@Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })</label>
+                                   
                                             @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
-                                            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
-                                        </div>
+                                      
                                     </div>
 
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-                                        <div class="col-md-10">
-                                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-                                        </div>
+                                    <div class="mg-contact-form-input">
+                                        <label for="subject">@Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })</label> 
+                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+
                                     </div>
 
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.PhoneNo, htmlAttributes: new { @class = "control-label col-md-2" })
-                                        <div class="col-md-10">
-                                            @Html.EditorFor(model => model.PhoneNo, new { htmlAttributes = new { @class = "form-control" } })
-                                            @Html.ValidationMessageFor(model => model.PhoneNo, "", new { @class = "text-danger" })
-                                        </div>
+                                    <div class="mg-contact-form-input">
+                                        <label for="subject">@Html.LabelFor(model => model.PhoneNo, htmlAttributes: new { @class = "control-label col-md-2" })</label>
+
+                                        @Html.EditorFor(model => model.PhoneNo, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.PhoneNo, "", new { @class = "text-danger" })
+
                                     </div>
 
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.Message, htmlAttributes: new { @class = "control-label col-md-2" })
-                                        <div class="col-md-10">
-                                            @Html.EditorFor(model => model.Message, new { htmlAttributes = new { @class = "form-control" } })
-                                            @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
-                                        </div>
+                                    @*<div class="form-group">
+                                            @Html.LabelFor(model => model.Message, htmlAttributes: new { @class = "control-label col-md-2" })
+                                            <div class="col-md-10">
+                                                @Html.EditorFor(model => model.Message, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>*@
+                                    <div class="mg-contact-form-input">
+                                        <label for="subject">@Html.LabelFor(model => model.Message, htmlAttributes: new { @class = "control-label col-md-2" })</label>
+                                        @Html.EditorFor(model => model.Message, new { htmlAttributes = new { @class = "form-control", rows = "5" } })
+                                        @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
                                     </div>
+                                    <div class="mg-contact-form-input">
+                                        <label for="subject">@Html.LabelFor(model => model.Attach, htmlAttributes: new { @class = "control-label col-md-2" })</label>
 
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.Attach, htmlAttributes: new { @class = "control-label col-md-2" })
-                                        <div class="col-md-10">
-                                            <input type="file" name="file" id="file" />
+                                        <input type="file" id="input-id" accept="application/pdf,application/vnd.ms-excel" name="file" />
 
-                                        </div>
                                     </div>
-
 
                                     <div class="form-group">
                                         <div class="col-md-offset-2 col-md-10">
-                                            <input type="submit" value="Create" class="btn btn-default" />
+                                            <input type="submit" id="btnSubmit" class="btn btn-dark-main pull-right" value="Create">
+                                            @*<input type="submit" value="Create" class="btn btn-default" />*@
                                         </div>
                                     </div>
                                 </div>
@@ -103,4 +103,53 @@
             </div>
         </div>
     </div>
-</div> 
+</div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+    $(function () {
+        var myfile = "";
+
+        $('#input-id').on('change', function () {
+            myfile = $(this).val();
+            var ext = myfile.split('.').pop();
+            if (ext == "pdf" || ext == "docx" || ext == "doc") {
+                // alert(ext);
+            } else {
+                alert("Please upload PDF or Doc");
+            }
+        });
+
+        //$("#input-id").on('change', function(event) {
+        //    var file = event.target.files[0];
+        //    if(file.size>=2*1024*1024) {
+        //        alert("JPG images of maximum 2MB");
+        //        $(".form").get(0).reset(); //the tricky part is to "empty" the input file here I reset the form.
+        //        return;
+        //    }
+        //    //if(!file.type.match('image/jp.*')) {
+
+        //    if (!file.type.match('application/p.*')) {
+        //        alert("only JPG images");
+        //        $(".form").get(0).reset(); //the tricky part is to "empty" the input file here I reset the form.
+        //        return;
+        //    }
+
+        //    var fileReader = new FileReader();
+        //    fileReader.onload = function(e) {
+        //        var int32View = new Uint8Array(e.target.result);
+        //        //verify the magic number
+        //        // for JPG is 0xFF 0xD8 0xFF 0xE0 (see https://en.wikipedia.org/wiki/List_of_file_signatures)
+        //        if(int32View.length>4 && int32View[0]==0xFF && int32View[1]==0xD8 && int32View[2]==0xFF && int32View[3]==0xE0) {
+        //            alert("ok!");
+        //        } else {
+        //            alert("only valid JPG images");
+        //            $(".form").get(0).reset(); //the tricky part is to "empty" the input file here I reset the form.
+        //            return;
+        //        }
+        //    };
+        //    fileReader.readAsArrayBuffer(file);
+        //});
+    });
+</script>

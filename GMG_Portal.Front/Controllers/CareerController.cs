@@ -73,7 +73,7 @@ namespace Front.Controllers
 
 
         public ActionResult Upload(CareerForm careerForm)
-        { 
+        {
             return View(careerForm);
         }
 
@@ -84,8 +84,7 @@ namespace Front.Controllers
             string fileName = "";
             var fileDetails = new List<FileDetail>();
 
-
-
+            
             if (file != null && file.ContentLength > 0)
             {
                 fileName = Path.GetFileName(file.FileName);
@@ -103,6 +102,18 @@ namespace Front.Controllers
 
             careerForm.Attach = fileName;
             careerForm.CareerId = careerForm.CareerId;
+
+            if (string.IsNullOrEmpty(careerForm.FirstName))
+                ModelState.AddModelError("FirstName", "First Name Required");
+            if (string.IsNullOrEmpty(careerForm.LastName))
+                ModelState.AddModelError("LastName", "Last Name Required");
+            if (string.IsNullOrEmpty(careerForm.Email))
+                ModelState.AddModelError("Email", "Email Required");
+            if (string.IsNullOrEmpty(careerForm.PhoneNo))
+                ModelState.AddModelError("PhoneNo", "PhoneNo Required");
+            if (string.IsNullOrEmpty(careerForm.Attach))
+                ModelState.AddModelError("Attach", "Attach file Required");
+
             if (ModelState.IsValid)
             {
 

@@ -89,6 +89,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 Email = postedCareerForm.Email,
                 PhoneNo = postedCareerForm.PhoneNo,
                 Message = postedCareerForm.Message,
+                CareerId = postedCareerForm.CareerId,
                 Attach = postedCareerForm.Attach,
                 CreationTime = Parameters.CurrentDateTime
             };

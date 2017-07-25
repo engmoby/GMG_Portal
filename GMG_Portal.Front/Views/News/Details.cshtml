@@ -28,7 +28,7 @@
                         <header>
                             @if (Model.Image != null)
                             {
-                                <img src="http://localhost:19056/Uploads/News/@Model.Image" alt="" class="img-responsive">
+                                <img src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/News/@Model.Image" alt="" class="img-responsive">
                             }
                             <h2 class="mg-post-title">@Model.DisplayValue</h2>
                             <div class="mg-post-meta">
@@ -57,10 +57,10 @@
             </div>
             <div class="col-md-4">
                 <div class="mg-widget-area">
-                    <aside class="mg-widget">
+                    @*<aside class="mg-widget">
                         <input id="txtSearch" type="text" placeholder="Search..." class="form-control" onkeydown="search(this)">
 
-                    </aside>
+                    </aside>*@
                     <aside class="mg-widget">
                         <h2 class="mg-widget-title">Recent Posts</h2>
                         <ul class="mg-recnt-posts" id="ulAllNews">

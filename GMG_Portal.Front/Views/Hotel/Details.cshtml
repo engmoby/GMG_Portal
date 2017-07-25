@@ -61,7 +61,7 @@
                     <ul class="mg-gallery" id="mg-gallery">
                         @foreach (var n in Model.ImageList)
                         {
-                            <li><img src="http://localhost:19056/Uploads/@n.Image" style="width: 103%; height: 362px;" alt="Partner Logo"></li>
+                            <li><img src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/@n.Image" style="width: 103%; height: 362px;" alt="Partner Logo"></li>
                         }
                     </ul>
 
@@ -69,7 +69,7 @@
                         @foreach (var n in Model.ImageList)
                         {
                             <li>
-                                <img src="http://localhost:19056/Uploads/@n.Image" style="width: 98px;height: 80px;" alt="Partner Logo">
+                                <img src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/@n.Image" style="width: 98px;height: 80px;" alt="Partner Logo">
                             </li>
                         }
                     </ul>
