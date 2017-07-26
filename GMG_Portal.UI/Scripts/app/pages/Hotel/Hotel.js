@@ -121,6 +121,9 @@ function HotelsController($scope, HotelsApi, uploadService, $rootScope, $timeout
                     break;
                 case "HasRelationship":
                     toastr.error($('#HCannotDeleted').val(), 'Error');
+                    HotelsApi.GetAll().then(function (response) {
+                        $scope.Hotels = response.data;
+                    });
                     break;
                 default:
 

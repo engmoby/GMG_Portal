@@ -184,29 +184,22 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             hotel.PriceStart = postedHotel.PriceStart;
             hotel.LastModificationTime = Parameters.CurrentDateTime;
             hotel.LastModifierUserId = Parameters.UserId;
-
-            // _db.Hotels.Attach(hotel);
-            //var entry = _db.Entry(hotel);
-            //entry.Property(e => e.IsDeleted).IsModified = true;
-            // other changed properties
-            //_db.SaveChanges();
-
+             
             return Save(hotel);
         }
 
         public Hotel Delete(Hotel postedHotel)
         {
-            Hotel hotel = Get(postedHotel.Id);
-            //if (_db.Hotels.Any(p => p.Id == postedHotel.Id))
-            //{
-            //    //  Hotel.OperationStatus = "HasRelationship";
-            //    return hotel;
-            //}
+            var hotel = GetHotelInfoById(postedHotel.Id);
+            if (_db.Hotels_Images.FirstOrDefault(p => p.Hotel_Id == postedHotel.Id) != null)
+            {
+                hotel.OperationStatus = "HasRelationship";
+                return hotel;
+            }
 
             hotel.IsDeleted = true;
             hotel.CreationTime = Parameters.CurrentDateTime;
             hotel.CreatorUserId = Parameters.UserId;
-            _db.SaveChanges();
             return Save(hotel);
         }
 
