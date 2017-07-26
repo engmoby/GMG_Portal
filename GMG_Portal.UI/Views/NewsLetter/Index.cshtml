@@ -1,0 +1,113 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}  
+@using GMG_Portal.Content;
+@using GMG_Portal.Content.Admin 
+@using GMG_Portal.Content.Admin.SystemParameters
+<script type="text/javascript" src="~/Scripts/app/services/Newsletter.js"></script>
+<script type="text/javascript" src="~/Scripts/app/pages/Newsletter/Newsletter.js"></script>
+<input type="hidden" id="HEnglishNameUnique" value="@NewsLetters.EnglishNameUnique" />
+<input type="hidden" id="HUpdateSuccessMessage" value="@NewsLetters.UpdateSuccessMessage" /> 
+@*<input type="hidden" id="HArabicNameUnique" value="@NewsLetters.TxtTitleUniqueErrorMessage" />*@ 
+
+<div ng-controller="NewslettersController">
+
+    <div ba-panel>
+        <table class="table table-hover table-condensed" st-table="TableData" st-safe-src="Newsletters">
+            <thead>
+                <tr class="toolbar">
+                    <th colspan="2">
+                        <div class="input-group">
+                            <span class="input-group-addon addon-left"><i class="fa fa-search" aria-hidden="true"></i></span>
+                            <input st-search="" class="form-control" placeholder="@NewsLetters.txtSearchLbl" type="text" />
+                        </div>
+                    </th>
+                    <th colspan="1"></th>
+
+                </tr>
+
+                <tr class="sortable">
+                    <th>#</th>
+                    <th st-sort="Postion">@NewsLetters.Mail</th> 
+                    <th st-sort="Desc">@NewsLetters.Date</th>
+                    <th>@NewsLetters.Action</th>
+                    <th>@NewsLetters.Action</th>  
+                </tr>
+
+            </thead>
+            <tbody>
+                <tr ng-class="{'red-text': Newsletter.Seen == false}" ng-repeat="Newsletter in TableData">
+                    <td>{{$index+1}}</td>
+                    <td>{{Newsletter.Mail}}</td> 
+                    <td>{{Newsletter.CreationTime}}</td>
+                    <td>
+                         
+                        <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(Newsletter)"><i class="fa fa-pencil" aria-hidden="true"></i>@NewsLetters.View</button>
+                    </td>
+                    <td>
+                        <div class="buttons" ng-show="!Newsletter.Seen">
+                            <button class="center-block btn btn-default  restore-button btn-xs btn-with-icon" ng-click="Seen(Newsletter)"><i class="fa fa-undo" aria-hidden="true"></i>@NewsLetters.Seen</button>
+                        </div>
+                        <div class="buttons" ng-show="Newsletter.Seen">
+                            {{Newsletter.SeenBy}}
+                        </div>
+                    </td>
+                </tr>
+                <tr ng-show="TableData.length==0">
+                    <td colspan="4">
+                        @Shared.GridNoData
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4" class="text-center">
+                        <div st-pagination="" st-items-by-page="10"></div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <form name="FrmAddUpdate" ng-submit="save()" novalidate autocomplete="off">
+
+        <div class="modal fade" id="ModelAddUpdate" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">{{action |uppercase}} @NewsLetters.ModalTitle</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="TxtTitle">@NewsLetters.Mail</label><span class="red-text"> *</span>
+                            <input type="text" ng-model="Newsletter.Mail" class="form-control" Title="TxtTitle" readonly="readonly"
+                                   placeholder="@NewsLetters.Mail" required ng-pattern="/@Regex.NameAr/">
+                        </div>
+ 
+                       
+                        <div class="form-group">
+                            <label for="TxtDesc">@NewsLetters.Date</label><span class="red-text"> *</span>
+                            <input ng-model="Newsletter.CreationTime" class="form-control" name="TxtDesc" readonly="readonly"
+                                   placeholder="Text" required ng-pattern="/@Regex.NameEn/"/>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </form>
+
+
+</div>
+
+
+
+
+
+
