@@ -71,7 +71,7 @@
             <tbody>
                 <tr ng-repeat="New in TableData">
                     <td ng-class="{'red-text': New.IsDeleted == true}">{{$index+1}}</td>
-                    <td ng-class="{'red-text': New.IsDeleted == true}"><img ng-click="openImage(New)" width="70px" height="70px" src="http://localhost:19056/Uploads/{{New.Image}}" /></td>
+                    <td ng-class="{'red-text': New.IsDeleted == true}"><img ng-click="openImage(New)" width="70px" height="70px" src="http://gmgbackend.azurewebsites.net/Uploads/{{New.Image}}" /></td>
                     <td ng-class="{'red-text': New.IsDeleted == true}">{{New.DisplayValue}}</td>
                     <td ng-class="{'red-text': New.IsDeleted == true}">{{New.DisplayValueDesc | limitTo:letterLimit}} </td> 
                     <td>
@@ -103,8 +103,8 @@
     <div class="modal fade" id="ModelImage" role="dialog">
         <div class="modal-dialog">
             <img style="width: 100%;
-                                       height: 65%;" src="http://localhost:19056/Uploads/{{New.Image}}" />
-            @*<img src="http://localhost:19056/Uploads/5.jpg" />*@
+                                       height: 65%;" src="http://gmgbackend.azurewebsites.net/Uploads/{{New.Image}}" />
+            @*<img src="http://gmgbackend.azurewebsites.net/Uploads/5.jpg" />*@
         </div>
     </div>
 
@@ -172,7 +172,7 @@
                                     </div>
                                     @*<input type="button" class="btn btn-default  btn-primary" ng-click="uploadFiles()" value="Upload" ng-disabled="uploading || countFiles===''" />*@
 
-                                    <img style="width: 100px; height: 100px" src="http://localhost:19056/Uploads/{{New.Image}}" ng-show="New.Image" />
+                                    <img style="width: 100px; height: 100px" src="http://gmgbackend.azurewebsites.net/Uploads/{{New.Image}}" ng-show="New.Image" />
 
                                 </div>
                             </div>

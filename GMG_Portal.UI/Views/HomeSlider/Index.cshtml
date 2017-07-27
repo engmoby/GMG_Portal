@@ -72,7 +72,7 @@
             <tbody>
                 <tr ng-repeat="HomeSlider in TableData">
                     <td ng-class="{'red-text': HomeSlider.IsDeleted == true}">{{$index+1}}</td>
-                    <td ng-class="{'red-text': HomeSlider.IsDeleted == true}"><img ng-click="openImage(HomeSlider)" width="70px" height="70px" src="http://localhost:19056/Uploads/{{HomeSlider.Image}}" /></td>
+                    <td ng-class="{'red-text': HomeSlider.IsDeleted == true}"><img ng-click="openImage(HomeSlider)" width="70px" height="70px" src="http://gmgbackend.azurewebsites.net/Uploads/{{HomeSlider.Image}}" /></td>
                     <td ng-class="{'red-text': HomeSlider.IsDeleted == true}">{{HomeSlider.DisplayValue}}</td>
                     <td ng-class="{'red-text': HomeSlider.IsDeleted == true}">{{HomeSlider.DisplayValueDesc | limitTo:letterLimit}} </td>
                     <td ng-class="{'red-text': HomeSlider.IsDeleted == true}">{{HomeSlider.Rating}}</td>
@@ -104,9 +104,7 @@
 
     <div class="modal fade" id="ModelImage" role="dialog">
         <div class="modal-dialog">
-            <img style="width: 100%;
-                                       height: 65%;" src="http://localhost:19056/Uploads/{{homeSlider.Image}}" />
-            @*<img src="http://localhost:19056/Uploads/5.jpg" />*@
+            <img style="width: 100%;height: 65%;" src="http://gmgbackend.azurewebsites.net/Uploads/{{homeSlider.Image}}" />
         </div>
     </div>
 
@@ -125,44 +123,48 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="TxtTitle">@HomeSlider.Title</label><span class="red-text"> *</span>
-                            <input type="text" ng-model="HomeSlider.DisplayValue" not-in-list="HomeSliders" list-item-id="HomeSlider.ID" class="form-control" Title="TxtTitle"
-                                   placeholder="@HomeSlider.Title" required ng-pattern="/@Regex.NameAr/">
+                            <input type="text" ng-model="HomeSlider.DisplayValue" not-in-list="HomeSliders" list-item-id="HomeSlider.ID" class="form-control" name="TxtTitle"
+                                   placeholder="@HomeSlider.Title" ng-minlength="20" ng-maxlength="30" required ng-pattern="/@Regex.NameAr/">
 
                             <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
                                 <span class="red-text" ng-message="required">@HomeSlider.TxtTitleRequiredErrorMessage</span>
                                 <span class="red-text" ng-message="pattern">@HomeSlider.TxtTitlePatternErrorMessage</span>
                                 <span class="red-text" ng-message="notInList">@HomeSlider.TxtTitleUniqueErrorMessage</span>
+                                <span class="red-text" ng-message="minlength">Minimum 20 Charachter</span>
+                                <span class="red-text" ng-message="maxlength">Maximum 30 Charachter</span>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="TxtDesc">@HomeSlider.Desc</label><span class="red-text"> *</span>
                             <textarea ng-model="HomeSlider.DisplayValueDesc" not-in-list="HomeSliders" list-item-id="HomeSlider.ID" class="form-control" name="TxtDesc"
-                                      placeholder="Text" required ng-pattern="/@Regex.NameEn/"></textarea>
+                                      placeholder="Text"  ng-minlength="20" ng-maxlength="50" required ng-pattern="/@Regex.NameEn/"></textarea>
                             <div class="red-text" ng-messages="FrmAddUpdate.TxtDesc.$error" ng-show="FrmAddUpdate.TxtDesc.$touched">
                                 <span class="red-text" ng-message="required">@HomeSlider.TxtDescRequiredErrorMessage</span>
                                 <span class="red-text" ng-message="pattern">@HomeSlider.TxtDescPatternErrorMessage</span>
                                 <span class="red-text" ng-message="notInList">@HomeSlider.TxtDescUniqueErrorMessage</span>
-                            </div>
+
+                                <span class="red-text" ng-message="minlength">Minimum 20 Charachter</span>
+                                <span class="red-text" ng-message="maxlength">Maximum 30 Charachter</span> </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="TxtUrl">@HomeSlider.Url</label>
-                            <input type="text" ng-model="HomeSlider.URL" not-in-list="HomeSliders" list-item-id="HomeSlider.ID" class="form-control" name="TxtUrl"
-                                   placeholder="@HomeSlider.Url" ng-pattern="/@Regex.Name/">
-                            <div class="red-text" ng-messages="FrmAddUpdate.TxtUrl.$error" ng-show="FrmAddUpdate.TxtUrl.$touched">
-                                <span class="red-text" ng-message="pattern">@HomeSlider.TxtUrlPatternErrorMessage</span>
+                        @*<div class="form-group">
+                                <label for="TxtUrl">@HomeSlider.Url</label>
+                                <input type="text" ng-model="HomeSlider.URL" not-in-list="HomeSliders" list-item-id="HomeSlider.ID" class="form-control" name="TxtUrl"
+                                       placeholder="@HomeSlider.Url" ng-pattern="/@Regex.Name/">
+                                <div class="red-text" ng-messages="FrmAddUpdate.TxtUrl.$error" ng-show="FrmAddUpdate.TxtUrl.$touched">
+                                    <span class="red-text" ng-message="pattern">@HomeSlider.TxtUrlPatternErrorMessage</span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="TxtRate">@HomeSlider.Rate</label><span class="red-text"> *</span>
-                            <input type="text" ng-model="HomeSlider.Rating" not-in-list="HomeSliders" list-item-id="HomeSlider.ID" class="form-control" name="TxtRate"
-                                   placeholder="@HomeSlider.Rate" required ng-pattern="/@Regex.Number/">
+                            <div class="form-group">
+                                <label for="TxtRate">@HomeSlider.Rate</label><span class="red-text"> *</span>
+                                <input type="text" ng-model="HomeSlider.Rating" not-in-list="HomeSliders" list-item-id="HomeSlider.ID" class="form-control" name="TxtRate"
+                                       placeholder="@HomeSlider.Rate" required ng-pattern="/@Regex.Number/">
 
-                        </div>
+                            </div>*@
                         <div class="form-group">
                             <label for="TxtRate">@HomeSlider.Image</label><span class="red-text"> *</span>
-                          
-                            <div class="fileinput fileinput-new" data-provides="fileinput"> 
+
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
 
                                 <div class="col-lg-6 col-sm-6 col-12">
 
@@ -177,13 +179,13 @@
                                     </div>
                                     @*<input type="button" class="btn btn-default  btn-primary" ng-click="uploadFiles()" value="Upload" ng-disabled="uploading || countFiles===''" />*@
 
-                                    <img style="width: 100px; height: 100px" src="http://localhost:19056/Uploads/{{HomeSlider.Image}}" ng-show="HomeSlider.Image" />
+                                    <img style="width: 100px; height: 100px" src="http://gmgbackend.azurewebsites.net/Uploads/{{HomeSlider.Image}}" ng-show="HomeSlider.Image" />
 
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer"> 
+                    <div class="modal-footer">
                         <button type="submit" class="btn btn-primary btn-with-icon" ng-click="uploadFiles()" ng-disabled="FrmAddUpdate.$invalid"><i class="ion-android-checkmark-circle"></i>@HomeSlider.btnSaveLbl</button>
                     </div>
                 </div>

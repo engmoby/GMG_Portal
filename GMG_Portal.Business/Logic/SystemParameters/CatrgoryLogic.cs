@@ -87,7 +87,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             SystemParameters_Category category = Get(postedCategory.Id);
             if (_db.SystemParameters_News.Any(p => p.CategoryId == postedCategory.Id && p.IsDeleted != true))
             {
-                postedCategory.OperationStatus = "HasRelationship";
+                category.OperationStatus = "HasRelationship";
                 return category;
             }
 

@@ -89,11 +89,11 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         public SystemParameters_HomeSlider Delete(SystemParameters_HomeSlider postedhomeSlider)
         {
             SystemParameters_HomeSlider homeSlider = Get(postedhomeSlider.Id);
-            if (_db.SystemParameters_HomeSlider.Any(p => p.Id == postedhomeSlider.Id && p.IsDeleted != true))
-            {
-                  //  homeSlider.OperationStatus = "HasRelationship";
-                return homeSlider;
-            }
+            //if (_db.SystemParameters_HomeSlider.Any(p => p.Id == postedhomeSlider.Id && p.IsDeleted != true))
+            //{
+            //      //  homeSlider.OperationStatus = "HasRelationship";
+            //    return homeSlider;
+            //}
 
             homeSlider.IsDeleted = true;
             homeSlider.CreationTime = Parameters.CurrentDateTime;

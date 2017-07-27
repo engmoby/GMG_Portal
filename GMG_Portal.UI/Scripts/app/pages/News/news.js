@@ -25,7 +25,7 @@ function NewsController($scope, NewsApi, uploadService, $rootScope, $timeout, $f
         if (New == null) New = {}
         else
         {
-            var categoryIndex = $scope.Categorys.indexOf($filter('filter')($scope.Categorys, { 'Id': news.CategoryId }, true)[0]);
+            var categoryIndex = $scope.Categorys.indexOf($filter('filter')($scope.Categorys, { 'Id': New.CategoryId }, true)[0]);
             $scope.SelectedCategory = $scope.Categorys[categoryIndex];
         };
         $scope.New = angular.copy(New);

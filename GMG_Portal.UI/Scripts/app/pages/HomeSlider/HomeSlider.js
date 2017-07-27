@@ -1,6 +1,9 @@
 ﻿controllerProvider.register('HomeSlidersController', ['$scope', 'HomeSlidersApi', 'uploadService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', HomeSlidersController]);
 function HomeSlidersController($scope, HomeSlidersApi, uploadService, $rootScope, $timeout, $filter, $uibModal, toastr) {
+
     $scope.Image = "";
+    $scope.ImageFormatValidaiton = "Please upload jpg or jpeg ";
+    $scope.ImageSizeValidaiton = "Can't upload image more than 2MB";
     $scope.letterLimit = 20;
     $rootScope.ViewLoading = true;
     HomeSlidersApi.GetAll().then(function (response) {
@@ -62,15 +65,15 @@ function HomeSlidersController($scope, HomeSlidersApi, uploadService, $rootScope
                     switch ($scope.action) {
                         case 'edit':
                             index = $scope.HomeSliders.indexOf($filter('filter')($scope.HomeSliders, { 'ID': $scope.HomeSlider.ID }, true)[0]);
-                           // $scope.HomeSliders[index] = angular.copy(response.data);
+                            // $scope.HomeSliders[index] = angular.copy(response.data);
                             HomeSlidersApi.GetAll().then(function (response) {
-                                $scope.HomeSliders = response.data; 
-                            }); 
+                                $scope.HomeSliders = response.data;
+                            });
                             toastr.success($('#HUpdateSuccessMessage').val(), 'Success');
                             break;
                         case 'delete':
                             index = $scope.HomeSliders.indexOf($filter('filter')($scope.HomeSliders, { 'ID': $scope.HomeSlider.ID }, true)[0]);
-                           // $scope.HomeSliders[index] = angular.copy(response.data);
+                            // $scope.HomeSliders[index] = angular.copy(response.data);
                             HomeSlidersApi.GetAll().then(function (response) {
                                 $scope.HomeSliders = response.data;
                             });
@@ -140,6 +143,20 @@ function HomeSlidersController($scope, HomeSlidersApi, uploadService, $rootScope
             $scope.save();
             return;
         }
+        var extn = $scope.Image.split(".").pop();
+        var fileLength = $scope.data[0].FileLength;
+        if (fileLength > 152166) {
+            $scope.countFiles = null;
+            angular.element("input[type='file']").val(null);
+            alert($scope.ImageSizeValidaiton);
+            return;
+        }
+        if (extn !== "jpg" || extn !== "jpeg") {
+            $scope.countFiles = null;
+            angular.element("input[type='file']").val(null);
+            alert($scope.ImageFormatValidaiton);
+            return;
+        }
         uploadService.uploadFiles($scope)
             // then() called when uploadFiles gets back
             .then(function (data) {
@@ -172,7 +189,6 @@ function HomeSlidersController($scope, HomeSlidersApi, uploadService, $rootScope
     };
 
 }
-
 
 
 

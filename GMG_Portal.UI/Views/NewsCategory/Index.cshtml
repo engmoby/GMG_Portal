@@ -13,36 +13,11 @@
 <input type="hidden" id="HDeleteSuccessMessage" value="@NewsCategory.DeleteSuccessMessage" />
 <input type="hidden" id="HArabicNameUnique" value="@NewsCategory.TxtTitleUniqueErrorMessage" />
 <input type="hidden" id="HCannotDeleted" value="@NewsCategory.CannotDeleted" />
-<style>
-    .btn-file {
-        position: relative;
-        overflow: hidden;
-    }
 
-        .btn-file input[type=file] {
-            position: absolute;
-            top: 0;
-            right: 0;
-            min-width: 100%;
-            min-height: 100%;
-            font-size: 100px;
-            text-align: right;
-            filter: alpha(opacity=0);
-            opacity: 0;
-            background: red;
-            cursor: inherit;
-            display: block;
-        }
-
-    input[readonly] {
-        background-color: white !important;
-        cursor: text !important;
-    }
-</style>
-<div ng-controller="NewsCategoryController">
+<div ng-controller="NewsCategorysController">
 
     <div ba-panel>
-        <table class="table table-hover table-condensed" st-table="TableData" st-safe-src="newscategory">
+        <table class="table table-hover table-condensed" st-table="TableData" st-safe-src="NewsCategorys">
             <thead>
                 <tr class="toolbar">
                     <th colspan="2">
@@ -61,28 +36,27 @@
 
                 <tr class="sortable">
                     <th>#</th>
-              
-                   
+
+
                     <th st-sort="Desc">@NewsCategory.Desc</th>
-                    <th st-sort="Desc">@NewsCategory.DescDisplay</th>
-             
-                 
+                    <th>@NewsCategory.Action</th>
+
+
                 </tr>
 
             </thead>
             <tbody>
-                <tr ng-repeat="newscategory in TableData">
-                    <td ng-class="{'red-text': newscategory.IsDeleted == true}">{{$index+1}}</td>
-                    <td ng-class="{'red-text': newscategory.IsDeleted == true}">{{news.DisplayValue}}</td>
-                    <td ng-class="{'red-text': newscategory.IsDeleted == true}">{{news.DisplayValueDesc | limitTo:letterLimit}} </td>
-                  
+                <tr ng-repeat="NewsCategory in TableData">
+                    <td ng-class="{'red-text': NewsCategory.IsDeleted == true}">{{$index+1}}</td>
+                    <td ng-class="{'red-text': NewsCategory.IsDeleted == true}">{{NewsCategory.DisplayValue}}</td>
+
                     <td>
-                        <div class="buttons" ng-show="!newscategory.IsDeleted">
-                            <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(newscategory)"><i class="fa fa-pencil" aria-hidden="true"></i>@NewsCategory.TableBtnEdit</button>
-                            <button class="btn btn-danger editable-table-button btn-xs btn-with-icon" ng-confirm="Confirm Delete ?" ng-click="Delete(newscategory)"><i class="fa fa-trash-o" aria-hidden="true"></i>@NewsCategory.TableBtnDelete</button>
+                        <div class="buttons" ng-show="!NewsCategory.IsDeleted">
+                            <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(NewsCategory)"><i class="fa fa-pencil" aria-hidden="true"></i>@NewsCategory.TableBtnEdit</button>
+                            <button class="btn btn-danger editable-table-button btn-xs btn-with-icon" ng-confirm="Confirm Delete ?" ng-click="Delete(NewsCategory)"><i class="fa fa-trash-o" aria-hidden="true"></i>@NewsCategory.TableBtnDelete</button>
                         </div>
-                        <div class="buttons restore-button" ng-show="newscategory.IsDeleted">
-                            <button class="center-block btn btn-default  restore-button btn-xs btn-with-icon" ng-click="Restore(newscategory)"><i class="fa fa-undo" aria-hidden="true"></i>Restore</button>
+                        <div class="buttons restore-button" ng-show="NewsCategory.IsDeleted">
+                            <button class="center-block btn btn-default  restore-button btn-xs btn-with-icon" ng-click="Restore(NewsCategory)"><i class="fa fa-undo" aria-hidden="true"></i>Restore</button>
                         </div>
                     </td>
                 </tr>
@@ -105,12 +79,12 @@
     <div class="modal fade" id="ModelImage" role="dialog">
         <div class="modal-dialog">
             <img style="width: 100%;
-                                       height: 65%;" src="http://localhost:19056/Uploads/{{newscategory.Image}}" />
+                                       height: 65%;" src="http://gmgbackend.azurewebsites.net/Uploads/{{NewsCategory.Image}}" />
         </div>
     </div>
 
-    @*<form name="FrmAddUpdate" novalidate ng-submit="save()" autocomplete="off">*@
-    <form name="FrmAddUpdate" novalidate autocomplete="off">
+    <form name="FrmAddUpdate" novalidate ng-submit="save()" autocomplete="off">
+    @*<form name="FrmAddUpdate" novalidate autocomplete="off">*@
 
         <div class="modal fade" id="ModelAddUpdate" role="dialog">
             <div class="modal-dialog">
@@ -124,7 +98,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="TxtTitle">@NewsCategory.Title</label><span class="red-text"> *</span>
-                            <input type="text" ng-model="newscategory.DisplayValue" not-in-list="newscategory" list-item-id="newscategory.ID" class="form-control" Title="TxtTitle"
+                            <input type="text" ng-model="NewsCategory.DisplayValue" not-in-list="NewsCategory" list-item-id="NewsCategory.ID" class="form-control" Title="TxtTitle"
                                    placeholder="@NewsCategory.Title" required ng-pattern="/@Regex.NameAr/">
 
                             <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
@@ -135,7 +109,7 @@
                         </div>
                         <div class="form-group">
                             <label for="TxtDesc">@NewsCategory.Desc</label><span class="red-text"> *</span>
-                            <textarea ng-model="newscategory.DisplayValueDesc" not-in-list="news" list-item-id="newscategory.ID" class="form-control" name="TxtDesc"
+                            <textarea ng-model="NewsCategory.DisplayValueDesc" not-in-list="NewsCategory" list-item-id="NewsCategory.ID" class="form-control" name="TxtDesc"
                                       placeholder="Text" required ng-pattern="/@Regex.NameEn/"></textarea>
                             <div class="red-text" ng-messages="FrmAddUpdate.TxtDesc.$error" ng-show="FrmAddUpdate.TxtDesc.$touched">
                                 <span class="red-text" ng-message="required">@NewsCategory.TxtDescRequiredErrorMessage</span>
@@ -146,10 +120,10 @@
 
 
 
-                     
+
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary btn-with-icon" ng-click="uploadFiles()" ng-disabled="FrmAddUpdate.$invalid"><i class="ion-android-checkmark-circle"></i>@NewsCategory.btnSaveLbl</button>
+                        <button type="submit" class="btn btn-primary btn-with-icon"   ng-disabled="FrmAddUpdate.$invalid"><i class="ion-android-checkmark-circle"></i>@NewsCategory.btnSaveLbl</button>
                     </div>
                 </div>
 

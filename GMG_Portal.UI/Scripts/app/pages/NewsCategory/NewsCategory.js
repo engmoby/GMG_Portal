@@ -1,47 +1,47 @@
-﻿controllerProvider.register('NewsCategoryController', ['$scope', 'NewsCategoryApi', 'uploadService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', NewsCategoryController]);
-function NewsCategoryController($scope, NewsCategoryApi, uploadService, $rootScope, $timeout, $filter, $uibModal, toastr) {
+﻿controllerProvider.register('NewsCategorysController', ['$scope', 'NewsCategoryApi', 'uploadService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', NewsCategorysController]);
+function NewsCategorysController($scope, NewsCategoryApi, uploadService, $rootScope, $timeout, $filter, $uibModal, toastr) {
     $scope.Image = "";
     $scope.letterLimit = 20;
     $rootScope.ViewLoading = true;
     NewsCategoryApi.GetAll().then(function (response) {
-        $scope.newscategory = response.data;
+        $scope.NewsCategorys = response.data;
         $rootScope.ViewLoading = false;
     });
-    $scope.open = function (newscategory) {
+    $scope.open = function (NewsCategory) {
         debugger;
         $scope.countFiles = '';
         $scope.invalidupdateAddFrm = true;
         $('#ModelAddUpdate').modal('show');
-        $scope.action = news == null ? 'add' : 'edit';
+        $scope.action = NewsCategory == null ? 'add' : 'edit';
         $scope.FrmAddUpdate.$setPristine();
         $scope.FrmAddUpdate.$setUntouched();
-        if (newscategory == null) newscategory = {};
-        $scope.newscategory = angular.copy(news);
-        if ($scope.newscategory.Image)
-            $scope.countFiles = $scope.newscategory.Image;
+        if (NewsCategory == null) NewsCategory = {};
+        $scope.NewsCategory = angular.copy(NewsCategory);
+        if ($scope.NewsCategory.Image)
+            $scope.countFiles = $scope.NewsCategory.Image;
 
         $timeout(function () {
             document.querySelector('input[name="TxtNameAr"]').focus();
         }, 1000);
     }
-    $scope.openImage = function (newscategory) {
+    $scope.openImage = function (NewsCategory) {
         debugger;
         $('#ModelImage').modal('show');
-        //$scope.action = homeSlider == null ? 'add' : 'edit';
-        if (newscategory == null) newscategory = {};
-        $scope.newscategory = angular.copy(newscategory);
-        //if ($scope.homeSlider.Image)
-        //    $scope.countFiles = $scope.homeSlider.Image;
+        //$scope.action = NewsCategory == null ? 'add' : 'edit';
+        if (NewsCategory == null) NewsCategory = {};
+        $scope.NewsCategory = angular.copy(NewsCategory);
+        //if ($scope.NewsCategory.Image)
+        //    $scope.countFiles = $scope.NewsCategory.Image;
 
     }
     $scope.back = function () {
         $('#ModelAddUpdate').modal('hide');
     }
 
-    $scope.Restore = function (newscategory) {
+    $scope.Restore = function (NewsCategory) {
         debugger;
-        $scope.newscategory = angular.copy(newscategory);
-        $scope.newscategory.IsDeleted = false;
+        $scope.NewsCategory = angular.copy(NewsCategory);
+        $scope.NewsCategory.IsDeleted = false;
         $scope.action = 'edit';
         $scope.save();
     }
@@ -49,40 +49,40 @@ function NewsCategoryController($scope, NewsCategoryApi, uploadService, $rootSco
     $scope.save = function () {
         $rootScope.ViewLoading = true;
         if ($scope.Image) {
-            $scope.newscategory.Image = $scope.Image;
+            $scope.NewsCategory.Image = $scope.Image;
             $scope.Image = "";
         }
         //  uploadService.uploadFiles();
         debugger;
-        NewsCategoryApi.Save($scope.newscategory).then(function (response) {
+        NewsCategoryApi.Save($scope.NewsCategory).then(function (response) {
 
-            switch (response.data.OperationStatus) {
+                switch (response.data.OperationStatus) {
                 case "Succeded":
                     var index;
                     switch ($scope.action) {
-                        case 'edit':
-                            index = $scope.newscategory.indexOf($filter('filter')($scope.newscategory, { 'ID': $scope.newscategory.ID }, true)[0]);
-                           // $scope.newscategory[index] = angular.copy(response.data);
-                            NewsCategoryApi.GetAll().then(function (response) {
-                                $scope.newscategory = response.data;
-                            }); 
-                            toastr.success($('#HUpdateSuccessMessage').val(), 'Success');
-                            break;
-                        case 'delete':
-                            index = $scope.newscategory.indexOf($filter('filter')($scope.newscategory, { 'ID': $scope.newscategory.ID }, true)[0]);
-                           // $scope.newscategory[index] = angular.copy(response.data);
-                            NewsCategoryApi.GetAll().then(function (response) {
-                                $scope.newscategory = response.data;
-                            });
-                            toastr.success($('#HDeleteSuccessMessage').val(), 'Success');
-                            break;
-                        case 'add':
-                            NewsCategoryApi.GetAll().then(function (response) {
-                                $scope.newscategory = response.data;
-                            });
-                            // $scope.newscategory.push(angular.copy(response.data));
-                            toastr.success($('#HSaveSuccessMessage').val(), 'Success');
-                            break;
+                    case 'edit':
+                        index = $scope.NewsCategorys.indexOf($filter('filter')($scope.NewsCategorys, { 'Id': $scope.NewsCategory.Id }, true)[0]);
+                        // $scope.NewsCategorys[index] = angular.copy(response.data);
+                        NewsCategoryApi.GetAll().then(function (response) {
+                            $scope.NewsCategorys = response.data;
+                        });
+                        toastr.success($('#HUpdateSuccessMessage').val(), 'Success');
+                        break;
+                    case 'delete':
+                        index = $scope.NewsCategorys.indexOf($filter('filter')($scope.NewsCategorys, { 'Id': $scope.NewsCategory.Id }, true)[0]);
+                        // $scope.NewsCategorys[index] = angular.copy(response.data);
+                        NewsCategoryApi.GetAll().then(function (response) {
+                            $scope.NewsCategorys = response.data;
+                        });
+                        toastr.success($('#HDeleteSuccessMessage').val(), 'Success');
+                        break;
+                    case 'add':
+                        NewsCategoryApi.GetAll().then(function (response) {
+                            $scope.NewsCategorys = response.data;
+                        });
+                        // $scope.NewsCategorys.push(angular.copy(response.data));
+                        toastr.success($('#HSaveSuccessMessage').val(), 'Success');
+                        break;
                     }
                     break;
                 case "NameEnMustBeUnique":
@@ -92,25 +92,28 @@ function NewsCategoryController($scope, NewsCategoryApi, uploadService, $rootSco
                     toastr.error($('#HArabicNameUnique').val(), 'Error');
                     break;
                 case "HasRelationship":
+                    NewsCategoryApi.GetAll().then(function (response) {
+                        $scope.NewsCategorys = response.data;
+                    });
                     toastr.error($('#HCannotDeleted').val(), 'Error');
                     break;
                 default:
 
-            }
+                }
 
-            $rootScope.ViewLoading = false;
-            $scope.back();
-        },
-        function (response) {
-            debugger;
-            ss = response;
-        });
+                $rootScope.ViewLoading = false;
+                $scope.back();
+            },
+            function (response) {
+                debugger;
+                ss = response;
+            });
     }
 
-    $scope.Delete = function (newscategory) {
+    $scope.Delete = function (NewsCategory) {
         $scope.action = 'delete';
-        $scope.newscategory = newscategory;
-        $scope.newscategory.IsDeleted = true;
+        $scope.NewsCategory = NewsCategory;
+        $scope.NewsCategory.IsDeleted = true;
         $scope.save();
     }
     $scope.uploading = false;
@@ -143,30 +146,30 @@ function NewsCategoryController($scope, NewsCategoryApi, uploadService, $rootSco
         uploadService.uploadFiles($scope)
             // then() called when uploadFiles gets back
             .then(function (data) {
-                // promise fulfilled
-                $scope.uploading = false;
-                if (data === '') {
-                    // console.log(data);
-                    //   $scope.Image=data.
-                    $scope.save();
+                    // promise fulfilled
+                    $scope.uploading = false;
+                    if (data === '') {
+                        // console.log(data);
+                        //   $scope.Image=data.
+                        $scope.save();
+                        $scope.data = [];
+                        alert("Done!!!");
+                        $scope.formdata = new FormData();
+                        $scope.data = [];
+                        $scope.countFiles = '';
+                        $scope.$apply;
+                    } else {
+                        // console.log(data);
+                        //Server Error
+                        $scope.data = [];
+                        alert("Shit, What happended up there!!! " + data);
+                    }
+                }, function (error) {
+                    $scope.uploading = false;
                     $scope.data = [];
-                    alert("Done!!!");
-                    $scope.formdata = new FormData();
-                    $scope.data = [];
-                    $scope.countFiles = '';
-                    $scope.$apply;
-                } else {
-                    // console.log(data);
                     //Server Error
-                    $scope.data = [];
-                    alert("Shit, What happended up there!!! " + data);
+                    alert("Shit, What happended up there!!! " + error);
                 }
-            }, function (error) {
-                $scope.uploading = false;
-                $scope.data = [];
-                //Server Error
-                alert("Shit, What happended up there!!! " + error);
-            }
 
             );
     };

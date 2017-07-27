@@ -331,12 +331,12 @@ app.directive('customUploaderWithMainImage', function ($compile) {
 
 app.directive('myDirectory',
     [
-        '$parse', function($parse) {
+        '$parse', function ($parse) {
 
             function link(scope, element, attrs) {
                 var model = $parse(attrs.myDirectory);
                 element.on('change',
-                    function(event) {
+                    function (event) {
                         scope.data = []; //Clear shared scope in case user reqret on the selection
                         model(scope, { file: event.target.files });
 
@@ -349,33 +349,56 @@ app.directive('myDirectory',
         }
     ]);
 app.factory('uploadService', function ($http, $q) {
-        return {
-            uploadFiles: function ($scope) {
+    return {
+        uploadFiles: function ($scope) {
+            debugger;
+            console.log($scope.formdata);
+            var request = {
+                method: 'POST',
+                url: '/api/upload/',
+                data: $scope.formdata,
+                headers: {
+                    'Content-Type': undefined
+                }
+            };
 
-                var request = {
-                    method: 'POST',
-                    url: '/api/upload/',
-                    data: $scope.formdata,
-                    headers: {
-                        'Content-Type': undefined
-                    }
-                };
-
-                // SEND THE FILES.
-                return $http(request)
-                    .then(
-                        function (response) {
-                            if (typeof response.data === 'string') {
-                                return response.data;
-                            } else {
-                                return $q.reject(response.data);
-                            }
-                        },
-                        function (response) {
+            // SEND THE FILES.
+            return $http(request)
+                .then(
+                    function (response) {
+                        if (typeof response.data === 'string') {
+                            return response.data;
+                        } else {
                             return $q.reject(response.data);
                         }
-                    );
-            }
+                    },
+                    function (response) {
+                        return $q.reject(response.data);
+                    }
+                );
+        }
 
-        };
-    });
+    };
+});
+
+app.directive('myMaxlength', ['$compile', '$log', function ($compile, $log) {
+    return {
+        restrict: 'A',
+        require: 'ngModel',
+        link: function (scope, elem, attrs, ctrl) {
+            attrs.$set("ngTrim", "false");
+            var maxlength = parseInt(attrs.myMaxlength, 10);
+            ctrl.$parsers.push(function (value) {
+                $log.info("In parser function value = [" + value + "].");
+                if (value.length > maxlength) {
+                    $log.info("The value [" + value + "] is too long!");
+                    value = value.substr(0, maxlength);
+                    ctrl.$setViewValue(value);
+                    ctrl.$render();
+                    $log.info("The value is now truncated as [" + value + "].");
+                }
+                return value;
+            });
+        }
+    };
+}]);
