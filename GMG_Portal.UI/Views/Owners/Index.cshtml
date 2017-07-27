@@ -104,9 +104,10 @@
 
     <div class="modal fade" id="ModelImage" role="dialog">
         <div class="modal-dialog">
-            <img   src="http://gmgbackend.azurewebsites.net/Uploads/Owners/{{Owner.Image}}" /> </div>
+            <img src="http://gmgbackend.azurewebsites.net/Uploads/Owners/{{Owner.Image}}" />
+        </div>
     </div>
-    
+
     @*<form name="FrmAddUpdate" novalidate ng-submit="save()" autocomplete="off">*@
     <form name="FrmAddUpdate" novalidate autocomplete="off">
 
@@ -123,32 +124,38 @@
                         <div class="form-group">
                             <label for="TxtName">@Owner.Name</label><span class="red-text"> *</span>
                             <input type="text" ng-model="Owner.DisplayValueName" not-in-list="Owners" list-item-id="Owner.ID" class="form-control" name="TxtName"
-                                   placeholder="@Owner.Name" required ng-pattern="/@Regex.NameAr/">
+                                   placeholder="@Owner.Name"  ng-minlength="20" ng-maxlength="50" required ng-pattern="/@Regex.NameAr/">
 
                             <div class="red-text" ng-messages="FrmAddUpdate.TxtName.$error" ng-show="FrmAddUpdate.TxtName.$touched">
                                 <span class="red-text" ng-message="required">@Owner.TxtNameRequiredErrorMessage</span>
                                 <span class="red-text" ng-message="pattern">@Owner.TxtNamePatternErrorMessage</span>
                                 <span class="red-text" ng-message="notInList">@Owner.TxtNameUniqueErrorMessage</span>
+                                <span class="red-text" ng-message="minlength">Minimum 20 Charachter</span>
+                                <span class="red-text" ng-message="maxlength">Maximum 30 Charachter</span>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="TxtPostion">@Owner.Postion</label><span class="red-text"> *</span>
                             <input ng-model="Owner.DisplayValuePosition" not-in-list="Owners" list-item-id="Owner.ID" class="form-control" name="TxtPostion"
-                                   placeholder="Text" required ng-pattern="/@Regex.NameEn/"/>
+                                   placeholder="Text"  ng-minlength="20" ng-maxlength="50" required ng-pattern="/@Regex.NameEn/" />
                             <div class="red-text" ng-messages="FrmAddUpdate.TxtPostion.$error" ng-show="FrmAddUpdate.TxtPostion.$touched">
                                 <span class="red-text" ng-message="required">@Owner.TxtPostionRequiredErrorMessage</span>
                                 <span class="red-text" ng-message="pattern">@Owner.TxtPostionPatternErrorMessage</span>
                                 <span class="red-text" ng-message="notInList">@Owner.TxtPostionUniqueErrorMessage</span>
+                                <span class="red-text" ng-message="minlength">Minimum 20 Charachter</span>
+                                <span class="red-text" ng-message="maxlength">Maximum 30 Charachter</span>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="TxtDesc">@Owner.Desc</label><span class="red-text"> *</span>
                             <textarea ng-model="Owner.DisplayValueDesc" not-in-list="Owners" list-item-id="Owner.ID" class="form-control" name="TxtDesc"
-                                      placeholder="Text" required ng-pattern="/@Regex.NameEn/"></textarea>
+                                      placeholder="Text"  ng-minlength="100" ng-maxlength="500" required ng-pattern="/@Regex.NameEn/"></textarea>
                             <div class="red-text" ng-messages="FrmAddUpdate.TxtDesc.$error" ng-show="FrmAddUpdate.TxtDesc.$touched">
                                 <span class="red-text" ng-message="required">@Owner.TxtDescRequiredErrorMessage</span>
                                 <span class="red-text" ng-message="pattern">@Owner.TxtDescPatternErrorMessage</span>
                                 <span class="red-text" ng-message="notInList">@Owner.TxtDescUniqueErrorMessage</span>
+                                <span class="red-text" ng-message="minlength">Minimum 100 Charachter</span>
+                                <span class="red-text" ng-message="maxlength">Maximum 500 Charachter</span>
                             </div>
                         </div>
 
@@ -162,7 +169,7 @@
                                     <div class="input-group">
                                         <span class="input-group-btn">
                                             <span class="btn btn-primary btn-file">
-                                                Browse...<input type="file" my-directory="getFiles(file)" ng-disabled="uploading"/>
+                                                Browse...<input type="file" my-directory="getFiles(file)" ng-disabled="uploading" />
                                             </span>
 
                                         </span>
@@ -170,7 +177,7 @@
                                     </div>
                                     @*<input type="button" class="btn btn-default  btn-primary" ng-click="uploadFiles()" value="Upload" ng-disabled="uploading || countFiles===''" />*@
 
-                                    <img style="width: 100px; height: 100px" src="http://gmgbackend.azurewebsites.net/Uploads/{{Owner.Image}}" ng-show="Owner.Image"/>
+                                    <img style="width: 100px; height: 100px" src="http://gmgbackend.azurewebsites.net/Uploads/Owners/{{Owner.Image}}" ng-show="Owner.Image" />
 
                                 </div>
                             </div>

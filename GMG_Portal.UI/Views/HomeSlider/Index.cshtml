@@ -137,14 +137,14 @@
                         <div class="form-group">
                             <label for="TxtDesc">@HomeSlider.Desc</label><span class="red-text"> *</span>
                             <textarea ng-model="HomeSlider.DisplayValueDesc" not-in-list="HomeSliders" list-item-id="HomeSlider.ID" class="form-control" name="TxtDesc"
-                                      placeholder="Text"  ng-minlength="20" ng-maxlength="50" required ng-pattern="/@Regex.NameEn/"></textarea>
+                                      placeholder="Text" ng-minlength="20" ng-maxlength="50" required ng-pattern="/@Regex.NameEn/"></textarea>
                             <div class="red-text" ng-messages="FrmAddUpdate.TxtDesc.$error" ng-show="FrmAddUpdate.TxtDesc.$touched">
                                 <span class="red-text" ng-message="required">@HomeSlider.TxtDescRequiredErrorMessage</span>
                                 <span class="red-text" ng-message="pattern">@HomeSlider.TxtDescPatternErrorMessage</span>
-                                <span class="red-text" ng-message="notInList">@HomeSlider.TxtDescUniqueErrorMessage</span>
-
+                                <span class="red-text" ng-message="notInList">@HomeSlider.TxtDescUniqueErrorMessage</span> 
                                 <span class="red-text" ng-message="minlength">Minimum 20 Charachter</span>
-                                <span class="red-text" ng-message="maxlength">Maximum 30 Charachter</span> </div>
+                                <span class="red-text" ng-message="maxlength">Maximum 30 Charachter</span>
+                            </div>
                         </div>
 
                         @*<div class="form-group">

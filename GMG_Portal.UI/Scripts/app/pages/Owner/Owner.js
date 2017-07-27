@@ -1,5 +1,8 @@
 ﻿controllerProvider.register('OwnersController', ['$scope', 'OwnersApi', 'uploadService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', OwnersController]);
 function OwnersController($scope, OwnersApi, uploadService, $rootScope, $timeout, $filter, $uibModal, toastr) {
+
+    $scope.ImageFormatValidaiton = "Please upload jpg or jpeg ";
+    $scope.ImageSizeValidaiton = "Can't upload image more than 1MB";
     $scope.Image = "";
     $scope.letterLimit = 20;
     $rootScope.ViewLoading = true;
@@ -138,6 +141,20 @@ function OwnersController($scope, OwnersApi, uploadService, $rootScope, $timeout
         debugger;
         if ($scope.data.length === 0) {
             $scope.save();
+            return;
+        }
+        var extn = $scope.Image.split(".").pop();
+        var fileLength = $scope.data[0].FileLength;
+        if (fileLength > 52166) {
+            $scope.countFiles = null;
+            angular.element("input[type='file']").val(null);
+            alert($scope.ImageSizeValidaiton);
+            return;
+        }
+        if (extn !== "jpg") {
+            $scope.countFiles = null;
+            angular.element("input[type='file']").val(null);
+            alert($scope.ImageFormatValidaiton);
             return;
         }
         uploadService.uploadFiles($scope)
