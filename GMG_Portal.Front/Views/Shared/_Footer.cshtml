@@ -34,11 +34,11 @@
                     <div class="widget">
                         <h2 class="mg-widget-title">Newsletter</h2>
                         <p>Subscribe to Our Newsletter</p>
-                        <form>
+                        <form id="subscribe">
                             <p>
-                                <input type="email" class="form-control" placeholder="Your Email" id="Mail">
+                                <input type="email" class="form-control" placeholder="Your Email" id="Mail" data-validation="email">
                             </p>
-                            <button class="btn btn-main" onclick="send()">Subscribe</button>
+                            <button class="btn btn-main" onclick="sendnewsletter()" type="button">Subscribe</button>
                             <div id="MSG" style="color: white;"> </div>
                         </form>
                     </div>
@@ -82,15 +82,28 @@
 
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+
+<script>
+  
+</script>
+
+
+
 <script type="text/javascript">
-    
-    function send() {
+   
+
+
+
+
+    function sendnewsletter() {
         var newsletter = {
             Mail: $("#Mail").val()
         }
-
+      
+        //Validate Email Input
         $('#MSG').html('sending..');
-
         $.ajax({
             url: 'http://gmgapi.azurewebsites.net/SystemParameters/Newsletter/Save',
             type: 'post',
@@ -100,6 +113,7 @@
             },
             data: newsletter
         });
-    }
+        }
+    
   
 </script>
