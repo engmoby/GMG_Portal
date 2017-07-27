@@ -125,23 +125,27 @@
                                     <input name="txtHide" type="hidden" value="{{ctrl.isFrmAddUpdateInvalid=FrmAddUpdate.$invalid}}" />
                                     <div class="form-group">
                                         <label for="TxtTitle">@Hotel.Title</label><span class="red-text"> *</span>
-                                        <input type="text" ng-model="Hotel.DisplayValue" not-in-list="Hotels" list-item-id="Hotel.ID" class="form-control" Title="TxtTitle"
-                                               placeholder="@Hotel.Title" required ng-pattern="/@Regex.NameAr/">
+                                        <input type="text" ng-model="Hotel.DisplayValue" not-in-list="Hotels" list-item-id="Hotel.ID" class="form-control" name="TxtTitle"
+                                               placeholder="@Hotel.Title" ng-minlength="20" ng-maxlength="30" required ng-pattern="/@Regex.NameAr/">
 
                                         <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
                                             <span class="red-text" ng-message="required">@Hotel.TxtTitleRequiredErrorMessage</span>
                                             <span class="red-text" ng-message="pattern">@Hotel.TxtTitlePatternErrorMessage</span>
                                             <span class="red-text" ng-message="notInList">@Hotel.TxtTitleUniqueErrorMessage</span>
+                                            <span class="red-text" ng-message="minlength">Minimum 20 Charachter</span>
+                                            <span class="red-text" ng-message="maxlength">Maximum 30 Charachter</span>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="TxtDesc">@Hotel.Desc</label><span class="red-text"> *</span>
                                         <textarea ng-model="Hotel.DisplayValueDesc" not-in-list="Hotels" list-item-id="Hotel.ID" class="form-control" name="TxtDesc"
-                                                  placeholder="Text" required ng-pattern="/@Regex.NameEn/"></textarea>
+                                                  placeholder="Text" ng-minlength="50" ng-maxlength="500" required ng-pattern="/@Regex.NameEn/"></textarea>
                                         <div class="red-text" ng-messages="FrmAddUpdate.TxtDesc.$error" ng-show="FrmAddUpdate.TxtDesc.$touched">
                                             <span class="red-text" ng-message="required">@Hotel.TxtDescRequiredErrorMessage</span>
                                             <span class="red-text" ng-message="pattern">@Hotel.TxtDescPatternErrorMessage</span>
                                             <span class="red-text" ng-message="notInList">@Hotel.TxtDescUniqueErrorMessage</span>
+                                            <span class="red-text" ng-message="minlength">Minimum 50 Charachter</span>
+                                            <span class="red-text" ng-message="maxlength">Maximum 500 Charachter</span>
                                         </div>
                                     </div>
 
@@ -150,7 +154,7 @@
                                             <div class="form-group">
                                                 <label for="TxtTitle">@Hotel.Mail</label><span class="red-text"> *</span>
                                                 <input type="text" ng-model="Hotel.Email" class="form-control" name="TxtMail"
-                                                       placeholder="@Hotel.Mail" required ng-pattern="/@Regex.Email/">
+                                                       placeholder="@Hotel.Mail"  required ng-pattern="/@Regex.Email/">
 
                                                 <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
                                                     <span class="red-text" ng-message="required">@Hotel.TxtMailRequiredErrorMessage</span>
@@ -160,13 +164,15 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="TxtTitle">@Hotel.Price</label><span class="red-text"> *</span>
+                                                <label for="TxtPrice">@Hotel.Price</label><span class="red-text"> *</span>
                                                 <input type="text" ng-model="Hotel.PriceStart" class="form-control" Title="TxtPrice"
-                                                       placeholder="@Hotel.Price" required ng-pattern="/@Regex.Number/">
+                                                       placeholder="@Hotel.Price" ng-minlength="1" ng-maxlength="2" required ng-pattern="/@Regex.Number/">
 
-                                                <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
+                                                <div class="red-text" ng-messages="FrmAddUpdate.TxtPrice.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
                                                     <span class="red-text" ng-message="required">@Hotel.TxtPriceRequiredErrorMessage</span>
                                                     <span class="red-text" ng-message="pattern">@Hotel.TxtPricePatternErrorMessage</span>
+                                                    <span class="red-text" ng-message="minlength">Minimum 1 Digit</span>
+                                                    <span class="red-text" ng-message="maxlength">Maximum 2 Digits</span>
                                                 </div>
                                             </div>
                                         </div>

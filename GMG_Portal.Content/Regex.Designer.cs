@@ -322,6 +322,15 @@ namespace GMG_Portal.Content {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ^[1-9]{1,9}.
+        /// </summary>
+        public static string NumberWithoutZero {
+            get {
+                return ResourceManager.GetString("NumberWithoutZero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ^.{1,100}.
         /// </summary>
         public static string Password {

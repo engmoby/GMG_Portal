@@ -2,7 +2,8 @@
 function HomeSlidersController($scope, HomeSlidersApi, uploadService, $rootScope, $timeout, $filter, $uibModal, toastr) {
 
     $scope.Image = "";
-    $scope.ImageFormatValidaiton = "Please upload jpg or jpeg ";
+    $scope.ImageFormatValidaiton = "Please upload Images ";
+
     $scope.ImageSizeValidaiton = "Can't upload image more than 2MB";
     $scope.letterLimit = 20;
     $rootScope.ViewLoading = true;
@@ -151,7 +152,7 @@ function HomeSlidersController($scope, HomeSlidersApi, uploadService, $rootScope
             alert($scope.ImageSizeValidaiton);
             return;
         }
-        if (extn !== "jpg" || extn !== "jpeg") {
+        if (extn !== "jpg" && extn !== "jpeg" && extn !== "png") {
             $scope.countFiles = null;
             angular.element("input[type='file']").val(null);
             alert($scope.ImageFormatValidaiton);

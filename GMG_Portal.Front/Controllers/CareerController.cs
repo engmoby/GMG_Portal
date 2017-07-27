@@ -96,7 +96,7 @@ namespace Front.Controllers
                 };
                 fileDetails.Add(fileDetail);
 
-                var path = Path.Combine(Server.MapPath("~/App_Data/"), fileDetail.Id + fileDetail.Extension);
+                var path = Path.Combine(Server.MapPath("~/Uploads/"), fileDetail.Id + fileDetail.Extension);
                 file.SaveAs(path);
             }
 

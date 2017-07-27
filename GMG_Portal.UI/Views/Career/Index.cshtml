@@ -115,14 +115,17 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="TxtTitle">@Career.Postion</label><span class="red-text"> *</span>
-                            <input type="text" ng-model="Career.DisplayValue"   class="form-control" Title="TxtTitle"
-                                   placeholder="@Career.Postion" required ng-pattern="/@Regex.NameAr/">
+                            <label for="TxtPostion">@Career.Postion</label><span class="red-text"> *</span>
+                            <input type="text" ng-model="Career.DisplayValue" class="form-control" name="TxtPostion"
+                                   placeholder="@Career.Postion" ng-minlength="20" ng-maxlength="30" required ng-pattern="/@Regex.NameAr/">
 
-                            <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
+                            <div class="red-text" ng-messages="FrmAddUpdate.TxtPostion.$error" ng-show="FrmAddUpdate.TxtPostion.$touched">
                                 <span class="red-text" ng-message="required">@Career.TxtPostionRequiredErrorMessage</span>
                                 <span class="red-text" ng-message="pattern">@Career.TxtPostionPatternErrorMessage</span>
                                 <span class="red-text" ng-message="notInList">@Career.TxtPostionUniqueErrorMessage</span>
+
+                                <span class="red-text" ng-message="minlength">Minimum 20 Charachter</span>
+                                <span class="red-text" ng-message="maxlength">Maximum 30 Charachter</span>
                             </div>
                         </div>
 
@@ -130,56 +133,32 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="TxtTitle">@Career.Experience</label><span class="red-text"> *</span>
-                                    <input type="text" ng-model="Career.Experience" class="form-control" Title="TxtTitle"
-                                           placeholder="@Career.Experience" required ng-pattern="/@Regex.NameAr/">
+                                    <label for="TxtExperience">@Career.Experience</label><span class="red-text"> *</span>
+                                    <input type="text" ng-model="Career.Experience" class="form-control" name="TxtExperience"
+                                           placeholder="@Career.Experience" ng-minlength="20" ng-maxlength="30" required ng-pattern="/@Regex.NameAr/">
 
-                                    <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
+                                    <div class="red-text" ng-messages="FrmAddUpdate.TxtExperience.$error" ng-show="FrmAddUpdate.TxtExperience.$touched">
                                         <span class="red-text" ng-message="required">@Career.TxtPostionRequiredErrorMessage</span>
                                         <span class="red-text" ng-message="pattern">@Career.TxtPostionPatternErrorMessage</span>
                                         <span class="red-text" ng-message="notInList">@Career.TxtPostionUniqueErrorMessage</span>
+
+                                        <span class="red-text" ng-message="minlength">Minimum 20 Charachter</span>
+                                        <span class="red-text" ng-message="maxlength">Maximum 30 Charachter</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="TxtTitle">@Career.CareerLevel</label><span class="red-text"> *</span>
-                                    <input type="text" ng-model="Career.CareerLevel"  class="form-control" Title="TxtTitle"
-                                           placeholder="@Career.CareerLevel" required ng-pattern="/@Regex.NameAr/">
+                                    <label for="TxtCareerLevel">@Career.CareerLevel</label><span class="red-text"> *</span>
+                                    <input type="text" ng-model="Career.CareerLevel" class="form-control" name="TxtCareerLevel"
+                                           placeholder="@Career.CareerLevel" ng-minlength="20" ng-maxlength="30" required ng-pattern="/@Regex.NameAr/">
 
-                                    <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
+                                    <div class="red-text" ng-messages="FrmAddUpdate.TxtCareerLevel.$error" ng-show="FrmAddUpdate.TxtCareerLevel.$touched">
                                         <span class="red-text" ng-message="required">@Career.TxtPostionRequiredErrorMessage</span>
                                         <span class="red-text" ng-message="pattern">@Career.TxtPostionPatternErrorMessage</span>
                                         <span class="red-text" ng-message="notInList">@Career.TxtPostionUniqueErrorMessage</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="TxtTitle">@Career.JobType</label><span class="red-text"> *</span>
-                                    <input type="text" ng-model="Career.JobType"  class="form-control" Title="TxtTitle"
-                                           placeholder="@Career.JobType" required ng-pattern="/@Regex.NameAr/">
-
-                                    <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
-                                        <span class="red-text" ng-message="required">@Career.TxtPostionRequiredErrorMessage</span>
-                                        <span class="red-text" ng-message="pattern">@Career.TxtPostionPatternErrorMessage</span>
-                                        <span class="red-text" ng-message="notInList">@Career.TxtPostionUniqueErrorMessage</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="TxtTitle">@Career.EducationLevel</label><span class="red-text"> *</span>
-                                    <input type="text" ng-model="Career.EducationLevel"  class="form-control" Title="TxtTitle"
-                                           placeholder="@Career.EducationLevel" required ng-pattern="/@Regex.NameAr/">
-
-                                    <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
-                                        <span class="red-text" ng-message="required">@Career.TxtPostionRequiredErrorMessage</span>
-                                        <span class="red-text" ng-message="pattern">@Career.TxtPostionPatternErrorMessage</span>
-                                        <span class="red-text" ng-message="notInList">@Career.TxtPostionUniqueErrorMessage</span>
+                                        <span class="red-text" ng-message="minlength">Minimum 20 Charachter</span>
+                                        <span class="red-text" ng-message="maxlength">Maximum 30 Charachter</span>
                                     </div>
                                 </div>
                             </div>
@@ -188,47 +167,89 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="TxtTitle">@Career.Vacancies</label><span class="red-text"> *</span>
-                                    <input type="number" ng-model="Career.Vacancies"  class="form-control" Title="TxtTitle"
-                                           placeholder="@Career.Vacancies" required ng-pattern="/@Regex.Number/">
+                                    <label for="TxtJobType">@Career.JobType</label><span class="red-text"> *</span>
+                                    <input type="text" ng-model="Career.JobType" class="form-control" name="TxtJobType"
+                                           placeholder="@Career.JobType" ng-minlength="20" ng-maxlength="30" required ng-pattern="/@Regex.NameAr/">
 
-                                    <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
+                                    <div class="red-text" ng-messages="FrmAddUpdate.TxtJobType.$error" ng-show="FrmAddUpdate.TxtJobType.$touched">
                                         <span class="red-text" ng-message="required">@Career.TxtPostionRequiredErrorMessage</span>
                                         <span class="red-text" ng-message="pattern">@Career.TxtPostionPatternErrorMessage</span>
                                         <span class="red-text" ng-message="notInList">@Career.TxtPostionUniqueErrorMessage</span>
+
+                                        <span class="red-text" ng-message="minlength">Minimum 20 Charachter</span>
+                                        <span class="red-text" ng-message="maxlength">Maximum 30 Charachter</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="TxtTitle">@Career.SalaryAverage</label><span class="red-text"> *</span>
-                                    <input type="text" ng-model="Career.SalaryAverage"  class="form-control" Title="TxtTitle"
-                                           placeholder="@Career.SalaryAverage" required ng-pattern="/@Regex.NameAr/">
+                                    <label for="TxtEducationLevel">@Career.EducationLevel</label><span class="red-text"> *</span>
+                                    <input type="text" ng-model="Career.EducationLevel" class="form-control" name="TxtEducationLevel"
+                                           placeholder="@Career.EducationLevel" ng-minlength="20" ng-maxlength="30" required ng-pattern="/@Regex.NameAr/">
 
-                                    <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
+                                    <div class="red-text" ng-messages="FrmAddUpdate.TxtEducationLevel.$error" ng-show="FrmAddUpdate.TxtEducationLevel.$touched">
                                         <span class="red-text" ng-message="required">@Career.TxtPostionRequiredErrorMessage</span>
                                         <span class="red-text" ng-message="pattern">@Career.TxtPostionPatternErrorMessage</span>
                                         <span class="red-text" ng-message="notInList">@Career.TxtPostionUniqueErrorMessage</span>
+                                        <span class="red-text" ng-message="minlength">Minimum 20 Charachter</span>
+                                        <span class="red-text" ng-message="maxlength">Maximum 30 Charachter</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="TxtVacancies">@Career.Vacancies</label><span class="red-text"> *</span>
+                                    <input type="number" ng-model="Career.Vacancies" class="form-control" name="TxtVacancies"
+                                           placeholder="@Career.Vacancies" ng-minlength="1" ng-maxlength="2" required ng-pattern="/@Regex.NumberWithoutZero/">
+
+                                    <div class="red-text" ng-messages="FrmAddUpdate.TxtVacancies.$error" ng-show="FrmAddUpdate.TxtVacancies.$touched">
+                                        <span class="red-text" ng-message="required">@Career.TxtPostionRequiredErrorMessage</span>
+                                        <span class="red-text" ng-message="pattern">@Career.TxtPostionPatternErrorMessage</span>
+                                        <span class="red-text" ng-message="notInList">@Career.TxtPostionUniqueErrorMessage</span>
+                                        <span class="red-text" ng-message="minlength">Minimum 1 Digit</span>
+                                        <span class="red-text" ng-message="maxlength">Maximum 2 Digits</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="TxtSalary">@Career.SalaryAverage</label><span class="red-text"> *</span>
+                                    <input type="text" ng-model="Career.SalaryAverage" class="form-control" name="TxtSalary"
+                                           placeholder="@Career.SalaryAverage" ng-minlength="20" ng-maxlength="30" required ng-pattern="/@Regex.NameAr/">
+
+                                    <div class="red-text" ng-messages="FrmAddUpdate.TxtSalary.$error" ng-show="FrmAddUpdate.TxtSalary.$touched">
+                                        <span class="red-text" ng-message="required">@Career.TxtPostionRequiredErrorMessage</span>
+                                        <span class="red-text" ng-message="pattern">@Career.TxtPostionPatternErrorMessage</span>
+                                        <span class="red-text" ng-message="notInList">@Career.TxtPostionUniqueErrorMessage</span>
+                                        <span class="red-text" ng-message="minlength">Minimum 20 Charachter</span>
+                                        <span class="red-text" ng-message="maxlength">Maximum 30 Charachter</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="TxtDesc">@Career.Desc</label><span class="red-text"> *</span>
-                            <textarea ng-model="Career.DisplayValueDesc"  class="form-control" name="TxtDesc"
-                                      placeholder="Text" required ng-pattern="/@Regex.NameEn/"></textarea>
+                            <textarea ng-model="Career.DisplayValueDesc" class="form-control" name="TxtDesc"
+                                      placeholder="Text" ng-minlength="50" ng-maxlength="500" required ng-pattern="/@Regex.NameEn/"></textarea>
                             <div class="red-text" ng-messages="FrmAddUpdate.TxtDesc.$error" ng-show="FrmAddUpdate.TxtDesc.$touched">
                                 <span class="red-text" ng-message="required">@Career.TxtDescRequiredErrorMessage</span>
                                 <span class="red-text" ng-message="pattern">@Career.TxtDescPatternErrorMessage</span>
                                 <span class="red-text" ng-message="notInList">@Career.TxtDescUniqueErrorMessage</span>
+                                <span class="red-text" ng-message="minlength">Minimum 50 Charachter</span>
+                                <span class="red-text" ng-message="maxlength">Maximum 500 Charachter</span>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="TxtRequirment">@Career.Requirements</label><span class="red-text"> *</span>
-                            <textarea ng-model="Career.DisplayValueRequirements"  class="form-control" name="TxtRequirment"
-                                      placeholder="Text" required ng-pattern="/@Regex.NameEn/"></textarea>
+                            <textarea ng-model="Career.DisplayValueRequirements" class="form-control" name="TxtRequirment"
+                                      placeholder="Text" ng-minlength="50" ng-maxlength="500" required ng-pattern="/@Regex.NameEn/"></textarea>
                             <div class="red-text" ng-messages="FrmAddUpdate.TxtRequirment.$error" ng-show="FrmAddUpdate.TxtRequirment.$touched">
+                                <span class="red-text" ng-message="minlength">Minimum 50 Charachter</span>
+                                <span class="red-text" ng-message="maxlength">Maximum 500 Charachter</span>
                                 @*<span class="red-text" ng-message="required">@Career.TxtRequirmentRequiredErrorMessage</span>
                                     <span class="red-text" ng-message="pattern">@Career.TxtRequirmentPatternErrorMessage</span>
                                     <span class="red-text" ng-message="notInList">@Career.TxtRequirmentUniqueErrorMessage</span>*@
@@ -236,7 +257,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary btn-with-icon"   ng-disabled="FrmAddUpdate.$invalid"><i class="ion-android-checkmark-circle"></i>@Career.btnSaveLbl</button>
+                        <button type="submit" class="btn btn-primary btn-with-icon" ng-disabled="FrmAddUpdate.$invalid"><i class="ion-android-checkmark-circle"></i>@Career.btnSaveLbl</button>
                     </div>
                 </div>
 

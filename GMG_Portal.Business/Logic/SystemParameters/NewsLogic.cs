@@ -178,8 +178,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             }
         }
         public SystemParameters_News Insert(SystemParameters_News postedNews)
-        {
-
+        { 
             var news = new SystemParameters_News()
             {
                 DisplayValue = postedNews.DisplayValue,
