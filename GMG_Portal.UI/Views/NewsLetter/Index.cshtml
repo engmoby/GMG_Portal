@@ -31,8 +31,8 @@
                     <th>#</th>
                     <th st-sort="Postion">@NewsLetters.Mail</th> 
                     <th st-sort="Desc">@NewsLetters.Date</th>
-                    <th>@NewsLetters.Action</th>
-                    <th>@NewsLetters.Action</th>  
+                    @*<th>@NewsLetters.Action</th>
+                    <th>@NewsLetters.Action</th>*@  
                 </tr>
 
             </thead>
@@ -40,8 +40,8 @@
                 <tr ng-class="{'red-text': Newsletter.Seen == false}" ng-repeat="Newsletter in TableData">
                     <td>{{$index+1}}</td>
                     <td>{{Newsletter.Mail}}</td> 
-                    <td>{{Newsletter.CreationTime}}</td>
-                    <td>
+                    <td>{{Newsletter.CreationTime  | date:'fullDate'}}</td>
+                    @*<td>
                          
                         <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(Newsletter)"><i class="fa fa-pencil" aria-hidden="true"></i>@NewsLetters.View</button>
                     </td>
@@ -52,7 +52,7 @@
                         <div class="buttons" ng-show="Newsletter.Seen">
                             {{Newsletter.SeenBy}}
                         </div>
-                    </td>
+                    </td>*@
                 </tr>
                 <tr ng-show="TableData.length==0">
                     <td colspan="4">
