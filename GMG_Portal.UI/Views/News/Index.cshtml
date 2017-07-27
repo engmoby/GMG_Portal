@@ -63,7 +63,7 @@
                     <th>#</th>
                     <th st-sort="Image">@News.Image</th>
                     <th st-sort="Title">@News.Title</th>
-                    <th st-sort="Desc">@News.Desc</th> 
+                    <th st-sort="Desc">@News.Desc</th>
                     <th>Actions</th>
                 </tr>
 
@@ -73,7 +73,7 @@
                     <td ng-class="{'red-text': New.IsDeleted == true}">{{$index+1}}</td>
                     <td ng-class="{'red-text': New.IsDeleted == true}"><img ng-click="openImage(New)" width="70px" height="70px" src="http://gmgbackend.azurewebsites.net/Uploads/{{New.Image}}" /></td>
                     <td ng-class="{'red-text': New.IsDeleted == true}">{{New.DisplayValue}}</td>
-                    <td ng-class="{'red-text': New.IsDeleted == true}">{{New.DisplayValueDesc | limitTo:letterLimit}} </td> 
+                    <td ng-class="{'red-text': New.IsDeleted == true}">{{New.DisplayValueDesc | limitTo:letterLimit}} </td>
                     <td>
                         <div class="buttons" ng-show="!New.IsDeleted">
                             <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(New)"><i class="fa fa-pencil" aria-hidden="true"></i>@News.TableBtnEdit</button>
@@ -123,23 +123,27 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="TxtTitle">@News.Title</label><span class="red-text"> *</span>
-                            <input type="text" ng-model="New.DisplayValue" not-in-list="News" list-item-id="New.ID" class="form-control" Title="TxtTitle"
-                                   placeholder="@News.Title" required ng-pattern="/@Regex.NameAr/">
+                            <input type="text" ng-model="New.DisplayValue" not-in-list="News" list-item-id="New.ID" class="form-control" name="TxtTitle"
+                                   placeholder="@News.Title" ng-minlength="20" ng-maxlength="30" required ng-pattern="/@Regex.NameAr/">
 
                             <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
                                 <span class="red-text" ng-message="required">@News.TxtTitleRequiredErrorMessage</span>
                                 <span class="red-text" ng-message="pattern">@News.TxtTitlePatternErrorMessage</span>
                                 <span class="red-text" ng-message="notInList">@News.TxtTitleUniqueErrorMessage</span>
+                                <span class="red-text" ng-message="minlength">Minimum 20 Charachter</span>
+                                <span class="red-text" ng-message="maxlength">Maximum 30 Charachter</span>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="TxtDesc">@News.Desc</label><span class="red-text"> *</span>
                             <textarea ng-model="New.DisplayValueDesc" not-in-list="News" list-item-id="New.ID" class="form-control" name="TxtDesc"
-                                      placeholder="Text" required ng-pattern="/@Regex.NameEn/"></textarea>
+                                      placeholder="Text"  ng-minlength="30" ng-maxlength="100" required ng-pattern="/@Regex.NameEn/"></textarea>
                             <div class="red-text" ng-messages="FrmAddUpdate.TxtDesc.$error" ng-show="FrmAddUpdate.TxtDesc.$touched">
                                 <span class="red-text" ng-message="required">@News.TxtDescRequiredErrorMessage</span>
                                 <span class="red-text" ng-message="pattern">@News.TxtDescPatternErrorMessage</span>
                                 <span class="red-text" ng-message="notInList">@News.TxtDescUniqueErrorMessage</span>
+                                <span class="red-text" ng-message="minlength">Minimum 30 Charachter</span>
+                                <span class="red-text" ng-message="maxlength">Maximum 100 Charachter</span>
                             </div>
                         </div>
 
@@ -153,11 +157,11 @@
                                 <span class="error" ng-message="required">required</span>
                             </div>
                         </div>
-                     
+
                         <div class="form-group">
                             <label for="TxtRate">@News.Image</label><span class="red-text"> *</span>
-                          
-                            <div class="fileinput fileinput-new" data-provides="fileinput"> 
+
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
 
                                 <div class="col-lg-6 col-sm-6 col-12">
 
@@ -178,7 +182,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer"> 
+                    <div class="modal-footer">
                         <button type="submit" class="btn btn-primary btn-with-icon" ng-click="uploadFiles()" ng-disabled="FrmAddUpdate.$invalid"><i class="ion-android-checkmark-circle"></i>@News.btnSaveLbl</button>
                     </div>
                 </div>

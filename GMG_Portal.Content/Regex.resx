@@ -210,6 +210,9 @@
   <data name="Number" xml:space="preserve">
     <value>^[0-9]{1,9}</value>
   </data>
+  <data name="NumberWithoutZero" xml:space="preserve">
+    <value>^[1-9]{1,9}</value>
+  </data>
   <data name="AmountInPiaster" xml:space="preserve">
     <value>^[0-9]{1,10}$</value>
   </data>

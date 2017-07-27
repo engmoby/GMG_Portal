@@ -1,13 +1,15 @@
 ﻿controllerProvider.register('NewsController', ['$scope', 'NewsApi', 'uploadService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', NewsController]);
 function NewsController($scope, NewsApi, uploadService, $rootScope, $timeout, $filter, $uibModal, toastr) {
     $scope.Image = "";
+    $scope.ImageFormatValidaiton = "Please upload Images ";
+    $scope.ImageSizeValidaiton = "Can't upload image more than 2MB";
     $scope.letterLimit = 20;
     $rootScope.ViewLoading = true;
     NewsApi.GetAll().then(function (response) {
         $scope.News = response.data;
         $rootScope.ViewLoading = false;
     });
-  
+
     //get Categories
 
     NewsApi.GetAllCategories().then(function (response) {
@@ -23,8 +25,7 @@ function NewsController($scope, NewsApi, uploadService, $rootScope, $timeout, $f
         $scope.FrmAddUpdate.$setPristine();
         $scope.FrmAddUpdate.$setUntouched();
         if (New == null) New = {}
-        else
-        {
+        else {
             var categoryIndex = $scope.Categorys.indexOf($filter('filter')($scope.Categorys, { 'Id': New.CategoryId }, true)[0]);
             $scope.SelectedCategory = $scope.Categorys[categoryIndex];
         };
@@ -74,15 +75,15 @@ function NewsController($scope, NewsApi, uploadService, $rootScope, $timeout, $f
                     switch ($scope.action) {
                         case 'edit':
                             index = $scope.News.indexOf($filter('filter')($scope.News, { 'ID': $scope.New.ID }, true)[0]);
-                           // $scope.News[index] = angular.copy(response.data);
+                            // $scope.News[index] = angular.copy(response.data);
                             NewsApi.GetAll().then(function (response) {
-                                $scope.News = response.data; 
-                            }); 
+                                $scope.News = response.data;
+                            });
                             toastr.success($('#HUpdateSuccessMessage').val(), 'Success');
                             break;
                         case 'delete':
                             index = $scope.News.indexOf($filter('filter')($scope.News, { 'ID': $scope.New.ID }, true)[0]);
-                           // $scope.News[index] = angular.copy(response.data);
+                            // $scope.News[index] = angular.copy(response.data);
                             NewsApi.GetAll().then(function (response) {
                                 $scope.News = response.data;
                             });
@@ -152,6 +153,28 @@ function NewsController($scope, NewsApi, uploadService, $rootScope, $timeout, $f
             $scope.save();
             return;
         }
+        var extn = $scope.Image.split(".").pop(); 
+        var fileLength = $scope.data[0].FileLength;
+        if (fileLength > 152166) {
+            $scope.countFiles = null;
+            angular.element("input[type='file']").val(null);
+            alert($scope.ImageSizeValidaiton);
+            return;
+        }
+        if (extn !== "jpg" && extn !== "png") {
+            $scope.countFiles = null;
+            angular.element("input[type='file']").val(null);
+            //  alert("neeed jpg");
+            alert($scope.ImageFormatValidaiton);
+            return;
+        }
+        //if (extn !== "png") {
+        //    $scope.countFiles = null;
+        //    angular.element("input[type='file']").val(null);
+        //    alert("neeed jpeg");
+        //    // alert($scope.ImageFormatValidaiton);
+        //    return;
+        //}
         uploadService.uploadFiles($scope)
             // then() called when uploadFiles gets back
             .then(function (data) {

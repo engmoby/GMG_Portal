@@ -98,23 +98,27 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="TxtTitle">@NewsCategory.Title</label><span class="red-text"> *</span>
-                            <input type="text" ng-model="NewsCategory.DisplayValue" not-in-list="NewsCategory" list-item-id="NewsCategory.ID" class="form-control" Title="TxtTitle"
-                                   placeholder="@NewsCategory.Title" required ng-pattern="/@Regex.NameAr/">
+                            <input type="text" ng-model="NewsCategory.DisplayValue" not-in-list="NewsCategory" list-item-id="NewsCategory.ID" class="form-control" name="TxtTitle"
+                                   placeholder="@NewsCategory.Title" ng-minlength="20" ng-maxlength="30" required ng-pattern="/@Regex.NameAr/">
 
                             <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
                                 <span class="red-text" ng-message="required">@NewsCategory.TxtTitleRequiredErrorMessage</span>
                                 <span class="red-text" ng-message="pattern">@NewsCategory.TxtTitlePatternErrorMessage</span>
                                 <span class="red-text" ng-message="notInList">@NewsCategory.TxtTitleUniqueErrorMessage</span>
+                                <span class="red-text" ng-message="minlength">Minimum 20 Charachter</span>
+                                <span class="red-text" ng-message="maxlength">Maximum 30 Charachter</span>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="TxtDesc">@NewsCategory.Desc</label><span class="red-text"> *</span>
                             <textarea ng-model="NewsCategory.DisplayValueDesc" not-in-list="NewsCategory" list-item-id="NewsCategory.ID" class="form-control" name="TxtDesc"
-                                      placeholder="Text" required ng-pattern="/@Regex.NameEn/"></textarea>
+                                      placeholder="Text" ng-minlength="50" ng-maxlength="100" required ng-pattern="/@Regex.NameEn/"></textarea>
                             <div class="red-text" ng-messages="FrmAddUpdate.TxtDesc.$error" ng-show="FrmAddUpdate.TxtDesc.$touched">
                                 <span class="red-text" ng-message="required">@NewsCategory.TxtDescRequiredErrorMessage</span>
                                 <span class="red-text" ng-message="pattern">@NewsCategory.TxtDescPatternErrorMessage</span>
                                 <span class="red-text" ng-message="notInList">@NewsCategory.TxtDescUniqueErrorMessage</span>
+                                <span class="red-text" ng-message="minlength">Minimum 50 Charachter</span>
+                                <span class="red-text" ng-message="maxlength">Maximum 100 Charachter</span>
                             </div>
                         </div>
 
