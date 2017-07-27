@@ -18,7 +18,35 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         }
         public List<SystemParameters_News> GetAllWithDeleted()
         {
-            return _db.SystemParameters_News.OrderBy(p => p.IsDeleted).ToList();
+            //   return _db.SystemParameters_News.OrderBy(p => p.IsDeleted).ToList();
+            var returnList = new List<SystemParameters_News>();
+
+            var list = _db.SystemParameters_News.OrderBy(p => p.IsDeleted).ToList();
+          
+            foreach (var systemParametersNewse in list)
+            {
+                var getCatrogryInfo = _db.SystemParameters_Category.FirstOrDefault(p => p.IsDeleted != true && p.Id == systemParametersNewse.CategoryId);
+                if (systemParametersNewse.CreationTime != null)
+                    if (getCatrogryInfo != null)
+                        returnList.Add(new SystemParameters_News
+                        {
+                            Id = systemParametersNewse.Id,
+                            DisplayValue = systemParametersNewse.DisplayValue,
+                            DisplayValueDesc = systemParametersNewse.DisplayValueDesc,
+
+                            CreationTime = systemParametersNewse.CreationTime,
+                            CreationDay = systemParametersNewse.CreationTime.Value.Day,
+                            CreationMonth = systemParametersNewse.CreationTime.Value.Month,
+                            CreatorUserName = "Administrator",
+                            CategoryName = getCatrogryInfo.DisplayValue,
+                            CategoryId = getCatrogryInfo.Id,
+                            //  Tags = systemParametersNewse.Tags,
+                            Image = systemParametersNewse.Image,
+                            // Categories = GetAllCatrogry()
+                        });
+            }
+
+            return returnList;
         }
         public List<SystemParameters_News> GetAll()
         {
