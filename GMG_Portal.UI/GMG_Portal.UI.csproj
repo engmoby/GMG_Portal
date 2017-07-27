@@ -1050,7 +1050,11 @@
     <Content Include="Views\Contact\Index.cshtml" />
     <Content Include="Views\Feature\Index.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
+    <None Include="Properties\PublishProfiles\gmgbackend - FTP %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\gmgbackend - FTP %283%29.pubxml" />
     <None Include="Properties\PublishProfiles\gmgbackend - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\gmgbackend - Web Deploy %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\gmgbackend - Web Deploy %283%29.pubxml" />
     <None Include="Properties\PublishProfiles\gmgbackend - Web Deploy.pubxml" />
     <Content Include="Views\NewsLetter\Index.cshtml" />
   </ItemGroup>
