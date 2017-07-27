@@ -241,6 +241,8 @@
     </Content>
     <Content Include="File\Home.json" />
     <None Include="Properties\PublishProfiles\CRM_API.pubxml" />
+    <None Include="Properties\PublishProfiles\GMGAPI - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\GMGAPI - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\gmgportal-stag - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\gmgportal-stag - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">

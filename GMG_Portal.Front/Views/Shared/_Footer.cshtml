@@ -36,9 +36,10 @@
                         <p>Subscribe to Our Newsletter</p>
                         <form>
                             <p>
-                                <input type="email" class="form-control" placeholder="Your Email">
+                                <input type="email" class="form-control" placeholder="Your Email" id="Mail">
                             </p>
-                            <input type="submit" class="btn btn-main" value="Subscribe">
+                            <button class="btn btn-main" onclick="send()">Subscribe</button>
+                            <div id="MSG" style="color: white;"> </div>
                         </form>
                     </div>
                 </div>
@@ -80,4 +81,25 @@
 </footer>
 
 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript">
     
+    function send() {
+        var newsletter = {
+            Mail: $("#Mail").val()
+        }
+
+        $('#MSG').html('sending..');
+
+        $.ajax({
+            url: 'http://gmgapi.azurewebsites.net/SystemParameters/Newsletter/Save',
+            type: 'post',
+            dataType: 'json',
+            success: function (data) {
+                $('#MSG').html("Email Submitted , Thank you !");
+            },
+            data: newsletter
+        });
+    }
+  
+</script>
