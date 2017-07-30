@@ -4,7 +4,7 @@
         return $http.get(apiUrl + '/SystemParameters/Hotels/GetAllWithDeleted');
     }
     this.GetAllDetails = function (hotelId) {
-        return $http.get(apiUrl + '/SystemParameters/Hotels/GetHotelDetails' + hotelId);
+        return $http.get(apiUrl + '/SystemParameters/Hotels/GetHotelDetails?Id=' + hotelId);
     }
     this.Save = function (hotel) {
         return $http({

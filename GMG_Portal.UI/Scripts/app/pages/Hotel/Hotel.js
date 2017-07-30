@@ -15,7 +15,7 @@ function HotelsController($scope, HotelsApi, uploadService, $rootScope, $timeout
         $scope.ShowTableData = false;
         $scope.ShowFrmAddUpdate = true;
         $scope.action = Hotel == null ? 'add' : 'edit';
-        HotelsApi.GetHotelDetails(Hotel).then(function (response) {
+        HotelsApi.GetAllDetails(Hotel.Id).then(function (response) {
             $scope.HotelDetails = response.data; 
         });
         this.isFrmAddUpdateInvalid = false;
