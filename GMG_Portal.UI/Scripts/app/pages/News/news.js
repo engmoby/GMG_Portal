@@ -1,5 +1,5 @@
-﻿controllerProvider.register('NewsController', ['$scope', 'NewsApi', 'uploadService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', NewsController]);
-function NewsController($scope, NewsApi, uploadService, $rootScope, $timeout, $filter, $uibModal, toastr) {
+﻿controllerProvider.register('NewsController', ['$scope', 'NewsApi', 'uploadNewsService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', NewsController]);
+function NewsController($scope, NewsApi, uploadNewsService, $rootScope, $timeout, $filter, $uibModal, toastr) {
     $scope.Image = "";
     $scope.ImageFormatValidaiton = "Please upload Images ";
     $scope.ImageSizeValidaiton = "Can't upload image more than 2MB";
@@ -65,7 +65,7 @@ function NewsController($scope, NewsApi, uploadService, $rootScope, $timeout, $f
             $scope.New.Image = $scope.Image;
             $scope.Image = "";
         }
-        //  uploadService.uploadFiles();
+        //  uploadNewsService.uploadFiles();
         debugger;
         $scope.New.CategoryId = $scope.SelectedCategory.Id;
         NewsApi.Save($scope.New).then(function (response) {
@@ -175,7 +175,7 @@ function NewsController($scope, NewsApi, uploadService, $rootScope, $timeout, $f
         //    // alert($scope.ImageFormatValidaiton);
         //    return;
         //}
-        uploadService.uploadFiles($scope)
+        uploadNewsService.uploadFiles($scope)
             // then() called when uploadFiles gets back
             .then(function (data) {
                 // promise fulfilled

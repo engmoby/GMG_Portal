@@ -1,5 +1,5 @@
-﻿controllerProvider.register('OwnersController', ['$scope', 'OwnersApi', 'uploadService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', OwnersController]);
-function OwnersController($scope, OwnersApi, uploadService, $rootScope, $timeout, $filter, $uibModal, toastr) {
+﻿controllerProvider.register('OwnersController', ['$scope', 'OwnersApi', 'uploadOwnersService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', OwnersController]);
+function OwnersController($scope, OwnersApi, uploadOwnersService, $rootScope, $timeout, $filter, $uibModal, toastr) {
     $scope.ImageFormatValidaiton = "Please upload Images ";
 
     $scope.ImageSizeValidaiton = "Can't upload image more than 1MB";
@@ -55,7 +55,7 @@ function OwnersController($scope, OwnersApi, uploadService, $rootScope, $timeout
             $scope.Owner.Image = $scope.Image;
             $scope.Image = "";
         }
-        //  uploadService.uploadFiles();
+        //  uploadOwnersService.uploadFiles();
         debugger;
         OwnersApi.Save($scope.Owner).then(function (response) {
 
@@ -157,7 +157,7 @@ function OwnersController($scope, OwnersApi, uploadService, $rootScope, $timeout
             alert($scope.ImageFormatValidaiton);
             return;
         }
-        uploadService.uploadFiles($scope)
+        uploadOwnersService.uploadFiles($scope)
             // then() called when uploadFiles gets back
             .then(function (data) {
                 // promise fulfilled
