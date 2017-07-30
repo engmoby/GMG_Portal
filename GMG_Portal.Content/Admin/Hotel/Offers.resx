@@ -136,15 +136,15 @@
     <value>Display name must be unique</value>
   </data>
   <data name="ModalTitle" xml:space="preserve">
-    <value>Contact</value>
+    <value>News</value>
   </data>
-  <data name="Name" xml:space="preserve">
-    <value>Name</value>
+  <data name="Title" xml:space="preserve">
+    <value>Title</value>
   </data>
   <data name="TitleDisplay" xml:space="preserve">
     <value>Title</value>
   </data>
-  <data name="TxtNamePatternErrorMessage" xml:space="preserve">
+  <data name="TxtTitlePatternErrorMessage" xml:space="preserve">
     <value>Invalid Pattern</value>
   </data>
   <data name="DisplayFront" xml:space="preserve">
@@ -153,8 +153,8 @@
   <data name="Icon" xml:space="preserve">
     <value>Icon</value>
   </data>
-  <data name="TxtNameUniqueErrorMessage" xml:space="preserve">
-    <value>Name  is unique</value>
+  <data name="TxtTitleUniqueErrorMessage" xml:space="preserve">
+    <value>Title  is unique</value>
   </data>
   <data name="Desc" xml:space="preserve">
     <value>Description</value>
@@ -164,6 +164,12 @@
   </data>
   <data name="Image" xml:space="preserve">
     <value>Image</value>
+  </data>
+  <data name="Rate" xml:space="preserve">
+    <value>Rate</value>
+  </data>
+  <data name="RateDisplay" xml:space="preserve">
+    <value>Rate</value>
   </data>
   <data name="SaveSuccessMessage" xml:space="preserve">
     <value>Save Done Successfully</value>
@@ -195,8 +201,8 @@
   <data name="txtSearchLbl" xml:space="preserve">
     <value>search ...</value>
   </data>
-  <data name="TxtNameRequiredErrorMessage" xml:space="preserve">
-    <value>Name is required</value>
+  <data name="TxtTitleRequiredErrorMessage" xml:space="preserve">
+    <value>Title is required</value>
   </data>
   <data name="TxtUrlPatternErrorMessage" xml:space="preserve">
     <value>Url Invalid Pattern</value>
@@ -204,88 +210,22 @@
   <data name="UpdateSuccessMessage" xml:space="preserve">
     <value>Updated Successfully</value>
   </data>
-  <data name="Requirements" xml:space="preserve">
-    <value>Requirements</value>
-  </data>
-  <data name="TxtPostionPatternErrorMessage" xml:space="preserve">
-    <value>Invalid Pattern</value>
-  </data>
-  <data name="TxtPostionRequiredErrorMessage" xml:space="preserve">
-    <value>Postion is required</value>
-  </data>
-  <data name="TxtPostionUniqueErrorMessage" xml:space="preserve">
-    <value>Postion  is unique</value>
-  </data>
-  <data name="Postion" xml:space="preserve">
-    <value>Postion</value>
-  </data>
-  <data name="ApplyCount" xml:space="preserve">
-    <value>Apply Count</value>
-  </data>
-  <data name="CareerLevel" xml:space="preserve">
-    <value>Career Level</value>
-  </data>
-  <data name="EducationLevel" xml:space="preserve">
-    <value>Education Level</value>
-  </data>
-  <data name="Experience" xml:space="preserve">
-    <value>Experience</value>
-  </data>
-  <data name="JobType" xml:space="preserve">
-    <value>Job Type</value>
-  </data>
-  <data name="SalaryAverage" xml:space="preserve">
-    <value>Salary Average</value>
-  </data>
-  <data name="Vacancies" xml:space="preserve">
-    <value>Vacancies</value>
-  </data>
   <data name="Url" xml:space="preserve">
-    <value>Url</value>
+    <value>URL</value>
   </data>
-  <data name="Facebook" xml:space="preserve">
-    <value>Facebook</value>
+  <data name="Discount" xml:space="preserve">
+    <value>Discount</value>
   </data>
-  <data name="Fax" xml:space="preserve">
-    <value>Fax</value>
+  <data name="EndDate" xml:space="preserve">
+    <value>EndDate</value>
   </data>
-  <data name="Instgram" xml:space="preserve">
-    <value>Instgram</value>
+  <data name="HotelTitle" xml:space="preserve">
+    <value>HotelTitle</value>
   </data>
-  <data name="Late" xml:space="preserve">
-    <value>Late</value>
+  <data name="Price" xml:space="preserve">
+    <value>Price</value>
   </data>
-  <data name="Long" xml:space="preserve">
-    <value>Long</value>
-  </data>
-  <data name="Mailbox" xml:space="preserve">
-    <value>Mailbox</value>
-  </data>
-  <data name="PhoneNo1" xml:space="preserve">
-    <value>PhoneNo1</value>
-  </data>
-  <data name="PhoneNo2" xml:space="preserve">
-    <value>PhoneNo2</value>
-  </data>
-  <data name="PostalCode" xml:space="preserve">
-    <value>PostalCode</value>
-  </data>
-  <data name="Snapchat" xml:space="preserve">
-    <value>Snapchat</value>
-  </data>
-  <data name="Twitter" xml:space="preserve">
-    <value>Twitter</value>
-  </data>
-  <data name="WhatsApp" xml:space="preserve">
-    <value>WhatsApp</value>
-  </data>
-  <data name="Youtube" xml:space="preserve">
-    <value>Youtube</value>
-  </data>
-  <data name="MailNo1" xml:space="preserve">
-    <value>MailNo1</value>
-  </data>
-  <data name="MailNo2" xml:space="preserve">
-    <value>MailNo2</value>
+  <data name="StartDate" xml:space="preserve">
+    <value>StartDate</value>
   </data>
 </root>

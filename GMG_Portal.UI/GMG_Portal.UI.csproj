@@ -230,6 +230,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Hotel\FeatureController.cs" />
     <Compile Include="Controllers\Hotel\HotelController.cs" />
+    <Compile Include="Controllers\Hotel\OffersController.cs" />
+    <Compile Include="Controllers\Hotel\ReservationController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Custom\CustomUploadMultipartFormProvider.cs" />
     <Compile Include="Global.asax.cs">
@@ -485,6 +487,8 @@
     <Content Include="Scripts\app\app.js" />
     <Content Include="Scripts\app\Login.js" />
     <Content Include="Scripts\app\pages\About\About.js" />
+    <Content Include="Scripts\app\pages\Offers\Offers.js" />
+    <Content Include="Scripts\app\pages\Reservation\Reservation.js" />
     <Content Include="Scripts\app\pages\Newsletter\Newsletter.js" />
     <Content Include="Scripts\app\pages\Contact\Contact.js" />
     <Content Include="Scripts\app\pages\CareerForm\CareerForm.js" />
@@ -502,6 +506,8 @@
     <Content Include="Scripts\app\pages\Settings.js" />
     <Content Include="Scripts\app\pages\Vision\Vision.js" />
     <Content Include="Scripts\app\services\About.js" />
+    <Content Include="Scripts\app\services\Offers.js" />
+    <Content Include="Scripts\app\services\Reservation.js" />
     <Content Include="Scripts\app\services\Newsletter.js" />
     <Content Include="Scripts\app\services\Contact.js" />
     <Content Include="Scripts\app\services\CareerForm.js" />
@@ -1044,6 +1050,8 @@
     <None Include="Properties\PublishProfiles\gmgbackend - Web Deploy %283%29.pubxml" />
     <None Include="Properties\PublishProfiles\gmgbackend - Web Deploy.pubxml" />
     <Content Include="Views\NewsLetter\Index.cshtml" />
+    <Content Include="Views\Reservation\Index.cshtml" />
+    <Content Include="Views\Offers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GMG_Portal.API\GMG_Portal.API.csproj">

@@ -80,6 +80,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Shared.resx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Hotel\Reservation.Designer.cs">
+      <DependentUpon>Reservation.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Admin\Hotel\Offers.Designer.cs">
+      <DependentUpon>Offers.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Admin\SystemParameters\NewsLetters.Designer.cs">
       <DependentUpon>NewsLetters.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -181,6 +191,15 @@
     <EmbeddedResource Include="Admin\Shared.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Shared.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\Hotel\Reservation.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Reservation.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\Hotel\Offers.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Offers.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\SystemParameters\NewsLetters.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
