@@ -67,6 +67,7 @@ function NewsController($scope, NewsApi, uploadService, $rootScope, $timeout, $f
         }
         //  uploadService.uploadFiles();
         debugger;
+        $scope.New.CategoryId = $scope.SelectedCategory.Id;
         NewsApi.Save($scope.New).then(function (response) {
 
             switch (response.data.OperationStatus) {
@@ -110,7 +111,6 @@ function NewsController($scope, NewsApi, uploadService, $rootScope, $timeout, $f
                 default:
 
             }
-
             $rootScope.ViewLoading = false;
             $scope.back();
         },
@@ -153,7 +153,7 @@ function NewsController($scope, NewsApi, uploadService, $rootScope, $timeout, $f
             $scope.save();
             return;
         }
-        var extn = $scope.Image.split(".").pop(); 
+        var extn = $scope.Image.split(".").pop();
         var fileLength = $scope.data[0].FileLength;
         if (fileLength > 152166) {
             $scope.countFiles = null;

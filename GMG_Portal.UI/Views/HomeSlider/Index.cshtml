@@ -63,8 +63,7 @@
                     <th>#</th>
                     <th st-sort="Image">@HomeSlider.Image</th>
                     <th st-sort="Title">@HomeSlider.Title</th>
-                    <th st-sort="Desc">@HomeSlider.Desc</th>
-                    <th st-sort="Rate">@HomeSlider.Rate</th>
+                    <th st-sort="Desc">@HomeSlider.Desc</th> 
                     <th>Actions</th>
                 </tr>
 
@@ -74,8 +73,7 @@
                     <td ng-class="{'red-text': HomeSlider.IsDeleted == true}">{{$index+1}}</td>
                     <td ng-class="{'red-text': HomeSlider.IsDeleted == true}"><img ng-click="openImage(HomeSlider)" width="70px" height="70px" src="http://gmgbackend.azurewebsites.net/Uploads/{{HomeSlider.Image}}" /></td>
                     <td ng-class="{'red-text': HomeSlider.IsDeleted == true}">{{HomeSlider.DisplayValue}}</td>
-                    <td ng-class="{'red-text': HomeSlider.IsDeleted == true}">{{HomeSlider.DisplayValueDesc | limitTo:letterLimit}} </td>
-                    <td ng-class="{'red-text': HomeSlider.IsDeleted == true}">{{HomeSlider.Rating}}</td>
+                    <td ng-class="{'red-text': HomeSlider.IsDeleted == true}">{{HomeSlider.DisplayValueDesc | limitTo:letterLimit}} </td> 
                     <td>
                         <div class="buttons" ng-show="!HomeSlider.IsDeleted">
                             <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(HomeSlider)"><i class="fa fa-pencil" aria-hidden="true"></i>@HomeSlider.TableBtnEdit</button>

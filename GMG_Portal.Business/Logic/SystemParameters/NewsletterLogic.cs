@@ -18,7 +18,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         }
         public List<SystemParameters_Newsletter> GetAllWithSeen()
         {
-            return _db.SystemParameters_Newsletter.OrderBy(p => p.SeenBy).ToList();
+            return _db.SystemParameters_Newsletter.OrderByDescending(p => p.CreationTime).ToList();
         }
         public List<SystemParameters_Newsletter> GetAll()
         {
