@@ -23,7 +23,7 @@ namespace GMG_Portal.UI.Controllers
                 }
 
                 //Save To this server location
-                var uploadPath = HttpContext.Current.Server.MapPath("~/Uploads");
+                var uploadPath = HttpContext.Current.Server.MapPath("~/Uploads/Hotels");
                 //The reason we not use the default MultipartFormDataStreamProvider is because
                 //the saved file name is look weird, not believe me? uncomment below and try out, 
                 //the odd file name is designed for security reason -_-'.

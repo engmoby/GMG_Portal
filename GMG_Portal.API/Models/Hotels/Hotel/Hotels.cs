@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using GMG_Portal.API.Models.SystemParameters;
 using GMG_Portal.Data;
 
 namespace GMG_Portal.API.Models.Hotels.Hotel
@@ -36,7 +37,7 @@ namespace GMG_Portal.API.Models.Hotels.Hotel
         public double? DistanceDownTown { get; set; }
         public string OperationStatus { get; set; }
         public List<HotelImages> ImageList { get; set; }
-        public List<HotelFeatures> FeaturesList { get; set; }
+        public List<Features> FeaturesList { get; set; }
         public int Bootstrap { get; set; }
         public int? Rate { get; set; }
     }

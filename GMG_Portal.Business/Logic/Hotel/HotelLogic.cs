@@ -137,6 +137,11 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             try
             {
                 _db.SaveChanges();
+
+                if (hotel.ImageList != null)
+                {
+                    InsertHotelImages(hotel);
+                }
                 hotel.OperationStatus = "Succeded";
                 return hotel;
             }
@@ -184,10 +189,9 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             hotel.PriceStart = postedHotel.PriceStart;
             hotel.LastModificationTime = Parameters.CurrentDateTime;
             hotel.LastModifierUserId = Parameters.UserId;
-             
+
             return Save(hotel);
         }
-
         public Hotel Delete(Hotel postedHotel)
         {
             var hotel = GetHotelInfoById(postedHotel.Id);
@@ -203,5 +207,23 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             return Save(hotel);
         }
 
+        public void InsertHotelImages(Hotel postedhotel)
+        {
+            foreach (var imageObj in postedhotel.ImageList)
+            {
+                var image = new Hotels_Images()
+                {
+                    Image = imageObj.Image,
+                    IsDeleted = imageObj.IsDeleted,
+                    Show = Parameters.Show,
+                    Hotel_Id = postedhotel.Id,
+                    CreationTime = Parameters.CurrentDateTime,
+                    CreatorUserId = Parameters.UserId,
+                };
+                _db.Hotels_Images.Add(image);
+            }
+
+            _db.SaveChanges();
+        }
     }
 }
