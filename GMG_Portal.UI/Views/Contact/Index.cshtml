@@ -5,6 +5,8 @@
 @using GMG_Portal.Content;
 @using GMG_Portal.Content.Admin
 @using GMG_Portal.Content.Admin.SystemParameters
+
+ 
 <script type="text/javascript" src="~/Scripts/app/services/Contact.js"></script>
 <script type="text/javascript" src="~/Scripts/app/pages/Contact/Contact.js"></script>
 <input type="hidden" id="HEnglishNameUnique" value="@Contact.EnglishNameUnique" />
@@ -64,7 +66,7 @@
             <th st-sort="Image">@Contact.TitleDisplay</th>
             <th st-sort="Image">@Contact.PhoneNo1</th>
             <th st-sort="Title">@Contact.PhoneNo2</th>
-            <th st-sort="Desc">@Contact.Mailbox</th>
+            <th st-sort="Desc">@</th>
             <th>Actions</th>
         </tr>
 
@@ -72,10 +74,10 @@
         <tbody>
         <tr ng-repeat="Contact in TableData">
             <td ng-class="{'red-text': Contact.IsDeleted == true}">{{$index+1}}</td>
-            <td ng-class="{'red-text': Contact.IsDeleted == true}">{{Contact.DisplayValue}}</td>
+            <td ng-class="{'red-text': Contact.IsDeleted == true}">{{Contact.DisplayValueAddress}}</td>
             <td ng-class="{'red-text': Contact.IsDeleted == true}">{{Contact.PhoneNo1}}</td>
             <td ng-class="{'red-text': Contact.IsDeleted == true}">{{Contact.PhoneNo2}}</td>
-            <td ng-class="{'red-text': Contact.IsDeleted == true}">{{Contact.Mailbox}}</td>
+            <td ng-class="{'red-text': Contact.IsDeleted == true}">{{Contact.MailNo1}}</td>
             <td>
                 <div class="buttons" ng-show="!Contact.IsDeleted">
                     <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(Contact)"><i class="fa fa-pencil" aria-hidden="true"></i>@Career.TableBtnEdit</button>
