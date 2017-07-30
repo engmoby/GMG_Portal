@@ -1,6 +1,7 @@
 ﻿controllerProvider.register('MissionsController', ['$scope', 'MissionsApi', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', MissionsController]);
 function MissionsController($scope, MissionsApi, $rootScope, $timeout, $filter, $uibModal, toastr) {
     $rootScope.ViewLoading = true;
+    $scope.letterLimit = 20;
     MissionsApi.GetAll().then(function (response) {
         $scope.Missions = response.data;
         $rootScope.ViewLoading = false;

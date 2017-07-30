@@ -1,5 +1,6 @@
 ﻿controllerProvider.register('AboutController', ['$scope', 'AboutApi', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', AboutController]);
 function AboutController($scope, AboutApi, $rootScope, $timeout, $filter, $uibModal, toastr) {
+    $scope.letterLimit = 20;
     $rootScope.ViewLoading = true;
     AboutApi.GetAll().then(function (response) {
         $scope.About = response.data;
