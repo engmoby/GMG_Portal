@@ -87,7 +87,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="TxtTitle">@Mission.Title</label><span class="red-text"> *</span>
-                            <input type="text" ng-model="Mission.DisplayValue" not-in-list="Missions" list-item-id="Mission.ID" class="form-control" Title="TxtTitle"
+                            <input type="text" ng-model="Mission.DisplayValue" class="form-control" name="TxtTitle"
                                    placeholder="Text" ng-minlength="20" ng-maxlength="30" required ng-pattern="/@Regex.NameAr/">
 
                             <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
@@ -100,7 +100,7 @@
                         </div>`
                         <div class="form-group">
                             <label for="TxtDesc">@Mission.Desc</label><span class="red-text"> *</span>
-                            <textarea ng-model="Mission.DisplayValueDesc" not-in-list="Missions" list-item-id="Mission.ID" class="form-control" name="TxtDesc"
+                            <textarea ng-model="Mission.DisplayValueDesc"   class="form-control" name="TxtDesc"
                                       placeholder="Text" ng-minlength="20" ng-maxlength="30" required ng-pattern="/@Regex.NameEn/"></textarea>
                             <div class="red-text" ng-messages="FrmAddUpdate.TxtDesc.$error" ng-show="FrmAddUpdate.TxtDesc.$touched">
                                 <span class="red-text" ng-message="required">@Mission.TxtDescRequiredErrorMessage</span>
