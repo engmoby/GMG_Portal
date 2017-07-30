@@ -26,7 +26,7 @@ namespace GMG_Portal.API.Controllers.Hotel
             catch (Exception ex)
             {
                 Log.LogError(ex);
-                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+                return Request.CreateResponse(ex);
             }
         }
         public HttpResponseMessage GetAllWithDeleted()

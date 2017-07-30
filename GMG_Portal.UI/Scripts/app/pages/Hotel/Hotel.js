@@ -5,6 +5,7 @@ function HotelsController($scope, HotelsApi, uploadService, $rootScope, $timeout
     $scope.ShowTableData = true;
     $scope.ShowFrmAddUpdate = false;
     $rootScope.ViewLoading = true;
+    debugger;
     HotelsApi.GetAll().then(function (response) {
         $scope.Hotels = response.data;
         $rootScope.ViewLoading = false;

@@ -1,5 +1,7 @@
 ﻿provide.service('HotelsApi', function ($http) {
     var apiUrl = document.querySelector('#HServicesURL').value;
+    debugger;
+
     this.GetAll = function () {
         return $http.get(apiUrl + '/SystemParameters/Hotels/GetAllWithDeleted');
     }
