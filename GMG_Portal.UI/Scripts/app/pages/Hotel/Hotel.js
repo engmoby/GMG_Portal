@@ -14,20 +14,22 @@ function HotelsController($scope, HotelsApi, uploadService, $rootScope, $timeout
         $scope.invalidupdateAddFrm = true;
         $scope.ShowTableData = false;
         $scope.ShowFrmAddUpdate = true;
-      $scope.action = Hotel == null ? 'add' : 'edit';
-
+        $scope.action = Hotel == null ? 'add' : 'edit';
+        HotelsApi.GetHotelDetails(Hotel).then(function (response) {
+            $scope.HotelDetails = response.data; 
+        });
         this.isFrmAddUpdateInvalid = false;
         $scope.isFrmRowformInvalid = false;
         $scope.isSecondFrmRowformInvalid = false;
-       
-        if (Hotel == null) Hotel = {};
-            $scope.Hotel = angular.copy(Hotel);
-            if ($scope.Hotel.Image)
-                $scope.countFiles = $scope.Hotel.Image;
 
-            $timeout(function () {
-                document.querySelector('input[name="TxtNameAr"]').focus();
-            }, 1000);
+        if (Hotel == null) Hotel = {};
+        $scope.Hotel = angular.copy(Hotel);
+        if ($scope.Hotel.Image)
+            $scope.countFiles = $scope.Hotel.Image;
+
+        $timeout(function () {
+            document.querySelector('input[name="TxtNameAr"]').focus();
+        }, 1000);
 
 
     }
@@ -90,15 +92,15 @@ function HotelsController($scope, HotelsApi, uploadService, $rootScope, $timeout
                     switch ($scope.action) {
                         case 'edit':
                             index = $scope.Hotels.indexOf($filter('filter')($scope.Hotels, { 'ID': $scope.Hotel.ID }, true)[0]);
-                           // $scope.Hotels[index] = angular.copy(response.data);
+                            // $scope.Hotels[index] = angular.copy(response.data);
                             HotelsApi.GetAll().then(function (response) {
-                                $scope.Hotels = response.data; 
-                            }); 
+                                $scope.Hotels = response.data;
+                            });
                             toastr.success($('#HUpdateSuccessMessage').val(), 'Success');
                             break;
                         case 'delete':
                             index = $scope.Hotels.indexOf($filter('filter')($scope.Hotels, { 'ID': $scope.Hotel.ID }, true)[0]);
-                           // $scope.Hotels[index] = angular.copy(response.data);
+                            // $scope.Hotels[index] = angular.copy(response.data);
                             HotelsApi.GetAll().then(function (response) {
                                 $scope.Hotels = response.data;
                             });
@@ -120,11 +122,11 @@ function HotelsController($scope, HotelsApi, uploadService, $rootScope, $timeout
                     toastr.error($('#HArabicNameUnique').val(), 'Error');
                     break;
                 case "HasRelationship":
-                      HotelsApi.GetAll().then(function (response) {
+                    HotelsApi.GetAll().then(function (response) {
                         $scope.Hotels = response.data;
-                      });
-                      toastr.error($('#HCannotDeleted').val(), 'Error');
-                  
+                    });
+                    toastr.error($('#HCannotDeleted').val(), 'Error');
+
                     break;
                 default:
 
