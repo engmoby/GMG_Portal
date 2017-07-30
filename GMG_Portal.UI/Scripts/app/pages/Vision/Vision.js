@@ -1,6 +1,9 @@
 ﻿controllerProvider.register('VisionsController', ['$scope', 'VisionsApi', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', VisionsController]);
 function VisionsController($scope, VisionsApi, $rootScope, $timeout, $filter, $uibModal, toastr) {
     $rootScope.ViewLoading = true;
+
+    $scope.letterLimit = 20;
+
     VisionsApi.GetAll().then(function (response) {
         $scope.Visions = response.data;
         $rootScope.ViewLoading = false;
