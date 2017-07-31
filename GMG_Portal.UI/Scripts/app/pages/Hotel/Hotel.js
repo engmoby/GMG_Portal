@@ -95,9 +95,7 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
         if ($scope.Image) {
             $scope.Hotel.Image = $scope.Image;
             $scope.Image = "";
-        }
-        //  uploadHotlesService.uploadFiles();
-        debugger;
+        } 
         HotelsApi.Save($scope.Hotel).then(function (response) {
 
             switch (response.data.OperationStatus) {
