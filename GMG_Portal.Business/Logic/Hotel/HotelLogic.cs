@@ -120,9 +120,11 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         }
         public Hotel GetHotelInfoById(int id)
         {
-
             return _db.Hotels.Find(id);
-
+        }
+        public Hotels_Images GetImageInfoById(int id)
+        {
+            return _db.Hotels_Images.Find(id);
         }
         public IQueryable<Hotels_Images> HotelImages(int hotelId)
         {
@@ -211,6 +213,8 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         {
             foreach (var imageObj in postedhotel.ImageList)
             {
+                if (GetImageInfoById(imageObj.Id) != null)
+                    continue;
                 var image = new Hotels_Images()
                 {
                     Image = imageObj.Image,
