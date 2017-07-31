@@ -173,7 +173,19 @@
                         
                         
                         
-                        
+                        <div class="form-group">
+                            <label for="TxtTitle">@Offers.Price</label><span class="red-text"> *</span>
+                            <input type="text" ng-model="Offer.Price" not-in-list="Offers" list-item-id="Offer.ID" class="form-control" name="TxtTitle"
+                                   placeholder="@Offers.Price" ng-minlength="20" ng-maxlength="30" required ng-pattern="/@Regex.NameAr/">
+
+                            <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
+                                <span class="red-text" ng-message="required">@Offers.TxtTitleRequiredErrorMessage</span>
+                                <span class="red-text" ng-message="pattern">@Offers.TxtTitlePatternErrorMessage</span>
+                                <span class="red-text" ng-message="notInList">@Offers.TxtTitleUniqueErrorMessage</span>
+                                <span class="red-text" ng-message="minlength">Minimum 20 Charachter</span>
+                                <span class="red-text" ng-message="maxlength">Maximum 30 Charachter</span>
+                            </div>
+                        </div>
 
 
                  
