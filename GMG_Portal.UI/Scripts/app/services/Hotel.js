@@ -15,5 +15,23 @@
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify(hotel)
         });
-    } 
+    }
+
+    this.SaveImage = function (hotelImages) {
+        return $http({
+            url: apiUrl + '/SystemParameters/Hotels/SaveImages',
+            method: 'POST',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(hotelImages)
+        });
+    }
+
+    this.DeleteImage = function (hotelImage) {
+        return $http({
+            url: apiUrl + '/SystemParameters/Hotels/DeleteImage',
+            method: 'POST',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(hotelImage)
+        });
+    }
 });

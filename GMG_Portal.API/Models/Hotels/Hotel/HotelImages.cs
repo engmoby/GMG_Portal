@@ -16,5 +16,6 @@ namespace GMG_Portal.API.Models.Hotels.Hotel
         public DateTime? DeletionTime { get; set; }
         public int? DeleterUserId { get; set; }
         public bool Show { get; set; }
+        public string OperationStatus { get; set; }
     }
 }
