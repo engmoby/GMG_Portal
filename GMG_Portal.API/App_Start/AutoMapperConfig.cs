@@ -72,6 +72,9 @@ namespace GMG_Portal.API
                 cfg.CreateMap<SystemParameters_Owners, Owners>();
                 cfg.CreateMap<Owners, SystemParameters_Owners>();
 
+                cfg.CreateMap<SystemParameters_CoreValues, CoreValues>();
+                cfg.CreateMap<CoreValues, SystemParameters_CoreValues>();
+
                 cfg.CreateMap<SystemParameters_ContactUs, ContactUs>();
                 cfg.CreateMap<ContactUs, SystemParameters_ContactUs>();
 

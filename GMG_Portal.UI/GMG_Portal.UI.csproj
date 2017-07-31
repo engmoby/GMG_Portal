@@ -214,6 +214,7 @@
     <Compile Include="Controllers\Admin\CareerFormController.cs" />
     <Compile Include="Controllers\Admin\ContactController.cs" />
     <Compile Include="Controllers\Admin\ContactFormController.cs" />
+    <Compile Include="Controllers\Admin\CoreValuesController.cs" />
     <Compile Include="Controllers\Admin\NewsCategoryController.cs" />
     <Compile Include="Controllers\Admin\NewsController.cs" />
     <Compile Include="Controllers\Admin\NewsLetterController.cs" />
@@ -488,6 +489,7 @@
     <Content Include="Scripts\app\app.js" />
     <Content Include="Scripts\app\Login.js" />
     <Content Include="Scripts\app\pages\About\About.js" />
+    <Content Include="Scripts\app\pages\CoreValues\CoreValues.js" />
     <Content Include="Scripts\app\pages\Offers\Offers.js" />
     <Content Include="Scripts\app\pages\ContactForm\ContactForm.js" />
     <Content Include="Scripts\app\pages\Reservation\Reservation.js" />
@@ -508,6 +510,7 @@
     <Content Include="Scripts\app\pages\Settings.js" />
     <Content Include="Scripts\app\pages\Vision\Vision.js" />
     <Content Include="Scripts\app\services\About.js" />
+    <Content Include="Scripts\app\services\CoreValues.js" />
     <Content Include="Scripts\app\services\Offers.js" />
     <Content Include="Scripts\app\services\ContactForm.js" />
     <Content Include="Scripts\app\services\Reservation.js" />
@@ -1056,6 +1059,7 @@
     <Content Include="Views\Reservation\Index.cshtml" />
     <Content Include="Views\Offers\Index.cshtml" />
     <Content Include="Views\ContactForm\Index.cshtml" />
+    <Content Include="Views\CoreValues\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GMG_Portal.API\GMG_Portal.API.csproj">
