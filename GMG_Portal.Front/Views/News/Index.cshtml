@@ -36,7 +36,8 @@
                                            @if (@newsObj.DisplayValue.Length >= 20)
                                            {
 
-                                            @newsObj.DisplayValue.ToString().Substring(0, 20)
+                                               @newsObj.DisplayValue
+
                                            }
                                            else
                                            {
@@ -45,7 +46,11 @@
                                         </a>
                                     </h2>
                                     <div class="mg-post-meta">
-                                        <span> @newsObj.CreationTime.Value.ToString("D")</span>
+                                        <span>
+                                            @if (newsObj.CreationTime != null)
+                                            {
+                                                @*@newsObj.CreationTime.Value.ToString("D")*@
+                                            }</span>
                                         <span>by  @newsObj.CreatorUserName </span>
                                         <span><a href="/News/Index/@newsObj.CategoryId">@newsObj.CategoryName</a> </span>
                                           @*   <span><a href="#">3 Comments</a></span>*@
@@ -54,7 +59,8 @@
                                 <div>
                                 @if (@newsObj.DisplayValueDesc.Length >= 50)
                                 {
-                                    <p>@newsObj.DisplayValueDesc.Substring(0, 50).</p>
+                                    <p>                                    @newsObj.DisplayValueDesc
+                                    </p>
                                 }
                                 else
                                 {

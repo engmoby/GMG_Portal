@@ -196,6 +196,15 @@ namespace GMG_Portal.Content.Admin.Hotel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Address.
+        /// </summary>
+        public static string DisplayValueAddress {
+            get {
+                return ResourceManager.GetString("DisplayValueAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Education Level.
         /// </summary>
         public static string EducationLevel {
