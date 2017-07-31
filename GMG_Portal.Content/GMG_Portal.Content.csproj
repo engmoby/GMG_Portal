@@ -90,6 +90,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Admin\SystemParameters\ContactForm.Designer.cs">
+      <DependentUpon>ContactForm.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Admin\SystemParameters\NewsLetters.Designer.cs">
       <DependentUpon>NewsLetters.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -200,6 +205,11 @@
     <EmbeddedResource Include="Admin\Hotel\Offers.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Offers.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\SystemParameters\ContactForm.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ContactForm.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\SystemParameters\NewsLetters.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
