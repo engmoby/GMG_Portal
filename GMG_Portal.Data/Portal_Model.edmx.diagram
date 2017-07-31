@@ -15,7 +15,6 @@
         <EntityTypeShape EntityType="GMG_Portal_DBModel.Systemparameters_Languages" Width="1.5" PointX="8.625" PointY="0.75" />
         <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_News" Width="1.5" PointX="11" PointY="5.5" />
         <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_PaymentType" Width="1.5" PointX="4.25" PointY="0.5" />
-        <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_LanguageText" Width="1.5" PointX="9.125" PointY="5.5" />
         <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_ContactUs" Width="1.5" PointX="3.375" PointY="17.75" />
         <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_ContactForm" Width="1.5" PointX="9.375" PointY="16.75" />
         <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_Newsletter" Width="1.5" PointX="3.125" PointY="7.375" />

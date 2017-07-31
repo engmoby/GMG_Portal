@@ -504,18 +504,6 @@ warning 6002: The table/view 'GMG_PORTAL_STAG.dbo.SystemParameters.CoreValues' d
           <Property Name="DeleterUserId" Type="int" />
           <Property Name="DisplayFront" Type="nvarchar" MaxLength="100" />
         </EntityType>
-        <EntityType Name="SystemParameters_LanguageText">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="SGuid" Type="uniqueidentifier" />
-          <Property Name="LanguageKey" Type="int" />
-          <Property Name="LanguageName" Type="nvarchar" MaxLength="50" />
-          <Property Name="IsDeleted" Type="bit" Nullable="false" />
-          <Property Name="Show" Type="bit" />
-          <Property Name="Value" Type="nchar" MaxLength="10" />
-        </EntityType>
         <EntityType Name="SystemParameters_News">
           <Key>
             <PropertyRef Name="Id" />
@@ -622,7 +610,6 @@ warning 6002: The table/view 'GMG_PORTAL_STAG.dbo.SystemParameters.CoreValues' d
           <EntitySet Name="SystemParameters_Features" EntityType="Self.SystemParameters_Features" Schema="dbo" Table="SystemParameters.Features" store:Type="Tables" />
           <EntitySet Name="SystemParameters_HomeSlider" EntityType="Self.SystemParameters_HomeSlider" Schema="dbo" Table="SystemParameters.HomeSlider" store:Type="Tables" />
           <EntitySet Name="Systemparameters_Languages" EntityType="Self.Systemparameters_Languages" Schema="dbo" Table="Systemparameters.Languages" store:Type="Tables" />
-          <EntitySet Name="SystemParameters_LanguageText" EntityType="Self.SystemParameters_LanguageText" Schema="dbo" Table="SystemParameters.LanguageText" store:Type="Tables" />
           <EntitySet Name="SystemParameters_News" EntityType="Self.SystemParameters_News" Schema="dbo" Table="SystemParameters.News" store:Type="Tables" />
           <EntitySet Name="SystemParameters_Newsletter" EntityType="Self.SystemParameters_Newsletter" Schema="dbo" Table="SystemParameters.Newsletter" store:Type="Tables" />
           <EntitySet Name="SystemParameters_Owners" EntityType="Self.SystemParameters_Owners" Schema="dbo" Table="SystemParameters.Owners" store:Type="Tables" />
@@ -664,7 +651,6 @@ warning 6002: The table/view 'GMG_PORTAL_STAG.dbo.SystemParameters.CoreValues' d
           <EntitySet Name="Systemparameters_Languages" EntityType="GMG_Portal_DBModel.Systemparameters_Languages" />
           <EntitySet Name="SystemParameters_News" EntityType="GMG_Portal_DBModel.SystemParameters_News" />
           <EntitySet Name="SystemParameters_PaymentType" EntityType="GMG_Portal_DBModel.SystemParameters_PaymentType" />
-          <EntitySet Name="SystemParameters_LanguageText" EntityType="GMG_Portal_DBModel.SystemParameters_LanguageText" />
           <EntitySet Name="SystemParameters_ContactUs" EntityType="GMG_Portal_DBModel.SystemParameters_ContactUs" />
           <EntitySet Name="SystemParameters_ContactForm" EntityType="GMG_Portal_DBModel.SystemParameters_ContactForm" />
           <EntitySet Name="SystemParameters_Newsletter" EntityType="GMG_Portal_DBModel.SystemParameters_Newsletter" />
@@ -907,19 +893,6 @@ warning 6002: The table/view 'GMG_PORTAL_STAG.dbo.SystemParameters.CoreValues' d
           <Property Name="DeletionTime" Type="DateTime" Precision="3" />
           <Property Name="DeleterUserId" Type="Int32" />
           <Property Name="Show" Type="Boolean" Nullable="false" />
-        </EntityType>
-        <EntityType Name="SystemParameters_LanguageText">
-          <Key>
-            <PropertyRef Name="Id" />
-            <PropertyRef Name="IsDeleted" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="SGuid" Type="Guid" />
-          <Property Name="LanguageKey" Type="Int32" />
-          <Property Name="LanguageName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="Show" Type="Boolean" />
-          <Property Name="Value" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="SystemParameters_ContactUs">
           <Key>
@@ -1512,19 +1485,6 @@ warning 6002: The table/view 'GMG_PORTAL_STAG.dbo.SystemParameters.CoreValues' d
                 <ScalarProperty Name="LookupKeyGuid" ColumnName="LookupKeyGuid" />
                 <ScalarProperty Name="LookupKey" ColumnName="LookupKey" />
                 <ScalarProperty Name="DisplayValue" ColumnName="DisplayValue" />
-                <ScalarProperty Name="SGuid" ColumnName="SGuid" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SystemParameters_LanguageText">
-            <EntityTypeMapping TypeName="GMG_Portal_DBModel.SystemParameters_LanguageText">
-              <MappingFragment StoreEntitySet="SystemParameters_LanguageText">
-                <ScalarProperty Name="Value" ColumnName="Value" />
-                <ScalarProperty Name="Show" ColumnName="Show" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="LanguageName" ColumnName="LanguageName" />
-                <ScalarProperty Name="LanguageKey" ColumnName="LanguageKey" />
                 <ScalarProperty Name="SGuid" ColumnName="SGuid" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
