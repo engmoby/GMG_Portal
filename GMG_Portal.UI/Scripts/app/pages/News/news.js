@@ -1,6 +1,6 @@
 ﻿controllerProvider.register('NewsController', ['$scope', 'NewsApi', 'uploadNewsService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', NewsController]);
 function NewsController($scope, NewsApi, uploadNewsService, $rootScope, $timeout, $filter, $uibModal, toastr) {
-    $scope.Image = ""; 
+    $scope.Image = "";
     $scope.ImageFormatValidaiton = "Please upload Images ";
     $scope.ImageSizeValidaiton = "Can't upload image more than 2MB";
     $scope.letterLimit = 20;
@@ -67,7 +67,8 @@ function NewsController($scope, NewsApi, uploadNewsService, $rootScope, $timeout
         }
         //  uploadNewsService.uploadFiles();
         debugger;
-        $scope.New.CategoryId = $scope.SelectedCategory.Id;
+        if ($scope.SelectedCategory != null)
+            $scope.New.CategoryId = $scope.SelectedCategory.Id;
         NewsApi.Save($scope.New).then(function (response) {
 
             switch (response.data.OperationStatus) {

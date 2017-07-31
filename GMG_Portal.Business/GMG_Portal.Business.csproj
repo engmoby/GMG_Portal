@@ -70,6 +70,7 @@
     <Compile Include="Logic\SystemParameters\CareerLogic.cs" />
     <Compile Include="Logic\SystemParameters\CareerFormLogic.cs" />
     <Compile Include="Logic\SystemParameters\ContactFormLogic.cs" />
+    <Compile Include="Logic\SystemParameters\CoreValuesLogic.cs" />
     <Compile Include="Logic\SystemParameters\NewsletterLogic.cs" />
     <Compile Include="Logic\SystemParameters\ContactUsLogic.cs" />
     <Compile Include="Logic\SystemParameters\OwnerLogic.cs" />

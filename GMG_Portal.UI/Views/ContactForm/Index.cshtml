@@ -46,7 +46,7 @@
             <tbody>
                 <tr ng-class="{'red-text': ContactForm.Seen == false}" ng-repeat="ContactForm in TableData">
                     <td>{{$index+1}}</td>
-                    <td>{{ContactForm.FirstName +' '+ ContactForm.LastName}}</td>
+                    <td>{{ContactForm.FirstName}}</td>
                     <td>{{ContactForm.Email}}</td>
                     <td>{{ContactForm.Phone}}</td>
                     <td>{{ContactForm.CreationTime   | date:'fullDate'}}</td>
@@ -98,29 +98,22 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="TxtTitle">@ContactForm.FirstName</label><span class="red-text"> *</span>
                                     <input type="text" ng-model="contact.FirstName" class="form-control" Title="TxtTitle" readonly="readonly"
                                            placeholder="@ContactForm.FirstName" required ng-pattern="/@Regex.NameAr/">
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="TxtTitle">@ContactForm.LastName</label><span class="red-text"> *</span>
-                                    <input type="text" ng-model="contact.LastName" class="form-control" Title="TxtTitle" readonly="readonly"
-                                           placeholder="@ContactForm.LastName" required ng-pattern="/@Regex.NameAr/">
-
-                                </div>
-                            </div>
+                           
                         </div>
 
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="TxtTitle">@ContactForm.Phone</label><span class="red-text"> *</span>
-                                    <input type="text" ng-model="contact.Phone" class="form-control" Title="TxtTitle"
-                                           placeholder="@ContactForm.Phone" required ng-pattern="/@Regex.Number/">
+                                    <label for="TxtTitle">@ContactForm.PhoneNo</label><span class="red-text"> *</span>
+                                    <input type="text" ng-model="contact.PhoneNo" class="form-control" Title="TxtTitle"
+                                           placeholder="@ContactForm.PhoneNo" required ng-pattern="/@Regex.Number/">
 
                                 </div>
                             </div>
