@@ -81,7 +81,7 @@ namespace GMG_Portal.API.Controllers.Hotel
                 if (ModelState.IsValid)
                 {
                     var hotelLogic = new HotelLogic();
-                     Data.Hotel hotel = null;
+                    Data.Hotel hotel = null;
                     if (postedHotels.Id.Equals(0))
                     {
                         hotel = hotelLogic.Insert(Mapper.Map<Data.Hotel>(postedHotels));
@@ -105,12 +105,66 @@ namespace GMG_Portal.API.Controllers.Hotel
             catch (Exception ex)
             {
                 Log.LogError(ex);
-                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+                return Request.CreateResponse(ex);
             }
 
             ThrowBadRequest:
             return Request.CreateResponse(HttpStatusCode.BadRequest);
         }
+
+        [HttpPost]
+        public HttpResponseMessage SaveImages(List<Hotels_Images> postedImages)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var hotelLogic = new HotelLogic();
+
+                    var image = hotelLogic.InsertHotelImages(Mapper.Map<List<Hotels_Images>>(postedImages));
+
+
+
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Hotels_Images>>(image));
+                }
+                goto ThrowBadRequest;
+            }
+
+            catch (Exception ex)
+            {
+                Log.LogError(ex);
+                return Request.CreateResponse(ex);
+            }
+
+            ThrowBadRequest:
+            return Request.CreateResponse(HttpStatusCode.BadRequest);
+        }
+        [HttpPost]
+        public HttpResponseMessage DeleteImage(Hotels_Images postedImage)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var hotelLogic = new HotelLogic();
+                    Hotels_Images image = null;
+
+                    image = hotelLogic.DeleteImage(Mapper.Map<Hotels_Images>(postedImage), postedImage.IsDeleted);
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Hotels_Images>(image));
+                }
+                goto ThrowBadRequest;
+            }
+
+            catch (Exception ex)
+            {
+                Log.LogError(ex);
+                return Request.CreateResponse(ex);
+            }
+
+            ThrowBadRequest:
+            return Request.CreateResponse(HttpStatusCode.BadRequest);
+        }
+
     }
 
 }

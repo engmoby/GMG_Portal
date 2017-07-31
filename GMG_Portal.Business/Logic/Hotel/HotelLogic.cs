@@ -140,10 +140,10 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             {
                 _db.SaveChanges();
 
-                if (hotel.ImageList != null)
-                {
-                    InsertHotelImages(hotel);
-                }
+                //if (hotel.ImageList != null)
+                //{
+                //    InsertHotelImages(hotel);
+                //}
                 hotel.OperationStatus = "Succeded";
                 return hotel;
             }
@@ -209,25 +209,41 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             return Save(hotel);
         }
 
-        public void InsertHotelImages(Hotel postedhotel)
+        public List<Hotels_Images> InsertHotelImages(List<Hotels_Images> postedhotel)
         {
-            foreach (var imageObj in postedhotel.ImageList)
+            foreach (var imageObj in postedhotel)
             {
                 if (GetImageInfoById(imageObj.Id) != null)
                     continue;
                 var image = new Hotels_Images()
                 {
                     Image = imageObj.Image,
-                    IsDeleted = imageObj.IsDeleted,
+                    IsDeleted = false,
                     Show = Parameters.Show,
-                    Hotel_Id = postedhotel.Id,
+                    Hotel_Id = postedhotel[0].Id,
+                    LastModificationTime = Parameters.CurrentDateTime,
                     CreationTime = Parameters.CurrentDateTime,
                     CreatorUserId = Parameters.UserId,
                 };
                 _db.Hotels_Images.Add(image);
+                _db.SaveChanges();
             }
 
             _db.SaveChanges();
+
+            postedhotel[0].OperationStatus = "Succeded";
+            return postedhotel;
+        }
+
+        public Hotels_Images DeleteImage(Hotels_Images postedImage,bool isDeleted)
+        {
+            var imageObj = GetImageInfoById(postedImage.Id);
+          
+            imageObj.IsDeleted = isDeleted;
+            imageObj.DeletionTime = Parameters.CurrentDateTime;
+            imageObj.DeleterUserId = Parameters.UserId;
+            _db.SaveChanges();
+            return imageObj;
         }
     }
 }
