@@ -46,11 +46,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         {
             var returnList = new Hotles_Offers();
 
-            var getOfferInfo = _db.Hotles_Offers.FirstOrDefault(p => p.Id == id && p.IsDeleted == false && p.Show == true);
-            var getOfferhotel = _db.Hotels.FirstOrDefault(p => p.IsDeleted != true && p.Id == getOfferInfo.Hotel_Id);
-
-            var getOfferImages = _db.Hotels_Images.Where(p => p.IsDeleted != true && p.Hotel_Id == getOfferhotel.Id).ToList();
-
+            var getOfferInfo = _db.Hotles_Offers.FirstOrDefault(p => p.Id == id && p.IsDeleted == false && p.Show == true);  
             if (getOfferInfo != null)
             {
                 returnList.Id = getOfferInfo.Id;
@@ -59,8 +55,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 returnList.Price = getOfferInfo.Price;
                 returnList.StartDate = getOfferInfo.StartDate;
                 returnList.EndDate = getOfferInfo.EndDate;
-                returnList.Image = getOfferImages[0].Image;
-                //returnList.ImageList = getOfferImages[0].Image; 
+                returnList.Image = getOfferInfo.Image; 
 
 
                 return returnList;

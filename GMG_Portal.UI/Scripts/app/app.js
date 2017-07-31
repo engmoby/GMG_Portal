@@ -447,9 +447,7 @@ app.factory('uploadOwnersService', function ($http, $q) {
 
 app.factory('uploadHotlesService', function ($http, $q) {
     return {
-        uploadFiles: function ($scope) {
-            debugger;
-            console.log($scope.formdata);
+        uploadFiles: function ($scope) { 
             var request = {
                 method: 'POST',
                 url: '/api/uploadHotles/',

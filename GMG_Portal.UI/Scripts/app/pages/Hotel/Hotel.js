@@ -95,65 +95,68 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
         if ($scope.Image) {
             $scope.Hotel.Image = $scope.Image;
             $scope.Image = "";
-        } 
-        HotelsApi.Save($scope.Hotel).then(function (response) {
+        }
+        $scope.basicInfo = false;
+        $scope.imagesList = true;
+        $rootScope.ViewLoading = false;
+        //HotelsApi.Save($scope.Hotel).then(function (response) {
 
-            switch (response.data.OperationStatus) {
-                case "Succeded":
-                    var index;
-                    switch ($scope.action) {
-                        case 'edit':
-                            index = $scope.Hotels.indexOf($filter('filter')($scope.Hotels, { 'ID': $scope.Hotel.ID }, true)[0]);
-                            // $scope.Hotels[index] = angular.copy(response.data);
-                            HotelsApi.GetAll().then(function (response) {
-                                $scope.Hotels = response.data;
-                            });
-                            toastr.success($('#HUpdateSuccessMessage').val(), 'Success');
-                            break;
-                        case 'delete':
-                            index = $scope.Hotels.indexOf($filter('filter')($scope.Hotels, { 'ID': $scope.Hotel.ID }, true)[0]);
-                            // $scope.Hotels[index] = angular.copy(response.data);
-                            HotelsApi.GetAll().then(function (response) {
-                                $scope.Hotels = response.data;
-                            });
-                            toastr.success($('#HDeleteSuccessMessage').val(), 'Success');
-                            break;
-                        case 'add':
-                            HotelsApi.GetAll().then(function (response) {
-                                $scope.Hotels = response.data;
-                            });
-                            // $scope.Hotels.push(angular.copy(response.data));
-                            toastr.success($('#HSaveSuccessMessage').val(), 'Success');
-                            break;
-                    }
-                    break;
-                case "NameEnMustBeUnique":
-                    toastr.error($('#HEnglishNameUnique').val(), 'Error');
-                    break;
-                case "NameArMustBeUnique":
-                    toastr.error($('#HArabicNameUnique').val(), 'Error');
-                    break;
-                case "HasRelationship":
-                    HotelsApi.GetAll().then(function (response) {
-                        $scope.Hotels = response.data;
-                    });
-                    toastr.error($('#HCannotDeleted').val(), 'Error');
+        //    switch (response.data.OperationStatus) {
+        //        case "Succeded":
+        //            var index;
+        //            switch ($scope.action) {
+        //                case 'edit':
+        //                    index = $scope.Hotels.indexOf($filter('filter')($scope.Hotels, { 'ID': $scope.Hotel.ID }, true)[0]);
+        //                    // $scope.Hotels[index] = angular.copy(response.data);
+        //                    HotelsApi.GetAll().then(function (response) {
+        //                        $scope.Hotels = response.data;
+        //                    });
+        //                    toastr.success($('#HUpdateSuccessMessage').val(), 'Success');
+        //                    break;
+        //                case 'delete':
+        //                    index = $scope.Hotels.indexOf($filter('filter')($scope.Hotels, { 'ID': $scope.Hotel.ID }, true)[0]);
+        //                    // $scope.Hotels[index] = angular.copy(response.data);
+        //                    HotelsApi.GetAll().then(function (response) {
+        //                        $scope.Hotels = response.data;
+        //                    });
+        //                    toastr.success($('#HDeleteSuccessMessage').val(), 'Success');
+        //                    break;
+        //                case 'add':
+        //                    HotelsApi.GetAll().then(function (response) {
+        //                        $scope.Hotels = response.data;
+        //                    });
+        //                    // $scope.Hotels.push(angular.copy(response.data));
+        //                    toastr.success($('#HSaveSuccessMessage').val(), 'Success');
+        //                    break;
+        //            }
+        //            break;
+        //        case "NameEnMustBeUnique":
+        //            toastr.error($('#HEnglishNameUnique').val(), 'Error');
+        //            break;
+        //        case "NameArMustBeUnique":
+        //            toastr.error($('#HArabicNameUnique').val(), 'Error');
+        //            break;
+        //        case "HasRelationship":
+        //            HotelsApi.GetAll().then(function (response) {
+        //                $scope.Hotels = response.data;
+        //            });
+        //            toastr.error($('#HCannotDeleted').val(), 'Error');
 
-                    break;
-                default:
+        //            break;
+        //        default:
 
-            }
+        //    }
 
-            $scope.HotelDetails = response.data;
-            $scope.basicInfo = false;
-            $scope.imagesList = true;
-            $rootScope.ViewLoading = false;
-           // $scope.back();
-        },
-        function (response) {
-            debugger;
-            ss = response;
-        });
+        //    $scope.HotelDetails = response.data;
+        //    $scope.basicInfo = false;
+        //    $scope.imagesList = true;
+        //    $rootScope.ViewLoading = false;
+        //   // $scope.back();
+        //},
+        //function (response) {
+        //    debugger;
+        //    ss = response;
+        //});
     }
 
     $scope.Delete = function (Hotel) {
@@ -186,7 +189,7 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
     $scope.uploadFiles = function () {
         debugger;
         if ($scope.data.length === 0) {
-            $scope.save();
+            $scope.saveImage();
             return;
         }
         uploadHotlesService.uploadFiles($scope)
@@ -197,7 +200,7 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
                 if (data === '') {
                     // console.log(data);
                     //   $scope.Image=data.
-                    $scope.save();
+                    $scope.saveImage();
                     $scope.data = [];
                     alert("Done!!!");
                     $scope.formdata = new FormData();
@@ -219,7 +222,81 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
 
             );
     };
+    $scope.saveImage = function () {
+        $rootScope.ViewLoading = true;
+        if ($scope.Image) {
 
+            //  $scope.HotelDetails.ImageList = $scope.Image;
+            $scope.HotelDetails.ImageList.push(
+                {
+                    "Id": null,
+                    "Hotel_Id": $scope.HotelDetails.ImageList[0].$scope.HotelDetails.ImageList,
+                    "Image": $scope.Image
+                }
+            );
+        }
+        debugger;
+
+        $rootScope.ViewLoading = false;
+        HotelsApi.Save($scope.HotelDetails).then(function (response) {
+
+            switch (response.data.OperationStatus) {
+                case "Succeded":
+                    var index;
+                    switch ($scope.action) {
+                        case 'edit':
+                            index = $scope.HotelDetails.indexOf($filter('filter')($scope.HotelDetails, { 'ID': $scope.HotelDetails.Id }, true)[0]);
+                            $scope.HotelDetails[index] = angular.copy(response.data);
+                            //HotelsApi.GetAll().then(function (response) {
+                            //    $scope.Hotels = response.data;
+                            //});
+                            toastr.success($('#HUpdateSuccessMessage').val(), 'Success');
+                            break;
+                        case 'delete':
+                            index = $scope.Hotels.indexOf($filter('filter')($scope.Hotels, { 'ID': $scope.Hotel.ID }, true)[0]);
+                            // $scope.Hotels[index] = angular.copy(response.data);
+                            HotelsApi.GetAll().then(function (response) {
+                                $scope.Hotels = response.data;
+                            });
+                            toastr.success($('#HDeleteSuccessMessage').val(), 'Success');
+                            break;
+                        case 'add':
+                            index = $scope.HotelDetails.indexOf($filter('filter')($scope.HotelDetails, { 'ID': $scope.HotelDetails.Id }, true)[0]);
+                            $scope.HotelDetails[index] = angular.copy(response.data);
+
+                            // $scope.Hotels.push(angular.copy(response.data));
+                            toastr.success($('#HSaveSuccessMessage').val(), 'Success');
+                            break;
+                    }
+                    break;
+                case "NameEnMustBeUnique":
+                    toastr.error($('#HEnglishNameUnique').val(), 'Error');
+                    break;
+                case "NameArMustBeUnique":
+                    toastr.error($('#HArabicNameUnique').val(), 'Error');
+                    break;
+                case "HasRelationship":
+                    HotelsApi.GetAll().then(function (response) {
+                        $scope.Hotels = response.data;
+                    });
+                    toastr.error($('#HCannotDeleted').val(), 'Error');
+
+                    break;
+                default:
+
+            }
+
+            $scope.HotelDetails = response.data;
+            $scope.basicInfo = false;
+            $scope.imagesList = true;
+            $rootScope.ViewLoading = false;
+            // $scope.back();
+        },
+        function (response) {
+            debugger;
+            ss = response;
+        });
+    }
 }
 
 
