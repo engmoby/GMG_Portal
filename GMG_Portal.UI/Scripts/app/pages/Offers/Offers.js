@@ -1,82 +1,100 @@
-﻿controllerProvider.register('ContactController', ['$scope', 'ContactApi', 'uploadService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', ContactController]);
-function ContactController($scope, ContactApi, uploadService, $rootScope, $timeout, $filter, $uibModal, toastr) {
-    debugger;
-    $scope.Image = "";
+﻿controllerProvider.register('OffersController', ['$scope', 'OffersApi', 'uploadNewsService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', OffersController]);
+function OffersController($scope, OffersApi, uploadNewsService, $rootScope, $timeout, $filter, $uibModal, toastr) {
+    $scope.Image = ""; 
+    $scope.ImageFormatValidaiton = "Please upload Images ";
+    $scope.ImageSizeValidaiton = "Can't upload image more than 2MB";
     $scope.letterLimit = 20;
     $rootScope.ViewLoading = true;
-    ContactApi.GetAll().then(function (response) {
-        $scope.Contacts = response.data;
+    OffersApi.GetAll().then(function (response) {
+        $scope.Offers = response.data;
         $rootScope.ViewLoading = false;
     });
-    $scope.open = function (Contact) {
+
+    //get Categories
+
+    OffersApi.GetAllCategories().then(function (response) {
+        debugger;
+        $scope.Categorys = response.data;
+    });
+    $scope.open = function (Offer) {
         debugger;
         $scope.countFiles = '';
         $scope.invalidupdateAddFrm = true;
         $('#ModelAddUpdate').modal('show');
-        $scope.action = Contact == null ? 'add' : 'edit';
+        $scope.action = Offer == null ? 'add' : 'edit';
         $scope.FrmAddUpdate.$setPristine();
         $scope.FrmAddUpdate.$setUntouched();
-        if (Contact == null) Contact = {};
-        $scope.Contact = angular.copy(Contact);
-        if ($scope.Contact.Image)
-            $scope.countFiles = $scope.Contact.Image;
+        if (Offer == null) Offer = {}
+        else {
+            var categoryIndex = $scope.Categorys.indexOf($filter('filter')($scope.Categorys, { 'Id': Offer.CategoryId }, true)[0]);
+            $scope.SelectedCategory = $scope.Categorys[categoryIndex];
+        };
+        $scope.Offer = angular.copy(Offer);
+        if ($scope.Offer.Image)
+            $scope.countFiles = $scope.Offer.Image;
 
         $timeout(function () {
             document.querySelector('input[name="TxtNameAr"]').focus();
         }, 1000);
     }
-    $scope.openImage = function (Contact) {
+    $scope.openImage = function (Offer) {
         debugger;
         $('#ModelImage').modal('show');
-        //$scope.action = Contact == null ? 'add' : 'edit';
-        if (Contact == null) Contact = {};
-        $scope.Contact = angular.copy(Contact);
-        //if ($scope.Contact.Image)
-        //    $scope.countFiles = $scope.Contact.Image;
+        //$scope.action = Offer == null ? 'add' : 'edit';
+        if (Offer == null) Offer = {};
+        $scope.Offer = angular.copy(Offer);
+        //if ($scope.Offer.Image)
+        //    $scope.countFiles = $scope.Offer.Image;
 
     }
     $scope.back = function () {
         $('#ModelAddUpdate').modal('hide');
     }
 
-    $scope.Restore = function (Contact) {
+    $scope.Restore = function (Offer) {
         debugger;
-        $scope.Contact = angular.copy(Contact);
-        $scope.Contact.IsDeleted = false;
+        $scope.Offer = angular.copy(Offer);
+        $scope.Offer.IsDeleted = false;
         $scope.action = 'edit';
         $scope.save();
     }
 
     $scope.save = function () {
-        $rootScope.ViewLoading = true; 
+        $rootScope.ViewLoading = true;
+        if ($scope.Image) {
+            $scope.Offer.Image = $scope.Image;
+            $scope.Image = "";
+        }
+        //  uploadNewsService.uploadFiles();
         debugger;
-        ContactApi.Save($scope.Contact).then(function (response) {
+        $scope.Offer.CategoryId = $scope.SelectedCategory.Id;
+        OffersApi.Save($scope.Offer).then(function (response) {
 
             switch (response.data.OperationStatus) {
                 case "Succeded":
                     var index;
                     switch ($scope.action) {
                         case 'edit':
-                            index = $scope.Contacts.indexOf($filter('filter')($scope.Contacts, { 'ID': $scope.Contact.ID }, true)[0]);
-                           // $scope.Contacts[index] = angular.copy(response.data);
-                            ContactApi.GetAll().then(function (response) {
-                                $scope.Contacts = response.data; 
-                            }); 
+                            index = $scope.Offers.indexOf($filter('filter')($scope.Offers, { 'ID': $scope.Offer.ID }, true)[0]);
+                            // $scope.Offers[index] = angular.copy(response.data);
+                            OffersApi.GetAll().then(function (response) {
+                                $scope.Offers = response.data;
+                            });
                             toastr.success($('#HUpdateSuccessMessage').val(), 'Success');
                             break;
                         case 'delete':
-                            index = $scope.Contacts.indexOf($filter('filter')($scope.Contacts, { 'ID': $scope.Contact.ID }, true)[0]);
-                           // $scope.Contacts[index] = angular.copy(response.data);
-                            ContactApi.GetAll().then(function (response) {
-                                $scope.Contacts = response.data;
+                            index = $scope.Offers.indexOf($filter('filter')($scope.Offers, { 'ID': $scope.Offer.ID }, true)[0]);
+                            // $scope.Offers[index] = angular.copy(response.data);
+                            OffersApi.GetAll().then(function (response) {
+                                $scope.Offers = response.data;
                             });
                             toastr.success($('#HDeleteSuccessMessage').val(), 'Success');
                             break;
                         case 'add':
-                            ContactApi.GetAll().then(function (response) {
-                                $scope.Contacts = response.data;
+                            OffersApi.GetAll().then(function (response) {
+                                $scope.Offers = response.data;
                             });
-                            // $scope.Contacts.push(angular.copy(response.data));
+                            // $scope.Offers.push(angular.copy(response.data));
                             toastr.success($('#HSaveSuccessMessage').val(), 'Success');
                             break;
                     }
@@ -93,10 +111,8 @@ function ContactController($scope, ContactApi, uploadService, $rootScope, $timeo
                 default:
 
             }
-
-           
-            $scope.back();
             $rootScope.ViewLoading = false;
+            $scope.back();
         },
         function (response) {
             debugger;
@@ -104,10 +120,10 @@ function ContactController($scope, ContactApi, uploadService, $rootScope, $timeo
         });
     }
 
-    $scope.Delete = function (Contact) {
+    $scope.Delete = function (Offer) {
         $scope.action = 'delete';
-        $scope.Contact = Contact;
-        $scope.Contact.IsDeleted = true;
+        $scope.Offer = Offer;
+        $scope.Offer.IsDeleted = true;
         $scope.save();
     }
     $scope.uploading = false;
@@ -137,7 +153,29 @@ function ContactController($scope, ContactApi, uploadService, $rootScope, $timeo
             $scope.save();
             return;
         }
-        uploadService.uploadFiles($scope)
+        var extn = $scope.Image.split(".").pop();
+        var fileLength = $scope.data[0].FileLength;
+        if (fileLength > 152166) {
+            $scope.countFiles = null;
+            angular.element("input[type='file']").val(null);
+            alert($scope.ImageSizeValidaiton);
+            return;
+        }
+        if (extn !== "jpg" && extn !== "png") {
+            $scope.countFiles = null;
+            angular.element("input[type='file']").val(null);
+            //  alert("neeed jpg");
+            alert($scope.ImageFormatValidaiton);
+            return;
+        }
+        //if (extn !== "png") {
+        //    $scope.countFiles = null;
+        //    angular.element("input[type='file']").val(null);
+        //    alert("neeed jpeg");
+        //    // alert($scope.ImageFormatValidaiton);
+        //    return;
+        //}
+        uploadNewsService.uploadFiles($scope)
             // then() called when uploadFiles gets back
             .then(function (data) {
                 // promise fulfilled
@@ -167,6 +205,15 @@ function ContactController($scope, ContactApi, uploadService, $rootScope, $timeo
 
             );
     };
+
+    $scope.CategoryObject = {
+        selectedCategory: [{}]
+    };
+
+    $scope.selectedCategorysChanged = function (selectedCategory) {
+        debugger;
+        $scope.SelectedCategory = selectedCategory;
+    }
 
 }
 

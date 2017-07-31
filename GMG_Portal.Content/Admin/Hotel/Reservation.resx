@@ -136,7 +136,7 @@
     <value>Display name must be unique</value>
   </data>
   <data name="ModalTitle" xml:space="preserve">
-    <value>Contact</value>
+    <value>Career</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
@@ -240,52 +240,43 @@
   <data name="Vacancies" xml:space="preserve">
     <value>Vacancies</value>
   </data>
-  <data name="Url" xml:space="preserve">
-    <value>Url</value>
+  <data name="Adult" xml:space="preserve">
+    <value>Adult</value>
   </data>
-  <data name="Facebook" xml:space="preserve">
-    <value>Facebook</value>
+  <data name="CheckIn" xml:space="preserve">
+    <value>CheckIn</value>
   </data>
-  <data name="Fax" xml:space="preserve">
-    <value>Fax</value>
+  <data name="CheckOut" xml:space="preserve">
+    <value>CheckOut</value>
   </data>
-  <data name="Instgram" xml:space="preserve">
-    <value>Instgram</value>
+  <data name="Child" xml:space="preserve">
+    <value>Child</value>
   </data>
-  <data name="Late" xml:space="preserve">
-    <value>Late</value>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
   </data>
-  <data name="Long" xml:space="preserve">
-    <value>Long</value>
+  <data name="FirstName" xml:space="preserve">
+    <value>FirstName</value>
   </data>
-  <data name="Mailbox" xml:space="preserve">
-    <value>Mailbox</value>
+  <data name="HotelId" xml:space="preserve">
+    <value>HotelId</value>
   </data>
-  <data name="PhoneNo1" xml:space="preserve">
-    <value>PhoneNo1</value>
+  <data name="HotelName" xml:space="preserve">
+    <value>HotelName</value>
   </data>
-  <data name="PhoneNo2" xml:space="preserve">
-    <value>PhoneNo2</value>
+  <data name="LastName" xml:space="preserve">
+    <value>LastName</value>
   </data>
-  <data name="PostalCode" xml:space="preserve">
-    <value>PostalCode</value>
+  <data name="Phone" xml:space="preserve">
+    <value>Phone</value>
   </data>
-  <data name="Snapchat" xml:space="preserve">
-    <value>Snapchat</value>
+  <data name="CreationTime" xml:space="preserve">
+    <value>CreationTime</value>
   </data>
-  <data name="Twitter" xml:space="preserve">
-    <value>Twitter</value>
+  <data name="Seen" xml:space="preserve">
+    <value>Seen</value>
   </data>
-  <data name="WhatsApp" xml:space="preserve">
-    <value>WhatsApp</value>
-  </data>
-  <data name="Youtube" xml:space="preserve">
-    <value>Youtube</value>
-  </data>
-  <data name="MailNo1" xml:space="preserve">
-    <value>MailNo1</value>
-  </data>
-  <data name="MailNo2" xml:space="preserve">
-    <value>MailNo2</value>
+  <data name="View" xml:space="preserve">
+    <value>View</value>
   </data>
 </root>

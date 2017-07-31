@@ -4,12 +4,12 @@
         return $http.get(apiUrl + '/SystemParameters/ContactUs/GetAllWithDeleted');
     }
 
-    this.Save = function (career) {
+    this.Save = function (Contact) {
         return $http({
             url: apiUrl + '/SystemParameters/ContactUs/Save',
             method: 'POST',
             contentType: "application/json; charset=utf-8",
-            data: JSON.stringify(career)
+            data: JSON.stringify(Contact)
         });
     }
 });
