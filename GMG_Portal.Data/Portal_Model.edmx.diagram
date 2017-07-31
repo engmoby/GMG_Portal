@@ -32,6 +32,7 @@
         <EntityTypeShape EntityType="GMG_Portal_DBModel.Hotles_Offers" Width="1.5" PointX="14.375" PointY="0.75" />
         <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_Features" Width="1.5" PointX="16.375" PointY="0.75" />
         <EntityTypeShape EntityType="GMG_Portal_DBModel.Hotels_Reservation" Width="1.5" PointX="17.375" PointY="6.75" />
+        <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_CoreValues" Width="1.5" PointX="17.375" PointY="11.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

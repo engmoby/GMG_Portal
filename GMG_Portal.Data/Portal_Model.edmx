@@ -375,6 +375,32 @@
           <Property Name="MailNo1" Type="nvarchar" MaxLength="50" />
           <Property Name="MailNo2" Type="nchar" MaxLength="10" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'GMG_PORTAL_STAG.dbo.SystemParameters.CoreValues' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="SystemParameters_CoreValues">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="IsDeleted" />
+            <PropertyRef Name="Show" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SGuid" Type="uniqueidentifier" />
+          <Property Name="DisplayValue" Type="nvarchar" MaxLength="50" />
+          <Property Name="LookupKey" Type="int" />
+          <Property Name="LookupKeyGuid" Type="uniqueidentifier" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Icon" Type="nvarchar" MaxLength="100" />
+          <Property Name="DisplayValueDesc" Type="nvarchar(max)" />
+          <Property Name="LookupKeyDesc" Type="int" />
+          <Property Name="LookupKeyGuidDesc" Type="uniqueidentifier" />
+          <Property Name="LastModificationTime" Type="datetime" />
+          <Property Name="LastModifierUserId" Type="int" />
+          <Property Name="CreationTime" Type="datetime" />
+          <Property Name="CreatorUserId" Type="int" />
+          <Property Name="DeletionTime" Type="datetime" />
+          <Property Name="DeleterUserId" Type="int" />
+          <Property Name="Show" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="SystemParameters_Countries">
           <Key>
             <PropertyRef Name="Id" />
@@ -478,14 +504,11 @@
           <Property Name="DeleterUserId" Type="int" />
           <Property Name="DisplayFront" Type="nvarchar" MaxLength="100" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters.LanguageText' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="SystemParameters_LanguageText">
           <Key>
             <PropertyRef Name="Id" />
-            <PropertyRef Name="IsDeleted" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SGuid" Type="uniqueidentifier" />
           <Property Name="LanguageKey" Type="int" />
           <Property Name="LanguageName" Type="nvarchar" MaxLength="50" />
@@ -599,20 +622,31 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters.LanguageTex
           <EntitySet Name="SystemParameters_Features" EntityType="Self.SystemParameters_Features" Schema="dbo" Table="SystemParameters.Features" store:Type="Tables" />
           <EntitySet Name="SystemParameters_HomeSlider" EntityType="Self.SystemParameters_HomeSlider" Schema="dbo" Table="SystemParameters.HomeSlider" store:Type="Tables" />
           <EntitySet Name="Systemparameters_Languages" EntityType="Self.Systemparameters_Languages" Schema="dbo" Table="Systemparameters.Languages" store:Type="Tables" />
+          <EntitySet Name="SystemParameters_LanguageText" EntityType="Self.SystemParameters_LanguageText" Schema="dbo" Table="SystemParameters.LanguageText" store:Type="Tables" />
           <EntitySet Name="SystemParameters_News" EntityType="Self.SystemParameters_News" Schema="dbo" Table="SystemParameters.News" store:Type="Tables" />
           <EntitySet Name="SystemParameters_Newsletter" EntityType="Self.SystemParameters_Newsletter" Schema="dbo" Table="SystemParameters.Newsletter" store:Type="Tables" />
           <EntitySet Name="SystemParameters_Owners" EntityType="Self.SystemParameters_Owners" Schema="dbo" Table="SystemParameters.Owners" store:Type="Tables" />
           <EntitySet Name="SystemParameters_PaymentType" EntityType="Self.SystemParameters_PaymentType" Schema="dbo" Table="SystemParameters.PaymentType" store:Type="Tables" />
-          <EntitySet Name="SystemParameters_LanguageText" EntityType="Self.SystemParameters_LanguageText" store:Type="Tables" store:Schema="dbo" store:Name="SystemParameters.LanguageText">
+          <EntitySet Name="SystemParameters_CoreValues" EntityType="Self.SystemParameters_CoreValues" store:Type="Tables" store:Schema="dbo" store:Name="SystemParameters.CoreValues">
             <DefiningQuery>SELECT 
-    [SystemParameters_LanguageText].[Id] AS [Id], 
-    [SystemParameters_LanguageText].[SGuid] AS [SGuid], 
-    [SystemParameters_LanguageText].[LanguageKey] AS [LanguageKey], 
-    [SystemParameters_LanguageText].[LanguageName] AS [LanguageName], 
-    [SystemParameters_LanguageText].[IsDeleted] AS [IsDeleted], 
-    [SystemParameters_LanguageText].[Show] AS [Show], 
-    [SystemParameters_LanguageText].[Value] AS [Value]
-    FROM [dbo].[SystemParameters.LanguageText] AS [SystemParameters_LanguageText]</DefiningQuery>
+    [SystemParameters_CoreValues].[Id] AS [Id], 
+    [SystemParameters_CoreValues].[SGuid] AS [SGuid], 
+    [SystemParameters_CoreValues].[DisplayValue] AS [DisplayValue], 
+    [SystemParameters_CoreValues].[LookupKey] AS [LookupKey], 
+    [SystemParameters_CoreValues].[LookupKeyGuid] AS [LookupKeyGuid], 
+    [SystemParameters_CoreValues].[IsDeleted] AS [IsDeleted], 
+    [SystemParameters_CoreValues].[Icon] AS [Icon], 
+    [SystemParameters_CoreValues].[DisplayValueDesc] AS [DisplayValueDesc], 
+    [SystemParameters_CoreValues].[LookupKeyDesc] AS [LookupKeyDesc], 
+    [SystemParameters_CoreValues].[LookupKeyGuidDesc] AS [LookupKeyGuidDesc], 
+    [SystemParameters_CoreValues].[LastModificationTime] AS [LastModificationTime], 
+    [SystemParameters_CoreValues].[LastModifierUserId] AS [LastModifierUserId], 
+    [SystemParameters_CoreValues].[CreationTime] AS [CreationTime], 
+    [SystemParameters_CoreValues].[CreatorUserId] AS [CreatorUserId], 
+    [SystemParameters_CoreValues].[DeletionTime] AS [DeletionTime], 
+    [SystemParameters_CoreValues].[DeleterUserId] AS [DeleterUserId], 
+    [SystemParameters_CoreValues].[Show] AS [Show]
+    FROM [dbo].[SystemParameters.CoreValues] AS [SystemParameters_CoreValues]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -647,6 +681,7 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters.LanguageTex
           <EntitySet Name="Hotles_Offers" EntityType="GMG_Portal_DBModel.Hotles_Offers" />
           <EntitySet Name="SystemParameters_Features" EntityType="GMG_Portal_DBModel.SystemParameters_Features" />
           <EntitySet Name="Hotels_Reservation" EntityType="GMG_Portal_DBModel.Hotels_Reservation" />
+          <EntitySet Name="SystemParameters_CoreValues" EntityType="GMG_Portal_DBModel.SystemParameters_CoreValues" />
         </EntityContainer>
         <EntityType Name="Hotel">
           <Key>
@@ -1216,6 +1251,30 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters.LanguageTex
           <Property Name="SeenBy" Type="Int32" />
           <Property Name="CreationTime" Type="DateTime" Precision="3" />
           <Property Name="OperationId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SystemParameters_CoreValues">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="IsDeleted" />
+            <PropertyRef Name="Show" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SGuid" Type="Guid" />
+          <Property Name="DisplayValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LookupKey" Type="Int32" />
+          <Property Name="LookupKeyGuid" Type="Guid" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Icon" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DisplayValueDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LookupKeyDesc" Type="Int32" />
+          <Property Name="LookupKeyGuidDesc" Type="Guid" />
+          <Property Name="LastModificationTime" Type="DateTime" Precision="3" />
+          <Property Name="LastModifierUserId" Type="Int32" />
+          <Property Name="CreationTime" Type="DateTime" Precision="3" />
+          <Property Name="CreatorUserId" Type="Int32" />
+          <Property Name="DeletionTime" Type="DateTime" Precision="3" />
+          <Property Name="DeleterUserId" Type="Int32" />
+          <Property Name="Show" Type="Boolean" Nullable="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -1814,6 +1873,29 @@ warning 6002: The table/view 'DB_A1715B_gmglast.dbo.SystemParameters.LanguageTex
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SystemParameters_CoreValues">
+            <EntityTypeMapping TypeName="GMG_Portal_DBModel.SystemParameters_CoreValues">
+              <MappingFragment StoreEntitySet="SystemParameters_CoreValues">
+                <ScalarProperty Name="Show" ColumnName="Show" />
+                <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
+                <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
+                <ScalarProperty Name="CreatorUserId" ColumnName="CreatorUserId" />
+                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+                <ScalarProperty Name="LastModifierUserId" ColumnName="LastModifierUserId" />
+                <ScalarProperty Name="LastModificationTime" ColumnName="LastModificationTime" />
+                <ScalarProperty Name="LookupKeyGuidDesc" ColumnName="LookupKeyGuidDesc" />
+                <ScalarProperty Name="LookupKeyDesc" ColumnName="LookupKeyDesc" />
+                <ScalarProperty Name="DisplayValueDesc" ColumnName="DisplayValueDesc" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="LookupKeyGuid" ColumnName="LookupKeyGuid" />
+                <ScalarProperty Name="LookupKey" ColumnName="LookupKey" />
+                <ScalarProperty Name="DisplayValue" ColumnName="DisplayValue" />
+                <ScalarProperty Name="SGuid" ColumnName="SGuid" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

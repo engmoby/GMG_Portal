@@ -92,6 +92,7 @@
     <Compile Include="Partials\SystemParameter\CareerForm.cs" />
     <Compile Include="Partials\SystemParameter\Careers.cs" />
     <Compile Include="Partials\SystemParameter\ContactForm.cs" />
+    <Compile Include="Partials\SystemParameter\CoreValues.cs" />
     <Compile Include="Partials\SystemParameter\Features.cs" />
     <Compile Include="Partials\SystemParameter\Owners.cs" />
     <Compile Include="Partials\SystemParameter\ContactUs.cs" />
@@ -148,6 +149,9 @@
       <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="SystemParameters_ContactUs.cs">
+      <DependentUpon>Portal_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SystemParameters_CoreValues.cs">
       <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="SystemParameters_Countries.cs">

@@ -180,6 +180,7 @@
     <Compile Include="Controllers\SystemParameters\CareerController.cs" />
     <Compile Include="Controllers\SystemParameters\CareerFormController.cs" />
     <Compile Include="Controllers\SystemParameters\ContactFormController.cs" />
+    <Compile Include="Controllers\SystemParameters\CoreValuesController.cs" />
     <Compile Include="Controllers\SystemParameters\NewsCategoryController.cs" />
     <Compile Include="Controllers\SystemParameters\NewsletterController.cs" />
     <Compile Include="Controllers\SystemParameters\ContactUsController.cs" />
@@ -213,6 +214,7 @@
     <Compile Include="Models\SystemParameters\CareerForm\CareerForm.cs" />
     <Compile Include="Models\SystemParameters\ContactForm\ContactForm.cs" />
     <Compile Include="Models\SystemParameters\Category\Category.cs" />
+    <Compile Include="Models\SystemParameters\CoreValues\CoreValues.cs" />
     <Compile Include="Models\SystemParameters\Newsletter\Newsletter.cs" />
     <Compile Include="Models\SystemParameters\ContactUs\ContactUs.cs" />
     <Compile Include="Models\SystemParameters\Owner\Owners.cs" />
@@ -254,6 +256,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\CoreValues\" />
+    <Folder Include="Views\CorValues\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GMG_Portal.Business\GMG_Portal.Business.csproj">
