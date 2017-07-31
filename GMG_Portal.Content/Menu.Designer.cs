@@ -133,6 +133,15 @@ namespace GMG_Portal.Content {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Core Values.
+        /// </summary>
+        public static string CoreValues {
+            get {
+                return ResourceManager.GetString("CoreValues", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Countries.
         /// </summary>
         public static string Countries {

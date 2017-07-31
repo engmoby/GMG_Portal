@@ -186,4 +186,7 @@
   <data name="NewsCategory" xml:space="preserve">
     <value>NewsCategory</value>
   </data>
+  <data name="CoreValues" xml:space="preserve">
+    <value>Core Values</value>
+  </data>
 </root>
