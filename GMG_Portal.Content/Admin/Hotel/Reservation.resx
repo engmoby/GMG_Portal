@@ -279,4 +279,7 @@
   <data name="View" xml:space="preserve">
     <value>View</value>
   </data>
+  <data name="DisplayValueAddress" xml:space="preserve">
+    <value>Address</value>
+  </data>
 </root>

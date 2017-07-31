@@ -288,4 +288,7 @@
   <data name="MailNo2" xml:space="preserve">
     <value>MailNo2</value>
   </data>
+  <data name="DisplayValueAddress" xml:space="preserve">
+    <value>Address</value>
+  </data>
 </root>

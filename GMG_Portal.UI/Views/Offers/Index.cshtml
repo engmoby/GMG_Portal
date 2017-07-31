@@ -133,6 +133,50 @@
                                 <span class="red-text" ng-message="maxlength">Maximum 30 Charachter</span>
                             </div>
                         </div>
+                  
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="TxtTitle">@Offers.StartDate</label><span class="red-text"> *</span>
+                                    <input type="text" ng-model="Offer.StartDate" not-in-list="Offers" list-item-id="Offer.ID" class="form-control" name="TxtTitle"
+                                           placeholder="@Offers.StartDate" ng-minlength="20" ng-maxlength="30" required ng-pattern="/@Regex.NameAr/">
+
+                                    <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
+                                        <span class="red-text" ng-message="required">@Offers.TxtTitleRequiredErrorMessage</span>
+                                        <span class="red-text" ng-message="pattern">@Offers.TxtTitlePatternErrorMessage</span>
+                                        <span class="red-text" ng-message="notInList">@Offers.TxtTitleUniqueErrorMessage</span>
+                                        <span class="red-text" ng-message="minlength">Minimum 20 Charachter</span>
+                                        <span class="red-text" ng-message="maxlength">Maximum 30 Charachter</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="TxtTitle">@Offers.EndDate</label><span class="red-text"> *</span>
+                                    <input type="text" ng-model="Offer.EndDate" not-in-list="Offers" list-item-id="Offer.ID" class="form-control" name="TxtTitle"
+                                           placeholder="@Offers.EndDate" ng-minlength="20" ng-maxlength="30" required ng-pattern="/@Regex.NameAr/">
+
+                                    <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
+                                        <span class="red-text" ng-message="required">@Offers.TxtTitleRequiredErrorMessage</span>
+                                        <span class="red-text" ng-message="pattern">@Offers.TxtTitlePatternErrorMessage</span>
+                                        <span class="red-text" ng-message="notInList">@Offers.TxtTitleUniqueErrorMessage</span>
+                                        <span class="red-text" ng-message="minlength">Minimum 20 Charachter</span>
+                                        <span class="red-text" ng-message="maxlength">Maximum 30 Charachter</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        
+                        
+                        
+                        
+                        
+                        
+
+
+                 
                         <div class="form-group">
                             <label for="TxtDesc">@Offers.Desc</label><span class="red-text"> *</span>
                             <textarea ng-model="Offer.DisplayValueDesc" not-in-list="Offers" list-item-id="Offer.ID" class="form-control" name="TxtDesc"
@@ -145,33 +189,38 @@
                                 <span class="red-text" ng-message="maxlength">Maximum 100 Charachter</span>
                             </div>
                         </div>
+                        
+        
 
-                  
 
-                        <div class="form-group">
-                            <label for="TxtRate">@Offers.Image</label><span class="red-text"> *</span>
 
-                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                            <div class="form-group">
+                                <label for="TxtRate">@Offers.Image</label><span class="red-text"> *</span>
 
-                                <div class="col-lg-6 col-sm-6 col-12">
+                                <div class="fileinput fileinput-new" data-provides="fileinput">
 
-                                    <div class="input-group">
-                                        <span class="input-group-btn">
-                                            <span class="btn btn-primary btn-file">
-                                                Browse...<input type="file" my-directory="getFiles(file)" ng-disabled="uploading" />
+                                    <div class="col-lg-6 col-sm-6 col-12">
+
+                                        <div class="input-group">
+                                            <span class="input-group-btn">
+                                                <span class="btn btn-primary btn-file">
+                                                    Browse...<input type="file" my-directory="getFiles(file)" ng-disabled="uploading"/>
+                                                </span>
+
                                             </span>
+                                            <input type="text" ng-model="countFiles" required class="form-control" readonly>
+                                        </div>
+                                        @*<input type="button" class="btn btn-default  btn-primary" ng-click="uploadFiles()" value="Upload" ng-disabled="uploading || countFiles===''" />*@
 
-                                        </span>
-                                        <input type="text" ng-model="countFiles" required class="form-control" readonly>
+                                        <img style="width: 100px; height: 100px" src="http://gmgbackend.azurewebsites.net/Uploads/{{Offer.Image}}" ng-show="Offer.Image"/>
+
                                     </div>
-                                    @*<input type="button" class="btn btn-default  btn-primary" ng-click="uploadFiles()" value="Upload" ng-disabled="uploading || countFiles===''" />*@
-
-                                    <img style="width: 100px; height: 100px" src="http://gmgbackend.azurewebsites.net/Uploads/{{Offer.Image}}" ng-show="Offer.Image" />
-
                                 </div>
                             </div>
+
+
+
                         </div>
-                    </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary btn-with-icon" ng-click="uploadFiles()" ng-disabled="FrmAddUpdate.$invalid"><i class="ion-android-checkmark-circle"></i>@Offers.btnSaveLbl</button>
                     </div>

@@ -56,14 +56,14 @@
             <th colspan="1"></th>
             <th>
                 <div class="input-group">
-                    <button class="btn btn-primary btn-with-icon" ng-click="open(null)"><i class="fa fa-plus" aria-hidden="true"></i>@Contact.BtnAdd</button>
+                    @*<button class="btn btn-primary btn-with-icon" ng-click="open(null)"><i class="fa fa-plus" aria-hidden="true"></i>@Contact.BtnAdd</button>*@
                 </div>
             </th>
         </tr>
 
         <tr class="sortable">
             <th>#</th>
-            <th st-sort="Image">@Contact.TitleDisplay</th>
+            <th st-sort="Image">@Contact.DisplayValueAddress</th>
             <th st-sort="Image">@Contact.PhoneNo1</th>
             <th st-sort="Title">@Contact.PhoneNo2</th>
             <th st-sort="Desc">@Contact.MailNo1</th>
@@ -81,11 +81,11 @@
             <td>
                 <div class="buttons" ng-show="!Contact.IsDeleted">
                     <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(Contact)"><i class="fa fa-pencil" aria-hidden="true"></i>@Career.TableBtnEdit</button>
-                    <button class="btn btn-danger editable-table-button btn-xs btn-with-icon" ng-confirm="Confirm Delete ?" ng-click="Delete(Contact)"><i class="fa fa-trash-o" aria-hidden="true"></i>@Contact.TableBtnDelete</button>
+                    @*<button class="btn btn-danger editable-table-button btn-xs btn-with-icon" ng-confirm="Confirm Delete ?" ng-click="Delete(Contact)"><i class="fa fa-trash-o" aria-hidden="true"></i>@Contact.TableBtnDelete</button>*@
                 </div>
-                <div class="buttons restore-button" ng-show="Contact.IsDeleted">
+                @*<div class="buttons restore-button" ng-show="Contact.IsDeleted">
                     <button class="center-block btn btn-default  restore-button btn-xs btn-with-icon" ng-click="Restore(Contact)"><i class="fa fa-undo" aria-hidden="true"></i>Restore</button>
-                </div>
+                </div>*@
             </td>
         </tr>
         <tr ng-show="TableData.length==0">
@@ -119,9 +119,9 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="TxtTitle">@Contact.DescDisplay</label><span class="red-text"> *</span>
-                        <input type="text" ng-model="Contact.DisplayValue"   class="form-control" Title="TxtTitle"
-                               placeholder="@Contact.DescDisplay" required ng-pattern="/@Regex.NameAr/">
+                        <label for="TxtTitle">@Contact.DisplayValueAddress</label><span class="red-text"> *</span>
+                        <input type="text" ng-model="Contact.DisplayValueAddress"   class="form-control" Title="TxtTitle"
+                               placeholder="@Contact.DisplayValueAddress" required ng-pattern="/@Regex.NameAr/">
 
                         <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
                             <span class="red-text" ng-message="required">@Contact.TxtPostionRequiredErrorMessage</span>
