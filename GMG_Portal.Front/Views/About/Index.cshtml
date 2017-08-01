@@ -81,33 +81,26 @@
                 </div>
                 <hr />
             </div>
+        </div>
+    <div class="row">
+    
+    @for (int i = 0; i < Model.CoreValueses.Count; i++)
+    {
+        if (i > 0 && i % 4 == 0)
+        {
+            @:</div><div class="row"> 
+        }
+
             <div class="col-sm-4">
                 <div class="mg-feature">
                     <div class="mg-feature-icon-title">
                  
-                        <h3>Room service</h3>
+                        <h3>@Model.CoreValueses[i].DisplayValue</h3>
                     </div>
-                    <p>Didicisset labore vitium referenda labor peccant integre turpe est tantopere, eius defuturum sua dolorum.</p>
+                    <p>@Model.CoreValueses[i].DisplayValueDesc</p>
                 </div>
             </div>
-            <div class="col-sm-4">
-                <div class="mg-feature">
-                    <div class="mg-feature-icon-title">
-                   
-                        <h3>Wi-fi service</h3>
-                    </div>
-                    <p>Didicisset labore vitium referenda labor peccant integre turpe est tantopere, eius defuturum sua dolorum.</p>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="mg-feature">
-                    <div class="mg-feature-icon-title">
-                  
-                        <h3>Free Parking</h3>
-                    </div>
-                    <p>Didicisset labore vitium referenda labor peccant integre turpe est tantopere, eius defuturum sua dolorum.</p>
-                </div>
-            </div>
+    }
         </div>
     </div>
 </div>
