@@ -255,8 +255,7 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
             ss = response;
         });
     }
-
-
+     
     $scope.openUploadImage = function (Hotel) {
         $('#ModelAddUpdateImage').modal('show');
         if (Hotel == null) Hotel = {};
@@ -278,7 +277,7 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
         $scope.DeleteImageFunction();
     }
     $scope.DeleteImageFunction = function () {
-        $rootScope.ViewLoading = true; 
+        $rootScope.ViewLoading = true;
         HotelsApi.DeleteImage($scope.HotelDetail).then(function (response) {
             switch (response.data.OperationStatus) {
                 case "Succeded":
@@ -371,7 +370,7 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
 
         //FILL FormData WITH FILE DETAILS.
         var data = new FormData();
-
+        debugger;
         for (var i in $scope.files) {
             data.append("uploadedFile", $scope.files[i]);
             $scope.HotelDetails.ImageList.push(
@@ -403,8 +402,7 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
     }
 
     // CONFIRMATION.
-    function transferComplete(e) {
-        console.log($scope.HotelDetails.ImageListة);
+    function transferComplete(e) { 
         $scope.saveImage();
         alert("Files uploaded successfully.");
     }

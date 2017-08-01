@@ -169,6 +169,9 @@
     <Compile Include="Systemparameters_Languages.cs">
       <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="SystemParameters_LanguageText.cs">
+      <DependentUpon>Portal_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="SystemParameters_News.cs">
       <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>

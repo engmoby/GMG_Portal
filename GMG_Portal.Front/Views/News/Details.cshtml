@@ -117,8 +117,10 @@
         }
     }
     $(document).ready(function () {
+
+        var apiUrl = document.querySelector('#HServicesURL').value;
         $.ajax({
-            url: "http://localhost:2798/SystemParameters/News/GetAll",
+            url: apiUrl + "/SystemParameters/News/GetAll",
             type: "Get",
             success: function (data) {
                 for (var i = 0; i < data.length; i++) {

@@ -14,6 +14,7 @@ namespace GMG_Portal.API.Models.SystemParameters
         public string VisionDesc { get; set; }
         public string MissionTitle { get; set; }
         public string MissionDesc { get; set; }
+        public List<CoreValues> CoreValueses { get; set; }
 
     }
 }
