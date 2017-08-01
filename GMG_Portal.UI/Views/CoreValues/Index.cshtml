@@ -121,7 +121,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="TxtTitle">@CoreValues.Title</label><span class="red-text"> *</span>
-                            <input type="text" ng-model="Values.DisplayValue"  class="form-control" Title="TxtTitle"
+                            <input type="text" ng-model="Values.DisplayValue" class="form-control" Title="TxtTitle"
                                    placeholder="@CoreValues.Title" required ng-pattern="/@Regex.NameAr/">
 
                             <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
@@ -132,7 +132,7 @@
                         </div>
                         <div class="form-group">
                             <label for="TxtDesc">@CoreValues.Desc</label><span class="red-text"> *</span>
-                            <textarea ng-model="Values.DisplayValueDesc"   class="form-control" name="TxtDesc"
+                            <textarea ng-model="Values.DisplayValueDesc" class="form-control" name="TxtDesc"
                                       placeholder="Text" required ng-pattern="/@Regex.NameEn/"></textarea>
                             <div class="red-text" ng-messages="FrmAddUpdate.TxtDesc.$error" ng-show="FrmAddUpdate.TxtDesc.$touched">
                                 <span class="red-text" ng-message="required">@CoreValues.TxtDescRequiredErrorMessage</span>
@@ -143,7 +143,7 @@
 
                         <div class="form-group">
                             <label for="TxtIcon">@CoreValues.Icon</label>
-                            <input type="text" ng-model="Values.Icon"   class="form-control" name="TxtIcon"
+                            <input type="text" ng-model="Values.Icon" class="form-control" name="TxtIcon"
                                    placeholder="@CoreValues.Icon" ng-pattern="/@Regex.Name/">
                             <div class="red-text" ng-messages="FrmAddUpdate.TxtIcon.$error" ng-show="FrmAddUpdate.TxtUrl.$touched">
                                 <span class="red-text" ng-message="pattern">@CoreValues.TxtUrlPatternErrorMessage</span>

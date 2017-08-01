@@ -106,23 +106,25 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 retunAboutAll.MissionTitle = mission[0].DisplayValue;
                 retunAboutAll.MissionDesc = mission[0].DisplayValueDesc;
 
+                var returnCoreValues = new List<CoreValues>();
                 var coreValueLogic = new CoreValuesLogic();
                 var values = coreValueLogic.GetAll();
                 foreach (var valueObj in values)
                 {
-                    retunAboutAll.CoreValueses.Add(new CoreValues
+                    returnCoreValues.Add(new CoreValues
                     {
                          DisplayValue = valueObj.DisplayValue,
                          DisplayValueDesc = valueObj.DisplayValueDesc
                     });
-                } 
-
+                }
+                retunAboutAll.CoreValueses = returnCoreValues;
                 return Request.CreateResponse(HttpStatusCode.OK, retunAboutAll);
             }
             catch (Exception ex)
             {
                 Log.LogError(ex);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
+
             }
         }
 

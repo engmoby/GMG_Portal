@@ -139,11 +139,6 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             try
             {
                 _db.SaveChanges();
-
-                //if (hotel.ImageList != null)
-                //{
-                //    InsertHotelImages(hotel);
-                //}
                 hotel.OperationStatus = "Succeded";
                 return hotel;
             }
@@ -226,7 +221,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                     CreatorUserId = Parameters.UserId,
                 };
                 _db.Hotels_Images.Add(image);
-                _db.SaveChanges();
+               // _db.SaveChanges();
             }
 
             _db.SaveChanges();
