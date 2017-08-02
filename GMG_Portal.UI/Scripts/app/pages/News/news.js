@@ -3,6 +3,8 @@ function NewsController($scope, NewsApi, uploadNewsService, $rootScope, $timeout
     $scope.Image = "";
     $scope.ImageFormatValidaiton = "Please upload Images ";
     $scope.ImageSizeValidaiton = "Can't upload image more than 2MB";
+    var maxFileSize = 2048000; // 1MB -> 1000 * 1024
+
     $scope.letterLimit = 20;
     $rootScope.ViewLoading = true;
     NewsApi.GetAll().then(function (response) {
@@ -156,7 +158,8 @@ function NewsController($scope, NewsApi, uploadNewsService, $rootScope, $timeout
         }
         var extn = $scope.Image.split(".").pop();
         var fileLength = $scope.data[0].FileLength;
-        if (fileLength > 152166) {
+        if (fileLength > maxFileSize) {
+
             $scope.countFiles = null;
             angular.element("input[type='file']").val(null);
             alert($scope.ImageSizeValidaiton);

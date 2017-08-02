@@ -29,43 +29,47 @@
                                 <header>
                                     @if (newsObj.Image != null)
                                     {
-                                        <a href="/News/Details/@newsObj.Id"><img src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/News/@newsObj.Image" alt="" class="img-responsive"></a>
+                                        <a href="/News/Details/@newsObj.Id">
+                                            <img style="width: 650px; height: 350px;" src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/News/@newsObj.Image" alt="" class="img-responsive">
+                                        </a>
                                     }
                                     <h2 class="mg-post-title">
                                         <a href="/News/Details/@newsObj.Id" rel="bookmark">
-                                           @if (@newsObj.DisplayValue.Length >= 20)
-                                           {
+                                            @if (@newsObj.DisplayValue.Length >= 20)
+                                            {
 
-                                               @newsObj.DisplayValue
+                                                @newsObj.DisplayValue
 
-                                           }
-                                           else
-                                           {
-                                               @newsObj.DisplayValue
-                                           }
+                                            }
+                                            else
+                                            {
+                                                @newsObj.DisplayValue
+                                            }
                                         </a>
                                     </h2>
                                     <div class="mg-post-meta">
                                         <span>
                                             @if (newsObj.CreationTime != null)
                                             {
-                                                @*@newsObj.CreationTime.Value.ToString("D")*@
-                                            }</span>
+                                                @newsObj.CreationTime.Value.ToString("D")
+                                            }
+                                        </span>
                                         <span>by  @newsObj.CreatorUserName </span>
                                         <span><a href="/News/Index/@newsObj.CategoryId">@newsObj.CategoryName</a> </span>
-                                          @*   <span><a href="#">3 Comments</a></span>*@
+                                        @*   <span><a href="#">3 Comments</a></span>*@
                                     </div>
                                 </header>
                                 <div>
-                                @if (@newsObj.DisplayValueDesc.Length >= 50)
-                                {
-                                    <p>                                    @newsObj.DisplayValueDesc
-                                    </p>
-                                }
-                                else
-                                {
-                                    @newsObj.DisplayValueDesc
-                                }
+                                    @if (@newsObj.DisplayValueDesc.Length >= 50)
+                                    {
+                                        <p>
+                                            @newsObj.DisplayValueDesc
+                                        </p>
+                                    }
+                                    else
+                                    {
+                                        @newsObj.DisplayValueDesc
+                                    }
                                 </div>
                                 <footer class="clearfix">
                                     <a href="/News/Details/@newsObj.Id" class="mg-read-more">Continue Reading <i class="fa fa-long-arrow-right"></i></a>
@@ -78,15 +82,15 @@
                 <div class="col-md-4">
                     <div class="mg-widget-area">
                         @*<aside class="mg-widget">
-                            <input type="text" placeholder="Search..." class="form-control">
-                        </aside>*@
+                                <input type="text" placeholder="Search..." class="form-control">
+                            </aside>*@
                         <aside class="mg-widget">
                             <h2 class="mg-widget-title">Recent Posts</h2>
                             <ul class="mg-recnt-posts">
                                 @foreach (News t in Model.Take(3))
                                 {
-                                   
-                                     <li>
+
+                                    <li>
                                         <div class="mg-recnt-post">
                                             <div class="mg-rp-date">
                                                 <div class="mg-rp-date">@t.CreationTime.Value.Day <div class="mg-rp-month">@t.CreationTime.Value.ToString("MMM")</div></div>
@@ -107,30 +111,30 @@
                                 @if (Model != null)
                                 {
                                     foreach (Category cat in Model[0].Categories.Take(4))
-                                    { 
+                                    {
                                         <li>
                                             <a href="/News/Index/@cat.Id">@cat.DisplayValue</a>
-                                        </li> 
+                                        </li>
                                     }
                                 }
                             </ul>
                         </aside>
                         @*<aside class="mg-widget">
-                            <h2 class="mg-widget-title">Tags</h2>
-                            <div class="tagcloud">
-                                @foreach (string tag in Model[0].Tags)
-                                {
-                                   <a href="#">@tag.</a>
-                                }
-                                <a href="#">Events</a>
-                                <a href="#">Promotion</a>
-                                <a href="#">Audio</a>
-                                <a href="#">Video</a>
-                                <a href="#">Gallery</a>
-                                <a href="#">New</a>
-                                <a href="#">Travel</a>
-                            </div>
-                        </aside>*@
+                                <h2 class="mg-widget-title">Tags</h2>
+                                <div class="tagcloud">
+                                    @foreach (string tag in Model[0].Tags)
+                                    {
+                                       <a href="#">@tag.</a>
+                                    }
+                                    <a href="#">Events</a>
+                                    <a href="#">Promotion</a>
+                                    <a href="#">Audio</a>
+                                    <a href="#">Video</a>
+                                    <a href="#">Gallery</a>
+                                    <a href="#">New</a>
+                                    <a href="#">Travel</a>
+                                </div>
+                            </aside>*@
                     </div>
                 </div>
             </div>

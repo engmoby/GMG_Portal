@@ -237,7 +237,7 @@
                 </ba-wizard>
                 <div class="row" style="margin-bottom:10px">
                     <div class="col-md-12 pull-right">
-                        <button ng-click="save()" class="btn btn-primary btn-with-icon pull-right" ng-disabled="ctrl.isFrmAddUpdateInvalid ||isFrmRowformInvalid||isSecondFrmRowformInvalid"><i class="ion-android-checkmark-circle"></i>Contuine</button>
+                        <button ng-click="save()" class="btn btn-primary btn-with-icon pull-right" ng-disabled="FrmAddUpdate.$invalid"><i class="ion-android-checkmark-circle"></i>Contuine</button>
                         <button type="submit" class="btn btn-primary btn-with-icon" ng-click="saveExist()" ng-disabled="FrmAddUpdate.$invalid"><i class="ion-android-checkmark-circle"></i>Save & exit</button>
                         <button type="button" ng-click="back()" class="btn btn-default btn-with-icon pull-right"><i class="ion-stats-bars"></i>@Hotel.btnBack</button>
 

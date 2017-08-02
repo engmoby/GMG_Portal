@@ -490,6 +490,7 @@
     <Content Include="Scripts\app\Login.js" />
     <Content Include="Scripts\app\pages\About\About.js" />
     <Content Include="Scripts\app\pages\CoreValues\CoreValues.js" />
+    <Content Include="Scripts\app\pages\General.js" />
     <Content Include="Scripts\app\pages\Offers\Offers.js" />
     <Content Include="Scripts\app\pages\ContactForm\ContactForm.js" />
     <Content Include="Scripts\app\pages\Reservation\Reservation.js" />

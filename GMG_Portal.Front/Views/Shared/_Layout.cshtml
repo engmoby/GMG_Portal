@@ -38,8 +38,8 @@
 
 
 
-    
-     
+
+
 
     <!-- Loaded Body Content   -->
     <div id="divContent">
@@ -163,27 +163,23 @@
                 url: apiUrl + "/SystemParameters/Hotels/GetAll",
                 type: "Get",
                 success: function (data) {
-                    var list = [];
-                    tete();
-                    function tete() {
-                        // $.localStorage('hotelList', data);
-                        if (data.length === 0) {
-                            document.getElementById("hotelMenu").style.display = "none";
+                    var list = []; 
+                    if (data.length === 0) {
+                        document.getElementById("hotelMenu").style.display = "none";
 
-                        }
-                        for (var i = 0; i < data.length; i++) {
-                            $(
-                                "<li>" +
-                                "<a href='/Hotel/Details/" + data[i].Id + "'>" + data[i].DisplayValue + "</i></a>"
+                    }
+                    for (var i = 0; i < data.length; i++) {
+                        $(
+                            "<li>" +
+                            "<a href='/Hotel/Details/" + data[i].Id + "'>" + data[i].DisplayValue + "</i></a>"
 
 
-                            ).appendTo("#ulAllHotels");
-                            //  var result = $.localStorage('hotelId', data[i].Id);
-                            list.push(data[i].Id);
-                        }
-                        // $.localStorage('listlist', list);
+                        ).appendTo("#ulAllHotels");
+                        //  var result = $.localStorage('hotelId', data[i].Id);
+                        list.push(data[i].Id);
+                    }
+                    // $.localStorage('listlist', list);
 
-                    };
 
                     //  var value = $.localStorage('hotelList');
                     //for (var i = 0; i < value.length; i++) {

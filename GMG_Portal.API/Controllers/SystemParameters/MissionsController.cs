@@ -16,12 +16,12 @@ namespace GMG_Portal.API.Controllers.SystemParameters
     [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*")]
     public class MissionsController : ApiController
     {
-        public HttpResponseMessage GetAll()
+        public HttpResponseMessage GetAll(string langId)
         {
             try
             {
                 var missionsLogic = new MissionsLogic();
-                var missions = missionsLogic.GetAll();
+                var missions = missionsLogic.GetAll(langId);
                 return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Mission>>(missions));
             }
             catch (Exception ex)
@@ -30,13 +30,13 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
-        public HttpResponseMessage GetAllWithDeleted()
+        public HttpResponseMessage GetAllWithDeleted(string langId)
         {
             try
             {
                 var missionsLogic = new MissionsLogic();
-                var missions = missionsLogic.GetAllWithDeleted();
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<API.Models.SystemParameters.Mission>>(missions));
+                var missions = missionsLogic.GetAllWithDeleted(langId);
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Mission>>(missions));
             }
             catch (Exception ex)
             {
@@ -53,21 +53,8 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 {
                     var missionsLogic = new MissionsLogic();
                     Front_Mission mission = null;
-                    if (postedMissions.Id.Equals(0))
-                    {
-                        mission = missionsLogic.Insert(Mapper.Map<Front_Mission>(postedMissions));
-                    }
-                    else
-                    {
-                        if (postedMissions.IsDeleted)
-                        {
-                            mission = missionsLogic.Delete(Mapper.Map<Front_Mission>(postedMissions));
-                        }
-                        else
-                        {
-                            mission = missionsLogic.Edit(Mapper.Map<Front_Mission>(postedMissions));
-                        }
-                    }
+                    mission = missionsLogic.Edit(Mapper.Map<Front_Mission>(postedMissions), postedMissions.Lang_Id);
+
                     return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Mission>(mission));
                 }
                 goto ThrowBadRequest;
@@ -76,7 +63,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
             catch (Exception ex)
             {
                 Log.LogError(ex);
-                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+                return Request.CreateResponse(ex);
             }
 
             ThrowBadRequest:

@@ -8,6 +8,7 @@ using GMG_Portal.API.Models.SystemParameters;
 using GMG_Portal.Data;
 using GMG_Portal.Business.Logic.SystemParameters;
 using AutoMapper;
+using Heloper;
 using Helpers;
 
 namespace GMG_Portal.API.Controllers.SystemParameters
@@ -102,7 +103,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
 
 
                 var missionLogic = new MissionsLogic();
-                var mission = missionLogic.GetAll();
+                var mission = missionLogic.GetAll(Parameters.DefaultLang);
                 retunAboutAll.MissionTitle = mission[0].DisplayValue;
                 retunAboutAll.MissionDesc = mission[0].DisplayValueDesc;
 

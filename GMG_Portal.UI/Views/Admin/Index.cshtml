@@ -1,4 +1,5 @@
-﻿
+﻿@using System.Web.UI.WebControls
+
 @{
     Layout = "";
 }
@@ -39,7 +40,20 @@
     <link rel="stylesheet" href="~/Content/css/main.css">
 </head>
 <body>
+    @{var listItems = new List<ListItem>
+  {
+
+      new ListItem {Text = "En", Value = "En"},
+          new ListItem {Text = "Ar", Value = "Ar"},
+      new ListItem {Text = "Fr", Value = "Fr"}
+  }; }
+    @*@Html.DropDownList("DropdwonLang", new SelectList(listItems, "Value", "Text"))*@
     <input type="hidden" id="HServicesURL" value="@System.Configuration.ConfigurationManager.AppSettings["ServicesURL"]" />
+    @*<input type="hidden" id="HCurrentLang" value="En" />*@
+    <input type="hidden" name="HCurrentLang" id="HCurrentLang" value="En">
+
+
+
     <div class="body-bg"></div>
     @Html.Partial("~/Views/Admin/menuItems.cshtml")
     <main ng-if="$pageFinishedLoading" ng-class="{ 'menu-collapsed': $baSidebarService.isMenuCollapsed() }">
@@ -54,17 +68,17 @@
             </div>
         </div>
         @*<footer class="al-footer clearfix">
-            <div class="al-footer-right">Created with <i class="ion-heart"></i></div>
-            <div class="al-footer-main clearfix">
-                <div class="al-copy">Mubarak CMS</div>
-                <ul class="al-share clearfix">
-                    <li><i class="socicon socicon-facebook"></i></li>
-                    <li><i class="socicon socicon-twitter"></i></li>
-                    <li><i class="socicon socicon-google"></i></li>
-                    <li><i class="socicon socicon-github"></i></li>
-                </ul>
-            </div>
-        </footer>*@
+                <div class="al-footer-right">Created with <i class="ion-heart"></i></div>
+                <div class="al-footer-main clearfix">
+                    <div class="al-copy">Mubarak CMS</div>
+                    <ul class="al-share clearfix">
+                        <li><i class="socicon socicon-facebook"></i></li>
+                        <li><i class="socicon socicon-twitter"></i></li>
+                        <li><i class="socicon socicon-google"></i></li>
+                        <li><i class="socicon socicon-github"></i></li>
+                    </ul>
+                </div>
+            </footer>*@
 
         <back-top></back-top>
     </main>
@@ -72,7 +86,7 @@
     <div id="preloader" ng-show="!$pageFinishedLoading || ViewLoading">
         <div></div>
         @*<img src="~/assets/img/logo.png" style="margin-left: 46%;
-    margin-top: 12%;"/>*@
+            margin-top: 12%;"/>*@
     </div>
 
     <script src="~/scripts/lib/jquery-1.10.2.min.js"></script>
@@ -189,11 +203,24 @@
 
     <script src="~/scripts/app/pages/pages.module.js"></script>
     <script src="~/Scripts/app/pages/Settings.js"></script>
-    
-<link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.7.1/loading-bar.min.css' type='text/css' media='all' />
-<script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.7.1/loading-bar.min.js'></script>
 
+    <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.7.1/loading-bar.min.css' type='text/css' media='all' />
+    <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.7.1/loading-bar.min.js'></script>
+
+    <script>
+
+
+        $(document).ready(function () {
+
+            $("#DropdwonLang").change(function () {
+                var selectedText = $(this).find("option:selected").text();
+                var selectedValue = $(this).val();
+                document.getElementById("HCurrentLang").value = selectedValue;
+                //alert(document.getElementById("HCurrentLang").value);
+
+            });
+        });
+    </script>
 
 </body>
 </html>
-

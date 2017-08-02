@@ -1,62 +1,60 @@
-﻿controllerProvider.register('OffersController', ['$scope', 'OffersApi', 'uploadNewsService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', OffersController]);
-function OffersController($scope, OffersApi, uploadNewsService, $rootScope, $timeout, $filter, $uibModal, toastr) {
+﻿controllerProvider.register('GeneralController', ['$scope', 'LanguagesApi', 'uploadNewsService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', GeneralController]);
+function GeneralController($scope, LanguagesApi, uploadNewsService, $rootScope, $timeout, $filter, $uibModal, toastr) {
     $scope.Image = "";
     $scope.ImageFormatValidaiton = "Please upload Images ";
     $scope.ImageSizeValidaiton = "Can't upload image more than 2MB";
-    var maxFileSize = 2048000; // 1MB -> 1000 * 1024
-
     $scope.letterLimit = 20;
     $rootScope.ViewLoading = true;
-    OffersApi.GetAll().then(function (response) {
-        $scope.Offers = response.data;
+    LanguagesApi.GetAll().then(function (response) {
+        $scope.News = response.data;
         $rootScope.ViewLoading = false;
     });
 
     //get Categories
 
-    OffersApi.GetAllCategories().then(function (response) {
+    LanguagesApi.GetAll().then(function (response) {
         debugger;
         $scope.Categorys = response.data;
     });
-    $scope.open = function (Offer) {
+    $scope.open = function (New) {
         debugger;
         $scope.countFiles = '';
         $scope.invalidupdateAddFrm = true;
         $('#ModelAddUpdate').modal('show');
-        $scope.action = Offer == null ? 'add' : 'edit';
+        $scope.action = New == null ? 'add' : 'edit';
         $scope.FrmAddUpdate.$setPristine();
         $scope.FrmAddUpdate.$setUntouched();
-        if (Offer == null) Offer = {}
+        if (New == null) New = {}
         else {
-            var categoryIndex = $scope.Categorys.indexOf($filter('filter')($scope.Categorys, { 'Id': Offer.CategoryId }, true)[0]);
+            var categoryIndex = $scope.Categorys.indexOf($filter('filter')($scope.Categorys, { 'Id': New.CategoryId }, true)[0]);
             $scope.SelectedCategory = $scope.Categorys[categoryIndex];
         };
-        $scope.Offer = angular.copy(Offer);
-        if ($scope.Offer.Image)
-            $scope.countFiles = $scope.Offer.Image;
+        $scope.New = angular.copy(New);
+        if ($scope.New.Image)
+            $scope.countFiles = $scope.New.Image;
 
         $timeout(function () {
             document.querySelector('input[name="TxtNameAr"]').focus();
         }, 1000);
     }
-    $scope.openImage = function (Offer) {
+    $scope.openImage = function (New) {
         debugger;
         $('#ModelImage').modal('show');
-        //$scope.action = Offer == null ? 'add' : 'edit';
-        if (Offer == null) Offer = {};
-        $scope.Offer = angular.copy(Offer);
-        //if ($scope.Offer.Image)
-        //    $scope.countFiles = $scope.Offer.Image;
+        //$scope.action = New == null ? 'add' : 'edit';
+        if (New == null) New = {};
+        $scope.New = angular.copy(New);
+        //if ($scope.New.Image)
+        //    $scope.countFiles = $scope.New.Image;
 
     }
     $scope.back = function () {
         $('#ModelAddUpdate').modal('hide');
     }
 
-    $scope.Restore = function (Offer) {
+    $scope.Restore = function (New) {
         debugger;
-        $scope.Offer = angular.copy(Offer);
-        $scope.Offer.IsDeleted = false;
+        $scope.New = angular.copy(New);
+        $scope.New.IsDeleted = false;
         $scope.action = 'edit';
         $scope.save();
     }
@@ -64,39 +62,40 @@ function OffersController($scope, OffersApi, uploadNewsService, $rootScope, $tim
     $scope.save = function () {
         $rootScope.ViewLoading = true;
         if ($scope.Image) {
-            $scope.Offer.Image = $scope.Image;
+            $scope.New.Image = $scope.Image;
             $scope.Image = "";
         }
         //  uploadNewsService.uploadFiles();
         debugger;
-        $scope.Offer.CategoryId = $scope.SelectedCategory.Id;
-        OffersApi.Save($scope.Offer).then(function (response) {
+        if ($scope.SelectedCategory != null)
+            $scope.New.CategoryId = $scope.SelectedCategory.Id;
+        LanguagesApi.Save($scope.New).then(function (response) {
 
             switch (response.data.OperationStatus) {
                 case "Succeded":
                     var index;
                     switch ($scope.action) {
                         case 'edit':
-                            index = $scope.Offers.indexOf($filter('filter')($scope.Offers, { 'ID': $scope.Offer.ID }, true)[0]);
-                            // $scope.Offers[index] = angular.copy(response.data);
-                            OffersApi.GetAll().then(function (response) {
-                                $scope.Offers = response.data;
+                            index = $scope.News.indexOf($filter('filter')($scope.News, { 'ID': $scope.New.ID }, true)[0]);
+                            // $scope.News[index] = angular.copy(response.data);
+                            LanguagesApi.GetAll().then(function (response) {
+                                $scope.News = response.data;
                             });
                             toastr.success($('#HUpdateSuccessMessage').val(), 'Success');
                             break;
                         case 'delete':
-                            index = $scope.Offers.indexOf($filter('filter')($scope.Offers, { 'ID': $scope.Offer.ID }, true)[0]);
-                            // $scope.Offers[index] = angular.copy(response.data);
-                            OffersApi.GetAll().then(function (response) {
-                                $scope.Offers = response.data;
+                            index = $scope.News.indexOf($filter('filter')($scope.News, { 'ID': $scope.New.ID }, true)[0]);
+                            // $scope.News[index] = angular.copy(response.data);
+                            LanguagesApi.GetAll().then(function (response) {
+                                $scope.News = response.data;
                             });
                             toastr.success($('#HDeleteSuccessMessage').val(), 'Success');
                             break;
                         case 'add':
-                            OffersApi.GetAll().then(function (response) {
-                                $scope.Offers = response.data;
+                            LanguagesApi.GetAll().then(function (response) {
+                                $scope.News = response.data;
                             });
-                            // $scope.Offers.push(angular.copy(response.data));
+                            // $scope.News.push(angular.copy(response.data));
                             toastr.success($('#HSaveSuccessMessage').val(), 'Success');
                             break;
                     }
@@ -116,16 +115,16 @@ function OffersController($scope, OffersApi, uploadNewsService, $rootScope, $tim
             $rootScope.ViewLoading = false;
             $scope.back();
         },
-        function (response) {
-            debugger;
-            ss = response;
-        });
+            function (response) {
+                debugger;
+                ss = response;
+            });
     }
 
-    $scope.Delete = function (Offer) {
+    $scope.Delete = function (New) {
         $scope.action = 'delete';
-        $scope.Offer = Offer;
-        $scope.Offer.IsDeleted = true;
+        $scope.New = New;
+        $scope.New.IsDeleted = true;
         $scope.save();
     }
     $scope.uploading = false;
@@ -157,8 +156,7 @@ function OffersController($scope, OffersApi, uploadNewsService, $rootScope, $tim
         }
         var extn = $scope.Image.split(".").pop();
         var fileLength = $scope.data[0].FileLength;
-        if (fileLength > maxFileSize) {
-
+        if (fileLength > 152166) {
             $scope.countFiles = null;
             angular.element("input[type='file']").val(null);
             alert($scope.ImageSizeValidaiton);
@@ -187,7 +185,6 @@ function OffersController($scope, OffersApi, uploadNewsService, $rootScope, $tim
                     // console.log(data);
                     //   $scope.Image=data.
                     $scope.save();
-                    $scope.data = [];
                     alert("Done!!!");
                     $scope.formdata = new FormData();
                     $scope.data = [];

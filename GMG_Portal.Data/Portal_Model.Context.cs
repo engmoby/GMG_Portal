@@ -53,5 +53,6 @@ namespace GMG_Portal.Data
         public virtual DbSet<SystemParameters_Newsletter> SystemParameters_Newsletter { get; set; }
         public virtual DbSet<SystemParameters_Owners> SystemParameters_Owners { get; set; }
         public virtual DbSet<SystemParameters_PaymentType> SystemParameters_PaymentType { get; set; }
+        public virtual DbSet<Front_Mission_Translate> Front_Mission_Translate { get; set; }
     }
 }
