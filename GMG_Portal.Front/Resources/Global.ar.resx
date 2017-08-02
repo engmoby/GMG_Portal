@@ -117,10 +117,103 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="About" xml:space="preserve">
-    <value>About</value>
+  <data name="Footer_ContactUs" xml:space="preserve">
+    <value>اتصل بنا</value>
   </data>
-  <data name="Home" xml:space="preserve">
-    <value>Home</value>
+  <data name="Footer_CopyRights" xml:space="preserve">
+    <value>2017 جميع الحقوق محفوظه -شركه جى ام جى لتكنولوجيا المعلومات</value>
+  </data>
+  <data name="Footer_Newsletter" xml:space="preserve">
+    <value>بريد مبارك</value>
+  </data>
+  <data name="Footer_NewsletterBoxEmail" xml:space="preserve">
+    <value>بريدك الالكترونى</value>
+  </data>
+  <data name="Footer_NewsletterButton" xml:space="preserve">
+    <value>اشترك الان</value>
+  </data>
+  <data name="Footer_NewsletterDesc" xml:space="preserve">
+    <value>اشترك لمتابعه الاخبار و احدث العروض</value>
+  </data>
+  <data name="Footer_NewsletterSubmitMsg" xml:space="preserve">
+    <value>تم تسجيل البريد الالكترونى , شكرا لك </value>
+  </data>
+  <data name="Footer_SocialMedia" xml:space="preserve">
+    <value>التواصل الاجتماعى</value>
+  </data>
+  <data name="Footer_Twitter" xml:space="preserve">
+    <value>تويتر</value>
+  </data>
+  <data name="Header_About" xml:space="preserve">
+    <value>عن مبارك</value>
+  </data>
+  <data name="Header_Careers" xml:space="preserve">
+    <value>الوظائف</value>
+  </data>
+  <data name="Header_Contact" xml:space="preserve">
+    <value>اتصل بنا</value>
+  </data>
+  <data name="Header_Home" xml:space="preserve">
+    <value>الرئيسيه</value>
+  </data>
+  <data name="Header_Hotels" xml:space="preserve">
+    <value>الفنادق</value>
+  </data>
+  <data name="Header_Languages" xml:space="preserve">
+    <value>اللغه</value>
+  </data>
+  <data name="Header_News" xml:space="preserve">
+    <value>الاخبار</value>
+  </data>
+  <data name="Header_Offers" xml:space="preserve">
+    <value>العروض</value>
+  </data>
+  <data name="Header_Owners" xml:space="preserve">
+    <value>فريق القياده</value>
+  </data>
+  <data name="Home_HotelFacilitiesDesc" xml:space="preserve">
+    <value>تمتع بأنترنت مجانى ,صاله جيمانزيوم و مسبح ساخن </value>
+  </data>
+  <data name="Home_HotelFacilitiesTitle" xml:space="preserve">
+    <value>مزايا الفنادق</value>
+  </data>
+  <data name="Home_OurGallery" xml:space="preserve">
+    <value>معرض الصور</value>
+  </data>
+  <data name="Home_OurHotelsDesc" xml:space="preserve">
+    <value>فنادقنا فى مكه المكرمه و جده</value>
+  </data>
+  <data name="Home_OurHotelsTitle" xml:space="preserve">
+    <value>فنادق مبارك</value>
+  </data>
+  <data name="Home_OwnersDesc" xml:space="preserve">
+    <value>العقول المنيره خلف نجاح المجموعه</value>
+  </data>
+  <data name="Home_OwnersTitle" xml:space="preserve">
+    <value>فريق القياده</value>
+  </data>
+  <data name="Home_RecentNews" xml:space="preserve">
+    <value>احدث الاخبار</value>
+  </data>
+  <data name="Home_SearchRoomsAdult" xml:space="preserve">
+    <value>بالغ</value>
+  </data>
+  <data name="Home_SearchRoomsButton" xml:space="preserve">
+    <value>احجز الان</value>
+  </data>
+  <data name="Home_SearchRoomsCheckin" xml:space="preserve">
+    <value>تاريخ الاقامه</value>
+  </data>
+  <data name="Home_SearchRoomsCheckout" xml:space="preserve">
+    <value>تاريخ المغادره</value>
+  </data>
+  <data name="Home_SearchRoomsChild" xml:space="preserve">
+    <value>طفل</value>
+  </data>
+  <data name="Home_SearchRoomsDesc" xml:space="preserve">
+    <value>افضل الاسعار و اجود خدمه فندقيه</value>
+  </data>
+  <data name="Home_SearchRoomsTitle" xml:space="preserve">
+    <value>ابحث عن اقامتك</value>
   </data>
 </root>

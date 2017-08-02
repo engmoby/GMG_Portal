@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using Front.Helper;
+
 using GMG_Portal.API.Models.General;
 using GMG_Portal.API.Models.Hotels.Hotel;
 using Newtonsoft.Json;
@@ -29,21 +29,7 @@ namespace Front.Controllers
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        public ActionResult ChangeCurrentCulture(int id)
-        {
-            //
-            // Change the current culture for this user.
-            //
-            CultureHelper.CurrentCulture = id;
-            //
-            // Cache the new current culture into the user HTTP session. 
-            //
-            Session["CurrentCulture"] = id;
-            //
-            // Redirect to the same page from where the request was made! 
-            //
-            return Redirect(Request.UrlReferrer.ToString());
-        }
+     
         public async Task<ActionResult> Index()
         {
             string General = url + "General/GetAll";
@@ -90,11 +76,7 @@ namespace Front.Controllers
             return Slider();
         }
 
-        //public ActionResult OurHotels()
-        //{
-        //    return OurHotels();
-        //}
-
+     
         public ActionResult AboutHome()
         {
             return AboutHome();

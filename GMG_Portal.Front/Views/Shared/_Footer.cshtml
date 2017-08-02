@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-md-3 col-sm-6">
                     <div class="widget">
-                        <h2 class="mg-widget-title">Contact US</h2>
+                        <h2 class="mg-widget-title">@Front.Resources.Global.Footer_ContactUs</h2>
                         <address id="divAddress"> 
                         </address>
 
@@ -25,27 +25,27 @@
                 </div>
                 <div class="col-md-3 col-sm-6">
                     <div class="widget">
-                        <h2 class="mg-widget-title">Twitter</h2>
+                        <h2 class="mg-widget-title">@Front.Resources.Global.Footer_Twitter</h2>
                         <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="twitter-timeline twitter-timeline-rendered" style="position: static; visibility: visible; display: inline-block; width: 300px; height: 200px; padding: 0px; border: none; max-width: 100%; min-width: 180px; margin-top: 0px; margin-bottom: 0px; min-height: 200px;" data-widget-id="profile:mobark_hotel" title="Twitter Timeline"></iframe>
                         <script async="" src="https//platform.twitter.com/widgets.js" charset="utf-8"></script>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6">
                     <div class="widget">
-                        <h2 class="mg-widget-title">Newsletter</h2>
-                        <p>Subscribe to Our Newsletter</p>
+                        <h2 class="mg-widget-title">@Front.Resources.Global.Footer_Newsletter</h2>
+                        <p>@Front.Resources.Global.Footer_NewsletterDesc</p>
                         <form id="subscribe">
                             <p>
-                                <input type="email" class="form-control" placeholder="Your Email" id="Mail" data-validation="email">
+                                <input type="email" class="form-control" placeholder="@Front.Resources.Global.Footer_NewsletterBoxEmail" id="Mail" data-validation="email">
                             </p>
-                            <button class="btn btn-main" onclick="sendnewsletter()" type="button">Subscribe</button>
+                            <button class="btn btn-main" onclick="sendnewsletter()" type="button">@Front.Resources.Global.Footer_NewsletterButton</button>
                             <div id="MSG" style="color: white;"> </div>
                         </form>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6">
                     <div class="widget">
-                        <h2 class="mg-widget-title">Social Media</h2>
+                        <h2 class="mg-widget-title">@Front.Resources.Global.Footer_SocialMedia</h2>
                         <p>.</p>
                         <ul class="mg-footer-social" id="divsocial">
                             @*<li><a href="@Model.ContactUs[0].Facebook"><i class="fa fa-facebook"></i></a></li>
@@ -73,7 +73,7 @@
                     </ul>
                 </div>*@
                 <div class="col-md-6">
-                    <p>&copy; 2017 <a href="#">GMG Technology Group </a>. All rights reserved.</p>
+                    <p>@Front.Resources.Global.Footer_CopyRights</p>
                 </div>
             </div>
         </div>
@@ -109,7 +109,7 @@
             type: 'post',
             dataType: 'json',
             success: function (data) {
-                $('#MSG').html("Email Submitted , Thank you !");
+                $('#MSG').html("@Front.Resources.Global.Footer_NewsletterSubmitMsg");
             },
             data: newsletter
         });
