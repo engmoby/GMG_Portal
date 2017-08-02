@@ -1,4 +1,6 @@
-﻿ 
+﻿@using System.Globalization
+@using System.Threading
+
 
 <header class="header transp sticky">
 <nav class="navbar navbar-inverse">
@@ -16,7 +18,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="/Home/Index">Home</a></li>
+                <li class="active"><a href="/Home/Index">@Front.Resources.Global.Header_Home   </a></li>
                 @*<li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages <span class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -33,16 +35,34 @@
                         </ul>
                     </li>*@
                 <li class="dropdown" id="hotelMenu" >
-                    <a href="/Hotel/Index" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hotels <span class="caret"></span></a>
+                    <a href="/Hotel/Index" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@Front.Resources.Global.Header_Hotels  <span class="caret"></span></a>
                     <ul class="dropdown-menu" id="ulAllHotels"> 
                     </ul>
                 </li>
-                <li><a href="/Offers/Index">Offers</a></li>
-                <li><a href="/News/Index/0">News</a></li>
-                <li><a href="/Owners/Index">Owners</a></li>
-                <li><a href="/About/Index">About</a></li>
-                <li><a href="/Contact/Index">Contact</a></li>
-                <li><a href="/Career/Index">Careers</a></li>
+                <li><a href="/Offers/Index">@Front.Resources.Global.Header_Offers </a></li>
+                <li><a href="/News/Index/0">@Front.Resources.Global.Header_News </a></li>
+                <li><a href="/Owners/Index">@Front.Resources.Global.Header_Owners </a></li>
+                <li><a href="/About/Index">@Front.Resources.Global.Header_About </a></li>
+                <li><a href="/Career/Index">@Front.Resources.Global.Header_Careers </a></li>
+                <li><a href="/Contact/Index">@Front.Resources.Global.Header_Contact </a></li>
+              
+                <li class="dropdown">
+                   
+                  
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@Front.Resources.Global.Header_Languages<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                    @{
+
+                    CultureInfo currentCulture = Thread.CurrentThread.CurrentCulture; 
+                        <li>@Html.ActionLink("English", "ChangeLanguage", 
+                                "Language", new { SelectedLanguage = "en" }, null)</li>
+                        <li>@Html.ActionLink("العربيه", "ChangeLanguage", 
+                                "Language", new { SelectedLanguage = "ar" }, null)</li>
+                        <li><a href="">Francais</a></li>
+                        <li><a href="">Urdu</a></li>
+                    }
+                    </ul>
+                </li>
             </ul>
         </div><!-- /.navbar-collapse -->
         @*<div class="mg-search-box-cont pull-right">

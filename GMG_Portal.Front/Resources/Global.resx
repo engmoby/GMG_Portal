@@ -117,10 +117,103 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="About" xml:space="preserve">
-    <value>عنا مبارك</value>
+  <data name="Footer_ContactUs" xml:space="preserve">
+    <value>Contact Us</value>
   </data>
-  <data name="Home" xml:space="preserve">
-    <value>الرئيسيه</value>
+  <data name="Footer_CopyRights" xml:space="preserve">
+    <value>© 2017 GMG Technology Group . All rights reserved.</value>
+  </data>
+  <data name="Footer_Newsletter" xml:space="preserve">
+    <value>NewsLetter</value>
+  </data>
+  <data name="Footer_NewsletterBoxEmail" xml:space="preserve">
+    <value>Your Email</value>
+  </data>
+  <data name="Footer_NewsletterButton" xml:space="preserve">
+    <value>Subscribe</value>
+  </data>
+  <data name="Footer_NewsletterDesc" xml:space="preserve">
+    <value>Subscribe to Our Newsletter</value>
+  </data>
+  <data name="Footer_NewsletterSubmitMsg" xml:space="preserve">
+    <value>Email Submitted , Thank you !</value>
+  </data>
+  <data name="Footer_SocialMedia" xml:space="preserve">
+    <value>Social Media</value>
+  </data>
+  <data name="Footer_Twitter" xml:space="preserve">
+    <value>Twitter</value>
+  </data>
+  <data name="Header_About" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="Header_Careers" xml:space="preserve">
+    <value>Careers</value>
+  </data>
+  <data name="Header_Contact" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="Header_Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="Header_Hotels" xml:space="preserve">
+    <value>Hotels</value>
+  </data>
+  <data name="Header_Languages" xml:space="preserve">
+    <value>Languages</value>
+  </data>
+  <data name="Header_News" xml:space="preserve">
+    <value>News</value>
+  </data>
+  <data name="Header_Offers" xml:space="preserve">
+    <value>Offers</value>
+  </data>
+  <data name="Header_Owners" xml:space="preserve">
+    <value>Owners</value>
+  </data>
+  <data name="Home_HotelFacilitiesDesc" xml:space="preserve">
+    <value>These best rooms chosen by our customers</value>
+  </data>
+  <data name="Home_HotelFacilitiesTitle" xml:space="preserve">
+    <value>HOTEL FACILTIES</value>
+  </data>
+  <data name="Home_OurGallery" xml:space="preserve">
+    <value>OUR GALLERY</value>
+  </data>
+  <data name="Home_OurHotelsDesc" xml:space="preserve">
+    <value>These best rooms chosen by our customers</value>
+  </data>
+  <data name="Home_OurHotelsTitle" xml:space="preserve">
+    <value>OUR BEST ROOMS</value>
+  </data>
+  <data name="Home_OwnersDesc" xml:space="preserve">
+    <value>Here are the Visionary Minds Behind our Success</value>
+  </data>
+  <data name="Home_OwnersTitle" xml:space="preserve">
+    <value>LEADERSHIP</value>
+  </data>
+  <data name="Home_RecentNews" xml:space="preserve">
+    <value>RECENT NEWS</value>
+  </data>
+  <data name="Home_SearchRoomsAdult" xml:space="preserve">
+    <value>Adult</value>
+  </data>
+  <data name="Home_SearchRoomsButton" xml:space="preserve">
+    <value>Check Now</value>
+  </data>
+  <data name="Home_SearchRoomsCheckin" xml:space="preserve">
+    <value>Check In</value>
+  </data>
+  <data name="Home_SearchRoomsCheckout" xml:space="preserve">
+    <value>Check Out</value>
+  </data>
+  <data name="Home_SearchRoomsChild" xml:space="preserve">
+    <value>Child</value>
+  </data>
+  <data name="Home_SearchRoomsDesc" xml:space="preserve">
+    <value>FOR RATES &amp; AVAILABILITY</value>
+  </data>
+  <data name="Home_SearchRoomsTitle" xml:space="preserve">
+    <value>SEARCH ROOMS</value>
   </data>
 </root>

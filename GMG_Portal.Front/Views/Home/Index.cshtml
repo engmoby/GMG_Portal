@@ -1,4 +1,5 @@
-﻿@model GMG_Portal.API.Models.General.HomeModels
+﻿@using AutoMapper.XpressionMapper
+@model GMG_Portal.API.Models.General.HomeModels
 
 @*@model  Front.Models.HomeModels*@
 
@@ -49,7 +50,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-                <h2 class="mg-bn-title">Search Rooms <span class="mg-bn-big">For rates & availability</span></h2>
+                <h2 class="mg-bn-title"> @Front.Resources.Global.Home_SearchRoomsTitle  <span class="mg-bn-big">@Front.Resources.Global.Home_SearchRoomsDesc</span></h2>
             </div>
             <div class="col-md-9">
                 <div class="mg-bn-forms">
@@ -58,14 +59,14 @@
                             <div class="col-md-3 col-xs-6">
                                 <div class="input-group date mg-check-in">
                                     <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                                    <input type="text" class="form-control" id="checkin" placeholder="Check In">
+                                    <input type="text" class="form-control" id="checkin" placeholder="@Front.Resources.Global.Home_SearchRoomsCheckin">
                                     <input type="hidden" id="checkindate"/>
                                 </div>
                             </div>
                             <div class="col-md-3 col-xs-6">
                                 <div class="input-group date mg-check-out">
                                     <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                                    <input type="text" class="form-control" id="checkout" placeholder="Check Out">
+                                    <input type="text" class="form-control" id="checkout" placeholder="@Front.Resources.Global.Home_SearchRoomsCheckout">
                                     <input type="hidden" id="checkoutdate"/>
                                 
                                 </div>
@@ -74,7 +75,7 @@
                                 <div class="row">
                                     <div class="col-xs-6">
                                         <select class="cs-select cs-skin-elastic" id="adult">
-                                            <option value="" disabled selected>Adult</option>
+                                            <option value="" disabled selected>@Front.Resources.Global.Home_SearchRoomsAdult</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>
@@ -83,7 +84,7 @@
                                     </div>
                                     <div class="col-xs-6">
                                         <select class="cs-select cs-skin-elastic"  id="child">
-                                            <option value="" disabled selected>Child</option>
+                                            <option value="" disabled selected>@Front.Resources.Global.Home_SearchRoomsChild</option>
                                             <option value="0">0</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -98,7 +99,7 @@
                                 
                           
                                 <button class="btn btn-main btn-block" type="button" id="addressSearch"   
-                                        onclick="location.href='@Url.Action("Index", "BookingLite")?checkin=' + $('#checkindate').val() + '&checkout=' + $('#checkoutdate').val() + '&adult=' +  $('#adult').val() + '&child=' + $('#child').val() ">Check Now</button>
+                                        onclick="location.href='@Url.Action("Index", "BookingLite")?checkin=' + $('#checkindate').val() + '&checkout=' + $('#checkoutdate').val() + '&adult=' +  $('#adult').val() + '&child=' + $('#child').val() ">@Front.Resources.Global.Home_SearchRoomsButton</button>
 
                               
                       
