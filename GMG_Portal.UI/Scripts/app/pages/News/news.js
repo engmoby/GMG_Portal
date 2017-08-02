@@ -184,8 +184,7 @@ function NewsController($scope, NewsApi, uploadNewsService, $rootScope, $timeout
                 if (data === '') {
                     // console.log(data);
                     //   $scope.Image=data.
-                    $scope.save();
-                    $scope.data = [];
+                    $scope.save(); 
                     alert("Done!!!");
                     $scope.formdata = new FormData();
                     $scope.data = [];

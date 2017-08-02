@@ -82,10 +82,10 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             var featuresList = new List<SystemParameters_Features>();
 
             var getHotelInfo = _db.Hotels.FirstOrDefault(p => p.Id == id);
-            var getHotelFeatures = _db.Hotels_Features.Where(p => p.IsDeleted != true && p.Hotel_Id == getHotelInfo.Id).ToList();
+            var getHotelFeatures = _db.Hotels_Features.Where(p => p.Hotel_Id == getHotelInfo.Id).ToList();
             foreach (var hotelFeature in getHotelFeatures)
             {
-                var getFeatures = _db.SystemParameters_Features.Where(p => p.IsDeleted != true && p.Id == hotelFeature.Feature_Id).ToList();
+                var getFeatures = _db.SystemParameters_Features.Where(p => p.Id == hotelFeature.Feature_Id).ToList();
                 foreach (var feature in getFeatures)
                 {
                     featuresList.Add(new SystemParameters_Features
@@ -95,7 +95,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                     });
                 }
             }
-            var getHotelImages = _db.Hotels_Images.Where(p => p.IsDeleted != true && p.Hotel_Id == getHotelInfo.Id).ToList();
+            var getHotelImages = _db.Hotels_Images.Where(p =>  p.Hotel_Id == getHotelInfo.Id).ToList();
 
             if (getHotelInfo != null)
             {
@@ -215,29 +215,30 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                     Image = imageObj.Image,
                     IsDeleted = false,
                     Show = Parameters.Show,
-                    Hotel_Id = postedhotel[0].Id,
+                    Hotel_Id = postedhotel[0].Hotel_Id,
                     LastModificationTime = Parameters.CurrentDateTime,
                     CreationTime = Parameters.CurrentDateTime,
                     CreatorUserId = Parameters.UserId,
                 };
                 _db.Hotels_Images.Add(image);
-               // _db.SaveChanges();
+                _db.SaveChanges();
             }
 
-            _db.SaveChanges();
+            //  _db.SaveChanges();
 
             postedhotel[0].OperationStatus = "Succeded";
             return postedhotel;
         }
 
-        public Hotels_Images DeleteImage(Hotels_Images postedImage,bool isDeleted)
+        public Hotels_Images DeleteImage(Hotels_Images postedImage, bool isDeleted)
         {
             var imageObj = GetImageInfoById(postedImage.Id);
-          
+
             imageObj.IsDeleted = isDeleted;
             imageObj.DeletionTime = Parameters.CurrentDateTime;
             imageObj.DeleterUserId = Parameters.UserId;
             _db.SaveChanges();
+            imageObj.OperationStatus = "Succeded";
             return imageObj;
         }
     }

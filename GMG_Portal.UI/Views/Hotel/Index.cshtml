@@ -110,10 +110,10 @@
 
     <div class="row" ng-show="ShowFrmAddUpdate">
         <div class="col-md-12" ng-show="basicInfo">
-            <div ba-panel ba-panel-title="Form Wizard" ba-panel-class="with-scroll">
+            <div ba-panel ba-panel-name="Form Wizard" ba-panel-class="with-scroll">
                 <ba-wizard>
 
-                    <ba-wizard-step title="@Hotel.TabBasicInformationTitle">
+                    <ba-wizard-step name="@Hotel.TabBasicInformationTitle">
                         <div name="FrmAddUpdate" id="FrmAddUpdateId" novalidate ng-form autocomplete="off">
 
                             <div class="row">
@@ -123,7 +123,7 @@
                                     <input name="txtHide" type="hidden" value="{{ctrl.isFrmAddUpdateInvalid=FrmAddUpdate.$invalid}}" />
                                     <div class="form-group">
                                         <label for="TxtTitle">@Hotel.Title</label><span class="red-text"> *</span>
-                                        <input type="text" ng-model="Hotel.DisplayValue" not-in-list="Hotels" list-item-id="Hotel.ID" class="form-control" name="TxtTitle"
+                                        <input type="text" ng-model="Hotel.DisplayValue" class="form-control" name="TxtTitle"
                                                placeholder="@Hotel.Title" ng-minlength="20" ng-maxlength="30" required ng-pattern="/@Regex.NameAr/">
 
                                         <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
@@ -136,7 +136,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="TxtDesc">@Hotel.Desc</label><span class="red-text"> *</span>
-                                        <textarea ng-model="Hotel.DisplayValueDesc" not-in-list="Hotels" list-item-id="Hotel.ID" class="form-control" name="TxtDesc"
+                                        <textarea ng-model="Hotel.DisplayValueDesc" class="form-control" name="TxtDesc"
                                                   placeholder="Text" ng-minlength="50" ng-maxlength="500" required ng-pattern="/@Regex.NameEn/"></textarea>
                                         <div class="red-text" ng-messages="FrmAddUpdate.TxtDesc.$error" ng-show="FrmAddUpdate.TxtDesc.$touched">
                                             <span class="red-text" ng-message="required">@Hotel.TxtDescRequiredErrorMessage</span>
@@ -154,19 +154,19 @@
                                                 <input type="text" ng-model="Hotel.Email" class="form-control" name="TxtMail"
                                                        placeholder="@Hotel.Mail" required ng-pattern="/@Regex.Email/">
 
-                                                <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
-                                                    <span class="red-text" ng-message="required">@Hotel.TxtMailRequiredErrorMessage</span>
-                                                    <span class="red-text" ng-message="pattern">@Hotel.TxtMailPatternErrorMessage</span>
-                                                </div>
+                                                @*<div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
+                                                        <span class="red-text" ng-message="required">@Hotel.TxtMailRequiredErrorMessage</span>
+                                                        <span class="red-text" ng-message="pattern">@Hotel.TxtMailPatternErrorMessage</span>
+                                                    </div>*@
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="TxtPrice">@Hotel.Price</label><span class="red-text"> *</span>
-                                                <input type="text" ng-model="Hotel.PriceStart" class="form-control" Title="TxtPrice"
-                                                       placeholder="@Hotel.Price" ng-minlength="1" ng-maxlength="2" required ng-pattern="/@Regex.Number/">
+                                                <input type="text" ng-model="Hotel.PriceStart" class="form-control" name="TxtPrice"
+                                                       placeholder="@Hotel.Price" ng-minlength="1" ng-maxlength="2" required ng-pattern="/@Regex.NumberWithoutZero/">
 
-                                                <div class="red-text" ng-messages="FrmAddUpdate.TxtPrice.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
+                                                <div class="red-text" ng-messages="FrmAddUpdate.TxtPrice.$error" ng-show="FrmAddUpdate.TxtPrice.$touched">
                                                     <span class="red-text" ng-message="required">@Hotel.TxtPriceRequiredErrorMessage</span>
                                                     <span class="red-text" ng-message="pattern">@Hotel.TxtPricePatternErrorMessage</span>
                                                     <span class="red-text" ng-message="minlength">Minimum 1 Digit</span>
@@ -179,50 +179,50 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="TxtTitle">@Hotel.Checkin</label><span class="red-text"> *</span>
-                                                <input type="text" ng-model="Hotel.CheckIn" class="form-control" Title="TxtTitle"
+                                                <label for="TxtCheckin">@Hotel.Checkin</label><span class="red-text"> *</span>
+                                                <input type="text" ng-model="Hotel.CheckIn" class="form-control" name="TxtCheckin"
                                                        placeholder="@Hotel.Checkin" required ng-pattern="/@Regex.NameAr/">
 
-                                                <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
-                                                    <span class="red-text" ng-message="required">@Hotel.TxtCheckinRequiredErrorMessage</span>
-                                                    <span class="red-text" ng-message="pattern">@Hotel.TxtCheckinPatternErrorMessage</span>
-                                                </div>
+                                                @*<div class="red-text" ng-messages="FrmAddUpdate.TxtCheckin.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
+                                                        <span class="red-text" ng-message="required">@Hotel.TxtCheckinRequiredErrorMessage</span>
+                                                        <span class="red-text" ng-message="pattern">@Hotel.TxtCheckinPatternErrorMessage</span>
+                                                    </div>*@
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="TxtTitle">@Hotel.CheckOut</label><span class="red-text"> *</span>
-                                                <input type="text" ng-model="Hotel.CheckOut" class="form-control" Title="TxtTitle"
+                                                <label for="TxtCheckOut">@Hotel.CheckOut</label><span class="red-text"> *</span>
+                                                <input type="text" ng-model="Hotel.CheckOut" class="form-control" name="TxtCheckOut"
                                                        placeholder="@Hotel.CheckOut" required ng-pattern="/@Regex.NameAr/">
 
-                                                <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
-                                                    <span class="red-text" ng-message="required">@Hotel.TxtCheckoutRequiredErrorMessage</span>
-                                                    <span class="red-text" ng-message="pattern">@Hotel.TxtCheckoutPatternErrorMessage</span>
-                                                </div>
+                                                @*<div class="red-text" ng-messages="FrmAddUpdate.TxtCheckOut.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
+                                                        <span class="red-text" ng-message="required">@Hotel.TxtCheckoutRequiredErrorMessage</span>
+                                                        <span class="red-text" ng-message="pattern">@Hotel.TxtCheckoutPatternErrorMessage</span>
+                                                    </div>*@
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="TxtTitle">@Hotel.Late</label><span class="red-text"> *</span>
-                                                <input type="text" ng-model="Hotel.Late" class="form-control" Title="TxtLate"
+                                                <label for="TxtLate">@Hotel.Late</label><span class="red-text"> *</span>
+                                                <input type="text" ng-model="Hotel.Late" class="form-control" name="TxtLate"
                                                        placeholder="@Hotel.Late" required ng-pattern="/@Regex.DecimalNumber/">
 
-                                                <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
-                                                    <span class="red-text" ng-message="required">@Hotel.TxtLatRequiredErrorMessage</span>
-                                                </div>
+                                                @*<div class="red-text" ng-messages="FrmAddUpdate.TxtLate.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
+                                                        <span class="red-text" ng-message="required">@Hotel.TxtLatRequiredErrorMessage</span>
+                                                    </div>*@
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="TxtTitle">@Hotel.Long</label><span class="red-text"> *</span>
-                                                <input type="text" ng-model="Hotel.Long" class="form-control" Title="TxtTitle"
+                                                <label for="TxtLong">@Hotel.Long</label><span class="red-text"> *</span>
+                                                <input type="text" ng-model="Hotel.Long" class="form-control" name="TxtLong"
                                                        placeholder="@Hotel.Long" required ng-pattern="/@Regex.DecimalNumber/">
 
-                                                <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
-                                                    <span class="red-text" ng-message="required">@Hotel.TxtLongRequiredErrorMessage</span>
-                                                </div>
+                                                @*<div class="red-text" ng-messages="FrmAddUpdate.TxtLong.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
+                                                        <span class="red-text" ng-message="required">@Hotel.TxtLongRequiredErrorMessage</span>
+                                                    </div>*@
                                             </div>
                                         </div>
                                     </div>
@@ -234,27 +234,28 @@
                         </div>
                     </ba-wizard-step>
 
-
-
                 </ba-wizard>
                 <div class="row" style="margin-bottom:10px">
                     <div class="col-md-12 pull-right">
-                        <button ng-click="save()" class="btn btn-primary btn-with-icon pull-right" ng-disabled="ctrl.isFrmAddUpdateInvalid ||isFrmRowformInvalid||isSecondFrmRowformInvalid"><i class="ion-android-checkmark-circle"></i>@Hotel.btnSaveLbl</button>
+                        <button ng-click="save()" class="btn btn-primary btn-with-icon pull-right" ng-disabled="ctrl.isFrmAddUpdateInvalid ||isFrmRowformInvalid||isSecondFrmRowformInvalid"><i class="ion-android-checkmark-circle"></i>Contuine</button>
+                        <button type="submit" class="btn btn-primary btn-with-icon" ng-click="saveExist()" ng-disabled="FrmAddUpdate.$invalid"><i class="ion-android-checkmark-circle"></i>Save & exit</button>
                         <button type="button" ng-click="back()" class="btn btn-default btn-with-icon pull-right"><i class="ion-stats-bars"></i>@Hotel.btnBack</button>
+
+
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="col-md-12" ng-show="imagesList">
-            <div ba-panel ba-panel-title="Form Wizard" ba-panel-class="with-scroll">
+            <div ba-panel ba-panel-name="Form Wizard" ba-panel-class="with-scroll">
                 <ba-wizard>
-                    <ba-wizard-step title="@Hotel.HotelGallery">
+                    <ba-wizard-step name="@Hotel.HotelGallery">
 
 
                         <table class="table table-hover table-condensed" st-table="TableData" st-safe-src="HotelDetails.ImageList">
                             <thead>
-                                <tr class="toolbar"> 
+                                <tr class="toolbar">
                                     <th>
                                         <div class="input-group">
                                             <button class="btn btn-primary btn-with-icon" ng-click="openUploadImage(null)"><i class="fa fa-plus" aria-hidden="true"></i>@Hotel.BtnAdd</button>
@@ -264,22 +265,22 @@
 
                                 <tr class="sortable">
                                     <th>#</th>
-                                    <th st-sort="Image">@Hotel.Image</th> 
+                                    <th st-sort="Image">@Hotel.Image</th>
                                     <th>Actions</th>
                                 </tr>
 
                             </thead>
                             <tbody>
-                                <tr ng-repeat="Hotel in TableData">
-                                    <td ng-class="{'red-text': Hotel.IsDeleted == true}">{{$index+1}}</td>
-                                    <td ng-class="{'red-text': HomeSlider.IsDeleted == true}"><img ng-click="openImage(Hotel)" width="70px" height="70px" src="http://gmgbackend.azurewebsites.net/Uploads/{{Hotel.Image}}" /></td>
-                                     
+                                <tr ng-repeat="Image in TableData">
+                                    <td ng-class="{'red-text': Image.IsDeleted == true}">{{$index+1}}</td>
+                                    <td ng-class="{'red-text': Image.IsDeleted == true}"><img ng-click="openImage(Image)" width="70px" height="70px" src="http://gmgbackend.azurewebsites.net/Uploads/{{Hotel.Image}}" /></td>
+
                                     <td>
-                                        <div class="buttons" ng-show="!Hotel.IsDeleted">
-                                            <button class="btn btn-danger editable-table-button btn-xs btn-with-icon" ng-confirm="Confirm Delete ?" ng-click="DeleteImage(Hotel)"><i class="fa fa-trash-o" aria-hidden="true"></i>@Hotel.TableBtnDelete</button>
+                                        <div class="buttons" ng-show="!Image.IsDeleted">
+                                            <button class="btn btn-danger editable-table-button btn-xs btn-with-icon" ng-confirm="Confirm Delete ?" ng-click="DeleteImage(Image)"><i class="fa fa-trash-o" aria-hidden="true"></i>@Hotel.TableBtnDelete</button>
                                         </div>
-                                        <div class="buttons restore-button" ng-show="Hotel.IsDeleted">
-                                            <button class="center-block btn btn-default  restore-button btn-xs btn-with-icon" ng-click="Restore(Hotel)"><i class="fa fa-undo" aria-hidden="true"></i>Restore</button>
+                                        <div class="buttons restore-button" ng-show="Image.IsDeleted">
+                                            <button class="center-block btn btn-default  restore-button btn-xs btn-with-icon" ng-click="RestoreImage(Image)"><i class="fa fa-undo" aria-hidden="true"></i>Restore</button>
                                         </div>
                                     </td>
                                 </tr>
@@ -302,7 +303,7 @@
                 </ba-wizard>
                 <div class="row" style="margin-bottom:10px">
                     <div class="col-md-12 pull-right">
-                        <button ng-click="save()" class="btn btn-primary btn-with-icon pull-right" ng-disabled="ctrl.isFrmAddUpdateInvalid ||isFrmRowformInvalid||isSecondFrmRowformInvalid"><i class="ion-android-checkmark-circle"></i>@Hotel.btnSaveLbl</button>
+                        @*<button ng-click="save()" class="btn btn-primary btn-with-icon pull-right" ng-disabled="ctrl.isFrmAddUpdateInvalid ||isFrmRowformInvalid||isSecondFrmRowformInvalid"><i class="ion-android-checkmark-circle"></i>@Hotel.btnSaveLbl</button>*@
                         <button type="button" ng-click="back()" class="btn btn-default btn-with-icon pull-right"><i class="ion-stats-bars"></i>@Hotel.btnBack</button>
                     </div>
                 </div>
@@ -373,21 +374,21 @@
                             <div class="col-lg-6 col-sm-6 col-12">
 
                                 @*<div class="input-group">
-                                    <span class="input-group-btn">
-                                        <span class="btn btn-primary btn-file">
-                                            Browse...<input type="file" multiple="" my-directory="getFiles(file)" ng-disabled="uploading" />
-                                        </span>
+                                        <span class="input-group-btn">
+                                            <span class="btn btn-primary btn-file">
+                                                Browse...<input type="file" multiple="" my-directory="getFiles(file)" ng-disabled="uploading" />
+                                            </span>
 
-                                    </span>
-                                    <input type="text" ng-model="countFiles" required class="form-control" readonly>
-                                </div>*@
+                                        </span>
+                                        <input type="text" ng-model="countFiles" required class="form-control" readonly>
+                                    </div>*@
                                 <div class="input-group">
                                     @*<span class="input-group-btn">
-                                        <span class="btn btn-primary btn-file">
-                                            Browse...<input type="file" multiple="" my-directory="getFiles(file)" ng-disabled="uploading" />
-                                        </span>
+                                            <span class="btn btn-primary btn-file">
+                                                Browse...<input type="file" multiple="" my-directory="getFiles(file)" ng-disabled="uploading" />
+                                            </span>
 
-                                    </span>*@
+                                        </span>*@
                                     <input type="file" id="file" name="file" multiple onchange="angular.element(this).scope().getFileDetails(this)" />
 
                                 </div>

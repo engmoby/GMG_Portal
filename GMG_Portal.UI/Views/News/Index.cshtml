@@ -122,7 +122,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="TxtTitle">@News.Title</label><span class="red-text"> *</span>
-                            <input type="text" ng-model="New.DisplayValue" not-in-list="News" list-item-id="New.ID" class="form-control" name="TxtTitle"
+                            <input type="text" ng-model="New.DisplayValue"   class="form-control" name="TxtTitle"
                                    placeholder="@News.Title" ng-minlength="20" ng-maxlength="30" required ng-pattern="/@Regex.NameAr/">
 
                             <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
