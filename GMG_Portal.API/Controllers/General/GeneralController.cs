@@ -117,7 +117,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
 
                 #region News
                 var newsLogic = new NewsLogic();
-                var news = newsLogic.GetAll();
+                var news = newsLogic.GetAllWithCount();
                 foreach (var systemParametersNews in news.Take(3))
                 {
                     if (systemParametersNews.CreationTime != null)
@@ -131,8 +131,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                             CreationDay = systemParametersNews.CreationTime.Value.Day,
                             CreationMonth = systemParametersNews.CreationTime.Value.Month,
                             CreatorUserName = "Administrator",
-                            CategoryName = systemParametersNews.DisplayValue,
-                           // Tags = systemParametersNews.Tags,
+                            CategoryName = systemParametersNews.DisplayValue, 
                             Categories = Mapper.Map<List<Category>>(newsLogic.GetAllCatrogry())
                         });
                 }

@@ -62,19 +62,24 @@
 
                 <tr class="sortable">
                     <th>#</th>
-                    <th st-sort="Image">@Hotel.Image</th>
-                    <th st-sort="Title">@Hotel.Title</th>
+                    <th st-sort="Image">@Hotel.Title</th>
+                    <th st-sort="Title">@Hotel.Desc</th>
                     <th st-sort="Desc">@Hotel.Price</th>
+                    <th st-sort="Image">Image</th>
                     <th>Actions</th>
                 </tr>
 
             </thead>
             <tbody>
                 <tr ng-repeat="Hotel in TableData">
-                    <td ng-class="{'red-text': Hotel.IsDeleted == true}">{{$index+1}}</td>
+                    <td ng-class="{'red-text': Hotel.IsDeleted == true }">{{$index+1}}</td>
                     <td ng-class="{'red-text': Hotel.IsDeleted == true}">{{Hotel.DisplayValue}}</td>
                     <td ng-class="{'red-text': Hotel.IsDeleted == true}">{{Hotel.DisplayValueDesc | limitTo:letterLimit}} </td>
                     <td ng-class="{'red-text': Hotel.IsDeleted == true}">{{Hotel.PriceStart}}</td>
+                    <td>
+                        <span ng-show="!Hotel.HasImage" class="btn-xs btn btn-danger">No Image</span>
+                        <span ng-show="Hotel.HasImage" class="btn-xs btn btn-success"> Image</span>
+                    </td>
                     <td>
                         <div class="buttons" ng-show="!Hotel.IsDeleted">
                             <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(Hotel)"><i class="fa fa-pencil" aria-hidden="true"></i>@Hotel.TableBtnEdit</button>
@@ -148,18 +153,18 @@
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        @*<div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="TxtTitle">@Hotel.Mail</label><span class="red-text"> *</span>
                                                 <input type="text" ng-model="Hotel.Email" class="form-control" name="TxtMail"
                                                        placeholder="@Hotel.Mail" required ng-pattern="/@Regex.Email/">
 
-                                                @*<div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
+                                                <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
                                                         <span class="red-text" ng-message="required">@Hotel.TxtMailRequiredErrorMessage</span>
                                                         <span class="red-text" ng-message="pattern">@Hotel.TxtMailPatternErrorMessage</span>
-                                                    </div>*@
+                                                    </div>
                                             </div>
-                                        </div>
+                                        </div>*@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="TxtPrice">@Hotel.Price</label><span class="red-text"> *</span>
@@ -176,17 +181,17 @@
                                         </div>
                                     </div>
 
-                                    <div class="row">
+                                    @*<div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="TxtCheckin">@Hotel.Checkin</label><span class="red-text"> *</span>
                                                 <input type="text" ng-model="Hotel.CheckIn" class="form-control" name="TxtCheckin"
                                                        placeholder="@Hotel.Checkin" required ng-pattern="/@Regex.NameAr/">
 
-                                                @*<div class="red-text" ng-messages="FrmAddUpdate.TxtCheckin.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
+                                                <div class="red-text" ng-messages="FrmAddUpdate.TxtCheckin.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
                                                         <span class="red-text" ng-message="required">@Hotel.TxtCheckinRequiredErrorMessage</span>
                                                         <span class="red-text" ng-message="pattern">@Hotel.TxtCheckinPatternErrorMessage</span>
-                                                    </div>*@
+                                                    </div>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -195,23 +200,21 @@
                                                 <input type="text" ng-model="Hotel.CheckOut" class="form-control" name="TxtCheckOut"
                                                        placeholder="@Hotel.CheckOut" required ng-pattern="/@Regex.NameAr/">
 
-                                                @*<div class="red-text" ng-messages="FrmAddUpdate.TxtCheckOut.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
+                                                <div class="red-text" ng-messages="FrmAddUpdate.TxtCheckOut.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
                                                         <span class="red-text" ng-message="required">@Hotel.TxtCheckoutRequiredErrorMessage</span>
                                                         <span class="red-text" ng-message="pattern">@Hotel.TxtCheckoutPatternErrorMessage</span>
-                                                    </div>*@
+                                                    </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
+                                    </div>*@
+                                    @*<div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="TxtLate">@Hotel.Late</label><span class="red-text"> *</span>
                                                 <input type="text" ng-model="Hotel.Late" class="form-control" name="TxtLate"
                                                        placeholder="@Hotel.Late" required ng-pattern="/@Regex.DecimalNumber/">
 
-                                                @*<div class="red-text" ng-messages="FrmAddUpdate.TxtLate.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
-                                                        <span class="red-text" ng-message="required">@Hotel.TxtLatRequiredErrorMessage</span>
-                                                    </div>*@
+                                              
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -220,12 +223,10 @@
                                                 <input type="text" ng-model="Hotel.Long" class="form-control" name="TxtLong"
                                                        placeholder="@Hotel.Long" required ng-pattern="/@Regex.DecimalNumber/">
 
-                                                @*<div class="red-text" ng-messages="FrmAddUpdate.TxtLong.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
-                                                        <span class="red-text" ng-message="required">@Hotel.TxtLongRequiredErrorMessage</span>
-                                                    </div>*@
+                                                
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>*@
                                 </div>
                             </div>
 
@@ -249,6 +250,7 @@
 
         <div class="col-md-12" ng-show="imagesList">
             <div ba-panel ba-panel-name="Form Wizard" ba-panel-class="with-scroll">
+                <span style="    margin-left: 468px;">  {{Hotel.DisplayValue}}</span>
                 <ba-wizard>
                     <ba-wizard-step name="@Hotel.HotelGallery">
 

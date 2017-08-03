@@ -22,7 +22,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             var returnList = new List<SystemParameters_News>();
 
             var list = _db.SystemParameters_News.OrderBy(p => p.IsDeleted).ToList();
-          
+
             foreach (var systemParametersNewse in list)
             {
                 var getCatrogryInfo = _db.SystemParameters_Category.FirstOrDefault(p => p.IsDeleted != true && p.Id == systemParametersNewse.CategoryId);
@@ -52,7 +52,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         {
             var returnList = new List<SystemParameters_News>();
 
-            var list = _db.SystemParameters_News.Where(p => p.IsDeleted != true).ToList();
+            var list = _db.SystemParameters_News.Where(p => p.IsDeleted != true).OrderByDescending(n => n.Id).ToList();
             foreach (var systemParametersNewse in list)
             {
                 var getCatrogryInfo = _db.SystemParameters_Category.FirstOrDefault(p => p.IsDeleted != true && p.Id == systemParametersNewse.CategoryId);
@@ -72,6 +72,31 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                             CategoryId = getCatrogryInfo.Id,
                             Tags = systemParametersNewse.Tags,
                             Image = systemParametersNewse.Image,
+                            Categories = GetAllCatrogry()
+                        });
+            }
+
+            return returnList;
+        }
+        public List<SystemParameters_News> GetAllWithCount()
+        {
+            var returnList = new List<SystemParameters_News>();
+
+            var list = _db.SystemParameters_News.Where(p => p.IsDeleted != true).OrderByDescending(n => n.Id).ToList().Take(3);
+            foreach (var systemParametersNewse in list)
+            {
+                var getCatrogryInfo = _db.SystemParameters_Category.FirstOrDefault(p => p.IsDeleted != true && p.Id == systemParametersNewse.CategoryId);
+                if (systemParametersNewse.CreationTime != null)
+                    if (getCatrogryInfo != null)
+                        returnList.Add(new SystemParameters_News
+                        {
+                            Id = systemParametersNewse.Id,
+                            DisplayValue = systemParametersNewse.DisplayValue,
+                            DisplayValueDesc = systemParametersNewse.DisplayValueDesc, 
+                            CreationTime = systemParametersNewse.CreationTime,
+                            CreationDay = systemParametersNewse.CreationTime.Value.Day,
+                            CreationMonth = systemParametersNewse.CreationTime.Value.Month, 
+                            Tags = systemParametersNewse.Tags, 
                             Categories = GetAllCatrogry()
                         });
             }
@@ -178,7 +203,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             }
         }
         public SystemParameters_News Insert(SystemParameters_News postedNews)
-        { 
+        {
             var news = new SystemParameters_News()
             {
                 DisplayValue = postedNews.DisplayValue,

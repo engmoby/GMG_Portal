@@ -40,5 +40,6 @@ namespace GMG_Portal.API.Models.Hotels.Hotel
         public List<Features> FeaturesList { get; set; }
         public int Bootstrap { get; set; }
         public int? Rate { get; set; }
+        public bool HasImage { get; set; }
     }
 }

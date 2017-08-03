@@ -141,6 +141,7 @@
 
         $(document).ready(function () {
             var apiUrl = document.querySelector('#HServicesURL').value;
+            document.getElementById("HotelMore").style.display = "none";
 
             //$.blockUI({
             //    css: {
@@ -160,14 +161,17 @@
             //    console.log(json); // this will show the info it in firebug console
             //});
             $.ajax({
-                url: apiUrl + "/SystemParameters/Hotels/GetAll",
+                url: apiUrl + "/SystemParameters/Hotels/GetAllWithCount",
                 type: "Get",
                 success: function (data) {
-                    var list = []; 
+                    var more = "View More";
+                    var list = [];
                     if (data.length === 0) {
                         document.getElementById("hotelMenu").style.display = "none";
-
                     }
+                    //if (data.length <= 10) {
+                    //    document.getElementById("HotelMore").style.display = "block";
+                    //}
                     for (var i = 0; i < data.length; i++) {
                         $(
                             "<li>" +
@@ -176,7 +180,13 @@
 
                         ).appendTo("#ulAllHotels");
                         //  var result = $.localStorage('hotelId', data[i].Id);
+
                         list.push(data[i].Id);
+                    }
+                    if (data.length <= 10) {
+                        $(
+                            "<li>" +"<a href='/Hotel/Index'>" + more + "</i></a>"
+                        ).appendTo("#ulAllHotels"); 
                     }
                     // $.localStorage('listlist', list);
 

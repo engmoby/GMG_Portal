@@ -29,6 +29,20 @@ namespace GMG_Portal.API.Controllers.Hotel
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
+        public HttpResponseMessage GetAllWithCount()
+        {
+            try
+            {
+                var hotelLogic = new HotelLogic();
+                var hotels = hotelLogic.GetAllWithCount();
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Hotels>>(hotels));
+            }
+            catch (Exception ex)
+            {
+                Log.LogError(ex);
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+            }
+        }
         public HttpResponseMessage GetAllWithDeleted()
         {
             try
@@ -40,7 +54,7 @@ namespace GMG_Portal.API.Controllers.Hotel
             catch (Exception ex)
             {
                 Log.LogError(ex);
-                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+                return Request.CreateResponse(ex);
             }
         }
 
@@ -121,10 +135,7 @@ namespace GMG_Portal.API.Controllers.Hotel
                 {
                     var hotelLogic = new HotelLogic();
 
-                    var image = hotelLogic.InsertHotelImages(Mapper.Map<List<Hotels_Images>>(postedImages));
-
-
-
+                    var image = hotelLogic.InsertHotelImages(Mapper.Map<List<Hotels_Images>>(postedImages)); 
                     return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Hotels_Images>>(image));
                 }
                 goto ThrowBadRequest;

@@ -14,6 +14,7 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
     $rootScope.ViewLoading = true;
     HotelsApi.GetAll().then(function (response) {
         $scope.Hotels = response.data;
+        debugger;
         $rootScope.ViewLoading = false;
     });
     $scope.open = function (Hotel) {
@@ -59,6 +60,9 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
     $scope.back = function () {
         $scope.ShowFrmAddUpdate = false;
         $scope.ShowTableData = true;
+        HotelsApi.GetAll().then(function (response) {
+            $scope.Hotels = response.data;  
+        });
     }
     $scope.Restore = function (Hotel) {
         debugger;
@@ -168,7 +172,7 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
                             //    $scope.Hotels = response.data;
                             //});
                             $scope.Hotels.push(angular.copy(response.data));
-                            HotelsApi.GetHotelDetails($scope.Hotel.Id).then(function (response) {
+                            HotelsApi.GetHotelDetails(response.data.Id).then(function (response) {
                                 $scope.HotelDetails = response.data;
                             });
                             toastr.success($('#HSaveSuccessMessage').val(), 'Success');
@@ -286,18 +290,14 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
                             toastr.success($('#HUpdateSuccessMessage').val(), 'Success');
                             break;
                         case 'delete':
-                            index = $scope.HotelDetails.indexOf($filter('filter')($scope.HotelDetails, { 'Id': $scope.HotelDetails.Id }, true));
-                            // $scope.Hotels[index] = angular.copy(response.data);
-                            HotelsApi.GetAll().then(function (response) {
-                                $scope.Hotels = response.data;
-                            });
+                            index = $scope.HotelDetails.ImageList.indexOf($filter('filter')($scope.HotelDetails.ImageList, { 'Id': $scope.HotelDetails.ImageList.Id }, true));
+                            $scope.HotelDetails.ImageList[index] = angular.copy(response.data);
+
                             toastr.success($('#HDeleteSuccessMessage').val(), 'Success');
                             break;
                         case 'add':
-                            index = $scope.HotelDetails.indexOf($filter('filter')($scope.HotelDetails, { 'Id': $scope.HotelDetails.Id }, true));
-                            $scope.HotelDetails[index] = angular.copy(response.data);
-
-                            // $scope.Hotels.push(angular.copy(response.data));
+                            index = $scope.HotelDetails.ImageList.indexOf($filter('filter')($scope.HotelDetails.ImageList, { 'Id': $scope.HotelDetails.ImageList.Id }, true));
+                            $scope.HotelDetails.ImageList[index] = angular.copy(response.data);
                             toastr.success($('#HSaveSuccessMessage').val(), 'Success');
                             break;
                     }
