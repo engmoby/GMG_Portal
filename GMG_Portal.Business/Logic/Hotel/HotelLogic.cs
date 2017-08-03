@@ -34,6 +34,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                         DisplayValueDesc = hotel.DisplayValueDesc,
                         Rate = hotel.Rate,
                         PriceStart = hotel.PriceStart,
+                        IsDeleted = hotel.IsDeleted,
                         HasImage = true,
                         Image = getHotelImages[0].Image,
                         Bootstrap = 12 / getHotelInfo.Count
@@ -47,6 +48,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                         DisplayValue = hotel.DisplayValue,
                         DisplayValueDesc = hotel.DisplayValueDesc,
                         Rate = hotel.Rate,
+                        IsDeleted = hotel.IsDeleted,
                         PriceStart = hotel.PriceStart,
                         HasImage = false,
                         Bootstrap = 12 / getHotelInfo.Count
@@ -56,10 +58,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
 
             return returnList;
         }
-
-        public object True { get; set; }
-
-
+         
         public List<Hotel> GetAllWithCount()
         {
             var returnList = new List<Hotel>();
@@ -80,9 +79,9 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                         HasImage = true,
                     });
                 }
+                if (returnList.Count >= 10)
+                    return returnList;
             }
-            if (returnList.Count == 10)
-                return returnList;
 
             return returnList;
         }

@@ -53,7 +53,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 {
                     var missionsLogic = new MissionsLogic();
                     Front_Mission mission = null;
-                    mission = missionsLogic.Edit(Mapper.Map<Front_Mission>(postedMissions), postedMissions.Lang_Id);
+                    mission = missionsLogic.Edit(Mapper.Map<Front_Mission>(postedMissions), postedMissions.LangId);
 
                     return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Mission>(mission));
                 }

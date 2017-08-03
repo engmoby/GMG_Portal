@@ -1,7 +1,9 @@
 ﻿provide.service('NewsApi', function ($http) {
     var apiUrl = document.querySelector('#HServicesURL').value;
-    this.GetAll = function () {
-        return $http.get(apiUrl + '/SystemParameters/News/GetAllWithDeleted');
+    var langId = document.querySelector('#HCurrentLang').value;
+   
+    this.GetAll = function (lang) {
+        return $http.get(apiUrl + '/SystemParameters/News/GetAllWithDeleted?LangId=' + lang);
     }
 
     this.Save = function (New) {
@@ -13,7 +15,7 @@
         });
     }
 
-    this.GetAllCategories = function () {
-        return $http.get(apiUrl + '/SystemParameters/NewsCategory/GetAllWithDeleted');
+    this.GetAllCategories = function (lang) {
+        return $http.get(apiUrl + '/SystemParameters/NewsCategory/GetAllWithDeleted?LangId=' + lang);
     }
 });

@@ -31,8 +31,7 @@ namespace Front.Controllers
             if (id == 0)
                 news = url + "News/GetAll";
             else
-                news = url + "News/GetAllByCatrgoryId?categoryId=" + id;
-            // news = "http://localhost:2798/SystemParameters/News/GetAllByCatrgoryId?categoryId=2";
+                news = url + "News/GetAllByCatrgoryId?categoryId=" + id; 
             var newsModels = new List<News>();
 
 

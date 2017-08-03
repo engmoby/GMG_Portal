@@ -49,7 +49,7 @@ function MissionsController($scope, MissionsApi, $rootScope, $timeout, $filter, 
     $scope.save = function () {
         debugger;
         $rootScope.ViewLoading = true;
-        $scope.Mission.Lang_Id = "ar";
+        $scope.Mission.Lang_Id = CurrentLanguage;
         MissionsApi.Save($scope.Mission).then(function (response) {
                 console.log(response);
             switch (response.data.OperationStatus) {

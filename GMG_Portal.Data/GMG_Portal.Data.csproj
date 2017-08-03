@@ -65,6 +65,9 @@
     <Compile Include="Front_Vision.cs">
       <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Front_Vision_Translate.cs">
+      <DependentUpon>Portal_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Hotel.cs">
       <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
@@ -83,10 +86,16 @@
     <Compile Include="Hotels_Reservation.cs">
       <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Hotels_Translate.cs">
+      <DependentUpon>Portal_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Hotels_Videos.cs">
       <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Hotles_Offers.cs">
+      <DependentUpon>Portal_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Hotles_Offers_Translate.cs">
       <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Partials\Hotel\Offrer.cs" />
@@ -97,6 +106,7 @@
     <Compile Include="Partials\SystemParameter\ContactForm.cs" />
     <Compile Include="Partials\SystemParameter\CoreValues.cs" />
     <Compile Include="Partials\SystemParameter\Features.cs" />
+    <Compile Include="Partials\SystemParameter\NewsTranslate.cs" />
     <Compile Include="Partials\SystemParameter\Owners.cs" />
     <Compile Include="Partials\SystemParameter\ContactUs.cs" />
     <Compile Include="Partials\SystemParameter\Newsletter.cs" />
@@ -136,13 +146,22 @@
     <Compile Include="SystemParameters_About.cs">
       <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="SystemParameters_About_Translate.cs">
+      <DependentUpon>Portal_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="SystemParameters_CareerForm.cs">
       <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="SystemParameters_Careers.cs">
       <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="SystemParameters_Careers_Translate.cs">
+      <DependentUpon>Portal_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="SystemParameters_Category.cs">
+      <DependentUpon>Portal_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SystemParameters_Category_Translate.cs">
       <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="SystemParameters_Cities.cs">
@@ -154,7 +173,13 @@
     <Compile Include="SystemParameters_ContactUs.cs">
       <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="SystemParameters_ContactUs_Translate.cs">
+      <DependentUpon>Portal_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="SystemParameters_CoreValues.cs">
+      <DependentUpon>Portal_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SystemParameters_CoreValues_Translate.cs">
       <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="SystemParameters_Countries.cs">
@@ -166,7 +191,13 @@
     <Compile Include="SystemParameters_Features.cs">
       <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="SystemParameters_Features_Translate.cs">
+      <DependentUpon>Portal_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="SystemParameters_HomeSlider.cs">
+      <DependentUpon>Portal_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SystemParameters_HomeSlider_Translate.cs">
       <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Systemparameters_Languages.cs">
@@ -181,7 +212,13 @@
     <Compile Include="SystemParameters_Newsletter.cs">
       <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="SystemParameters_News_Translate.cs">
+      <DependentUpon>Portal_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="SystemParameters_Owners.cs">
+      <DependentUpon>Portal_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SystemParameters_Owners_Translate.cs">
       <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="SystemParameters_PaymentType.cs">
