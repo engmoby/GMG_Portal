@@ -28,7 +28,7 @@
                         <header>
                             @if (Model.Image != null)
                             {
-                                <img src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/News/@Model.Image" alt="" class="img-responsive">
+                                <img style="width: 650px; height: 350px;" src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/News/@Model.Image" alt="" class="img-responsive">
                             }
                             <h2 class="mg-post-title">@Model.DisplayValue</h2>
                             <div class="mg-post-meta">
@@ -129,9 +129,7 @@
                     }
                     else {
 
-                        $(
-                            //"<tr><td>" + data[i].Name + "</td><td>" + data[i].Address + "</td><td>" + data[i].DOB + "</td></tr>"
-
+                        $( 
                             "<li>" +
                              "<div class='mg-recnt-post'>" +
                             "<div class='mg-rp-date'>" +

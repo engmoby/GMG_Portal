@@ -59,6 +59,9 @@
     <Compile Include="Front_Mission.cs">
       <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Front_Mission_Translate.cs">
+      <DependentUpon>Portal_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Front_Vision.cs">
       <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>

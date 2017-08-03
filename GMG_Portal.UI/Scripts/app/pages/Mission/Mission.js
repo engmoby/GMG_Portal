@@ -1,8 +1,22 @@
 ﻿controllerProvider.register('MissionsController', ['$scope', 'MissionsApi', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', MissionsController]);
 function MissionsController($scope, MissionsApi, $rootScope, $timeout, $filter, $uibModal, toastr) {
+    var langId = document.querySelector('#HCurrentLang').value;
+    var CurrentLanguage = langId;
+    $("#DropdwonLang").change(function () {
+        var selectedText = $(this).find("option:selected").text();
+        var selectedValue = $(this).val();
+        document.getElementById("HCurrentLang").value = selectedValue;
+        CurrentLanguage = selectedValue;
+        debugger; 
+        MissionsApi.GetAll(CurrentLanguage).then(function (response) {
+            $scope.Missions = response.data;
+            $rootScope.ViewLoading = false;
+        });
+    });
+
     $rootScope.ViewLoading = true;
     $scope.letterLimit = 20;
-    MissionsApi.GetAll().then(function (response) {
+    MissionsApi.GetAll(CurrentLanguage).then(function (response) {
         $scope.Missions = response.data;
         $rootScope.ViewLoading = false;
     });
@@ -35,8 +49,9 @@ function MissionsController($scope, MissionsApi, $rootScope, $timeout, $filter, 
     $scope.save = function () {
         debugger;
         $rootScope.ViewLoading = true;
+        $scope.Mission.Lang_Id = "ar";
         MissionsApi.Save($scope.Mission).then(function (response) {
-
+                console.log(response);
             switch (response.data.OperationStatus) {
                 case "Succeded":
                     var index;

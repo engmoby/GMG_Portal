@@ -1,20 +1,18 @@
-﻿controllerProvider.register('NewsController', ['$scope', 'NewsApi', 'uploadNewsService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', NewsController]);
-function NewsController($scope, NewsApi, uploadNewsService, $rootScope, $timeout, $filter, $uibModal, toastr) {
+﻿controllerProvider.register('GeneralController', ['$scope', 'LanguagesApi', 'uploadNewsService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', GeneralController]);
+function GeneralController($scope, LanguagesApi, uploadNewsService, $rootScope, $timeout, $filter, $uibModal, toastr) {
     $scope.Image = "";
     $scope.ImageFormatValidaiton = "Please upload Images ";
     $scope.ImageSizeValidaiton = "Can't upload image more than 2MB";
-    var maxFileSize = 2048000; // 1MB -> 1000 * 1024
-
     $scope.letterLimit = 20;
     $rootScope.ViewLoading = true;
-    NewsApi.GetAll().then(function (response) {
+    LanguagesApi.GetAll().then(function (response) {
         $scope.News = response.data;
         $rootScope.ViewLoading = false;
     });
 
     //get Categories
 
-    NewsApi.GetAllCategories().then(function (response) {
+    LanguagesApi.GetAll().then(function (response) {
         debugger;
         $scope.Categorys = response.data;
     });
@@ -71,7 +69,7 @@ function NewsController($scope, NewsApi, uploadNewsService, $rootScope, $timeout
         debugger;
         if ($scope.SelectedCategory != null)
             $scope.New.CategoryId = $scope.SelectedCategory.Id;
-        NewsApi.Save($scope.New).then(function (response) {
+        LanguagesApi.Save($scope.New).then(function (response) {
 
             switch (response.data.OperationStatus) {
                 case "Succeded":
@@ -80,7 +78,7 @@ function NewsController($scope, NewsApi, uploadNewsService, $rootScope, $timeout
                         case 'edit':
                             index = $scope.News.indexOf($filter('filter')($scope.News, { 'ID': $scope.New.ID }, true)[0]);
                             // $scope.News[index] = angular.copy(response.data);
-                            NewsApi.GetAll().then(function (response) {
+                            LanguagesApi.GetAll().then(function (response) {
                                 $scope.News = response.data;
                             });
                             toastr.success($('#HUpdateSuccessMessage').val(), 'Success');
@@ -88,13 +86,13 @@ function NewsController($scope, NewsApi, uploadNewsService, $rootScope, $timeout
                         case 'delete':
                             index = $scope.News.indexOf($filter('filter')($scope.News, { 'ID': $scope.New.ID }, true)[0]);
                             // $scope.News[index] = angular.copy(response.data);
-                            NewsApi.GetAll().then(function (response) {
+                            LanguagesApi.GetAll().then(function (response) {
                                 $scope.News = response.data;
                             });
                             toastr.success($('#HDeleteSuccessMessage').val(), 'Success');
                             break;
                         case 'add':
-                            NewsApi.GetAll().then(function (response) {
+                            LanguagesApi.GetAll().then(function (response) {
                                 $scope.News = response.data;
                             });
                             // $scope.News.push(angular.copy(response.data));
@@ -117,10 +115,10 @@ function NewsController($scope, NewsApi, uploadNewsService, $rootScope, $timeout
             $rootScope.ViewLoading = false;
             $scope.back();
         },
-        function (response) {
-            debugger;
-            ss = response;
-        });
+            function (response) {
+                debugger;
+                ss = response;
+            });
     }
 
     $scope.Delete = function (New) {
@@ -158,8 +156,7 @@ function NewsController($scope, NewsApi, uploadNewsService, $rootScope, $timeout
         }
         var extn = $scope.Image.split(".").pop();
         var fileLength = $scope.data[0].FileLength;
-        if (fileLength > maxFileSize) {
-
+        if (fileLength > 152166) {
             $scope.countFiles = null;
             angular.element("input[type='file']").val(null);
             alert($scope.ImageSizeValidaiton);
@@ -187,7 +184,7 @@ function NewsController($scope, NewsApi, uploadNewsService, $rootScope, $timeout
                 if (data === '') {
                     // console.log(data);
                     //   $scope.Image=data.
-                    $scope.save(); 
+                    $scope.save();
                     alert("Done!!!");
                     $scope.formdata = new FormData();
                     $scope.data = [];

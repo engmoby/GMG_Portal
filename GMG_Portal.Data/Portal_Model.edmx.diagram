@@ -33,6 +33,7 @@
         <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_Newsletter" Width="1.5" PointX="16.75" PointY="10.75" />
         <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_Owners" Width="1.5" PointX="16.75" PointY="13.75" />
         <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_PaymentType" Width="1.5" PointX="8.75" PointY="17.75" />
+        <EntityTypeShape EntityType="GMG_Portal_DBModel.Front_Mission_Translate" Width="1.5" PointX="3.375" PointY="18.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

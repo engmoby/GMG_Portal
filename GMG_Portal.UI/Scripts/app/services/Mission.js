@@ -1,7 +1,8 @@
 ﻿provide.service('MissionsApi', function ($http) {
     var apiUrl = document.querySelector('#HServicesURL').value;
-    this.GetAll = function () {
-        return $http.get(apiUrl + '/SystemParameters/Missions/GetAllWithDeleted');
+    var langId = document.querySelector('#HCurrentLang').value; 
+    this.GetAll = function (lang) {
+        return $http.get(apiUrl + '/SystemParameters/Missions/GetAllWithDeleted?LangId=' + lang);
     }
 
     this.Save = function (mission) {
