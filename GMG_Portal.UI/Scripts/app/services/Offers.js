@@ -1,15 +1,15 @@
-﻿provide.service('OffersApi', function ($http) {
+﻿provide.service('offersApi', function ($http) {
     var apiUrl = document.querySelector('#HServicesURL').value;
     this.GetAll = function () {
         return $http.get(apiUrl + '/SystemParameters/Offers/GetAllWithDeleted');
     }
 
-    this.Save = function (Offer) {
+    this.Save = function (offer) {
         return $http({
             url: apiUrl + '/SystemParameters/Offers/Save',
             method: 'POST',
             contentType: "application/json; charset=utf-8",
-            data: JSON.stringify(Offer)
+            data: JSON.stringify(offer)
         });
     }
 

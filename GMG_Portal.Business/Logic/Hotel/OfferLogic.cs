@@ -63,6 +63,11 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             else return null;
 
         }
+        public Hotles_Offers GetOfferInfo(int id)
+        { 
+           return _db.Hotles_Offers.Find(id);
+            
+        }
         private Hotles_Offers Save(Hotles_Offers offer)
         {
             try
@@ -109,7 +114,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         }
         public Hotles_Offers Edit(Hotles_Offers postedOffer)
         {
-            Hotles_Offers offer = Get(postedOffer.Id);
+            Hotles_Offers offer = GetOfferInfo(postedOffer.Id);
             offer.DisplayValue = postedOffer.DisplayValue;
             offer.DisplayValueDesc = postedOffer.DisplayValueDesc;
             offer.IsDeleted = postedOffer.IsDeleted;
@@ -124,12 +129,8 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         }
         public Hotles_Offers Delete(Hotles_Offers postedOffer)
         {
-            Hotles_Offers offer = Get(postedOffer.Id);
-            if (_db.Hotles_Offers.Any(p => p.Id == postedOffer.Id && p.IsDeleted != true))
-            {
-                //  Offer.OperationStatus = "HasRelationship";
-                return offer;
-            }
+            Hotles_Offers offer = GetOfferInfo(postedOffer.Id);
+       
 
             offer.IsDeleted = true;
             offer.CreationTime = Parameters.CurrentDateTime;
