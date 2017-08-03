@@ -192,7 +192,7 @@
                         <div class="form-group">
                             <label for="TxtDesc">@Offers.Desc</label><span class="red-text"> *</span>
                             <textarea ng-model="Offer.DisplayValueDesc" not-in-list="Offers" list-item-id="Offer.ID" class="form-control" name="TxtDesc"
-                                      placeholder="Text" ng-minlength="30" ng-maxlength="100" required ng-pattern="/@Regex.NameEn/"></textarea>
+                                      placeholder="Text"  required ng-pattern="/@Regex.NameEn/"></textarea>
                             <div class="red-text" ng-messages="FrmAddUpdate.TxtDesc.$error" ng-show="FrmAddUpdate.TxtDesc.$touched">
                                 <span class="red-text" ng-message="required">@Offers.TxtDescRequiredErrorMessage</span>
                                 <span class="red-text" ng-message="pattern">@Offers.TxtDescPatternErrorMessage</span>

@@ -77,7 +77,7 @@ function OffersController($scope, OffersApi, uploadNewsService, $rootScope, $tim
                     var index;
                     switch ($scope.action) {
                         case 'edit':
-                            index = $scope.Offers.indexOf($filter('filter')($scope.Offers, { 'ID': $scope.Offer.ID }, true)[0]);
+                            index = $scope.Offers.indexOf($filter('filter')($scope.Offers, { 'ID': $scope.Offers.ID }, true)[0]);
                             // $scope.Offers[index] = angular.copy(response.data);
                             OffersApi.GetAll().then(function (response) {
                                 $scope.Offers = response.data;
@@ -85,7 +85,7 @@ function OffersController($scope, OffersApi, uploadNewsService, $rootScope, $tim
                             toastr.success($('#HUpdateSuccessMessage').val(), 'Success');
                             break;
                         case 'delete':
-                            index = $scope.Offers.indexOf($filter('filter')($scope.Offers, { 'ID': $scope.Offer.ID }, true)[0]);
+                            index = $scope.Offers.indexOf($filter('filter')($scope.Offers, { 'ID': $scope.Offers.ID }, true)[0]);
                             // $scope.Offers[index] = angular.copy(response.data);
                             OffersApi.GetAll().then(function (response) {
                                 $scope.Offers = response.data;
