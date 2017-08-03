@@ -392,7 +392,6 @@
     <Content Include="Views\Home\HotelFacilities.cshtml" />
     <Content Include="Views\Home\OwnersHome.cshtml" />
     <Content Include="Views\Home\NewsHome.cshtml" />
-    <Content Include="Views\News\NewsDetails.cshtml" />
     <Content Include="Views\Hotel\Details.cshtml" />
     <Content Include="Views\Hotel\Index.cshtml" />
     <Content Include="Views\Owners\Index.cshtml" />
@@ -406,13 +405,11 @@
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\News\Details.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
-    <Content Include="Views\News\IndexCat.cshtml" />
     <Content Include="Views\Career\Details.cshtml" />
     <Content Include="Views\BookingLite\Index.cshtml" />
     <Content Include="Views\Test\Create.cshtml" />
     <Content Include="Views\Career\Upload.cshtml" />
     <Content Include="Views\BookingLite\Confirm.cshtml" />
-    <Content Include="Views\News\SearchResult.cshtml" />
     <Content Include="Views\Offers\OfferDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>

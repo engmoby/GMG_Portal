@@ -6288,6 +6288,10 @@ table[st-table] tr {
 .red-text {
     color:#e85656 !important;
 }
+
+.blue-text {
+    color:#1531ea !important;
+}
 .red-text span {
     color:#e85656 !important;
 }

@@ -30,6 +30,20 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 return Request.CreateResponse(ex);
             }
         }
+        public HttpResponseMessage GetAllWithCount()
+        {
+            try
+            {
+                var newsLogic = new NewsLogic();
+                var news = newsLogic.GetAllWithCount();
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<News>>(news));
+            }
+            catch (Exception ex)
+            {
+                Log.LogError(ex);
+                return Request.CreateResponse(ex);
+            }
+        }
         public HttpResponseMessage GetAllByCatrgoryId(int categoryId)
         {
             try

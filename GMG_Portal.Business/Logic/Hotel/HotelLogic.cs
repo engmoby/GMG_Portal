@@ -19,8 +19,74 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         }
         public List<Hotel> GetAllWithDeleted()
         {
-            return _db.Hotels.OrderBy(p => p.IsDeleted).ToList();
+            var returnList = new List<Hotel>();
+            var getHotelInfo = _db.Hotels.ToList();
+            foreach (var hotel in getHotelInfo)
+            {
+                var getHotelImages = _db.Hotels_Images.Where(p => p.IsDeleted != true && p.Hotel_Id == hotel.Id).ToList();
+
+                if (getHotelImages.Any())
+                {
+                    returnList.Add(new Hotel
+                    {
+                        Id = hotel.Id,
+                        DisplayValue = hotel.DisplayValue,
+                        DisplayValueDesc = hotel.DisplayValueDesc,
+                        Rate = hotel.Rate,
+                        PriceStart = hotel.PriceStart,
+                        HasImage = true,
+                        Image = getHotelImages[0].Image,
+                        Bootstrap = 12 / getHotelInfo.Count
+                    });
+                }
+                else
+                {
+                    returnList.Add(new Hotel
+                    {
+                        Id = hotel.Id,
+                        DisplayValue = hotel.DisplayValue,
+                        DisplayValueDesc = hotel.DisplayValueDesc,
+                        Rate = hotel.Rate,
+                        PriceStart = hotel.PriceStart,
+                        HasImage = false,
+                        Bootstrap = 12 / getHotelInfo.Count
+                    });
+                }
+            }
+
+            return returnList;
         }
+
+        public object True { get; set; }
+
+
+        public List<Hotel> GetAllWithCount()
+        {
+            var returnList = new List<Hotel>();
+            var getHotelInfo = _db.Hotels.Where(p => p.IsDeleted == false).OrderByDescending(h => h.Id).ToList();
+            foreach (var hotel in getHotelInfo)
+            {
+                var getHotelImages = _db.Hotels_Images.Where(p => p.IsDeleted != true && p.Hotel_Id == hotel.Id).ToList();
+
+                if (getHotelImages.Any())
+                {
+                    returnList.Add(new Hotel
+                    {
+                        Id = hotel.Id,
+                        DisplayValue = hotel.DisplayValue,
+                        DisplayValueDesc = hotel.DisplayValueDesc,
+                        Rate = hotel.Rate,
+                        PriceStart = hotel.PriceStart,
+                        HasImage = true,
+                    });
+                }
+            }
+            if (returnList.Count == 10)
+                return returnList;
+
+            return returnList;
+        }
+
         public List<Hotel> GetAll()
         {
             var returnList = new List<Hotel>();
@@ -95,7 +161,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                     });
                 }
             }
-            var getHotelImages = _db.Hotels_Images.Where(p =>  p.Hotel_Id == getHotelInfo.Id).ToList();
+            var getHotelImages = _db.Hotels_Images.Where(p => p.Hotel_Id == getHotelInfo.Id).ToList();
 
             if (getHotelInfo != null)
             {
