@@ -178,6 +178,58 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             }
             return returnList;
         }
+        public List<SystemParameters_News> GetLatestNewsWithOutCurrentId(int newsId,string langId)
+        {
+            var returnList = new List<SystemParameters_News>();
+            if (langId == Parameters.DefaultLang)
+            {
+                var list = _db.SystemParameters_News.Where(p => p.IsDeleted != true && p.Id!= newsId).OrderByDescending(n => n.Id)
+                    .ToList().Take(3);
+                foreach (var systemParametersNewse in list)
+                {
+                    var getCatrogryInfo =
+                        _db.SystemParameters_Category.FirstOrDefault(
+                            p => p.IsDeleted != true && p.Id == systemParametersNewse.CategoryId);
+                    if (systemParametersNewse.CreationTime != null)
+                        if (getCatrogryInfo != null)
+                            returnList.Add(new SystemParameters_News
+                            {
+                                Id = systemParametersNewse.Id,
+                                DisplayValue = systemParametersNewse.DisplayValue,
+                                DisplayValueDesc = systemParametersNewse.DisplayValueDesc,
+                                CreationTime = systemParametersNewse.CreationTime,
+                                CreationDay = systemParametersNewse.CreationTime.Value.Day,
+                                CreationMonth = systemParametersNewse.CreationTime.Value.Month,
+                                Tags = systemParametersNewse.Tags,
+                                Categories = GetAllCatrogry()
+                            });
+                }
+            }
+            else
+            {
+                var list = _db.SystemParameters_News_Translate.Where(p => p.IsDeleted != true && p.Lang_ID == langId).OrderByDescending(n => n.Id)
+                    .ToList().Take(3);
+                foreach (var systemParametersNewse in list)
+                {
+                    var getCatrogryInfo =
+                        _db.SystemParameters_Category_Translate.FirstOrDefault(p => p.IsDeleted != true && p.Id == systemParametersNewse.CategoryId && p.Lang_ID == langId);
+                    if (systemParametersNewse.CreationTime != null)
+                        if (getCatrogryInfo != null)
+                            returnList.Add(new SystemParameters_News
+                            {
+                                Id = systemParametersNewse.Id,
+                                DisplayValue = systemParametersNewse.DisplayValue,
+                                DisplayValueDesc = systemParametersNewse.DisplayValueDesc,
+                                CreationTime = systemParametersNewse.CreationTime,
+                                CreationDay = systemParametersNewse.CreationTime.Value.Day,
+                                CreationMonth = systemParametersNewse.CreationTime.Value.Month,
+                                Tags = systemParametersNewse.Tags,
+                                Categories = GetAllCatrogryByLang(langId)
+                            });
+                }
+            }
+            return returnList;
+        }
 
         public List<SystemParameters_Category> GetAllCatrogry()
         {

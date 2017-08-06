@@ -45,12 +45,28 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 return Request.CreateResponse(ex);
             }
         }
-        public HttpResponseMessage GetAllByCatrgoryId(int categoryId, News postedNews)
+        public HttpResponseMessage GetLatestNewsWithOutCurrentId(int newsId,string langId)
         {
             try
             {
                 var newsLogic = new NewsLogic();
-                var news = newsLogic.GetAllByCatrgoryId(categoryId, postedNews.LangId);
+                var news = newsLogic.GetLatestNewsWithOutCurrentId(newsId,langId);
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<News>>(news));
+            }
+            catch (Exception ex)
+            {
+                Log.LogError(ex);
+                return Request.CreateResponse(ex);
+            }
+        }
+        public HttpResponseMessage GetAllByCatrgoryId(int categoryId, string langId)
+        {
+            try
+            {
+                var newsModel = new News();
+                newsModel.LangId = langId;
+                var newsLogic = new NewsLogic();
+                var news = newsLogic.GetAllByCatrgoryId(categoryId, newsModel.LangId);
                 return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<News>>(news));
             }
             catch (Exception ex)
@@ -90,18 +106,20 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
-        public HttpResponseMessage GetNewsDetails(int id, News postedNews)
+        public HttpResponseMessage GetNewsDetails(int id, string langId)
         {
             try
             {
+                var newsModel = new News();
+                newsModel.LangId = langId;
                 var newsLogic = new NewsLogic();
-                var newss = newsLogic.Get(id, postedNews.LangId);
+                var newss = newsLogic.Get(id, newsModel.LangId);
                 return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<News>(newss));
             }
             catch (Exception ex)
             {
                 Log.LogError(ex);
-                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+                return Request.CreateResponse(ex);
             }
         }
 

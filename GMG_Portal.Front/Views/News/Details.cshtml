@@ -17,6 +17,7 @@
         </div>
     </div>
 </div>
+<input type="hidden" id="HCurrentNewsId" value="@Model.Id" />
 
 <div class="mg-blog-list">
     <div class="container">
@@ -119,16 +120,13 @@
     $(document).ready(function () {
 
         var apiUrl = document.querySelector('#HServicesURL').value;
+        var newsId = document.querySelector('#HCurrentNewsId').value;
         $.ajax({
-            url: apiUrl + "/SystemParameters/News/GetAllWithCount",
+            url: apiUrl + "/SystemParameters/News/GetLatestNewsWithOutCurrentId?langId=En&newsId=" + newsId,
             type: "Get",
             success: function (data) {
                 for (var i = 0; i < data.length; i++) {
-                    if (i < 1) {
-
-                    }
-                    else {
-
+                     
                         $( 
                             "<li>" +
                              "<div class='mg-recnt-post'>" +
@@ -141,7 +139,7 @@
 
 
                             ).appendTo("#ulAllNews");
-                    }
+                    
 
 
 
