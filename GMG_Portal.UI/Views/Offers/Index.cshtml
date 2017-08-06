@@ -136,13 +136,13 @@
                         <div class="form-group">
                             <label for="TxtDesc">@Offers.Desc</label><span class="red-text"> *</span>
                             <textarea ng-model="offer.DisplayValueDesc" class="form-control" name="TxtDesc"
-                                      placeholder="Text" ng-minlength="20" ng-maxlength="50" required ng-pattern="/@Regex.NameEn/"></textarea>
+                                      placeholder="Text" ng-minlength="20" ng-maxlength="400" required ng-pattern="/@Regex.NameEn/"></textarea>
                             <div class="red-text" ng-messages="FrmAddUpdate.TxtDesc.$error" ng-show="FrmAddUpdate.TxtDesc.$touched">
                                 <span class="red-text" ng-message="required">@Offers.TxtDescRequiredErrorMessage</span>
                                 <span class="red-text" ng-message="pattern">@Offers.TxtDescPatternErrorMessage</span>
                                 <span class="red-text" ng-message="notInList">@Offers.TxtDescUniqueErrorMessage</span> 
-                                <span class="red-text" ng-message="minlength">Minimum 20 Charachter</span>
-                                <span class="red-text" ng-message="maxlength">Maximum 50 Charachter</span>
+                                <span class="red-text" ng-message="minlength">Minimum 45 Charachter</span>
+                                <span class="red-text" ng-message="maxlength">Maximum 400 Charachter</span>
                             </div>
                         </div>
 

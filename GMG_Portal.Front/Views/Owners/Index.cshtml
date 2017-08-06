@@ -7,6 +7,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
+
+
 <div class="mg-page-title parallax">
     <div class="container">
         <div class="row">
@@ -45,18 +48,29 @@
                         <div class="mg-team-info">
                             <h3>@Model[i].DisplayValueName</h3>
                             <strong>@Model[i].DisplayValuePosition</strong>
+                           
                             <ul class="mg-team-member-social">
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#" data-featherlight="#fl'@Model[i].Id'">Portfolio</a></li>
+                                @*<li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                 <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>*@
                             </ul>
                         </div>
                     </div>
+                    <div class="lightbox" id="fl'@Model[i].Id'">
+                        
+                        <h2>@Model[i].DisplayValueName</h2>
+                        <img src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/Owners/@Model[i].Image" alt="" class="img-responsive" style="width: 262px;height: 262px;">
+                        <p> @Model[i].DisplayValueDesc</p>
+
+                    </div>
+                    
+
                 </div>
             }
         </div>
         
-        
+        <script src="~/Scripts/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
 
     </div>
 </div>

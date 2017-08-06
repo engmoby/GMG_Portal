@@ -978,26 +978,6 @@
     <Content Include="Scripts_Customer\lib\www-embed-player.js" />
     <Content Include="Templates\ba-sidebar.html" />
     <Content Include="Templates\backTop.html" />
-    <Content Include="Uploads\1.jpg" />
-    <Content Include="Uploads\Hotels\1.jpg" />
-    <Content Include="Uploads\Hotels\19988996_10212182568572864_792801163_n.png" />
-    <Content Include="Uploads\Hotels\20590879_10154781246450980_132531600_o.png" />
-    <Content Include="Uploads\Hotels\about.png" />
-    <Content Include="Uploads\Hotels\careers Edit.png" />
-    <Content Include="Uploads\Hotels\careers.png" />
-    <Content Include="Uploads\Hotels\contact.png" />
-    <Content Include="Uploads\Hotels\home.png" />
-    <Content Include="Uploads\Hotels\hotels.png" />
-    <Content Include="Uploads\Hotels\IMG_4122.JPG" />
-    <Content Include="Uploads\Hotels\news.png" />
-    <Content Include="Uploads\Hotels\offers.png" />
-    <Content Include="Uploads\Hotels\owners.png" />
-    <Content Include="Uploads\Hotels\Untitled.png" />
-    <Content Include="Uploads\News\1.jpg" />
-    <Content Include="Uploads\News\about.png" />
-    <Content Include="Uploads\Owners\ghazali.jpg" />
-    <Content Include="Uploads\Owners\ghazi.jpg" />
-    <Content Include="Uploads\Owners\hassan.jpg" />
     <Content Include="Views\About\Index.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -1020,7 +1000,6 @@
     <Folder Include="Models\" />
     <Folder Include="Scripts\app\pages\AccountTypes\" />
     <Folder Include="Scripts_Customer\app\theme\" />
-    <Folder Include="Uploads\Offers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

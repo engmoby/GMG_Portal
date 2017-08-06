@@ -126,6 +126,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 }
                 else
                 {
+
                     returnList.Add(new Hotel
                     {
                         Id = hotel.Id,
