@@ -258,11 +258,11 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         public Hotel Delete(Hotel postedHotel)
         {
             var hotel = GetHotelInfoById(postedHotel.Id);
-            if (_db.Hotels_Images.FirstOrDefault(p => p.Hotel_Id == postedHotel.Id) != null)
-            {
-                hotel.OperationStatus = "HasRelationship";
-                return hotel;
-            }
+            //if (_db.Hotels_Images.FirstOrDefault(p => p.Hotel_Id == postedHotel.Id) != null)
+            //{
+            //    hotel.OperationStatus = "HasRelationship";
+            //    return hotel;
+            //}
 
             hotel.IsDeleted = true;
             hotel.CreationTime = Parameters.CurrentDateTime;

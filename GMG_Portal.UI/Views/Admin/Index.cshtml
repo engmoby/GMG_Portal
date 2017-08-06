@@ -47,7 +47,7 @@
           new ListItem {Text = "Ar", Value = "Ar"},
       new ListItem {Text = "Fr", Value = "Fr"}
   }; }
-    @Html.DropDownList("DropdwonLang", new SelectList(listItems, "Value", "Text"))
+    @*@Html.DropDownList("DropdwonLang", new SelectList(listItems, "Value", "Text"))*@
     <input type="hidden" id="HServicesURL" value="@System.Configuration.ConfigurationManager.AppSettings["ServicesURL"]" />
     @*<input type="hidden" id="HCurrentLang" value="En" />*@
     <input type="hidden" name="HCurrentLang" id="HCurrentLang" value="En">

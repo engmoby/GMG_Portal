@@ -26,11 +26,10 @@ namespace Front.Controllers
         }
         // GET: news
         public async Task<ActionResult> Index(int? id)
-        {
-
+        { 
             if (!id.HasValue)
             {
-                return RedirectToAction("Index", "News");
+                return RedirectToAction("Index", "News", new { Id = 0 });
             }
 
             var newsModel = new News();
@@ -83,7 +82,7 @@ namespace Front.Controllers
         {
             if (!id.HasValue)
             {
-                return RedirectToAction("Index", "News");
+                return RedirectToAction("Index", "News", new { Id = 0 });
             }
             string newsDetails = url + "News/GetNewsDetails/" + id + "?langId=" + "En";
             var newsModels = new News();

@@ -32,10 +32,27 @@
                     <figure class="mg-room" style="height: 194px;">
                         <img src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/@Model[i].Image" alt="img11" class="img-responsive">
                         <figcaption>
-                            <h2>@Model[i].DisplayValue</h2>
+                           
+                            @if (@Model[i].DisplayValue.Length >= 20)
+                            { 
+                                <h2>@Model[i].DisplayValueDesc.Substring(0, 20)</h2> 
+                            }
+                            else
+                            {
+                                <h2>@Model[i].DisplayValue</h2> 
+                            }
                             @*<div class="mg-room-rating">@Model[i].HotelTitle</div>*@
                             <div class="mg-room-price">@Model[i].Price<sup></sup></div>
-                            <p>@Model[i].DisplayValueDesc.Substring(0,40)</p>
+
+                            @if (@Model[i].DisplayValueDesc.Length >= 40)
+                            {
+                                <p>@Model[i].DisplayValueDesc.Substring(0,40)</p>
+
+                            }
+                            else
+                            {
+                                <p>@Model[i].DisplayValueDesc</p> 
+                            }
                             <a href="/Offers/offerdetails/@Model[i].Id" class="btn btn-link">View Details <i class="fa fa-angle-double-right"></i></a>
                             @*<a href="#" class="btn btn-main">Book</a>*@
                         </figcaption>			

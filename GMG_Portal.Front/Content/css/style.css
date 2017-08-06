@@ -56,7 +56,9 @@ h6,
   font-size: 14px;
 }
 p {
-  margin-bottom: 23px;
+  
+    word-break: break-all;
+    margin-bottom: 23px;
 }
 hr {
   margin: 30px 0;
@@ -1945,6 +1947,7 @@ div.cs-skin-elastic .cs-options .cs-selected span::after {
 .mg-recnt-post > p {
   margin-left: 90px;
   margin-bottom: 0;
+    word-break: break-all;
 }
 .mg-gallery-container {
   position: relative;

@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Index";
 }
-@using GMG_Portal.Content; 
+@using GMG_Portal.Content;
 @using GMG_Portal.Content.Admin
 @using GMG_Portal.Content.Admin.SystemParameters
 <script type="text/javascript" src="~/Scripts/app/services/About.js"></script>
@@ -18,57 +18,42 @@
     <div ba-panel>
         <table class="table table-hover table-condensed" st-table="TableData" st-safe-src="About">
             <thead>
-            <tr class="toolbar">
-                <th colspan="2">
-                    <div class="input-group">
-                        <span class="input-group-addon addon-left"><i class="fa fa-search" aria-hidden="true"></i></span>
-                        <input st-search="" class="form-control" placeholder="@About.txtSearchLbl" type="text" />
-                    </div>
-                </th>
-                <th colspan="1"></th>
-                <th>
-                    <div class="input-group">
-                        @*<button class="btn btn-primary btn-with-icon" ng-click="open(null)"><i class="fa fa-plus" aria-hidden="true"></i>@Vission.BtnAdd</button>*@
-                    </div>
-                </th>
-            </tr>
 
-            <tr class="sortable">
-                   
-                <th st-sort="NameAr">@About.Title</th>
-                <th st-sort="NameEn">@About.Desc</th>
-           
-                    
-            </tr>
+
+                <tr class="sortable">
+
+                    <th st-sort="NameAr">@About.Title</th>
+                    <th st-sort="NameEn">@About.Desc</th>
+                </tr>
 
             </thead>
             <tbody>
-            <tr ng-repeat="About in TableData">
-                <td ng-class="{'red-text': About.IsDeleted == true}">{{About.DisplayValue}}</td>
-                <td ng-class="{'red-text': About.IsDeleted == true}">{{About.DisplayValueDesc}}</td>
-           
-                <td>
-                    <div class="buttons" ng-show="!About.IsDeleted">
-                        <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(About)"><i class="fa fa-pencil" aria-hidden="true"></i>@About.TableBtnEdit</button>
-                        @*<button class="btn btn-danger editable-table-button btn-xs btn-with-icon" ng-confirm="Confirm Delete ?" ng-click="Delete(Vision)"><i class="fa fa-trash-o" aria-hidden="true"></i>@Vission.TableBtnDelete</button>*@
-                    </div>
-                    <div class="buttons restore-button" ng-show="About.IsDeleted">
-                        <button class="center-block btn btn-default  restore-button btn-xs btn-with-icon" ng-click="Restore(About)"><i class="fa fa-undo" aria-hidden="true"></i>Restore</button>
-                    </div>
-                </td>
-            </tr>
-            <tr ng-show="TableData.length==0">
-                <td colspan="4">
-                    @Shared.GridNoData
-                </td>
-            </tr>
+                <tr ng-repeat="About in TableData">
+                    <td ng-class="{'red-text': About.IsDeleted == true}">{{About.DisplayValue}}</td>
+                    <td ng-class="{'red-text': About.IsDeleted == true}">{{About.DisplayValueDesc}}</td>
+
+                    <td>
+                        <div class="buttons" ng-show="!About.IsDeleted">
+                            <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(About)"><i class="fa fa-pencil" aria-hidden="true"></i>@About.TableBtnEdit</button>
+                            @*<button class="btn btn-danger editable-table-button btn-xs btn-with-icon" ng-confirm="Confirm Delete ?" ng-click="Delete(Vision)"><i class="fa fa-trash-o" aria-hidden="true"></i>@Vission.TableBtnDelete</button>*@
+                        </div>
+                        <div class="buttons restore-button" ng-show="About.IsDeleted">
+                            <button class="center-block btn btn-default  restore-button btn-xs btn-with-icon" ng-click="Restore(About)"><i class="fa fa-undo" aria-hidden="true"></i>Restore</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr ng-show="TableData.length==0">
+                    <td colspan="4">
+                        @Shared.GridNoData
+                    </td>
+                </tr>
             </tbody>
             <tfoot>
-            <tr>
-                <td colspan="4" class="text-center">
-                    <div st-pagination="" st-items-by-page="10"></div>
-                </td>
-            </tr>
+                <tr>
+                    <td colspan="4" class="text-center">
+                        <div st-pagination="" st-items-by-page="10"></div>
+                    </td>
+                </tr>
             </tfoot>
         </table>
     </div>
@@ -88,31 +73,29 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="TxtTitle">@About.Title</label><span class="red-text"> *</span>
-                            <input type="text" ng-model="About.DisplayValue"   class="form-control" name="TxtTitle"
-                                   placeholder="Text" ng-minlength="20" ng-maxlength="30" required ng-pattern="/@Regex.NameAr/">
+                            <input type="text" ng-model="About.DisplayValue" class="form-control" name="TxtTitle"
+                                   placeholder="Text"   ng-maxlength="65" required ng-pattern="/@Regex.NameAr/">
 
                             <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
                                 <span class="red-text" ng-message="required">@About.TxtTitleRequiredErrorMessage</span>
                                 <span class="red-text" ng-message="pattern">@About.TxtTitlePatternErrorMessage</span>
-                                <span class="red-text" ng-message="notInList">@About.TxtTitleUniqueErrorMessage</span>
-                                <span class="red-text" ng-message="minlength">Minimum 20 Charachter</span>
-                                <span class="red-text" ng-message="maxlength">Maximum 30 Charachter</span>
+                                <span class="red-text" ng-message="notInList">@About.TxtTitleUniqueErrorMessage</span> 
+                                <span class="red-text" ng-message="maxlength">Maximum 65 Charachter</span>
                             </div>
-                        </div>`
+                        </div> 
                         <div class="form-group">
                             <label for="TxtDesc">@About.Desc</label><span class="red-text"> *</span>
-                            <textarea ng-model="About.DisplayValueDesc"  class="form-control" name="TxtDesc"
-                                    placeholder="Text" ng-minlength="20" ng-maxlength="30" required ng-pattern="/@Regex.NameEn/"></textarea>
+                            <textarea ng-model="About.DisplayValueDesc" class="form-control" name="TxtDesc"
+                                      placeholder="Text"   ng-maxlength="7000" required ng-pattern="/@Regex.NameEn/"></textarea>
                             <div class="red-text" ng-messages="FrmAddUpdate.TxtDesc.$error" ng-show="FrmAddUpdate.TxtDesc.$touched">
                                 <span class="red-text" ng-message="required">@About.TxtDescRequiredErrorMessage</span>
                                 <span class="red-text" ng-message="pattern">@About.TxtDescPatternErrorMessage</span>
-                                <span class="red-text" ng-message="notInList">@About.TxtDescUniqueErrorMessage</span>
-                                <span class="red-text" ng-message="minlength">Minimum 20 Charachter</span>
-                                <span class="red-text" ng-message="maxlength">Maximum 30 Charachter</span>
+                                <span class="red-text" ng-message="notInList">@About.TxtDescUniqueErrorMessage</span> 
+                                <span class="red-text" ng-message="maxlength">Maximum 7000 Charachter</span>
                             </div>
                         </div>
-                        
-                 
+
+
 
                     </div>
                     <div class="modal-footer">

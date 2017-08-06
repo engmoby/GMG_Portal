@@ -22,11 +22,12 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         }
         public List<Hotles_Offers> GetAll()
         {
-            var returnList = new List<Hotles_Offers>();
-            var offerList = _db.Hotles_Offers.Where(p => p.IsDeleted == false && p.Show == true).ToList();
+             var returnList = new List<Hotles_Offers>();
+             var offerList = _db.Hotles_Offers.Where(p => p.IsDeleted == false && p.Show == true).OrderByDescending(o => o.Id).ToList();
+
             foreach (var offer in offerList)
             {
-                var getHotelInfo = _db.Hotels.Where(p => p.IsDeleted != true && p.Id == offer.Hotel_Id).ToList();
+               // var getHotelInfo = _db.Hotels.Where(p => p.IsDeleted != true && p.Id == offer.Hotel_Id).ToList();
                 returnList.Add(new Hotles_Offers
                 {
                     Id = offer.Id,
@@ -35,12 +36,11 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                     Image = offer.Image,
                     StartDate = offer.StartDate,
                     EndDate = offer.EndDate,
-                    Price = offer.Price,
-                    HotelTitle = getHotelInfo[0].DisplayValue,
+                    Price = offer.Price, 
                 });
             }
-            return returnList;
-            // return _db.Offers.Where(p => p.IsDeleted != true).ToList();
+            return offerList;
+            //return _db.Hotles_Offers.Where(p => p.IsDeleted != true).ToList();
         }
         public Hotles_Offers Get(int id)
         {
