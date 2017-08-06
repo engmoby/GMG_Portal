@@ -1,5 +1,22 @@
 ﻿controllerProvider.register('NewsController', ['$scope', 'NewsApi', 'uploadNewsService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', NewsController]);
 function NewsController($scope, NewsApi, uploadNewsService, $rootScope, $timeout, $filter, $uibModal, toastr) {
+
+    var langId = document.querySelector('#HCurrentLang').value;
+    var CurrentLanguage = langId;
+    $("#DropdwonLang").change(function () {
+        var selectedText = $(this).find("option:selected").text();
+        var selectedValue = $(this).val();
+        document.getElementById("HCurrentLang").value = selectedValue;
+        CurrentLanguage = selectedValue;
+
+        debugger;
+
+        NewsApi.GetAll(CurrentLanguage).then(function (response) {
+            $scope.News = response.data;
+            $rootScope.ViewLoading = false;
+        });
+    });
+
     $scope.Image = "";
     $scope.ImageFormatValidaiton = "Please upload Images ";
     $scope.ImageSizeValidaiton = "Can't upload image more than 2MB";
@@ -7,14 +24,14 @@ function NewsController($scope, NewsApi, uploadNewsService, $rootScope, $timeout
 
     $scope.letterLimit = 20;
     $rootScope.ViewLoading = true;
-    NewsApi.GetAll().then(function (response) {
+    NewsApi.GetAll(CurrentLanguage).then(function (response) {
         $scope.News = response.data;
         $rootScope.ViewLoading = false;
     });
 
     //get Categories
 
-    NewsApi.GetAllCategories().then(function (response) {
+    NewsApi.GetAllCategories(CurrentLanguage).then(function (response) {
         debugger;
         $scope.Categorys = response.data;
     });
@@ -71,6 +88,8 @@ function NewsController($scope, NewsApi, uploadNewsService, $rootScope, $timeout
         debugger;
         if ($scope.SelectedCategory != null)
             $scope.New.CategoryId = $scope.SelectedCategory.Id;
+        $scope.New.LangId = CurrentLanguage;
+
         NewsApi.Save($scope.New).then(function (response) {
 
             switch (response.data.OperationStatus) {
@@ -80,7 +99,7 @@ function NewsController($scope, NewsApi, uploadNewsService, $rootScope, $timeout
                         case 'edit':
                             index = $scope.News.indexOf($filter('filter')($scope.News, { 'ID': $scope.New.ID }, true)[0]);
                             // $scope.News[index] = angular.copy(response.data);
-                            NewsApi.GetAll().then(function (response) {
+                            NewsApi.GetAll(CurrentLanguage).then(function (response) {
                                 $scope.News = response.data;
                             });
                             toastr.success($('#HUpdateSuccessMessage').val(), 'Success');
@@ -88,13 +107,13 @@ function NewsController($scope, NewsApi, uploadNewsService, $rootScope, $timeout
                         case 'delete':
                             index = $scope.News.indexOf($filter('filter')($scope.News, { 'ID': $scope.New.ID }, true)[0]);
                             // $scope.News[index] = angular.copy(response.data);
-                            NewsApi.GetAll().then(function (response) {
+                            NewsApi.GetAll(CurrentLanguage).then(function (response) {
                                 $scope.News = response.data;
                             });
                             toastr.success($('#HDeleteSuccessMessage').val(), 'Success');
                             break;
                         case 'add':
-                            NewsApi.GetAll().then(function (response) {
+                            NewsApi.GetAll(CurrentLanguage).then(function (response) {
                                 $scope.News = response.data;
                             });
                             // $scope.News.push(angular.copy(response.data));
@@ -187,7 +206,7 @@ function NewsController($scope, NewsApi, uploadNewsService, $rootScope, $timeout
                 if (data === '') {
                     // console.log(data);
                     //   $scope.Image=data.
-                    $scope.save(); 
+                    $scope.save();
                     alert("Done!!!");
                     $scope.formdata = new FormData();
                     $scope.data = [];

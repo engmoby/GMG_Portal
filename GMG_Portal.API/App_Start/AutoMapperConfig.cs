@@ -43,6 +43,9 @@ namespace GMG_Portal.API
                 cfg.CreateMap<SystemParameters_News, News>();
                 cfg.CreateMap<News, SystemParameters_News>();
 
+                cfg.CreateMap<SystemParameters_News_Translate, News>();
+                cfg.CreateMap<News, SystemParameters_News_Translate>();
+
                 cfg.CreateMap<SystemParameters_Category, Category>();
                 cfg.CreateMap<Category, SystemParameters_Category>();
 

@@ -33,5 +33,6 @@ namespace GMG_Portal.API.Models.SystemParameters
         public int CreationDay { get; set; }
         public int CreationMonth { get; set; }
         public List<Category> Categories { get; set; }
+        public string LangId { get; set; }
     }
 }

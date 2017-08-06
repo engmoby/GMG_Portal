@@ -25,14 +25,20 @@ namespace Front.Controllers
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
         // GET: news
-        public async Task<ActionResult> Index(int id)
-        {
+        public async Task<ActionResult> Index(int? id)
+        { 
+            if (!id.HasValue)
+            {
+                return RedirectToAction("Index", "News", new { Id = 0 });
+            }
+
+            var newsModel = new News();
+            newsModel.LangId = "En";
             string news = "";
             if (id == 0)
-                news = url + "News/GetAll";
+                news = url + "News/GetAll?langId=" + "En";
             else
-                news = url + "News/GetAllByCatrgoryId?categoryId=" + id;
-            // news = "http://localhost:2798/SystemParameters/News/GetAllByCatrgoryId?categoryId=2";
+                news = url + "News/GetAllByCatrgoryId?categoryId=" + id + "&postedNews=" + newsModel;
             var newsModels = new List<News>();
 
 
@@ -56,7 +62,7 @@ namespace Front.Controllers
                 news = url + "News/GetAll";
             else
                 news = url + "News/GetAllByCatrgoryId?categoryId=" + id;
-               // news = "http://localhost:2798/SystemParameters/News/GetAllByCatrgoryId?categoryId=2";
+            // news = "http://localhost:2798/SystemParameters/News/GetAllByCatrgoryId?categoryId=2";
             var newsModels = new List<News>();
 
 
@@ -72,9 +78,13 @@ namespace Front.Controllers
             return View(newsModels);
 
         }
-        public async Task<ActionResult> Details(int id)
+        public async Task<ActionResult> Details(int? id)
         {
-            string newsDetails = url + "News/GetNewsDetails/" + id;
+            if (!id.HasValue)
+            {
+                return RedirectToAction("Index", "News", new { Id = 0 });
+            }
+            string newsDetails = url + "News/GetNewsDetails/" + id + "?langId=" + "En";
             var newsModels = new News();
 
             if (newsDetails == null) throw new ArgumentNullException(nameof(newsDetails));
@@ -98,7 +108,7 @@ namespace Front.Controllers
             {
                 var responseData = responseMessage.Content.ReadAsStringAsync().Result;
                 ViewBag.NewsList = JsonConvert.DeserializeObject<List<News>>(responseData);
-                
+
             }
 
             return View(newsModels);
@@ -106,14 +116,14 @@ namespace Front.Controllers
 
         public async Task<ActionResult> Search(string keyWord)
         {
-            string  news = url + "News/SearchNews?keyword=" + keyWord;
+            string news = url + "News/SearchNews?keyword=" + keyWord;
             // news = "http://localhost:2798/SystemParameters/News/GetAllByCatrgoryId?categoryId=2";
             var newsModels = new List<News>();
 
 
             if (news == null) throw new ArgumentNullException(nameof(news));
-           // HttpResponseMessage responseMessageApi = await _client.GetAsync(news);
-                HttpResponseMessage responseMessageApi = await _client.GetAsync(news);
+            // HttpResponseMessage responseMessageApi = await _client.GetAsync(news);
+            HttpResponseMessage responseMessageApi = await _client.GetAsync(news);
             if (responseMessageApi.IsSuccessStatusCode)
             {
                 var responseData = responseMessageApi.Content.ReadAsStringAsync().Result;
