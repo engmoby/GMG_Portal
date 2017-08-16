@@ -166,8 +166,8 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 if (langId == Parameters.DefaultLang)
                 {
                     var obj = visionLogic.GetAll();
-                    retunAboutAll.VisionTitle = obj[0].DisplayValue;
-                    retunAboutAll.VisionDesc = obj[0].DisplayValueDesc;
+                    retunAboutAll.VisionTitle = obj.DisplayValue;
+                    retunAboutAll.VisionDesc = obj.DisplayValueDesc;
                 }
                 else
                 {
@@ -183,8 +183,8 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 if (langId == Parameters.DefaultLang)
                 {
                     var obj = missionLogic.GetAll();
-                    retunAboutAll.MissionTitle = obj[0].DisplayValue;
-                    retunAboutAll.MissionDesc = obj[0].DisplayValueDesc;
+                    retunAboutAll.MissionTitle = obj.DisplayValue;
+                    retunAboutAll.MissionDesc = obj.DisplayValueDesc;
                 }
                 else
                 {
