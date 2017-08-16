@@ -6,7 +6,7 @@
 @using GMG_Portal.Content.Admin
 @using GMG_Portal.Content.Admin.SystemParameters
 
- 
+
 <script type="text/javascript" src="~/Scripts/app/services/Contact.js"></script>
 <script type="text/javascript" src="~/Scripts/app/pages/Contact/Contact.js"></script>
 <input type="hidden" id="HEnglishNameUnique" value="@Contact.EnglishNameUnique" />
@@ -15,370 +15,351 @@
 <input type="hidden" id="HDeleteSuccessMessage" value="@Contact.DeleteSuccessMessage" />
 @*<input type="hidden" id="HArabicNameUnique" value="@Career.TxtTitleUniqueErrorMessage" />*@
 <input type="hidden" id="HCannotDeleted" value="@Contact.CannotDeleted" />
-<style>
-    .btn-file {
-        position: relative;
-        overflow: hidden;
-    }
 
-    .btn-file input[type=file] {
-        position: absolute;
-        top: 0;
-        right: 0;
-        min-width: 100%;
-        min-height: 100%;
-        font-size: 100px;
-        text-align: right;
-        filter: alpha(opacity=0);
-        opacity: 0;
-        background: red;
-        cursor: inherit;
-        display: block;
-    }
-
-    input[readonly] {
-        background-color: white !important;
-        cursor: text !important;
-    }
-</style>
 <div ng-controller="ContactController">
 
-<div ba-panel>
-    <table class="table table-hover table-condensed" st-table="TableData" st-safe-src="Contacts">
-        <thead>
-        <tr class="toolbar">
-            <th colspan="2">
-                <div class="input-group">
-                    <span class="input-group-addon addon-left"><i class="fa fa-search" aria-hidden="true"></i></span>
-                    <input st-search="" class="form-control" placeholder="@Contact.txtSearchLbl" type="text" />
-                </div>
-            </th>
-            <th colspan="1"></th>
-            <th>
-                <div class="input-group">
-                    @*<button class="btn btn-primary btn-with-icon" ng-click="open(null)"><i class="fa fa-plus" aria-hidden="true"></i>@Contact.BtnAdd</button>*@
-                </div>
-            </th>
-        </tr>
+    <div ba-panel>
+        <table class="table table-hover table-condensed" st-table="TableData" st-safe-src="Contacts">
+            <thead>
+                <tr class="sortable">
+                    <th>#</th>
+                    <th st-sort="Image">@Contact.DisplayValueAddress</th>
+                    <th st-sort="Image">@Contact.PhoneNo1</th>
+                    <th st-sort="Title">@Contact.PhoneNo2</th>
+                    <th st-sort="Desc">@Contact.MailNo1</th>
+                    <th>Actions</th>
+                </tr>
 
-        <tr class="sortable">
-            <th>#</th>
-            <th st-sort="Image">@Contact.DisplayValueAddress</th>
-            <th st-sort="Image">@Contact.PhoneNo1</th>
-            <th st-sort="Title">@Contact.PhoneNo2</th>
-            <th st-sort="Desc">@Contact.MailNo1</th>
-            <th>Actions</th>
-        </tr>
-
-        </thead>
-        <tbody>
-        <tr ng-repeat="Contact in TableData">
-            <td ng-class="{'red-text': Contact.IsDeleted == true}">{{$index+1}}</td>
-            <td ng-class="{'red-text': Contact.IsDeleted == true}">{{Contact.DisplayValueAddress}}</td>
-            <td ng-class="{'red-text': Contact.IsDeleted == true}">{{Contact.PhoneNo1}}</td>
-            <td ng-class="{'red-text': Contact.IsDeleted == true}">{{Contact.PhoneNo2}}</td>
-            <td ng-class="{'red-text': Contact.IsDeleted == true}">{{Contact.MailNo1}}</td>
-            <td>
-                <div class="buttons" ng-show="!Contact.IsDeleted">
-                    <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(Contact)"><i class="fa fa-pencil" aria-hidden="true"></i>@Career.TableBtnEdit</button>
-                    @*<button class="btn btn-danger editable-table-button btn-xs btn-with-icon" ng-confirm="Confirm Delete ?" ng-click="Delete(Contact)"><i class="fa fa-trash-o" aria-hidden="true"></i>@Contact.TableBtnDelete</button>*@
-                </div>
-                @*<div class="buttons restore-button" ng-show="Contact.IsDeleted">
-                    <button class="center-block btn btn-default  restore-button btn-xs btn-with-icon" ng-click="Restore(Contact)"><i class="fa fa-undo" aria-hidden="true"></i>Restore</button>
-                </div>*@
-            </td>
-        </tr>
-        <tr ng-show="TableData.length==0">
-            <td colspan="4">
-                @Shared.GridNoData
-            </td>
-        </tr>
-        </tbody>
-        <tfoot>
-        <tr>
-            <td colspan="4" class="text-center">
-                <div st-pagination="" st-items-by-page="10"></div>
-            </td>
-        </tr>
-        </tfoot>
-    </table>
-</div>
-
-
-@*<form name="FrmAddUpdate" novalidate ng-submit="save()" autocomplete="off">*@
-<form name="FrmAddUpdate" ng-submit="save()" novalidate autocomplete="off">
-
-    <div class="modal fade" id="ModelAddUpdate" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">{{action |uppercase}} @Contact.ModalTitle</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="TxtTitle">@Contact.DisplayValueAddress</label><span class="red-text"> *</span>
-                        <input type="text" ng-model="Contact.DisplayValueAddress"   class="form-control" Title="TxtTitle"
-                               placeholder="@Contact.DisplayValueAddress" required ng-pattern="/@Regex.NameAr/">
-
-                        <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
-                            <span class="red-text" ng-message="required">@Contact.TxtPostionRequiredErrorMessage</span>
-                            <span class="red-text" ng-message="pattern">@Contact.TxtPostionPatternErrorMessage</span>
-                            <span class="red-text" ng-message="notInList">@Contact.TxtPostionUniqueErrorMessage</span>
+            </thead>
+            <tbody>
+                <tr ng-repeat="Contact in TableData">
+                    <td ng-class="{'red-text': Contact.IsDeleted == true}">{{$index+1}}</td>
+                    <td ng-class="{'red-text': Contact.IsDeleted == true}">{{Contact.DisplayValueAddress  | limitTo:letterLimit}}</td>
+                    <td ng-class="{'red-text': Contact.IsDeleted == true}">{{Contact.PhoneNo1}}</td>
+                    <td ng-class="{'red-text': Contact.IsDeleted == true}">{{Contact.PhoneNo2}}</td>
+                    <td ng-class="{'red-text': Contact.IsDeleted == true}">{{Contact.MailNo1}}</td>
+                    <td>
+                        <div class="buttons" ng-show="!Contact.IsDeleted">
+                            <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(Contact)"><i class="fa fa-pencil" aria-hidden="true"></i>@Career.TableBtnEdit</button>
+                            @*<button class="btn btn-danger editable-table-button btn-xs btn-with-icon" ng-confirm="Confirm Delete ?" ng-click="Delete(Contact)"><i class="fa fa-trash-o" aria-hidden="true"></i>@Contact.TableBtnDelete</button>*@
                         </div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="TxtTitle">@Contact.PhoneNo1</label><span class="red-text"> *</span>
-                                <input type="text" ng-model="Contact.PhoneNo1" class="form-control" Title="TxtTitle"
-                                       placeholder="@Contact.PhoneNo1" required ng-pattern="/@Regex.Phone/">
-
-                                <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
-                                    <span class="red-text" ng-message="required">@Contact.TxtPostionRequiredErrorMessage</span>
-                                    <span class="red-text" ng-message="pattern">@Contact.TxtPostionPatternErrorMessage</span>
-                                    <span class="red-text" ng-message="notInList">@Contact.TxtPostionUniqueErrorMessage</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="TxtTitle">@Contact.PhoneNo2</label><span class="red-text"> *</span>
-                                <input type="text" ng-model="Contact.PhoneNo2"   class="form-control" Title="TxtTitle"
-                                       placeholder="@Contact.PhoneNo2" required ng-pattern="/@Regex.NameAr/">
-
-                                <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
-                                    <span class="red-text" ng-message="required">@Contact.TxtPostionRequiredErrorMessage</span>
-                                    <span class="red-text" ng-message="pattern">@Contact.TxtPostionPatternErrorMessage</span>
-                                    <span class="red-text" ng-message="notInList">@Contact.TxtPostionUniqueErrorMessage</span>
-                                </div>
-                            </div>
-                        </div>
-                        </div>
-
-                 
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="TxtTitle">@Contact.MailNo1</label><span class="red-text"> *</span>
-                                <input type="text" ng-model="Contact.MailNo1" class="form-control" Title="TxtTitle"
-                                       placeholder="@Contact.MailNo1" required ng-pattern="/@Regex.Email/">
-
-                                <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
-                                    <span class="red-text" ng-message="required">@Contact.TxtPostionRequiredErrorMessage</span>
-                                    <span class="red-text" ng-message="pattern">@Contact.TxtPostionPatternErrorMessage</span>
-                                    <span class="red-text" ng-message="notInList">@Contact.TxtPostionUniqueErrorMessage</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="TxtTitle">@Contact.MailNo2</label><span class="red-text"> *</span>
-                                <input type="text" ng-model="Contact.MailNo2"   class="form-control" Title="TxtTitle"
-                                       placeholder="@Contact.MailNo2" required ng-pattern="/@Regex.NameAr/">
-
-                                <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
-                                    <span class="red-text" ng-message="required">@Contact.TxtPostionRequiredErrorMessage</span>
-                                    <span class="red-text" ng-message="pattern">@Contact.TxtPostionPatternErrorMessage</span>
-                                    <span class="red-text" ng-message="notInList">@Contact.TxtPostionUniqueErrorMessage</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="TxtTitle">@Contact.Url</label><span class="red-text"> *</span>
-                                <input type="text" ng-model="Contact.Url" class="form-control" Title="TxtTitle"
-                                       placeholder="@Contact.Url" required ng-pattern="/@Regex.URL/">
-
-                                <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
-                                    <span class="red-text" ng-message="required">@Contact.TxtPostionRequiredErrorMessage</span>
-                                    <span class="red-text" ng-message="pattern">@Contact.TxtPostionPatternErrorMessage</span>
-                                    <span class="red-text" ng-message="notInList">@Contact.TxtPostionUniqueErrorMessage</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="TxtTitle">@Contact.Facebook</label><span class="red-text"> *</span>
-                                <input type="text" ng-model="Contact.Facebook"   class="form-control" Title="TxtTitle"
-                                       placeholder="@Contact.Facebook" required ng-pattern="/@Regex.NameAr/">
-
-                                <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
-                                    <span class="red-text" ng-message="required">@Contact.TxtPostionRequiredErrorMessage</span>
-                                    <span class="red-text" ng-message="pattern">@Contact.TxtPostionPatternErrorMessage</span>
-                                    <span class="red-text" ng-message="notInList">@Contact.TxtPostionUniqueErrorMessage</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="TxtTitle">@Contact.Twitter</label><span class="red-text"> *</span>
-                                <input type="text" ng-model="Contact.Twitter" class="form-control" Title="TxtTitle"
-                                       placeholder="@Contact.Twitter" required ng-pattern="/@Regex.NameAr/">
-
-                                <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
-                                    <span class="red-text" ng-message="required">@Contact.TxtPostionRequiredErrorMessage</span>
-                                    <span class="red-text" ng-message="pattern">@Contact.TxtPostionPatternErrorMessage</span>
-                                    <span class="red-text" ng-message="notInList">@Contact.TxtPostionUniqueErrorMessage</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="TxtTitle">@Contact.Instgram</label><span class="red-text"> *</span>
-                                <input type="text" ng-model="Contact.Instgram"   class="form-control" Title="TxtTitle"
-                                       placeholder="@Contact.Instgram" required ng-pattern="/@Regex.NameAr/">
-
-                                <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
-                                    <span class="red-text" ng-message="required">@Contact.TxtPostionRequiredErrorMessage</span>
-                                    <span class="red-text" ng-message="pattern">@Contact.TxtPostionPatternErrorMessage</span>
-                                    <span class="red-text" ng-message="notInList">@Contact.TxtPostionUniqueErrorMessage</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="TxtTitle">@Contact.Youtube</label><span class="red-text"> *</span>
-                                <input type="text" ng-model="Contact.Youtube" class="form-control" Title="TxtTitle"
-                                       placeholder="@Contact.Youtube" required ng-pattern="/@Regex.URL/">
-
-                                <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
-                                    <span class="red-text" ng-message="required">@Contact.TxtPostionRequiredErrorMessage</span>
-                                    <span class="red-text" ng-message="pattern">@Contact.TxtPostionPatternErrorMessage</span>
-                                    <span class="red-text" ng-message="notInList">@Contact.TxtPostionUniqueErrorMessage</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="TxtTitle">@Contact.Snapchat</label><span class="red-text"> *</span>
-                                <input type="text" ng-model="Contact.Snapchat"   class="form-control" Title="TxtTitle"
-                                       placeholder="@Contact.Snapchat" required ng-pattern="/@Regex.NameAr/">
-
-                                <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
-                                    <span class="red-text" ng-message="required">@Contact.TxtPostionRequiredErrorMessage</span>
-                                    <span class="red-text" ng-message="pattern">@Contact.TxtPostionPatternErrorMessage</span>
-                                    <span class="red-text" ng-message="notInList">@Contact.TxtPostionUniqueErrorMessage</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="TxtTitle">@Contact.Fax</label><span class="red-text"> *</span>
-                                <input type="text" ng-model="Contact.Fax" class="form-control" Title="TxtTitle"
-                                       placeholder="@Contact.Fax" required ng-pattern="/@Regex.Number/">
-
-                                <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
-                                    <span class="red-text" ng-message="required">@Contact.TxtPostionRequiredErrorMessage</span>
-                                    <span class="red-text" ng-message="pattern">@Contact.TxtPostionPatternErrorMessage</span>
-                                    <span class="red-text" ng-message="notInList">@Contact.TxtPostionUniqueErrorMessage</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="TxtTitle">@Contact.WhatsApp</label><span class="red-text"> *</span>
-                                <input type="text" ng-model="Contact.WhatsApp"   class="form-control" Title="TxtTitle"
-                                       placeholder="@Contact.WhatsApp" required ng-pattern="/@Regex.NameAr/">
-
-                                <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
-                                    <span class="red-text" ng-message="required">@Contact.TxtPostionRequiredErrorMessage</span>
-                                    <span class="red-text" ng-message="pattern">@Contact.TxtPostionPatternErrorMessage</span>
-                                    <span class="red-text" ng-message="notInList">@Contact.TxtPostionUniqueErrorMessage</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                  
-                    
-                    
-                      
-                    <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="TxtTitle">@Contact.PostalCode</label><span class="red-text"> *</span>
-                            <input type="text" ng-model="Contact.PostalCode" class="form-control" Title="TxtTitle"
-                                   placeholder="@Contact.PostalCode" required ng-pattern="/@Regex.Number/">
-
-                            <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
-                                <span class="red-text" ng-message="required">@Contact.TxtPostionRequiredErrorMessage</span>
-                                <span class="red-text" ng-message="pattern">@Contact.TxtPostionPatternErrorMessage</span>
-                                <span class="red-text" ng-message="notInList">@Contact.TxtPostionUniqueErrorMessage</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="TxtTitle">@Contact.Mailbox</label><span class="red-text"> *</span>
-                            <input type="text" ng-model="Contact.Mailbox"   class="form-control" Title="TxtTitle"
-                                   placeholder="@Contact.Mailbox" required ng-pattern="/@Regex.NameAr/">
-
-                            <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
-                                <span class="red-text" ng-message="required">@Contact.TxtPostionRequiredErrorMessage</span>
-                                <span class="red-text" ng-message="pattern">@Contact.TxtPostionPatternErrorMessage</span>
-                                <span class="red-text" ng-message="notInList">@Contact.TxtPostionUniqueErrorMessage</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                    
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="TxtTitle">@Contact.Late</label><span class="red-text"> *</span>
-                            <input type="text" ng-model="Contact.Late" class="form-control" Title="TxtTitle"
-                                   placeholder="@Contact.Late" required ng-pattern="/@Regex.Number/">
-
-                            <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
-                                <span class="red-text" ng-message="required">@Contact.TxtPostionRequiredErrorMessage</span>
-                                <span class="red-text" ng-message="pattern">@Contact.TxtPostionPatternErrorMessage</span>
-                                <span class="red-text" ng-message="notInList">@Contact.TxtPostionUniqueErrorMessage</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="TxtTitle">@Contact.Long</label><span class="red-text"> *</span>
-                            <input type="text" ng-model="Contact.Long"   class="form-control" Title="TxtTitle"
-                                   placeholder="@Contact.Long" required ng-pattern="/@Regex.NameAr/">
-
-                            <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
-                                <span class="red-text" ng-message="required">@Contact.TxtPostionRequiredErrorMessage</span>
-                                <span class="red-text" ng-message="pattern">@Contact.TxtPostionPatternErrorMessage</span>
-                                <span class="red-text" ng-message="notInList">@Contact.TxtPostionUniqueErrorMessage</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                  
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary btn-with-icon"   ng-disabled="FrmAddUpdate.$invalid"><i class="ion-android-checkmark-circle"></i>@Contact.btnSaveLbl</button>
-                </div>
-            </div>
-
-        </div>
+                        @*<div class="buttons restore-button" ng-show="Contact.IsDeleted">
+                                <button class="center-block btn btn-default  restore-button btn-xs btn-with-icon" ng-click="Restore(Contact)"><i class="fa fa-undo" aria-hidden="true"></i>Restore</button>
+                            </div>*@
+                    </td>
+                </tr>
+                <tr ng-show="TableData.length==0">
+                    <td colspan="4">
+                        @Shared.GridNoData
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4" class="text-center">
+                        <div st-pagination="" st-items-by-page="10"></div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
     </div>
-</form>
+
+
+    @*<form name="FrmAddUpdate" novalidate ng-submit="save()" autocomplete="off">*@
+    <form name="FrmAddUpdate" ng-submit="save()" novalidate autocomplete="off">
+
+        <div class="modal fade" id="ModelAddUpdate" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">{{action |uppercase}} @Contact.ModalTitle</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>@Contact.DisplayValueAddress</label><span class="red-text"> *</span>
+                            <textarea type="text" ng-model="Contact.DisplayValueAddress" class="form-control" name="TxtAddress"
+                                      placeholder="@Contact.DisplayValueAddress" ng-minlength="@Common.DescMin50" ng-maxlength="@Common.DescMax200" required ng-pattern="/@Regex.NameAr/"></textarea>
+
+                            <div class="red-text" ng-messages="FrmAddUpdate.TxtAddress.$error" ng-show="FrmAddUpdate.TxtAddress.$touched">
+                                <span class="red-text" ng-message="required">@Contact.TxtaddressRequiredErrorMessage</span>
+                                <span class="red-text" ng-message="pattern">@Contact.TxtaddressPatternErrorMessage</span>
+                                <span class="red-text" ng-message="notInList">@Contact.TxtaddressUniqueErrorMessage</span>
+                                <span class="red-text" ng-message="minlength">@Common.MinimumKeyWord @Common.DescMin50 @Common.Charachter</span>
+                                <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.DescMax200 @Common.Charachter</span>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>@Contact.PhoneNo1</label><span class="red-text"> *</span>
+                                    <input type="text" ng-model="Contact.PhoneNo1" class="form-control" name="TxtPhoneNo1"
+                                           placeholder="@Contact.PhoneNo1" ng-minlength="@Common.TitleMin5" ng-maxlength="@Common.TitleMax25" required ng-pattern="/@Regex.InternationalPhone/">
+
+                                    <div class="red-text" ng-messages="FrmAddUpdate.TxtPhoneNo1.$error" ng-show="FrmAddUpdate.TxtPhoneNo1.$touched">
+                                        <span class="red-text" ng-message="required">@Contact.TxtPhoneNo1RequiredErrorMessage</span>
+                                        <span class="red-text" ng-message="pattern">@Contact.TxtPhoneNo1PatternErrorMessage</span>
+                                        <span class="red-text" ng-message="notInList">@Contact.TxtPhoneNo1UniqueErrorMessage</span>
+                                        <span class="red-text" ng-message="minlength">@Common.MinimumKeyWord @Common.TitleMin5 @Common.Charachter</span>
+                                        <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax25 @Common.Charachter</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>@Contact.PhoneNo2</label><span class="red-text"> *</span>
+                                    <input type="text" ng-model="Contact.PhoneNo2" class="form-control" name="TxtPhoneNo2"
+                                           placeholder="@Contact.PhoneNo2" ng-minlength="@Common.TitleMin5" ng-maxlength="@Common.TitleMax25" required ng-pattern="/@Regex.InternationalPhone/">
+
+                                    <div class="red-text" ng-messages="FrmAddUpdate.TxtPhoneNo2.$error" ng-show="FrmAddUpdate.TxtPhoneNo2.$touched">
+                                        <span class="red-text" ng-message="required">@Contact.TxtPhoneNo2RequiredErrorMessage</span>
+                                        <span class="red-text" ng-message="pattern">@Contact.TxtPhoneNo2PatternErrorMessage</span>
+                                        <span class="red-text" ng-message="notInList">@Contact.TxtPhoneNo2UniqueErrorMessage</span>
+                                        <span class="red-text" ng-message="minlength">@Common.MinimumKeyWord @Common.TitleMin5 @Common.Charachter</span>
+                                        <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax25 @Common.Charachter</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>@Contact.MailNo1</label><span class="red-text"> *</span>
+                                    <input type="text" ng-model="Contact.MailNo1" class="form-control" name="TxtMailNo1"
+                                           placeholder="@Contact.MailNo1" ng-minlength="@Common.TitleMin5" ng-maxlength="@Common.TitleMax25" required ng-pattern="/@Regex.Email/">
+
+                                    <div class="red-text" ng-messages="FrmAddUpdate.TxtMailNo1.$error" ng-show="FrmAddUpdate.TxtMailNo1.$touched">
+                                        <span class="red-text" ng-message="required">@Contact.TxtMailRequiredErrorMessage</span>
+                                        <span class="red-text" ng-message="pattern">@Contact.TxtMailPatternErrorMessage</span>
+                                        <span class="red-text" ng-message="notInList">@Contact.TxtMailUniqueErrorMessage</span>
+                                        <span class="red-text" ng-message="minlength">@Common.MinimumKeyWord @Common.TitleMin5 @Common.Charachter</span>
+                                        <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax25 @Common.Charachter</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>@Contact.MailNo2</label><span class="red-text"> *</span>
+                                    <input type="text" ng-model="Contact.MailNo2" class="form-control" name="TxtMailNo2"
+                                           placeholder="@Contact.MailNo2" ng-minlength="@Common.TitleMin5" ng-maxlength="@Common.TitleMax25" required ng-pattern="/@Regex.NameAr/">
+
+                                    <div class="red-text" ng-messages="FrmAddUpdate.TxtMailNo2.$error" ng-show="FrmAddUpdate.TxtMailNo2.$touched">
+                                        <span class="red-text" ng-message="required">@Contact.TxtMailRequiredErrorMessage</span>
+                                        <span class="red-text" ng-message="pattern">@Contact.TxtMailPatternErrorMessage</span>
+                                        <span class="red-text" ng-message="notInList">@Contact.TxtMailUniqueErrorMessage</span>
+                                        <span class="red-text" ng-message="minlength">@Common.MinimumKeyWord @Common.TitleMin5 @Common.Charachter</span>
+                                        <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax25 @Common.Charachter</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>@Contact.Url</label><span class="red-text"> *</span>
+                                    <input type="text" ng-model="Contact.Url" class="form-control" name="TxtUrl"
+                                           placeholder="@Contact.Url" ng-minlength="@Common.TitleMin5" ng-maxlength="@Common.TitleMax65" required ng-pattern="/@Regex.URL/">
+
+                                    <div class="red-text" ng-messages="FrmAddUpdate.TxtUrl.$error" ng-show="FrmAddUpdate.TxtUrl.$touched">
+                                        <span class="red-text" ng-message="required">@Contact.TxtUrlRequiredErrorMessage</span>
+                                        <span class="red-text" ng-message="pattern">@Contact.TxtUrlPatternErrorMessage</span> 
+                                        <span class="red-text" ng-message="minlength">@Common.MinimumKeyWord @Common.TitleMin5 @Common.Charachter</span>
+                                        <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax65 @Common.Charachter</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>@Contact.Facebook</label><span class="red-text"> *</span>
+                                    <input type="text" ng-model="Contact.Facebook" class="form-control" name="TxtFacebook"
+                                           placeholder="@Contact.Facebook" ng-minlength="@Common.TitleMin5" ng-maxlength="@Common.TitleMax65" required ng-pattern="/@Regex.URL/">
+
+                                    <div class="red-text" ng-messages="FrmAddUpdate.TxtFacebook.$error" ng-show="FrmAddUpdate.TxtFacebook.$touched">
+                                        <span class="red-text" ng-message="required">@Contact.TxtFacebookRequiredErrorMessage</span>
+                                        <span class="red-text" ng-message="pattern">@Contact.TxtFacebookPatternErrorMessage</span> 
+                                        <span class="red-text" ng-message="minlength">@Common.MinimumKeyWord @Common.TitleMin5 @Common.Charachter</span>
+                                        <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax65 @Common.Charachter</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>@Contact.Twitter</label><span class="red-text"> *</span>
+                                    <input type="text" ng-model="Contact.Twitter" class="form-control" name="TxtTwitter"
+                                           placeholder="@Contact.Twitter" ng-minlength="@Common.TitleMin5" ng-maxlength="@Common.TitleMax65" required ng-pattern="/@Regex.URL/">
+
+                                    <div class="red-text" ng-messages="FrmAddUpdate.TxtTwitter.$error" ng-show="FrmAddUpdate.TxtTwitter.$touched">
+                                        <span class="red-text" ng-message="required">@Contact.TxtTwitterRequiredErrorMessage</span>
+                                        <span class="red-text" ng-message="pattern">@Contact.TxtTwitterPatternErrorMessage</span> 
+                                        <span class="red-text" ng-message="minlength">@Common.MinimumKeyWord @Common.TitleMin5 @Common.Charachter</span>
+                                        <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax65 @Common.Charachter</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>@Contact.Instgram</label><span class="red-text"> *</span>
+                                    <input type="text" ng-model="Contact.Instgram" class="form-control" name="TxtInstgram"
+                                           placeholder="@Contact.Instgram" ng-minlength="@Common.TitleMin5" ng-maxlength="@Common.TitleMax65" required ng-pattern="/@Regex.URL/">
+
+                                    <div class="red-text" ng-messages="FrmAddUpdate.TxtInstgram.$error" ng-show="FrmAddUpdate.TxtInstgram.$touched">
+                                        <span class="red-text" ng-message="required">@Contact.TxtInstgramRequiredErrorMessage</span>
+                                        <span class="red-text" ng-message="pattern">@Contact.TxtInstgramPatternErrorMessage</span> 
+                                        <span class="red-text" ng-message="minlength">@Common.MinimumKeyWord @Common.TitleMin5 @Common.Charachter</span>
+                                        <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax65 @Common.Charachter</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>@Contact.Youtube</label><span class="red-text"> *</span>
+                                    <input type="text" ng-model="Contact.Youtube" class="form-control" name="TxtYoutube"
+                                           placeholder="@Contact.Youtube" ng-minlength="@Common.TitleMin5" ng-maxlength="@Common.TitleMax65" required ng-pattern="/@Regex.URL/">
+
+                                    <div class="red-text" ng-messages="FrmAddUpdate.TxtYoutube.$error" ng-show="FrmAddUpdate.TxtYoutube.$touched">
+                                        <span class="red-text" ng-message="required">@Contact.TxtYoutubeRequiredErrorMessage</span>
+                                        <span class="red-text" ng-message="pattern">@Contact.TxtYoutubePatternErrorMessage</span> 
+                                        <span class="red-text" ng-message="minlength">@Common.MinimumKeyWord @Common.TitleMin5 @Common.Charachter</span>
+                                        <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax65 @Common.Charachter</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>@Contact.Snapchat</label><span class="red-text"> *</span>
+                                    <input type="text" ng-model="Contact.Snapchat" class="form-control" name="TxtSnapchat"
+                                           placeholder="@Contact.Snapchat" ng-minlength="@Common.TitleMin5" ng-maxlength="@Common.TitleMax65" required ng-pattern="/@Regex.URL/">
+
+                                    <div class="red-text" ng-messages="FrmAddUpdate.TxtSnapchat.$error" ng-show="FrmAddUpdate.TxtSnapchat.$touched">
+                                        <span class="red-text" ng-message="required">@Contact.TxtSnapchatRequiredErrorMessage</span>
+                                        <span class="red-text" ng-message="pattern">@Contact.TxtSnapchatPatternErrorMessage</span> 
+                                        <span class="red-text" ng-message="minlength">@Common.MinimumKeyWord @Common.TitleMin5 @Common.Charachter</span>
+                                        <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax65 @Common.Charachter</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>@Contact.Fax</label><span class="red-text"> *</span>
+                                    <input type="text" ng-model="Contact.Fax" class="form-control" name="TxtFax"
+                                           placeholder="@Contact.Fax" ng-minlength="@Common.TitleMin5" ng-maxlength="@Common.TitleMax25" required ng-pattern="/@Regex.InternationalPhone/">
+
+                                    <div class="red-text" ng-messages="FrmAddUpdate.TxtFax.$error" ng-show="FrmAddUpdate.TxtFax.$touched">
+                                        <span class="red-text" ng-message="required">@Contact.TxtFaxRequiredErrorMessage</span>
+                                        <span class="red-text" ng-message="pattern">@Contact.TxtFaxPatternErrorMessage</span> 
+                                        <span class="red-text" ng-message="minlength">@Common.MinimumKeyWord @Common.TitleMin5 @Common.Charachter</span>
+                                        <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax25 @Common.Charachter</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>@Contact.WhatsApp</label><span class="red-text"> *</span>
+                                    <input type="text" ng-model="Contact.WhatsApp" class="form-control" name="TxtWhatsApp"
+                                           placeholder="@Contact.WhatsApp" ng-minlength="@Common.TitleMin5" ng-maxlength="@Common.TitleMax25" required ng-pattern="/@Regex.InternationalPhone/">
+
+                                    <div class="red-text" ng-messages="FrmAddUpdate.TxtWhatsApp.$error" ng-show="FrmAddUpdate.TxtWhatsApp.$touched">
+                                        <span class="red-text" ng-message="required">@Contact.TxtWhatsAppRequiredErrorMessage</span>
+                                        <span class="red-text" ng-message="pattern">@Contact.TxtWhatsAppPatternErrorMessage</span> 
+                                        <span class="red-text" ng-message="minlength">@Common.MinimumKeyWord @Common.TitleMin5 @Common.Charachter</span>
+                                        <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax25 @Common.Charachter</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>@Contact.PostalCode</label><span class="red-text"> *</span>
+                                    <input type="text" ng-model="Contact.PostalCode" class="form-control" name="TxtPostalCode"
+                                           placeholder="@Contact.PostalCode" ng-minlength="@Common.TitleMin5" ng-maxlength="@Common.TitleMax25" required ng-pattern="/@Regex.AccessCode/">
+                                    <div class="red-text" ng-messages="FrmAddUpdate.TxtPostalCode.$error" ng-show="FrmAddUpdate.TxtPostalCode.$touched">
+                                        <span class="red-text" ng-message="required">@Contact.TxtPostalcodeRequiredErrorMessage</span>
+                                        <span class="red-text" ng-message="pattern">@Contact.TxtPostalcodePatternErrorMessage</span> 
+                                        <span class="red-text" ng-message="minlength">@Common.MinimumKeyWord @Common.TitleMin5 @Common.Charachter</span>
+                                        <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax25 @Common.Charachter</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>@Contact.Mailbox</label><span class="red-text"> *</span>
+                                    <input type="text" ng-model="Contact.Mailbox" class="form-control" name="TxtMailbox"
+                                           placeholder="@Contact.Mailbox" ng-minlength="@Common.TitleMin5" ng-maxlength="@Common.TitleMax25" required  >
+
+                                    <div class="red-text" ng-messages="FrmAddUpdate.TxtMailbox.$error" ng-show="FrmAddUpdate.TxtMailbox.$touched">
+                                        <span class="red-text" ng-message="required">@Contact.TxtMailboxRequiredErrorMessage</span>
+                                        <span class="red-text" ng-message="pattern">@Contact.TxtMailboxPatternErrorMessage</span> 
+                                        <span class="red-text" ng-message="minlength">@Common.MinimumKeyWord @Common.TitleMin5 @Common.Charachter</span>
+                                        <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax25 @Common.Charachter</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>@Contact.Late</label><span class="red-text"> *</span>
+                                    <input type="text" ng-model="Contact.Late" class="form-control" name="TxtLate"
+                                           placeholder="@Contact.Late" ng-minlength="@Common.TitleMin5" ng-maxlength="@Common.TitleMax25" required  >
+
+                                    <div class="red-text" ng-messages="FrmAddUpdate.TxtLate.$error" ng-show="FrmAddUpdate.TxtLate.$touched">
+                                        <span class="red-text" ng-message="required">@Contact.TxtLateRequiredErrorMessage</span>
+                                        <span class="red-text" ng-message="pattern">@Contact.TxtLatePatternErrorMessage</span> 
+                                        <span class="red-text" ng-message="minlength">@Common.MinimumKeyWord @Common.TitleMin5 @Common.Charachter</span>
+                                        <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax25 @Common.Charachter</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>@Contact.Long</label><span class="red-text"> *</span>
+                                    <input type="text" ng-model="Contact.Long" class="form-control" name="TxtLong"
+                                           placeholder="@Contact.Long" ng-minlength="@Common.TitleMin5" ng-maxlength="@Common.TitleMax25" required  >
+
+                                    <div class="red-text" ng-messages="FrmAddUpdate.TxtLong.$error" ng-show="FrmAddUpdate.TxtLong.$touched">
+                                        <span class="red-text" ng-message="required">@Contact.TxtLongRequiredErrorMessage</span>
+                                        <span class="red-text" ng-message="pattern">@Contact.TxtLongPatternErrorMessage</span> 
+                                        <span class="red-text" ng-message="minlength">@Common.MinimumKeyWord @Common.TitleMin5 @Common.Charachter</span>
+                                        <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax25 @Common.Charachter</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary btn-with-icon" ng-disabled="FrmAddUpdate.$invalid"><i class="ion-android-checkmark-circle"></i>@Contact.btnSaveLbl</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
 
 
 </div>

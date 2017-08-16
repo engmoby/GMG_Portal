@@ -13,32 +13,7 @@
 <input type="hidden" id="HDeleteSuccessMessage" value="@Career.DeleteSuccessMessage" />
 @*<input type="hidden" id="HArabicNameUnique" value="@Career.TxtTitleUniqueErrorMessage" />*@
 <input type="hidden" id="HCannotDeleted" value="@Career.CannotDeleted" />
-<style>
-    .btn-file {
-        position: relative;
-        overflow: hidden;
-    }
-
-        .btn-file input[type=file] {
-            position: absolute;
-            top: 0;
-            right: 0;
-            min-width: 100%;
-            min-height: 100%;
-            font-size: 100px;
-            text-align: right;
-            filter: alpha(opacity=0);
-            opacity: 0;
-            background: red;
-            cursor: inherit;
-            display: block;
-        }
-
-    input[readonly] {
-        background-color: white !important;
-        cursor: text !important;
-    }
-</style>
+ 
 <div ng-controller="CareersController">
 
     <div ba-panel>
@@ -115,9 +90,9 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="TxtPostion">@Career.Postion</label><span class="red-text"> *</span>
+                            <label for="TxtPostion">@Career.Position_</label><span class="red-text"> *</span>
                             <input type="text" ng-model="Career.DisplayValue" class="form-control" name="TxtPostion"
-                                   placeholder="@Career.Postion" ng-minlength="20" ng-maxlength="30" required ng-pattern="/@Regex.NameAr/">
+                                   placeholder="@Career.Position_" ng-minlength="20" ng-maxlength="30" required ng-pattern="/@Regex.NameAr/">
 
                             <div class="red-text" ng-messages="FrmAddUpdate.TxtPostion.$error" ng-show="FrmAddUpdate.TxtPostion.$touched">
                                 <span class="red-text" ng-message="required">@Career.TxtPostionRequiredErrorMessage</span>

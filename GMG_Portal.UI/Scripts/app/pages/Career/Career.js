@@ -56,26 +56,26 @@ function CareersController($scope, CareersApi, uploadService, $rootScope, $timeo
                     var index;
                     switch ($scope.action) {
                         case 'edit':
-                            index = $scope.Careers.indexOf($filter('filter')($scope.Careers, { 'ID': $scope.Career.ID }, true)[0]);
-                           // $scope.Careers[index] = angular.copy(response.data);
-                            CareersApi.GetAll().then(function (response) {
-                                $scope.Careers = response.data; 
-                            }); 
+                            index = $scope.Careers.indexOf($filter('filter')($scope.Careers, { 'Id': $scope.Career.Id }, true)[0]);
+                            $scope.Careers[index] = angular.copy(response.data);
+                            //CareersApi.GetAll().then(function (response) {
+                            //    $scope.Careers = response.data; 
+                            //}); 
                             toastr.success($('#HUpdateSuccessMessage').val(), 'Success');
                             break;
                         case 'delete':
-                            index = $scope.Careers.indexOf($filter('filter')($scope.Careers, { 'ID': $scope.Career.ID }, true)[0]);
-                           // $scope.Careers[index] = angular.copy(response.data);
-                            CareersApi.GetAll().then(function (response) {
-                                $scope.Careers = response.data;
-                            });
+                            index = $scope.Careers.indexOf($filter('filter')($scope.Careers, { 'Id': $scope.Career.Id }, true)[0]);
+                            $scope.Careers[index] = angular.copy(response.data);
+                            //CareersApi.GetAll().then(function (response) {
+                            //    $scope.Careers = response.data;
+                            //});
                             toastr.success($('#HDeleteSuccessMessage').val(), 'Success');
                             break;
                         case 'add':
-                            CareersApi.GetAll().then(function (response) {
-                                $scope.Careers = response.data;
-                            });
-                            // $scope.Careers.push(angular.copy(response.data));
+                            //CareersApi.GetAll().then(function (response) {
+                            //    $scope.Careers = response.data;
+                            //});
+                           $scope.Careers.push(angular.copy(response.data));
                             toastr.success($('#HSaveSuccessMessage').val(), 'Success');
                             break;
                     }
@@ -87,7 +87,8 @@ function CareersController($scope, CareersApi, uploadService, $rootScope, $timeo
                     toastr.error($('#HArabicNameUnique').val(), 'Error');
                     break;
                 case "HasRelationship":
-                    toastr.error($('#HCannotDeleted').val(), 'Error');
+                    index = $scope.Careers.indexOf($filter('filter')($scope.Careers, { 'Id': $scope.Career.Id }, true)[0]);
+                    $scope.Careers[index] = angular.copy(response.data); toastr.error($('#HCannotDeleted').val(), 'Error');
                     break;
                 default:
 
@@ -109,64 +110,7 @@ function CareersController($scope, CareersApi, uploadService, $rootScope, $timeo
         $scope.Career.IsDeleted = true;
         $scope.save();
     }
-    $scope.uploading = false;
-    $scope.countFiles = '';
-    $scope.data = []; //For displaying file name on browser
-    $scope.formdata = new FormData();
-    $scope.getFiles = function (file) {
-        angular.forEach(file, function (value, key) {
-            $scope.formdata.append(key, value);
-            $scope.data.push({ FileName: value.name, FileLength: value.size });
-            $scope.Image = value.name;
-            // console.log($scope.Image);
-        });
-        //This line is just show you there is possible to
-        //send in extra parameter to server.
-
-
-        $scope.countFiles = $scope.data.length == 0 ? '' : $scope.data.length + ' files selected';
-        $scope.$apply();
-        $scope.formdata.append('countFiles', $scope.countFiles);
-        // console.log($scope.data);
-    };
-
-    $scope.uploadFiles = function () {
-        debugger;
-        if ($scope.data.length === 0) {
-            $scope.save();
-            return;
-        }
-        uploadService.uploadFiles($scope)
-            // then() called when uploadFiles gets back
-            .then(function (data) {
-                // promise fulfilled
-                $scope.uploading = false;
-                if (data === '') {
-                    // console.log(data);
-                    //   $scope.Image=data.
-                    $scope.save();
-                    $scope.data = [];
-                    alert("Done!!!");
-                    $scope.formdata = new FormData();
-                    $scope.data = [];
-                    $scope.countFiles = '';
-                    $scope.$apply;
-                } else {
-                    // console.log(data);
-                    //Server Error
-                    $scope.data = [];
-                    alert("Shit, What happended up there!!! " + data);
-                }
-            }, function (error) {
-                $scope.uploading = false;
-                $scope.data = [];
-                //Server Error
-                alert("Shit, What happended up there!!! " + error);
-            }
-
-            );
-    };
-
+  
 }
 
 

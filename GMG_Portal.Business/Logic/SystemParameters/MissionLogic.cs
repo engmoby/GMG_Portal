@@ -23,7 +23,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 returnValue = _db.Front_Mission.OrderBy(p => p.IsDeleted).ToList();
             else
             {
-                var getList = _db.Front_Mission_Translate.Where(p => p.Lang_Id == langId).ToList();
+                var getList = _db.Front_Mission_Translate.Where(p => p.langId == langId).ToList();
                 foreach (var frontMissionTranslate in getList)
                 {
                     returnValue.Add(new Front_Mission
@@ -46,7 +46,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 returnValue = _db.Front_Mission.Where(p => p.IsDeleted != true).ToList();
             else
             {
-                var getList = _db.Front_Mission_Translate.Where(p => p.IsDeleted != true && p.Lang_Id == langId).ToList();
+                var getList = _db.Front_Mission_Translate.Where(p => p.IsDeleted != true && p.langId == langId).ToList();
                 foreach (var frontMissionTranslate in getList)
                 {
                     returnValue.Add(new Front_Mission
@@ -67,7 +67,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         }
         public Front_Mission_Translate GetByLang(int id, string langId)
         {
-            return _db.Front_Mission_Translate.FirstOrDefault(p => p.Id != id && p.Lang_Id == langId);
+            return _db.Front_Mission_Translate.FirstOrDefault(p => p.Id != id && p.langId == langId);
         }
         private Front_Mission Save(Front_Mission mission)
         {

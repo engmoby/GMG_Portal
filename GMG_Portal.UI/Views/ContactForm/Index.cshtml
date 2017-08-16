@@ -35,8 +35,7 @@
                     <th st-sort="Name">@ContactForm.FirstName</th>
                     <th st-sort="Title">@ContactForm.Email</th>
                     <th st-sort="Title">@ContactForm.Phone</th>
-                    <th st-sort="Title">@ContactForm.CreationTime</th>
-                    <th>@ContactForm.Action</th>
+                    <th st-sort="Title">@ContactForm.CreationTime</th> 
                     <th>@ContactForm.Action</th>
                     @*<th ng-show="ContactForm.Seen">@ContactForm.Seen By</th>*@
 
@@ -48,11 +47,9 @@
                     <td>{{$index+1}}</td>
                     <td>{{ContactForm.FirstName}}</td>
                     <td>{{ContactForm.Email}}</td>
-                    <td>{{ContactForm.Phone}}</td>
+                    <td>{{ContactForm.PhoneNo}}</td>
                     <td>{{ContactForm.CreationTime   | date:'fullDate'}}</td>
-                    <td>
-                        <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(ContactForm)"><i class="fa fa-pencil" aria-hidden="true"></i>@ContactForm.View</button>
-                    </td>
+                
                     <td>
                         <div class="buttons" ng-show="!ContactForm.Seen">
                             <button class="center-block btn btn-default  restore-button btn-xs btn-with-icon" ng-click="Seen(ContactForm)"><i class="fa fa-undo" aria-hidden="true"></i>@ContactForm.Seen</button>

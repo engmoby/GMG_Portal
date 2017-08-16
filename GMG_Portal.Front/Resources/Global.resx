@@ -216,4 +216,19 @@
   <data name="Home_SearchRoomsTitle" xml:space="preserve">
     <value>SEARCH ROOMS</value>
   </data>
+  <data name="First_Name_Required" xml:space="preserve">
+    <value>First Name Required</value>
+  </data>
+  <data name="Last_Name_Required" xml:space="preserve">
+    <value>Last Name Required</value>
+  </data>
+  <data name="Email_Required" xml:space="preserve">
+    <value>Email Required</value>
+  </data>
+  <data name="PhoneNo_Required" xml:space="preserve">
+    <value>PhoneNo Required</value>
+  </data>
+  <data name="Attach_file_Required" xml:space="preserve">
+    <value>Attach file Required</value>
+  </data>
 </root>

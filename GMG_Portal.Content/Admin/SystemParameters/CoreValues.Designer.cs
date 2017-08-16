@@ -223,7 +223,7 @@ namespace GMG_Portal.Content.Admin.SystemParameters {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Home Slider.
+        ///   Looks up a localized string similar to Core Value.
         /// </summary>
         public static string ModalTitle {
             get {
@@ -457,7 +457,7 @@ namespace GMG_Portal.Content.Admin.SystemParameters {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hotel Title is required.
+        ///   Looks up a localized string similar to Core Value Title is required.
         /// </summary>
         public static string TxtTitleRequiredErrorMessage {
             get {

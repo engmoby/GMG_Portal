@@ -223,7 +223,7 @@ namespace GMG_Portal.Content.Admin.Hotel {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Home Slider.
+        ///   Looks up a localized string similar to Feature.
         /// </summary>
         public static string ModalTitle {
             get {

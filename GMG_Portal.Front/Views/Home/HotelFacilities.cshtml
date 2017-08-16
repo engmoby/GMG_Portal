@@ -13,60 +13,120 @@
                     <div class="col-sm-4">
                         <div class="mg-feature">
                             <div class="mg-feature-icon-title">
-                                <i class="fp-ht-receptionist"></i>
+                                <i class="@Model.Features[0].Icon"></i>
+                                @*<i class="fp-ht-receptionist"></i>*@
                                 <h3>@Model.Features[0].DisplayValue</h3>
                             </div>
-                            <p>@Model.Features[0].DisplayValueDesc </p>
+                            @if (@Model.Features[0].DisplayValueDesc.Length >= 50)
+                            {
+                                <p>@Model.Features[0].DisplayValueDesc.Substring(0, 50)</p>
+                            }
+                            else
+                            {
+                                <p>@Model.Features[0].DisplayValueDesc </p>
+
+                            }
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="mg-feature">
                             <div class="mg-feature-icon-title">
-                                <i class="fa fa-cogs"></i>
-                                <h3>@Model.Features[1].DisplayValue</h3>
+                                <div class="mg-feature-icon-title">
+                                    <i class="@Model.Features[1].Icon"></i>
+
+                                    @*<i class="fa fa-cogs"></i>*@
+                                    <h3>@Model.Features[1].DisplayValue</h3>
+                                </div>
+                                @if (@Model.Features[1].DisplayValueDesc.Length >= 50)
+                                {
+                                    <p>@Model.Features[1].DisplayValueDesc.Substring(0, 50)</p>
+                                }
+                                else
+                                {
+                                    <p>@Model.Features[1].DisplayValueDesc </p>
+                                }
                             </div>
-                            <p>@Model.Features[1].DisplayValueDesc </p>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="mg-feature">
                             <div class="mg-feature-icon-title">
-                                <i class="fa fa-car"></i>
+                                <i class="@Model.Features[2].Icon"></i>
+
+                                @*<i class="fa fa-car"></i>*@
                                 <h3>@Model.Features[2].DisplayValue</h3>
                             </div>
-                            <p>@Model.Features[2].DisplayValueDesc</p>
+                            @if (@Model.Features[2].DisplayValueDesc.Length >= 50)
+                                {
+                                <p>@Model.Features[2].DisplayValueDesc.Substring(0, 50)</p>
+                                }
+                                else
+                                {
+                                <p>@Model.Features[2].DisplayValueDesc</p>
+                                }
                         </div>
                     </div>
+
                 </div>
-                <div class="row">
-                    <div class="col-sm-4">
-                        <div class="mg-feature">
-                            <div class="mg-feature-icon-title">
-                                <i class="fa fa-phone"></i>
-                                <h3>@Model.Features[3].DisplayValue</h3>
+                    <div class="row">
+
+                        <div class="col-sm-4">
+                            <div class="mg-feature">
+                                <div class="mg-feature-icon-title">
+                                    <i class="@Model.Features[3].Icon"></i>
+
+                                    @*<i class="fa fa-phone"></i>*@
+                                    <h3>@Model.Features[3].DisplayValue</h3>
+                                </div>
+                                @if (@Model.Features[3].DisplayValueDesc.Length >= 50)
+                                {
+                                <p>@Model.Features[3].DisplayValueDesc.Substring(0, 50)</p>
+                                }
+                                else
+                                {
+                                <p>@Model.Features[3].DisplayValueDesc</p>
+                                }
                             </div>
-                            <p>@Model.Features[3].DisplayValueDesc</p>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="mg-feature">
+                                <div class="mg-feature-icon-title">
+                                    <i class="@Model.Features[4].Icon"></i>
+
+                                    @*<i class="fa fa-coffee"></i>*@
+                                    <h3>@Model.Features[4].DisplayValue</h3>
+                                </div>
+                                @if (@Model.Features[4].DisplayValueDesc.Length >= 50)
+                                {
+                                <p>@Model.Features[4].DisplayValueDesc.Substring(0, 50)</p>
+                                }
+                                else
+                                {
+                                <p>@Model.Features[4].DisplayValueDesc</p>
+                                }
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="mg-feature">
+                                <div class="mg-feature-icon-title">
+                                    <i class="@Model.Features[5].Icon"></i>
+
+                                    @*<i class="fa fa-cogs"></i>*@
+                                    <h3>@Model.Features[5].DisplayValue</h3>
+                                </div>
+
+                                @if (@Model.Features[5].DisplayValueDesc.Length >= 50)
+                                {
+                                <p>@Model.Features[5].DisplayValueDesc.Substring(0, 50)</p>
+                                }
+                                else
+                                {
+                                <p>@Model.Features[5].DisplayValueDesc</p>
+                                }
+                            </div>
                         </div>
                     </div>
-                    <div class="col-sm-4">
-                        <div class="mg-feature">
-                            <div class="mg-feature-icon-title">
-                                <i class="fa fa-coffee"></i>
-                                <h3>@Model.Features[4].DisplayValue</h3>
-                            </div>
-                            <p>@Model.Features[4].DisplayValueDesc</p>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="mg-feature">
-                            <div class="mg-feature-icon-title">
-                                <i class="fa fa-cogs"></i>
-                                <h3>@Model.Features[5].DisplayValue</h3>
-                            </div>
-                            <p>@Model.Features[5].DisplayValueDesc</p>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
         </div>
     </div>

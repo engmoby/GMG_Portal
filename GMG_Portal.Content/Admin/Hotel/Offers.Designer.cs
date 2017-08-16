@@ -187,7 +187,7 @@ namespace GMG_Portal.Content.Admin.Hotel {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to News.
+        ///   Looks up a localized string similar to Offers.
         /// </summary>
         public static string ModalTitle {
             get {
@@ -327,6 +327,24 @@ namespace GMG_Portal.Content.Admin.Hotel {
         public static string TxtImageUniqueErrorMessage {
             get {
                 return ResourceManager.GetString("TxtImageUniqueErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Price Invalid Pattern.
+        /// </summary>
+        public static string TxtPricePatternErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtPricePatternErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Price is required.
+        /// </summary>
+        public static string TxtPriceRequiredErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtPriceRequiredErrorMessage", resourceCulture);
             }
         }
         

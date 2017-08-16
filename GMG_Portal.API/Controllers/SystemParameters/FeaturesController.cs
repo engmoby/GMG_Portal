@@ -29,6 +29,19 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 Log.LogError(ex);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
+        }  public HttpResponseMessage GetAllByTake6()
+        {
+            try
+            {
+                var featuresLogic = new FeaturesLogic();
+                var features = featuresLogic.GetAllByTake6();
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Features>>(features));
+            }
+            catch (Exception ex)
+            {
+                Log.LogError(ex);
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+            }
         }
         public HttpResponseMessage GetAllWithDeleted()
         {

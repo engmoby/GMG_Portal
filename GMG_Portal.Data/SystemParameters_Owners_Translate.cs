@@ -36,6 +36,6 @@ namespace GMG_Portal.Data
         public string Facebook { get; set; }
         public string Twitter { get; set; }
         public string LinkedIn { get; set; }
-        public string Lang_ID { get; set; }
+        public string langId { get; set; }
     }
 }

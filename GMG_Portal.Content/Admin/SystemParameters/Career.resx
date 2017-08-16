@@ -211,13 +211,13 @@
     <value>Invalid Pattern</value>
   </data>
   <data name="TxtPostionRequiredErrorMessage" xml:space="preserve">
-    <value>Postion is required</value>
+    <value>Position  is required</value>
   </data>
   <data name="TxtPostionUniqueErrorMessage" xml:space="preserve">
-    <value>Postion  is unique</value>
+    <value>Position is unique</value>
   </data>
-  <data name="Postion" xml:space="preserve">
-    <value>Postion</value>
+  <data name="Position " xml:space="preserve">
+    <value>Position </value>
   </data>
   <data name="ApplyCount" xml:space="preserve">
     <value>Apply Count</value>

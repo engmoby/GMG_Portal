@@ -1,6 +1,7 @@
 ﻿controllerProvider.register('NewsController', ['$scope', 'NewsApi', 'uploadNewsService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', NewsController]);
 function NewsController($scope, NewsApi, uploadNewsService, $rootScope, $timeout, $filter, $uibModal, toastr) {
 
+    $rootScope.ViewLoading = true;
     var langId = document.querySelector('#HCurrentLang').value;
     var CurrentLanguage = langId;
     $("#DropdwonLang").change(function () {
@@ -9,13 +10,12 @@ function NewsController($scope, NewsApi, uploadNewsService, $rootScope, $timeout
         document.getElementById("HCurrentLang").value = selectedValue;
         CurrentLanguage = selectedValue;
 
-        debugger;
-
         NewsApi.GetAll(CurrentLanguage).then(function (response) {
             $scope.News = response.data;
             $rootScope.ViewLoading = false;
         });
     });
+    $scope.SelectedCategory = null;
 
     $scope.Image = "";
     $scope.ImageFormatValidaiton = "Please upload Images ";
@@ -23,12 +23,10 @@ function NewsController($scope, NewsApi, uploadNewsService, $rootScope, $timeout
     var maxFileSize = 2048000; // 1MB -> 1000 * 1024
 
     $scope.letterLimit = 20;
-    $rootScope.ViewLoading = true;
     NewsApi.GetAll(CurrentLanguage).then(function (response) {
         $scope.News = response.data;
         $rootScope.ViewLoading = false;
     });
-
     //get Categories
 
     NewsApi.GetAllCategories(CurrentLanguage).then(function (response) {
@@ -44,17 +42,19 @@ function NewsController($scope, NewsApi, uploadNewsService, $rootScope, $timeout
         $scope.FrmAddUpdate.$setPristine();
         $scope.FrmAddUpdate.$setUntouched();
         if (New == null) New = {}
+
         else {
+            $scope.SelectedCategory = null;
+
+            console.log($scope.SelectedCategory);
             var categoryIndex = $scope.Categorys.indexOf($filter('filter')($scope.Categorys, { 'Id': New.CategoryId }, true)[0]);
             $scope.SelectedCategory = $scope.Categorys[categoryIndex];
+            console.log($scope.SelectedCategory.DisplayValue);
         };
         $scope.New = angular.copy(New);
         if ($scope.New.Image)
             $scope.countFiles = $scope.New.Image;
 
-        $timeout(function () {
-            document.querySelector('input[name="TxtNameAr"]').focus();
-        }, 1000);
     }
     $scope.openImage = function (New) {
         debugger;
@@ -97,26 +97,26 @@ function NewsController($scope, NewsApi, uploadNewsService, $rootScope, $timeout
                     var index;
                     switch ($scope.action) {
                         case 'edit':
-                            index = $scope.News.indexOf($filter('filter')($scope.News, { 'ID': $scope.New.ID }, true)[0]);
-                            // $scope.News[index] = angular.copy(response.data);
-                            NewsApi.GetAll(CurrentLanguage).then(function (response) {
-                                $scope.News = response.data;
-                            });
+                            index = $scope.News.indexOf($filter('filter')($scope.News, { 'Id': $scope.New.Id }, true)[0]);
+                            $scope.News[index] = angular.copy(response.data);
+                            //NewsApi.GetAll(CurrentLanguage).then(function (response) {
+                            //    $scope.News = response.data;
+                            //});
                             toastr.success($('#HUpdateSuccessMessage').val(), 'Success');
                             break;
                         case 'delete':
-                            index = $scope.News.indexOf($filter('filter')($scope.News, { 'ID': $scope.New.ID }, true)[0]);
-                            // $scope.News[index] = angular.copy(response.data);
-                            NewsApi.GetAll(CurrentLanguage).then(function (response) {
-                                $scope.News = response.data;
-                            });
+                            index = $scope.News.indexOf($filter('filter')($scope.News, { 'Id': $scope.New.Id }, true)[0]);
+                            $scope.News[index] = angular.copy(response.data);
+                            //NewsApi.GetAll(CurrentLanguage).then(function (response) {
+                            //    $scope.News = response.data;
+                            //});
                             toastr.success($('#HDeleteSuccessMessage').val(), 'Success');
                             break;
                         case 'add':
-                            NewsApi.GetAll(CurrentLanguage).then(function (response) {
-                                $scope.News = response.data;
-                            });
-                            // $scope.News.push(angular.copy(response.data));
+                            //NewsApi.GetAll(CurrentLanguage).then(function (response) {
+                            //    $scope.News = response.data;
+                            //});
+                            $scope.News.push(angular.copy(response.data));
                             toastr.success($('#HSaveSuccessMessage').val(), 'Success');
                             break;
                     }
@@ -228,13 +228,13 @@ function NewsController($scope, NewsApi, uploadNewsService, $rootScope, $timeout
             );
     };
 
-    $scope.CategoryObject = {
-        selectedCategory: [{}]
-    };
+
 
     $scope.selectedCategorysChanged = function (selectedCategory) {
-        debugger;
-        $scope.SelectedCategory = selectedCategory;
+        if (selectedCategory != null) {
+            $scope.SelectedCategory = selectedCategory;
+        }
+
     }
 
 }

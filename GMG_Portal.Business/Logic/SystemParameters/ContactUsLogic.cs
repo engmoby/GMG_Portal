@@ -107,6 +107,8 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             contactUs.Long = postedContactUs.Long;
             contactUs.Mailbox = postedContactUs.Mailbox;
             contactUs.WhatsApp = postedContactUs.WhatsApp;
+            contactUs.MailNo1 = postedContactUs.MailNo1;
+            contactUs.MailNo2= postedContactUs.MailNo2;
             contactUs.LastModificationTime = Parameters.CurrentDateTime;
             contactUs.LastModifierUserId = Parameters.UserId;
             return Save(contactUs);

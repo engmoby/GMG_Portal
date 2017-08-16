@@ -4,53 +4,18 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-
-
-<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-
-
-<script type="text/javascript">
-
-    $(document).ready(function () {
-        $('#input-group.mg-check-in').datepicker().on('changeDate', function (ev) {
-            $('#checkin').change();
-        });
-
-        $('#input-group.mg-check-out').datepicker().on('changeDate', function (ev) {
-            $('#checkout').change();
-        });
-
-
-
-        $('#checkin').change(function () {
-            $('#checkindate').val($('#checkin').val());
-        });
-
-
-        $('#checkout').change(function () {
-            $('#checkoutdate').val($('#checkout').val());
-        });
-
-    });
-
-</script>
-
-
-
-
+ 
 <div class="mg-page-title parallax">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h2>@Model.DisplayValue</h2>
-                <p>@Model.DisplayValueDesc</p>
+                <h2>@Model.DisplayValue</h2>  
             </div>
         </div>
     </div>
 </div>
 <div class="mg-single-room-price">
-    <div class="mg-srp-inner">$@Model.PriceStart<span>/Night</span></div>
+    <div class="mg-srp-inner">$@Model.PriceStart<span>/Night</span></div> 
 </div>
 <div class="mg-single-room">
     <div class="container">
@@ -61,7 +26,7 @@
                     <ul class="mg-gallery" id="mg-gallery">
                         @foreach (var n in Model.ImageList)
                         {
-                            <li><img src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/@n.Image" style="width: 103%; height: 362px;" alt="Partner Logo"></li>
+                            <li><img src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/Hotels/@n.Image" style="width: 103%; height: 362px;" alt="Partner Logo"></li>
                         }
                     </ul>
 
@@ -69,7 +34,7 @@
                         @foreach (var n in Model.ImageList)
                         {
                             <li>
-                                <img src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/@n.Image" style="width: 98px;height: 80px;" alt="Partner Logo">
+                                <img src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/Hotels/@n.Image" style="width: 98px;height: 80px;" alt="Partner Logo">
                             </li>
                         }
                     </ul>
@@ -79,19 +44,19 @@
                 <h2 class="mg-sec-left-title">Room Fecilities</h2>
                 <div class="row">
                  
-                @for (int i = 0; i < Model.FeaturesList.Count; i++)
-                {
-                    if (i > 0 && i % 2 == 0)
+                    @for (int i = 0; i < Model.FeaturesList.Count; i++)
                     {
-                        @:</div><div class="row"> 
-                    }
+                        if (i > 0 && i % 2 == 0)
+                        {
+                            @:</div><div class="row"> 
+                        }
 
-                    <div class="col-xs-6">
-                        <ul>
-                            <li><i class="@Model.FeaturesList[i].Icon"></i> @Model.FeaturesList[i].DisplayValue</li>
-                        </ul>
-                    </div>
-                } 
+                        <div class="col-xs-6">
+                            <ul>
+                                <li><i class="@Model.FeaturesList[i].Icon"></i> @Model.FeaturesList[i].DisplayValue</li>
+                            </ul>
+                        </div>
+                    } 
                 </div>
             </div>
         </div>
@@ -118,14 +83,14 @@
                                             <div class="input-group date mg-check-in">
                                                 <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
                                                 <input type="text" class="form-control" id="checkin" placeholder="Check In">
-                                                <input type="hidden" id="checkindate"/>
+                                                <input type="hidden" id="checkindate" />
                                             </div>
                                         </div>
                                         <div class="col-md-3 col-xs-6">
                                             <div class="input-group date mg-check-out">
                                                 <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
                                                 <input type="text" class="form-control" id="checkout" placeholder="Check Out">
-                                                <input type="hidden" id="checkoutdate"/>
+                                                <input type="hidden" id="checkoutdate" />
                                             </div>
                                         </div>
                                         <div class="col-md-3">
@@ -151,8 +116,10 @@
                                             </div>
                                         </div>
                                         <div class="col-md-3">
-                                            <button class="btn btn-main btn-block" type="button" id="addressSearch"   
-                                                    onclick="location.href='@Url.Action("Index", "BookingLite")?checkin=' + $('#checkindate').val() + '&checkout=' + $('#checkoutdate').val() + '&adult=' +  $('#adult').val() + '&child=' + $('#child').val() + '&hotelid=' + @Model.Id ">Check Now</button>
+                                            <button class="btn btn-main btn-block" type="button" id="addressSearch"
+                                                    onclick="location.href='@Url.Action("Index", "BookingLite")?checkin=' + $('#checkindate').val() + '&checkout=' + $('#checkoutdate').val() + '&adult=' +  $('#adult').val() + '&child=' + $('#child').val() + '&hotelid=' + @Model.Id ">
+                                                Check Now
+                                            </button>
 
                                         </div>
                                     </div>
@@ -164,6 +131,6 @@
             </div>
         </div>
 
-
+				
     </div>
 </div>

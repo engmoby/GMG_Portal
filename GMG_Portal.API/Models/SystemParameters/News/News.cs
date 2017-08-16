@@ -31,7 +31,7 @@ namespace GMG_Portal.API.Models.SystemParameters
         public string OperationStatus { get; set; }
         public List<string> Tags { get; set; }
         public int CreationDay { get; set; }
-        public int CreationMonth { get; set; }
+        public string CreationMonth { get; set; }
         public List<Category> Categories { get; set; }
         public string LangId { get; set; }
     }

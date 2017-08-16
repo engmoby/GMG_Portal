@@ -223,11 +223,11 @@ namespace GMG_Portal.Content.Admin.SystemParameters {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Postion.
+        ///   Looks up a localized string similar to Position .
         /// </summary>
-        public static string Postion {
+        public static string Position_ {
             get {
-                return ResourceManager.GetString("Postion", resourceCulture);
+                return ResourceManager.GetString("Position ", resourceCulture);
             }
         }
         
@@ -376,7 +376,7 @@ namespace GMG_Portal.Content.Admin.SystemParameters {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Postion is required.
+        ///   Looks up a localized string similar to Position  is required.
         /// </summary>
         public static string TxtPostionRequiredErrorMessage {
             get {
@@ -385,7 +385,7 @@ namespace GMG_Portal.Content.Admin.SystemParameters {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Postion  is unique.
+        ///   Looks up a localized string similar to Position is unique.
         /// </summary>
         public static string TxtPostionUniqueErrorMessage {
             get {

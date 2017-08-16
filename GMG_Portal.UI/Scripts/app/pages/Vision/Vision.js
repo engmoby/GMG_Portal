@@ -1,5 +1,16 @@
 ﻿controllerProvider.register('VisionsController', ['$scope', 'VisionsApi', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', VisionsController]);
 function VisionsController($scope, VisionsApi, $rootScope, $timeout, $filter, $uibModal, toastr) {
+    var langId = document.querySelector('#HCurrentLang').value;
+    var CurrentLanguage = langId;
+    $("#DropdwonLang").change(function () {
+        var selectedValue = $(this).val();
+        document.getElementById("HCurrentLang").value = selectedValue;
+        CurrentLanguage = selectedValue;
+        VisionsApi.GetAll(CurrentLanguage).then(function (response) {
+            $scope.Visions = response.data;
+            $rootScope.ViewLoading = false;
+        });
+    });
     $rootScope.ViewLoading = true;
 
     $scope.letterLimit = 20;
@@ -15,28 +26,19 @@ function VisionsController($scope, VisionsApi, $rootScope, $timeout, $filter, $u
         $scope.action = vision == null ? 'add' : 'edit';
         $scope.FrmAddUpdate.$setPristine();
         $scope.FrmAddUpdate.$setUntouched();
-        if (vision == null) vision = { 'NameAr': '', 'NameEn': '' };
-        $scope.Vision = angular.copy(vision);
-        $timeout(function () {
-            document.querySelector('input[name="TxtNameAr"]').focus();
-        }, 1000);
+        if (vision == null) vision = { };
+        $scope.Vision = angular.copy(vision); 
     }
 
     $scope.back = function () {
         $('#ModelAddUpdate').modal('hide');
     }
-
-    $scope.Restore = function (vision) {
-        debugger;
-        $scope.Vision = angular.copy(vision);
-        $scope.Vision.IsDeleted = false;
-        $scope.action = 'edit';
-        $scope.save();
-    }
-
+     
     $scope.save = function () {
         debugger;
         $rootScope.ViewLoading = true;
+        $scope.Vision.LangId = CurrentLanguage;
+
         VisionsApi.Save($scope.Vision).then(function (response) {
 
             switch (response.data.OperationStatus) {
@@ -44,12 +46,12 @@ function VisionsController($scope, VisionsApi, $rootScope, $timeout, $filter, $u
                     var index;
                     switch ($scope.action) {
                         case 'edit':
-                            index = $scope.Visions.indexOf($filter('filter')($scope.Visions, { 'ID': $scope.Vision.ID }, true)[0]);
+                            index = $scope.Visions.indexOf($filter('filter')($scope.Visions, { 'Id': $scope.Vision.Id }, true)[0]);
                             $scope.Visions[index] = angular.copy(response.data);
                             toastr.success($('#HUpdateSuccessMessage').val(), 'Success');
                             break;
                         case 'delete':
-                            index = $scope.Visions.indexOf($filter('filter')($scope.Visions, { 'ID': $scope.Vision.ID }, true)[0]);
+                            index = $scope.Visions.indexOf($filter('filter')($scope.Visions, { 'Id': $scope.Vision.Id }, true)[0]);
                             $scope.Visions[index] = angular.copy(response.data);
                             toastr.success($('#HDeleteSuccessMessage').val(), 'Success');
                             break;
@@ -81,65 +83,7 @@ function VisionsController($scope, VisionsApi, $rootScope, $timeout, $filter, $u
         });
     }
 
-    $scope.Delete = function (Vision) {
-        $scope.action = 'delete';
-        $scope.Vision = Vision;
-        $scope.Vision.IsDeleted = true;
-        $scope.save();
-    }
-  
-    $scope.setFiles = function (element) {
-        $scope.$apply(function ($scope) {
-            console.log('files:', element.files);
-            // Turn the FileList object into an Array
-            $scope.files = []
-            for (var i = 0; i < element.files.length; i++) {
-                $scope.files.push(element.files[i])
-            }
-            $scope.progressVisible = false
-        });
-    };
-
-    $scope.uploadFile = function () {
-        var fd = new FormData()
-        for (var i in $scope.files) {
-            fd.append("uploadedFile", $scope.files[i])
-        }
-        var xhr = new XMLHttpRequest()
-        xhr.upload.addEventListener("progress", uploadProgress, false)
-        xhr.addEventListener("load", uploadComplete, false)
-        xhr.addEventListener("error", uploadFailed, false)
-        xhr.addEventListener("abort", uploadCanceled, false)
-        xhr.open("POST", "/fileupload")
-        $scope.progressVisible = true
-        xhr.send(fd)
-    }
-
-    function uploadProgress(evt) {
-        $scope.$apply(function () {
-            if (evt.lengthComputable) {
-                $scope.progress = Math.round(evt.loaded * 100 / evt.total)
-            } else {
-                $scope.progress = 'unable to compute'
-            }
-        })
-    }
-
-    function uploadComplete(evt) {
-        /* This event is raised when the server send back a response */
-        alert(evt.target.responseText)
-    }
-
-    function uploadFailed(evt) {
-        alert("There was an error attempting to upload the file.")
-    }
-
-    function uploadCanceled(evt) {
-        $scope.$apply(function () {
-            $scope.progressVisible = false
-        })
-        alert("The upload has been canceled by the user or the browser dropped the connection.")
-    }
+    
 
 }
   

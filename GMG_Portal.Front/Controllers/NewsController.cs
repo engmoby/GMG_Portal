@@ -26,7 +26,7 @@ namespace Front.Controllers
         }
         // GET: news
         public async Task<ActionResult> Index(int? id)
-        { 
+        {
             if (!id.HasValue)
             {
                 return RedirectToAction("Index", "News", new { Id = 0 });
@@ -38,7 +38,7 @@ namespace Front.Controllers
             if (id == 0)
                 news = url + "News/GetAll?langId=" + "En";
             else
-                news = url + "News/GetAllByCatrgoryId?categoryId=" + id + "&postedNews=" + newsModel;
+                news = url + "News/GetAllByCatrgoryId?categoryId=" + id + "&langId=" + "En";
             var newsModels = new List<News>();
 
 
@@ -49,6 +49,15 @@ namespace Front.Controllers
                 var responseData = responseMessageApi.Content.ReadAsStringAsync().Result;
                 var newsList = JsonConvert.DeserializeObject<List<News>>(responseData);
                 newsModels = newsList;
+                if (newsList.Count == 0)
+                {
+                    TempData["alertMessage"] = "No News for this category, Kindly redirect to home";
+                    TempData["alertNoNews"] = "No News, Kindly redirect to home";
+
+                    return RedirectToAction("Index", "Home");
+
+
+                }
             }
 
             return View(newsModels);

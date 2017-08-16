@@ -1,12 +1,24 @@
 ﻿controllerProvider.register('OwnersController', ['$scope', 'OwnersApi', 'uploadOwnersService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', OwnersController]);
 function OwnersController($scope, OwnersApi, uploadOwnersService, $rootScope, $timeout, $filter, $uibModal, toastr) {
-    $scope.ImageFormatValidaiton = "Please upload Images ";
 
+    var langId = document.querySelector('#HCurrentLang').value;
+    var CurrentLanguage = langId;
+    $("#DropdwonLang").change(function () {
+        var selectedValue = $(this).val();
+        document.getElementById("HCurrentLang").value = selectedValue;
+        CurrentLanguage = selectedValue;
+        OwnersApi.GetAll(CurrentLanguage).then(function (response) {
+            $scope.Owners = response.data;
+            $rootScope.ViewLoading = false;
+        });
+    });
+    $scope.ImageFormatValidaiton = "Please upload Images ";
     $scope.ImageSizeValidaiton = "Can't upload image more than 1MB";
+    var maxFileSize = 2048000; // 1MB -> 1000 * 1024
     $scope.Image = "";
     $scope.letterLimit = 20;
     $rootScope.ViewLoading = true;
-    OwnersApi.GetAll().then(function (response) {
+    OwnersApi.GetAll(CurrentLanguage).then(function (response) {
         $scope.Owners = response.data;
         $rootScope.ViewLoading = false;
     });
@@ -22,20 +34,17 @@ function OwnersController($scope, OwnersApi, uploadOwnersService, $rootScope, $t
         $scope.Owner = angular.copy(Owner);
         if ($scope.Owner.Image)
             $scope.countFiles = $scope.Owner.Image;
-
-        $timeout(function () {
-            document.querySelector('input[name="TxtNameAr"]').focus();
-        }, 1000);
+         
     }
     $scope.openImage = function (Owner) {
-        debugger; 
+        debugger;
         $('#ModelImage').modal('show');
-        $scope.action = Owner == null ? 'add' : 'edit'; 
+        $scope.action = Owner == null ? 'add' : 'edit';
         if (Owner == null) Owner = {};
         $scope.Owner = angular.copy(Owner);
         if ($scope.Owner.Image)
             $scope.countFiles = $scope.Owner.Image;
-         
+
     }
     $scope.back = function () {
         $('#ModelAddUpdate').modal('hide');
@@ -57,6 +66,7 @@ function OwnersController($scope, OwnersApi, uploadOwnersService, $rootScope, $t
         }
         //  uploadOwnersService.uploadFiles();
         debugger;
+        $scope.Owner.LangId = CurrentLanguage;
         OwnersApi.Save($scope.Owner).then(function (response) {
 
             switch (response.data.OperationStatus) {
@@ -65,15 +75,15 @@ function OwnersController($scope, OwnersApi, uploadOwnersService, $rootScope, $t
                     switch ($scope.action) {
                         case 'edit':
                             index = $scope.Owners.indexOf($filter('filter')($scope.Owners, { 'ID': $scope.Owner.ID }, true)[0]);
-                           // $scope.Owners[index] = angular.copy(response.data);
+                            // $scope.Owners[index] = angular.copy(response.data);
                             OwnersApi.GetAll().then(function (response) {
-                                $scope.Owners = response.data; 
-                            }); 
+                                $scope.Owners = response.data;
+                            });
                             toastr.success($('#HUpdateSuccessMessage').val(), 'Success');
                             break;
                         case 'delete':
                             index = $scope.Owners.indexOf($filter('filter')($scope.Owners, { 'ID': $scope.Owner.ID }, true)[0]);
-                           // $scope.Owners[index] = angular.copy(response.data);
+                            // $scope.Owners[index] = angular.copy(response.data);
                             OwnersApi.GetAll().then(function (response) {
                                 $scope.Owners = response.data;
                             });
@@ -145,7 +155,7 @@ function OwnersController($scope, OwnersApi, uploadOwnersService, $rootScope, $t
         }
         var extn = $scope.Image.split(".").pop();
         var fileLength = $scope.data[0].FileLength;
-        if (fileLength > 52166) {
+        if (fileLength > maxFileSize) {
             $scope.countFiles = null;
             angular.element("input[type='file']").val(null);
             alert($scope.ImageSizeValidaiton);

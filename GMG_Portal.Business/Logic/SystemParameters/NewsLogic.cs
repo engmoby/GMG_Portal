@@ -21,52 +21,52 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             var returnValue = new List<SystemParameters_News>();
             if (langId == Parameters.DefaultLang)
             {
-                var list = _db.SystemParameters_News.Where(p => p.IsDeleted != true).OrderByDescending(n => n.Id).ToList();
+                var list = _db.SystemParameters_News.OrderByDescending(n => n.Id).ToList();
                 foreach (var systemParametersNewse in list)
                 {
                     var getCatrogryInfo = _db.SystemParameters_Category.FirstOrDefault(p => p.IsDeleted != true && p.Id == systemParametersNewse.CategoryId);
-                    if (systemParametersNewse.CreationTime != null)
-                        if (getCatrogryInfo != null)
-                            returnValue.Add(new SystemParameters_News
-                            {
-                                Id = systemParametersNewse.Id,
-                                DisplayValue = systemParametersNewse.DisplayValue,
-                                DisplayValueDesc = systemParametersNewse.DisplayValueDesc,
-                                CreationTime = systemParametersNewse.CreationTime,
-                                CreationDay = systemParametersNewse.CreationTime.Value.Day,
-                                CreationMonth = systemParametersNewse.CreationTime.Value.Month,
-                                CreatorUserName = "Administrator",
-                                CategoryName = getCatrogryInfo.DisplayValue,
-                                CategoryId = getCatrogryInfo.Id,
-                                Tags = systemParametersNewse.Tags,
-                                Image = systemParametersNewse.Image,
-                                Categories = GetAllCatrogry()
-                            });
+                    if (getCatrogryInfo != null)
+                        returnValue.Add(new SystemParameters_News
+                        {
+                            Id = systemParametersNewse.Id,
+                            DisplayValue = systemParametersNewse.DisplayValue,
+                            DisplayValueDesc = systemParametersNewse.DisplayValueDesc,
+                            CreationTime = systemParametersNewse.CreationTime,
+                            CreationDay = systemParametersNewse.CreationTime.Day,
+                            CreationMonth = systemParametersNewse.CreationTime.ToString("MMM"),
+                            CreatorUserName = "Administrator",
+                            CategoryName = getCatrogryInfo.DisplayValue,
+                            CategoryId = getCatrogryInfo.Id,
+                            Tags = systemParametersNewse.Tags,
+                            Image = systemParametersNewse.Image,
+                            IsDeleted = systemParametersNewse.IsDeleted,
+                            Categories = GetAllCatrogry()
+                        });
                 }
             }
             else
             {
-                var list = _db.SystemParameters_News_Translate.Where(p => p.IsDeleted != true && p.Lang_ID == langId).OrderByDescending(n => n.Id).ToList();
+                var list = _db.SystemParameters_News_Translate.Where(p => p.langId == langId).OrderByDescending(n => n.Id).ToList();
                 foreach (var systemParametersNewse in list)
                 {
-                    var getCatrogryInfo = _db.SystemParameters_Category_Translate.FirstOrDefault(p => p.IsDeleted != true && p.Id == systemParametersNewse.CategoryId && p.Lang_ID == langId);
-                    if (systemParametersNewse.CreationTime != null)
-                        if (getCatrogryInfo != null)
-                            returnValue.Add(new SystemParameters_News
-                            {
-                                Id = systemParametersNewse.Id,
-                                DisplayValue = systemParametersNewse.DisplayValue,
-                                DisplayValueDesc = systemParametersNewse.DisplayValueDesc,
-                                CreationTime = systemParametersNewse.CreationTime,
-                                CreationDay = systemParametersNewse.CreationTime.Value.Day,
-                                CreationMonth = systemParametersNewse.CreationTime.Value.Month,
-                                CreatorUserName = "Administrator",
-                                CategoryName = getCatrogryInfo.DisplayValue,
-                                CategoryId = getCatrogryInfo.Id,
-                                Tags = systemParametersNewse.Tags,
-                                Image = systemParametersNewse.Image,
-                                Categories = GetAllCatrogry()
-                            });
+                    var getCatrogryInfo = _db.SystemParameters_Category_Translate.FirstOrDefault(p => p.IsDeleted != true && p.Id == systemParametersNewse.CategoryId && p.langId == langId);
+                    if (getCatrogryInfo != null)
+                        returnValue.Add(new SystemParameters_News
+                        {
+                            Id = systemParametersNewse.Id,
+                            DisplayValue = systemParametersNewse.DisplayValue,
+                            DisplayValueDesc = systemParametersNewse.DisplayValueDesc,
+                            CreationTime = systemParametersNewse.CreationTime,
+                            CreationDay = systemParametersNewse.CreationTime.Day,
+                            CreationMonth = systemParametersNewse.CreationTime.ToString("MMM"),
+                            CreatorUserName = "Administrator",
+                            CategoryName = getCatrogryInfo.DisplayValue,
+                            CategoryId = getCatrogryInfo.Id,
+                            Tags = systemParametersNewse.Tags,
+                            Image = systemParametersNewse.Image,
+                            IsDeleted = systemParametersNewse.IsDeleted,
+                            Categories = GetAllCatrogry()
+                        });
                 }
             }
             return returnValue;
@@ -80,48 +80,47 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 foreach (var systemParametersNewse in list)
                 {
                     var getCatrogryInfo = _db.SystemParameters_Category.FirstOrDefault(p => p.IsDeleted != true && p.Id == systemParametersNewse.CategoryId);
-                    if (systemParametersNewse.CreationTime != null)
-                        if (getCatrogryInfo != null)
-                            returnValue.Add(new SystemParameters_News
-                            {
-                                Id = systemParametersNewse.Id,
-                                DisplayValue = systemParametersNewse.DisplayValue,
-                                DisplayValueDesc = systemParametersNewse.DisplayValueDesc,
-                                CreationTime = systemParametersNewse.CreationTime,
-                                CreationDay = systemParametersNewse.CreationTime.Value.Day,
-                                CreationMonth = systemParametersNewse.CreationTime.Value.Month,
-                                CreatorUserName = "Administrator",
-                                CategoryName = getCatrogryInfo.DisplayValue,
-                                CategoryId = getCatrogryInfo.Id,
-                                Tags = systemParametersNewse.Tags,
-                                Image = systemParametersNewse.Image,
-                                Categories = GetAllCatrogry()
-                            });
+                    if (getCatrogryInfo != null)
+                        returnValue.Add(new SystemParameters_News
+                        {
+                            Id = systemParametersNewse.Id,
+                            DisplayValue = systemParametersNewse.DisplayValue,
+                            DisplayValueDesc = systemParametersNewse.DisplayValueDesc,
+                            CreationTime = systemParametersNewse.CreationTime,
+                            CreationDay = systemParametersNewse.CreationTime.Day,
+                            CreationMonth = systemParametersNewse.CreationTime.ToString("MMM"),
+                            CreatorUserName = "Administrator",
+                            CategoryName = getCatrogryInfo.DisplayValue,
+                            CategoryId = getCatrogryInfo.Id,
+                            Tags = systemParametersNewse.Tags,
+                            Image = systemParametersNewse.Image,
+                            Categories = GetAllCatrogry()
+                        });
                 }
             }
             else
             {
-                var list = _db.SystemParameters_News_Translate.Where(p => p.IsDeleted != true && p.Lang_ID == langId).OrderByDescending(n => n.Id).ToList();
+                var list = _db.SystemParameters_News_Translate.Where(p => p.IsDeleted != true && p.langId == langId).OrderByDescending(n => n.Id).ToList();
                 foreach (var systemParametersNewse in list)
                 {
-                    var getCatrogryInfo = _db.SystemParameters_Category_Translate.FirstOrDefault(p => p.IsDeleted != true && p.Id == systemParametersNewse.CategoryId && p.Lang_ID == langId);
-                    if (systemParametersNewse.CreationTime != null)
-                        if (getCatrogryInfo != null)
-                            returnValue.Add(new SystemParameters_News
-                            {
-                                Id = systemParametersNewse.Id,
-                                DisplayValue = systemParametersNewse.DisplayValue,
-                                DisplayValueDesc = systemParametersNewse.DisplayValueDesc,
-                                CreationTime = systemParametersNewse.CreationTime,
-                                CreationDay = systemParametersNewse.CreationTime.Value.Day,
-                                CreationMonth = systemParametersNewse.CreationTime.Value.Month,
-                                CreatorUserName = "Administrator",
-                                CategoryName = getCatrogryInfo.DisplayValue,
-                                CategoryId = getCatrogryInfo.Id,
-                                Tags = systemParametersNewse.Tags,
-                                Image = systemParametersNewse.Image,
-                                Categories = GetAllCatrogry()
-                            });
+                    var getCatrogryInfo = _db.SystemParameters_Category_Translate.FirstOrDefault(p => p.IsDeleted != true && p.Id == systemParametersNewse.CategoryId && p.langId == langId);
+                    if (getCatrogryInfo != null)
+                        returnValue.Add(new SystemParameters_News
+                        {
+                            Id = systemParametersNewse.Id,
+                            DisplayValue = systemParametersNewse.DisplayValue,
+                            DisplayValueDesc = systemParametersNewse.DisplayValueDesc,
+                            CreationTime = systemParametersNewse.CreationTime,
+                            CreationDay = systemParametersNewse.CreationTime.Day,
+                            //  CreationMonth = systemParametersNewse.CreationTime.Value.Month,
+                            CreationMonth = systemParametersNewse.CreationTime.ToString("MMM"),
+                            CreatorUserName = "Administrator",
+                            CategoryName = getCatrogryInfo.DisplayValue,
+                            CategoryId = getCatrogryInfo.Id,
+                            Tags = systemParametersNewse.Tags,
+                            Image = systemParametersNewse.Image,
+                            Categories = GetAllCatrogry()
+                        });
                 }
             }
             return returnValue;
@@ -138,81 +137,80 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                     var getCatrogryInfo =
                         _db.SystemParameters_Category.FirstOrDefault(
                             p => p.IsDeleted != true && p.Id == systemParametersNewse.CategoryId);
-                    if (systemParametersNewse.CreationTime != null)
-                        if (getCatrogryInfo != null)
-                            returnList.Add(new SystemParameters_News
-                            {
-                                Id = systemParametersNewse.Id,
-                                DisplayValue = systemParametersNewse.DisplayValue,
-                                DisplayValueDesc = systemParametersNewse.DisplayValueDesc,
-                                CreationTime = systemParametersNewse.CreationTime,
-                                CreationDay = systemParametersNewse.CreationTime.Value.Day,
-                                CreationMonth = systemParametersNewse.CreationTime.Value.Month,
-                                Tags = systemParametersNewse.Tags,
-                                Categories = GetAllCatrogry()
-                            });
+                    if (getCatrogryInfo != null)
+                        returnList.Add(new SystemParameters_News
+                        {
+                            Id = systemParametersNewse.Id,
+                            DisplayValue = systemParametersNewse.DisplayValue,
+                            DisplayValueDesc = systemParametersNewse.DisplayValueDesc,
+                            CreationTime = systemParametersNewse.CreationTime,
+                            CreationDay = systemParametersNewse.CreationTime.Day,
+                            CreationMonth = systemParametersNewse.CreationTime.ToString("MMM"),
+                            Tags = systemParametersNewse.Tags,
+                            Categories = GetAllCatrogry()
+                        });
                 }
             }
             else
             {
-                var list = _db.SystemParameters_News_Translate.Where(p => p.IsDeleted != true && p.Lang_ID == langId).OrderByDescending(n => n.Id)
+                var list = _db.SystemParameters_News_Translate.Where(p => p.IsDeleted != true && p.langId == langId).OrderByDescending(n => n.Id)
                     .ToList().Take(3);
                 foreach (var systemParametersNewse in list)
                 {
                     var getCatrogryInfo =
-                        _db.SystemParameters_Category_Translate.FirstOrDefault(p => p.IsDeleted != true && p.Id == systemParametersNewse.CategoryId && p.Lang_ID == langId);
-                    if (systemParametersNewse.CreationTime != null)
-                        if (getCatrogryInfo != null)
-                            returnList.Add(new SystemParameters_News
-                            {
-                                Id = systemParametersNewse.Id,
-                                DisplayValue = systemParametersNewse.DisplayValue,
-                                DisplayValueDesc = systemParametersNewse.DisplayValueDesc,
-                                CreationTime = systemParametersNewse.CreationTime,
-                                CreationDay = systemParametersNewse.CreationTime.Value.Day,
-                                CreationMonth = systemParametersNewse.CreationTime.Value.Month,
-                                Tags = systemParametersNewse.Tags,
-                                Categories = GetAllCatrogryByLang(langId)
-                            });
+                        _db.SystemParameters_Category_Translate.FirstOrDefault(p => p.IsDeleted != true && p.Id == systemParametersNewse.CategoryId && p.langId == langId);
+                    if (getCatrogryInfo != null)
+                        returnList.Add(new SystemParameters_News
+                        {
+                            Id = systemParametersNewse.Id,
+                            DisplayValue = systemParametersNewse.DisplayValue,
+                            DisplayValueDesc = systemParametersNewse.DisplayValueDesc,
+                            CreationTime = systemParametersNewse.CreationTime,
+                            CreationDay = systemParametersNewse.CreationTime.Day,
+                            CreationMonth = systemParametersNewse.CreationTime.ToString("MMM"),
+
+                            Tags = systemParametersNewse.Tags,
+                            Categories = GetAllCatrogryByLang(langId)
+                        });
                 }
             }
             return returnList;
         }
-        public List<SystemParameters_News> GetLatestNewsWithOutCurrentId(int newsId,string langId)
+        public List<SystemParameters_News> GetLatestNewsWithOutCurrentId(int newsId, string langId)
         {
             var returnList = new List<SystemParameters_News>();
             if (langId == Parameters.DefaultLang)
             {
-                var list = _db.SystemParameters_News.Where(p => p.IsDeleted != true && p.Id!= newsId).OrderByDescending(n => n.Id)
+                var list = _db.SystemParameters_News.Where(p => p.IsDeleted != true && p.Id != newsId).OrderByDescending(n => n.Id)
                     .ToList().Take(3);
                 foreach (var systemParametersNewse in list)
                 {
                     var getCatrogryInfo =
                         _db.SystemParameters_Category.FirstOrDefault(
                             p => p.IsDeleted != true && p.Id == systemParametersNewse.CategoryId);
-                    if (systemParametersNewse.CreationTime != null)
-                        if (getCatrogryInfo != null)
-                            returnList.Add(new SystemParameters_News
-                            {
-                                Id = systemParametersNewse.Id,
-                                DisplayValue = systemParametersNewse.DisplayValue,
-                                DisplayValueDesc = systemParametersNewse.DisplayValueDesc,
-                                CreationTime = systemParametersNewse.CreationTime,
-                                CreationDay = systemParametersNewse.CreationTime.Value.Day,
-                                CreationMonth = systemParametersNewse.CreationTime.Value.Month,
-                                Tags = systemParametersNewse.Tags,
-                                Categories = GetAllCatrogry()
-                            });
+                    if (getCatrogryInfo != null)
+                        returnList.Add(new SystemParameters_News
+                        {
+                            Id = systemParametersNewse.Id,
+                            DisplayValue = systemParametersNewse.DisplayValue,
+                            DisplayValueDesc = systemParametersNewse.DisplayValueDesc,
+                            CreationTime = systemParametersNewse.CreationTime,
+                            CreationDay = systemParametersNewse.CreationTime.Day,
+                            CreationMonth = systemParametersNewse.CreationTime.ToString("MMM"),
+
+                            Tags = systemParametersNewse.Tags,
+                            Categories = GetAllCatrogry()
+                        });
                 }
             }
             else
             {
-                var list = _db.SystemParameters_News_Translate.Where(p => p.IsDeleted != true && p.Lang_ID == langId).OrderByDescending(n => n.Id)
+                var list = _db.SystemParameters_News_Translate.Where(p => p.IsDeleted != true && p.langId == langId).OrderByDescending(n => n.Id)
                     .ToList().Take(3);
                 foreach (var systemParametersNewse in list)
                 {
                     var getCatrogryInfo =
-                        _db.SystemParameters_Category_Translate.FirstOrDefault(p => p.IsDeleted != true && p.Id == systemParametersNewse.CategoryId && p.Lang_ID == langId);
+                        _db.SystemParameters_Category_Translate.FirstOrDefault(p => p.IsDeleted != true && p.Id == systemParametersNewse.CategoryId && p.langId == langId);
                     if (systemParametersNewse.CreationTime != null)
                         if (getCatrogryInfo != null)
                             returnList.Add(new SystemParameters_News
@@ -221,8 +219,9 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                                 DisplayValue = systemParametersNewse.DisplayValue,
                                 DisplayValueDesc = systemParametersNewse.DisplayValueDesc,
                                 CreationTime = systemParametersNewse.CreationTime,
-                                CreationDay = systemParametersNewse.CreationTime.Value.Day,
-                                CreationMonth = systemParametersNewse.CreationTime.Value.Month,
+                                CreationDay = systemParametersNewse.CreationTime.Day,
+                                CreationMonth = systemParametersNewse.CreationTime.ToString("MMM"),
+
                                 Tags = systemParametersNewse.Tags,
                                 Categories = GetAllCatrogryByLang(langId)
                             });
@@ -233,12 +232,12 @@ namespace GMG_Portal.Business.Logic.SystemParameters
 
         public List<SystemParameters_Category> GetAllCatrogry()
         {
-            return _db.SystemParameters_Category.Where(p => p.IsDeleted != true).ToList();
+            return _db.SystemParameters_Category.Where(p => p.IsDeleted != true).OrderByDescending(n => n.Id).ToList();
         }
         public List<SystemParameters_Category> GetAllCatrogryByLang(string langId)
         {
             var returnValue = new List<SystemParameters_Category>();
-            var list = _db.SystemParameters_Category_Translate.Where(p => p.IsDeleted != true && p.Lang_ID == langId).ToList();
+            var list = _db.SystemParameters_Category_Translate.Where(p => p.IsDeleted != true && p.langId == langId).OrderByDescending(n => n.Id).ToList();
             foreach (var systemParametersCategoryTranslate in list)
             {
                 returnValue.Add(new SystemParameters_Category
@@ -255,7 +254,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             var returnValue = new List<SystemParameters_News>();
             if (langId == Parameters.DefaultLang)
             {
-                var list = _db.SystemParameters_News.Where(p => p.IsDeleted != true && p.CategoryId == categoryId)
+                var list = _db.SystemParameters_News.Where(p => p.IsDeleted != true && p.CategoryId == categoryId).OrderByDescending(n => n.Id)
                     .ToList();
                 foreach (var systemParametersNewse in list)
                 {
@@ -263,47 +262,47 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                         _db.SystemParameters_Category.FirstOrDefault(
                             p => p.IsDeleted != true && p.Id == systemParametersNewse.CategoryId);
                     if (getCatrogryInfo != null)
-                        if (systemParametersNewse.CreationTime != null)
-                            returnValue.Add(new SystemParameters_News
-                            {
-                                Id = systemParametersNewse.Id,
-                                DisplayValue = systemParametersNewse.DisplayValue,
-                                DisplayValueDesc = systemParametersNewse.DisplayValueDesc,
-                                CreationTime = systemParametersNewse.CreationTime,
-                                CreationDay = systemParametersNewse.CreationTime.Value.Day,
-                                CreationMonth = systemParametersNewse.CreationTime.Value.Month,
-                                CreatorUserName = "Administrator",
-                                CategoryName = getCatrogryInfo.DisplayValue,
-                                CategoryId = getCatrogryInfo.Id,
-                                Tags = systemParametersNewse.Tags,
-                                Image = systemParametersNewse.Image,
-                                Categories = GetAllCatrogry()
-                            });
+                        returnValue.Add(new SystemParameters_News
+                        {
+                            Id = systemParametersNewse.Id,
+                            DisplayValue = systemParametersNewse.DisplayValue,
+                            DisplayValueDesc = systemParametersNewse.DisplayValueDesc,
+                            CreationTime = systemParametersNewse.CreationTime,
+                            CreationDay = systemParametersNewse.CreationTime.Day,
+                            CreationMonth = systemParametersNewse.CreationTime.ToString("MMM"),
+
+                            CreatorUserName = "Administrator",
+                            CategoryName = getCatrogryInfo.DisplayValue,
+                            CategoryId = getCatrogryInfo.Id,
+                            Tags = systemParametersNewse.Tags,
+                            Image = systemParametersNewse.Image,
+                            Categories = GetAllCatrogry()
+                        });
                 }
             }
             else
             {
-                var list = _db.SystemParameters_News_Translate.Where(p => p.IsDeleted != true && p.CategoryId == categoryId && p.Lang_ID == langId).ToList();
+                var list = _db.SystemParameters_News_Translate.Where(p => p.IsDeleted != true && p.CategoryId == categoryId && p.langId == langId).OrderByDescending(n => n.Id).ToList();
                 foreach (var systemParametersNewse in list)
                 {
-                    var getCatrogryInfo = _db.SystemParameters_Category_Translate.FirstOrDefault(p => p.IsDeleted != true && p.Id == systemParametersNewse.CategoryId && p.Lang_ID == langId);
+                    var getCatrogryInfo = _db.SystemParameters_Category_Translate.FirstOrDefault(p => p.IsDeleted != true && p.Id == systemParametersNewse.CategoryId && p.langId == langId);
                     if (getCatrogryInfo != null)
-                        if (systemParametersNewse.CreationTime != null)
-                            returnValue.Add(new SystemParameters_News
-                            {
-                                Id = systemParametersNewse.Id,
-                                DisplayValue = systemParametersNewse.DisplayValue,
-                                DisplayValueDesc = systemParametersNewse.DisplayValueDesc,
-                                CreationTime = systemParametersNewse.CreationTime,
-                                CreationDay = systemParametersNewse.CreationTime.Value.Day,
-                                CreationMonth = systemParametersNewse.CreationTime.Value.Month,
-                                CreatorUserName = "Administrator",
-                                CategoryName = getCatrogryInfo.DisplayValue,
-                                CategoryId = getCatrogryInfo.Id,
-                                Tags = systemParametersNewse.Tags,
-                                Image = systemParametersNewse.Image,
-                                Categories = GetAllCatrogry()
-                            });
+                        returnValue.Add(new SystemParameters_News
+                        {
+                            Id = systemParametersNewse.Id,
+                            DisplayValue = systemParametersNewse.DisplayValue,
+                            DisplayValueDesc = systemParametersNewse.DisplayValueDesc,
+                            CreationTime = systemParametersNewse.CreationTime,
+                            CreationDay = systemParametersNewse.CreationTime.Day,
+                            CreationMonth = systemParametersNewse.CreationTime.ToString("MMM"),
+
+                            CreatorUserName = "Administrator",
+                            CategoryName = getCatrogryInfo.DisplayValue,
+                            CategoryId = getCatrogryInfo.Id,
+                            Tags = systemParametersNewse.Tags,
+                            Image = systemParametersNewse.Image,
+                            Categories = GetAllCatrogry()
+                        });
                 }
             }
 
@@ -321,10 +320,11 @@ namespace GMG_Portal.Business.Logic.SystemParameters
 
                     if (obj != null)
                     {
+
                         returnValue.Id = obj.Id; returnValue.DisplayValue = obj.DisplayValue;
                         returnValue.DisplayValueDesc = obj.DisplayValueDesc;
-                        if (obj.CreationTime != null) returnValue.CreationDay = obj.CreationTime.Value.Day;
-                        if (obj.CreationTime != null) returnValue.CreationMonth = obj.CreationTime.Value.Month;
+                        returnValue.CreationDay = obj.CreationTime.Day;
+                        returnValue.CreationMonth = obj.CreationTime.ToString("MMM");
                         returnValue.CreationTime = obj.CreationTime;
                         returnValue.CreatorUserName = "Administrator";
                         returnValue.CategoryName = getCatrogryInfo.DisplayValue;
@@ -335,17 +335,17 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             }
             else
             {
-                var obj = _db.SystemParameters_News_Translate.FirstOrDefault(p => p.Id == id && p.Lang_ID == langId);
+                var obj = _db.SystemParameters_News_Translate.FirstOrDefault(p => p.Id == id && p.langId == langId);
 
-                var getCatrogryInfo = _db.SystemParameters_Category_Translate.FirstOrDefault(p => p.IsDeleted != true && p.Id == obj.CategoryId && p.Lang_ID == langId);
+                var getCatrogryInfo = _db.SystemParameters_Category_Translate.FirstOrDefault(p => p.IsDeleted != true && p.Id == obj.CategoryId && p.langId == langId);
                 if (getCatrogryInfo != null)
 
                     if (obj != null)
                     {
                         returnValue.Id = obj.Id; returnValue.DisplayValue = obj.DisplayValue;
                         returnValue.DisplayValueDesc = obj.DisplayValueDesc;
-                        if (obj.CreationTime != null) returnValue.CreationDay = obj.CreationTime.Value.Day;
-                        if (obj.CreationTime != null) returnValue.CreationMonth = obj.CreationTime.Value.Month;
+                        returnValue.CreationDay = obj.CreationTime.Day;
+                        returnValue.CreationMonth = obj.CreationTime.ToString("MMM");
                         returnValue.CreationTime = obj.CreationTime;
                         returnValue.CreatorUserName = "Administrator";
                         returnValue.CategoryName = getCatrogryInfo.DisplayValue;
@@ -371,8 +371,8 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 {
                     returnValue.Id = obj.Id; returnValue.DisplayValue = obj.DisplayValue;
                     returnValue.DisplayValueDesc = obj.DisplayValueDesc;
-                    if (obj.CreationTime != null) returnValue.CreationDay = obj.CreationTime.Value.Day;
-                    if (obj.CreationTime != null) returnValue.CreationMonth = obj.CreationTime.Value.Month;
+                    returnValue.CreationDay = obj.CreationTime.Day;
+                    returnValue.CreationMonth = obj.CreationTime.ToString("MMM");
                     returnValue.CreationTime = obj.CreationTime;
                     returnValue.CreatorUserName = "Administrator";
                     returnValue.CategoryName = getCatrogryInfo.DisplayValue;
@@ -388,17 +388,17 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         {
             var returnValue = new SystemParameters_News_Translate();
 
-            var obj = _db.SystemParameters_News_Translate.FirstOrDefault(p => p.Id == id && p.Lang_ID == langId);
+            var obj = _db.SystemParameters_News_Translate.FirstOrDefault(p => p.Id == id && p.langId == langId);
 
-            var getCatrogryInfo = _db.SystemParameters_Category_Translate.FirstOrDefault(p => p.IsDeleted != true && p.Id == obj.CategoryId && p.Lang_ID == langId);
+            var getCatrogryInfo = _db.SystemParameters_Category_Translate.FirstOrDefault(p => p.IsDeleted != true && p.Id == obj.CategoryId && p.langId == langId);
             if (getCatrogryInfo != null)
 
                 if (obj != null)
                 {
                     returnValue.Id = obj.Id; returnValue.DisplayValue = obj.DisplayValue;
                     returnValue.DisplayValueDesc = obj.DisplayValueDesc;
-                    if (obj.CreationTime != null) returnValue.CreationDay = obj.CreationTime.Value.Day;
-                    if (obj.CreationTime != null) returnValue.CreationMonth = obj.CreationTime.Value.Month;
+                    returnValue.CreationDay = obj.CreationTime.Day;
+                    returnValue.CreationMonth = obj.CreationTime.ToString("MMM");
                     returnValue.CreationTime = obj.CreationTime;
                     returnValue.CreatorUserName = "Administrator";
                     returnValue.CategoryName = getCatrogryInfo.DisplayValue;
@@ -494,14 +494,14 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 Show = Parameters.Show,
                 CreationTime = Parameters.CurrentDateTime,
                 CreatorUserId = Parameters.UserId,
-                Lang_ID = postedNews.Lang_ID
+                langId = postedNews.langId
             };
             _db.SystemParameters_News_Translate.Add(news);
             return SaveByLang(news);
         }
         public SystemParameters_News Edit(SystemParameters_News postednews)
         {
-            SystemParameters_News news = GetNewsInfoById(postednews.Id);
+            var news = GetById(postednews);
             news.DisplayValue = postednews.DisplayValue;
             news.DisplayValueDesc = postednews.DisplayValueDesc;
             news.Image = postednews.Image;
@@ -513,7 +513,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         }
         public SystemParameters_News_Translate EditByLang(SystemParameters_News_Translate postednews)
         {
-            SystemParameters_News_Translate news = GetNewsInfoByLangById(postednews.Id, postednews.Lang_ID);
+            SystemParameters_News_Translate news = GetNewsInfoByLangById(postednews.Id, postednews.langId);
             news.DisplayValue = postednews.DisplayValue;
             news.DisplayValueDesc = postednews.DisplayValueDesc;
             news.Image = postednews.Image;
@@ -525,15 +525,27 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         }
         public SystemParameters_News Delete(SystemParameters_News postednews)
         {
-            SystemParameters_News news = GetNewsInfoById(postednews.Id);
+            var news = GetById(postednews);
             news.IsDeleted = true;
             news.CreationTime = Parameters.CurrentDateTime;
             news.CreatorUserId = Parameters.UserId;
             return Save(news);
         }
+
+        private SystemParameters_News GetById(SystemParameters_News postednews)
+        {
+            var obj = _db.SystemParameters_News.Find(postednews.Id);
+            return obj;
+        }
+        private SystemParameters_News_Translate GetMutliLangById(SystemParameters_News_Translate postednews)
+        {
+            var obj = _db.SystemParameters_News_Translate.Find(postednews.Id);
+            return obj;
+        }
+
         public SystemParameters_News_Translate DeleteByLang(SystemParameters_News_Translate postednews)
         {
-            SystemParameters_News_Translate news = GetNewsInfoByLangById(postednews.Id, postednews.Lang_ID);
+            SystemParameters_News_Translate news = GetMutliLangById(postednews);
             news.IsDeleted = true;
             news.CreationTime = Parameters.CurrentDateTime;
             news.CreatorUserId = Parameters.UserId;

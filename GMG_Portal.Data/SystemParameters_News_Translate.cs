@@ -28,12 +28,12 @@ namespace GMG_Portal.Data
         public string Image { get; set; }
         public Nullable<System.DateTime> LastModificationTime { get; set; }
         public Nullable<int> LastModifierUserId { get; set; }
-        public Nullable<System.DateTime> CreationTime { get; set; }
+        public System.DateTime CreationTime { get; set; }
         public Nullable<int> CreatorUserId { get; set; }
         public Nullable<System.DateTime> DeletionTime { get; set; }
         public Nullable<int> DeleterUserId { get; set; }
         public string Tags { get; set; }
         public Nullable<int> CategoryId { get; set; }
-        public string Lang_ID { get; set; }
+        public string langId { get; set; }
     }
 }

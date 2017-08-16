@@ -61,6 +61,33 @@ namespace Front.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Attach file Required.
+        /// </summary>
+        public static string Attach_file_Required {
+            get {
+                return ResourceManager.GetString("Attach_file_Required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email Required.
+        /// </summary>
+        public static string Email_Required {
+            get {
+                return ResourceManager.GetString("Email_Required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First Name Required.
+        /// </summary>
+        public static string First_Name_Required {
+            get {
+                return ResourceManager.GetString("First_Name_Required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Contact Us.
         /// </summary>
         public static string Footer_ContactUs {
@@ -354,6 +381,24 @@ namespace Front.Resources {
         public static string Home_SearchRoomsTitle {
             get {
                 return ResourceManager.GetString("Home_SearchRoomsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last Name Required.
+        /// </summary>
+        public static string Last_Name_Required {
+            get {
+                return ResourceManager.GetString("Last_Name_Required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PhoneNo Required.
+        /// </summary>
+        public static string PhoneNo_Required {
+            get {
+                return ResourceManager.GetString("PhoneNo_Required", resourceCulture);
             }
         }
     }

@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using Front.Resources;
 using GMG_Portal.API.Models.Hotels.Reservation;
 using Newtonsoft.Json;
 
@@ -48,7 +49,7 @@ namespace Front.Controllers
 
         public ActionResult Confirm(Reservation reservation)
         {
-           
+
             return View(reservation);
         }
 
@@ -62,30 +63,34 @@ namespace Front.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<RedirectToRouteResult> Index(Reservation reservation)
-        { 
+        public async Task<ActionResult> Index(Reservation reservation)
+        {
+            if (string.IsNullOrEmpty(reservation.FirstName))
+                ModelState.AddModelError("FirstName", Global.First_Name_Required);
+            if (string.IsNullOrEmpty(reservation.LastName))
+                ModelState.AddModelError("LastName", Global.Last_Name_Required);
+            if (string.IsNullOrEmpty(reservation.Email))
+                ModelState.AddModelError("Email", Global.Email_Required);
+            if (reservation.Phone == 0)
+                ModelState.AddModelError("PhoneNo", Global.PhoneNo_Required);
+
             if (ModelState.IsValid)
+            {
+                HttpResponseMessage responseMessageApi = await _client.PostAsJsonAsync("Reservation/Save/", reservation);
+                if (responseMessageApi.IsSuccessStatusCode)
                 {
-
-
-                    //string ReservationObj = url + "Reservation/Save/" + reservation;
-
-                    HttpResponseMessage responseMessageApi =await _client.PostAsJsonAsync("Reservation/Save/", reservation);
-                    if (responseMessageApi.IsSuccessStatusCode)
+                    var responseData = responseMessageApi.Content.ReadAsStringAsync().Result;
+                    reservation = JsonConvert.DeserializeObject<Reservation>(responseData);
+                    if (reservation != null)
                     {
-                        var responseData = responseMessageApi.Content.ReadAsStringAsync().Result;
-                        reservation = JsonConvert.DeserializeObject<Reservation>(responseData);
-                        if (reservation != null)
-                        {
-                            TempData["alertMessage"] = "ok";
-
-                        }
+                        TempData["alertMessage"] = "ok";
                     }
-                   
-            }
-            return RedirectToAction("Confirm", reservation);
+                }
+                return RedirectToAction("Confirm", reservation);
 
-            //return View(reservation);
+            }
+            return View(reservation);
+
         }
     }
 }

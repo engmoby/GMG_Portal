@@ -28,18 +28,14 @@
 
             </thead>
             <tbody>
-                <tr ng-repeat="About in TableData">
-                    <td ng-class="{'red-text': About.IsDeleted == true}">{{About.DisplayValue}}</td>
-                    <td ng-class="{'red-text': About.IsDeleted == true}">{{About.DisplayValueDesc}}</td>
+                <tr ng-repeat="aboutObj in TableData">
+                    <td ng-class="{'red-text': aboutObj.IsDeleted == true}">{{aboutObj.DisplayValue}}</td>
+                    <td ng-class="{'red-text': aboutObj.IsDeleted == true}">{{aboutObj.DisplayValueDesc | limitTo:letterLimit}}</td>
 
                     <td>
-                        <div class="buttons" ng-show="!About.IsDeleted">
-                            <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(About)"><i class="fa fa-pencil" aria-hidden="true"></i>@About.TableBtnEdit</button>
-                            @*<button class="btn btn-danger editable-table-button btn-xs btn-with-icon" ng-confirm="Confirm Delete ?" ng-click="Delete(Vision)"><i class="fa fa-trash-o" aria-hidden="true"></i>@Vission.TableBtnDelete</button>*@
-                        </div>
-                        <div class="buttons restore-button" ng-show="About.IsDeleted">
-                            <button class="center-block btn btn-default  restore-button btn-xs btn-with-icon" ng-click="Restore(About)"><i class="fa fa-undo" aria-hidden="true"></i>Restore</button>
-                        </div>
+                        <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(aboutObj)"><i class="fa fa-pencil" aria-hidden="true"></i>@About.TableBtnEdit</button>
+
+
                     </td>
                 </tr>
                 <tr ng-show="TableData.length==0">
@@ -73,25 +69,26 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="TxtTitle">@About.Title</label><span class="red-text"> *</span>
-                            <input type="text" ng-model="About.DisplayValue" class="form-control" name="TxtTitle"
-                                   placeholder="Text"   ng-maxlength="65" required ng-pattern="/@Regex.NameAr/">
+                            <input type="text" ng-model="aboutObj.DisplayValue" class="form-control" name="TxtTitle"
+                                   placeholder="Text" ng-maxlength="@Common.TitleMax65" required ng-pattern="/@Regex.NameAr/">
 
                             <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
                                 <span class="red-text" ng-message="required">@About.TxtTitleRequiredErrorMessage</span>
                                 <span class="red-text" ng-message="pattern">@About.TxtTitlePatternErrorMessage</span>
-                                <span class="red-text" ng-message="notInList">@About.TxtTitleUniqueErrorMessage</span> 
-                                <span class="red-text" ng-message="maxlength">Maximum 65 Charachter</span>
+                                <span class="red-text" ng-message="notInList">@About.TxtTitleUniqueErrorMessage</span>
+                                <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax65 @Common.Charachter</span>
+
                             </div>
-                        </div> 
+                        </div>
                         <div class="form-group">
                             <label for="TxtDesc">@About.Desc</label><span class="red-text"> *</span>
-                            <textarea ng-model="About.DisplayValueDesc" class="form-control" name="TxtDesc"
-                                      placeholder="Text"   ng-maxlength="7000" required ng-pattern="/@Regex.NameEn/"></textarea>
+                            <textarea ng-model="aboutObj.DisplayValueDesc" class="form-control" name="TxtDesc"
+                                      placeholder="Text" ng-maxlength="@Common.DescMax7000" required ng-pattern="/@Regex.NameEn/"></textarea>
                             <div class="red-text" ng-messages="FrmAddUpdate.TxtDesc.$error" ng-show="FrmAddUpdate.TxtDesc.$touched">
                                 <span class="red-text" ng-message="required">@About.TxtDescRequiredErrorMessage</span>
                                 <span class="red-text" ng-message="pattern">@About.TxtDescPatternErrorMessage</span>
-                                <span class="red-text" ng-message="notInList">@About.TxtDescUniqueErrorMessage</span> 
-                                <span class="red-text" ng-message="maxlength">Maximum 7000 Charachter</span>
+                                <span class="red-text" ng-message="notInList">@About.TxtDescUniqueErrorMessage</span>
+                                <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.DescMax7000 @Common.Charachter</span>
                             </div>
                         </div>
 

@@ -7,6 +7,7 @@ using AutoMapper;
 using GMG_Portal.API.Models.Hotels.Hotel;
 using GMG_Portal.Business.Logic.SystemParameters;
 using GMG_Portal.Data;
+using Heloper;
 using Helpers;
 
 namespace GMG_Portal.API.Controllers.Hotel
@@ -15,13 +16,22 @@ namespace GMG_Portal.API.Controllers.Hotel
     [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*")]
     public class HotelsController : ApiController
     {
-        public HttpResponseMessage GetAll()
+        public HttpResponseMessage GetAll(string langId)
         {
             try
             {
                 var hotelLogic = new HotelLogic();
-                var hotels = hotelLogic.GetAll();
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Hotels>>(hotels));
+                var hotelTranslateLogic = new HotelLogicTranslate();
+                if (langId == Parameters.DefaultLang)
+                {
+                    var obj = hotelLogic.GetAll();
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Data.Hotel>>(obj));
+                }
+                else
+                {
+                    var objByLang = hotelTranslateLogic.GetAll(langId);
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Data.Hotel>>(objByLang));
+                }
             }
             catch (Exception ex)
             {
@@ -29,13 +39,23 @@ namespace GMG_Portal.API.Controllers.Hotel
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
-        public HttpResponseMessage GetAllWithCount()
+        public HttpResponseMessage GetAllWithCount(string langId)
         {
             try
             {
                 var hotelLogic = new HotelLogic();
-                var hotels = hotelLogic.GetAllWithCount();
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Hotels>>(hotels));
+                var hotelTranslateLogic = new HotelLogicTranslate();
+                if (langId == Parameters.DefaultLang)
+                {
+                    var obj = hotelLogic.GetAllWithCount();
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Data.Hotel>>(obj));
+                }
+                else
+                {
+                    var objByLang = hotelTranslateLogic.GetAllWithCount(langId);
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Data.Hotel>>(objByLang));
+                }
+
             }
             catch (Exception ex)
             {
@@ -43,13 +63,22 @@ namespace GMG_Portal.API.Controllers.Hotel
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
-        public HttpResponseMessage GetAllWithDeleted()
+        public HttpResponseMessage GetAllWithDeleted(string langId)
         {
             try
             {
                 var hotelLogic = new HotelLogic();
-                var hotels = hotelLogic.GetAllWithDeleted();
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Hotels>>(hotels));
+                var hotelTranslateLogic = new HotelLogicTranslate();
+                if (langId == Parameters.DefaultLang)
+                {
+                    var obj = hotelLogic.GetAllWithCount();
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Data.Hotel>>(obj)); 
+                }
+                else
+                {
+                    var objByLang = hotelTranslateLogic.GetAllWithDeleted(langId);
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Data.Hotel>>(objByLang));
+                }
             }
             catch (Exception ex)
             {
@@ -73,13 +102,22 @@ namespace GMG_Portal.API.Controllers.Hotel
             }
         }
 
-        public HttpResponseMessage GetHotelDetails(int id)
+        public HttpResponseMessage GetHotelDetails(int id, string langId)
         {
             try
             {
                 var hotelLogic = new HotelLogic();
-                var hotels = hotelLogic.Get(id);
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Hotels>(hotels));
+                var hotelTranslateLogic = new HotelLogicTranslate();
+                if (langId == Parameters.DefaultLang)
+                {
+                    var obj = hotelLogic.Get(id);
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Data.Hotel>(obj));
+                }
+                else
+                {
+                    var objByLang = hotelTranslateLogic.Get(id, langId);
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Data.Hotel>(objByLang));
+                }
             }
             catch (Exception ex)
             {
@@ -87,6 +125,30 @@ namespace GMG_Portal.API.Controllers.Hotel
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
+        public HttpResponseMessage GetHotelDetailsWith(int id, string langId)
+        {
+            try
+            {
+                var hotelLogic = new HotelLogic();
+                var hotelTranslateLogic = new HotelLogicTranslate();
+                if (langId == Parameters.DefaultLang)
+                {
+                    var obj = hotelLogic.GetWithDeleted(id);
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Data.Hotel>(obj));
+                }
+                else
+                {
+                    var objByLang = hotelTranslateLogic.GetWithDeleted(id, langId);
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Data.Hotel>(objByLang));
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.LogError(ex);
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+            }
+        }
+
         [HttpPost]
         public HttpResponseMessage Save(Hotels postedHotels)
         {
@@ -95,23 +157,40 @@ namespace GMG_Portal.API.Controllers.Hotel
                 if (ModelState.IsValid)
                 {
                     var hotelLogic = new HotelLogic();
-                    Data.Hotel hotel = null;
+                    var hotelLogicTranslate = new HotelLogicTranslate();
+
+                    Data.Hotel obj = null;
+                    Hotels_Translate objByLang = null;
+
                     if (postedHotels.Id.Equals(0))
                     {
-                        hotel = hotelLogic.Insert(Mapper.Map<Data.Hotel>(postedHotels));
+                        if (postedHotels.langId == Parameters.DefaultLang)
+                            obj = hotelLogic.Insert(Mapper.Map<Data.Hotel>(postedHotels));
+                        else
+                            objByLang = hotelLogicTranslate.Insert(Mapper.Map<Data.Hotels_Translate>(postedHotels));
                     }
                     else
                     {
                         if (postedHotels.IsDeleted)
                         {
-                            hotel = hotelLogic.Delete(Mapper.Map<Data.Hotel>(postedHotels));
+                            if (postedHotels.langId == Parameters.DefaultLang)
+                                obj = hotelLogic.Delete(Mapper.Map<Data.Hotel>(postedHotels));
+                            else
+                                objByLang = hotelLogicTranslate.Delete(Mapper.Map<Data.Hotels_Translate>(postedHotels));
                         }
                         else
                         {
-                            hotel = hotelLogic.Edit(Mapper.Map<Data.Hotel>(postedHotels));
+
+                            if (postedHotels.langId == Parameters.DefaultLang)
+                                obj = hotelLogic.Edit(Mapper.Map<Data.Hotel>(postedHotels));
+                            else
+                                objByLang = hotelLogicTranslate.Edit(Mapper.Map<Data.Hotels_Translate>(postedHotels));
                         }
                     }
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Data.Hotel>(hotel));
+                    if (postedHotels.langId == Parameters.DefaultLang)
+                        return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Data.Hotel>(obj));
+                    else
+                        return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Data.Hotels_Translate>(objByLang));
                 }
                 goto ThrowBadRequest;
             }
@@ -135,7 +214,7 @@ namespace GMG_Portal.API.Controllers.Hotel
                 {
                     var hotelLogic = new HotelLogic();
 
-                    var image = hotelLogic.InsertHotelImages(Mapper.Map<List<Hotels_Images>>(postedImages)); 
+                    var image = hotelLogic.InsertHotelImages(Mapper.Map<List<Hotels_Images>>(postedImages));
                     return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Hotels_Images>>(image));
                 }
                 goto ThrowBadRequest;
@@ -175,7 +254,30 @@ namespace GMG_Portal.API.Controllers.Hotel
             ThrowBadRequest:
             return Request.CreateResponse(HttpStatusCode.BadRequest);
         }
+        [HttpPost]
+        public HttpResponseMessage SaveFeatures(List<Hotels_Features> postedFeatures)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var hotelLogic = new HotelLogic();
 
+                    var image = hotelLogic.InsertHotelFeatures(Mapper.Map<List<Hotels_Features>>(postedFeatures));
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Hotels_Features>>(image));
+                }
+                goto ThrowBadRequest;
+            }
+
+            catch (Exception ex)
+            {
+                Log.LogError(ex);
+                return Request.CreateResponse(ex);
+            }
+
+            ThrowBadRequest:
+            return Request.CreateResponse(HttpStatusCode.BadRequest);
+        }
     }
 
 }

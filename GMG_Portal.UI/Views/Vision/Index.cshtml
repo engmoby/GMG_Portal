@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Index";
 }
-@using GMG_Portal.Content; 
+@using GMG_Portal.Content;
 @using GMG_Portal.Content.Admin
 @using GMG_Portal.Content.Admin.SystemParameters
 <script type="text/javascript" src="~/Scripts/app/services/Vision.js"></script>
@@ -18,27 +18,12 @@
     <div ba-panel>
         <table class="table table-hover table-condensed" st-table="TableData" st-safe-src="Visions">
             <thead>
-                <tr class="toolbar">
-                    <th colspan="2">
-                        <div class="input-group">
-                            <span class="input-group-addon addon-left"><i class="fa fa-search" aria-hidden="true"></i></span>
-                            <input st-search="" class="form-control" placeholder="@Vission.txtSearchLbl" type="text" />
-                        </div>
-                    </th>
-                    <th colspan="1"></th>
-                    <th>
-                        <div class="input-group">
-                            @*<button class="btn btn-primary btn-with-icon" ng-click="open(null)"><i class="fa fa-plus" aria-hidden="true"></i>@Vission.BtnAdd</button>*@
-                        </div>
-                    </th>
-                </tr>
 
                 <tr class="sortable">
-                   
+
                     <th st-sort="NameAr">@Vission.Title</th>
                     <th st-sort="NameEn">@Vission.Desc</th>
-                    @*<th st-sort="NameEn">@Vission.Rate</th>*@
-                    
+
                 </tr>
 
             </thead>
@@ -46,20 +31,15 @@
                 <tr ng-repeat="Vision in TableData">
                     <td ng-class="{'red-text': Vision.IsDeleted == true}">{{Vision.DisplayValue}}</td>
                     <td ng-class="{'red-text': Vision.IsDeleted == true}">{{Vision.DisplayValueDesc| limitTo:letterLimit}} </td>
-           
+
                     <td>
-                        <div class="buttons" ng-show="!Vision.IsDeleted">
-                            <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(Vision)"><i class="fa fa-pencil" aria-hidden="true"></i>@Vission.TableBtnEdit</button>
-                            @*<button class="btn btn-danger editable-table-button btn-xs btn-with-icon" ng-confirm="Confirm Delete ?" ng-click="Delete(Vision)"><i class="fa fa-trash-o" aria-hidden="true"></i>@Vission.TableBtnDelete</button>*@
-                        </div>
-                        <div class="buttons restore-button" ng-show="Vision.IsDeleted">
-                            <button class="center-block btn btn-default  restore-button btn-xs btn-with-icon" ng-click="Restore(Vision)"><i class="fa fa-undo" aria-hidden="true"></i>Restore</button>
-                        </div>
+                        <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(Vision)"><i class="fa fa-pencil" aria-hidden="true"></i>@Vission.TableBtnEdit</button>
+
                     </td>
                 </tr>
                 <tr ng-show="TableData.length==0">
                     <td colspan="4">
-                       @Shared.GridNoData
+                        @Shared.GridNoData
                     </td>
                 </tr>
             </tbody>
@@ -88,31 +68,30 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="TxtTitle">@Vission.Title</label><span class="red-text"> *</span>
-                            <input type="text" ng-model="Vision.DisplayValue"   class="form-control" name="TxtTitle"
-                                   placeholder="Text" ng-minlength="20" ng-maxlength="30" required ng-pattern="/@Regex.NameAr/">
+                            <input type="text" ng-model="Vision.DisplayValue" class="form-control" name="TxtTitle" placeholder="Text"
+                                   ng-maxlength="@Common.TitleMax65" required ng-pattern="/@Regex.NameAr/">
+
 
                             <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
                                 <span class="red-text" ng-message="required">@Vission.TxtTitleRequiredErrorMessage</span>
                                 <span class="red-text" ng-message="pattern">@Vission.TxtTitlePatternErrorMessage</span>
                                 <span class="red-text" ng-message="notInList">@Vission.TxtTitleUniqueErrorMessage</span>
-                                <span class="red-text" ng-message="minlength">Minimum 20 Charachter</span>
-                                <span class="red-text" ng-message="maxlength">Maximum 30 Charachter</span>
+                                <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax65 @Common.Charachter</span>
                             </div>
                         </div>`
                         <div class="form-group">
                             <label for="TxtDesc">@Vission.Desc</label><span class="red-text"> *</span>
-                            <textarea ng-model="Vision.DisplayValueDesc"   class="form-control" name="TxtDesc"
-                                    placeholder="Text" ng-minlength="20" ng-maxlength="30" required ng-pattern="/@Regex.NameEn/"></textarea>
+                            <textarea ng-model="Vision.DisplayValueDesc" class="form-control" name="TxtDesc"
+                                      placeholder="Text" ng-maxlength="@Common.DescMax7000" required ng-pattern="/@Regex.NameEn/"></textarea>
                             <div class="red-text" ng-messages="FrmAddUpdate.TxtDesc.$error" ng-show="FrmAddUpdate.TxtDesc.$touched">
                                 <span class="red-text" ng-message="required">@Vission.TxtDescRequiredErrorMessage</span>
                                 <span class="red-text" ng-message="pattern">@Vission.TxtDescPatternErrorMessage</span>
                                 <span class="red-text" ng-message="notInList">@Vission.TxtDescUniqueErrorMessage</span>
-                                <span class="red-text" ng-message="minlength">Minimum 30 Charachter</span>
-                                <span class="red-text" ng-message="maxlength">Maximum 100 Charachter</span>
+                                <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.DescMax7000 @Common.Charachter</span>
                             </div>
                         </div>
-                        
-                 
+
+
 
                     </div>
                     <div class="modal-footer">

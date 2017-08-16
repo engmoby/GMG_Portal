@@ -62,7 +62,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
 
                 #region Features
                 var featuresLogic = new FeaturesLogic();
-                var features = featuresLogic.GetAll();
+                var features = featuresLogic.GetAllByTake6();
                 foreach (var systemParametersfeatures in features)
                 {
                     returnFeatures.Add(new Features
@@ -120,20 +120,19 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 var news = newsLogic.GetAllWithCount("En");
                 foreach (var systemParametersNews in news.Take(3))
                 {
-                    if (systemParametersNews.CreationTime != null)
-                        returnNews.Add(new News
-                        {
-                            Id = systemParametersNews.Id,
-                            DisplayValue = systemParametersNews.DisplayValue,
-                            DisplayValueDesc = systemParametersNews.DisplayValueDesc,
-                            Image = systemParametersNews.Image,
-                            CreationTime = systemParametersNews.CreationTime,
-                            CreationDay = systemParametersNews.CreationTime.Value.Day,
-                            CreationMonth = systemParametersNews.CreationTime.Value.Month,
-                            CreatorUserName = "Administrator",
-                            CategoryName = systemParametersNews.DisplayValue, 
-                            Categories = Mapper.Map<List<Category>>(newsLogic.GetAllCatrogry())
-                        });
+                    returnNews.Add(new News
+                    {
+                        Id = systemParametersNews.Id,
+                        DisplayValue = systemParametersNews.DisplayValue,
+                        DisplayValueDesc = systemParametersNews.DisplayValueDesc,
+                        Image = systemParametersNews.Image,
+                        CreationTime = systemParametersNews.CreationTime,
+                        CreationDay = systemParametersNews.CreationTime.Day,
+                        CreationMonth = systemParametersNews.CreationTime.ToString("MMM"),
+                        CreatorUserName = "Administrator",
+                        CategoryName = systemParametersNews.DisplayValue, 
+                        Categories = Mapper.Map<List<Category>>(newsLogic.GetAllCatrogry())
+                    });
                 }
                 retunGeneralAll.News = returnNews;
 

@@ -5,128 +5,94 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
- 
 
+<div class="mg-page-title parallax">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>All Careers</h2>
+                <p>Hospitality and Administartion.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (null != TempData["alertMessage"])
+{
+    <script type="text/javascript">
+        alert("@TempData["alertMessage"]");
+    </script>
+}
 <div class="mg-page">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="mg-booking-form">
+                <div class="mg-avl-room">
+                    @foreach (Career careerObj in Model)
 
+                    {
+                        <div class="mg-tab-left-nav">
 
+                            <ul class="nav nav-tabs nav-justified" role="tablist">
+                                <li role="presentation" class="active"><a href="#@careerObj.Id-1" aria-controls="home3" role="tab" data-toggle="tab"><i class="fa fa-home"></i> Postion Title</a></li>
+                                <li role="presentation"><a href="#@careerObj.Id-8" aria-controls="settings3" role="tab" data-toggle="tab"><i class="fa fa-cogs"></i>  Requirements</a></li>
+                            </ul>
 
-                    <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane fade in active" id="select-room">
-                            <div class="mg-saerch-room">
-                                <div class="mg-book-now mt80">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <h2 class="mg-bn-title">
-                                                Careers <span class="mg-bn-big">Hospitality and Administartion</span>
-                                            </h2>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mg-available-rooms">
-                                <h2 class="mg-sec-left-title">Current Postions</h2>
-                                <div class="mg-avl-rooms">
-                                    <div class="mg-avl-room">
-                                        @*<div class="row">*@
-                                        @foreach (Career careerObj in Model)
-
-                                        {
-                                            @*<div class="col-md-3">
-                                                </div>
-
-                                                <div class="col-md-9" style="margin-bottom: 60px;">
-                                                    <h3 class="mg-avl-room-title"> @careerObj.DisplayValue </h3>
-
-                                                    <p>@careerObj.DisplayValueDesc.</p>
-
-                                                    <a href="/Career/Details/@careerObj.Id" style="font-size: 16px;
-                                                                                                             padding: 10px 35px;
-                                                                                                             color: #FFF;
-                                                                                                             background-color: #e7b315;
-                                                                                                             border-color: #e7b315;">Apply to this Job</a>
-                                                </div>*@
-                                            <div class="mg-tab-left-nav">
-
-                                                <ul class="nav nav-tabs nav-justified" role="tablist">
-                                                    <li role="presentation" class="active"><a href="#@careerObj.Id-1" aria-controls="home3" role="tab" data-toggle="tab"><i class="fa fa-home"></i> Postion Title</a></li>
-                                                    @*<li role="presentation"><a href="#@careerObj.Id-2" aria-controls="profile3" role="tab" data-toggle="tab"><i class="fa fa-user"></i> Description</a></li>
-                                                        <li role="presentation"><a href="#@careerObj.Id-3" aria-controls="messages3" role="tab" data-toggle="tab"><i class="fa fa-pencil"></i> Experience</a></li>
-                                                        <li role="presentation"><a href="#@careerObj.Id-4" aria-controls="settings3" role="tab" data-toggle="tab"><i class="fa fa-cogs"></i> CareerLevel</a></li>
-                                                        <li role="presentation"><a href="#@careerObj.Id-5" aria-controls="settings3" role="tab" data-toggle="tab"><i class="fa fa-cogs"></i> JobType</a></li>
-                                                        <li role="presentation"><a href="#@careerObj.Id-6" aria-controls="settings3" role="tab" data-toggle="tab"><i class="fa fa-cogs"></i> EducationLevel</a></li>
-                                                        <li role="presentation"><a href="#@careerObj.Id-7" aria-controls="settings3" role="tab" data-toggle="tab"><i class="fa fa-cogs"></i> Vacancies</a></li>*@
-                                                    <li role="presentation"><a href="#@careerObj.Id-8" aria-controls="settings3" role="tab" data-toggle="tab"><i class="fa fa-cogs"></i>  Requirements</a></li>
-                                                </ul>
-
-                                                <div class="tab-content">
-                                                    <div role="tabpanel" class="tab-pane fade in active" id="@careerObj.Id-1">
-                                                        <h3><p>@careerObj.DisplayValue </p></h3>
-                                                        <h4>Description :</h4>
-                                                        <p>@careerObj.DisplayValueDesc </p>
-                                                        <h4>Experience :</h4>
-                                                        <p>@careerObj.Experience </p>
-                                                        <h4>Career Level :</h4>
-                                                        <p>@careerObj.CareerLevel </p>
-                                                        <h4>Job Type :</h4>
-                                                        <p>@careerObj.JobType </p>
-                                                        <h4>Education Level :</h4>
-                                                        <p>@careerObj.EducationLevel </p>
-                                                        <h4>Vacancies :</h4>
-                                                        <p>@careerObj.Vacancies </p>
-                                                        <a href="/Career/Details/@careerObj.Id" style="font-size: 16px;
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane fade in active" id="@careerObj.Id-1">
+                                    <h3><p>@careerObj.DisplayValue </p></h3>
+                                    <h4>Description :</h4>
+                                    <p>@careerObj.DisplayValueDesc </p>
+                                    <h4>Experience :</h4>
+                                    <p>@careerObj.Experience </p>
+                                    <h4>Career Level :</h4>
+                                    <p>@careerObj.CareerLevel </p>
+                                    <h4>Job Type :</h4>
+                                    <p>@careerObj.JobType </p>
+                                    <h4>Education Level :</h4>
+                                    <p>@careerObj.EducationLevel </p>
+                                    <h4>Vacancies :</h4>
+                                    <p>@careerObj.Vacancies </p>
+                                    <a href="/Career/Details/@careerObj.Id" style="font-size: 16px;
                                       padding: 10px 35px;
                                       color: #FFF;
                                       background-color: #e7b315;
-                                      border-color: #e7b315;">Apply to this Job</a></div>
-                                                    <div role="tabpanel" class="tab-pane fade" id="@careerObj.Id-2">
-                                                        <p>@careerObj.DisplayValueDesc </p>
-                                                    </div>
-                                                    <div role="tabpanel" class="tab-pane fade" id="@careerObj.Id-3">
-                                                        <p>@careerObj.Experience </p>
+                                      border-color: #e7b315;">Apply to this Job</a>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="@careerObj.Id-2">
+                                    <p>@careerObj.DisplayValueDesc </p>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="@careerObj.Id-3">
+                                    <p>@careerObj.Experience </p>
 
-                                                    </div>
-                                                    <div role="tabpanel" class="tab-pane fade" id="@careerObj.Id-4">
-                                                        <p>@careerObj.CareerLevel </p>
-                                                    </div>
-                                                    <div role="tabpanel" class="tab-pane fade" id="@careerObj.Id-5">
-                                                        <p>@careerObj.JobType </p>
-                                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="@careerObj.Id-4">
+                                    <p>@careerObj.CareerLevel </p>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="@careerObj.Id-5">
+                                    <p>@careerObj.JobType </p>
+                                </div>
 
-                                                    <div role="tabpanel" class="tab-pane fade" id="@careerObj.Id-6">
-                                                        <p>@careerObj.EducationLevel </p>
-                                                    </div>
-                                                    <div role="tabpanel" class="tab-pane fade" id="@careerObj.Id-7">
-                                                        <p>@careerObj.Vacancies </p>
-                                                    </div>
-                                                    <div role="tabpanel" class="tab-pane fade" id="@careerObj.Id-8">
-                                                        <p>@careerObj.DisplayValueRequirements </p>
-                                                        <a href="/Career/Details/@careerObj.Id" style="font-size: 16px;
+                                <div role="tabpanel" class="tab-pane fade" id="@careerObj.Id-6">
+                                    <p>@careerObj.EducationLevel </p>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="@careerObj.Id-7">
+                                    <p>@careerObj.Vacancies </p>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="@careerObj.Id-8">
+                                    <p>@careerObj.DisplayValueRequirements </p>
+                                    <a href="/Career/Details/@careerObj.Id" style="font-size: 16px;
                                                                                                      padding: 10px 35px;
                                                                                                      color: #FFF;
                                                                                                      background-color: #e7b315;
-                                                                                                     border-color: #e7b315;">Apply to this Job</a> </div>
-                                                </div>
-                                             
-                                            </div>
-                                           
-                                        }
-                                        @*</div>*@
-                                    </div>
-
+                                                                                                     border-color: #e7b315;">Apply to this Job</a>
                                 </div>
                             </div>
+
                         </div>
 
-                    </div>
-
+                    }
+                    @*</div>*@
                 </div>
             </div>
         </div>

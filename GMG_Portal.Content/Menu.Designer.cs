@@ -214,7 +214,7 @@ namespace GMG_Portal.Content {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to NewsCategory.
+        ///   Looks up a localized string similar to News Category.
         /// </summary>
         public static string NewsCategory {
             get {

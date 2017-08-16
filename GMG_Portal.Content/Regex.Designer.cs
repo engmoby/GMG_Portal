@@ -259,11 +259,40 @@ namespace GMG_Portal.Content {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to \+(9[976]\d|8[987530]\d|6[987]\d|5[90]\d|42\d|3[875]\d|
+        ///2[98654321]\d|9[8543210]|8[6421]|6[6543210]|5[87654321]|
+        ///4[987654310]|3[9643210]|2[70]|7|1)\d{1,14}$.
+        /// </summary>
+        public static string InternationalPhone {
+            get {
+                return ResourceManager.GetString("InternationalPhone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$.
         /// </summary>
         public static string IPAddress {
             get {
                 return ResourceManager.GetString("IPAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ^(\-?\d+(\.\d+)?),\s*(\-?\d+(\.\d+)?)$.
+        /// </summary>
+        public static string Location {
+            get {
+                return ResourceManager.GetString("Location", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /^[0-9]{1,5}$/.
+        /// </summary>
+        public static string Mailbox {
+            get {
+                return ResourceManager.GetString("Mailbox", resourceCulture);
             }
         }
         

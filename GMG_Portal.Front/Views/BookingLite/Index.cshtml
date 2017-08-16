@@ -43,7 +43,7 @@
                             </li>
 
                             <li role="presentation">
-                                <a href="#thank-you" aria-controls="thank-you" role="tab" data-toggle="tab"><span class="mg-bs-tab-num">2</span>Thank You</a>
+                                <a   aria-controls="thank-you" role="tab" data-toggle="tab"><span class="mg-bs-tab-num">2</span>Thank You</a>
                             </li>
                         </ul>
 
@@ -85,13 +85,20 @@
                                                 </div>
                                             </div>
 
-                                            <div class="clearfix mg-terms-input">
+                                            @*<div class="clearfix mg-terms-input">
                                                 <div class="pull-right">
 
                                                 </div>
-                                            </div>
+                                            </div>*@
 
-                                            <input type="submit" value="Create" class="btn btn-default" />
+                                            @*<input type="submit" value="Create" class="btn btn-default" />*@
+                                            
+                                            <div class="form-group">
+                                                <div class="col-md-offset-2 col-md-10">
+                                                    <input type="submit" id="btnSubmit" class="btn btn-dark-main pull-right" value="Create">
+                                                    @*<input type="submit" value="Create" class="btn btn-default" />*@
+                                                </div>
+                                            </div>
                                             @*<input type="submit" value="Reserve" class="btn btn-dark-main btn-next-tab pull-right" />*@
                                             @*<a href="#payment" class="btn btn-dark-main btn-next-tab pull-right">Next</a>*@
                                             @*<a href="#select-room" class="btn btn-default btn-prev-tab pull-left">Back</a>*@

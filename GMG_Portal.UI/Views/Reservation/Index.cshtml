@@ -20,61 +20,61 @@
     <div ba-panel>
         <table class="table table-hover table-condensed" st-table="TableData" st-safe-src="Reservations">
             <thead>
-            <tr class="toolbar">
-                <th colspan="2">
-                    <div class="input-group">
-                        <span class="input-group-addon addon-left"><i class="fa fa-search" aria-hidden="true"></i></span>
-                        <input st-search="" class="form-control" placeholder="@Reservation.txtSearchLbl" type="text" />
-                    </div>
-                </th>
-                <th colspan="1"></th>
+                <tr class="toolbar">
+                    <th colspan="2">
+                        <div class="input-group">
+                            <span class="input-group-addon addon-left"><i class="fa fa-search" aria-hidden="true"></i></span>
+                            <input st-search="" class="form-control" placeholder="@Reservation.txtSearchLbl" type="text" />
+                        </div>
+                    </th>
+                    <th colspan="1"></th>
 
-            </tr>
+                </tr>
 
-            <tr class="sortable">
-                <th>#</th>
-                <th st-sort="Name">@Reservation.FirstName</th>
-                <th st-sort="Title">@Reservation.Email</th>
-                <th st-sort="Title">@Reservation.Phone</th>
-                <th st-sort="Title">@Reservation.CreationTime</th>
-                <th>@Reservation.Action</th>
-                <th>@Reservation.Action</th>
-                @*<th ng-show="Reservation.Seen">@Reservation.Seen By</th>*@
+                <tr class="sortable">
+                    <th>#</th>
+                    <th st-sort="Name">@Reservation.FirstName</th>
+                    <th st-sort="Title">@Reservation.Email</th>
+                    <th st-sort="Title">@Reservation.Phone</th>
+                    <th st-sort="Title">@Reservation.CreationTime</th>
+                    <th>@Reservation.Action</th>
+                    <th>@Reservation.Action</th>
+                    @*<th ng-show="Reservation.Seen">@Reservation.Seen By</th>*@
 
-            </tr>
+                </tr>
 
             </thead>
             <tbody>
-            <tr ng-class="{'red-text': Reservation.Seen == false}" ng-repeat="Reservation in TableData">
-                <td>{{$index+1}}</td>
-                <td>{{Reservation.FirstName +' '+ Reservation.LastName}}</td>
-                <td>{{Reservation.Email}}</td>
-                <td>{{Reservation.Phone}}</td>
-                <td>{{Reservation.CreationTime   | date:'fullDate'}}</td>
-                <td>
-                    <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(Reservation)"><i class="fa fa-pencil" aria-hidden="true"></i>@Reservation.View</button>
-                </td>
-                <td>
-                    <div class="buttons" ng-show="!Reservation.Seen">
-                        <button class="center-block btn btn-default  restore-button btn-xs btn-with-icon" ng-click="Seen(Reservation)"><i class="fa fa-undo" aria-hidden="true"></i>@Reservation.Seen</button>
-                    </div>
-                    <div class="buttons" ng-show="Reservation.Seen">
-                        {{Reservation.SeenBy}}
-                    </div>
-                </td>
-            </tr>
-            <tr ng-show="TableData.length==0">
-                <td colspan="4">
-                    @Shared.GridNoData
-                </td>
-            </tr>
+                <tr ng-class="{'red-text': Reservation.Seen == false}" ng-repeat="Reservation in TableData">
+                    <td>{{$index+1}}</td>
+                    <td>{{Reservation.FirstName +' '+ Reservation.LastName}}</td>
+                    <td>{{Reservation.Email}}</td>
+                    <td>{{Reservation.Phone}}</td>
+                    <td>{{Reservation.CreationTime   | date:'fullDate'}}</td>
+                    <td>
+                        <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(Reservation)"><i class="fa fa-pencil" aria-hidden="true"></i>@Reservation.View</button>
+                    </td>
+                    <td>
+                        <div class="buttons" ng-show="!Reservation.Seen">
+                            <button class="center-block btn btn-default  restore-button btn-xs btn-with-icon" ng-click="Seen(Reservation)"><i class="fa fa-undo" aria-hidden="true"></i>@Reservation.Seen</button>
+                        </div>
+                        <div class="buttons" ng-show="Reservation.Seen">
+                            {{Reservation.SeenBy}}
+                        </div>
+                    </td>
+                </tr>
+                <tr ng-show="TableData.length==0">
+                    <td colspan="4">
+                        @Shared.GridNoData
+                    </td>
+                </tr>
             </tbody>
             <tfoot>
-            <tr>
-                <td colspan="4" class="text-center">
-                    <div st-pagination="" st-items-by-page="10"></div>
-                </td>
-            </tr>
+                <tr>
+                    <td colspan="4" class="text-center">
+                        <div st-pagination="" st-items-by-page="10"></div>
+                    </td>
+                </tr>
             </tfoot>
         </table>
     </div>
@@ -93,8 +93,8 @@
                         @*CreationTime*@
 
                         <div class="form-group">
-                            <label for="TxtTitle">@Reservation.CreationTime</label><span class="red-text"> *</span>
-                            <input type="text" ng-model="Reservation.CreationTime" class="form-control" Title="TxtTitle"
+                            <label>@Reservation.CreationTime</label><span class="red-text"> *</span>
+                            <input type="text" ng-model="Reservation.CreationTime" class="form-control" name="TxtTitle" readonly="readonly"
                                    placeholder="@Reservation.CreationTime" required ng-pattern="/@Regex.NameAr/">
                         </div>
 
@@ -102,25 +102,25 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="TxtTitle">@Reservation.FirstName</label><span class="red-text"> *</span>
-                                    <input type="text" ng-model="Reservation.FirstName" class="form-control" Title="TxtTitle" readonly="readonly"
+                                    <input type="text" ng-model="Reservation.FirstName" class="form-control" name="TxtTitle" readonly="readonly"
                                            placeholder="@Reservation.FirstName" required ng-pattern="/@Regex.NameAr/">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="TxtTitle">@Reservation.LastName</label><span class="red-text"> *</span>
-                                    <input type="text" ng-model="Reservation.LastName" class="form-control" Title="TxtTitle" readonly="readonly"
+                                    <input type="text" ng-model="Reservation.LastName" class="form-control" name="TxtTitle" readonly="readonly"
                                            placeholder="@Reservation.LastName" required ng-pattern="/@Regex.NameAr/">
 
                                 </div>
                             </div>
                         </div>
-                    
+
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="TxtTitle">@Reservation.Phone</label><span class="red-text"> *</span>
-                                    <input type="text" ng-model="Reservation.Phone" class="form-control" Title="TxtTitle"
+                                    <input type="text" ng-model="Reservation.Phone" class="form-control" name="TxtTitle" readonly="readonly"
                                            placeholder="@Reservation.Phone" required ng-pattern="/@Regex.Number/">
 
                                 </div>
@@ -128,17 +128,17 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="TxtTitle">@Reservation.Email</label><span class="red-text"> *</span>
-                                    <input type="text" ng-model="Reservation.Email" class="form-control" Title="TxtTitle" readonly="readonly"
+                                    <input type="text" ng-model="Reservation.Email" class="form-control" name="TxtTitle" readonly="readonly"
                                            placeholder="@Reservation.Email" required ng-pattern="/@Regex.NameAr/">
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="TxtTitle">@Reservation.CheckIn</label><span class="red-text"> *</span>
-                                    <input type="text" ng-model="Reservation.CheckIn" class="form-control" Title="TxtTitle"
+                                    <input type="text" ng-model="Reservation.CheckIn" class="form-control" name="TxtTitle" readonly="readonly"
                                            placeholder="@Reservation.CheckIn" required ng-pattern="/@Regex.Number/">
 
                                 </div>
@@ -146,17 +146,17 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="TxtTitle">@Reservation.CheckOut</label><span class="red-text"> *</span>
-                                    <input type="text" ng-model="Reservation.CheckOut" class="form-control" Title="TxtTitle" readonly="readonly"
+                                    <input type="text" ng-model="Reservation.CheckOut" class="form-control" name="TxtTitle" readonly="readonly"
                                            placeholder="@Reservation.CheckOut" required ng-pattern="/@Regex.NameAr/">
                                 </div>
                             </div>
                         </div>
-                    
+
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="TxtTitle">@Reservation.Adult</label><span class="red-text"> *</span>
-                                    <input type="text" ng-model="Reservation.Adult" class="form-control" Title="TxtTitle"
+                                    <input type="text" ng-model="Reservation.Adult" class="form-control" name="TxtTitle" readonly="readonly"
                                            placeholder="@Reservation.Adult" required ng-pattern="/@Regex.Number/">
 
                                 </div>
@@ -164,13 +164,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="TxtTitle">@Reservation.Child</label><span class="red-text"> *</span>
-                                    <input type="text" ng-model="Reservation.Child" class="form-control" Title="TxtTitle" readonly="readonly"
+                                    <input type="text" ng-model="Reservation.Child" class="form-control" name="TxtTitle" readonly="readonly"
                                            placeholder="@Reservation.Child" required ng-pattern="/@Regex.NameAr/">
                                 </div>
                             </div>
                         </div>
-                        
-                
+
+
 
                     </div>
 

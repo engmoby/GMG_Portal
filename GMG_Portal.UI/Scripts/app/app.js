@@ -16,7 +16,8 @@ var app = angular.module('BlurAdmin', [
   'BlurAdmin.pages',
   'flow',
   'ui.select',
-  'angular-loading-bar'
+  'angular-loading-bar',
+   'checklist-model' 
 
 
 ]);
@@ -445,6 +446,38 @@ app.factory('uploadOwnersService', function ($http, $q) {
     };
 });
 
+app.factory('uploadOffersService', function ($http, $q) {
+    return {
+        uploadFiles: function ($scope) {
+            debugger;
+            console.log($scope.formdata);
+            var request = {
+                method: 'POST',
+                url: '/api/uploadOffers/',
+                data: $scope.formdata,
+                headers: {
+                    'Content-Type': undefined
+                }
+            };
+
+            // SEND THE FILES.
+            return $http(request)
+                .then(
+                    function (response) {
+                        if (typeof response.data === 'string') {
+                            return response.data;
+                        } else {
+                            return $q.reject(response.data);
+                        }
+                    },
+                    function (response) {
+                        return $q.reject(response.data);
+                    }
+                );
+        }
+
+    };
+});
 app.factory('uploadHotlesService', function ($http, $q) {
     return {
         uploadFiles: function ($scope) { 
@@ -496,3 +529,4 @@ app.directive('myMaxlength', ['$compile', '$log', function ($compile, $log) {
         }
     };
 }]);
+

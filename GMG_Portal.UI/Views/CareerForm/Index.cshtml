@@ -51,12 +51,7 @@
                     <td>
                         <a class="btn btn-primary editable-table-button btn-xs btn-with-icon" style="width: 94px;" target="_top" href="http://gmgportal-stag.azurewebsites.net/Uploads/{{CareerForm.Attach}}"
                            download="{{CareerForm.Attach}}"><i class="fa fa-cloud-download" aria-hidden="true"></i>@CareerForm.Download</a>
-
-                        @*<button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="downloadFile(CareerForm)" style="width: 94px;">
-                                <i class="fa fa-cloud-download" aria-hidden="true"></i>@CareerForm.Download
-
-
-                            </button>*@
+                         
                         <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(CareerForm)"><i class="fa fa-pencil" aria-hidden="true"></i>@CareerForm.View</button>
                     </td>
                     <td>
@@ -97,7 +92,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="TxtTitle">@CareerForm.Postion</label><span class="red-text"> *</span>
-                            <input type="text" ng-model="CareerForm.CareerTitle" class="form-control" Title="TxtTitle"
+                            <input type="text" ng-model="CareerForm.CareerTitle" class="form-control" Title="TxtTitle" readonly="readonly"
                                    placeholder="@CareerForm.Postion" required ng-pattern="/@Regex.NameAr/">
                         </div>
 
@@ -122,7 +117,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="TxtTitle">@CareerForm.Phone</label><span class="red-text"> *</span>
-                                    <input type="text" ng-model="CareerForm.PhoneNo" class="form-control" Title="TxtTitle"
+                                    <input type="text" ng-model="CareerForm.PhoneNo" class="form-control" Title="TxtTitle" readonly="readonly"
                                            placeholder="@CareerForm.Phone" required ng-pattern="/@Regex.Number/">
 
                                 </div>

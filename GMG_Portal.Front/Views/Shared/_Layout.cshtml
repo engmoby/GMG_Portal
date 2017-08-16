@@ -1,4 +1,5 @@
-﻿
+﻿@using Front.Helpers
+
 
 
 <!DOCTYPE html>
@@ -24,64 +25,129 @@
     <link href="~/Content/css/style.css" rel="stylesheet">
 
     <script src="~/Content/js/modernizr.custom.min.js"></script>
-    
-    
-    
+
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    
+
     @*LightBox Owners*@
     <link type="text/css" rel="stylesheet" href="~/Scripts/featherlight.min.css" />
     <style type="text/css">
         @@media all {
-        .lightbox { display: none; }
-        .fl-page h1,
-        .fl-page h3,
-        .fl-page h4 {
-            font-family: 'HelveticaNeue-UltraLight', 'Helvetica Neue UltraLight', 'Helvetica Neue', Arial, Helvetica, sans-serif;
-            font-weight: 100;
-            letter-spacing: 1px;
-        }
-        .fl-page h1 { font-size: 110px; margin-bottom: 0.5em; }
-        .fl-page h1 i { font-style: normal; color: #ddd; }
-        .fl-page h1 span { font-size: 30px; color: #333;}
-        .fl-page h3 { text-align: right; }
-        .fl-page h3 { font-size: 15px; }
-        .fl-page h4 { font-size: 2em; }
-        .fl-page .jumbotron { margin-top: 2em; }
-        .fl-page .doc { margin: 2em 0;}
-        .fl-page .btn-download { float: right; }
-        .fl-page .btn-default { vertical-align: bottom; }
+            .lightbox {
+                display: none;
+            }
 
-        .fl-page .btn-lg span { font-size: 0.7em; }
-        .fl-page .footer { margin-top: 3em; color: #aaa; font-size: 0.9em;}
-        .fl-page .footer a { color: #999; text-decoration: none; margin-right: 0.75em;}
-        .fl-page .github { margin: 2em 0; }
-        .fl-page .github a { vertical-align: top; }
-        .fl-page .marketing a { color: #999; }
+            .fl-page h1,
+            .fl-page h3,
+            .fl-page h4 {
+                font-family: 'HelveticaNeue-UltraLight', 'Helvetica Neue UltraLight', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+                font-weight: 100;
+                letter-spacing: 1px;
+            }
 
-        /* override default feather style... */
-        .fixwidth {
-            background: rgba(256,256,256, 0.8);
-        }
-        .fixwidth .featherlight-content {
-            width: 500px;
-            padding: 25px;
-            color: #fff;
-            background: #111;
-        }
-        .fixwidth .featherlight-close {
-            color: #fff;
-            background: #333;
+            .fl-page h1 {
+                font-size: 110px;
+                margin-bottom: 0.5em;
+            }
+
+                .fl-page h1 i {
+                    font-style: normal;
+                    color: #ddd;
+                }
+
+                .fl-page h1 span {
+                    font-size: 30px;
+                    color: #333;
+                }
+
+            .fl-page h3 {
+                text-align: right;
+            }
+
+            .fl-page h3 {
+                font-size: 15px;
+            }
+
+            .fl-page h4 {
+                font-size: 2em;
+            }
+
+            .fl-page .jumbotron {
+                margin-top: 2em;
+            }
+
+            .fl-page .doc {
+                margin: 2em 0;
+            }
+
+            .fl-page .btn-download {
+                float: right;
+            }
+
+            .fl-page .btn-default {
+                vertical-align: bottom;
+            }
+
+            .fl-page .btn-lg span {
+                font-size: 0.7em;
+            }
+
+            .fl-page .footer {
+                margin-top: 3em;
+                color: #aaa;
+                font-size: 0.9em;
+            }
+
+                .fl-page .footer a {
+                    color: #999;
+                    text-decoration: none;
+                    margin-right: 0.75em;
+                }
+
+            .fl-page .github {
+                margin: 2em 0;
+            }
+
+                .fl-page .github a {
+                    vertical-align: top;
+                }
+
+            .fl-page .marketing a {
+                color: #999;
+            }
+
+            /* override default feather style... */
+            .fixwidth {
+                background: rgba(256,256,256, 0.8);
+            }
+
+                .fixwidth .featherlight-content {
+                    width: 500px;
+                    padding: 25px;
+                    color: #fff;
+                    background: #111;
+                }
+
+                .fixwidth .featherlight-close {
+                    color: #fff;
+                    background: #333;
+                }
         }
 
+        @@media(max-width: 768px) {
+            .fl-page h1 span {
+                display: block;
+            }
+
+            .fl-page .btn-download {
+                float: none;
+                margin-bottom: 1em;
+            }
         }
-        @@media(max-width: 768px){
-        .fl-page h1 span { display: block; }
-        .fl-page .btn-download { float: none; margin-bottom: 1em; }
-        }
-        </style>
-    
-    
+    </style>
+
+
 
 </head>
 <body>
@@ -101,9 +167,7 @@
 
 
     <!-- Loaded Body Content   -->
-    <div id="divContent">
-        @RenderBody()
-    </div>
+    @RenderBody()
 
 
 
@@ -235,8 +299,7 @@
                         $(
                             "<li>" +
                             "<a href='/Hotel/Details/" + data[i].Id + "'>" + data[i].DisplayValue + "</i></a>"
-
-
+                             
                         ).appendTo("#ulAllHotels");
                         //  var result = $.localStorage('hotelId', data[i].Id);
 
@@ -244,8 +307,8 @@
                     }
                     if (data.length >= 10) {
                         $(
-                            "<li>" +"<a href='/Hotel/Index'>" + more + "</i></a>"
-                        ).appendTo("#ulAllHotels"); 
+                            "<li>" + "<a href='/Hotel/Index'>" + more + "</i></a>"
+                        ).appendTo("#ulAllHotels");
                     }
                     // $.localStorage('listlist', list);
 
@@ -269,31 +332,31 @@
                 url: apiUrl + "/SystemParameters/ContactUs/GetAll",
                 type: "Get",
                 success: function (data) {
-                    $(
-                        "<p>" + data.DisplayValueAddress + "</p>"
-                     ).appendTo("#divAddress");
+                    //$(
+                    //    "<p>" + data.DisplayValueAddress + "</p>"
+                    // ).appendTo("#divAddress");
                     $(
                         "<p>" + data.PhoneNo1 + "<br>" + data.PhoneNo2 + "</p>"
                      ).appendTo("#divphones");
                     $(
                         "<p>" +
-                        "<a href='mailto:#'>" + data.Mailbox + "</i>"
+                        "<a href='mailto:#'>" + data.MailNo1 + "</i>"
                        + "</p>"
                     ).appendTo("#divmail");
 
                     $(
-                        "<li>" + "<a href='" + data.Facebook + "'>" + "<i class='fa fa-facebook'></i>" + "</i></a>"
-                        + "<li>" + "<a href='" + data.Twitter + "'>" + "<i class='fa fa-twitter'></i>" + "</i></a>"
-                        + "<li>" + "<a href='" + data.Instgram + "'>" + "<i class='fa fa-pinterest'></i>" + "</i></a>"
-                        + "<li>" + "<a href='" + data.Snapchat + "'>" + "<i class='fa fa-google-plus'></i>" + "</i></a>"
-                        + "<li>" + "<a href='" + data.Youtube + "'>" + "<i class='fa fa-rss'></i>" + "</i></a>"
+                        "<li>" + "<a target='Blank' href='" + data.Facebook + "'>" + "<i class='fa fa-facebook'></i>" + "</i></a>"
+                        + "<li>" + "<a target='Blank' href='" + data.Twitter + "'>" + "<i class='fa fa-twitter'></i>" + "</i></a>"
+                        + "<li>" + "<a target='Blank' href='" + data.Instgram + "'>" + "<i class='fa fa-pinterest'></i>" + "</i></a>"
+                        + "<li>" + "<a target='Blank' href='" + data.Snapchat + "'>" + "<i class='fa fa-google-plus'></i>" + "</i></a>"
+                        + "<li>" + "<a target='Blank' href='" + data.Youtube + "'>" + "<i class='fa fa-rss'></i>" + "</i></a>"
                     ).appendTo("#divsocial");
 
 
 
                 },
                 error: function (msg) {
-                    alert("error footer");
+                    //alert("error footer");
                 }
             });
 

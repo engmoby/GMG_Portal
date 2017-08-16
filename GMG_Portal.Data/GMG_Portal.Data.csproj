@@ -74,6 +74,9 @@
     <Compile Include="Hotels_Features.cs">
       <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Hotels_Features_Translate.cs">
+      <DependentUpon>Portal_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Hotels_Images.cs">
       <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
@@ -98,6 +101,7 @@
     <Compile Include="Hotles_Offers_Translate.cs">
       <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Partials\Hotel\HotelTranslate.cs" />
     <Compile Include="Partials\Hotel\Offrer.cs" />
     <Compile Include="Partials\Hotel\HotelsImages.cs" />
     <Compile Include="Partials\Hotel\Hotel.cs" />

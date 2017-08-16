@@ -10,16 +10,39 @@
                     <p>@Front.Resources.Global.Home_OwnersDesc</p>
                 </div>
                 <div class="mg-testimonial-slider" id="mg-testimonial-slider">
-                @{ 
-                    for (var i = 0; i < Model.Owners.Count; i++)
-                    {
-                     <blockquote>
-                         <p>@Model.Owners[i].DisplayValueName</p>
-                         <p>@Model.Owners[i].DisplayValuePosition</p>
-                        <footer><p>@Model.Owners[i].DisplayValueDesc</p></footer>
-                    </blockquote>
+                    @{
+                        for (var i = 0; i < Model.Owners.Count; i++)
+                        {
+                            <blockquote>
+
+                                @if (@Model.Owners[i].DisplayValueName.Length >= 20)
+                                {
+                                    <p>@Model.Owners[i].DisplayValueName.Substring(0, 20)</p>
+                                }
+                                else
+                                {
+                                    <p>@Model.Owners[i].DisplayValueName</p>
+
+                                }
+                                @if (@Model.Owners[i].DisplayValuePosition.Length >= 20)
+                                {
+                                    <p>@Model.Owners[i].DisplayValuePosition.Substring(0, 20)</p>
+                                }
+                                else
+                                {
+                                    <p>@Model.Owners[i].DisplayValuePosition</p>
+                                }
+                                @if (@Model.Owners[i].DisplayValueDesc.Length >= 200)
+                                {
+                                    <footer> <p>@Model.Owners[i].DisplayValueDesc.Substring(0, 200)</p></footer>
+                                }
+                                else
+                                {
+                                    <footer> <p>@Model.Owners[i].DisplayValueDesc</p></footer>
+                                } 
+                            </blockquote>
+                        }
                     }
-                } 
                 </div>
             </div>
         </div>

@@ -1,9 +1,24 @@
 ﻿controllerProvider.register('FeaturesController', ['$scope', 'FeaturesApi', 'uploadService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', FeaturesController]);
 function FeaturesController($scope, FeaturesApi, uploadService, $rootScope, $timeout, $filter, $uibModal, toastr) {
+    var langId = document.querySelector('#HCurrentLang').value;
+    var CurrentLanguage = langId;
+    $("#DropdwonLang").change(function () {
+        var selectedText = $(this).find("option:selected").text();
+        var selectedValue = $(this).val();
+        document.getElementById("HCurrentLang").value = selectedValue;
+        CurrentLanguage = selectedValue;
+
+        debugger;
+
+        FeaturesApi.GetAll(CurrentLanguage).then(function (response) {
+            $scope.Features = response.data;
+            $rootScope.ViewLoading = false;
+        });
+    });
     $scope.Image = "";
     $scope.letterLimit = 20;
     $rootScope.ViewLoading = true;
-    FeaturesApi.GetAll().then(function (response) {
+    FeaturesApi.GetAll(CurrentLanguage).then(function (response) {
         $scope.Features = response.data;
         $rootScope.ViewLoading = false;
     });
@@ -53,7 +68,8 @@ function FeaturesController($scope, FeaturesApi, uploadService, $rootScope, $tim
             $scope.Image = "";
         }
         //  uploadService.uploadFiles();
-        debugger;
+        $scope.Feature.LangId = CurrentLanguage;
+
         FeaturesApi.Save($scope.Feature).then(function (response) {
 
             switch (response.data.OperationStatus) {

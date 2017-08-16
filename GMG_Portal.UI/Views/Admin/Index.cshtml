@@ -38,6 +38,8 @@
     <link rel="stylesheet" href="~/Content/css/select.css">
 
     <link rel="stylesheet" href="~/Content/css/main.css">
+    
+    <link href="~/Content/css/adapt-strap.css" rel="stylesheet" />
 </head>
 <body>
     @{var listItems = new List<ListItem>
@@ -206,8 +208,12 @@
 
     <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.7.1/loading-bar.min.css' type='text/css' media='all' />
     <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.7.1/loading-bar.min.js'></script>
-
-    <script>
+<script src="~/Scripts/app/theme/checklist-model.js"></script>
+    
+    <script src="~/Scripts/app/theme/adapt-strap.js"></script>
+    <script src="~/Scripts/app/theme/adapt-strap.tpl.js"></script>
+    @*<script src="~/Scripts/app/theme/angular-sanitize.js"></script>*@
+<script>
 
 
         $(document).ready(function () {

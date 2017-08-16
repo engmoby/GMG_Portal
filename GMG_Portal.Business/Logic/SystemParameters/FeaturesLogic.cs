@@ -20,6 +20,24 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         {
             return _db.SystemParameters_Features.OrderBy(p => p.IsDeleted).ToList();
         }
+        public List<SystemParameters_Features> GetAllByTake6()
+        {
+            var returnList = new List<SystemParameters_Features>();
+            var featureList = _db.SystemParameters_Features.Where(p => p.IsDeleted != true).ToList();
+            var random = featureList.OrderBy(x => Guid.NewGuid()).Take(6);
+            foreach (var systemParametersFeaturese in random)
+            {
+                returnList.Add(new SystemParameters_Features
+                {
+                    Id = systemParametersFeaturese.Id,
+                    Icon = systemParametersFeaturese.Icon,
+                    DisplayValue = systemParametersFeaturese.DisplayValue,
+                    DisplayValueDesc = systemParametersFeaturese.DisplayValueDesc
+                });
+            }
+            return returnList;
+
+        }
         public List<SystemParameters_Features> GetAll()
         {
             return _db.SystemParameters_Features.Where(p => p.IsDeleted != true).ToList();
@@ -55,14 +73,14 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             }
         }
         public SystemParameters_Features Insert(SystemParameters_Features postedHomeSlider)
-        { 
+        {
             var language = new SystemParameters_Features()
             {
                 DisplayValue = postedHomeSlider.DisplayValue,
                 DisplayValueDesc = postedHomeSlider.DisplayValueDesc,
                 Icon = postedHomeSlider.Icon,
                 IsDeleted = postedHomeSlider.IsDeleted,
-                Show = Parameters.Show, 
+                Show = Parameters.Show,
                 CreationTime = Parameters.CurrentDateTime,
                 CreatorUserId = Parameters.UserId,
             };
@@ -74,7 +92,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             SystemParameters_Features language = Get(postedLanguage.Id);
             language.DisplayValue = postedLanguage.DisplayValue;
             language.DisplayValueDesc = postedLanguage.DisplayValueDesc;
-            language.Icon = postedLanguage.Icon; 
+            language.Icon = postedLanguage.Icon;
             language.IsDeleted = postedLanguage.IsDeleted;
             language.Show = postedLanguage.Show;
             language.LastModificationTime = Parameters.CurrentDateTime;

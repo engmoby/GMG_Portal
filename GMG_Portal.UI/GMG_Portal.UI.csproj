@@ -226,6 +226,7 @@
     <Compile Include="Controllers\Admin\AdminController.cs" />
     <Compile Include="Controllers\Admin\InvoiceStatusesController.cs" />
     <Compile Include="Controllers\FileUploadHotlesController.cs" />
+    <Compile Include="Controllers\FileUploadOffersController.cs" />
     <Compile Include="Controllers\FileUploadNewsController.cs" />
     <Compile Include="Controllers\FileUploadOwnerController.cs" />
     <Compile Include="Controllers\FileUploadController.cs" />
@@ -411,6 +412,7 @@
     <Content Include="assets\pictures\pic-vova.png" />
     <Content Include="assets\pictures\tinder-logo.jpg" />
     <Content Include="Content\assets\img\blur-bg.jpg" />
+    <Content Include="Content\css\adapt-strap.css" />
     <Content Include="Content\css\angular-progress-button-styles.min.css" />
     <Content Include="Content\css\angular-toastr.css" />
     <Content Include="Content\css\animate.css" />
@@ -531,6 +533,10 @@
     <Content Include="Scripts\app\services\InvoiceStatuses.js" />
     <Content Include="Scripts\app\services\PaymentTypes.js" />
     <Content Include="Scripts\app\services\Vision.js" />
+    <Content Include="Scripts\app\theme\adapt-strap.js" />
+    <Content Include="Scripts\app\theme\adapt-strap.tpl.js" />
+    <Content Include="Scripts\app\theme\angular-sanitize.js" />
+    <Content Include="Scripts\app\theme\checklist-model.js" />
     <Content Include="Scripts\app\theme\components\backTop\backTop.directive.js" />
     <Content Include="Scripts\app\theme\components\backTop\backTop.html" />
     <Content Include="Scripts\app\theme\components\backTop\lib\jquery.backTop.min.js" />

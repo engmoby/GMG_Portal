@@ -81,7 +81,10 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 DisplayValueName = postedOwner.DisplayValueName,
                 DisplayValuePosition = postedOwner.DisplayValuePosition,
                 DisplayValueDesc = postedOwner.DisplayValueDesc,
+                Facebook= postedOwner.Facebook, 
+                Twitter= postedOwner.Twitter, 
                 Image= postedOwner.Image, 
+                LinkedIn= postedOwner.LinkedIn,
                 Show = Parameters.Show,  
                 CreationTime = Parameters.CurrentDateTime,
                 CreatorUserId = Parameters.UserId, 
@@ -95,7 +98,10 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             owner.DisplayValueName = postedOwner.DisplayValueName;
             owner.DisplayValuePosition = postedOwner.DisplayValuePosition;
             owner.DisplayValueDesc = postedOwner.DisplayValueDesc;
-            owner.Image = postedOwner.Image; 
+            owner.Facebook = postedOwner.Facebook;
+            owner.Twitter = postedOwner.Twitter;
+            owner.Image = postedOwner.Image;
+            owner.LinkedIn = postedOwner.LinkedIn;
             owner.IsDeleted = postedOwner.IsDeleted;
             owner.Show = postedOwner.Show; 
             owner.LastModificationTime = Parameters.CurrentDateTime;

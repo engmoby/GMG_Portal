@@ -45,12 +45,12 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 return Request.CreateResponse(ex);
             }
         }
-        public HttpResponseMessage GetLatestNewsWithOutCurrentId(int newsId,string langId)
+        public HttpResponseMessage GetLatestNewsWithOutCurrentId(int newsId, string langId)
         {
             try
             {
                 var newsLogic = new NewsLogic();
-                var news = newsLogic.GetLatestNewsWithOutCurrentId(newsId,langId);
+                var news = newsLogic.GetLatestNewsWithOutCurrentId(newsId, langId);
                 return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<News>>(news));
             }
             catch (Exception ex)

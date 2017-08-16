@@ -38,6 +38,14 @@ namespace Front.Controllers
                 var responseData = responseMessageApi.Content.ReadAsStringAsync().Result;
                 var OffersList = JsonConvert.DeserializeObject<List<Offer>>(responseData);
                 OffersModels = OffersList;
+                if (OffersList.Count == 0)
+                { 
+                    TempData["alertNoOffers"] = "No Offers, Kindly redirect to home";
+
+                    return RedirectToAction("Index", "Home");
+
+
+                }
             }
             return View(OffersModels);
 

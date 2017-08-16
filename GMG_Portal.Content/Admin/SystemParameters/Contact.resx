@@ -198,26 +198,23 @@
   <data name="TxtNameRequiredErrorMessage" xml:space="preserve">
     <value>Name is required</value>
   </data>
-  <data name="TxtUrlPatternErrorMessage" xml:space="preserve">
-    <value>Url Invalid Pattern</value>
-  </data>
   <data name="UpdateSuccessMessage" xml:space="preserve">
     <value>Updated Successfully</value>
   </data>
   <data name="Requirements" xml:space="preserve">
     <value>Requirements</value>
   </data>
-  <data name="TxtPostionPatternErrorMessage" xml:space="preserve">
+  <data name="TxtaddressPatternErrorMessage" xml:space="preserve">
     <value>Invalid Pattern</value>
   </data>
-  <data name="TxtPostionRequiredErrorMessage" xml:space="preserve">
-    <value>Postion is required</value>
+  <data name="TxtaddressRequiredErrorMessage" xml:space="preserve">
+    <value>address is required</value>
   </data>
-  <data name="TxtPostionUniqueErrorMessage" xml:space="preserve">
-    <value>Postion  is unique</value>
+  <data name="TxtaddressUniqueErrorMessage" xml:space="preserve">
+    <value>address  is unique</value>
   </data>
-  <data name="Postion" xml:space="preserve">
-    <value>Postion</value>
+  <data name="address" xml:space="preserve">
+    <value>address</value>
   </data>
   <data name="ApplyCount" xml:space="preserve">
     <value>Apply Count</value>
@@ -243,47 +240,160 @@
   <data name="Url" xml:space="preserve">
     <value>Url</value>
   </data>
+  <data name="TxtUrlPatternErrorMessage" xml:space="preserve">
+    <value>Invalid Pattern</value>
+  </data>
+  <data name="TxtUrlRequiredErrorMessage" xml:space="preserve">
+    <value>Url is required</value>
+  </data>
   <data name="Facebook" xml:space="preserve">
     <value>Facebook</value>
+  </data>
+  <data name="TxtFacebookPatternErrorMessage" xml:space="preserve">
+    <value>Invalid Pattern</value>
+  </data>
+  <data name="TxtFacebookRequiredErrorMessage" xml:space="preserve">
+    <value>Facebook is required</value>
   </data>
   <data name="Fax" xml:space="preserve">
     <value>Fax</value>
   </data>
+
+  <data name="TxtFaxPatternErrorMessage" xml:space="preserve">
+    <value>Invalid Pattern</value>
+  </data>
+  <data name="TxtFaxRequiredErrorMessage" xml:space="preserve">
+    <value>Fax is required</value>
+  </data>
   <data name="Instgram" xml:space="preserve">
     <value>Instgram</value>
+  </data>
+
+  <data name="TxtInstgramPatternErrorMessage" xml:space="preserve">
+    <value>Invalid Pattern</value>
+  </data>
+  <data name="TxtInstgramRequiredErrorMessage" xml:space="preserve">
+    <value>Instgram is required</value>
   </data>
   <data name="Late" xml:space="preserve">
     <value>Late</value>
   </data>
+
+  <data name="TxtLatePatternErrorMessage" xml:space="preserve">
+    <value>Invalid Pattern</value>
+  </data>
+  <data name="TxtLateRequiredErrorMessage" xml:space="preserve">
+    <value>Late is required</value>
+  </data>
+  
   <data name="Long" xml:space="preserve">
     <value>Long</value>
   </data>
+
+  <data name="TxtLongPatternErrorMessage" xml:space="preserve">
+    <value>Invalid Pattern</value>
+  </data>
+  <data name="TxtLongRequiredErrorMessage" xml:space="preserve">
+    <value>Long is required</value>
+  </data>
+  
   <data name="Mailbox" xml:space="preserve">
     <value>Mailbox</value>
+  </data>
+  <data name="TxtMailboxPatternErrorMessage" xml:space="preserve">
+    <value>Invalid Pattern</value>
+  </data>
+  <data name="TxtMailboxRequiredErrorMessage" xml:space="preserve">
+    <value>Mailbox is required</value>
+  </data>
+  <data name="TxtMailboxUniqueErrorMessage" xml:space="preserve">
+    <value> Mailbox is unique</value>
   </data>
   <data name="PhoneNo1" xml:space="preserve">
     <value>PhoneNo1</value>
   </data>
+  <data name="TxtPhoneNo1PatternErrorMessage" xml:space="preserve">
+    <value>Invalid Pattern</value>
+  </data>
+  <data name="TxtPhoneNo1RequiredErrorMessage" xml:space="preserve">
+    <value>PhoneNo1 is required</value>
+  </data>
+  <data name="TxtPhoneNo1UniqueErrorMessage" xml:space="preserve">
+    <value> PhoneNo1 is unique</value>
+  </data>
+
   <data name="PhoneNo2" xml:space="preserve">
     <value>PhoneNo2</value>
+  </data>
+  <data name="TxtPhoneNo2PatternErrorMessage" xml:space="preserve">
+    <value>Invalid Pattern</value>
+  </data>
+  <data name="TxtPhoneNo2RequiredErrorMessage" xml:space="preserve">
+    <value>PhoneNo2 is required</value>
+  </data>
+  <data name="TxtPhoneNo2UniqueErrorMessage" xml:space="preserve">
+    <value> PhoneNo2 is unique</value>
   </data>
   <data name="PostalCode" xml:space="preserve">
     <value>PostalCode</value>
   </data>
+  <data name="TxtPostalcodePatternErrorMessage" xml:space="preserve">
+    <value>Invalid Pattern</value>
+  </data>
+  <data name="TxtPostalcodeRequiredErrorMessage" xml:space="preserve">
+    <value>Postalcode is required</value>
+  </data>
   <data name="Snapchat" xml:space="preserve">
     <value>Snapchat</value>
+  </data>
+
+  <data name="TxtSnapchatPatternErrorMessage" xml:space="preserve">
+    <value>Invalid Pattern</value>
+  </data>
+  <data name="TxtSnapchatRequiredErrorMessage" xml:space="preserve">
+    <value>Snapchat is required</value>
   </data>
   <data name="Twitter" xml:space="preserve">
     <value>Twitter</value>
   </data>
+
+  <data name="TxtTwitterPatternErrorMessage" xml:space="preserve">
+    <value>Invalid Pattern</value>
+  </data>
+  <data name="TxtTwitterRequiredErrorMessage" xml:space="preserve">
+    <value>Twitter is required</value>
+  </data>
   <data name="WhatsApp" xml:space="preserve">
     <value>WhatsApp</value>
   </data>
+
+    <data name="TxtWhatsAppPatternErrorMessage" xml:space="preserve">
+      <value>Invalid Pattern</value>
+    </data>
+    <data name="TxtWhatsAppRequiredErrorMessage" xml:space="preserve">
+      <value>WhatsApp is required</value>
+    </data>
   <data name="Youtube" xml:space="preserve">
     <value>Youtube</value>
   </data>
+
+  <data name="TxtYoutubePatternErrorMessage" xml:space="preserve">
+    <value>Invalid Pattern</value>
+  </data>
+  <data name="TxtYoutubeRequiredErrorMessage" xml:space="preserve">
+    <value>Youtube is required</value>
+  </data>
   <data name="MailNo1" xml:space="preserve">
     <value>MailNo1</value>
+  </data>
+  <data name="TxtMailPatternErrorMessage" xml:space="preserve">
+    <value>Invalid Pattern</value>
+  </data>
+  <data name="TxtMailRequiredErrorMessage" xml:space="preserve">
+    <value>Mail is required</value>
+  </data>
+  <data name="TxtMailUniqueErrorMessage" xml:space="preserve">
+    <value> Mail is unique</value>
   </data>
   <data name="MailNo2" xml:space="preserve">
     <value>MailNo2</value>

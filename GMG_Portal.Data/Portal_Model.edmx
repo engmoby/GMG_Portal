@@ -48,7 +48,7 @@
           <Property Name="CreatorUserId" Type="int" />
           <Property Name="DeletionTime" Type="datetime" />
           <Property Name="DeleterUserId" Type="int" />
-          <Property Name="Lang_Id" Type="nvarchar" MaxLength="10" />
+          <Property Name="langId" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Front_Vision">
           <Key>
@@ -93,7 +93,7 @@
           <Property Name="CreatorUserId" Type="int" />
           <Property Name="DeletionTime" Type="datetime" />
           <Property Name="DeleterUserId" Type="int" />
-          <Property Name="Lang_ID" Type="nvarchar" MaxLength="10" />
+          <Property Name="langId" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Hotels">
           <Key>
@@ -138,6 +138,17 @@
           <Property Name="Feature_Id" Type="int" />
           <Property Name="SGuid" Type="uniqueidentifier" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Hotels_Features_Translate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Hotel_Id" Type="int" />
+          <Property Name="Feature_Id" Type="int" />
+          <Property Name="SGuid" Type="uniqueidentifier" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="langId" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Hotels_Images">
           <Key>
@@ -227,6 +238,7 @@
           <Property Name="SeenBy" Type="int" />
           <Property Name="CreationTime" Type="datetime" />
           <Property Name="OperationId" Type="int" />
+          <Property Name="Seen" Type="bit" />
         </EntityType>
         <EntityType Name="Hotels_Translate">
           <Key>
@@ -260,8 +272,8 @@
           <Property Name="CreatorUserId" Type="int" />
           <Property Name="DeletionTime" Type="datetime" />
           <Property Name="DeleterUserId" Type="int" />
-          <Property Name="Lang_ID" Type="nvarchar" MaxLength="10" />
           <Property Name="Show" Type="bit" Nullable="false" />
+          <Property Name="langId" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Hotles_Offers">
           <Key>
@@ -316,7 +328,7 @@
           <Property Name="DeletionTime" Type="datetime" />
           <Property Name="DeleterUserId" Type="int" />
           <Property Name="Image" Type="nvarchar" MaxLength="250" />
-          <Property Name="Lang_ID" Type="nvarchar" MaxLength="10" />
+          <Property Name="langId" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="SystemParameters_About">
           <Key>
@@ -363,7 +375,7 @@
           <Property Name="CreatorUserId" Type="int" />
           <Property Name="DeletionTime" Type="datetime" />
           <Property Name="DeleterUserId" Type="int" />
-          <Property Name="Lang_ID" Type="nvarchar" MaxLength="10" />
+          <Property Name="langId" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="SystemParameters_CareerForm">
           <Key>
@@ -443,7 +455,7 @@
           <Property Name="CreatorUserId" Type="int" />
           <Property Name="DeletionTime" Type="datetime" />
           <Property Name="DeleterUserId" Type="int" />
-          <Property Name="Lang_ID" Type="nvarchar" MaxLength="10" />
+          <Property Name="langId" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="SystemParameters_Category">
           <Key>
@@ -488,7 +500,7 @@
           <Property Name="CreatorUserId" Type="int" />
           <Property Name="DeletionTime" Type="datetime" />
           <Property Name="DeleterUserId" Type="int" />
-          <Property Name="Lang_ID" Type="nvarchar" MaxLength="10" />
+          <Property Name="langId" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="SystemParameters_Cities">
           <Key>
@@ -561,7 +573,7 @@
           <Property Name="DeletionTime" Type="datetime" />
           <Property Name="DeleterUserId" Type="int" />
           <Property Name="MailNo1" Type="nvarchar" MaxLength="50" />
-          <Property Name="MailNo2" Type="nchar" MaxLength="10" />
+          <Property Name="MailNo2" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="SystemParameters_ContactUs_Translate">
           <Key>
@@ -599,8 +611,8 @@
           <Property Name="DeletionTime" Type="datetime" />
           <Property Name="DeleterUserId" Type="int" />
           <Property Name="MailNo1" Type="nvarchar" MaxLength="50" />
-          <Property Name="MailNo2" Type="nchar" MaxLength="10" />
-          <Property Name="Lang_ID" Type="nvarchar" MaxLength="10" />
+          <Property Name="MailNo2" Type="nvarchar" MaxLength="50" />
+          <Property Name="langId" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="SystemParameters_CoreValues">
           <Key>
@@ -645,7 +657,7 @@
           <Property Name="DeletionTime" Type="datetime" />
           <Property Name="DeleterUserId" Type="int" />
           <Property Name="Show" Type="bit" Nullable="false" />
-          <Property Name="Lang_ID" Type="nvarchar" MaxLength="10" />
+          <Property Name="langId" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="SystemParameters_Countries">
           <Key>
@@ -727,8 +739,8 @@
           <Property Name="CreatorUserId" Type="int" />
           <Property Name="DeletionTime" Type="datetime" />
           <Property Name="DeleterUserId" Type="int" />
-          <Property Name="Lang_ID" Type="nvarchar" MaxLength="10" />
           <Property Name="Show" Type="bit" Nullable="false" />
+          <Property Name="langId" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="SystemParameters_HomeSlider">
           <Key>
@@ -777,7 +789,7 @@
           <Property Name="CreatorUserId" Type="int" />
           <Property Name="DeletionTime" Type="datetime" />
           <Property Name="DeleterUserId" Type="int" />
-          <Property Name="Lang_Id" Type="nvarchar" MaxLength="10" />
+          <Property Name="langId" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Systemparameters_Languages">
           <Key>
@@ -828,7 +840,7 @@
           <Property Name="Image" Type="nvarchar" MaxLength="100" />
           <Property Name="LastModificationTime" Type="datetime" />
           <Property Name="LastModifierUserId" Type="int" />
-          <Property Name="CreationTime" Type="datetime" />
+          <Property Name="CreationTime" Type="datetime" Nullable="false" />
           <Property Name="CreatorUserId" Type="int" />
           <Property Name="DeletionTime" Type="datetime" />
           <Property Name="DeleterUserId" Type="int" />
@@ -853,13 +865,13 @@
           <Property Name="Image" Type="nvarchar" MaxLength="100" />
           <Property Name="LastModificationTime" Type="datetime" />
           <Property Name="LastModifierUserId" Type="int" />
-          <Property Name="CreationTime" Type="datetime" />
+          <Property Name="CreationTime" Type="datetime" Nullable="false" />
           <Property Name="CreatorUserId" Type="int" />
           <Property Name="DeletionTime" Type="datetime" />
           <Property Name="DeleterUserId" Type="int" />
           <Property Name="Tags" Type="nvarchar(max)" />
           <Property Name="CategoryId" Type="int" />
-          <Property Name="Lang_ID" Type="nvarchar" MaxLength="10" />
+          <Property Name="langId" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="SystemParameters_Newsletter">
           <Key>
@@ -925,7 +937,7 @@
           <Property Name="Facebook" Type="nvarchar" MaxLength="250" />
           <Property Name="Twitter" Type="nvarchar" MaxLength="250" />
           <Property Name="LinkedIn" Type="nvarchar" MaxLength="150" />
-          <Property Name="Lang_ID" Type="nvarchar" MaxLength="10" />
+          <Property Name="langId" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="SystemParameters_PaymentType">
           <Key>
@@ -954,6 +966,7 @@
           <EntitySet Name="Front_Vision_Translate" EntityType="Self.Front_Vision_Translate" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Hotels" EntityType="Self.Hotels" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Hotels_Features" EntityType="Self.Hotels_Features" Schema="dbo" Table="Hotels.Features" store:Type="Tables" />
+          <EntitySet Name="Hotels_Features_Translate" EntityType="Self.Hotels_Features_Translate" Schema="dbo" Table="Hotels.Features_Translate" store:Type="Tables" />
           <EntitySet Name="Hotels_Images" EntityType="Self.Hotels_Images" Schema="dbo" Table="Hotels.Images" store:Type="Tables" />
           <EntitySet Name="Hotels_Payments" EntityType="Self.Hotels_Payments" Schema="dbo" Table="Hotels.Payments" store:Type="Tables" />
           <EntitySet Name="Hotels_Phones" EntityType="Self.Hotels_Phones" Schema="dbo" Table="Hotels.Phones" store:Type="Tables" />
@@ -1001,6 +1014,7 @@
           <EntitySet Name="Front_Vision_Translate" EntityType="GMG_Portal_DBModel.Front_Vision_Translate" />
           <EntitySet Name="Hotels" EntityType="GMG_Portal_DBModel.Hotel" />
           <EntitySet Name="Hotels_Features" EntityType="GMG_Portal_DBModel.Hotels_Features" />
+          <EntitySet Name="Hotels_Features_Translate" EntityType="GMG_Portal_DBModel.Hotels_Features_Translate" />
           <EntitySet Name="Hotels_Images" EntityType="GMG_Portal_DBModel.Hotels_Images" />
           <EntitySet Name="Hotels_Payments" EntityType="GMG_Portal_DBModel.Hotels_Payments" />
           <EntitySet Name="Hotels_Phones" EntityType="GMG_Portal_DBModel.Hotels_Phones" />
@@ -1080,7 +1094,7 @@
           <Property Name="CreatorUserId" Type="Int32" />
           <Property Name="DeletionTime" Type="DateTime" Precision="3" />
           <Property Name="DeleterUserId" Type="Int32" />
-          <Property Name="Lang_Id" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="langId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Front_Vision">
           <Key>
@@ -1125,7 +1139,7 @@
           <Property Name="CreatorUserId" Type="Int32" />
           <Property Name="DeletionTime" Type="DateTime" Precision="3" />
           <Property Name="DeleterUserId" Type="Int32" />
-          <Property Name="Lang_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="langId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Hotel">
           <Key>
@@ -1170,6 +1184,17 @@
           <Property Name="Feature_Id" Type="Int32" />
           <Property Name="SGuid" Type="Guid" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Hotels_Features_Translate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Hotel_Id" Type="Int32" />
+          <Property Name="Feature_Id" Type="Int32" />
+          <Property Name="SGuid" Type="Guid" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="langId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Hotels_Images">
           <Key>
@@ -1259,6 +1284,7 @@
           <Property Name="SeenBy" Type="Int32" />
           <Property Name="CreationTime" Type="DateTime" Precision="3" />
           <Property Name="OperationId" Type="Int32" />
+          <Property Name="Seen" Type="Boolean" />
         </EntityType>
         <EntityType Name="Hotels_Translate">
           <Key>
@@ -1292,8 +1318,8 @@
           <Property Name="CreatorUserId" Type="Int32" />
           <Property Name="DeletionTime" Type="DateTime" Precision="3" />
           <Property Name="DeleterUserId" Type="Int32" />
-          <Property Name="Lang_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="Show" Type="Boolean" Nullable="false" />
+          <Property Name="langId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Hotles_Offers">
           <Key>
@@ -1348,7 +1374,7 @@
           <Property Name="DeletionTime" Type="DateTime" Precision="3" />
           <Property Name="DeleterUserId" Type="Int32" />
           <Property Name="Image" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="Lang_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="langId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="SystemParameters_About">
           <Key>
@@ -1395,7 +1421,7 @@
           <Property Name="CreatorUserId" Type="Int32" />
           <Property Name="DeletionTime" Type="DateTime" Precision="3" />
           <Property Name="DeleterUserId" Type="Int32" />
-          <Property Name="Lang_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="langId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="SystemParameters_CareerForm">
           <Key>
@@ -1475,7 +1501,7 @@
           <Property Name="CreatorUserId" Type="Int32" />
           <Property Name="DeletionTime" Type="DateTime" Precision="3" />
           <Property Name="DeleterUserId" Type="Int32" />
-          <Property Name="Lang_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="langId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="SystemParameters_Category">
           <Key>
@@ -1520,7 +1546,7 @@
           <Property Name="CreatorUserId" Type="Int32" />
           <Property Name="DeletionTime" Type="DateTime" Precision="3" />
           <Property Name="DeleterUserId" Type="Int32" />
-          <Property Name="Lang_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="langId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="SystemParameters_Cities">
           <Key>
@@ -1593,7 +1619,7 @@
           <Property Name="DeletionTime" Type="DateTime" Precision="3" />
           <Property Name="DeleterUserId" Type="Int32" />
           <Property Name="MailNo1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MailNo2" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="MailNo2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="SystemParameters_ContactUs_Translate">
           <Key>
@@ -1631,8 +1657,8 @@
           <Property Name="DeletionTime" Type="DateTime" Precision="3" />
           <Property Name="DeleterUserId" Type="Int32" />
           <Property Name="MailNo1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MailNo2" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="Lang_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="MailNo2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="langId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="SystemParameters_CoreValues">
           <Key>
@@ -1677,7 +1703,7 @@
           <Property Name="DeletionTime" Type="DateTime" Precision="3" />
           <Property Name="DeleterUserId" Type="Int32" />
           <Property Name="Show" Type="Boolean" Nullable="false" />
-          <Property Name="Lang_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="langId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="SystemParameters_Countries">
           <Key>
@@ -1759,8 +1785,8 @@
           <Property Name="CreatorUserId" Type="Int32" />
           <Property Name="DeletionTime" Type="DateTime" Precision="3" />
           <Property Name="DeleterUserId" Type="Int32" />
-          <Property Name="Lang_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="Show" Type="Boolean" Nullable="false" />
+          <Property Name="langId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="SystemParameters_HomeSlider">
           <Key>
@@ -1809,7 +1835,7 @@
           <Property Name="CreatorUserId" Type="Int32" />
           <Property Name="DeletionTime" Type="DateTime" Precision="3" />
           <Property Name="DeleterUserId" Type="Int32" />
-          <Property Name="Lang_Id" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="langId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Systemparameters_Languages">
           <Key>
@@ -1860,7 +1886,7 @@
           <Property Name="Image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="LastModificationTime" Type="DateTime" Precision="3" />
           <Property Name="LastModifierUserId" Type="Int32" />
-          <Property Name="CreationTime" Type="DateTime" Precision="3" />
+          <Property Name="CreationTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CreatorUserId" Type="Int32" />
           <Property Name="DeletionTime" Type="DateTime" Precision="3" />
           <Property Name="DeleterUserId" Type="Int32" />
@@ -1885,13 +1911,13 @@
           <Property Name="Image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="LastModificationTime" Type="DateTime" Precision="3" />
           <Property Name="LastModifierUserId" Type="Int32" />
-          <Property Name="CreationTime" Type="DateTime" Precision="3" />
+          <Property Name="CreationTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CreatorUserId" Type="Int32" />
           <Property Name="DeletionTime" Type="DateTime" Precision="3" />
           <Property Name="DeleterUserId" Type="Int32" />
           <Property Name="Tags" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CategoryId" Type="Int32" />
-          <Property Name="Lang_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="langId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="SystemParameters_Newsletter">
           <Key>
@@ -1957,7 +1983,7 @@
           <Property Name="Facebook" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Twitter" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="LinkedIn" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Lang_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="langId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="SystemParameters_PaymentType">
           <Key>
@@ -2011,7 +2037,7 @@
           <EntitySetMapping Name="Front_Mission_Translate">
             <EntityTypeMapping TypeName="GMG_Portal_DBModel.Front_Mission_Translate">
               <MappingFragment StoreEntitySet="Front_Mission_Translate">
-                <ScalarProperty Name="Lang_Id" ColumnName="Lang_Id" />
+                <ScalarProperty Name="langId" ColumnName="langId" />
                 <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
                 <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
                 <ScalarProperty Name="CreatorUserId" ColumnName="CreatorUserId" />
@@ -2058,7 +2084,7 @@
           <EntitySetMapping Name="Front_Vision_Translate">
             <EntityTypeMapping TypeName="GMG_Portal_DBModel.Front_Vision_Translate">
               <MappingFragment StoreEntitySet="Front_Vision_Translate">
-                <ScalarProperty Name="Lang_ID" ColumnName="Lang_ID" />
+                <ScalarProperty Name="langId" ColumnName="langId" />
                 <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
                 <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
                 <ScalarProperty Name="CreatorUserId" ColumnName="CreatorUserId" />
@@ -2117,6 +2143,18 @@
           <EntitySetMapping Name="Hotels_Features">
             <EntityTypeMapping TypeName="GMG_Portal_DBModel.Hotels_Features">
               <MappingFragment StoreEntitySet="Hotels_Features">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="SGuid" ColumnName="SGuid" />
+                <ScalarProperty Name="Feature_Id" ColumnName="Feature_Id" />
+                <ScalarProperty Name="Hotel_Id" ColumnName="Hotel_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hotels_Features_Translate">
+            <EntityTypeMapping TypeName="GMG_Portal_DBModel.Hotels_Features_Translate">
+              <MappingFragment StoreEntitySet="Hotels_Features_Translate">
+                <ScalarProperty Name="langId" ColumnName="langId" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="SGuid" ColumnName="SGuid" />
                 <ScalarProperty Name="Feature_Id" ColumnName="Feature_Id" />
@@ -2200,6 +2238,7 @@
           <EntitySetMapping Name="Hotels_Reservation">
             <EntityTypeMapping TypeName="GMG_Portal_DBModel.Hotels_Reservation">
               <MappingFragment StoreEntitySet="Hotels_Reservation">
+                <ScalarProperty Name="Seen" ColumnName="Seen" />
                 <ScalarProperty Name="OperationId" ColumnName="OperationId" />
                 <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
                 <ScalarProperty Name="SeenBy" ColumnName="SeenBy" />
@@ -2222,8 +2261,8 @@
           <EntitySetMapping Name="Hotels_Translate">
             <EntityTypeMapping TypeName="GMG_Portal_DBModel.Hotels_Translate">
               <MappingFragment StoreEntitySet="Hotels_Translate">
+                <ScalarProperty Name="langId" ColumnName="langId" />
                 <ScalarProperty Name="Show" ColumnName="Show" />
-                <ScalarProperty Name="Lang_ID" ColumnName="Lang_ID" />
                 <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
                 <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
                 <ScalarProperty Name="CreatorUserId" ColumnName="CreatorUserId" />
@@ -2286,7 +2325,7 @@
           <EntitySetMapping Name="Hotles_Offers_Translate">
             <EntityTypeMapping TypeName="GMG_Portal_DBModel.Hotles_Offers_Translate">
               <MappingFragment StoreEntitySet="Hotles_Offers_Translate">
-                <ScalarProperty Name="Lang_ID" ColumnName="Lang_ID" />
+                <ScalarProperty Name="langId" ColumnName="langId" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
                 <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
@@ -2339,7 +2378,7 @@
           <EntitySetMapping Name="SystemParameters_About_Translate">
             <EntityTypeMapping TypeName="GMG_Portal_DBModel.SystemParameters_About_Translate">
               <MappingFragment StoreEntitySet="SystemParameters_About_Translate">
-                <ScalarProperty Name="Lang_ID" ColumnName="Lang_ID" />
+                <ScalarProperty Name="langId" ColumnName="langId" />
                 <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
                 <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
                 <ScalarProperty Name="CreatorUserId" ColumnName="CreatorUserId" />
@@ -2414,7 +2453,7 @@
           <EntitySetMapping Name="SystemParameters_Careers_Translate">
             <EntityTypeMapping TypeName="GMG_Portal_DBModel.SystemParameters_Careers_Translate">
               <MappingFragment StoreEntitySet="SystemParameters_Careers_Translate">
-                <ScalarProperty Name="Lang_ID" ColumnName="Lang_ID" />
+                <ScalarProperty Name="langId" ColumnName="langId" />
                 <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
                 <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
                 <ScalarProperty Name="CreatorUserId" ColumnName="CreatorUserId" />
@@ -2470,7 +2509,7 @@
           <EntitySetMapping Name="SystemParameters_Category_Translate">
             <EntityTypeMapping TypeName="GMG_Portal_DBModel.SystemParameters_Category_Translate">
               <MappingFragment StoreEntitySet="SystemParameters_Category_Translate">
-                <ScalarProperty Name="Lang_ID" ColumnName="Lang_ID" />
+                <ScalarProperty Name="langId" ColumnName="langId" />
                 <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
                 <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
                 <ScalarProperty Name="CreatorUserId" ColumnName="CreatorUserId" />
@@ -2570,7 +2609,7 @@
           <EntitySetMapping Name="SystemParameters_ContactUs_Translate">
             <EntityTypeMapping TypeName="GMG_Portal_DBModel.SystemParameters_ContactUs_Translate">
               <MappingFragment StoreEntitySet="SystemParameters_ContactUs_Translate">
-                <ScalarProperty Name="Lang_ID" ColumnName="Lang_ID" />
+                <ScalarProperty Name="langId" ColumnName="langId" />
                 <ScalarProperty Name="MailNo2" ColumnName="MailNo2" />
                 <ScalarProperty Name="MailNo1" ColumnName="MailNo1" />
                 <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
@@ -2633,7 +2672,7 @@
           <EntitySetMapping Name="SystemParameters_CoreValues_Translate">
             <EntityTypeMapping TypeName="GMG_Portal_DBModel.SystemParameters_CoreValues_Translate">
               <MappingFragment StoreEntitySet="SystemParameters_CoreValues_Translate">
-                <ScalarProperty Name="Lang_ID" ColumnName="Lang_ID" />
+                <ScalarProperty Name="langId" ColumnName="langId" />
                 <ScalarProperty Name="Show" ColumnName="Show" />
                 <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
                 <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
@@ -2720,8 +2759,8 @@
           <EntitySetMapping Name="SystemParameters_Features_Translate">
             <EntityTypeMapping TypeName="GMG_Portal_DBModel.SystemParameters_Features_Translate">
               <MappingFragment StoreEntitySet="SystemParameters_Features_Translate">
+                <ScalarProperty Name="langId" ColumnName="langId" />
                 <ScalarProperty Name="Show" ColumnName="Show" />
-                <ScalarProperty Name="Lang_ID" ColumnName="Lang_ID" />
                 <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
                 <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
                 <ScalarProperty Name="CreatorUserId" ColumnName="CreatorUserId" />
@@ -2769,7 +2808,7 @@
           <EntitySetMapping Name="SystemParameters_HomeSlider_Translate">
             <EntityTypeMapping TypeName="GMG_Portal_DBModel.SystemParameters_HomeSlider_Translate">
               <MappingFragment StoreEntitySet="SystemParameters_HomeSlider_Translate">
-                <ScalarProperty Name="Lang_Id" ColumnName="Lang_Id" />
+                <ScalarProperty Name="langId" ColumnName="langId" />
                 <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
                 <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
                 <ScalarProperty Name="CreatorUserId" ColumnName="CreatorUserId" />
@@ -2854,7 +2893,7 @@
           <EntitySetMapping Name="SystemParameters_News_Translate">
             <EntityTypeMapping TypeName="GMG_Portal_DBModel.SystemParameters_News_Translate">
               <MappingFragment StoreEntitySet="SystemParameters_News_Translate">
-                <ScalarProperty Name="Lang_ID" ColumnName="Lang_ID" />
+                <ScalarProperty Name="langId" ColumnName="langId" />
                 <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="Tags" ColumnName="Tags" />
                 <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
@@ -2921,7 +2960,7 @@
           <EntitySetMapping Name="SystemParameters_Owners_Translate">
             <EntityTypeMapping TypeName="GMG_Portal_DBModel.SystemParameters_Owners_Translate">
               <MappingFragment StoreEntitySet="SystemParameters_Owners_Translate">
-                <ScalarProperty Name="Lang_ID" ColumnName="Lang_ID" />
+                <ScalarProperty Name="langId" ColumnName="langId" />
                 <ScalarProperty Name="LinkedIn" ColumnName="LinkedIn" />
                 <ScalarProperty Name="Twitter" ColumnName="Twitter" />
                 <ScalarProperty Name="Facebook" ColumnName="Facebook" />

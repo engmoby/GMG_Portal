@@ -1,5 +1,6 @@
 ﻿controllerProvider.register('MissionsController', ['$scope', 'MissionsApi', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', MissionsController]);
 function MissionsController($scope, MissionsApi, $rootScope, $timeout, $filter, $uibModal, toastr) {
+  
     var langId = document.querySelector('#HCurrentLang').value;
     var CurrentLanguage = langId;
     $("#DropdwonLang").change(function () {
@@ -7,7 +8,7 @@ function MissionsController($scope, MissionsApi, $rootScope, $timeout, $filter, 
         var selectedValue = $(this).val();
         document.getElementById("HCurrentLang").value = selectedValue;
         CurrentLanguage = selectedValue;
-        debugger; 
+        debugger;
         MissionsApi.GetAll(CurrentLanguage).then(function (response) {
             $scope.Missions = response.data;
             $rootScope.ViewLoading = false;
@@ -27,42 +28,33 @@ function MissionsController($scope, MissionsApi, $rootScope, $timeout, $filter, 
         $scope.action = mission == null ? 'add' : 'edit';
         $scope.FrmAddUpdate.$setPristine();
         $scope.FrmAddUpdate.$setUntouched();
-        if (mission == null) mission = { 'NameAr': '', 'NameEn': '' };
+        if (mission == null) mission = {};
         $scope.Mission = angular.copy(mission);
-        $timeout(function () {
-            document.querySelector('input[name="TxtNameAr"]').focus();
-        }, 1000);
+
     }
 
     $scope.back = function () {
         $('#ModelAddUpdate').modal('hide');
     }
-
-    $scope.Restore = function (mission) {
-        debugger;
-        $scope.Mission = angular.copy(mission);
-        $scope.Mission.IsDeleted = false;
-        $scope.action = 'edit';
-        $scope.save();
-    }
-
+ 
     $scope.save = function () {
         debugger;
         $rootScope.ViewLoading = true;
-        $scope.Mission.Lang_Id = CurrentLanguage;
+        $scope.Mission.LangId = CurrentLanguage;
+
         MissionsApi.Save($scope.Mission).then(function (response) {
-                console.log(response);
+            console.log(response);
             switch (response.data.OperationStatus) {
                 case "Succeded":
                     var index;
                     switch ($scope.action) {
                         case 'edit':
-                            index = $scope.Missions.indexOf($filter('filter')($scope.Missions, { 'ID': $scope.Mission.ID }, true)[0]);
+                            index = $scope.Missions.indexOf($filter('filter')($scope.Missions, { 'Id': $scope.Mission.Id }, true)[0]);
                             $scope.Missions[index] = angular.copy(response.data);
                             toastr.success($('#HUpdateSuccessMessage').val(), 'Success');
                             break;
                         case 'delete':
-                            index = $scope.Missions.indexOf($filter('filter')($scope.Missions, { 'ID': $scope.Mission.ID }, true)[0]);
+                            index = $scope.Missions.indexOf($filter('filter')($scope.Missions, { 'Id': $scope.Mission.Id }, true)[0]);
                             $scope.Missions[index] = angular.copy(response.data);
                             toastr.success($('#HDeleteSuccessMessage').val(), 'Success');
                             break;
@@ -86,6 +78,8 @@ function MissionsController($scope, MissionsApi, $rootScope, $timeout, $filter, 
             }
 
             $rootScope.ViewLoading = false;
+            $scope.FrmAddUpdate.$setPristine();
+            $scope.FrmAddUpdate.$setUntouched();
             $scope.back();
         },
         function (response) {
@@ -93,69 +87,9 @@ function MissionsController($scope, MissionsApi, $rootScope, $timeout, $filter, 
             ss = response;
         });
     }
-
-    $scope.Delete = function (Mission) {
-        $scope.action = 'delete';
-        $scope.Mission = Mission;
-        $scope.Mission.IsDeleted = true;
-        $scope.save();
-    }
-    
-    $scope.setFiles = function (element) {
-        $scope.$apply(function ($scope) {
-            console.log('files:', element.files);
-            // Turn the FileList object into an Array
-            $scope.files = []
-            for (var i = 0; i < element.files.length; i++) {
-                $scope.files.push(element.files[i])
-            }
-            $scope.progressVisible = false
-        });
-    };
-
-    $scope.uploadFile = function () {
-        var fd = new FormData()
-        for (var i in $scope.files) {
-            fd.append("uploadedFile", $scope.files[i])
-        }
-        var xhr = new XMLHttpRequest()
-        xhr.upload.addEventListener("progress", uploadProgress, false)
-        xhr.addEventListener("load", uploadComplete, false)
-        xhr.addEventListener("error", uploadFailed, false)
-        xhr.addEventListener("abort", uploadCanceled, false)
-        xhr.open("POST", "/fileupload")
-        $scope.progressVisible = true
-        xhr.send(fd)
-    }
-
-    function uploadProgress(evt) {
-        $scope.$apply(function () {
-            if (evt.lengthComputable) {
-                $scope.progress = Math.round(evt.loaded * 100 / evt.total)
-            } else {
-                $scope.progress = 'unable to compute'
-            }
-        })
-    }
-
-    function uploadComplete(evt) {
-        /* This event is raised when the server send back a response */
-        alert(evt.target.responseText)
-    }
-
-    function uploadFailed(evt) {
-        alert("There was an error attempting to upload the file.")
-    }
-
-    function uploadCanceled(evt) {
-        $scope.$apply(function () {
-            $scope.progressVisible = false
-        })
-        alert("The upload has been canceled by the user or the browser dropped the connection.")
-    }
-
+     
 }
-  
+
 
 
 

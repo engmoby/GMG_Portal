@@ -95,7 +95,7 @@
             <tfoot>
                 <tr>
                     <td colspan="4" class="text-center">
-                        <div st-pagination="" st-items-by-page="10"></div>
+                        <div st-pagination="" st-items-by-page="7"></div>
                     </td>
                 </tr>
             </tfoot>
@@ -123,42 +123,78 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="TxtName">@Owner.Name</label><span class="red-text"> *</span>
-                            <input type="text" ng-model="Owner.DisplayValueName" not-in-list="Owners" list-item-id="Owner.ID" class="form-control" name="TxtName"
-                                   placeholder="@Owner.Name"  ng-minlength="20" ng-maxlength="50" required ng-pattern="/@Regex.NameAr/">
+                            <input type="text" ng-model="Owner.DisplayValueName" class="form-control" name="TxtName"
+                                   placeholder="Text" ng-maxlength="@Common.TitleMax65" required ng-pattern="/@Regex.NameAr/">
 
                             <div class="red-text" ng-messages="FrmAddUpdate.TxtName.$error" ng-show="FrmAddUpdate.TxtName.$touched">
                                 <span class="red-text" ng-message="required">@Owner.TxtNameRequiredErrorMessage</span>
                                 <span class="red-text" ng-message="pattern">@Owner.TxtNamePatternErrorMessage</span>
                                 <span class="red-text" ng-message="notInList">@Owner.TxtNameUniqueErrorMessage</span>
-                                <span class="red-text" ng-message="minlength">Minimum 20 Charachter</span>
-                                <span class="red-text" ng-message="maxlength">Maximum 30 Charachter</span>
+                                <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax65 @Common.Charachter</span>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="TxtPostion">@Owner.Postion</label><span class="red-text"> *</span>
-                            <input ng-model="Owner.DisplayValuePosition" not-in-list="Owners" list-item-id="Owner.ID" class="form-control" name="TxtPostion"
-                                   placeholder="Text"  ng-minlength="20" ng-maxlength="50" required ng-pattern="/@Regex.NameEn/" />
+                            <textarea ng-model="Owner.DisplayValuePosition" class="form-control" name="TxtPostion"
+                                      placeholder="Text" ng-maxlength="@Common.TitleMax65" required ng-pattern="/@Regex.NameEn/"></textarea>
                             <div class="red-text" ng-messages="FrmAddUpdate.TxtPostion.$error" ng-show="FrmAddUpdate.TxtPostion.$touched">
                                 <span class="red-text" ng-message="required">@Owner.TxtPostionRequiredErrorMessage</span>
                                 <span class="red-text" ng-message="pattern">@Owner.TxtPostionPatternErrorMessage</span>
                                 <span class="red-text" ng-message="notInList">@Owner.TxtPostionUniqueErrorMessage</span>
-                                <span class="red-text" ng-message="minlength">Minimum 20 Charachter</span>
-                                <span class="red-text" ng-message="maxlength">Maximum 30 Charachter</span>
+                                <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax65 @Common.Charachter</span>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="TxtDesc">@Owner.Desc</label><span class="red-text"> *</span>
-                            <textarea ng-model="Owner.DisplayValueDesc" not-in-list="Owners" list-item-id="Owner.ID" class="form-control" name="TxtDesc"
-                                      placeholder="Text"  ng-minlength="100" ng-maxlength="500" required ng-pattern="/@Regex.NameEn/"></textarea>
+                            <textarea ng-model="Owner.DisplayValueDesc" class="form-control" name="TxtDesc"
+                                      placeholder="Text" ng-maxlength="@Common.DescMax800" required ng-pattern="/@Regex.NameEn/"></textarea>
                             <div class="red-text" ng-messages="FrmAddUpdate.TxtDesc.$error" ng-show="FrmAddUpdate.TxtDesc.$touched">
                                 <span class="red-text" ng-message="required">@Owner.TxtDescRequiredErrorMessage</span>
                                 <span class="red-text" ng-message="pattern">@Owner.TxtDescPatternErrorMessage</span>
                                 <span class="red-text" ng-message="notInList">@Owner.TxtDescUniqueErrorMessage</span>
-                                <span class="red-text" ng-message="minlength">Minimum 100 Charachter</span>
-                                <span class="red-text" ng-message="maxlength">Maximum 500 Charachter</span>
+                                <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.DescMax800 @Common.Charachter</span>
+
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="TxtFacebook">@Owner.Facebook</label> 
+                                    <input type="text" ng-model="Owner.Facebook" class="form-control" name="TxtFacebook"
+                                           placeholder="@Owner.Facebook" ng-maxlength="@Common.TitleMax65"   ng-pattern="/@Regex.URL/">
 
+                                    <div class="red-text" ng-messages="FrmAddUpdate.TxtFacebook.$error" ng-show="FrmAddUpdate.TxtFacebook.$touched"> 
+                                        <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax65 @Common.Charachter</span>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="TxtTwitter">@Owner.Twitter</label> 
+                                    <input type="text" ng-model="Owner.Twitter" class="form-control" name="TxtTwitter"
+                                           placeholder="@Owner.Twitter" ng-maxlength="@Common.TitleMax65"   ng-pattern="/@Regex.URL/">
+
+                                    <div class="red-text" ng-messages="FrmAddUpdate.TxtTwitter.$error" ng-show="FrmAddUpdate.TxtTwitter.$touched"> 
+                                        <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax65 @Common.Charachter</span>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="TxtLinkedIn">@Owner.LinkedIn</label> 
+                                    <input type="text" ng-model="Owner.LinkedIn" class="form-control" name="TxtLinkedIn"
+                                           placeholder="@Owner.LinkedIn" ng-maxlength="@Common.TitleMax65"   ng-pattern="/@Regex.URL/"> 
+                                    <div class="red-text" ng-messages="FrmAddUpdate.TxtLinkedIn.$error" ng-show="FrmAddUpdate.TxtLinkedIn.$touched"> 
+                                        <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax65 @Common.Charachter</span>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label for="TxtRate">@Owner.Image</label><span class="red-text"> *</span>
 

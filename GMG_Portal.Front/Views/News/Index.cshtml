@@ -16,6 +16,12 @@
         </div>
     </div>
 </div>
+@if (null != TempData["alertMessage"])
+{
+    <script type="text/javascript">
+        alert("@TempData["alertMessage"]");
+    </script>
+}
 @if (Model != null)
 {
     <div class="mg-blog-list">
@@ -36,8 +42,8 @@
                                     <h2 class="mg-post-title">
                                         <a href="/News/Details/@newsObj.Id" rel="bookmark">
                                             @if (@newsObj.DisplayValue.Length >= 20)
-                                            { 
-                                                @newsObj.DisplayValue
+                                            {
+                                                @newsObj.DisplayValue.ToString().Substring(0, 20)
 
                                             }
                                             else
@@ -62,7 +68,7 @@
                                     @if (@newsObj.DisplayValueDesc.Length >= 50)
                                     {
                                         <p>
-                                            @newsObj.DisplayValueDesc
+                                            @newsObj.DisplayValueDesc.ToString().Substring(0, 50)
                                         </p>
                                     }
                                     else
@@ -84,7 +90,7 @@
                                 <input type="text" placeholder="Search..." class="form-control">
                             </aside>*@
                         <aside class="mg-widget">
-                            <h2 class="mg-widget-title">Recent Posts</h2>
+                            <h2 class="mg-widget-title">Recent News</h2>
                             <ul class="mg-recnt-posts">
                                 @foreach (News t in Model.Take(3))
                                 {
@@ -107,9 +113,9 @@
                         <aside class="mg-widget">
                             <h2 class="mg-widget-title">Category</h2>
                             <ul>
-                                @if (Model != null)
+                                @if (Model.Count > 0)
                                 {
-                                    foreach (Category cat in Model[0].Categories.Take(4))
+                                    foreach (Category cat in Model[0].Categories)
                                     {
                                         <li>
                                             <a href="/News/Index/@cat.Id">@cat.DisplayValue</a>

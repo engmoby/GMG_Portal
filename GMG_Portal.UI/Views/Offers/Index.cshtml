@@ -5,7 +5,6 @@
 @using GMG_Portal.Content;
 @using GMG_Portal.Content.Admin
 @using GMG_Portal.Content.Admin.Hotel
-@using GMG_Portal.Content.Admin.SystemParameters
 <script type="text/javascript" src="~/Scripts/app/services/Offers.js"></script>
 <script type="text/javascript" src="~/Scripts/app/pages/Offers/Offers.js"></script>
 <input type="hidden" id="HEnglishNameUnique" value="@Offers.EnglishNameUnique" />
@@ -20,20 +19,20 @@
         overflow: hidden;
     }
 
-    .btn-file input[type=file] {
-        position: absolute;
-        top: 0;
-        right: 0;
-        min-width: 100%;
-        min-height: 100%;
-        font-size: 100px;
-        text-align: right;
-        filter: alpha(opacity=0);
-        opacity: 0;
-        background: red;
-        cursor: inherit;
-        display: block;
-    }
+        .btn-file input[type=file] {
+            position: absolute;
+            top: 0;
+            right: 0;
+            min-width: 100%;
+            min-height: 100%;
+            font-size: 100px;
+            text-align: right;
+            filter: alpha(opacity=0);
+            opacity: 0;
+            background: red;
+            cursor: inherit;
+            display: block;
+        }
 
     input[readonly] {
         background-color: white !important;
@@ -45,65 +44,65 @@
     <div ba-panel>
         <table class="table table-hover table-condensed" st-table="TableData" st-safe-src="offerList">
             <thead>
-            <tr class="toolbar">
-                <th colspan="2">
-                    <div class="input-group">
-                        <span class="input-group-addon addon-left"><i class="fa fa-search" aria-hidden="true"></i></span>
-                        <input st-search="" class="form-control" placeholder="@Offers.txtSearchLbl" type="text" />
-                    </div>
-                </th>
-                <th colspan="1"></th>
-                <th>
-                    <div class="input-group">
-                        <button class="btn btn-primary btn-with-icon" ng-click="open(null)"><i class="fa fa-plus" aria-hidden="true"></i>@Offers.BtnAdd</button>
-                    </div>
-                </th>
-            </tr>
+                <tr class="toolbar">
+                    <th colspan="2">
+                        <div class="input-group">
+                            <span class="input-group-addon addon-left"><i class="fa fa-search" aria-hidden="true"></i></span>
+                            <input st-search="" class="form-control" placeholder="@Offers.txtSearchLbl" type="text" />
+                        </div>
+                    </th>
+                    <th colspan="1"></th>
+                    <th>
+                        <div class="input-group">
+                            <button class="btn btn-primary btn-with-icon" ng-click="open(null)"><i class="fa fa-plus" aria-hidden="true"></i>@Offers.BtnAdd</button>
+                        </div>
+                    </th>
+                </tr>
 
-            <tr class="sortable">
-                <th>#</th>
-                <th st-sort="Image">@Offers.Image</th>
-                <th st-sort="Title">@Offers.Title</th>
-                <th st-sort="Desc">@Offers.Desc</th> 
-                <th>Actions</th>
-            </tr>
+                <tr class="sortable">
+                    <th>#</th>
+                    <th st-sort="Image">@Offers.Image</th>
+                    <th st-sort="Title">@Offers.Title</th>
+                    <th st-sort="Desc">@Offers.Desc</th>
+                    <th>Actions</th>
+                </tr>
 
             </thead>
             <tbody>
-            <tr ng-repeat="offer in TableData">
-                <td ng-class="{'red-text': offer.IsDeleted == true}">{{$index+1}}</td>
-                <td ng-class="{'red-text': offer.IsDeleted == true}"><img ng-click="openImage(offer)" width="70px" height="70px" src="http://gmgbackend.azurewebsites.net/Uploads/{{offer.Image}}" /></td>
-                <td ng-class="{'red-text': offer.IsDeleted == true}">{{offer.DisplayValue}}</td>
-                <td ng-class="{'red-text': offer.IsDeleted == true}">{{offer.DisplayValueDesc | limitTo:letterLimit}} </td> 
-                <td>
-                    <div class="buttons" ng-show="!offer.IsDeleted">
-                        <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(offer)"><i class="fa fa-pencil" aria-hidden="true"></i>@Offers.TableBtnEdit</button>
-                        <button class="btn btn-danger editable-table-button btn-xs btn-with-icon" ng-confirm="Confirm Delete ?" ng-click="Delete(offer)"><i class="fa fa-trash-o" aria-hidden="true"></i>@Offers.TableBtnDelete</button>
-                    </div>
-                    <div class="buttons restore-button" ng-show="offer.IsDeleted">
-                        <button class="center-block btn btn-default  restore-button btn-xs btn-with-icon" ng-click="Restore(offer)"><i class="fa fa-undo" aria-hidden="true"></i>Restore</button>
-                    </div>
-                </td>
-            </tr>
-            <tr ng-show="TableData.length==0">
-                <td colspan="4">
-                    @Shared.GridNoData
-                </td>
-            </tr>
+                <tr ng-repeat="offer in TableData">
+                    <td ng-class="{'red-text': offer.IsDeleted == true}">{{$index+1}}</td>
+                    <td ng-class="{'red-text': offer.IsDeleted == true}"><img ng-click="openImage(offer)" width="70px" height="70px" src="http://gmgbackend.azurewebsites.net/Uploads/Offers/{{offer.Image}}" /></td>
+                    <td ng-class="{'red-text': offer.IsDeleted == true}">{{offer.DisplayValue}}</td>
+                    <td ng-class="{'red-text': offer.IsDeleted == true}">{{offer.DisplayValueDesc | limitTo:letterLimit}} </td>
+                    <td>
+                        <div class="buttons" ng-show="!offer.IsDeleted">
+                            <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(offer)"><i class="fa fa-pencil" aria-hidden="true"></i>@Offers.TableBtnEdit</button>
+                            <button class="btn btn-danger editable-table-button btn-xs btn-with-icon" ng-confirm="Confirm Delete ?" ng-click="Delete(offer)"><i class="fa fa-trash-o" aria-hidden="true"></i>@Offers.TableBtnDelete</button>
+                        </div>
+                        <div class="buttons restore-button" ng-show="offer.IsDeleted">
+                            <button class="center-block btn btn-default  restore-button btn-xs btn-with-icon" ng-click="Restore(offer)"><i class="fa fa-undo" aria-hidden="true"></i>Restore</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr ng-show="TableData.length==0">
+                    <td colspan="4">
+                        @Shared.GridNoData
+                    </td>
+                </tr>
             </tbody>
             <tfoot>
-            <tr>
-                <td colspan="4" class="text-center">
-                    <div st-pagination="" st-items-by-page="10"></div>
-                </td>
-            </tr>
+                <tr>
+                    <td colspan="4" class="text-center">
+                        <div st-pagination="" st-items-by-page="10"></div>
+                    </td>
+                </tr>
             </tfoot>
         </table>
     </div>
 
     <div class="modal fade" id="ModelImage" role="dialog">
         <div class="modal-dialog">
-            <img style="width: 100%;height: 65%;" src="http://gmgbackend.azurewebsites.net/Uploads/{{offer.Image}}" />
+            <img style="width: 100%;height: 65%;" src="http://gmgbackend.azurewebsites.net/Uploads/Offers/{{offer.Image}}" />
         </div>
     </div>
 
@@ -122,30 +121,40 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="TxtTitle">@Offers.Title</label><span class="red-text"> *</span>
-                            <input type="text" ng-model="offer.DisplayValue"  class="form-control" name="TxtTitle"
-                                   placeholder="@Offers.Title" ng-minlength="20" ng-maxlength="30" required ng-pattern="/@Regex.NameAr/">
+                            <input type="text" ng-model="offer.DisplayValue" class="form-control" name="TxtTitle"
+                                   placeholder="@Offers.Title" ng-maxlength="@Common.TitleMax65" required ng-pattern="/@Regex.NameAr/">
 
                             <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
                                 <span class="red-text" ng-message="required">@Offers.TxtTitleRequiredErrorMessage</span>
                                 <span class="red-text" ng-message="pattern">@Offers.TxtTitlePatternErrorMessage</span>
                                 <span class="red-text" ng-message="notInList">@Offers.TxtTitleUniqueErrorMessage</span>
-                                <span class="red-text" ng-message="minlength">Minimum 20 Charachter</span>
-                                <span class="red-text" ng-message="maxlength">Maximum 30 Charachter</span>
+                                <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax65 @Common.Charachter</span>
+
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="TxtDesc">@Offers.Desc</label><span class="red-text"> *</span>
                             <textarea ng-model="offer.DisplayValueDesc" class="form-control" name="TxtDesc"
-                                      placeholder="Text" ng-minlength="20" ng-maxlength="400" required ng-pattern="/@Regex.NameEn/"></textarea>
+                                      placeholder="Text" ng-maxlength="@Common.DescMax7000" required ng-pattern="/@Regex.NameEn/"></textarea>
                             <div class="red-text" ng-messages="FrmAddUpdate.TxtDesc.$error" ng-show="FrmAddUpdate.TxtDesc.$touched">
                                 <span class="red-text" ng-message="required">@Offers.TxtDescRequiredErrorMessage</span>
                                 <span class="red-text" ng-message="pattern">@Offers.TxtDescPatternErrorMessage</span>
-                                <span class="red-text" ng-message="notInList">@Offers.TxtDescUniqueErrorMessage</span> 
-                                <span class="red-text" ng-message="minlength">Minimum 45 Charachter</span>
-                                <span class="red-text" ng-message="maxlength">Maximum 400 Charachter</span>
+                                <span class="red-text" ng-message="notInList">@Offers.TxtDescUniqueErrorMessage</span>
+                                <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.DescMax7000 @Common.Charachter</span>
+
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label for="TxtPrice">@Offers.Price</label><span class="red-text"> *</span>
+                            <input type="number" ng-model="offer.Price" class="form-control" name="TxtPrice"
+                                   placeholder=""   ng-maxlength="@Common.TitleMax5" required ng-pattern="/@Regex.NumberWithoutZero/" />
+                            <div class="red-text" ng-messages="FrmAddUpdate.TxtPrice.$error" ng-show="FrmAddUpdate.TxtPrice.$touched">
+                                <span class="red-text" ng-message="required">@Offers.TxtPriceRequiredErrorMessage</span>
+                                <span class="red-text" ng-message="pattern">@Offers.TxtPricePatternErrorMessage</span>
+                                <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax5 @Common.Charachter</span>
 
+                            </div>
+                        </div>
                         @*<div class="form-group">
                                 <label for="TxtUrl">@Offers.Url</label>
                                 <input type="text" ng-model="Offers.URL" not-in-list="HomeSliders" list-item-id="Offers.ID" class="form-control" name="TxtUrl"
@@ -178,7 +187,7 @@
                                     </div>
                                     @*<input type="button" class="btn btn-default  btn-primary" ng-click="uploadFiles()" value="Upload" ng-disabled="uploading || countFiles===''" />*@
 
-                                    <img style="width: 100px; height: 100px" src="http://gmgbackend.azurewebsites.net/Uploads/{{offer.Image}}" ng-show="offer.Image" />
+                                    <img style="width: 100px; height: 100px" src="http://gmgbackend.azurewebsites.net/Uploads/Offers/{{offer.Image}}" ng-show="offer.Image" />
 
                                 </div>
                             </div>

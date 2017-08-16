@@ -1,13 +1,28 @@
 ﻿controllerProvider.register('HomeSlidersController', ['$scope', 'HomeSlidersApi', 'uploadService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', HomeSlidersController]);
 function HomeSlidersController($scope, HomeSlidersApi, uploadService, $rootScope, $timeout, $filter, $uibModal, toastr) {
+    var langId = document.querySelector('#HCurrentLang').value;
+    var CurrentLanguage = langId;
+    $("#DropdwonLang").change(function () {
+        var selectedText = $(this).find("option:selected").text();
+        var selectedValue = $(this).val();
+        document.getElementById("HCurrentLang").value = selectedValue;
+        CurrentLanguage = selectedValue;
+
+        debugger;
+
+        HomeSlidersApi.GetAll(CurrentLanguage).then(function (response) {
+            $scope.HomeSliders = response.data;
+            $rootScope.ViewLoading = false;
+        });
+    });
 
     $scope.Image = "";
-    $scope.ImageFormatValidaiton = "Please upload Images ";
-
+    $scope.ImageFormatValidaiton = "Please upload Images "; 
     $scope.ImageSizeValidaiton = "Can't upload image more than 2MB";
+    var maxFileSize = 2048000; // 1MB -> 1000 * 1024
     $scope.letterLimit = 20;
     $rootScope.ViewLoading = true;
-    HomeSlidersApi.GetAll().then(function (response) {
+    HomeSlidersApi.GetAll(CurrentLanguage).then(function (response) {
         $scope.HomeSliders = response.data;
         $rootScope.ViewLoading = false;
     });
@@ -58,6 +73,8 @@ function HomeSlidersController($scope, HomeSlidersApi, uploadService, $rootScope
         }
         //  uploadService.uploadFiles();
         debugger;
+        $scope.HomeSlider.LangId = CurrentLanguage;
+
         HomeSlidersApi.Save($scope.HomeSlider).then(function (response) {
 
             switch (response.data.OperationStatus) {
@@ -146,7 +163,7 @@ function HomeSlidersController($scope, HomeSlidersApi, uploadService, $rootScope
         }
         var extn = $scope.Image.split(".").pop();
         var fileLength = $scope.data[0].FileLength;
-        if (fileLength > 152166) {
+        if (fileLength > maxFileSize) {
             $scope.countFiles = null;
             angular.element("input[type='file']").val(null);
             alert($scope.ImageSizeValidaiton);

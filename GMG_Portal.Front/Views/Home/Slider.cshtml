@@ -1,6 +1,6 @@
 ﻿@*@model  Front.Models.HomeModels*@
 @model GMG_Portal.API.Models.General.HomeModels
-@if (Model.HomeSliders != null)
+@if (Model.HomeSliders.Count != 0)
 {
     <div id="mega-slider" class="carousel slide " data-ride="carousel">
         <ol class="carousel-indicators">
@@ -14,7 +14,7 @@
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
             <div class="item active beactive">
-                <img src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/@Model.HomeSliders[0].Image" style="width: 1920px; height: 900px" alt="...">
+                <img src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/@Model.HomeSliders[0].Image" class="img-responsive" alt="...">
                 <div class="carousel-caption">
                     <h2>@Model.HomeSliders[0].DisplayValue</h2>
                     <p>@Model.HomeSliders[0].DisplayValueDesc</p>
@@ -25,7 +25,7 @@
                 for (var i = 1; i < Model.HomeSliders.Count; i++)
                 {
                     <div class="item">
-                        <img src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/@Model.HomeSliders[i].Image" style="width: 1920px; height: 900px" alt="...">
+                        <img src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/@Model.HomeSliders[i].Image" class="img-responsive" alt="...">
                         <div class="carousel-caption">
                             <h2>@Model.HomeSliders[i].DisplayValue</h2>
                             <p>@Model.HomeSliders[i].DisplayValueDesc</p>
@@ -43,4 +43,11 @@
         <a class="right carousel-control" href="#mega-slider" role="button" data-slide="next">
         </a>
     </div>
+                }
+                else
+                {
+                    <div style="margin-bottom: 150px">
+
+                    </div>
+
                 }

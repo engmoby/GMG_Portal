@@ -7,22 +7,36 @@
     ViewBag.Title = "Home Page";
 }
 
-
-
-
-
+ 
 
 <!-- Our Hotels Partial -->
 
 @Html.Partial("Slider")  
 
 
+@if (null != TempData["alertNoNews"])
+{
+    <script type="text/javascript">
+        alert("@TempData["alertNoNews"]");
+
+    </script>
+}
+
+@if (null != TempData["alertNoOffers"])
+{
+    <script type="text/javascript">
+        alert("@TempData["alertNoOffers"]");
+
+    </script>
+}
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-
-
+ 
 <script type="text/javascript">
 
     $(document).ready(function () {
+        $('addressSearch').attr('disabled', true);
+        
+
         $('#input-group.mg-check-in').datepicker().on('changeDate', function (ev) {
             $('#checkin').change();
         });
@@ -33,13 +47,17 @@
 
 
 
-        $('#checkin').change(function () {
-            $('#checkindate').val($('#checkin').val());
-        });
 
-
-        $('#checkout').change(function () {         
+        $('#checkout').change(function () {        
             $('#checkoutdate').val($('#checkout').val());
+        });
+          
+
+
+
+        $('#child').change(function () {
+            $('addressSearch').attr('disabled', false);
+
         });
 
     });
@@ -93,18 +111,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3">
-                             
-                                
-                                
-                          
+                            <div class="col-md-3"> 
                                 <button class="btn btn-main btn-block" type="button" id="addressSearch"   
-                                        onclick="location.href='@Url.Action("Index", "BookingLite")?checkin=' + $('#checkindate').val() + '&checkout=' + $('#checkoutdate').val() + '&adult=' +  $('#adult').val() + '&child=' + $('#child').val() ">@Front.Resources.Global.Home_SearchRoomsButton</button>
-
-                              
-                      
-                                
-                           
+                                        onclick="location.href='@Url.Action("Index", "BookingLite")?checkin=' + $('#checkindate').val() + '&checkout=' + $('#checkoutdate').val() + '&adult=' +  $('#adult').val() + '&child=' + $('#child').val() " disabled="" >@Front.Resources.Global.Home_SearchRoomsButton</button>
+                                 
                             </div>
                         </div>
                     </form>

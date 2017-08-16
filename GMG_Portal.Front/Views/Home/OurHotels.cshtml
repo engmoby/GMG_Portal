@@ -73,9 +73,9 @@
                         {
                             <div class="col-sm-4">
                                 <figure class="mg-room">
-                                    <img src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/@hotel.Image" alt="img11" class="img-responsive" style="width: 103%;height: 211px;">
+                                    <img src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/Hotels/@hotel.Image" alt="img11" class="img-responsive" style="width: 103%;height: 211px;">
                                     <figcaption>
-                                        <h2>@hotel.DisplayValue</h2>
+                                        <h2>@hotel.DisplayValue.ToString().Substring(0, 13)</h2>
                                         <div class="mg-room-rating">
                                             <i class="fa fa-star"></i> @hotel.Rate
                                         </div>

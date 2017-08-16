@@ -31,6 +31,7 @@ namespace GMG_Portal.Data
         public virtual DbSet<Front_Vision_Translate> Front_Vision_Translate { get; set; }
         public virtual DbSet<Hotel> Hotels { get; set; }
         public virtual DbSet<Hotels_Features> Hotels_Features { get; set; }
+        public virtual DbSet<Hotels_Features_Translate> Hotels_Features_Translate { get; set; }
         public virtual DbSet<Hotels_Images> Hotels_Images { get; set; }
         public virtual DbSet<Hotels_Payments> Hotels_Payments { get; set; }
         public virtual DbSet<Hotels_Phones> Hotels_Phones { get; set; }

@@ -40,29 +40,54 @@
                     @:</div><div class="row"> 
                 }
                 <div class="col-md-3">
-                    <div class="mg-team-member">
-                        <figure>
-                            <img src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/Owners/@Model[i].Image" alt="" class="img-responsive" style="width: 262px;height: 262px;">
-                        </figure>
-                        <div class="mg-team-member-overlayer"></div>
-                        <div class="mg-team-info">
-                            <h3>@Model[i].DisplayValueName</h3>
-                            <strong>@Model[i].DisplayValuePosition</strong>
-                           
-                            <ul class="mg-team-member-social">
-                                <li><a href="#" data-featherlight="#fl'@Model[i].Id'">Portfolio</a></li>
-                                @*<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>*@
-                            </ul>
+                    <a href="#@Model[i].Id-1" data-featherlight="#@Model[i].Id-1">
+                        <div class="mg-team-member">
+
+                            <figure>
+                                <img src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/Owners/@Model[i].Image" alt="" class="img-responsive" style="width: 262px;height: 262px;">
+                            </figure>
+                            <div class="mg-team-member-overlayer"></div>
+                            <div class="mg-team-info">
+                                @if (@Model[i].DisplayValueName.Length >= 20)
+                                {
+                                    <h3>@Model[i].DisplayValueName.Substring(0, 20)</h3>
+                                }
+                                else
+                                {
+                                    <h3>@Model[i].DisplayValueName</h3>
+
+                                }
+                                @if (@Model[i].DisplayValuePosition.Length >= 20)
+                                {
+                                    <strong>@Model[i].DisplayValuePosition.Substring(0, 20)</strong>
+                                }
+                                else
+                                {
+                                    <strong>@Model[i].DisplayValuePosition</strong>
+                                }
+
+                            </div>
+
                         </div>
-                    </div>
-                    <div class="lightbox" id="fl'@Model[i].Id'">
+                    </a>
+                    <div class="lightbox" id="@Model[i].Id-1">
                         
                         <h2>@Model[i].DisplayValueName</h2>
-                        <img src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/Owners/@Model[i].Image" alt="" class="img-responsive" style="width: 262px;height: 262px;">
+                        <img src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/Owners/@Model[i].Image" alt="" class="img-responsive"  style="width: 206px;height: 183px;">
                         <p> @Model[i].DisplayValueDesc</p>
+                        @if (!string.IsNullOrEmpty(@Model[i].Facebook))
+                        {
+                             <a target='Blank' href="@Model[i].Facebook"><i class="fa fa-facebook"></i></a> 
+                        }
+                        @if (!string.IsNullOrEmpty(@Model[i].Twitter))
+                        {
+                            <a target='Blank' href="@Model[i].Twitter"><i class="fa fa-twitter"></i></a> 
+                        }
+                        @if (!string.IsNullOrEmpty(@Model[i].LinkedIn))
 
+                        {
+                            <a target='Blank' href="@Model[i].LinkedIn"><i class="fa fa-linkedin"></i></a> 
+                        }
                     </div>
                     
 

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
+using Front.Resources;
 using GMG_Portal.API.Models.General;
 using GMG_Portal.API.Models.SystemParameters;
 using GMG_Portal.API.Models.SystemParameters.CareerForm;
@@ -100,26 +101,23 @@ namespace Front.Controllers
                 file.SaveAs(path);
             }
 
-            careerForm.Attach = fileName;
+            careerForm.Attach = fileDetails[0].FileName;
             careerForm.CareerId = careerForm.CareerId;
 
             if (string.IsNullOrEmpty(careerForm.FirstName))
-                ModelState.AddModelError("FirstName", "First Name Required");
+                ModelState.AddModelError("FirstName", Global.First_Name_Required);
             if (string.IsNullOrEmpty(careerForm.LastName))
-                ModelState.AddModelError("LastName", "Last Name Required");
+                ModelState.AddModelError("LastName", Global.Last_Name_Required);
             if (string.IsNullOrEmpty(careerForm.Email))
-                ModelState.AddModelError("Email", "Email Required");
+                ModelState.AddModelError("Email", Global.Email_Required);
             if (string.IsNullOrEmpty(careerForm.PhoneNo))
-                ModelState.AddModelError("PhoneNo", "PhoneNo Required");
+                ModelState.AddModelError("PhoneNo", Global.PhoneNo_Required);
             if (string.IsNullOrEmpty(careerForm.Attach))
-                ModelState.AddModelError("Attach", "Attach file Required");
+                ModelState.AddModelError("Attach", Global.Attach_file_Required);
 
             if (ModelState.IsValid)
             {
-
-
-                string careerDetails = url + "CareerForm/Save/" + careerForm;
-
+                 
                 HttpResponseMessage responseMessageApi = await _client.PostAsJsonAsync("CareerForm/Save/", careerForm);
                 if (responseMessageApi.IsSuccessStatusCode)
                 {
@@ -127,10 +125,7 @@ namespace Front.Controllers
                     careerForm = JsonConvert.DeserializeObject<CareerForm>(responseData);
                     if (careerForm != null)
                     {
-                        TempData["" +
-                                 "alert" +
-                                 "" +
-                                 "Message"] = "ok";
+                        TempData["alertMessage"] = "Thanks, Kindly our team will contact with you shortly";
 
                     }
                 }

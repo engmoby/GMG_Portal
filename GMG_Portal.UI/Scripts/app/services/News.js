@@ -1,6 +1,5 @@
 ﻿provide.service('NewsApi', function ($http) {
-    var apiUrl = document.querySelector('#HServicesURL').value;
-    var langId = document.querySelector('#HCurrentLang').value;
+    var apiUrl = document.querySelector('#HServicesURL').value; 
    
     this.GetAll = function (lang) {
         return $http.get(apiUrl + '/SystemParameters/News/GetAllWithDeleted?LangId=' + lang);

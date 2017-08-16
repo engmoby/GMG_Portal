@@ -18,77 +18,19 @@ function ReservationController($scope, ReservationApi, uploadService, $rootScope
         $scope.FrmAddUpdate.$setUntouched();
         if (Reservation == null) Reservation = {};
         $scope.Reservation = angular.copy(Reservation);
-        if ($scope.Reservation.Image)
-            $scope.countFiles = $scope.Reservation.Image;
-
-        $timeout(function () {
-            document.querySelector('input[name="TxtNameAr"]').focus();
-        }, 1000);
     }
-    $scope.downloadFile = function (name) {
-        ReservationApi.Download(name).then(function (data, status, headers) {
-            headers = headers();
-
-                var filename = headers['x-filename'];
-                var contentType = headers['content-type'];
-
-                var linkElement = document.createElement('a');
-                try {
-                    var blob = new Blob([data], { type: contentType });
-                    var url = window.URL.createObjectURL(blob);
-
-                    linkElement.setAttribute('href', url);
-                    linkElement.setAttribute("download", filename);
-
-                    var clickEvent = new MouseEvent("click", {
-                        "view": window,
-                        "bubbles": true,
-                        "cancelable": false
-                    });
-                    linkElement.dispatchEvent(clickEvent);
-                } catch (ex) {
-                    console.log(ex);
-                }
-                $rootScope.ViewLoading = false;
-                $scope.back();
-            },
-            function (data) {
-                debugger; 
-            });
-         
-    };
-    $scope.openImage = function (Reservation) {
-        debugger;
-        $('#ModelImage').modal('show');
-        //$scope.action = CareerForm == null ? 'add' : 'edit';
-        if (Reservation == null) Reservation = {};
-        $scope.Reservation = angular.copy(Reservation);
-        //if ($scope.Reservation.Image)
-        //    $scope.countFiles = $scope.Reservation.Image;
-
-    }
-    $scope.back = function () {
+      $scope.back = function () {
         $('#ModelAddUpdate').modal('hide');
     }
-    $scope.downloadFileImage = function (downloadPath) {
-        window.open(downloadPath.Attach, '_blank', '');
-    }
-    $scope.Restore = function (Reservation) {
-        debugger;
-        $scope.Reservation = angular.copy(Reservation);
-        $scope.Reservation.IsDeleted = false;
-        $scope.action = 'edit';
-        $scope.save();
-    }
-
+     
     $scope.Seen = function (Reservation) {
         debugger;
         $scope.Reservation = angular.copy(Reservation);
         if (Reservation.Seen === true) {
             $scope.Reservation.Seen = false;
-            
+
         } else {
-            
+
             $scope.Reservation.Seen = true;
         }
         $scope.action = 'edit';
@@ -96,12 +38,7 @@ function ReservationController($scope, ReservationApi, uploadService, $rootScope
     }
 
     $scope.save = function () {
-        $rootScope.ViewLoading = true;
-        if ($scope.Image) {
-            $scope.Reservation.Image = $scope.Image;
-            $scope.Image = "";
-        }
-        //  uploadService.uploadFiles();
+        $rootScope.ViewLoading = true; 
         debugger;
         ReservationApi.Save($scope.Reservation).then(function (response) {
 
@@ -110,26 +47,26 @@ function ReservationController($scope, ReservationApi, uploadService, $rootScope
                     var index;
                     switch ($scope.action) {
                         case 'edit':
-                            index = $scope.Reservation.indexOf($filter('filter')($scope.Reservation, { 'ID': $scope.Reservation.ID }, true)[0]);
-                           // $scope.Reservation[index] = angular.copy(response.data);
-                            ReservationApi.GetAll().then(function (response) {
-                                $scope.Reservation = response.data; 
-                            }); 
+                            index = $scope.Reservations.indexOf($filter('filter')($scope.Reservations, { 'Id': $scope.Reservation.Id }, true)[0]);
+                            $scope.Reservations[index] = angular.copy(response.data);
+                            //ReservationApi.GetAll().then(function (response) {
+                            //    $scope.Reservation = response.data;
+                            //});
                             toastr.success($('#HUpdateSuccessMessage').val(), 'Success');
                             break;
                         case 'delete':
-                            index = $scope.Reservation.indexOf($filter('filter')($scope.Reservation, { 'ID': $scope.Reservation.ID }, true)[0]);
-                           // $scope.Reservation[index] = angular.copy(response.data);
-                            ReservationApi.GetAll().then(function (response) {
-                                $scope.Reservation = response.data;
-                            });
+                            index = $scope.Reservations.indexOf($filter('filter')($scope.Reservations, { 'Id': $scope.Reservation.Id }, true)[0]);
+                            $scope.Reservations[index] = angular.copy(response.data);
+                            //ReservationApi.GetAll().then(function (response) {
+                            //    $scope.Reservation = response.data;
+                            //});
                             toastr.success($('#HDeleteSuccessMessage').val(), 'Success');
                             break;
                         case 'add':
-                            ReservationApi.GetAll().then(function (response) {
-                                $scope.Reservation = response.data;
-                            });
-                            // $scope.Reservation.push(angular.copy(response.data));
+                            //ReservationApi.GetAll().then(function (response) {
+                            //    $scope.Reservation = response.data;
+                            //});
+                            $scope.Reservations.push(angular.copy(response.data));
                             toastr.success($('#HSaveSuccessMessage').val(), 'Success');
                             break;
                     }
@@ -156,69 +93,7 @@ function ReservationController($scope, ReservationApi, uploadService, $rootScope
         });
     }
 
-    $scope.Delete = function (Reservation) {
-        $scope.action = 'delete';
-        $scope.Reservation = Reservation;
-        $scope.Reservation.IsDeleted = true;
-        $scope.save();
-    }
-    $scope.uploading = false;
-    $scope.countFiles = '';
-    $scope.data = []; //For displaying file name on browser
-    $scope.formdata = new FormData();
-    $scope.getFiles = function (file) {
-        angular.forEach(file, function (value, key) {
-            $scope.formdata.append(key, value);
-            $scope.data.push({ FileName: value.name, FileLength: value.size });
-            $scope.Image = value.name;
-            // console.log($scope.Image);
-        });
-        //This line is just show you there is possible to
-        //send in extra parameter to server.
-
-
-        $scope.countFiles = $scope.data.length == 0 ? '' : $scope.data.length + ' files selected';
-        $scope.$apply();
-        $scope.formdata.append('countFiles', $scope.countFiles);
-        // console.log($scope.data);
-    };
-
-    $scope.uploadFiles = function () {
-        debugger;
-        if ($scope.data.length === 0) {
-            $scope.save();
-            return;
-        }
-        uploadService.uploadFiles($scope)
-            // then() called when uploadFiles gets back
-            .then(function (data) {
-                // promise fulfilled
-                $scope.uploading = false;
-                if (data === '') {
-                    // console.log(data);
-                    //   $scope.Image=data.
-                    $scope.save();
-                    $scope.data = [];
-                    alert("Done!!!");
-                    $scope.formdata = new FormData();
-                    $scope.data = [];
-                    $scope.countFiles = '';
-                    $scope.$apply;
-                } else {
-                    // console.log(data);
-                    //Server Error
-                    $scope.data = [];
-                    alert("Shit, What happended up there!!! " + data);
-                }
-            }, function (error) {
-                $scope.uploading = false;
-                $scope.data = [];
-                //Server Error
-                alert("Shit, What happended up there!!! " + error);
-            }
-
-            );
-    };
+     
 
 }
 

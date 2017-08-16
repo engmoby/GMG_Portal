@@ -4,7 +4,7 @@
 }
 @using GMG_Portal.Content;
 @using GMG_Portal.Content.Admin
-@using GMG_Portal.Content.Admin.Hotel 
+@using GMG_Portal.Content.Admin.Hotel
 <script type="text/javascript" src="~/Scripts/app/services/Feature.js"></script>
 <script type="text/javascript" src="~/Scripts/app/pages/Feature/Feature.js"></script>
 <input type="hidden" id="HEnglishNameUnique" value="@Feature.EnglishNameUnique" />
@@ -19,20 +19,20 @@
         overflow: hidden;
     }
 
-    .btn-file input[type=file] {
-        position: absolute;
-        top: 0;
-        right: 0;
-        min-width: 100%;
-        min-height: 100%;
-        font-size: 100px;
-        text-align: right;
-        filter: alpha(opacity=0);
-        opacity: 0;
-        background: red;
-        cursor: inherit;
-        display: block;
-    }
+        .btn-file input[type=file] {
+            position: absolute;
+            top: 0;
+            right: 0;
+            min-width: 100%;
+            min-height: 100%;
+            font-size: 100px;
+            text-align: right;
+            filter: alpha(opacity=0);
+            opacity: 0;
+            background: red;
+            cursor: inherit;
+            display: block;
+        }
 
     input[readonly] {
         background-color: white !important;
@@ -44,56 +44,58 @@
     <div ba-panel>
         <table class="table table-hover table-condensed" st-table="TableData" st-safe-src="Features">
             <thead>
-            <tr class="toolbar">
-                <th colspan="2">
-                    <div class="input-group">
-                        <span class="input-group-addon addon-left"><i class="fa fa-search" aria-hidden="true"></i></span>
-                        <input st-search="" class="form-control" placeholder="@Feature.txtSearchLbl" type="text" />
-                    </div>
-                </th>
-                <th colspan="1"></th>
-                <th>
-                    <div class="input-group">
-                        <button class="btn btn-primary btn-with-icon" ng-click="open(null)"><i class="fa fa-plus" aria-hidden="true"></i>@Feature.BtnAdd</button>
-                    </div>
-                </th>
-            </tr>
+                <tr class="toolbar">
+                    <th colspan="2">
+                        <div class="input-group">
+                            <span class="input-group-addon addon-left"><i class="fa fa-search" aria-hidden="true"></i></span>
+                            <input st-search="" class="form-control" placeholder="@Feature.txtSearchLbl" type="text" />
+                        </div>
+                    </th>
+                    <th colspan="1"></th>
+                    <th>
+                        <div class="input-group">
+                            <button class="btn btn-primary btn-with-icon" ng-click="open(null)"><i class="fa fa-plus" aria-hidden="true"></i>@Feature.BtnAdd</button>
+                        </div>
+                    </th>
+                </tr>
 
-            <tr class="sortable">
-                <th>#</th> 
-                <th st-sort="Title">@Feature.Title</th>
-                <th st-sort="Desc">@Feature.Desc</th> 
-                <th>Actions</th>
-            </tr>
+                <tr class="sortable">
+                    <th>#</th>
+                    <th st-sort="Title">@Feature.Icon</th>
+                    <th st-sort="Title">@Feature.Title</th>
+                    <th st-sort="Desc">@Feature.Desc</th>
+                    <th>Actions</th>
+                </tr>
 
             </thead>
             <tbody>
-            <tr ng-repeat="Feature in TableData">
-                <td ng-class="{'red-text': Feature.IsDeleted == true}">{{$index+1}}</td>
-                 <td ng-class="{'red-text': Feature.IsDeleted == true}">{{Feature.DisplayValue}}</td>
-                <td ng-class="{'red-text': Feature.IsDeleted == true}">{{Feature.DisplayValueDesc | limitTo:letterLimit}} </td>
-                 <td>
-                    <div class="buttons" ng-show="!Feature.IsDeleted">
-                        <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(Feature)"><i class="fa fa-pencil" aria-hidden="true"></i>@Feature.TableBtnEdit</button>
-                        <button class="btn btn-danger editable-table-button btn-xs btn-with-icon" ng-confirm="Confirm Delete ?" ng-click="Delete(Feature)"><i class="fa fa-trash-o" aria-hidden="true"></i>@Feature.TableBtnDelete</button>
-                    </div>
-                    <div class="buttons restore-button" ng-show="Feature.IsDeleted">
-                        <button class="center-block btn btn-default  restore-button btn-xs btn-with-icon" ng-click="Restore(Feature)"><i class="fa fa-undo" aria-hidden="true"></i>Restore</button>
-                    </div>
-                </td>
-            </tr>
-            <tr ng-show="TableData.length==0">
-                <td colspan="4">
-                    @Shared.GridNoData
-                </td>
-            </tr>
+                <tr ng-repeat="Feature in TableData">
+                    <td ng-class="{'red-text': Feature.IsDeleted == true}">{{$index+1}}</td>
+                    <td ng-class="{'red-text': Feature.IsDeleted == true}"><i class="{{Feature.Icon}}"></i> </td>
+                    <td ng-class="{'red-text': Feature.IsDeleted == true}">{{Feature.DisplayValue}}</td>
+                    <td ng-class="{'red-text': Feature.IsDeleted == true}">{{Feature.DisplayValueDesc | limitTo:letterLimit}} </td>
+                    <td>
+                        <div class="buttons" ng-show="!Feature.IsDeleted">
+                            <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(Feature)"><i class="fa fa-pencil" aria-hidden="true"></i>@Feature.TableBtnEdit</button>
+                            <button class="btn btn-danger editable-table-button btn-xs btn-with-icon" ng-confirm="Confirm Delete ?" ng-click="Delete(Feature)"><i class="fa fa-trash-o" aria-hidden="true"></i>@Feature.TableBtnDelete</button>
+                        </div>
+                        <div class="buttons restore-button" ng-show="Feature.IsDeleted">
+                            <button class="center-block btn btn-default  restore-button btn-xs btn-with-icon" ng-click="Restore(Feature)"><i class="fa fa-undo" aria-hidden="true"></i>Restore</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr ng-show="TableData.length==0">
+                    <td colspan="4">
+                        @Shared.GridNoData
+                    </td>
+                </tr>
             </tbody>
             <tfoot>
-            <tr>
-                <td colspan="4" class="text-center">
-                    <div st-pagination="" st-items-by-page="10"></div>
-                </td>
-            </tr>
+                <tr>
+                    <td colspan="4" class="text-center">
+                        <div st-pagination="" st-items-by-page="10"></div>
+                    </td>
+                </tr>
             </tfoot>
         </table>
     </div>
@@ -107,7 +109,7 @@
     </div>
 
     <form name="FrmAddUpdate" novalidate ng-submit="save()" autocomplete="off">
-    @*<form name="FrmAddUpdate" novalidate autocomplete="off">*@
+        @*<form name="FrmAddUpdate" novalidate autocomplete="off">*@
 
         <div class="modal fade" id="ModelAddUpdate" role="dialog">
             <div class="modal-dialog">
@@ -121,39 +123,47 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="TxtTitle">@Feature.Title</label><span class="red-text"> *</span>
-                            <input type="text" ng-model="Feature.DisplayValue" not-in-list="Features" list-item-id="Feature.ID" class="form-control" Title="TxtTitle"
-                                   placeholder="@Feature.Title" required ng-pattern="/@Regex.NameAr/">
+                            <input type="text" ng-model="Feature.DisplayValue" class="form-control" name="TxtTitle"
+                                   placeholder="Text" ng-maxlength="@Common.TitleMax25" required ng-pattern="/@Regex.NameAr/">
 
                             <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
                                 <span class="red-text" ng-message="required">@Feature.TxtTitleRequiredErrorMessage</span>
                                 <span class="red-text" ng-message="pattern">@Feature.TxtTitlePatternErrorMessage</span>
                                 <span class="red-text" ng-message="notInList">@Feature.TxtTitleUniqueErrorMessage</span>
+                                <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax25 @Common.Charachter</span>
+
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="TxtDesc">@Feature.Desc</label><span class="red-text"> *</span>
-                            <textarea ng-model="Feature.DisplayValueDesc" not-in-list="Features" list-item-id="Feature.ID" class="form-control" name="TxtDesc"
-                                      placeholder="Text" required ng-pattern="/@Regex.NameEn/"></textarea>
+                            <textarea ng-model="Feature.DisplayValueDesc" class="form-control" name="TxtDesc"
+                                      placeholder="Text" ng-maxlength="@Common.DescMax200" required ng-pattern="/@Regex.NameEn/"></textarea>
+
                             <div class="red-text" ng-messages="FrmAddUpdate.TxtDesc.$error" ng-show="FrmAddUpdate.TxtDesc.$touched">
                                 <span class="red-text" ng-message="required">@Feature.TxtDescRequiredErrorMessage</span>
                                 <span class="red-text" ng-message="pattern">@Feature.TxtDescPatternErrorMessage</span>
                                 <span class="red-text" ng-message="notInList">@Feature.TxtDescUniqueErrorMessage</span>
+                                <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.DescMax200 @Common.Charachter</span>
+
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="TxtIcon">@Feature.Icon</label>
-                            <input type="text" ng-model="Feature.Icon" not-in-list="Features" list-item-id="Feature.ID" class="form-control" name="TxtIcon"
-                                   placeholder="@Feature.Icon" ng-pattern="/@Regex.Name/">
-                            <div class="red-text" ng-messages="FrmAddUpdate.TxtIcon.$error" ng-show="FrmAddUpdate.TxtUrl.$touched">
+                            <input type="text" ng-model="Feature.Icon" class="form-control" name="TxtIcon"
+                                   placeholder="@Feature.Icon" ng-maxlength="@Common.TitleMax25" required ng-pattern="/@Regex.NameAr/">
+
+                            <div class="red-text" ng-messages="FrmAddUpdate.TxtIcon.$error" ng-show="FrmAddUpdate.TxtIcon.$touched">
                                 <span class="red-text" ng-message="pattern">@Feature.TxtUrlPatternErrorMessage</span>
+                                <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax25 @Common.Charachter</span>
+
                             </div>
                         </div>
-                       
-                         
+
+
                     </div>
-                    <div class="modal-footer"> 
-                        <button type="submit" class="btn btn-primary btn-with-icon"   ng-disabled="FrmAddUpdate.$invalid"><i class="ion-android-checkmark-circle"></i>@Feature.btnSaveLbl</button>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary btn-with-icon" ng-disabled="FrmAddUpdate.$invalid"><i class="ion-android-checkmark-circle"></i>@Feature.btnSaveLbl</button>
                     </div>
                 </div>
 

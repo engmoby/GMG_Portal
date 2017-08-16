@@ -1,9 +1,25 @@
 ﻿controllerProvider.register('NewsCategorysController', ['$scope', 'NewsCategoryApi', 'uploadService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', NewsCategorysController]);
 function NewsCategorysController($scope, NewsCategoryApi, uploadService, $rootScope, $timeout, $filter, $uibModal, toastr) {
+    var langId = document.querySelector('#HCurrentLang').value;
+    var CurrentLanguage = langId;
+    $("#DropdwonLang").change(function () {
+        var selectedText = $(this).find("option:selected").text();
+        var selectedValue = $(this).val();
+        document.getElementById("HCurrentLang").value = selectedValue;
+        CurrentLanguage = selectedValue;
+
+        debugger;
+
+        NewsCategoryApi.GetAll(CurrentLanguage).then(function (response) {
+            $scope.NewsCategorys = response.data;
+            $rootScope.ViewLoading = false;
+        });
+    });
+
     $scope.Image = "";
     $scope.letterLimit = 20;
     $rootScope.ViewLoading = true;
-    NewsCategoryApi.GetAll().then(function (response) {
+    NewsCategoryApi.GetAll(CurrentLanguage).then(function (response) {
         $scope.NewsCategorys = response.data;
         $rootScope.ViewLoading = false;
     });
@@ -48,11 +64,9 @@ function NewsCategorysController($scope, NewsCategoryApi, uploadService, $rootSc
 
     $scope.save = function () {
         $rootScope.ViewLoading = true;
-        if ($scope.Image) {
-            $scope.NewsCategory.Image = $scope.Image;
-            $scope.Image = "";
-        }
-        //  uploadService.uploadFiles();
+        
+        $scope.NewsCategory.LangId = CurrentLanguage;
+
         debugger;
         NewsCategoryApi.Save($scope.NewsCategory).then(function (response) {
 

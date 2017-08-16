@@ -304,7 +304,7 @@ namespace GMG_Portal.Content.Admin.Hotel {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Career.
+        ///   Looks up a localized string similar to Reservation.
         /// </summary>
         public static string ModalTitle {
             get {

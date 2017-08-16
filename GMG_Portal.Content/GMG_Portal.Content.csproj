@@ -167,9 +167,14 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Regex.Designer.cs">
+      <DependentUpon>Regex.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Regex.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Common.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Common.resx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -219,6 +224,7 @@
     <EmbeddedResource Include="Admin\SystemParameters\CoreValues.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>CoreValues.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\SystemParameters\NewsLetters.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -280,6 +286,11 @@
     <EmbeddedResource Include="Regex.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Regex.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Common.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

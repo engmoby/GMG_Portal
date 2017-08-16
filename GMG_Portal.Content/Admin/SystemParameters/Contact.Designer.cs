@@ -70,6 +70,15 @@ namespace GMG_Portal.Content.Admin.SystemParameters {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to address.
+        /// </summary>
+        public static string address {
+            get {
+                return ResourceManager.GetString("address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Apply Count.
         /// </summary>
         public static string ApplyCount {
@@ -331,15 +340,6 @@ namespace GMG_Portal.Content.Admin.SystemParameters {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Postion.
-        /// </summary>
-        public static string Postion {
-            get {
-                return ResourceManager.GetString("Postion", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Requirements.
         /// </summary>
         public static string Requirements {
@@ -412,6 +412,33 @@ namespace GMG_Portal.Content.Admin.SystemParameters {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid Pattern.
+        /// </summary>
+        public static string TxtaddressPatternErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtaddressPatternErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to address is required.
+        /// </summary>
+        public static string TxtaddressRequiredErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtaddressRequiredErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to address  is unique.
+        /// </summary>
+        public static string TxtaddressUniqueErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtaddressUniqueErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Description Invalid Pattern.
         /// </summary>
         public static string TxtDescPatternErrorMessage {
@@ -435,6 +462,42 @@ namespace GMG_Portal.Content.Admin.SystemParameters {
         public static string TxtDescUniqueErrorMessage {
             get {
                 return ResourceManager.GetString("TxtDescUniqueErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Pattern.
+        /// </summary>
+        public static string TxtFacebookPatternErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtFacebookPatternErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Facebook is required.
+        /// </summary>
+        public static string TxtFacebookRequiredErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtFacebookRequiredErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Pattern.
+        /// </summary>
+        public static string TxtFaxPatternErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtFaxPatternErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fax is required.
+        /// </summary>
+        public static string TxtFaxRequiredErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtFaxRequiredErrorMessage", resourceCulture);
             }
         }
         
@@ -468,6 +531,114 @@ namespace GMG_Portal.Content.Admin.SystemParameters {
         /// <summary>
         ///   Looks up a localized string similar to Invalid Pattern.
         /// </summary>
+        public static string TxtInstgramPatternErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtInstgramPatternErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Instgram is required.
+        /// </summary>
+        public static string TxtInstgramRequiredErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtInstgramRequiredErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Pattern.
+        /// </summary>
+        public static string TxtLatePatternErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtLatePatternErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Late is required.
+        /// </summary>
+        public static string TxtLateRequiredErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtLateRequiredErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Pattern.
+        /// </summary>
+        public static string TxtLongPatternErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtLongPatternErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Long is required.
+        /// </summary>
+        public static string TxtLongRequiredErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtLongRequiredErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Pattern.
+        /// </summary>
+        public static string TxtMailboxPatternErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtMailboxPatternErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mailbox is required.
+        /// </summary>
+        public static string TxtMailboxRequiredErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtMailboxRequiredErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Mailbox is unique.
+        /// </summary>
+        public static string TxtMailboxUniqueErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtMailboxUniqueErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Pattern.
+        /// </summary>
+        public static string TxtMailPatternErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtMailPatternErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mail is required.
+        /// </summary>
+        public static string TxtMailRequiredErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtMailRequiredErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Mail is unique.
+        /// </summary>
+        public static string TxtMailUniqueErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtMailUniqueErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Pattern.
+        /// </summary>
         public static string TxtNamePatternErrorMessage {
             get {
                 return ResourceManager.GetString("TxtNamePatternErrorMessage", resourceCulture);
@@ -495,27 +666,72 @@ namespace GMG_Portal.Content.Admin.SystemParameters {
         /// <summary>
         ///   Looks up a localized string similar to Invalid Pattern.
         /// </summary>
-        public static string TxtPostionPatternErrorMessage {
+        public static string TxtPhoneNo1PatternErrorMessage {
             get {
-                return ResourceManager.GetString("TxtPostionPatternErrorMessage", resourceCulture);
+                return ResourceManager.GetString("TxtPhoneNo1PatternErrorMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Postion is required.
+        ///   Looks up a localized string similar to PhoneNo1 is required.
         /// </summary>
-        public static string TxtPostionRequiredErrorMessage {
+        public static string TxtPhoneNo1RequiredErrorMessage {
             get {
-                return ResourceManager.GetString("TxtPostionRequiredErrorMessage", resourceCulture);
+                return ResourceManager.GetString("TxtPhoneNo1RequiredErrorMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Postion  is unique.
+        ///   Looks up a localized string similar to  PhoneNo1 is unique.
         /// </summary>
-        public static string TxtPostionUniqueErrorMessage {
+        public static string TxtPhoneNo1UniqueErrorMessage {
             get {
-                return ResourceManager.GetString("TxtPostionUniqueErrorMessage", resourceCulture);
+                return ResourceManager.GetString("TxtPhoneNo1UniqueErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Pattern.
+        /// </summary>
+        public static string TxtPhoneNo2PatternErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtPhoneNo2PatternErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PhoneNo2 is required.
+        /// </summary>
+        public static string TxtPhoneNo2RequiredErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtPhoneNo2RequiredErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  PhoneNo2 is unique.
+        /// </summary>
+        public static string TxtPhoneNo2UniqueErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtPhoneNo2UniqueErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Pattern.
+        /// </summary>
+        public static string TxtPostalcodePatternErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtPostalcodePatternErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Postalcode is required.
+        /// </summary>
+        public static string TxtPostalcodeRequiredErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtPostalcodeRequiredErrorMessage", resourceCulture);
             }
         }
         
@@ -529,11 +745,92 @@ namespace GMG_Portal.Content.Admin.SystemParameters {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Url Invalid Pattern.
+        ///   Looks up a localized string similar to Invalid Pattern.
+        /// </summary>
+        public static string TxtSnapchatPatternErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtSnapchatPatternErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Snapchat is required.
+        /// </summary>
+        public static string TxtSnapchatRequiredErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtSnapchatRequiredErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Pattern.
+        /// </summary>
+        public static string TxtTwitterPatternErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtTwitterPatternErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Twitter is required.
+        /// </summary>
+        public static string TxtTwitterRequiredErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtTwitterRequiredErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Pattern.
         /// </summary>
         public static string TxtUrlPatternErrorMessage {
             get {
                 return ResourceManager.GetString("TxtUrlPatternErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Url is required.
+        /// </summary>
+        public static string TxtUrlRequiredErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtUrlRequiredErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Pattern.
+        /// </summary>
+        public static string TxtWhatsAppPatternErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtWhatsAppPatternErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to WhatsApp is required.
+        /// </summary>
+        public static string TxtWhatsAppRequiredErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtWhatsAppRequiredErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Pattern.
+        /// </summary>
+        public static string TxtYoutubePatternErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtYoutubePatternErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Youtube is required.
+        /// </summary>
+        public static string TxtYoutubeRequiredErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtYoutubeRequiredErrorMessage", resourceCulture);
             }
         }
         

@@ -38,7 +38,7 @@
                     <th>#</th>
 
 
-                    <th st-sort="Desc">@NewsCategory.Desc</th>
+                    <th st-sort="Desc">@NewsCategory.Title</th>
                     <th>@NewsCategory.Action</th>
 
 
@@ -84,7 +84,7 @@
     </div>
 
     <form name="FrmAddUpdate" novalidate ng-submit="save()" autocomplete="off">
-    @*<form name="FrmAddUpdate" novalidate autocomplete="off">*@
+        @*<form name="FrmAddUpdate" novalidate autocomplete="off">*@
 
         <div class="modal fade" id="ModelAddUpdate" role="dialog">
             <div class="modal-dialog">
@@ -98,36 +98,35 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="TxtTitle">@NewsCategory.Title</label><span class="red-text"> *</span>
-                            <input type="text" ng-model="NewsCategory.DisplayValue" not-in-list="NewsCategory" list-item-id="NewsCategory.ID" class="form-control" name="TxtTitle"
-                                   placeholder="@NewsCategory.Title" ng-minlength="20" ng-maxlength="30" required ng-pattern="/@Regex.NameAr/">
+                            <input type="text" ng-model="NewsCategory.DisplayValue" class="form-control" name="TxtTitle"
+                                   placeholder="Text" ng-maxlength="@Common.TitleMax65" required ng-pattern="/@Regex.NameAr/">
 
                             <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
                                 <span class="red-text" ng-message="required">@NewsCategory.TxtTitleRequiredErrorMessage</span>
                                 <span class="red-text" ng-message="pattern">@NewsCategory.TxtTitlePatternErrorMessage</span>
                                 <span class="red-text" ng-message="notInList">@NewsCategory.TxtTitleUniqueErrorMessage</span>
-                                <span class="red-text" ng-message="minlength">Minimum 20 Charachter</span>
-                                <span class="red-text" ng-message="maxlength">Maximum 30 Charachter</span>
+                                <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax65 @Common.Charachter</span>
                             </div>
                         </div>
-                        <div class="form-group">
+                        @*<div class="form-group">
                             <label for="TxtDesc">@NewsCategory.Desc</label><span class="red-text"> *</span>
-                            <textarea ng-model="NewsCategory.DisplayValueDesc" not-in-list="NewsCategory" list-item-id="NewsCategory.ID" class="form-control" name="TxtDesc"
-                                      placeholder="Text" ng-minlength="50" ng-maxlength="100" required ng-pattern="/@Regex.NameEn/"></textarea>
+                            <textarea ng-model="NewsCategory.DisplayValueDesc" class="form-control" name="TxtDesc" placeholder="Text" 
+                                      ng-maxlength="@Common.DescMax7000" required ng-pattern="/@Regex.NameEn/"></textarea>
+
                             <div class="red-text" ng-messages="FrmAddUpdate.TxtDesc.$error" ng-show="FrmAddUpdate.TxtDesc.$touched">
                                 <span class="red-text" ng-message="required">@NewsCategory.TxtDescRequiredErrorMessage</span>
                                 <span class="red-text" ng-message="pattern">@NewsCategory.TxtDescPatternErrorMessage</span>
                                 <span class="red-text" ng-message="notInList">@NewsCategory.TxtDescUniqueErrorMessage</span>
-                                <span class="red-text" ng-message="minlength">Minimum 50 Charachter</span>
-                                <span class="red-text" ng-message="maxlength">Maximum 100 Charachter</span>
+                                <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.DescMax7000 @Common.Charachter</span>
                             </div>
-                        </div>
+                        </div>*@
 
 
 
 
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary btn-with-icon"   ng-disabled="FrmAddUpdate.$invalid"><i class="ion-android-checkmark-circle"></i>@NewsCategory.btnSaveLbl</button>
+                        <button type="submit" class="btn btn-primary btn-with-icon" ng-disabled="FrmAddUpdate.$invalid"><i class="ion-android-checkmark-circle"></i>@NewsCategory.btnSaveLbl</button>
                     </div>
                 </div>
 

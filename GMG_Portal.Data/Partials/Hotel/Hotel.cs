@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GMG_Portal.Data
 {
-    public partial class Hotel
+    public partial class Hotels_Translate
     {
         [NotMapped]
         public string Image { get; set; }

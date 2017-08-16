@@ -19,7 +19,7 @@
 
 <div class="mg-rooms-cols">
     <div class="container">
-       
+        @if (Model.Count != 0) { 
         <div class="row">
             @for (int i = 0; i < Model.Count; i++)
             {
@@ -29,13 +29,13 @@
                 }
             
                 <div class="col-sm-4">
-                    <figure class="mg-room" style="height: 194px;">
-                        <img src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/@Model[i].Image" alt="img11" class="img-responsive">
+                    <figure class="mg-room">
+                        <img src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/Offers/@Model[i].Image" alt="img11" class="img-responsive">
                         <figcaption>
                            
                             @if (@Model[i].DisplayValue.Length >= 20)
                             { 
-                                <h2>@Model[i].DisplayValueDesc.Substring(0, 20)</h2> 
+                                <h2>@Model[i].DisplayValue.Substring(0, 20)</h2> 
                             }
                             else
                             {
@@ -62,7 +62,11 @@
 
             }  
         </div>
-                
+        }
+        else
+        {
+            <p style="    margin-left: 47%;">no offers</p>
+        }
         
      
 

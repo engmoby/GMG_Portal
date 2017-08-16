@@ -71,7 +71,7 @@
             <tbody>
                 <tr ng-repeat="New in TableData">
                     <td ng-class="{'red-text': New.IsDeleted == true}">{{$index+1}}</td>
-                    <td ng-class="{'red-text': New.IsDeleted == true}"><img ng-click="openImage(New)" width="70px" height="70px" src="http://gmgbackend.azurewebsites.net/Uploads/News/{{New.Image}}" /></td>
+                    <td ng-class="{'red-text': New.IsDeleted == true}"><img ng-click="openImage(New)" width="70px" height="70px" src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/News/{{New.Image}}" /></td>
                     <td ng-class="{'red-text': New.IsDeleted == true}">{{New.DisplayValue}}</td>
                     <td ng-class="{'red-text': New.IsDeleted == true}">{{New.DisplayValueDesc | limitTo:letterLimit}} </td>
                     <td>
@@ -93,7 +93,7 @@
             <tfoot>
                 <tr>
                     <td colspan="4" class="text-center">
-                        <div st-pagination="" st-items-by-page="10"></div>
+                        <div st-pagination="" st-items-by-page="7"></div>
                     </td>
                 </tr>
             </tfoot>
@@ -122,27 +122,26 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="TxtTitle">@News.Title</label><span class="red-text"> *</span>
-                            <input type="text" ng-model="New.DisplayValue"   class="form-control" name="TxtTitle"
-                                   placeholder="@News.Title" ng-minlength="20" ng-maxlength="30" required ng-pattern="/@Regex.NameAr/">
+                            <input type="text" ng-model="New.DisplayValue" class="form-control" name="TxtTitle"
+                                   placeholder="Text" ng-maxlength="@Common.TitleMax65" required ng-pattern="/@Regex.NameAr/">
 
                             <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
                                 <span class="red-text" ng-message="required">@News.TxtTitleRequiredErrorMessage</span>
                                 <span class="red-text" ng-message="pattern">@News.TxtTitlePatternErrorMessage</span>
                                 <span class="red-text" ng-message="notInList">@News.TxtTitleUniqueErrorMessage</span>
-                                <span class="red-text" ng-message="minlength">Minimum 20 Charachter</span>
-                                <span class="red-text" ng-message="maxlength">Maximum 30 Charachter</span>
+                                <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax65 @Common.Charachter</span>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="TxtDesc">@News.Desc</label><span class="red-text"> *</span>
-                            <textarea ng-model="New.DisplayValueDesc" not-in-list="News" list-item-id="New.ID" class="form-control" name="TxtDesc"
-                                      placeholder="Text" ng-minlength="30" ng-maxlength="100" required ng-pattern="/@Regex.NameEn/"></textarea>
+                            <textarea ng-model="New.DisplayValueDesc" class="form-control" name="TxtDesc"
+                                      placeholder="Text" ng-maxlength="@Common.DescMax7000" required ng-pattern="/@Regex.NameEn/"></textarea>
                             <div class="red-text" ng-messages="FrmAddUpdate.TxtDesc.$error" ng-show="FrmAddUpdate.TxtDesc.$touched">
                                 <span class="red-text" ng-message="required">@News.TxtDescRequiredErrorMessage</span>
                                 <span class="red-text" ng-message="pattern">@News.TxtDescPatternErrorMessage</span>
                                 <span class="red-text" ng-message="notInList">@News.TxtDescUniqueErrorMessage</span>
-                                <span class="red-text" ng-message="minlength">Minimum 30 Charachter</span>
-                                <span class="red-text" ng-message="maxlength">Maximum 100 Charachter</span>
+
+                                <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.DescMax7000 @Common.Charachter</span>
                             </div>
                         </div>
 
@@ -155,6 +154,7 @@
                             <div class="red-text" ng-messages="FrmAddUpdate.LstCategory.$error" ng-show="FrmAddUpdate.LstCategory.$touched">
                                 <span class="error" ng-message="required">required</span>
                             </div>
+                          ؤ  {{selectedCategory.DisplayValue}}
                         </div>
 
                         <div class="form-group">
