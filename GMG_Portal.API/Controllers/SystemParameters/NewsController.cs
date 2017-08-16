@@ -87,13 +87,23 @@ namespace GMG_Portal.API.Controllers.SystemParameters
         }
 
         [HttpGet]
-        public HttpResponseMessage SearchNews(string keyword)
+        public HttpResponseMessage SearchNews(string keyword, string langId)
         {
             try
             {
-                var newsLogic = new NewsLogic();
-                var news = newsLogic.SearchNews(keyword);
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<News>>(news));
+                if (langId == Parameters.DefaultLang)
+                {
+                    var newsLogic = new NewsLogic();
+                    var news = newsLogic.SearchNews(keyword);
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<News>>(news));
+                }
+                else
+                {
+                    var newsLogic = new NewsLogic();
+                    var newsTranslate = newsLogic.SearchNewsTranslate(keyword,langId);
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<News>>(newsTranslate));
+                }
+                    
             }
             catch (Exception ex)
             {

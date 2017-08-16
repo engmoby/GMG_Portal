@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Front.Helpers;
 using Newtonsoft.Json;
 using GMG_Portal.API.Models.SystemParameters;
 using GMG_Portal.API.Models.SystemParameters.ContactUs;
@@ -31,7 +32,7 @@ namespace Front.Controllers
         public async Task<ActionResult> Index()
         { 
 
-            string contactUs = url + "ContactUs/GetAll";
+            string contactUs = url + "ContactUs/GetAll?langId=" + Common.CurrentLang;
             var contactUsModels = new ContactUs();
 
             if (contactUs == null) throw new ArgumentNullException(nameof(contactUs));
