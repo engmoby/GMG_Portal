@@ -22,8 +22,7 @@ function FeaturesController($scope, FeaturesApi, uploadService, $rootScope, $tim
         $scope.Features = response.data;
         $rootScope.ViewLoading = false;
     });
-    $scope.open = function (Feature) {
-        debugger;
+    $scope.open = function (Feature) { 
         $scope.countFiles = '';
         $scope.invalidupdateAddFrm = true;
         $('#ModelAddUpdate').modal('show');
@@ -34,11 +33,7 @@ function FeaturesController($scope, FeaturesApi, uploadService, $rootScope, $tim
         $scope.Feature = angular.copy(Feature);
         if ($scope.Feature.Image)
             $scope.countFiles = $scope.Feature.Image;
-
-        $timeout(function () {
-            document.querySelector('input[name="TxtNameAr"]').focus();
-        }, 1000);
-    }
+  }
     $scope.openImage = function (Feature) {
         debugger;
         $('#ModelImage').modal('show');
