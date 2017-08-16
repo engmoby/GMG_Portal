@@ -147,10 +147,10 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 retunAboutAll.VisionDesc = vision[0].DisplayValueDesc;
 
 
-                var missionLogic = new MissionsLogic();
-                var mission = missionLogic.GetAll(Parameters.DefaultLang);
-                retunAboutAll.MissionTitle = mission[0].DisplayValue;
-                retunAboutAll.MissionDesc = mission[0].DisplayValueDesc;
+                //var missionLogic = new MissionsLogic();
+                //var mission = missionLogic.GetAll(Parameters.DefaultLang);
+                //retunAboutAll.MissionTitle = mission[0].DisplayValue;
+                //retunAboutAll.MissionDesc = mission[0].DisplayValueDesc;
 
                 var returnCoreValues = new List<CoreValues>();
                 var coreValueLogic = new CoreValuesLogic();

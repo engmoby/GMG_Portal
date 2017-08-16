@@ -332,9 +332,9 @@
                 url: apiUrl + "/SystemParameters/ContactUs/GetAll",
                 type: "Get",
                 success: function (data) {
-                    //$(
-                    //    "<p>" + data.DisplayValueAddress + "</p>"
-                    // ).appendTo("#divAddress");
+                    $(
+                        "<p>" + data.DisplayValueAddress + "</p>"
+                     ).appendTo("#divAddress");
                     $(
                         "<p>" + data.PhoneNo1 + "<br>" + data.PhoneNo2 + "</p>"
                      ).appendTo("#divphones");
@@ -347,9 +347,8 @@
                     $(
                         "<li>" + "<a target='Blank' href='" + data.Facebook + "'>" + "<i class='fa fa-facebook'></i>" + "</i></a>"
                         + "<li>" + "<a target='Blank' href='" + data.Twitter + "'>" + "<i class='fa fa-twitter'></i>" + "</i></a>"
-                        + "<li>" + "<a target='Blank' href='" + data.Instgram + "'>" + "<i class='fa fa-pinterest'></i>" + "</i></a>"
-                        + "<li>" + "<a target='Blank' href='" + data.Snapchat + "'>" + "<i class='fa fa-google-plus'></i>" + "</i></a>"
-                        + "<li>" + "<a target='Blank' href='" + data.Youtube + "'>" + "<i class='fa fa-rss'></i>" + "</i></a>"
+                        + "<li>" + "<a target='Blank' href='" + data.Instgram + "'>" + "<i class='fa fa-pinterest'></i>" + "</i></a>" 
+                        + "<li>" + "<a target='Blank' href='" + data.Youtube + "'>" + "<i class='fa fa-youtube'></i>" + "</i></a>"
                     ).appendTo("#divsocial");
 
 

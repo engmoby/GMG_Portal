@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading;
 using System.Web;
 using System.Web.Mvc;
+using Front.Helpers;
 
 namespace Front.Controllers
 {
@@ -15,10 +16,9 @@ namespace Front.Controllers
         {
             if (selectedLanguage != null)
             {
-                Thread.CurrentThread.CurrentCulture =
-                    CultureInfo.CreateSpecificCulture(selectedLanguage);
-                Thread.CurrentThread.CurrentUICulture =
-                    new CultureInfo(selectedLanguage);
+                Common.CurrentLang = selectedLanguage;
+                Thread.CurrentThread.CurrentCulture =CultureInfo.CreateSpecificCulture(selectedLanguage);
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(selectedLanguage);
                 var cookie = new HttpCookie("Language");
                 cookie.Value = selectedLanguage;
                 Response.Cookies.Add(cookie);

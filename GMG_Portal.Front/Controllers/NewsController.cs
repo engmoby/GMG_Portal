@@ -6,6 +6,7 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Front.Helpers;
 using GMG_Portal.API.Models.SystemParameters;
 using Newtonsoft.Json;
 
@@ -36,9 +37,9 @@ namespace Front.Controllers
             newsModel.LangId = "En";
             string news = "";
             if (id == 0)
-                news = url + "News/GetAll?langId=" + "En";
+                news = url + "News/GetAll?langId=" + Common.CurrentLang;
             else
-                news = url + "News/GetAllByCatrgoryId?categoryId=" + id + "&langId=" + "En";
+                news = url + "News/GetAllByCatrgoryId?categoryId=" + id + "&langId=" + Common.CurrentLang;
             var newsModels = new List<News>();
 
 
