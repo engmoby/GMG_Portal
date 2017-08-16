@@ -134,36 +134,104 @@ namespace GMG_Portal.API.Controllers.SystemParameters
         {
             try
             {
+
+                //General Declerations
                 var retunAboutAll = new AboutAll();
                 var aboutLogic = new AboutLogic();
-                var about = aboutLogic.GetAll();
-                retunAboutAll.AboutTitle = about.DisplayValue;
-                retunAboutAll.AboutDesc = about.DisplayValueDesc;
-                retunAboutAll.AboutVideoUrl = about.Url;
-
-                var visionLogic = new VisionsLogic();
-                var vision = visionLogic.GetAll();
-                retunAboutAll.VisionTitle = vision[0].DisplayValue;
-                retunAboutAll.VisionDesc = vision[0].DisplayValueDesc;
+                var aboutLogicTranslate = new AboutLogicTranslate();
 
 
-                //var missionLogic = new MissionsLogic();
-                //var mission = missionLogic.GetAll(Parameters.DefaultLang);
-                //retunAboutAll.MissionTitle = mission[0].DisplayValue;
-                //retunAboutAll.MissionDesc = mission[0].DisplayValueDesc;
 
-                var returnCoreValues = new List<CoreValues>();
-                var coreValueLogic = new CoreValuesLogic();
-                var values = coreValueLogic.GetAll();
-                foreach (var valueObj in values)
+                // Get About By Lang 
+                if (langId == Parameters.DefaultLang)
                 {
-                    returnCoreValues.Add(new CoreValues
-                    {
-                         DisplayValue = valueObj.DisplayValue,
-                         DisplayValueDesc = valueObj.DisplayValueDesc
-                    });
+                    var obj = aboutLogic.GetAll();
+                    retunAboutAll.AboutTitle = obj.DisplayValue;
+                    retunAboutAll.AboutDesc = obj.DisplayValueDesc;
+                    retunAboutAll.AboutVideoUrl = obj.Url;
                 }
-                retunAboutAll.CoreValueses = returnCoreValues;
+                else
+                {
+                    var objtranslate = aboutLogicTranslate.GetAll(langId);
+                    retunAboutAll.AboutTitle = objtranslate.DisplayValue;
+                    retunAboutAll.AboutDesc = objtranslate.DisplayValueDesc;
+                    retunAboutAll.AboutVideoUrl = objtranslate.Url;
+                }
+
+
+                // Get Vision By Lang 
+                var visionLogic = new VisionsLogic();
+                var visionLogicTranslate = new VisionLogicTranslate();
+
+                if (langId == Parameters.DefaultLang)
+                {
+                    var obj = visionLogic.GetAll();
+                    retunAboutAll.VisionTitle = obj[0].DisplayValue;
+                    retunAboutAll.VisionDesc = obj[0].DisplayValueDesc;
+                }
+                else
+                {
+                    var objtranslate = visionLogicTranslate.GetAll(langId);
+                    retunAboutAll.VisionTitle = objtranslate.DisplayValue;
+                    retunAboutAll.VisionDesc = objtranslate.DisplayValueDesc;
+                }
+
+
+                // Get Mission By Lang 
+                var missionLogic = new MissionsLogic();
+                var missionLogicTranslate = new MissionLogicTranslate();
+                if (langId == Parameters.DefaultLang)
+                {
+                    var obj = missionLogic.GetAll();
+                    retunAboutAll.MissionTitle = obj[0].DisplayValue;
+                    retunAboutAll.MissionDesc = obj[0].DisplayValueDesc;
+                }
+                else
+                {
+                    var objtranslate = missionLogicTranslate.GetAll(langId);
+                    retunAboutAll.MissionTitle = objtranslate.DisplayValue;
+                    retunAboutAll.MissionDesc = objtranslate.DisplayValueDesc;
+
+                }
+
+
+
+
+                //Core Values By Lang
+                var coreValueLogic = new CoreValuesLogic();
+                var coreValueLogicTranslate = new CoreValuesLogicTranslate();
+
+
+                if (langId == Parameters.DefaultLang)
+                {
+                    var returnCoreValues = new List<CoreValues>();
+                    var values = coreValueLogic.GetAll();
+                    foreach (var valueObj in values)
+                    {
+                        returnCoreValues.Add(new CoreValues
+                        {
+                            DisplayValue = valueObj.DisplayValue,
+                            DisplayValueDesc = valueObj.DisplayValueDesc
+                        });
+                    }
+                    retunAboutAll.CoreValueses = returnCoreValues;
+                }
+                else
+                {
+                    var returnCoreValues = new List<SystemParameters_CoreValues_Translate>();
+                    var values = coreValueLogicTranslate.GetAll(langId);
+                    foreach (var valueObj in values)
+                    {
+                        returnCoreValues.Add(new SystemParameters_CoreValues_Translate
+                        {
+                            DisplayValue = valueObj.DisplayValue,
+                            DisplayValueDesc = valueObj.DisplayValueDesc
+                        });
+                    }
+                    retunAboutAll.CoreValueses = Mapper.Map<List<CoreValues>>(returnCoreValues);
+                }
+
+               //Finally Return the Object 
                 return Request.CreateResponse(HttpStatusCode.OK, retunAboutAll);
             }
             catch (Exception ex)
