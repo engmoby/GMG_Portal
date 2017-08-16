@@ -7,6 +7,6 @@ namespace Front.Helpers
 {
     public class Common
     {
-        public static string CurrentLang = "En";
+        public static string CurrentLang = "en";
     }
 }

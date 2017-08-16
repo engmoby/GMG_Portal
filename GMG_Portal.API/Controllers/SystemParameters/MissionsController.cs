@@ -30,13 +30,13 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 if (langId == Parameters.DefaultLang)
                 {
                     var obj = missionLogic.GetAll();
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Mission>>(obj));
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Mission>(obj));
                 }
                 else
 
                 {
                     var objByLang = missionLogicTranslate.GetAll(langId);
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Mission>>(objByLang));
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Mission>(objByLang));
                 }
             }
             catch (Exception ex)
@@ -54,17 +54,15 @@ namespace GMG_Portal.API.Controllers.SystemParameters
 
                 if (langId == Parameters.DefaultLang)
                 {
-                    var obj = missionLogic.GetAllWithDeleted();
-
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Mission>>(obj));
+                    var obj = missionLogic.GetAllWithDeleted(); 
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Mission>(obj));
 
                 }
                 else
 
                 {
-                    var objByLang = missionLogicTranslate.GetAllWithDeleted(langId);
-
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Mission>>(objByLang));
+                    var objByLang = missionLogicTranslate.GetAllWithDeleted(langId); 
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Mission>(objByLang));
 
                 }
 
@@ -72,7 +70,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
             catch (Exception ex)
             {
                 Log.LogError(ex);
-                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+                return Request.CreateResponse(ex);
             }
         }
 

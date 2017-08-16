@@ -28,7 +28,24 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         {
             return _db.SystemParameters_Features_Translate.FirstOrDefault(x => x.Id == id && x.langId == langId);
         }
+        public List<SystemParameters_Features_Translate> GetAllByTake6(string langId)
+        {
+            var returnList = new List<SystemParameters_Features_Translate>();
+            var featureList = _db.SystemParameters_Features_Translate.Where(p => p.IsDeleted != true && p.langId== langId).ToList();
+            var random = featureList.OrderBy(x => Guid.NewGuid()).Take(6);
+            foreach (var systemParametersFeaturese in random)
+            {
+                returnList.Add(new SystemParameters_Features_Translate
+                {
+                    Id = systemParametersFeaturese.Id,
+                    Icon = systemParametersFeaturese.Icon,
+                    DisplayValue = systemParametersFeaturese.DisplayValue,
+                    DisplayValueDesc = systemParametersFeaturese.DisplayValueDesc
+                });
+            }
+            return returnList;
 
+        }
 
 
 

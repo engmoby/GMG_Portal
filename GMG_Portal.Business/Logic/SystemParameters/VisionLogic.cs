@@ -16,13 +16,13 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         {
             _db = new GMG_Portal_DBEntities1();
         }
-        public List<Front_Vision> GetAllWithDeleted()
+        public Front_Vision GetAllWithDeleted()
         {
-            return _db.Front_Vision.OrderBy(p => p.IsDeleted).ToList();
+            return _db.Front_Vision.OrderBy(p => p.IsDeleted).FirstOrDefault();
         }
-        public List<Front_Vision> GetAll()
+        public  Front_Vision  GetAll()
         {
-            return _db.Front_Vision.Where(p => p.IsDeleted != true).ToList();
+            return _db.Front_Vision.FirstOrDefault(p => p.IsDeleted != true);
         }
         public Front_Vision Get(int id)
         {

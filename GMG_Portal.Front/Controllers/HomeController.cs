@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-
+using Front.Helpers;
 using GMG_Portal.API.Models.General;
 using GMG_Portal.API.Models.Hotels.Hotel;
 using Newtonsoft.Json;
@@ -32,22 +32,7 @@ namespace Front.Controllers
      
         public async Task<ActionResult> Index()
         {
-            string General = url + "General/GetAll";
-            //string _homeSlider = url + "HomeSliders/GetAll";
-            //string _about = url + "About/GetAll";
-            //string _HotelFeatures = url + "Features/GetAll";
-            //string _News = url + "News/GetAll";
-            //string _Hotels = url + "Hotels/GetAll";
-            //string gallery = url + "Hotels/GetAllImages";
-            //string _Owners = url + "Owners/GetAll";
-            //string _ContactUs = url + "ContactUs/GetAll";
-            //await CallHomeSliders(_homeSlider, homeModels);
-            //await CallAbout(_about, homeModels);
-            //await CallFacilities(_HotelFeatures, homeModels);
-            //await CallHotels(_Hotels, homeModels);
-            //await Callowners(_Owners, homeModels);
-            //await CallNews(_News, gallery, homeModels);
-            //await CallContactus(_ContactUs, homeModels);
+            string General = url + "General/GetAll?langId=" + Common.CurrentLang;
 
             var homeModels = new HomeModels();
 

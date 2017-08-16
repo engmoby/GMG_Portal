@@ -11,6 +11,7 @@ using AutoMapper;
 using GMG_Portal.API.Models.General;
 using GMG_Portal.API.Models.Hotels.Hotel;
 using GMG_Portal.API.Models.SystemParameters.ContactUs;
+using Heloper;
 using Helpers;
 
 namespace GMG_Portal.API.Controllers.SystemParameters
@@ -20,7 +21,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
     public class GeneralController : ApiController
     {
 
-        public HttpResponseMessage GetAll()
+        public HttpResponseMessage GetAll(string langId)
         {
             try
             {
@@ -36,43 +37,100 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 #region HomeSlider 
 
                 var homeSliderLogic = new HomeSlidersLogic();
-                var homeslider = homeSliderLogic.GetAll();
-                foreach (var systemParametersHomeSlider in homeslider)
+                var homeSliderTranslateLogic = new HomeSliderLogicTranslate();
+                if (langId == Parameters.DefaultLang)
                 {
-                    returnHomeSlider.Add(new HomeSlider
+                    var homeSlider = homeSliderLogic.GetAll();
+                    foreach (var systemParametersHomeSlider in homeSlider)
                     {
-                        DisplayValue = systemParametersHomeSlider.DisplayValue,
-                        DisplayValueDesc = systemParametersHomeSlider.DisplayValueDesc,
-                        Image = systemParametersHomeSlider.Image
-                    });
+                        returnHomeSlider.Add(new HomeSlider
+                        {
+                            DisplayValue = systemParametersHomeSlider.DisplayValue,
+                            DisplayValueDesc = systemParametersHomeSlider.DisplayValueDesc,
+                            Image = systemParametersHomeSlider.Image
+                        });
+                    }
+                    retunGeneralAll.HomeSliders = returnHomeSlider;
                 }
-                retunGeneralAll.HomeSliders = returnHomeSlider;
+                else
+                {
+                    var homeSlider = homeSliderTranslateLogic.GetAll(langId);
+                    foreach (var systemParametersHomeSlider in homeSlider)
+                    {
+                        returnHomeSlider.Add(new HomeSlider
+                        {
+                            DisplayValue = systemParametersHomeSlider.DisplayValue,
+                            DisplayValueDesc = systemParametersHomeSlider.DisplayValueDesc,
+                            Image = systemParametersHomeSlider.Image
+                        });
+                    }
+                    retunGeneralAll.HomeSliders = returnHomeSlider;
+                }
+
+
                 #endregion
 
                 #region About
 
 
                 var aboutLogic = new AboutLogic();
-                var about = aboutLogic.GetAll();
-                returnAbout.DisplayValue = about.DisplayValue;
-                returnAbout.DisplayValueDesc = about.DisplayValueDesc;
-                returnAbout.Url = about.Url;
-                retunGeneralAll.About = returnAbout;
+                var aboutLogicTranslate = new AboutLogicTranslate();
+                if (langId == Parameters.DefaultLang)
+                {
+                    var about = aboutLogic.GetAll();
+                    returnAbout.DisplayValue = about.DisplayValue;
+                    returnAbout.DisplayValueDesc = about.DisplayValueDesc;
+                    returnAbout.Url = about.Url;
+                    retunGeneralAll.About = returnAbout;
+                }
+                else
+                {
+                    var about = aboutLogicTranslate.GetAll(langId);
+
+                    if (about != null)
+                    {
+                        returnAbout.DisplayValue = about.DisplayValue;
+                        returnAbout.DisplayValueDesc = about.DisplayValueDesc;
+                        returnAbout.Url = about.Url;
+                        retunGeneralAll.About = returnAbout;
+
+                    }
+                }
+
                 #endregion
 
                 #region Features
                 var featuresLogic = new FeaturesLogic();
-                var features = featuresLogic.GetAllByTake6();
-                foreach (var systemParametersfeatures in features)
+                var featuresLogicTranslate = new FeaturesLogicTranslate();
+                if (langId == Parameters.DefaultLang)
                 {
-                    returnFeatures.Add(new Features
+                    var features = featuresLogic.GetAllByTake6();
+                    foreach (var systemParametersfeatures in features)
                     {
-                        DisplayValue = systemParametersfeatures.DisplayValue,
-                        DisplayValueDesc = systemParametersfeatures.DisplayValueDesc,
-                        Icon = systemParametersfeatures.Icon
-                    });
+                        returnFeatures.Add(new Features
+                        {
+                            DisplayValue = systemParametersfeatures.DisplayValue,
+                            DisplayValueDesc = systemParametersfeatures.DisplayValueDesc,
+                            Icon = systemParametersfeatures.Icon
+                        });
+                    }
+                    retunGeneralAll.Features = returnFeatures;
                 }
-                retunGeneralAll.Features = returnFeatures;
+                else
+                {
+                    var features = featuresLogicTranslate.GetAllByTake6(langId);
+                    foreach (var systemParametersfeatures in features)
+                    {
+                        returnFeatures.Add(new Features
+                        {
+                            DisplayValue = systemParametersfeatures.DisplayValue,
+                            DisplayValueDesc = systemParametersfeatures.DisplayValueDesc,
+                            Icon = systemParametersfeatures.Icon
+                        });
+                    }
+                    retunGeneralAll.Features = returnFeatures;
+
+                }
 
 
                 #endregion
@@ -80,44 +138,87 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 #region Hotels
 
                 var hotelsLogic = new HotelLogic();
-                var hotels = hotelsLogic.GetAll();
-                foreach (var systemParametersHotels in hotels)
+                var hotelsLogicTranslateic = new HotelLogicTranslate();
+                if (langId == Parameters.DefaultLang)
                 {
-                    returnHotels.Add(new Hotels
+                    var hotels = hotelsLogic.GetAll();
+                    foreach (var systemParametersHotels in hotels)
                     {
-                        Id = systemParametersHotels.Id,
-                        DisplayValue = systemParametersHotels.DisplayValue,
-                        DisplayValueDesc = systemParametersHotels.DisplayValueDesc,
-                        Image = systemParametersHotels.Image,
-                        Rate = systemParametersHotels.Rate,
-                        PriceStart = systemParametersHotels.PriceStart
-                    });
+                        returnHotels.Add(new Hotels
+                        {
+                            Id = systemParametersHotels.Id,
+                            DisplayValue = systemParametersHotels.DisplayValue,
+                            DisplayValueDesc = systemParametersHotels.DisplayValueDesc,
+                            Image = systemParametersHotels.Image,
+                            Rate = systemParametersHotels.Rate,
+                            PriceStart = systemParametersHotels.PriceStart
+                        });
+                    }
+                    retunGeneralAll.Hotels = returnHotels;
                 }
-                retunGeneralAll.Hotels = returnHotels;
+                else
+                {
+                    var hotels = hotelsLogicTranslateic.GetAll(langId);
+                    foreach (var systemParametersHotels in hotels)
+                    {
+                        returnHotels.Add(new Hotels
+                        {
+                            Id = systemParametersHotels.Id,
+                            DisplayValue = systemParametersHotels.DisplayValue,
+                            DisplayValueDesc = systemParametersHotels.DisplayValueDesc,
+                            Image = systemParametersHotels.Image,
+                            Rate = systemParametersHotels.Rate,
+                            PriceStart = systemParametersHotels.PriceStart
+                        });
+                    }
+                    retunGeneralAll.Hotels = returnHotels;
+                }
 
                 #endregion
 
                 #region Owners
                 var ownersLogic = new OwnerLogic();
-                var owners = ownersLogic.GetAll();
-                foreach (var systemParametersOwners in owners)
+                var ownersLogicTranslate = new OwnerLogicTranslate();
+                if (langId == Parameters.DefaultLang)
                 {
-                    returnOwners.Add(new Owners
+                    var owners = ownersLogic.GetAll();
+                    foreach (var systemParametersOwners in owners)
                     {
-                        Id = systemParametersOwners.Id,
-                        DisplayValuePosition = systemParametersOwners.DisplayValuePosition,
-                        DisplayValueName = systemParametersOwners.DisplayValueName,
-                        DisplayValueDesc = systemParametersOwners.DisplayValueDesc,
-                        Image = systemParametersOwners.Image
-                    });
+                        returnOwners.Add(new Owners
+                        {
+                            Id = systemParametersOwners.Id,
+                            DisplayValuePosition = systemParametersOwners.DisplayValuePosition,
+                            DisplayValueName = systemParametersOwners.DisplayValueName,
+                            DisplayValueDesc = systemParametersOwners.DisplayValueDesc,
+                            Image = systemParametersOwners.Image
+                        });
+                    }
+                    retunGeneralAll.Owners = returnOwners;
                 }
-                retunGeneralAll.Owners = returnOwners;
+                else
+                {
+                    var owners = ownersLogicTranslate.GetAll(langId);
+                    foreach (var systemParametersOwners in owners)
+                    {
+                        returnOwners.Add(new Owners
+                        {
+                            Id = systemParametersOwners.Id,
+                            DisplayValuePosition = systemParametersOwners.DisplayValuePosition,
+                            DisplayValueName = systemParametersOwners.DisplayValueName,
+                            DisplayValueDesc = systemParametersOwners.DisplayValueDesc,
+                            Image = systemParametersOwners.Image
+                        });
+                    }
+                    retunGeneralAll.Owners = returnOwners;
+
+                }
 
                 #endregion
 
                 #region News
                 var newsLogic = new NewsLogic();
-                var news = newsLogic.GetAllWithCount("en");
+
+                var news = newsLogic.GetAllWithCount(langId);
                 foreach (var systemParametersNews in news.Take(3))
                 {
                     returnNews.Add(new News
@@ -130,37 +231,65 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                         CreationDay = systemParametersNews.CreationTime.Day,
                         CreationMonth = systemParametersNews.CreationTime.ToString("MMM"),
                         CreatorUserName = "Administrator",
-                        CategoryName = systemParametersNews.DisplayValue, 
+                        CategoryName = systemParametersNews.DisplayValue,
                         Categories = Mapper.Map<List<Category>>(newsLogic.GetAllCatrogry())
                     });
                 }
                 retunGeneralAll.News = returnNews;
 
 
+
                 #endregion
 
                 #region ContactUs 
                 var contactLogic = new ContactUsLogic();
-                var contact = contactLogic.GetAll();
-                returnContactUs.DisplayValueAddress = contact.DisplayValueAddress;
-                returnContactUs.DisplayValueDesc = contact.DisplayValueDesc;
-                returnContactUs.Url = contact.Url;
-                returnContactUs.Facebook = contact.Facebook;
-                returnContactUs.Twitter = contact.Twitter;
-                returnContactUs.Youtube = contact.Youtube;
-                returnContactUs.Snapchat = contact.Snapchat;
-                returnContactUs.Instgram = contact.Instgram;
-                returnContactUs.Fax = contact.Fax;
-                returnContactUs.WhatsApp = contact.WhatsApp;
-                returnContactUs.PhoneNo1 = contact.PhoneNo1;
-                returnContactUs.PhoneNo2 = contact.PhoneNo2;
-                returnContactUs.PostalCode = contact.PostalCode;
-                returnContactUs.Mailbox = contact.Mailbox;
-                returnContactUs.Long = contact.Long;
-                returnContactUs.Late = contact.Late;
-                returnContactUs.MailNo1 = contact.MailNo1;
-                returnContactUs.MailNo2 = contact.MailNo2;
-                retunGeneralAll.ContactUs = returnContactUs;
+                var contactLogicTranslate = new ContactUsLogicTranslate();
+                if (langId == Parameters.DefaultLang)
+                {
+                    var contact = contactLogic.GetAll();
+                    returnContactUs.DisplayValueAddress = contact.DisplayValueAddress;
+                    returnContactUs.DisplayValueDesc = contact.DisplayValueDesc;
+                    returnContactUs.Url = contact.Url;
+                    returnContactUs.Facebook = contact.Facebook;
+                    returnContactUs.Twitter = contact.Twitter;
+                    returnContactUs.Youtube = contact.Youtube;
+                    returnContactUs.Snapchat = contact.Snapchat;
+                    returnContactUs.Instgram = contact.Instgram;
+                    returnContactUs.Fax = contact.Fax;
+                    returnContactUs.WhatsApp = contact.WhatsApp;
+                    returnContactUs.PhoneNo1 = contact.PhoneNo1;
+                    returnContactUs.PhoneNo2 = contact.PhoneNo2;
+                    returnContactUs.PostalCode = contact.PostalCode;
+                    returnContactUs.Mailbox = contact.Mailbox;
+                    returnContactUs.Long = contact.Long;
+                    returnContactUs.Late = contact.Late;
+                    returnContactUs.MailNo1 = contact.MailNo1;
+                    returnContactUs.MailNo2 = contact.MailNo2;
+                    retunGeneralAll.ContactUs = returnContactUs;
+                }
+                else
+                {
+                    var contact = contactLogicTranslate.GetAll(langId);
+                    returnContactUs.DisplayValueAddress = contact.DisplayValueAddress;
+                    returnContactUs.DisplayValueDesc = contact.DisplayValueDesc;
+                    returnContactUs.Url = contact.Url;
+                    returnContactUs.Facebook = contact.Facebook;
+                    returnContactUs.Twitter = contact.Twitter;
+                    returnContactUs.Youtube = contact.Youtube;
+                    returnContactUs.Snapchat = contact.Snapchat;
+                    returnContactUs.Instgram = contact.Instgram;
+                    returnContactUs.Fax = contact.Fax;
+                    returnContactUs.WhatsApp = contact.WhatsApp;
+                    returnContactUs.PhoneNo1 = contact.PhoneNo1;
+                    returnContactUs.PhoneNo2 = contact.PhoneNo2;
+                    returnContactUs.PostalCode = contact.PostalCode;
+                    returnContactUs.Mailbox = contact.Mailbox;
+                    returnContactUs.Long = contact.Long;
+                    returnContactUs.Late = contact.Late;
+                    returnContactUs.MailNo1 = contact.MailNo1;
+                    returnContactUs.MailNo2 = contact.MailNo2;
+                    retunGeneralAll.ContactUs = returnContactUs;
+                }
 
                 #endregion
 
