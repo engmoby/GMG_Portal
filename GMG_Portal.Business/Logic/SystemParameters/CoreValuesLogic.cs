@@ -29,13 +29,13 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         {
             return _db.SystemParameters_CoreValues.Find(id);
         }
-        private SystemParameters_CoreValues Save(SystemParameters_CoreValues homeSlider)
+        private SystemParameters_CoreValues Save(SystemParameters_CoreValues obj)
         {
             try
             {
                 _db.SaveChanges();
-                homeSlider.OperationStatus = "Succeded";
-                return homeSlider;
+                obj.OperationStatus = "Succeded";
+                return obj;
             }
             catch (Exception e)
             {
@@ -43,58 +43,58 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 {
                     if (e.InnerException.ToString().Contains("IX_Countries_Ar"))
                     {
-                        homeSlider.OperationStatus = "NameArMustBeUnique";
-                        return homeSlider;
+                        obj.OperationStatus = "NameArMustBeUnique";
+                        return obj;
                     }
                     else if (e.InnerException.ToString().Contains("IX_Countries_En"))
                     {
-                        homeSlider.OperationStatus = "NameEnMustBeUnique";
-                        return homeSlider;
+                        obj.OperationStatus = "NameEnMustBeUnique";
+                        return obj;
                     }
                 }
                 throw;
             }
         }
-        public SystemParameters_CoreValues Insert(SystemParameters_CoreValues postedHomeSlider)
+        public SystemParameters_CoreValues Insert(SystemParameters_CoreValues postedCoreValue)
         { 
-            var language = new SystemParameters_CoreValues()
+            var obj = new SystemParameters_CoreValues()
             {
-                DisplayValue = postedHomeSlider.DisplayValue,
-                DisplayValueDesc = postedHomeSlider.DisplayValueDesc,
-                Icon = postedHomeSlider.Icon,
-                IsDeleted = postedHomeSlider.IsDeleted,
+                DisplayValue = postedCoreValue.DisplayValue,
+                DisplayValueDesc = postedCoreValue.DisplayValueDesc,
+                Icon = postedCoreValue.Icon,
+                IsDeleted = postedCoreValue.IsDeleted,
                 Show = Parameters.Show, 
                 CreationTime = Parameters.CurrentDateTime,
                 CreatorUserId = Parameters.UserId,
             };
-            _db.SystemParameters_CoreValues.Add(language);
-            return Save(language);
+            _db.SystemParameters_CoreValues.Add(obj);
+            return Save(obj);
         }
-        public SystemParameters_CoreValues Edit(SystemParameters_CoreValues postedLanguage)
+        public SystemParameters_CoreValues Edit(SystemParameters_CoreValues postedCoreValue)
         {
-            SystemParameters_CoreValues language = Get(postedLanguage.Id);
-            language.DisplayValue = postedLanguage.DisplayValue;
-            language.DisplayValueDesc = postedLanguage.DisplayValueDesc;
-            language.Icon = postedLanguage.Icon; 
-            language.IsDeleted = postedLanguage.IsDeleted;
-            language.Show = postedLanguage.Show;
-            language.LastModificationTime = Parameters.CurrentDateTime;
-            language.LastModifierUserId = Parameters.UserId;
-            return Save(language);
+            SystemParameters_CoreValues obj = Get(postedCoreValue.Id);
+            obj.DisplayValue = postedCoreValue.DisplayValue;
+            obj.DisplayValueDesc = postedCoreValue.DisplayValueDesc;
+            obj.Icon = postedCoreValue.Icon; 
+            obj.IsDeleted = postedCoreValue.IsDeleted;
+            obj.Show = postedCoreValue.Show;
+            obj.LastModificationTime = Parameters.CurrentDateTime;
+            obj.LastModifierUserId = Parameters.UserId;
+            return Save(obj);
         }
-        public SystemParameters_CoreValues Delete(SystemParameters_CoreValues postedLanguage)
+        public SystemParameters_CoreValues Delete(SystemParameters_CoreValues postedCoreValue)
         {
-            SystemParameters_CoreValues language = Get(postedLanguage.Id);
-            //if (_db.SystemParameters_CoreValues.Any(p => p.Id == postedLanguage.Id && p.IsDeleted != true))
+            SystemParameters_CoreValues obj = Get(postedCoreValue.Id);
+            //if (_db.SystemParameters_CoreValues.Any(p => p.Id == postedCoreValue.Id && p.IsDeleted != true))
             //{
-            //    //  language.OperationStatus = "HasRelationship";
-            //    return language;
+            //    //  obj.OperationStatus = "HasRelationship";
+            //    return obj;
             //}
 
-            language.IsDeleted = true;
-            language.CreationTime = Parameters.CurrentDateTime;
-            language.CreatorUserId = Parameters.UserId;
-            return Save(language);
+            obj.IsDeleted = true;
+            obj.CreationTime = Parameters.CurrentDateTime;
+            obj.CreatorUserId = Parameters.UserId;
+            return Save(obj);
         }
 
     }

@@ -47,6 +47,6 @@ namespace GMG_Portal.Data
         public Nullable<int> DeleterUserId { get; set; }
         public string MailNo1 { get; set; }
         public string MailNo2 { get; set; }
-        public string Lang_ID { get; set; }
+        public string langId { get; set; }
     }
 }

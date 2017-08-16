@@ -9,6 +9,7 @@ using GMG_Portal.Data;
 using GMG_Portal.Business.Logic.SystemParameters;
 using AutoMapper;
 using GMG_Portal.API.Models.SystemParameters.ContactUs;
+using Heloper;
 using Helpers;
 
 namespace GMG_Portal.API.Controllers.SystemParameters
@@ -17,59 +18,105 @@ namespace GMG_Portal.API.Controllers.SystemParameters
     [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ContactUsController : ApiController
     {
-        public HttpResponseMessage GetAll()
+        public HttpResponseMessage GetAll(string langId)
         {
             try
             {
                 var contactUsLogic = new ContactUsLogic();
-                var contactUs = contactUsLogic.GetAll();
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<ContactUs>(contactUs));
+                var contactUsLogicTranslate = new ContactUsLogicTranslate();
+
+
+
+                if (langId == Parameters.DefaultLang)
+                {
+                    var obj = contactUsLogic.GetAll();
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<ContactUs>>(obj));
+                }
+                else
+
+                {
+                    var objByLang = contactUsLogicTranslate.GetAll(langId);
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<ContactUs>>(objByLang));
+                }
             }
             catch (Exception ex)
             {
                 Log.LogError(ex);
-                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+                return Request.CreateResponse(ex);
             }
         }
-        public HttpResponseMessage GetAllWithDeleted()
+        public HttpResponseMessage GetAllWithDeleted(string langId)
         {
             try
             {
                 var contactUsLogic = new ContactUsLogic();
-                var contactUss = contactUsLogic.GetAllWithDeleted();
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<ContactUs>>(contactUss));
+                var contactUsLogicTranslate = new ContactUsLogicTranslate();
+
+                if (langId == Parameters.DefaultLang)
+                {
+                    var obj = contactUsLogic.GetAllWithDeleted();
+
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<SystemParameters_ContactUs_Translate>>(obj));
+
+                }
+                else
+
+                {
+                    var objByLang = contactUsLogicTranslate.GetAllWithDeleted(langId);
+
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<SystemParameters_ContactUs_Translate>>(objByLang));
+
+                }
+
             }
             catch (Exception ex)
             {
                 Log.LogError(ex);
-                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+                return Request.CreateResponse(ex);
             }
         }
         [HttpPost]
-        public HttpResponseMessage Save(ContactUs postedContactUss)
+        public HttpResponseMessage Save(SystemParameters_ContactUs_Translate postedContactUs)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
                     var contactUsLogic = new ContactUsLogic();
-                    SystemParameters_ContactUs contactUs = null;
-                    if (postedContactUss.Id.Equals(0))
+                    var contactUsLogicTranslate = new ContactUsLogicTranslate();
+
+                    SystemParameters_ContactUs obj = null;
+                    SystemParameters_ContactUs_Translate objByLang = null;
+
+                    if (postedContactUs.Id.Equals(0))
                     {
-                        contactUs = contactUsLogic.Insert(Mapper.Map<SystemParameters_ContactUs>(postedContactUss));
+                        if (postedContactUs.langId == Parameters.DefaultLang)
+                            obj = contactUsLogic.Insert(Mapper.Map<SystemParameters_ContactUs>(postedContactUs));
+                        else
+                            objByLang = contactUsLogicTranslate.Insert(Mapper.Map<SystemParameters_ContactUs_Translate>(postedContactUs));
+
                     }
                     else
                     {
-                        if (postedContactUss.IsDeleted)
+                        if (postedContactUs.IsDeleted)
                         {
-                            contactUs = contactUsLogic.Delete(Mapper.Map<SystemParameters_ContactUs>(postedContactUss));
+                            if (postedContactUs.langId == Parameters.DefaultLang)
+                                obj = contactUsLogic.Delete(Mapper.Map<SystemParameters_ContactUs>(postedContactUs));
+                            else
+                                objByLang = contactUsLogicTranslate.Delete(Mapper.Map<SystemParameters_ContactUs_Translate>(postedContactUs));
                         }
                         else
                         {
-                            contactUs = contactUsLogic.Edit(Mapper.Map<SystemParameters_ContactUs>(postedContactUss));
+                            if (postedContactUs.langId == Parameters.DefaultLang)
+                                obj = contactUsLogic.Edit(Mapper.Map<SystemParameters_ContactUs>(postedContactUs));
+                            else
+                                objByLang = contactUsLogicTranslate.Edit(Mapper.Map<SystemParameters_ContactUs_Translate>(postedContactUs));
                         }
                     }
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<ContactUs>(contactUs));
+                    if (postedContactUs.langId == Parameters.DefaultLang)
+                        return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<SystemParameters_ContactUs>(obj));
+                    else
+                        return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<SystemParameters_ContactUs_Translate>(objByLang));
                 }
                 goto ThrowBadRequest;
             }

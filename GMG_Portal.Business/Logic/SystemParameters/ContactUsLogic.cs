@@ -28,13 +28,13 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         {
             return _db.SystemParameters_ContactUs.Find(id);
         }
-        private SystemParameters_ContactUs Save(SystemParameters_ContactUs contactUs)
+        private SystemParameters_ContactUs Save(SystemParameters_ContactUs obj)
         {
             try
             {
                 _db.SaveChanges();
-                contactUs.OperationStatus = "Succeded";
-                return contactUs;
+                obj.OperationStatus = "Succeded";
+                return obj;
             }
             catch (Exception e)
             {
@@ -42,13 +42,13 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 {
                     if (e.InnerException.ToString().Contains("IX_Countries_Ar"))
                     {
-                        contactUs.OperationStatus = "NameArMustBeUnique";
-                        return contactUs;
+                        obj.OperationStatus = "NameArMustBeUnique";
+                        return obj;
                     }
                     else if (e.InnerException.ToString().Contains("IX_Countries_En"))
                     {
-                        contactUs.OperationStatus = "NameEnMustBeUnique";
-                        return contactUs;
+                        obj.OperationStatus = "NameEnMustBeUnique";
+                        return obj;
                     }
                 }
                 throw;
@@ -57,7 +57,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         public SystemParameters_ContactUs Insert(SystemParameters_ContactUs postedContactUs)
         {
 
-            var contactUs = new SystemParameters_ContactUs()
+            var obj = new SystemParameters_ContactUs()
             {
                 DisplayValueAddress = postedContactUs.DisplayValueAddress,
                 DisplayValueDesc = postedContactUs.DisplayValueDesc,
@@ -82,48 +82,48 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 CreationTime = Parameters.CurrentDateTime,
                 CreatorUserId = Parameters.UserId,
             };
-            _db.SystemParameters_ContactUs.Add(contactUs);
-            return Save(contactUs);
+            _db.SystemParameters_ContactUs.Add(obj);
+            return Save(obj);
         }
         public SystemParameters_ContactUs Edit(SystemParameters_ContactUs postedContactUs)
         {
-            SystemParameters_ContactUs contactUs = Get(postedContactUs.Id);
-            contactUs.DisplayValueAddress = postedContactUs.DisplayValueAddress;
-            contactUs.DisplayValueDesc = postedContactUs.DisplayValueDesc;
-            contactUs.Image = postedContactUs.Image;
-            contactUs.Url = postedContactUs.Url;
-            contactUs.IsDeleted = postedContactUs.IsDeleted;
-            contactUs.Show = postedContactUs.Show;
-            contactUs.Facebook = postedContactUs.Facebook;
-            contactUs.Fax = postedContactUs.Fax;
-            contactUs.Twitter = postedContactUs.Twitter;
-            contactUs.Youtube = postedContactUs.Youtube;
-            contactUs.Instgram = postedContactUs.Instgram;
-            contactUs.Snapchat = postedContactUs.Snapchat;
-            contactUs.PhoneNo1 = postedContactUs.PhoneNo1;
-            contactUs.PhoneNo2 = postedContactUs.PhoneNo2;
-            contactUs.PostalCode = postedContactUs.PostalCode;
-            contactUs.Late = postedContactUs.Late;
-            contactUs.Long = postedContactUs.Long;
-            contactUs.Mailbox = postedContactUs.Mailbox;
-            contactUs.WhatsApp = postedContactUs.WhatsApp;
-            contactUs.LastModificationTime = Parameters.CurrentDateTime;
-            contactUs.LastModifierUserId = Parameters.UserId;
-            return Save(contactUs);
+            SystemParameters_ContactUs obj = Get(postedContactUs.Id);
+            obj.DisplayValueAddress = postedContactUs.DisplayValueAddress;
+            obj.DisplayValueDesc = postedContactUs.DisplayValueDesc;
+            obj.Image = postedContactUs.Image;
+            obj.Url = postedContactUs.Url;
+            obj.IsDeleted = postedContactUs.IsDeleted;
+            obj.Show = postedContactUs.Show;
+            obj.Facebook = postedContactUs.Facebook;
+            obj.Fax = postedContactUs.Fax;
+            obj.Twitter = postedContactUs.Twitter;
+            obj.Youtube = postedContactUs.Youtube;
+            obj.Instgram = postedContactUs.Instgram;
+            obj.Snapchat = postedContactUs.Snapchat;
+            obj.PhoneNo1 = postedContactUs.PhoneNo1;
+            obj.PhoneNo2 = postedContactUs.PhoneNo2;
+            obj.PostalCode = postedContactUs.PostalCode;
+            obj.Late = postedContactUs.Late;
+            obj.Long = postedContactUs.Long;
+            obj.Mailbox = postedContactUs.Mailbox;
+            obj.WhatsApp = postedContactUs.WhatsApp;
+            obj.LastModificationTime = Parameters.CurrentDateTime;
+            obj.LastModifierUserId = Parameters.UserId;
+            return Save(obj);
         }
         public SystemParameters_ContactUs Delete(SystemParameters_ContactUs postedContactUs)
         {
-            SystemParameters_ContactUs contactUs = Get(postedContactUs.Id);
+            SystemParameters_ContactUs obj = Get(postedContactUs.Id);
             if (_db.SystemParameters_ContactUs.Any(p => p.Id == postedContactUs.Id && p.IsDeleted != true))
             {
                 //  ContactUs.OperationStatus = "HasRelationship";
-                return contactUs;
+                return obj;
             }
 
-            contactUs.IsDeleted = true;
-            contactUs.CreationTime = Parameters.CurrentDateTime;
-            contactUs.CreatorUserId = Parameters.UserId;
-            return Save(contactUs);
+            obj.IsDeleted = true;
+            obj.CreationTime = Parameters.CurrentDateTime;
+            obj.CreatorUserId = Parameters.UserId;
+            return Save(obj);
         }
 
     }

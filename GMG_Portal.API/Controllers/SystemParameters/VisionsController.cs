@@ -8,6 +8,7 @@ using GMG_Portal.API.Models.SystemParameters;
 using GMG_Portal.Data;
 using GMG_Portal.Business.Logic.SystemParameters;
 using AutoMapper;
+using Heloper;
 using Helpers;
 
 namespace GMG_Portal.API.Controllers.SystemParameters
@@ -16,13 +17,53 @@ namespace GMG_Portal.API.Controllers.SystemParameters
     [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*")]
     public class VisionsController : ApiController
     {
-        public HttpResponseMessage GetAll()
+        public HttpResponseMessage GetAll(string langId)
         {
             try
             {
-                var visionsLogic = new VisionsLogic();
-                var visions = visionsLogic.GetAll();
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Vision>>(visions));
+                var visionLogic = new VisionsLogic();
+                var visionLogicTranslate = new VisionLogicTranslate();
+                if (langId == Parameters.DefaultLang)
+                {
+                    var obj = visionLogic.GetAll();
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Vision>>(obj));
+                }
+                else
+
+                {
+                    var objByLang = visionLogicTranslate.GetAll(langId);
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Vision>>(objByLang));
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.LogError(ex);
+                return Request.CreateResponse(ex);
+            }
+        }
+        public HttpResponseMessage GetAllWithDeleted(string langId)
+        {
+            try
+            {
+                var visionLogic = new MissionsLogic();
+                var visionLogicTranslate = new MissionLogicTranslate();
+
+                if (langId == Parameters.DefaultLang)
+                {
+                    var obj = visionLogic.GetAllWithDeleted();
+
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Vision>>(obj));
+
+                }
+                else
+
+                {
+                    var objByLang = visionLogicTranslate.GetAllWithDeleted(langId);
+
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Vision>>(objByLang));
+
+                }
+
             }
             catch (Exception ex)
             {
@@ -30,45 +71,48 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
-        public HttpResponseMessage GetAllWithDeleted()
-        {
-            try
-            {
-                var VisionsLogic = new VisionsLogic();
-                var Visions = VisionsLogic.GetAllWithDeleted();
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<API.Models.SystemParameters.Vision>>(Visions));
-            }
-            catch (Exception ex)
-            {
-                Log.LogError(ex);
-                return Request.CreateResponse(HttpStatusCode.InternalServerError);
-            }
-        }
+
         [HttpPost]
-        public HttpResponseMessage Save(Vision postedVisions)
+        public HttpResponseMessage Save(Vision postedVision)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    var visionsLogic = new VisionsLogic();
-                    Front_Vision vision = null;
-                    if (postedVisions.Id.Equals(0))
+                    var visionLogic = new VisionsLogic();
+                    var visionLogicTranslate = new VisionLogicTranslate();
+
+                    Front_Vision obj = null;
+                    Front_Vision_Translate objByLang = null;
+                    if (postedVision.Id.Equals(0))
                     {
-                        vision = visionsLogic.Insert(Mapper.Map<Front_Vision>(postedVisions));
+                        if (postedVision.langId == Parameters.DefaultLang)
+                            obj = visionLogic.Insert(Mapper.Map<Front_Vision>(postedVision));
+                        else
+                            objByLang = visionLogicTranslate.Insert(Mapper.Map<Front_Vision_Translate>(postedVision));
                     }
                     else
                     {
-                        if (postedVisions.IsDeleted)
+                        if (postedVision.IsDeleted)
                         {
-                            vision = visionsLogic.Delete(Mapper.Map<Front_Vision>(postedVisions));
+                            if (postedVision.langId == Parameters.DefaultLang)
+                                obj = visionLogic.Delete(Mapper.Map<Front_Vision>(postedVision));
+                            else
+                                objByLang = visionLogicTranslate.Delete(Mapper.Map<Front_Vision_Translate>(postedVision));
                         }
                         else
                         {
-                            vision = visionsLogic.Edit(Mapper.Map<Front_Vision>(postedVisions));
+                            if (postedVision.langId == Parameters.DefaultLang)
+                                obj = visionLogic.Edit(Mapper.Map<Front_Vision>(postedVision));
+                            else
+                                objByLang = visionLogicTranslate.Edit(Mapper.Map<Front_Vision_Translate>(postedVision));
                         }
                     }
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Vision>(vision));
+                    if (postedVision.langId == Parameters.DefaultLang)
+                        return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<CoreValues>(obj));
+                    else
+                        return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Front_Vision_Translate>(objByLang));
+
                 }
                 goto ThrowBadRequest;
             }
@@ -76,12 +120,13 @@ namespace GMG_Portal.API.Controllers.SystemParameters
             catch (Exception ex)
             {
                 Log.LogError(ex);
-                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+                return Request.CreateResponse(ex);
             }
 
             ThrowBadRequest:
             return Request.CreateResponse(HttpStatusCode.BadRequest);
         }
     }
+}
 
 }

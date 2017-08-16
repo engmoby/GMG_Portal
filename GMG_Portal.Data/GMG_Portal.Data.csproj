@@ -74,6 +74,9 @@
     <Compile Include="Hotels_Features.cs">
       <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Hotels_Features_Translate.cs">
+      <DependentUpon>Portal_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Hotels_Images.cs">
       <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
@@ -98,15 +101,27 @@
     <Compile Include="Hotles_Offers_Translate.cs">
       <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Partials\Hotel\Offrer.cs" />
+    <Compile Include="Partials\Hotel\HotelTranslate.cs" />
+    <Compile Include="Partials\Hotel\OfferTranslate.cs" />
+    <Compile Include="Partials\Hotel\Offer.cs" />
     <Compile Include="Partials\Hotel\HotelsImages.cs" />
     <Compile Include="Partials\Hotel\Hotel.cs" />
+    <Compile Include="Partials\SystemParameter\AboutTranslate.cs" />
     <Compile Include="Partials\SystemParameter\CareerForm.cs" />
+    <Compile Include="Partials\SystemParameter\CareersTranslate.cs" />
     <Compile Include="Partials\SystemParameter\Careers.cs" />
+    <Compile Include="Partials\SystemParameter\CategoryTranslate.cs" />
     <Compile Include="Partials\SystemParameter\ContactForm.cs" />
+    <Compile Include="Partials\SystemParameter\ContactUsTranslate.cs" />
+    <Compile Include="Partials\SystemParameter\CoreValuesTranslate.cs" />
     <Compile Include="Partials\SystemParameter\CoreValues.cs" />
+    <Compile Include="Partials\SystemParameter\Features Translate.cs" />
     <Compile Include="Partials\SystemParameter\Features.cs" />
+    <Compile Include="Partials\SystemParameter\HomeSlidersTranslate.cs" />
+    <Compile Include="Partials\SystemParameter\HotelFeaturesTranslate.cs" />
+    <Compile Include="Partials\SystemParameter\MissonsTranslate.cs" />
     <Compile Include="Partials\SystemParameter\NewsTranslate.cs" />
+    <Compile Include="Partials\SystemParameter\OwnersTranslate.cs" />
     <Compile Include="Partials\SystemParameter\Owners.cs" />
     <Compile Include="Partials\SystemParameter\ContactUs.cs" />
     <Compile Include="Partials\SystemParameter\Newsletter.cs" />
@@ -117,6 +132,7 @@
     <Compile Include="Partials\SystemParameter\HotelFeatures.cs" />
     <Compile Include="Partials\SystemParameter\HomeSliders.cs" />
     <Compile Include="Partials\SystemParameter\Missons.cs" />
+    <Compile Include="Partials\SystemParameter\VisionsTranslate.cs" />
     <Compile Include="Partials\SystemParameter\Visions.cs" />
     <Compile Include="Partials\SystemParameter\Languages.cs" />
     <Compile Include="Partials\SystemParameter\Departments.cs" />

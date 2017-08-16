@@ -28,13 +28,13 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         {
             return _db.SystemParameters_HomeSlider.Find(id);
         }
-        private SystemParameters_HomeSlider Save(SystemParameters_HomeSlider homeSlider)
+        private SystemParameters_HomeSlider Save(SystemParameters_HomeSlider obj)
         {
             try
             {
                 _db.SaveChanges();
-                homeSlider.OperationStatus = "Succeded";
-                return homeSlider;
+                obj.OperationStatus = "Succeded";
+                return obj;
             }
             catch (Exception e)
             {
@@ -42,13 +42,13 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 {
                     if (e.InnerException.ToString().Contains("IX_Countries_Ar"))
                     {
-                        homeSlider.OperationStatus = "NameArMustBeUnique";
-                        return homeSlider;
+                        obj.OperationStatus = "NameArMustBeUnique";
+                        return obj;
                     }
                     else if (e.InnerException.ToString().Contains("IX_Countries_En"))
                     {
-                        homeSlider.OperationStatus = "NameEnMustBeUnique";
-                        return homeSlider;
+                        obj.OperationStatus = "NameEnMustBeUnique";
+                        return obj;
                     }
                 }
                 throw;
@@ -57,7 +57,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         public SystemParameters_HomeSlider Insert(SystemParameters_HomeSlider postedHomeSlider)
         {
 
-            var homeSlider = new SystemParameters_HomeSlider()
+            var obj = new SystemParameters_HomeSlider()
             {
                 DisplayValue = postedHomeSlider.DisplayValue,
                 DisplayValueDesc = postedHomeSlider.DisplayValueDesc,
@@ -69,36 +69,36 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 CreationTime = Parameters.CurrentDateTime,
                 CreatorUserId = Parameters.UserId, 
             };
-            _db.SystemParameters_HomeSlider.Add(homeSlider);
-            return Save(homeSlider);
+            _db.SystemParameters_HomeSlider.Add(obj);
+            return Save(obj);
         }
         public SystemParameters_HomeSlider Edit(SystemParameters_HomeSlider postedhomeSlider)
         {
-            SystemParameters_HomeSlider homeSlider = Get(postedhomeSlider.Id);
-            homeSlider.DisplayValue = postedhomeSlider.DisplayValue;
-            homeSlider.DisplayValueDesc = postedhomeSlider.DisplayValueDesc;
-            homeSlider.Image = postedhomeSlider.Image;
-            homeSlider.URL = postedhomeSlider.URL;
-            homeSlider.Rating = postedhomeSlider.Rating;
-            homeSlider.IsDeleted = postedhomeSlider.IsDeleted;
-            homeSlider.Show = postedhomeSlider.Show; 
-            homeSlider.LastModificationTime = Parameters.CurrentDateTime;
-            homeSlider.LastModifierUserId = Parameters.UserId;
-            return Save(homeSlider);
+            SystemParameters_HomeSlider obj = Get(postedhomeSlider.Id);
+            obj.DisplayValue = postedhomeSlider.DisplayValue;
+            obj.DisplayValueDesc = postedhomeSlider.DisplayValueDesc;
+            obj.Image = postedhomeSlider.Image;
+            obj.URL = postedhomeSlider.URL;
+            obj.Rating = postedhomeSlider.Rating;
+            obj.IsDeleted = postedhomeSlider.IsDeleted;
+            obj.Show = postedhomeSlider.Show; 
+            obj.LastModificationTime = Parameters.CurrentDateTime;
+            obj.LastModifierUserId = Parameters.UserId;
+            return Save(obj);
         }
         public SystemParameters_HomeSlider Delete(SystemParameters_HomeSlider postedhomeSlider)
         {
-            SystemParameters_HomeSlider homeSlider = Get(postedhomeSlider.Id);
+            SystemParameters_HomeSlider obj = Get(postedhomeSlider.Id);
             //if (_db.SystemParameters_HomeSlider.Any(p => p.Id == postedhomeSlider.Id && p.IsDeleted != true))
             //{
-            //      //  homeSlider.OperationStatus = "HasRelationship";
-            //    return homeSlider;
+            //      //  obj.OperationStatus = "HasRelationship";
+            //    return obj;
             //}
 
-            homeSlider.IsDeleted = true;
-            homeSlider.CreationTime = Parameters.CurrentDateTime;
-            homeSlider.CreatorUserId = Parameters.UserId;
-            return Save(homeSlider);
+            obj.IsDeleted = true;
+            obj.CreationTime = Parameters.CurrentDateTime;
+            obj.CreatorUserId = Parameters.UserId;
+            return Save(obj);
         }
 
     }

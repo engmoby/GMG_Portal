@@ -39,5 +39,6 @@ namespace GMG_Portal.API.Models.SystemParameters.ContactUs
         public string OperationStatus { get; set; }
         public string MailNo1 { get; set; }
         public string MailNo2 { get; set; }
+        public string LangId { get; set; }
     }
 }

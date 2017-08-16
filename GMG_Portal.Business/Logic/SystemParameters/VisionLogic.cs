@@ -69,22 +69,22 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             _db.Front_Vision.Add(language);
             return Save(language);
         }
-        public Front_Vision Edit(Front_Vision postedLanguage)
+        public Front_Vision Edit(Front_Vision postedVision)
         {
-            Front_Vision language = Get(postedLanguage.Id);
-            language.DisplayValue = postedLanguage.DisplayValue;
-            language.DisplayValueDesc = postedLanguage.DisplayValueDesc;
-            language.Image = postedLanguage.Image; 
-            language.IsDeleted = postedLanguage.IsDeleted;
-            language.Show = postedLanguage.Show; 
+            Front_Vision language = Get(postedVision.Id);
+            language.DisplayValue = postedVision.DisplayValue;
+            language.DisplayValueDesc = postedVision.DisplayValueDesc;
+            language.Image = postedVision.Image; 
+            language.IsDeleted = postedVision.IsDeleted;
+            language.Show = postedVision.Show; 
             language.LastModificationTime = Parameters.CurrentDateTime;
             language.LastModifierUserId = Parameters.UserId;
             return Save(language);
         }
-        public Front_Vision Delete(Front_Vision postedLanguage)
+        public Front_Vision Delete(Front_Vision postedVision)
         {
-            Front_Vision language = Get(postedLanguage.Id);
-            if (_db.Front_Vision.Any(p => p.Id == postedLanguage.Id && p.IsDeleted != true))
+            Front_Vision language = Get(postedVision.Id);
+            if (_db.Front_Vision.Any(p => p.Id == postedVision.Id && p.IsDeleted != true))
             {
                   //  language.OperationStatus = "HasRelationship";
                 return language;

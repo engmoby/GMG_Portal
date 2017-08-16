@@ -117,7 +117,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
 
                 #region News
                 var newsLogic = new NewsLogic();
-                var news = newsLogic.GetAllWithCount("En");
+                var news = newsLogic.GetAllWithCount("en");
                 foreach (var systemParametersNews in news.Take(3))
                 {
                     if (systemParametersNews.CreationTime != null)

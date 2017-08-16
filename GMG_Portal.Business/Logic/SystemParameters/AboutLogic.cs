@@ -61,12 +61,12 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             {
                 DisplayValue = postedabout.DisplayValue,
                 DisplayValueDesc = postedabout.DisplayValueDesc,
-                Image= postedabout.Image,
+                Image = postedabout.Image,
                 IsDeleted = postedabout.IsDeleted,
-                Show = Parameters.Show, 
+                Show = Parameters.Show,
                 Url = postedabout.Url,
                 CreationTime = Parameters.CurrentDateTime,
-                CreatorUserId = Parameters.UserId, 
+                CreatorUserId = Parameters.UserId,
             };
             _db.SystemParameters_About.Add(About);
             return Save(About);
@@ -77,9 +77,9 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             about.DisplayValue = postedAbout.DisplayValue;
             about.DisplayValueDesc = postedAbout.DisplayValueDesc;
             about.Image = postedAbout.Image;
-            about.Url= postedAbout.Url; 
+            about.Url = postedAbout.Url;
             about.IsDeleted = postedAbout.IsDeleted;
-            about.Show = postedAbout.Show; 
+            about.Show = postedAbout.Show;
             about.LastModificationTime = Parameters.CurrentDateTime;
             about.LastModifierUserId = Parameters.UserId;
             return Save(about);
@@ -89,7 +89,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             SystemParameters_About about = Get(postedAbout.Id);
             if (_db.SystemParameters_About.Any(p => p.Id == postedAbout.Id && p.IsDeleted != true))
             {
-                  //  About.OperationStatus = "HasRelationship";
+                //  About.OperationStatus = "HasRelationship";
                 return about;
             }
 

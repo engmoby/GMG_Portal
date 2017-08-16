@@ -25,6 +25,7 @@ namespace GMG_Portal.API.Models.Hotels.Reservation
         public string Notes { get; set; }
         public DateTime? SeenDate { get; set; }
         public int? SeenBy { get; set; }
+        public bool Seen { get; set; }
         public DateTime? CreationTime { get; set; }
         public int? OperationId { get; set; }
 

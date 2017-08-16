@@ -28,7 +28,7 @@ namespace GMG_Portal.Data
         public string Image { get; set; }
         public Nullable<System.DateTime> LastModificationTime { get; set; }
         public Nullable<int> LastModifierUserId { get; set; }
-        public Nullable<System.DateTime> CreationTime { get; set; }
+        public System.DateTime CreationTime { get; set; }
         public Nullable<int> CreatorUserId { get; set; }
         public Nullable<System.DateTime> DeletionTime { get; set; }
         public Nullable<int> DeleterUserId { get; set; }

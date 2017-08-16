@@ -81,6 +81,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         public Hotels_Reservation Edit(Hotels_Reservation postedReservation)
         {
             Hotels_Reservation reservation = Get(postedReservation.Id); 
+          //  reservation.Seen = postedReservation.Seen;
             reservation.SeenDate = Parameters.CurrentDateTime;
             reservation.SeenBy = Parameters.UserId;
             return Save(reservation);

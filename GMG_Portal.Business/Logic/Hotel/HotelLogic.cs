@@ -58,7 +58,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
 
             return returnList;
         }
-         
+
         public List<Hotel> GetAllWithCount()
         {
             var returnList = new List<Hotel>();
@@ -161,7 +161,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                     });
                 }
             }
-            var getHotelImages = _db.Hotels_Images.Where(p => p.Hotel_Id == getHotelInfo.Id).ToList();
+            var getHotelImages = _db.Hotels_Images.Where(p => p.Hotel_Id == getHotelInfo.Id && p.IsDeleted == false).ToList();
 
             if (getHotelInfo != null)
             {

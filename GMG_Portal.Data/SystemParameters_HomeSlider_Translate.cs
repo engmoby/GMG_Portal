@@ -33,6 +33,6 @@ namespace GMG_Portal.Data
         public Nullable<int> CreatorUserId { get; set; }
         public Nullable<System.DateTime> DeletionTime { get; set; }
         public Nullable<int> DeleterUserId { get; set; }
-        public string Lang_Id { get; set; }
+        public string langId { get; set; }
     }
 }
