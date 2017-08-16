@@ -20,9 +20,9 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     @*<li class="active"><a href="/Home/Index"> @Front.Resources.Global.Header_Home    </a></li>*@
-                  
+
                     @Html.ListItemAction(@Front.Resources.Global.Header_Home, "Index", "Home")
-                      @*<li class="dropdown">
+                    @*<li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="404.html">404 Error</a></li>
@@ -43,7 +43,7 @@
                             <li id="HotelMore"><a href='/Hotel/Index/'>More</a></li>
                         </ul>
                     </li>
-                    @*<li><a href="/Offers/Index">@Front.Resources.Global.Header_Offers </a></li>*@  
+                    @*<li><a href="/Offers/Index">@Front.Resources.Global.Header_Offers </a></li>*@
                     @Html.ListItemAction(@Front.Resources.Global.Header_Offers, "Index", "Offers")
                     @Html.ListItemAction(@Front.Resources.Global.Header_News, "Index", "News")
                     @Html.ListItemAction(@Front.Resources.Global.Header_Owners, "Index", "Owners")
@@ -52,25 +52,18 @@
                     @Html.ListItemAction(@Front.Resources.Global.Header_Contact, "Index", "Contact")
 
 
-                  
-
                     <li class="dropdown">
-
-
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@Front.Resources.Global.Header_Languages<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@Front.Resources.Global.Header_Languages<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
                             @{
-
-                            CultureInfo currentCulture = Thread.CurrentThread.CurrentCulture;
-                                <li>@Html.ActionLink("English", "ChangeLanguage",
-                                        "Language", new { SelectedLanguage = "en" }, null)</li>
-                                <li>@Html.ActionLink("العربيه", "ChangeLanguage",
-                                        "Language", new { SelectedLanguage = "ar" }, null)</li>
+                                CultureInfo currentCulture = Thread.CurrentThread.CurrentCulture;
+                                <li>@Html.ActionLink("English", "ChangeLanguage", "Language", new { SelectedLanguage = "en" }, null)</li>
+                                <li>@Html.ActionLink("العربيه", "ChangeLanguage", "Language", new { SelectedLanguage = "ar" }, null)</li>
                                 <li><a href="">Francais</a></li>
                                 <li><a href="">Urdu</a></li>
                             }
-                            </ul>
-                        </li>
+                        </ul>
+                    </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
             @*<div class="mg-search-box-cont pull-right">

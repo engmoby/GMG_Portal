@@ -13,7 +13,6 @@ namespace Front.Controllers
     {
         // GET: About Content
         readonly HttpClient _client;
-
         string url = System.Configuration.ConfigurationManager.AppSettings["ServerIp"] + "/SystemParameters/";
         public AboutController()
         {
@@ -26,11 +25,6 @@ namespace Front.Controllers
         // GET: About Content
         public async Task<ActionResult> Index()
         {
-
-          
-
-
-
             string About = url + "About/Aboutall";
             var AboutModels = new AboutAll();
 
@@ -49,7 +43,7 @@ namespace Front.Controllers
 
 
 
-    
+
 
 
 

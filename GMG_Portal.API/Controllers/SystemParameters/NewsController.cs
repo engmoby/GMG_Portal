@@ -21,26 +21,16 @@ namespace GMG_Portal.API.Controllers.SystemParameters
         {
             try
             {
-                var newsLogic = new NewsLogic();
+                var newsLogic = new NewsLogic(); 
 
                 List<SystemParameters_News> newsObj = null;
                 List<SystemParameters_News_Translate> newsObjByLang = null;
 
-                if (langId == Parameters.DefaultLang)
-
-
-                {
-                    newsObj = newsLogic.GetAll();
+                 
+                    newsObj = newsLogic.GetAll(langId);
                 return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<News>>(newsObj));
                     
-                }
-                else
-
-                {
-                    newsObjByLang = newsLogic.GetAllTranslate(langId);
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<News>>(newsObjByLang));
-
-                }
+               
 
 
                 //  var news = newsLogic.GetAll(langId);

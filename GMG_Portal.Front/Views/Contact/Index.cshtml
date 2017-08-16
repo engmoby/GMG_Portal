@@ -19,7 +19,7 @@
 <div class="mg-page">
     <div class="container">
         <div class="row">
-					
+
             <div class="col-md-5">
                 <h2 class="mg-sec-left-title">Send an inquiry</h2>
                 <form id="myForm">
@@ -41,12 +41,12 @@
                     </div>
                     <button class="btn btn-dark-main pull-right" onclick="$.validate()">Send</button>
                 </form>
-             
-               
-    <div id="MSGCONTACT" style="color: red;"> </div>
+
+
+                <div id="MSGCONTACT" style="color: red;"> </div>
             </div>
             <div class="col-md-7">
-                <h2 class="mg-sec-left-title">Office Address</h2> 
+                <h2 class="mg-sec-left-title">Office Address</h2>
                 <ul class="mg-contact-info">
                     <li><i class="fa fa-map-marker"></i> @Model.DisplayValueAddress</li>
                     <li><i class="fa fa-phone"></i> @Model.PhoneNo1 </li>
@@ -54,9 +54,6 @@
                     <li><i class="fa fa-phone"></i> @Model.PostalCode </li>
                     <li><i class="fa fa-phone"></i> @Model.Mailbox </li>
                     <li><i class="fa fa-whatsapp"></i>   @Model.WhatsApp  </li>
-                    <li><i class="fa fa-facebook"></i>   @Model.Facebook  </li>
-                    <li><i class="fa fa-twitter"></i>   @Model.Twitter  </li>
-                    <li><i class="fa fa-instagram"></i>   @Model.Instgram  </li>
                     <li><i class="fa fa-envelope"></i> <a href="mailto:#"> @Model.MailNo1 </a></li>
                     <li><i class="fa fa-envelope"></i> <a href="mailto:#"> @Model.MailNo2 </a></li>
                 </ul>
@@ -80,15 +77,15 @@
             sendContact();
             return false;
         }
-       
+
     });
 </script>
 
 
 <script type="text/javascript">
-    
 
- 
+
+
 
 
 
@@ -119,5 +116,5 @@
             data: contact
         });
     }
-  
+
 </script>
