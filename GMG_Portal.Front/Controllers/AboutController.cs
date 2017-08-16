@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Front.Helpers;
 using Newtonsoft.Json;
 using GMG_Portal.API.Models.SystemParameters;
 
@@ -25,7 +26,7 @@ namespace Front.Controllers
         // GET: About Content
         public async Task<ActionResult> Index()
         {
-            string About = url + "About/Aboutall";
+            string About = url + "About/Aboutall?langId=" + Common.CurrentLang; 
             var AboutModels = new AboutAll();
 
             if (About == null) throw new ArgumentNullException(nameof(About));

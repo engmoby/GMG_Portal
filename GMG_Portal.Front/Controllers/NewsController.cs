@@ -69,10 +69,10 @@ namespace Front.Controllers
         {
             string news = "";
             if (id == 0)
-                news = url + "News/GetAll";
+                news = url + "News/GetAll?langId=" + Common.CurrentLang;
             else
-                news = url + "News/GetAllByCatrgoryId?categoryId=" + id;
-            // news = "http://localhost:2798/SystemParameters/News/GetAllByCatrgoryId?categoryId=2";
+                news = url + "News/GetAllByCatrgoryId?categoryId="  + id + "&langId=" + Common.CurrentLang;
+
             var newsModels = new List<News>();
 
 
@@ -94,7 +94,7 @@ namespace Front.Controllers
             {
                 return RedirectToAction("Index", "News", new { Id = 0 });
             }
-            string newsDetails = url + "News/GetNewsDetails/" + id + "?langId=" + "En";
+            string newsDetails = url + "News/GetNewsDetails/" + id + "?langId=" + Common.CurrentLang;
             var newsModels = new News();
 
             if (newsDetails == null) throw new ArgumentNullException(nameof(newsDetails));
@@ -108,7 +108,7 @@ namespace Front.Controllers
 
             string news = "";
 
-            news = url + "News/GetAll";
+            news = url + "News/GetAll?langId=" + Common.CurrentLang;
 
             var newsModelList = new List<News>();
 
@@ -126,8 +126,8 @@ namespace Front.Controllers
 
         public async Task<ActionResult> Search(string keyWord)
         {
-            string news = url + "News/SearchNews?keyword=" + keyWord;
-            // news = "http://localhost:2798/SystemParameters/News/GetAllByCatrgoryId?categoryId=2";
+            string news = url + "News/SearchNews?keyword=" + keyWord + "&langId=" + Common.CurrentLang;
+
             var newsModels = new List<News>();
 
 
