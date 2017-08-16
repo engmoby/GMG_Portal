@@ -142,13 +142,7 @@ function NewsController($scope, NewsApi, uploadNewsService, $rootScope, $timeout
         });
     }
 
-    $scope.Delete = function (New) {
-        $scope.action = 'delete';
-        $scope.New = New;
-        $scope.New.IsDeleted = true;
-        $scope.save();
-    }
-    $scope.uploading = false;
+     $scope.uploading = false;
     $scope.countFiles = '';
     $scope.data = []; //For displaying file name on browser
     $scope.formdata = new FormData();

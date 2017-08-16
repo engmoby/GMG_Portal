@@ -35,6 +35,10 @@ namespace GMG_Portal.API
                 cfg.CreateMap<SystemParameters_About, About>();
                 cfg.CreateMap<About, SystemParameters_About>();
 
+                cfg.CreateMap<SystemParameters_About_Translate, About>();
+                cfg.CreateMap<About, SystemParameters_About_Translate>();
+
+
 
 
                 cfg.CreateMap<SystemParameters_HomeSlider, HomeSlider>();

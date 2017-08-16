@@ -8,6 +8,7 @@ using GMG_Portal.API.Models.SystemParameters;
 using GMG_Portal.Data;
 using GMG_Portal.Business.Logic.SystemParameters;
 using AutoMapper;
+using Heloper;
 using Helpers;
 
 namespace GMG_Portal.API.Controllers.SystemParameters
@@ -16,13 +17,53 @@ namespace GMG_Portal.API.Controllers.SystemParameters
     [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*")]
     public class HomeSlidersController : ApiController
     {
-        public HttpResponseMessage GetAll()
+        public HttpResponseMessage GetAll(string langId)
         {
             try
             {
                 var homeSlidersLogic = new HomeSlidersLogic();
-                var homeSliders = homeSlidersLogic.GetAll();
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<HomeSlider>>(homeSliders));
+                var homeSlidersLogicTranslate = new HomeSliderLogicTranslate();
+                if (langId == Parameters.DefaultLang)
+                {
+                    var obj = homeSlidersLogic.GetAll();
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<SystemParameters_HomeSlider>>(obj));
+                }
+                else
+
+                {
+                    var objByLang = homeSlidersLogicTranslate.GetAll(langId);
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<SystemParameters_HomeSlider_Translate>>(objByLang));
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.LogError(ex);
+                return Request.CreateResponse(ex);
+            }
+        }
+        public HttpResponseMessage GetAllWithDeleted(string langId)
+        {
+            try
+            {
+                var homeSlidersLogic = new HomeSlidersLogic();
+                var homeSlidersLogicTranslate = new HomeSliderLogicTranslate();
+
+                if (langId == Parameters.DefaultLang)
+                {
+                    var obj = homeSlidersLogic.GetAllWithDeleted();
+
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<SystemParameters_HomeSlider>>(obj));
+
+                }
+                else
+
+                {
+                    var objByLang = homeSlidersLogicTranslate.GetAllWithDeleted(langId);
+
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<SystemParameters_HomeSlider_Translate>>(objByLang));
+
+                }
+
             }
             catch (Exception ex)
             {
@@ -30,20 +71,16 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
-        public HttpResponseMessage GetAllWithDeleted()
-        {
-            try
-            {
-                var homeSlidersLogic = new HomeSlidersLogic();
-                var homeSliders = homeSlidersLogic.GetAllWithDeleted();
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<API.Models.SystemParameters.HomeSlider>>(homeSliders));
-            }
-            catch (Exception ex)
-            {
-                Log.LogError(ex);
-                return Request.CreateResponse(HttpStatusCode.InternalServerError);
-            }
-        }
+
+
+
+
+
+
+
+
+
+
         [HttpPost]
         public HttpResponseMessage Save(HomeSlider postedHomeSliders)
         {
@@ -52,23 +89,39 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 if (ModelState.IsValid)
                 {
                     var homeSlidersLogic = new HomeSlidersLogic();
-                    SystemParameters_HomeSlider Hotel = null;
+                    var homeSlidersLogicTranslate = new HomeSliderLogicTranslate();
+
+                    SystemParameters_HomeSlider obj = null;
+                    SystemParameters_HomeSlider_Translate objByLang = null;
                     if (postedHomeSliders.Id.Equals(0))
                     {
-                        Hotel = homeSlidersLogic.Insert(Mapper.Map<SystemParameters_HomeSlider>(postedHomeSliders));
+                        if (postedHomeSliders.langId == Parameters.DefaultLang)
+                            obj = homeSlidersLogic.Insert(Mapper.Map<SystemParameters_HomeSlider>(postedHomeSliders));
+                        else
+                            objByLang = homeSlidersLogicTranslate.Insert(Mapper.Map<SystemParameters_HomeSlider_Translate>(postedHomeSliders));
                     }
                     else
                     {
                         if (postedHomeSliders.IsDeleted)
                         {
-                            Hotel = homeSlidersLogic.Delete(Mapper.Map<SystemParameters_HomeSlider>(postedHomeSliders));
+                            if (postedHomeSliders.langId == Parameters.DefaultLang)
+                                obj = homeSlidersLogic.Delete(Mapper.Map<SystemParameters_HomeSlider>(postedHomeSliders));
+                            else
+                                objByLang = homeSlidersLogicTranslate.Delete(Mapper.Map<SystemParameters_HomeSlider_Translate>(postedHomeSliders));
                         }
                         else
                         {
-                            Hotel = homeSlidersLogic.Edit(Mapper.Map<SystemParameters_HomeSlider>(postedHomeSliders));
+                            if (postedHomeSliders.langId == Parameters.DefaultLang)
+                                obj = homeSlidersLogic.Edit(Mapper.Map<SystemParameters_HomeSlider>(postedHomeSliders));
+                            else
+                                objByLang = homeSlidersLogicTranslate.Edit(Mapper.Map<SystemParameters_HomeSlider_Translate>(postedHomeSliders));
                         }
                     }
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<HomeSlider>(Hotel));
+                    if (postedHomeSliders.langId == Parameters.DefaultLang)
+                        return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<SystemParameters_HomeSlider>(obj));
+                    else
+                        return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<SystemParameters_HomeSlider_Translate>(objByLang));
+
                 }
                 goto ThrowBadRequest;
             }

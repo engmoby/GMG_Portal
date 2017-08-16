@@ -28,13 +28,13 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         {
             return _db.SystemParameters_ContactUs.Find(id);
         }
-        private SystemParameters_ContactUs Save(SystemParameters_ContactUs contactUs)
+        private SystemParameters_ContactUs Save(SystemParameters_ContactUs obj)
         {
             try
             {
                 _db.SaveChanges();
-                contactUs.OperationStatus = "Succeded";
-                return contactUs;
+                obj.OperationStatus = "Succeded";
+                return obj;
             }
             catch (Exception e)
             {
@@ -42,13 +42,13 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 {
                     if (e.InnerException.ToString().Contains("IX_Countries_Ar"))
                     {
-                        contactUs.OperationStatus = "NameArMustBeUnique";
-                        return contactUs;
+                        obj.OperationStatus = "NameArMustBeUnique";
+                        return obj;
                     }
                     else if (e.InnerException.ToString().Contains("IX_Countries_En"))
                     {
-                        contactUs.OperationStatus = "NameEnMustBeUnique";
-                        return contactUs;
+                        obj.OperationStatus = "NameEnMustBeUnique";
+                        return obj;
                     }
                 }
                 throw;
@@ -57,7 +57,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         public SystemParameters_ContactUs Insert(SystemParameters_ContactUs postedContactUs)
         {
 
-            var contactUs = new SystemParameters_ContactUs()
+            var obj = new SystemParameters_ContactUs()
             {
                 DisplayValueAddress = postedContactUs.DisplayValueAddress,
                 DisplayValueDesc = postedContactUs.DisplayValueDesc,
@@ -82,8 +82,8 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 CreationTime = Parameters.CurrentDateTime,
                 CreatorUserId = Parameters.UserId,
             };
-            _db.SystemParameters_ContactUs.Add(contactUs);
-            return Save(contactUs);
+            _db.SystemParameters_ContactUs.Add(obj);
+            return Save(obj);
         }
         public SystemParameters_ContactUs Edit(SystemParameters_ContactUs postedContactUs)
         {
@@ -115,17 +115,17 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         }
         public SystemParameters_ContactUs Delete(SystemParameters_ContactUs postedContactUs)
         {
-            SystemParameters_ContactUs contactUs = Get(postedContactUs.Id);
+            SystemParameters_ContactUs obj = Get(postedContactUs.Id);
             if (_db.SystemParameters_ContactUs.Any(p => p.Id == postedContactUs.Id && p.IsDeleted != true))
             {
                 //  ContactUs.OperationStatus = "HasRelationship";
-                return contactUs;
+                return obj;
             }
 
-            contactUs.IsDeleted = true;
-            contactUs.CreationTime = Parameters.CurrentDateTime;
-            contactUs.CreatorUserId = Parameters.UserId;
-            return Save(contactUs);
+            obj.IsDeleted = true;
+            obj.CreationTime = Parameters.CurrentDateTime;
+            obj.CreatorUserId = Parameters.UserId;
+            return Save(obj);
         }
 
     }

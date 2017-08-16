@@ -8,6 +8,8 @@ using GMG_Portal.API.Models.SystemParameters;
 using GMG_Portal.Data;
 using GMG_Portal.Business.Logic.SystemParameters;
 using AutoMapper;
+using GMG_Portal.API.Models.SystemParameters.ContactUs;
+using Heloper;
 using Helpers;
 
 namespace GMG_Portal.API.Controllers.SystemParameters
@@ -16,13 +18,23 @@ namespace GMG_Portal.API.Controllers.SystemParameters
     [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*")]
     public class CoreValuesController : ApiController
     {
-        public HttpResponseMessage GetAll()
+        public HttpResponseMessage GetAll(string langId)
         {
             try
             {
                 var coreValuesLogic = new CoreValuesLogic();
-                var coreValues = coreValuesLogic.GetAll();
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<CoreValues>>(coreValues));
+                var coreValuesLogicTranslate = new CoreValuesLogicTranslate();
+                if (langId == Parameters.DefaultLang)
+                {
+                    var obj = coreValuesLogic.GetAll();
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<CoreValues>>(obj));
+                }
+                else
+
+                {
+                    var objByLang = coreValuesLogicTranslate.GetAll(langId);
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<CoreValues>>(objByLang));
+                }
             }
             catch (Exception ex)
             {
@@ -30,13 +42,29 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 return Request.CreateResponse(ex);
             }
         }
-        public HttpResponseMessage GetAllWithDeleted()
+        public HttpResponseMessage GetAllWithDeleted(string langId)
         {
             try
             {
                 var coreValuesLogic = new CoreValuesLogic();
-                var coreValues = coreValuesLogic.GetAllWithDeleted();
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<CoreValues>>(coreValues));
+                var coreValuesLogicTranslate = new CoreValuesLogicTranslate();
+
+                if (langId == Parameters.DefaultLang)
+                {
+                    var obj = coreValuesLogic.GetAllWithDeleted();
+
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<CoreValues>>(obj));
+
+                }
+                else
+
+                {
+                    var objByLang = coreValuesLogicTranslate.GetAllWithDeleted(langId);
+
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<CoreValues>>(objByLang));
+
+                }
+
             }
             catch (Exception ex)
             {
@@ -52,23 +80,39 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 if (ModelState.IsValid)
                 {
                     var coreValuesLogic = new CoreValuesLogic();
-                    SystemParameters_CoreValues coreValue = null;
+                    var coreValuesLogicTranslate = new CoreValuesLogicTranslate();
+
+                    SystemParameters_CoreValues obj = null;
+                    SystemParameters_CoreValues_Translate objByLang = null;
                     if (posteCoreValues.Id.Equals(0))
                     {
-                        coreValue = coreValuesLogic.Insert(Mapper.Map<SystemParameters_CoreValues>(posteCoreValues));
+                        if (posteCoreValues.langId == Parameters.DefaultLang)
+                            obj = coreValuesLogic.Insert(Mapper.Map<SystemParameters_CoreValues>(posteCoreValues));
+                        else
+                            objByLang = coreValuesLogicTranslate.Insert(Mapper.Map<SystemParameters_CoreValues_Translate>(posteCoreValues));
                     }
                     else
                     {
                         if (posteCoreValues.IsDeleted)
                         {
-                            coreValue = coreValuesLogic.Delete(Mapper.Map<SystemParameters_CoreValues>(posteCoreValues));
+                            if (posteCoreValues.langId == Parameters.DefaultLang)
+                                obj = coreValuesLogic.Delete(Mapper.Map<SystemParameters_CoreValues>(posteCoreValues));
+                            else
+                                objByLang = coreValuesLogicTranslate.Delete(Mapper.Map<SystemParameters_CoreValues_Translate>(posteCoreValues));
                         }
                         else
                         {
-                            coreValue = coreValuesLogic.Edit(Mapper.Map<SystemParameters_CoreValues>(posteCoreValues));
+                            if (posteCoreValues.langId == Parameters.DefaultLang)
+                                obj = coreValuesLogic.Edit(Mapper.Map<SystemParameters_CoreValues>(posteCoreValues));
+                            else
+                                objByLang = coreValuesLogicTranslate.Edit(Mapper.Map<SystemParameters_CoreValues_Translate>(posteCoreValues));
                         }
                     }
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<CoreValues>(coreValue));
+                    if (posteCoreValues.langId == Parameters.DefaultLang)
+                        return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<CoreValues>(obj));
+                    else
+                        return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<CoreValues>(objByLang));
+
                 }
                 goto ThrowBadRequest;
             }

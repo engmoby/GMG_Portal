@@ -8,6 +8,7 @@ using GMG_Portal.API.Models.SystemParameters;
 using GMG_Portal.Data;
 using GMG_Portal.Business.Logic.SystemParameters;
 using AutoMapper;
+using Heloper;
 using Helpers;
 
 namespace GMG_Portal.API.Controllers.SystemParameters
@@ -16,13 +17,54 @@ namespace GMG_Portal.API.Controllers.SystemParameters
     [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*")]
     public class OwnersController : ApiController
     {
-        public HttpResponseMessage GetAll()
+    
+        public HttpResponseMessage GetAll(string langId)
         {
             try
-            { 
-                var ownerLogic = new OwnerLogic();
-                var owners = ownerLogic.GetAll();
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Owners>>(owners));
+            {
+                var ownersLogic = new OwnerLogic();
+                var ownersLogicTranslate = new OwnerLogicTranslate();
+                if (langId == Parameters.DefaultLang)
+                {
+                    var obj = ownersLogic.GetAll();
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Owners>>(obj));
+                }
+                else
+
+                {
+                    var objByLang = ownersLogicTranslate.GetAll(langId);
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Owners>>(objByLang));
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.LogError(ex);
+                return Request.CreateResponse(ex);
+            }
+        }
+        public HttpResponseMessage GetAllWithDeleted(string langId)
+        {
+            try
+            {
+                var ownersLogic = new OwnerLogic();
+                var ownersLogicTranslate = new OwnerLogicTranslate();
+
+                if (langId == Parameters.DefaultLang)
+                {
+                    var obj = ownersLogic.GetAllWithDeleted();
+
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<CoreValues>>(obj));
+
+                }
+                else
+
+                {
+                    var objByLang = ownersLogicTranslate.GetAllWithDeleted(langId);
+
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<CoreValues>>(objByLang));
+
+                }
+
             }
             catch (Exception ex)
             {
@@ -30,20 +72,10 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
-        public HttpResponseMessage GetAllWithDeleted()
-        {
-            try
-            {
-                var ownerLogic = new OwnerLogic();
-                var owners = ownerLogic.GetAllWithDeleted();
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Owners>>(owners));
-            }
-            catch (Exception ex)
-            {
-                Log.LogError(ex);
-                return Request.CreateResponse(HttpStatusCode.InternalServerError);
-            }
-        }
+
+
+
+
         [HttpPost]
         public HttpResponseMessage Save(Owners postedOwners)
         {
@@ -51,24 +83,40 @@ namespace GMG_Portal.API.Controllers.SystemParameters
             {
                 if (ModelState.IsValid)
                 {
-                    var ownerLogic = new OwnerLogic();
-                    SystemParameters_Owners owner = null;
+                    var ownersLogic = new OwnerLogic();
+                    var ownersLogicTranslate = new OwnerLogicTranslate();
+
+                    SystemParameters_Owners obj = null;
+                    SystemParameters_Owners_Translate objByLang = null;
                     if (postedOwners.Id.Equals(0))
                     {
-                        owner = ownerLogic.Insert(Mapper.Map<SystemParameters_Owners>(postedOwners));
+                        if (postedOwners.langId == Parameters.DefaultLang)
+                            obj = ownersLogic.Insert(Mapper.Map<SystemParameters_Owners>(postedOwners));
+                        else
+                            objByLang = ownersLogicTranslate.Insert(Mapper.Map<SystemParameters_Owners_Translate>(postedOwners));
                     }
                     else
                     {
                         if (postedOwners.IsDeleted)
                         {
-                            owner = ownerLogic.Delete(Mapper.Map<SystemParameters_Owners>(postedOwners));
+                            if (postedOwners.langId == Parameters.DefaultLang)
+                                obj = ownersLogic.Delete(Mapper.Map<SystemParameters_Owners>(postedOwners));
+                            else
+                                objByLang = ownersLogicTranslate.Delete(Mapper.Map<SystemParameters_Owners_Translate>(postedOwners));
                         }
                         else
                         {
-                            owner = ownerLogic.Edit(Mapper.Map<SystemParameters_Owners>(postedOwners));
+                            if (postedOwners.langId == Parameters.DefaultLang)
+                                obj = ownersLogic.Edit(Mapper.Map<SystemParameters_Owners>(postedOwners));
+                            else
+                                objByLang = ownersLogicTranslate.Edit(Mapper.Map<SystemParameters_Owners_Translate>(postedOwners));
                         }
                     }
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Owners>(owner));
+                    if (postedOwners.langId == Parameters.DefaultLang)
+                        return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<SystemParameters_Owners>(obj));
+                    else
+                        return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<SystemParameters_Owners_Translate>(objByLang));
+
                 }
                 goto ThrowBadRequest;
             }

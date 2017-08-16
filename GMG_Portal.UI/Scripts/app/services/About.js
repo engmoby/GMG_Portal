@@ -1,7 +1,9 @@
 ﻿provide.service('AboutApi', function ($http) {
     var apiUrl = document.querySelector('#HServicesURL').value;
-    this.GetAll = function () {
-        return $http.get(apiUrl + '/SystemParameters/About/GetAllWithDeleted');
+    var langId = document.querySelector('#HCurrentLang').value;
+
+    this.GetAll = function (lang) {
+        return $http.get(apiUrl + '/SystemParameters/About/GetAllWithDeleted?LangId=' + lang);
     }
 
     this.Save = function (vision) {

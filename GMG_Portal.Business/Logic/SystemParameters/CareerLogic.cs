@@ -52,13 +52,13 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         {
             return _db.SystemParameters_Careers.Find(id);
         }
-        private SystemParameters_Careers Save(SystemParameters_Careers career)
+        private SystemParameters_Careers Save(SystemParameters_Careers obj)
         {
             try
             {
                 _db.SaveChanges();
-                career.OperationStatus = "Succeded";
-                return career;
+                obj.OperationStatus = "Succeded";
+                return obj;
             }
             catch (Exception e)
             {
@@ -66,13 +66,13 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 {
                     if (e.InnerException.ToString().Contains("IX_Countries_Ar"))
                     {
-                        career.OperationStatus = "NameArMustBeUnique";
-                        return career;
+                        obj.OperationStatus = "NameArMustBeUnique";
+                        return obj;
                     }
                     else if (e.InnerException.ToString().Contains("IX_Countries_En"))
                     {
-                        career.OperationStatus = "NameEnMustBeUnique";
-                        return career;
+                        obj.OperationStatus = "NameEnMustBeUnique";
+                        return obj;
                     }
                 }
                 throw;
@@ -80,7 +80,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         }
         public SystemParameters_Careers Insert(SystemParameters_Careers postedCareer)
         { 
-            var career = new SystemParameters_Careers
+            var obj = new SystemParameters_Careers
             {
                 DisplayValue = postedCareer.DisplayValue,
                 DisplayValueDesc = postedCareer.DisplayValueDesc,
@@ -97,41 +97,41 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 CreationTime = Parameters.CurrentDateTime,
                 CreatorUserId = Parameters.UserId, 
             };
-            _db.SystemParameters_Careers.Add(career);
-            return Save(career);
+            _db.SystemParameters_Careers.Add(obj);
+            return Save(obj);
         }
         public SystemParameters_Careers Edit(SystemParameters_Careers postedCareer)
         {
-            var career = Get(postedCareer.Id);
-            career.DisplayValue = postedCareer.DisplayValue;
-            career.DisplayValueDesc = postedCareer.DisplayValueDesc;
-            career.DisplayValueRequirements = postedCareer.DisplayValueRequirements;
-            career.CareerLevel = postedCareer.CareerLevel;
-            career.JobType = postedCareer.JobType;
-            career.EducationLevel = postedCareer.EducationLevel;
-            career.Vacancies = postedCareer.Vacancies;
-            career.Experience = postedCareer.Experience;
-            career.Image = postedCareer.Image;
-            career.SalaryAverage= postedCareer.SalaryAverage; 
-            career.IsDeleted = postedCareer.IsDeleted;
-           // career.Show = postedCareer.Show; 
-            career.LastModificationTime = Parameters.CurrentDateTime;
-            career.LastModifierUserId = Parameters.UserId;
-            return Save(career);
+            var obj = Get(postedCareer.Id);
+            obj.DisplayValue = postedCareer.DisplayValue;
+            obj.DisplayValueDesc = postedCareer.DisplayValueDesc;
+            obj.DisplayValueRequirements = postedCareer.DisplayValueRequirements;
+            obj.CareerLevel = postedCareer.CareerLevel;
+            obj.JobType = postedCareer.JobType;
+            obj.EducationLevel = postedCareer.EducationLevel;
+            obj.Vacancies = postedCareer.Vacancies;
+            obj.Experience = postedCareer.Experience;
+            obj.Image = postedCareer.Image;
+            obj.SalaryAverage= postedCareer.SalaryAverage; 
+            obj.IsDeleted = postedCareer.IsDeleted;
+           // obj.Show = postedCareer.Show; 
+            obj.LastModificationTime = Parameters.CurrentDateTime;
+            obj.LastModifierUserId = Parameters.UserId;
+            return Save(obj);
         }
         public SystemParameters_Careers Delete(SystemParameters_Careers postedCareer)
         {
-            SystemParameters_Careers career = Get(postedCareer.Id);
+            SystemParameters_Careers obj = Get(postedCareer.Id);
             if (_db.SystemParameters_CareerForm.Any(p => p.CareerId == postedCareer.Id))
             {
-                career.OperationStatus = "HasRelationship";
-                return career;
+                obj.OperationStatus = "HasRelationship";
+                return obj;
             }
 
-            career.IsDeleted = true;
-            career.CreationTime = Parameters.CurrentDateTime;
-            career.CreatorUserId = Parameters.UserId;
-            return Save(career);
+            obj.IsDeleted = true;
+            obj.CreationTime = Parameters.CurrentDateTime;
+            obj.CreatorUserId = Parameters.UserId;
+            return Save(obj);
         }
 
     }

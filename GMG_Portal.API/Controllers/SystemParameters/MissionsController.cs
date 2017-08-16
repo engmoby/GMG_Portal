@@ -8,6 +8,7 @@ using GMG_Portal.API.Models.SystemParameters;
 using GMG_Portal.Data;
 using GMG_Portal.Business.Logic.SystemParameters;
 using AutoMapper;
+using Heloper;
 using Helpers;
 
 namespace GMG_Portal.API.Controllers.SystemParameters
@@ -16,27 +17,57 @@ namespace GMG_Portal.API.Controllers.SystemParameters
     [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*")]
     public class MissionsController : ApiController
     {
+    
+
+
+
         public HttpResponseMessage GetAll(string langId)
         {
             try
             {
-                var missionsLogic = new MissionsLogic();
-                var missions = missionsLogic.GetAll(langId);
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Mission>>(missions));
+                var missionLogic = new MissionsLogic();
+                var missionLogicTranslate = new MissionLogicTranslate();
+                if (langId == Parameters.DefaultLang)
+                {
+                    var obj = missionLogic.GetAll();
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Mission>>(obj));
+                }
+                else
+
+                {
+                    var objByLang = missionLogicTranslate.GetAll(langId);
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Mission>>(objByLang));
+                }
             }
             catch (Exception ex)
             {
                 Log.LogError(ex);
-                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+                return Request.CreateResponse(ex);
             }
         }
         public HttpResponseMessage GetAllWithDeleted(string langId)
         {
             try
             {
-                var missionsLogic = new MissionsLogic();
-                var missions = missionsLogic.GetAllWithDeleted(langId);
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Mission>>(missions));
+                var missionLogic = new MissionsLogic();
+                var missionLogicTranslate = new MissionLogicTranslate();
+
+                if (langId == Parameters.DefaultLang)
+                {
+                    var obj = missionLogic.GetAllWithDeleted();
+
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Mission>>(obj));
+
+                }
+                else
+
+                {
+                    var objByLang = missionLogicTranslate.GetAllWithDeleted(langId);
+
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Mission>>(objByLang));
+
+                }
+
             }
             catch (Exception ex)
             {
@@ -44,6 +75,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
+
         [HttpPost]
         public HttpResponseMessage Save(Mission postedMissions)
         {
@@ -51,11 +83,40 @@ namespace GMG_Portal.API.Controllers.SystemParameters
             {
                 if (ModelState.IsValid)
                 {
-                    var missionsLogic = new MissionsLogic();
-                    Front_Mission mission = null;
-                    mission = missionsLogic.Edit(Mapper.Map<Front_Mission>(postedMissions), postedMissions.LangId);
+                    var missionLogic = new MissionsLogic();
+                    var missionLogicTranslate = new MissionLogicTranslate();
 
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Mission>(mission));
+                    Front_Mission obj = null;
+                    Front_Mission_Translate objByLang = null;
+                    if (postedMissions.Id.Equals(0))
+                    {
+                        if (postedMissions.langId == Parameters.DefaultLang)
+                            obj = missionLogic.Insert(Mapper.Map<Front_Mission>(postedMissions));
+                        else
+                            objByLang = missionLogicTranslate.Insert(Mapper.Map<Front_Mission_Translate>(postedMissions));
+                    }
+                    else
+                    {
+                        if (postedMissions.IsDeleted)
+                        {
+                            if (postedMissions.langId == Parameters.DefaultLang)
+                                obj = missionLogic.Delete(Mapper.Map<Front_Mission>(postedMissions));
+                            else
+                                objByLang = missionLogicTranslate.Delete(Mapper.Map<Front_Mission_Translate>(postedMissions));
+                        }
+                        else
+                        {
+                            if (postedMissions.langId == Parameters.DefaultLang)
+                                obj = missionLogic.Edit(Mapper.Map<Front_Mission>(postedMissions));
+                            else
+                                objByLang = missionLogicTranslate.Edit(Mapper.Map<Front_Mission_Translate>(postedMissions));
+                        }
+                    }
+                    if (postedMissions.langId == Parameters.DefaultLang)
+                        return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<CoreValues>(obj));
+                    else
+                        return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Front_Mission_Translate>(objByLang));
+
                 }
                 goto ThrowBadRequest;
             }

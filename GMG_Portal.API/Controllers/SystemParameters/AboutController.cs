@@ -17,33 +17,61 @@ namespace GMG_Portal.API.Controllers.SystemParameters
     [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*")]
     public class AboutController : ApiController
     {
-        public HttpResponseMessage GetAll()
-        {
-            try
-            {
-
-                var aboutLogic = new AboutLogic();
-                var about = aboutLogic.GetAll();
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<About>>(about));
-            }
-            catch (Exception ex)
-            {
-                Log.LogError(ex);
-                return Request.CreateResponse(HttpStatusCode.InternalServerError);
-            }
-        }
-        public HttpResponseMessage GetAllWithDeleted()
+        public HttpResponseMessage GetAll(string langId)
         {
             try
             {
                 var AboutLogic = new AboutLogic();
-                var Abouts = AboutLogic.GetAllWithDeleted();
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<API.Models.SystemParameters.About>>(Abouts));
+                var AboutLogicTranslate = new AboutLogicTranslate();
+               
+             
+
+                if (langId == Parameters.DefaultLang)
+                {
+                    var Obj = AboutLogic.GetAll(); 
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<About>>(Obj)); 
+                }
+                else
+
+                {
+                    var ObjByLang = AboutLogicTranslate.GetAll(langId); 
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<About>>(ObjByLang)); 
+                }
             }
             catch (Exception ex)
             {
                 Log.LogError(ex);
-                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+                return Request.CreateResponse(ex);
+            }
+        }
+        public HttpResponseMessage GetAllWithDeleted(string langId)
+        {
+            try
+            {
+                var AboutLogic = new AboutLogic();
+                var AboutLogicTranslate = new AboutLogicTranslate();
+
+                if (langId == Parameters.DefaultLang)
+                {
+                    var Obj = AboutLogic.GetAllWithDeleted();
+
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<About>>(Obj));
+
+                }
+                else
+
+                {
+                    var ObjByLang = AboutLogicTranslate.GetAllWithDeleted(langId);
+
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<About>>(ObjByLang));
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Log.LogError(ex);
+                return Request.CreateResponse(ex);
             }
         }
         [HttpPost]
@@ -54,23 +82,40 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 if (ModelState.IsValid)
                 {
                     var aboutLogic = new AboutLogic();
-                    SystemParameters_About about = null;
+                    var aboutLogicTranslate = new AboutLogicTranslate();
+
+                    SystemParameters_About obj = null;
+                    SystemParameters_About_Translate objByLang = null;
+
                     if (postedAbouts.Id.Equals(0))
                     {
-                        about = aboutLogic.Insert(Mapper.Map<SystemParameters_About>(postedAbouts));
+                        if (postedAbouts.LangId == Parameters.DefaultLang)
+                            obj = aboutLogic.Insert(Mapper.Map<SystemParameters_About>(postedAbouts));
+                        else
+                            objByLang =  aboutLogicTranslate.Insert(Mapper.Map<SystemParameters_About_Translate>(postedAbouts));
+
                     }
                     else
                     {
                         if (postedAbouts.IsDeleted)
                         {
-                            about = aboutLogic.Delete(Mapper.Map<SystemParameters_About>(postedAbouts));
+                            if (postedAbouts.LangId == Parameters.DefaultLang)
+                                obj = aboutLogic.Delete(Mapper.Map<SystemParameters_About>(postedAbouts));
+                            else
+                                objByLang = aboutLogicTranslate.Delete(Mapper.Map<SystemParameters_About_Translate>(postedAbouts));
                         }
                         else
                         {
-                            about = aboutLogic.Edit(Mapper.Map<SystemParameters_About>(postedAbouts));
+                            if (postedAbouts.LangId == Parameters.DefaultLang)
+                                obj = aboutLogic.Edit(Mapper.Map<SystemParameters_About>(postedAbouts));
+                            else
+                                objByLang = aboutLogicTranslate.Edit(Mapper.Map<SystemParameters_About_Translate>(postedAbouts));
                         }
                     }
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<About>(about));
+                    if (postedAbouts.LangId == Parameters.DefaultLang)
+                        return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<About>(obj));
+                    else
+                        return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<SystemParameters_About_Translate>(objByLang));
                 }
                 goto ThrowBadRequest;
             }
@@ -85,7 +130,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
             return Request.CreateResponse(HttpStatusCode.BadRequest);
         }
         [HttpGet]
-        public HttpResponseMessage Aboutall()
+        public HttpResponseMessage Aboutall(string langId)
         {
             try
             {

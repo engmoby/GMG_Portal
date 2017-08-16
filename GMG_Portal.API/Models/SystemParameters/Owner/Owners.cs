@@ -7,6 +7,7 @@ namespace GMG_Portal.API.Models.SystemParameters
 {
     public class Owners
     {
+        public string langId;
         public int Id { get; set; }
         public Guid? SGuid { get; set; }
         public string DisplayValueName { get; set; }

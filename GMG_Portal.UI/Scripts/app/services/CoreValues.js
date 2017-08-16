@@ -1,7 +1,9 @@
 ﻿provide.service('CoreValuesApi', function ($http) {
     var apiUrl = document.querySelector('#HServicesURL').value;
+    var langId = document.querySelector('#HCurrentLang').value;
+
     this.GetAll = function () {
-        return $http.get(apiUrl + '/SystemParameters/CoreValues/GetAllWithDeleted');
+        return $http.get(apiUrl + '/SystemParameters/CoreValues/GetAllWithDeleted?LangId=' + lang);
     }
 
     this.Save = function (CoreValues) {

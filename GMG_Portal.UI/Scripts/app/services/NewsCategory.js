@@ -1,7 +1,8 @@
 ﻿provide.service('NewsCategoryApi', function ($http) {
     var apiUrl = document.querySelector('#HServicesURL').value;
+    var langId = document.querySelector('#HCurrentLang').value;
     this.GetAll = function () {
-        return $http.get(apiUrl + '/SystemParameters/NewsCategory/GetAllWithDeleted');
+        return $http.get(apiUrl + '/SystemParameters/NewsCategory/GetAllWithDeleted?LangId=' + lang);
     }
 
     this.Save = function (news) {

@@ -16,58 +16,17 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         {
             _db = new GMG_Portal_DBEntities1();
         }
-        public List<Front_Mission> GetAllWithDeleted(string langId)
+        public List<Front_Mission> GetAllWithDeleted()
         {
-            var returnValue = new List<Front_Mission>();
-            if (langId == Parameters.DefaultLang)
-                returnValue = _db.Front_Mission.OrderBy(p => p.IsDeleted).ToList();
-            else
-            {
-                var getList = _db.Front_Mission_Translate.Where(p => p.langId == langId).ToList();
-                foreach (var frontMissionTranslate in getList)
-                {
-                    returnValue.Add(new Front_Mission
-                    {
-                        Id = frontMissionTranslate.Id,
-                        DisplayValue = frontMissionTranslate.DisplayValue,
-                        DisplayValueDesc = frontMissionTranslate.DisplayValueDesc,
-                        Image = frontMissionTranslate.Image
-                    });
-                }
-            }
-
-            return returnValue;
-
+            return _db.Front_Mission.OrderBy(p => p.IsDeleted).ToList();
         }
-        public List<Front_Mission> GetAll(string langId)
+        public List<Front_Mission> GetAll()
         {
-            var returnValue = new List<Front_Mission>();
-            if (langId == Parameters.DefaultLang)
-                returnValue = _db.Front_Mission.Where(p => p.IsDeleted != true).ToList();
-            else
-            {
-                var getList = _db.Front_Mission_Translate.Where(p => p.IsDeleted != true && p.langId == langId).ToList();
-                foreach (var frontMissionTranslate in getList)
-                {
-                    returnValue.Add(new Front_Mission
-                    {
-                        Id = frontMissionTranslate.Id,
-                        DisplayValue = frontMissionTranslate.DisplayValue,
-                        DisplayValueDesc = frontMissionTranslate.DisplayValueDesc,
-                        Image = frontMissionTranslate.Image
-                    });
-                }
-            }
-
-            return returnValue;
+            return _db.Front_Mission.Where(p => p.IsDeleted != true).ToList();
         }
-        public Front_Mission Get(int id, string langId)
+        public Front_Mission Get(int id)
         {
             return _db.Front_Mission.Find(id);
-        }
-        public Front_Mission_Translate GetByLang(int id, string langId)
-        {
-            return _db.Front_Mission_Translate.FirstOrDefault(p => p.Id != id && p.langId == langId);
         }
         private Front_Mission Save(Front_Mission mission)
         {
@@ -95,43 +54,46 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 throw;
             }
         }
-        public Front_Mission Edit(Front_Mission postedMission, string langId)
+        public Front_Mission Insert(Front_Mission postedMission)
         {
-            var returnValue = new Front_Mission();
-            if (langId == Parameters.DefaultLang)
+            var obj = new Front_Mission()
             {
-                Front_Mission mission = Get(postedMission.Id, langId);
-                mission.DisplayValue = postedMission.DisplayValue;
-                mission.DisplayValueDesc = postedMission.DisplayValueDesc;
-                mission.Image = postedMission.Image;
-                mission.IsDeleted = postedMission.IsDeleted;
-                mission.Show = postedMission.Show;
-                mission.LastModificationTime = Parameters.CurrentDateTime;
-                mission.LastModifierUserId = Parameters.UserId;
-                return Save(mission);
-            }
-            else
+                DisplayValue = postedMission.DisplayValue,
+                DisplayValueDesc = postedMission.DisplayValueDesc,
+                Image = postedMission.Image,
+                IsDeleted = postedMission.IsDeleted,
+                Show = Parameters.Show,
+                CreationTime = Parameters.CurrentDateTime,
+                CreatorUserId = Parameters.UserId,
+            };
+            _db.Front_Mission.Add(obj);
+            return Save(obj);
+        }
+        public Front_Mission Edit(Front_Mission postedMission)
+        {
+            Front_Mission obj = Get(postedMission.Id);
+            obj.DisplayValue = postedMission.DisplayValue;
+            obj.DisplayValueDesc = postedMission.DisplayValueDesc;
+            obj.Image = postedMission.Image;
+            obj.IsDeleted = postedMission.IsDeleted;
+            obj.Show = postedMission.Show;
+            obj.LastModificationTime = Parameters.CurrentDateTime;
+            obj.LastModifierUserId = Parameters.UserId;
+            return Save(obj);
+        }
+        public Front_Mission Delete(Front_Mission postedMission)
+        {
+            Front_Mission obj = Get(postedMission.Id);
+            if (_db.Front_Mission.Any(p => p.Id == postedMission.Id && p.IsDeleted != true))
             {
-                Front_Mission_Translate mission = GetByLang(postedMission.Id, langId);
-                mission.DisplayValue = postedMission.DisplayValue;
-                mission.DisplayValueDesc = postedMission.DisplayValueDesc;
-                mission.Image = postedMission.Image;
-                mission.IsDeleted = postedMission.IsDeleted;
-                mission.Show = postedMission.Show;
-                mission.LastModificationTime = Parameters.CurrentDateTime;
-                mission.LastModifierUserId = Parameters.UserId;
-                _db.SaveChanges();
-
-                returnValue.DisplayValue = mission.DisplayValue;
-                returnValue.DisplayValueDesc = mission.DisplayValueDesc;
-                returnValue.Image = mission.Image;
-                returnValue.IsDeleted = mission.IsDeleted;
-                returnValue.Show = mission.Show;
-                returnValue.LastModificationTime = Parameters.CurrentDateTime;
-                returnValue.LastModifierUserId = Parameters.UserId;
-                return returnValue;
+                //  obj.OperationStatus = "HasRelationship";
+                return obj;
             }
 
+            obj.IsDeleted = true;
+            obj.CreationTime = Parameters.CurrentDateTime;
+            obj.CreatorUserId = Parameters.UserId;
+            return Save(obj);
         }
 
 

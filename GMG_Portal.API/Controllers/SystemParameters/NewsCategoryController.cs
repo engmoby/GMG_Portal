@@ -8,6 +8,7 @@ using GMG_Portal.API.Models.SystemParameters;
 using GMG_Portal.Data;
 using GMG_Portal.Business.Logic.SystemParameters;
 using AutoMapper;
+using Heloper;
 using Helpers;
 
 namespace GMG_Portal.API.Controllers.SystemParameters
@@ -16,13 +17,55 @@ namespace GMG_Portal.API.Controllers.SystemParameters
     [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*")]
     public class NewsCategoryController : ApiController
     {
-        public HttpResponseMessage GetAll()
+  
+
+        public HttpResponseMessage GetAll(string langId)
         {
             try
             {
                 var categoryLogic = new CategoryLogic();
-                var Category = categoryLogic.GetAll();
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Category>>(Category));
+                var categoryLogicTranslate = new CategoryLogicTranslate();
+                if (langId == Parameters.DefaultLang)
+                {
+                    var obj = categoryLogic.GetAll();
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Category>>(obj));
+                }
+                else
+
+                {
+                    var objByLang = categoryLogicTranslate.GetAll(langId);
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<SystemParameters_Category_Translate>>(objByLang));
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.LogError(ex);
+                return Request.CreateResponse(ex);
+            }
+        }
+        public HttpResponseMessage GetAllWithDeleted(string langId)
+        {
+            try
+            {
+                var categoryLogic = new CategoryLogic();
+                var categoryLogicTranslate = new CategoryLogicTranslate();
+
+                if (langId == Parameters.DefaultLang)
+                {
+                    var obj = categoryLogic.GetAllWithDeleted();
+
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Category>>(obj));
+
+                }
+                else
+
+                {
+                    var objByLang = categoryLogicTranslate.GetAllWithDeleted(langId);
+
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<SystemParameters_Category_Translate>>(objByLang));
+
+                }
+
             }
             catch (Exception ex)
             {
@@ -30,20 +73,14 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
-        public HttpResponseMessage GetAllWithDeleted()
-        {
-            try
-            {
-                var categoryLogic = new CategoryLogic();
-                var category = categoryLogic.GetAllWithDeleted();
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Category>>(category));
-            }
-            catch (Exception ex)
-            {
-                Log.LogError(ex);
-                return Request.CreateResponse(HttpStatusCode.InternalServerError);
-            }
-        }
+
+
+
+
+
+
+
+
         [HttpPost]
         public HttpResponseMessage Save(Category postedCategory)
         {
@@ -51,24 +88,40 @@ namespace GMG_Portal.API.Controllers.SystemParameters
             {
                 if (ModelState.IsValid)
                 {
-                    var CategoryLogic = new CategoryLogic();
-                    SystemParameters_Category language = null;
+                    var categoryLogic = new CategoryLogic();
+                    var categoryLogicTranslate = new CategoryLogicTranslate();
+
+                    SystemParameters_Category obj = null;
+                    SystemParameters_Category_Translate objByLang = null;
                     if (postedCategory.Id.Equals(0))
                     {
-                        language = CategoryLogic.Insert(Mapper.Map<SystemParameters_Category>(postedCategory));
+                        if (postedCategory.langId == Parameters.DefaultLang)
+                            obj = categoryLogic.Insert(Mapper.Map<SystemParameters_Category>(postedCategory));
+                        else
+                            objByLang = categoryLogicTranslate.Insert(Mapper.Map<SystemParameters_Category_Translate>(postedCategory));
                     }
                     else
                     {
                         if (postedCategory.IsDeleted)
                         {
-                            language = CategoryLogic.Delete(Mapper.Map<SystemParameters_Category>(postedCategory));
+                            if (postedCategory.langId == Parameters.DefaultLang)
+                                obj = categoryLogic.Delete(Mapper.Map<SystemParameters_Category>(postedCategory));
+                            else
+                                objByLang = categoryLogicTranslate.Delete(Mapper.Map<SystemParameters_Category_Translate>(postedCategory));
                         }
                         else
                         {
-                            language = CategoryLogic.Edit(Mapper.Map<SystemParameters_Category>(postedCategory));
+                            if (postedCategory.langId == Parameters.DefaultLang)
+                                obj = categoryLogic.Edit(Mapper.Map<SystemParameters_Category>(postedCategory));
+                            else
+                                objByLang = categoryLogicTranslate.Edit(Mapper.Map<SystemParameters_Category_Translate>(postedCategory));
                         }
                     }
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Category>(language));
+                    if (postedCategory.langId == Parameters.DefaultLang)
+                        return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Category>(obj));
+                    else
+                        return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Category>(objByLang));
+
                 }
                 goto ThrowBadRequest;
             }

@@ -9,7 +9,11 @@ namespace GMG_Portal.Data
 {
     public partial class SystemParameters_About
     {
+      
+
         [NotMapped]
         public string OperationStatus { get; set; }
+
+       
     }
 }

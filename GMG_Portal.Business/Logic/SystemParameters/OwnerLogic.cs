@@ -47,13 +47,13 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         {
             return _db.SystemParameters_Owners.Find(id);
         }
-        private SystemParameters_Owners Save(SystemParameters_Owners owner)
+        private SystemParameters_Owners Save(SystemParameters_Owners obj)
         {
             try
             {
                 _db.SaveChanges();
-                owner.OperationStatus = "Succeded";
-                return owner;
+                obj.OperationStatus = "Succeded";
+                return obj;
             }
             catch (Exception e)
             {
@@ -61,13 +61,13 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 {
                     if (e.InnerException.ToString().Contains("IX_Countries_Ar"))
                     {
-                        owner.OperationStatus = "NameArMustBeUnique";
-                        return owner;
+                        obj.OperationStatus = "NameArMustBeUnique";
+                        return obj;
                     }
                     else if (e.InnerException.ToString().Contains("IX_Countries_En"))
                     {
-                        owner.OperationStatus = "NameEnMustBeUnique";
-                        return owner;
+                        obj.OperationStatus = "NameEnMustBeUnique";
+                        return obj;
                     }
                 }
                 throw;
@@ -76,7 +76,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         public SystemParameters_Owners Insert(SystemParameters_Owners postedOwner)
         {
 
-            var owner = new SystemParameters_Owners()
+            var obj = new SystemParameters_Owners()
             {
                 DisplayValueName = postedOwner.DisplayValueName,
                 DisplayValuePosition = postedOwner.DisplayValuePosition,
@@ -89,8 +89,8 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 CreationTime = Parameters.CurrentDateTime,
                 CreatorUserId = Parameters.UserId, 
             };
-            _db.SystemParameters_Owners.Add(owner);
-            return Save(owner);
+            _db.SystemParameters_Owners.Add(obj);
+            return Save(obj);
         }
         public SystemParameters_Owners Edit(SystemParameters_Owners postedOwner)
         {
@@ -110,17 +110,17 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         }
         public SystemParameters_Owners Delete(SystemParameters_Owners postedOwner)
         {
-            SystemParameters_Owners owner = Get(postedOwner.Id);
+            SystemParameters_Owners obj = Get(postedOwner.Id);
             //if (_db.SystemParameters_Owners.Any(p => p.Id == postedOwner.Id && p.IsDeleted != true))
             //{
             //      //  Owner.OperationStatus = "HasRelationship";
-            //    return owner;
+            //    return obj;
             //}
 
-            owner.IsDeleted = true;
-            owner.CreationTime = Parameters.CurrentDateTime;
-            owner.CreatorUserId = Parameters.UserId;
-            return Save(owner);
+            obj.IsDeleted = true;
+            obj.CreationTime = Parameters.CurrentDateTime;
+            obj.CreatorUserId = Parameters.UserId;
+            return Save(obj);
         }
 
     }
