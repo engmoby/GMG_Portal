@@ -63,11 +63,11 @@ function FeaturesController($scope, FeaturesApi, uploadService, $rootScope, $tim
 
     $scope.save = function () {
         $rootScope.ViewLoading = true;
+        $scope.back();
         if ($scope.Image) {
             $scope.Feature.Image = $scope.Image;
             $scope.Image = "";
-        }
-        //  uploadService.uploadFiles();
+        } 
         $scope.Feature.LangId = CurrentLanguage;
 
         FeaturesApi.Save($scope.Feature).then(function (response) {
@@ -77,26 +77,17 @@ function FeaturesController($scope, FeaturesApi, uploadService, $rootScope, $tim
                     var index;
                     switch ($scope.action) {
                         case 'edit':
-                            index = $scope.Features.indexOf($filter('filter')($scope.Features, { 'ID': $scope.Feature.ID }, true)[0]);
-                           // $scope.Features[index] = angular.copy(response.data);
-                            FeaturesApi.GetAll().then(function (response) {
-                                $scope.Features = response.data; 
-                            }); 
-                            toastr.success($('#HUpdateSuccessMessage').val(), 'Success');
+                            index = $scope.Features.indexOf($filter('filter')($scope.Features, { 'Id': $scope.Feature.Id }, true)[0]);
+                           $scope.Features[index] = angular.copy(response.data);
+                             toastr.success($('#HUpdateSuccessMessage').val(), 'Success');
                             break;
                         case 'delete':
-                            index = $scope.Features.indexOf($filter('filter')($scope.Features, { 'ID': $scope.Feature.ID }, true)[0]);
-                           // $scope.Features[index] = angular.copy(response.data);
-                            FeaturesApi.GetAll().then(function (response) {
-                                $scope.Features = response.data;
-                            });
+                            index = $scope.Features.indexOf($filter('filter')($scope.Features, { 'Id': $scope.Feature.Id }, true)[0]);
+                         $scope.Features[index] = angular.copy(response.data);
                             toastr.success($('#HDeleteSuccessMessage').val(), 'Success');
                             break;
                         case 'add':
-                            FeaturesApi.GetAll().then(function (response) {
-                                $scope.Features = response.data;
-                            });
-                            // $scope.Features.push(angular.copy(response.data));
+                            $scope.Features.push(angular.copy(response.data));
                             toastr.success($('#HSaveSuccessMessage').val(), 'Success');
                             break;
                     }

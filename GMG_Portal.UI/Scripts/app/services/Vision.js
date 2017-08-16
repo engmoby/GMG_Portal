@@ -1,7 +1,6 @@
 ﻿provide.service('VisionsApi', function ($http) {
-    var apiUrl = document.querySelector('#HServicesURL').value;
-    var langId = document.querySelector('#HCurrentLang').value;
-    this.GetAll = function () {
+    var apiUrl = document.querySelector('#HServicesURL').value; 
+    this.GetAll = function (lang) {
         return $http.get(apiUrl + '/SystemParameters/Visions/GetAllWithDeleted?LangId=' + lang);
     }
 

@@ -216,4 +216,7 @@
   <data name="Home_SearchRoomsTitle" xml:space="preserve">
     <value>ابحث عن اقامتك</value>
   </data>
+  <data name="SeeMore" xml:space="preserve">
+    <value>شاهد المزيد</value>
+  </data>
 </root>

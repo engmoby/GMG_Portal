@@ -401,5 +401,14 @@ namespace Front.Resources {
                 return ResourceManager.GetString("PhoneNo_Required", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to See More.
+        /// </summary>
+        public static string SeeMore {
+            get {
+                return ResourceManager.GetString("SeeMore", resourceCulture);
+            }
+        }
     }
 }

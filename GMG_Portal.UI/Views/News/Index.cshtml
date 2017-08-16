@@ -103,7 +103,7 @@
     <div class="modal fade" id="ModelImage" role="dialog">
         <div class="modal-dialog">
             <img style="width: 100%;
-                                       height: 65%;" src="http://gmgbackend.azurewebsites.net/Uploads/News/{{New.Image}}" />
+                                       height: 65%;" src="@System.Configuration.ConfigurationManager.AppSettings["ImageUrl"]/Uploads/News/{{New.Image}}" />
         </div>
     </div>
 
@@ -175,7 +175,7 @@
                                     </div>
                                     @*<input type="button" class="btn btn-default  btn-primary" ng-click="uploadFiles()" value="Upload" ng-disabled="uploading || countFiles===''" />*@
 
-                                    <img style="width: 100px; height: 100px" src="http://gmgbackend.azurewebsites.net/Uploads/{{New.Image}}" ng-show="New.Image" />
+                                    <img style="width: 100px; height: 100px" src="@System.Configuration.ConfigurationManager.AppSettings["ImageUrl"]/Uploads/{{New.Image}}" ng-show="New.Image" />
 
                                 </div>
                             </div>

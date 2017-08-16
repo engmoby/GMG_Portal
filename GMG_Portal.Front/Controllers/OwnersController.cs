@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Front.Helpers;
 using Newtonsoft.Json;
 using GMG_Portal.API.Models.SystemParameters;
 namespace Front.Controllers
@@ -25,7 +26,7 @@ namespace Front.Controllers
         // GET: owner
         public async Task<ActionResult> Index()
         {
-            string owners = url + "Owners/GetAll";
+            string owners = url + "Owners/GetAll?langId=" + Common.CurrentLang;
             var ownerModels = new List<Owners>();
 
             if (owners == null) throw new ArgumentNullException(nameof(owners));

@@ -79,7 +79,7 @@
     <div class="modal fade" id="ModelImage" role="dialog">
         <div class="modal-dialog">
             <img style="width: 100%;
-                                       height: 65%;" src="http://gmgbackend.azurewebsites.net/Uploads/{{NewsCategory.Image}}" />
+                                       height: 65%;" src="@System.Configuration.ConfigurationManager.AppSettings["ImageUrl"]/Uploads/{{NewsCategory.Image}}" />
         </div>
     </div>
 

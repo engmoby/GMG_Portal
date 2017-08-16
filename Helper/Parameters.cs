@@ -12,6 +12,6 @@ namespace Heloper
         public static int UserId = 1;
         public static DateTime CurrentDateTime = DateTime.Now;
         public static bool Show = true; 
-        public static string DefaultLang = "En";
+        public static string DefaultLang = "en";
     }
 }
