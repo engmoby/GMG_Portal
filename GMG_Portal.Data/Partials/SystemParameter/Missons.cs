@@ -9,8 +9,7 @@ namespace GMG_Portal.Data
 {
     public partial class Front_Mission
     {
-      //  [NotMapped]
-        public string Lang_Id { get; set; }
+      //  [NotMapped] 
         public string OperationStatus { get; set; }
     }
 }
