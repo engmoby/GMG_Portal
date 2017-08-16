@@ -53,7 +53,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 {
                     var obj = ownersLogic.GetAllWithDeleted();
 
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<CoreValues>>(obj));
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Owners>>(obj));
 
                 }
                 else
@@ -61,7 +61,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 {
                     var objByLang = ownersLogicTranslate.GetAllWithDeleted(langId);
 
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<CoreValues>>(objByLang));
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Owners>>(objByLang));
 
                 }
 

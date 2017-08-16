@@ -92,12 +92,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         public SystemParameters_Owners_Translate Delete(SystemParameters_Owners_Translate postedOwner)
         {
             SystemParameters_Owners_Translate obj = Get(postedOwner.Id,postedOwner.langId);
-            //if (_db.SystemParameters_Owners_Translate.Any(p => p.Id == postedOwner.Id && p.IsDeleted != true))
-            //{
-            //      //  Owner.OperationStatus = "HasRelationship";
-            //    return obj;
-            //}
-
+         
             obj.IsDeleted = true;
             obj.CreationTime = Parameters.CurrentDateTime;
             obj.CreatorUserId = Parameters.UserId;

@@ -38,7 +38,8 @@ function MissionsController($scope, MissionsApi, $rootScope, $timeout, $filter, 
     }
  
     $scope.save = function () {
-        debugger;
+        $scope.back();
+
         $rootScope.ViewLoading = true;
         $scope.Mission.LangId = CurrentLanguage;
 

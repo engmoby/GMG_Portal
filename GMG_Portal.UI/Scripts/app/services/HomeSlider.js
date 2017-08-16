@@ -1,7 +1,7 @@
 ﻿provide.service('HomeSlidersApi', function ($http) {
-    var apiUrl = document.querySelector('#HServicesURL').value;
-    var langId = document.querySelector('#HCurrentLang').value;
-    this.GetAll = function () {
+    var apiUrl = document.querySelector('#HServicesURL').value; 
+    this.GetAll = function (lang) {
+        debugger;
         return $http.get(apiUrl + '/SystemParameters/HomeSliders/GetAllWithDeleted?LangId=' + lang);
     }
 

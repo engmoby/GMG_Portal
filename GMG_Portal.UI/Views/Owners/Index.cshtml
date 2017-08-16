@@ -72,7 +72,7 @@
             <tbody>
                 <tr ng-repeat="Owner in TableData">
                     <td ng-class="{'red-text': Owner.IsDeleted == true}">{{$index+1}}</td>
-                    <td style="width: 50px;" ng-class="{'red-text': Owner.IsDeleted == true}"><img ng-click="openImage(Owner)" width="70px" height="70px" src="http://gmgbackend.azurewebsites.net/Uploads/Owners/{{Owner.Image}}" /></td>
+                    <td style="width: 50px;" ng-class="{'red-text': Owner.IsDeleted == true}"><img ng-click="openImage(Owner)" width="70px" height="70px" src="@System.Configuration.ConfigurationManager.AppSettings["ImageUrl"]/Uploads/Owners/{{Owner.Image}}" /></td>
                     <td ng-class="{'red-text': Owner.IsDeleted == true}">{{Owner.DisplayValueName}}</td>
                     <td ng-class="{'red-text': Owner.IsDeleted == true}">{{Owner.DisplayValuePosition}}</td>
                     <td ng-class="{'red-text': Owner.IsDeleted == true}">{{Owner.DisplayValueDesc | limitTo:letterLimit}} </td>
@@ -104,7 +104,7 @@
 
     <div class="modal fade" id="ModelImage" role="dialog">
         <div class="modal-dialog">
-            <img src="http://gmgbackend.azurewebsites.net/Uploads/Owners/{{Owner.Image}}" />
+            <img src="@System.Configuration.ConfigurationManager.AppSettings["ImageUrl"]/Uploads/Owners/{{Owner.Image}}" />
         </div>
     </div>
 
@@ -213,7 +213,7 @@
                                     </div>
                                     @*<input type="button" class="btn btn-default  btn-primary" ng-click="uploadFiles()" value="Upload" ng-disabled="uploading || countFiles===''" />*@
 
-                                    <img style="width: 100px; height: 100px" src="http://gmgbackend.azurewebsites.net/Uploads/Owners/{{Owner.Image}}" ng-show="Owner.Image" />
+                                    <img style="width: 100px; height: 100px" src="@System.Configuration.ConfigurationManager.AppSettings["ImageUrl"]/Uploads/Owners/{{Owner.Image}}" ng-show="Owner.Image" />
 
                                 </div>
                             </div>

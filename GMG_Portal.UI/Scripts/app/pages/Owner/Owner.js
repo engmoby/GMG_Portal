@@ -59,41 +59,31 @@ function OwnersController($scope, OwnersApi, uploadOwnersService, $rootScope, $t
     }
 
     $scope.save = function () {
+        $scope.back();
         $rootScope.ViewLoading = true;
         if ($scope.Image) {
             $scope.Owner.Image = $scope.Image;
             $scope.Image = "";
-        }
-        //  uploadOwnersService.uploadFiles();
+        } 
         debugger;
         $scope.Owner.LangId = CurrentLanguage;
-        OwnersApi.Save($scope.Owner).then(function (response) {
-
+        OwnersApi.Save($scope.Owner).then(function (response) { 
             switch (response.data.OperationStatus) {
                 case "Succeded":
                     var index;
                     switch ($scope.action) {
                         case 'edit':
-                            index = $scope.Owners.indexOf($filter('filter')($scope.Owners, { 'ID': $scope.Owner.ID }, true)[0]);
-                            // $scope.Owners[index] = angular.copy(response.data);
-                            OwnersApi.GetAll().then(function (response) {
-                                $scope.Owners = response.data;
-                            });
+                            index = $scope.Owners.indexOf($filter('filter')($scope.Owners, { 'Id': $scope.Owner.Id }, true)[0]);
+                            $scope.Owners[index] = angular.copy(response.data); 
                             toastr.success($('#HUpdateSuccessMessage').val(), 'Success');
                             break;
                         case 'delete':
-                            index = $scope.Owners.indexOf($filter('filter')($scope.Owners, { 'ID': $scope.Owner.ID }, true)[0]);
-                            // $scope.Owners[index] = angular.copy(response.data);
-                            OwnersApi.GetAll().then(function (response) {
-                                $scope.Owners = response.data;
-                            });
-                            toastr.success($('#HDeleteSuccessMessage').val(), 'Success');
+                            index = $scope.Owners.indexOf($filter('filter')($scope.Owners, { 'Id': $scope.Owner.Id }, true)[0]);
+                            $scope.Owners[index] = angular.copy(response.data);
+                             toastr.success($('#HDeleteSuccessMessage').val(), 'Success');
                             break;
                         case 'add':
-                            OwnersApi.GetAll().then(function (response) {
-                                $scope.Owners = response.data;
-                            });
-                            // $scope.Owners.push(angular.copy(response.data));
+                             $scope.Owners.push(angular.copy(response.data));
                             toastr.success($('#HSaveSuccessMessage').val(), 'Success');
                             break;
                     }

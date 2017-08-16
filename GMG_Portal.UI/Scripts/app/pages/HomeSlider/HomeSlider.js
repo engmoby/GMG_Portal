@@ -1,6 +1,7 @@
 ﻿controllerProvider.register('HomeSlidersController', ['$scope', 'HomeSlidersApi', 'uploadService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', HomeSlidersController]);
 function HomeSlidersController($scope, HomeSlidersApi, uploadService, $rootScope, $timeout, $filter, $uibModal, toastr) {
     var langId = document.querySelector('#HCurrentLang').value;
+    debugger;
     var CurrentLanguage = langId;
     $("#DropdwonLang").change(function () {
         var selectedText = $(this).find("option:selected").text();
@@ -17,7 +18,7 @@ function HomeSlidersController($scope, HomeSlidersApi, uploadService, $rootScope
     });
 
     $scope.Image = "";
-    $scope.ImageFormatValidaiton = "Please upload Images "; 
+    $scope.ImageFormatValidaiton = "Please upload Images ";
     $scope.ImageSizeValidaiton = "Can't upload image more than 2MB";
     var maxFileSize = 2048000; // 1MB -> 1000 * 1024
     $scope.letterLimit = 20;
@@ -66,13 +67,12 @@ function HomeSlidersController($scope, HomeSlidersApi, uploadService, $rootScope
     }
 
     $scope.save = function () {
+        $scope.back();
         $rootScope.ViewLoading = true;
         if ($scope.Image) {
             $scope.HomeSlider.Image = $scope.Image;
             $scope.Image = "";
         }
-        //  uploadService.uploadFiles();
-        debugger;
         $scope.HomeSlider.LangId = CurrentLanguage;
 
         HomeSlidersApi.Save($scope.HomeSlider).then(function (response) {
@@ -82,26 +82,17 @@ function HomeSlidersController($scope, HomeSlidersApi, uploadService, $rootScope
                     var index;
                     switch ($scope.action) {
                         case 'edit':
-                            index = $scope.HomeSliders.indexOf($filter('filter')($scope.HomeSliders, { 'ID': $scope.HomeSlider.ID }, true)[0]);
-                            // $scope.HomeSliders[index] = angular.copy(response.data);
-                            HomeSlidersApi.GetAll().then(function (response) {
-                                $scope.HomeSliders = response.data;
-                            });
+                            index = $scope.HomeSliders.indexOf($filter('filter')($scope.HomeSliders, { 'Id': $scope.HomeSlider.Id }, true)[0]);
+                            $scope.HomeSliders[index] = angular.copy(response.data);
                             toastr.success($('#HUpdateSuccessMessage').val(), 'Success');
                             break;
                         case 'delete':
-                            index = $scope.HomeSliders.indexOf($filter('filter')($scope.HomeSliders, { 'ID': $scope.HomeSlider.ID }, true)[0]);
-                            // $scope.HomeSliders[index] = angular.copy(response.data);
-                            HomeSlidersApi.GetAll().then(function (response) {
-                                $scope.HomeSliders = response.data;
-                            });
+                            index = $scope.HomeSliders.indexOf($filter('filter')($scope.HomeSliders, { 'Id': $scope.HomeSlider.Id }, true)[0]);
+                            $scope.HomeSliders[index] = angular.copy(response.data);
                             toastr.success($('#HDeleteSuccessMessage').val(), 'Success');
                             break;
                         case 'add':
-                            HomeSlidersApi.GetAll().then(function (response) {
-                                $scope.HomeSliders = response.data;
-                            });
-                            // $scope.HomeSliders.push(angular.copy(response.data));
+                            $scope.HomeSliders.push(angular.copy(response.data));
                             toastr.success($('#HSaveSuccessMessage').val(), 'Success');
                             break;
                     }

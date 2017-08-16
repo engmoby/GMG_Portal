@@ -231,4 +231,7 @@
   <data name="Attach_file_Required" xml:space="preserve">
     <value>Attach file Required</value>
   </data>
+  <data name="SeeMore" xml:space="preserve">
+    <value>See More</value>
+  </data>
 </root>

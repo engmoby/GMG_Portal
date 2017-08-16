@@ -1,16 +1,15 @@
 ﻿provide.service('OwnersApi', function ($http) {
-    var apiUrl = document.querySelector('#HServicesURL').value;
-    var langId = document.querySelector('#HCurrentLang').value;
-    this.GetAll = function () {
+    var apiUrl = document.querySelector('#HServicesURL').value; 
+    this.GetAll = function (lang) {
         return $http.get(apiUrl + '/SystemParameters/Owners/GetAllWithDeleted?LangId=' + lang);
     }
 
-    this.Save = function (Owner) {
+    this.Save = function (owner) {
         return $http({
             url: apiUrl + '/SystemParameters/Owners/Save',
             method: 'POST',
             contentType: "application/json; charset=utf-8",
-            data: JSON.stringify(Owner)
+            data: JSON.stringify(owner)
         });
     }
 });

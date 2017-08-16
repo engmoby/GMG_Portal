@@ -38,21 +38,20 @@
     <link rel="stylesheet" href="~/Content/css/select.css">
 
     <link rel="stylesheet" href="~/Content/css/main.css">
-    
+
     <link href="~/Content/css/adapt-strap.css" rel="stylesheet" />
 </head>
 <body>
     @{var listItems = new List<ListItem>
   {
 
-      new ListItem {Text = "En", Value = "En"},
-          new ListItem {Text = "Ar", Value = "Ar"},
+      new ListItem {Text = "En", Value = "en"},
+          new ListItem {Text = "Ar", Value = "ar"},
       new ListItem {Text = "Fr", Value = "Fr"}
   }; }
     @Html.DropDownList("DropdwonLang", new SelectList(listItems, "Value", "Text"))
     <input type="hidden" id="HServicesURL" value="@System.Configuration.ConfigurationManager.AppSettings["ServicesURL"]" />
-    @*<input type="hidden" id="HCurrentLang" value="En" />*@
-    <input type="hidden" name="HCurrentLang" id="HCurrentLang" value="En">
+    <input type="hidden" name="HCurrentLang" id="HCurrentLang" value="en">
 
 
 
@@ -208,12 +207,12 @@
 
     <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.7.1/loading-bar.min.css' type='text/css' media='all' />
     <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.7.1/loading-bar.min.js'></script>
-<script src="~/Scripts/app/theme/checklist-model.js"></script>
-    
+    <script src="~/Scripts/app/theme/checklist-model.js"></script>
+
     <script src="~/Scripts/app/theme/adapt-strap.js"></script>
     <script src="~/Scripts/app/theme/adapt-strap.tpl.js"></script>
     @*<script src="~/Scripts/app/theme/angular-sanitize.js"></script>*@
-<script>
+    <script>
 
 
         $(document).ready(function () {

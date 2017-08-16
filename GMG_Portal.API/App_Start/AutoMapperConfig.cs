@@ -37,12 +37,11 @@ namespace GMG_Portal.API
 
                 cfg.CreateMap<SystemParameters_About_Translate, About>();
                 cfg.CreateMap<About, SystemParameters_About_Translate>();
-
-
-
-
+                 
                 cfg.CreateMap<SystemParameters_HomeSlider, HomeSlider>();
-                cfg.CreateMap<HomeSlider, SystemParameters_HomeSlider>();
+                cfg.CreateMap<HomeSlider, SystemParameters_HomeSlider>(); 
+                cfg.CreateMap<SystemParameters_HomeSlider_Translate, HomeSlider>();
+                cfg.CreateMap<HomeSlider, SystemParameters_HomeSlider_Translate>();
 
                 cfg.CreateMap<SystemParameters_News, News>();
                 cfg.CreateMap<News, SystemParameters_News>();
@@ -56,18 +55,23 @@ namespace GMG_Portal.API
 
                 cfg.CreateMap<Front_Vision, Vision>();
                 cfg.CreateMap<Vision, Front_Vision>();
+                cfg.CreateMap<Front_Vision_Translate, Vision>();
+                cfg.CreateMap<Vision, Front_Vision_Translate>();
 
-                cfg.CreateMap<Front_Mission, Models.SystemParameters.Mission>();
-                cfg.CreateMap<Models.SystemParameters.Mission, Front_Mission>();
+                cfg.CreateMap<Front_Mission_Translate,  Mission>();
+                cfg.CreateMap<Mission, Front_Mission_Translate>();
+                cfg.CreateMap<Front_Mission_Translate, Mission>();
+                cfg.CreateMap<Mission, Front_Mission_Translate>();
 
 
                 cfg.CreateMap<SystemParameters_Features, Features>();
                 cfg.CreateMap<Features, SystemParameters_Features>();
+                cfg.CreateMap<SystemParameters_Features_Translate, Features>();
+                cfg.CreateMap<Features, SystemParameters_Features_Translate>();
 
 
                 cfg.CreateMap<Data.Hotel, Hotels>();
-                cfg.CreateMap<Hotels, Data.Hotel>();
-
+                cfg.CreateMap<Hotels, Data.Hotel>(); 
                 cfg.CreateMap<Data.Hotels_Translate, Hotels>();
                 cfg.CreateMap<Hotels, Data.Hotels_Translate>();
 
@@ -82,6 +86,8 @@ namespace GMG_Portal.API
 
                 cfg.CreateMap<SystemParameters_Owners, Owners>();
                 cfg.CreateMap<Owners, SystemParameters_Owners>();
+                cfg.CreateMap<SystemParameters_Owners_Translate, Owners>();
+                cfg.CreateMap<Owners, SystemParameters_Owners_Translate>();
 
                 cfg.CreateMap<SystemParameters_CoreValues, CoreValues>();
                 cfg.CreateMap<CoreValues, SystemParameters_CoreValues>();

@@ -15,7 +15,7 @@ function VisionsController($scope, VisionsApi, $rootScope, $timeout, $filter, $u
 
     $scope.letterLimit = 20;
 
-    VisionsApi.GetAll().then(function (response) {
+    VisionsApi.GetAll(CurrentLanguage).then(function (response) {
         $scope.Visions = response.data;
         $rootScope.ViewLoading = false;
     });
@@ -35,7 +35,8 @@ function VisionsController($scope, VisionsApi, $rootScope, $timeout, $filter, $u
     }
      
     $scope.save = function () {
-        debugger;
+        $scope.back();
+
         $rootScope.ViewLoading = true;
         $scope.Vision.LangId = CurrentLanguage;
 
