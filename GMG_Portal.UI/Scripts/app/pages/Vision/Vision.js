@@ -41,14 +41,18 @@ function VisionsController($scope, VisionsApi, $rootScope, $timeout, $filter, $u
         $scope.Vision.LangId = CurrentLanguage;
 
         VisionsApi.Save($scope.Vision).then(function (response) {
-
+                debugger;
             switch (response.data.OperationStatus) {
                 case "Succeded":
                     var index;
                     switch ($scope.action) {
                         case 'edit':
-                            index = $scope.Visions.indexOf($filter('filter')($scope.Visions, { 'Id': $scope.Vision.Id }, true)[0]);
-                            $scope.Visions[index] = angular.copy(response.data);
+                            //index = $scope.Visions.indexOf($filter('filter')($scope.Visions, { 'Id': $scope.Vision.Id }, true));
+                            //$scope.Visions[index] = angular.copy(response.data);
+                            VisionsApi.GetAll(CurrentLanguage).then(function (response) {
+                                $scope.Visions = response.data;
+                                $rootScope.ViewLoading = false;
+                            });
                             toastr.success($('#HUpdateSuccessMessage').val(), 'Success');
                             break;
                         case 'delete':

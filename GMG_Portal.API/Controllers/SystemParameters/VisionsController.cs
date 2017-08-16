@@ -26,13 +26,13 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 if (langId == Parameters.DefaultLang)
                 {
                     var obj = visionLogic.GetAll();
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Vision>>(obj));
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Vision>(obj));
                 }
                 else
 
                 {
                     var objByLang = visionLogicTranslate.GetAll(langId);
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Vision>>(objByLang));
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Vision>(objByLang));
                 }
             }
             catch (Exception ex)
@@ -45,14 +45,14 @@ namespace GMG_Portal.API.Controllers.SystemParameters
         {
             try
             {
-                var visionLogic = new MissionsLogic();
-                var visionLogicTranslate = new MissionLogicTranslate();
+                var visionLogic = new VisionsLogic();
+                var visionLogicTranslate = new VisionLogicTranslate();
 
                 if (langId == Parameters.DefaultLang)
                 {
                     var obj = visionLogic.GetAllWithDeleted();
 
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Vision>>(obj));
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Vision>(obj));
 
                 }
                 else
@@ -60,7 +60,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 {
                     var objByLang = visionLogicTranslate.GetAllWithDeleted(langId);
 
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Vision>>(objByLang));
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Vision>(objByLang));
 
                 }
 

@@ -1,6 +1,6 @@
 ﻿@*@model  Front.Models.HomeModels*@
 @model GMG_Portal.API.Models.General.HomeModels
-@if (Model.HomeSliders.Count != 0)
+@if (Model.HomeSliders.Count != 0 && Model.HomeSliders != null)
 {
     <div id="mega-slider" class="carousel slide " data-ride="carousel">
         <ol class="carousel-indicators">

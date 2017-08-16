@@ -58,8 +58,8 @@ namespace GMG_Portal.API
                 cfg.CreateMap<Front_Vision_Translate, Vision>();
                 cfg.CreateMap<Vision, Front_Vision_Translate>();
 
-                cfg.CreateMap<Front_Mission_Translate,  Mission>();
-                cfg.CreateMap<Mission, Front_Mission_Translate>();
+                cfg.CreateMap<Front_Mission,  Mission>();
+                cfg.CreateMap<Mission, Front_Mission>();
                 cfg.CreateMap<Front_Mission_Translate, Mission>();
                 cfg.CreateMap<Mission, Front_Mission_Translate>();
 

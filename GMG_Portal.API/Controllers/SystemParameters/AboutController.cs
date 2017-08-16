@@ -143,8 +143,8 @@ namespace GMG_Portal.API.Controllers.SystemParameters
 
                 var visionLogic = new VisionsLogic();
                 var vision = visionLogic.GetAll();
-                retunAboutAll.VisionTitle = vision[0].DisplayValue;
-                retunAboutAll.VisionDesc = vision[0].DisplayValueDesc;
+                retunAboutAll.VisionTitle = vision.DisplayValue;
+                retunAboutAll.VisionDesc = vision.DisplayValueDesc;
 
 
                 //var missionLogic = new MissionsLogic();

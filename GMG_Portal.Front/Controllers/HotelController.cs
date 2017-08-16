@@ -5,7 +5,8 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web;
-using System.Web.Mvc; 
+using System.Web.Mvc;
+using Front.Helpers;
 using GMG_Portal.API.Models.Hotels.Hotel;
 using Newtonsoft.Json;
 
@@ -27,7 +28,7 @@ namespace Front.Controllers
         // GET: Hotel
         public async Task<ActionResult> Index()
         {
-            string hotels = url + "Hotels/GetAll";
+            string hotels = url + "Hotels/GetAll?langId=" + Common.CurrentLang;
             var hotelModels = new List<Hotels>();
 
             if (hotels == null) throw new ArgumentNullException(nameof(hotels));
@@ -47,7 +48,8 @@ namespace Front.Controllers
         // GET: Hotel/Details/5
         public async Task<ActionResult> Details(int id)
         {
-            string hotelDetails = url + "Hotels/GetHotelDetails/"+ id;
+           // string hotelDetails = url + "Hotels/GetHotelDetails/"+ id+ "?langId=\" + Common.CurrentLang";
+            string hotelDetails = url + "Hotels/GetHotelDetails/"+ id+ "?langId=" + Helpers.Common.CurrentLang;
             var hotelModels = new Hotels();
 
             if (hotelDetails == null) throw new ArgumentNullException(nameof(hotelDetails));
@@ -61,71 +63,7 @@ namespace Front.Controllers
 
             return View(hotelModels);
         }
-
-        // GET: Hotel/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Hotel/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Hotel/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Hotel/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Hotel/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Hotel/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+   
+       
     }
 }

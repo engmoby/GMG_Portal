@@ -50,8 +50,10 @@ function MissionsController($scope, MissionsApi, $rootScope, $timeout, $filter, 
                     var index;
                     switch ($scope.action) {
                         case 'edit':
-                            index = $scope.Missions.indexOf($filter('filter')($scope.Missions, { 'Id': $scope.Mission.Id }, true)[0]);
-                            $scope.Missions[index] = angular.copy(response.data);
+                            MissionsApi.GetAll(CurrentLanguage).then(function (response) {
+                                $scope.Missions = response.data;
+                                $rootScope.ViewLoading = false;
+                            });
                             toastr.success($('#HUpdateSuccessMessage').val(), 'Success');
                             break;
                         case 'delete':
