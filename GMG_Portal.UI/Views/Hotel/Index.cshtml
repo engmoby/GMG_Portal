@@ -325,11 +325,11 @@
                                 </div>
                             </div>
 
-                            @*<div class="row">
+                            <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="TxtCheckin">@Hotel.Checkin</label><span class="red-text"> *</span>
-                                            <input type="text" ng-model="Hotel.CheckIn" class="form-control" name="TxtCheckin"
+                                            <input type="time" ng-model="Hotel.CheckIn" class="form-control" name="TxtCheckin"
                                                    placeholder="@Hotel.Checkin" required ng-pattern="/@Regex.NameAr/">
 
                                             <div class="red-text" ng-messages="FrmAddUpdateWizard.TxtCheckin.$error" ng-show="FrmAddUpdateWizard.TxtTitle.$touched">
@@ -341,7 +341,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="TxtCheckOut">@Hotel.CheckOut</label><span class="red-text"> *</span>
-                                            <input type="text" ng-model="Hotel.CheckOut" class="form-control" name="TxtCheckOut"
+                                            <input type="time" ng-model="Hotel.CheckOut" class="form-control" name="TxtCheckOut"
                                                    placeholder="@Hotel.CheckOut" required ng-pattern="/@Regex.NameAr/">
 
                                             <div class="red-text" ng-messages="FrmAddUpdateWizard.TxtCheckOut.$error" ng-show="FrmAddUpdateWizard.TxtTitle.$touched">
@@ -350,7 +350,7 @@
                                                 </div>
                                         </div>
                                     </div>
-                                </div>*@
+                                </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
