@@ -4,7 +4,7 @@
 
 
 
-    this.GetAll = function () {
+    this.GetAll = function (lang) {
         return $http.get(apiUrl + '/SystemParameters/ContactUs/GetAllWithDeleted?LangId=' + lang);
     }
 
