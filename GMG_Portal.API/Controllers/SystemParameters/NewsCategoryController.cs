@@ -120,7 +120,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                     if (postedCategory.langId == Parameters.DefaultLang)
                         return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Category>(obj));
                     else
-                        return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Category>(objByLang));
+                        return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<SystemParameters_Category_Translate>(objByLang));
 
                 }
                 goto ThrowBadRequest;

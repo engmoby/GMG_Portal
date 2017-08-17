@@ -73,7 +73,9 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             newsletter.Seen = postedNewsletter.Seen;
             return Save(newsletter);
         }
-       
+
+
+     
 
     }
 }

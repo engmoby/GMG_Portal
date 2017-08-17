@@ -33,7 +33,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
 
                 {
                     var objByLang = coreValuesLogicTranslate.GetAll(langId);
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<CoreValues>>(objByLang));
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<SystemParameters_CoreValues_Translate>>(objByLang));
                 }
             }
             catch (Exception ex)
@@ -61,7 +61,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 {
                     var objByLang = coreValuesLogicTranslate.GetAllWithDeleted(langId);
 
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<CoreValues>>(objByLang));
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<SystemParameters_CoreValues_Translate>>(objByLang));
 
                 }
 
@@ -111,7 +111,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                     if (posteCoreValues.langId == Parameters.DefaultLang)
                         return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<CoreValues>(obj));
                     else
-                        return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<CoreValues>(objByLang));
+                        return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<SystemParameters_CoreValues_Translate>(objByLang));
 
                 }
                 goto ThrowBadRequest;

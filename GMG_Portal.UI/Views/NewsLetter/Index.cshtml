@@ -11,6 +11,9 @@
 <input type="hidden" id="HUpdateSuccessMessage" value="@NewsLetters.UpdateSuccessMessage" /> 
 @*<input type="hidden" id="HArabicNameUnique" value="@NewsLetters.TxtTitleUniqueErrorMessage" />*@ 
 
+
+
+
 <div ng-controller="NewslettersController">
 
     <div ba-panel>
@@ -21,6 +24,7 @@
                         <div class="input-group">
                             <span class="input-group-addon addon-left"><i class="fa fa-search" aria-hidden="true"></i></span>
                             <input st-search="" class="form-control" placeholder="@NewsLetters.txtSearchLbl" type="text" />
+                            <a class="btn btn-primary" href="@System.Configuration.ConfigurationManager.AppSettings["ServicesURL"]/SystemParameters/Newsletter/Getcsv" target="_blank"><i class="fa fa-cloud-download" aria-hidden="true"></i> ExportCsv</a>
                         </div>
                     </th>
                     <th colspan="1"></th>

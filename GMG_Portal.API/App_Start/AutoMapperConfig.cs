@@ -32,44 +32,49 @@ namespace GMG_Portal.API
                 cfg.CreateMap<GMG_Portal.API.Models.SystemParameters.Languages, Systemparameters_Languages>();
 
 
+                //About 
                 cfg.CreateMap<SystemParameters_About, About>();
                 cfg.CreateMap<About, SystemParameters_About>();
-
                 cfg.CreateMap<SystemParameters_About_Translate, About>();
                 cfg.CreateMap<About, SystemParameters_About_Translate>();
                  
+                //HomeSlider
                 cfg.CreateMap<SystemParameters_HomeSlider, HomeSlider>();
                 cfg.CreateMap<HomeSlider, SystemParameters_HomeSlider>(); 
                 cfg.CreateMap<SystemParameters_HomeSlider_Translate, HomeSlider>();
                 cfg.CreateMap<HomeSlider, SystemParameters_HomeSlider_Translate>();
 
+                //News
                 cfg.CreateMap<SystemParameters_News, News>();
                 cfg.CreateMap<News, SystemParameters_News>();
-
                 cfg.CreateMap<SystemParameters_News_Translate, News>();
                 cfg.CreateMap<News, SystemParameters_News_Translate>();
 
+                //News Category
                 cfg.CreateMap<SystemParameters_Category, Category>();
                 cfg.CreateMap<Category, SystemParameters_Category>();
+                cfg.CreateMap<SystemParameters_Category_Translate, Category>();
+                cfg.CreateMap<Category, SystemParameters_Category_Translate>();
 
-
+                //Vision
                 cfg.CreateMap<Front_Vision, Vision>();
                 cfg.CreateMap<Vision, Front_Vision>();
                 cfg.CreateMap<Front_Vision_Translate, Vision>();
                 cfg.CreateMap<Vision, Front_Vision_Translate>();
 
+                //Mission
                 cfg.CreateMap<Front_Mission,  Mission>();
                 cfg.CreateMap<Mission, Front_Mission>();
                 cfg.CreateMap<Front_Mission_Translate, Mission>();
                 cfg.CreateMap<Mission, Front_Mission_Translate>();
 
-
+                // Features
                 cfg.CreateMap<SystemParameters_Features, Features>();
                 cfg.CreateMap<Features, SystemParameters_Features>();
                 cfg.CreateMap<SystemParameters_Features_Translate, Features>();
                 cfg.CreateMap<Features, SystemParameters_Features_Translate>();
 
-
+                //Hotels
                 cfg.CreateMap<Data.Hotel, Hotels>();
                 cfg.CreateMap<Hotels, Data.Hotel>(); 
                 cfg.CreateMap<Data.Hotels_Translate, Hotels>();
@@ -83,17 +88,35 @@ namespace GMG_Portal.API
                 cfg.CreateMap<HotelFeatures, Hotels_Features>();
                  
 
-
+                //Owners
                 cfg.CreateMap<SystemParameters_Owners, Owners>();
                 cfg.CreateMap<Owners, SystemParameters_Owners>();
                 cfg.CreateMap<SystemParameters_Owners_Translate, Owners>();
                 cfg.CreateMap<Owners, SystemParameters_Owners_Translate>();
 
+
+                //Core Values
                 cfg.CreateMap<SystemParameters_CoreValues, CoreValues>();
                 cfg.CreateMap<CoreValues, SystemParameters_CoreValues>();
+                cfg.CreateMap<SystemParameters_CoreValues_Translate, CoreValues>();
+                cfg.CreateMap<CoreValues, SystemParameters_CoreValues_Translate>();
 
+                //Contact Us
                 cfg.CreateMap<SystemParameters_ContactUs, ContactUs>();
                 cfg.CreateMap<ContactUs, SystemParameters_ContactUs>();
+                cfg.CreateMap<SystemParameters_ContactUs_Translate, ContactUs>();
+                cfg.CreateMap<ContactUs, SystemParameters_ContactUs_Translate>();
+
+
+                //Offers
+                cfg.CreateMap<Hotles_Offers, Offer>();
+                cfg.CreateMap<Offer, Hotles_Offers>();
+                cfg.CreateMap<Hotles_Offers_Translate, Offer>();
+                cfg.CreateMap<Offer, Hotles_Offers_Translate>();
+
+
+
+
 
                 cfg.CreateMap<SystemParameters_Newsletter, Newsletter>();
                 cfg.CreateMap<Newsletter, SystemParameters_Newsletter>();
@@ -108,8 +131,6 @@ namespace GMG_Portal.API
                 cfg.CreateMap<SystemParameters_CareerForm, CareerForm>();
                 cfg.CreateMap<CareerForm, SystemParameters_CareerForm>();
 
-                cfg.CreateMap<Hotles_Offers, Offer>();
-                cfg.CreateMap<Offer, Hotles_Offers>();
 
 
                 cfg.CreateMap<Hotels_Reservation, Reservation>();
