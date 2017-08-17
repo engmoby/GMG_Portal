@@ -248,7 +248,8 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             foreach (var availableHotel in availableHotels)
             {
                 var imageList = _db.Hotels_Images.Where(x => x.IsDeleted == false && x.Hotel_Id == availableHotel.Id).ToList();
-                foreach (var hotelsImagese in imageList)
+                var random = imageList.OrderBy(x => Guid.NewGuid()).Take(10);
+                foreach (var hotelsImagese in random)
                 {
                     returnList.Add(new Hotels_Images
                     {
@@ -368,20 +369,20 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         public List<Hotels_Features> InsertHotelFeatures(List<Hotels_Features> postedfeature)
         {
             var deleteList = DeleteHotelFeatures(postedfeature[0].Hotel_Id);
-            //if (deleteList.OperationStatus == "Succeded")
-            //{
-            foreach (var featureObj in postedfeature)
+            if (postedfeature.Any())
             {
-                var feature = new Hotels_Features()
+                foreach (var featureObj in postedfeature)
                 {
-                    IsDeleted = false,
-                    Hotel_Id = postedfeature[0].Hotel_Id,
-                    Feature_Id = featureObj.Feature_Id
-                };
-                _db.Hotels_Features.Add(feature);
-                _db.SaveChanges();
+                    var feature = new Hotels_Features()
+                    {
+                        IsDeleted = false,
+                        Hotel_Id = postedfeature[0].Hotel_Id,
+                        Feature_Id = featureObj.Feature_Id
+                    };
+                    _db.Hotels_Features.Add(feature);
+                    _db.SaveChanges();
+                }
             }
-            // }
             postedfeature[0].OperationStatus = "Succeded";
             return postedfeature;
         }

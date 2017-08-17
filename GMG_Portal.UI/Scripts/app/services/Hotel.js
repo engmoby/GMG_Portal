@@ -2,10 +2,10 @@
     var apiUrl = document.querySelector('#HServicesURL').value; 
 
     this.GetAll = function (lang) {
-        return $http.get(apiUrl + '/SystemParameters/Hotels/GetAllWithDeleted?LangId=' + lang);
+        return $http.get(apiUrl + '/SystemParameters/Hotels/GetAllWithDeleted?langId=' + lang);
     }
     this.GetHotelDetails = function (hotelId, langId) {
-        return $http.get(apiUrl + '/SystemParameters/Hotels/GetHotelDetailsWith?Id=' + hotelId + '&langId?=' + langId);
+        return $http.get(apiUrl + '/SystemParameters/Hotels/GetHotelDetailsWith?Id=' + hotelId + '&langId=' + langId);
     }
     this.Save = function (hotel) {
         return $http({
@@ -33,8 +33,8 @@
             data: JSON.stringify(hotelImage)
         });
     }
-    this.GetAllFeatures = function () {
-        return $http.get(apiUrl + '/SystemParameters/Features/GetAll');
+    this.GetAllFeatures = function (lang) {
+        return $http.get(apiUrl + '/SystemParameters/Features/GetAll?langId=' + lang);
     }
     this.SaveFeature = function (hotelFeatures) {
         return $http({

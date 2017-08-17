@@ -536,6 +536,8 @@
     <Content Include="Scripts\app\theme\adapt-strap.js" />
     <Content Include="Scripts\app\theme\adapt-strap.tpl.js" />
     <Content Include="Scripts\app\theme\angular-sanitize.js" />
+    <Content Include="Scripts\app\theme\angularjs-google-maps.js" />
+    <Content Include="Scripts\app\theme\autocomplete.js" />
     <Content Include="Scripts\app\theme\checklist-model.js" />
     <Content Include="Scripts\app\theme\components\backTop\backTop.directive.js" />
     <Content Include="Scripts\app\theme\components\backTop\backTop.html" />
@@ -863,6 +865,7 @@
     <Content Include="Scripts\app\theme\inputs\baSwitcher\baSwitcher.html" />
     <Content Include="Scripts\app\theme\inputs\baSwitcher\baSwitcher.js" />
     <Content Include="Scripts\app\theme\inputs\inputs.module.js" />
+    <Content Include="Scripts\app\theme\mapjs.js" />
     <Content Include="Scripts\app\theme\services\baProgressModal.js" />
     <Content Include="Scripts\app\theme\services\baUtil.js" />
     <Content Include="Scripts\app\theme\services\fileReader.js" />
@@ -1066,6 +1069,7 @@
     <Content Include="Views\Offers\Index.cshtml" />
     <Content Include="Views\ContactForm\Index.cshtml" />
     <Content Include="Views\CoreValues\Index.cshtml" />
+    <Content Include="Scripts\app\theme\angular.ui-sortable.js" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GMG_Portal.API\GMG_Portal.API.csproj">
