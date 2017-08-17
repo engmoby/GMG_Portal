@@ -1,14 +1,50 @@
-﻿controllerProvider.register('HotelsController', ['$scope', 'HotelsApi', 'uploadHotlesService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', HotelsController]);
-function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $timeout, $filter, $uibModal, toastr) {
+﻿controllerProvider.register('HotelsController', ['$scope', 'HotelsApi', 'uploadHotlesService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', 'Map', HotelsController]);
+function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $timeout, $filter, $uibModal, toastr, Map) {
     $rootScope.ViewLoading = true;
 
     var langId = document.querySelector('#HCurrentLang').value;
     var CurrentLanguage = langId;
+    $scope.features = "";
+    $scope.hotelFeatures = [];
+    $scope.hotelFeatures = makeList('b');
+    $scope.sortingLog = [];
+    $scope.sortingLogId = [];
+    $scope.showSaveFeatureBtn = false;
+     
+    $scope.sortingLog = [];
+ 
+
+    $scope.place = {};
+
+    $scope.search = function () {
+        $scope.apiError = false;
+        Map.search($scope.searchPlace)
+            .then(
+                function (res) { // success
+                    Map.addMarker(res);
+                    $scope.place.name = res.name;
+                    $scope.place.lat = res.geometry.location.lat();
+                    $scope.place.lng = res.geometry.location.lng();
+                    $scope.Hotel.Late = res.geometry.location.lat();
+                    $scope.Hotel.Long = res.geometry.location.lng();
+                },
+                function (status) { // error
+                    $scope.apiError = true;
+                    $scope.apiStatus = status;
+                }
+            );
+    }
+
+    Map.init();
+    $scope.openLocation = function () {
+        $('#ModelLocation').modal('show'); 
+
+    }
     $("#DropdwonLang").change(function () {
         var selectedText = $(this).find("option:selected").text();
         var selectedValue = $(this).val();
         document.getElementById("HCurrentLang").value = selectedValue;
-        CurrentLanguage = selectedValue; 
+        CurrentLanguage = selectedValue;
         HotelsApi.GetAll(CurrentLanguage).then(function (response) {
             $scope.Hotels = response.data;
             $rootScope.ViewLoading = false;
@@ -27,6 +63,7 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
     $scope.basicInfo = true;
     $scope.imagesList = false;
     $scope.featuresList = false;
+
     HotelsApi.GetAll(CurrentLanguage).then(function (response) {
         $scope.Hotels = response.data;
         $rootScope.ViewLoading = false;
@@ -64,7 +101,7 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
     $scope.back = function () {
         $rootScope.ViewLoading = true;
 
-        HotelsApi.GetAll().then(function (response) {
+        HotelsApi.GetAll(CurrentLanguage).then(function (response) {
             $scope.Hotels = response.data;
 
             $rootScope.ViewLoading = false;
@@ -151,7 +188,7 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
                                 $scope.HotelDetails = response.data;
                                 $scope.Hotel = response.data;
                             });
-                      
+
                             toastr.success($('#HUpdateSuccessMessage').val(), 'Success');
                             $scope.basicInfo = false;
                             $scope.imagesList = true;
@@ -194,7 +231,7 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
 
                     break;
                 default:
-                   
+
             }
 
             // $scope.HotelDetails = response.data;
@@ -275,13 +312,7 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
             ss = response;
         });
     }
-    $scope.openUploadImage = function (hotel) {
-        $('#ModelAddUpdateImage').modal('show');
-        $scope.action = 'add';
-        if (hotel == null) hotel = {};
-        $scope.Hotel = angular.copy(hotel);
-
-    }
+   
     $scope.DeleteImage = function (hotelImage) {
         debugger;
         $scope.action = 'delete';
@@ -367,7 +398,7 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
     $scope.showFeatures = function () {
         $rootScope.ViewLoading = true;
         $scope.features = [];
-        HotelsApi.GetAllFeatures().then(function (response) {
+        HotelsApi.GetAllFeatures(CurrentLanguage).then(function (response) {
             $scope.features = response.data;
         });
 
@@ -376,17 +407,21 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
         $scope.featuresList = true;
 
         $scope.selectedFeatures.features = [];
+        $scope.hotelFeatures = [];
+        var logEntry = "";
+        $scope.sortingLog = [];
         if ($scope.HotelDetails.FeaturesList != null) {
-            for (var i = 0; i < $scope.HotelDetails.FeaturesList.length; i++) {
-                $scope.selectedFeatures.features.push({
-                    DisplayValue: $scope.HotelDetails.FeaturesList[i].DisplayValue,
-                    Id: $scope.HotelDetails.FeaturesList[i].Id,
-                    Icon: $scope.HotelDetails.FeaturesList[i].Icon,
-                    selected: $scope.HotelDetails.FeaturesList[i].Selected = true
+            for (var j = 0; j < $scope.HotelDetails.FeaturesList.length; j++) {
+                logEntry = $scope.HotelDetails.FeaturesList[j].DisplayValue;
+                logEntry = (j + 1) + ': ' + logEntry;
+                $scope.sortingLog.push(logEntry);
+                $scope.hotelFeatures.push({
+                    DisplayValue: $scope.HotelDetails.FeaturesList[j].DisplayValue,
+                    Id: $scope.HotelDetails.FeaturesList[j].Id,
+                    Icon: $scope.HotelDetails.FeaturesList[j].Icon
                 });
-                // $scope.features[i].Selected = true;
-
             }
+
         }
         $rootScope.ViewLoading = false;
     }
@@ -410,7 +445,7 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
         //FILL FormData WITH FILE DETAILS.
         var data = new FormData();
         debugger;
-        for(var i in $scope.files) {
+        for (var i in $scope.files) {
 
             var extn = $scope.files[i].type;
             var fileLength = $scope.files[i].size;
@@ -518,11 +553,12 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
     };
     $scope.saveFeatures = function () {
         $rootScope.ViewLoading = true;
-        $scope.selectedFeatures.features.HotelId = $scope.Hotel.Id;
-        for (var i = 0; i < $scope.selectedFeatures.features.length; i++) {
+        debugger;
+        // $scope.selectedFeatures.features.HotelId = $scope.Hotel.Id;
+        for (var i = 0; i < $scope.sortingLogId.length; i++) {
             $scope.saveSelectedFeatures.push({
                 Hotel_Id: $scope.Hotel.Id,
-                Feature_Id: $scope.selectedFeatures.features[i].Id
+                Feature_Id: $scope.sortingLogId[i]
             });
         }
         HotelsApi.SaveFeature($scope.saveSelectedFeatures).then(function (response) {
@@ -531,7 +567,6 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
 
                 case "Succeded":
                     debugger;
-                    $scope.setToNull();
                     $scope.back();
                     break;
                 case "NameEnMustBeUnique":
@@ -552,11 +587,11 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
             }
 
             //  $scope.HotelDetails = response.data;
-            $scope.basicInfo = true;
-            $scope.imagesList = false;
-            $scope.featuresList = false;
-            $rootScope.ViewLoading = false;
-            $scope.backImage();
+            //$scope.basicInfo = true;
+            //$scope.imagesList = false;
+            //$scope.featuresList = false;
+            //$rootScope.ViewLoading = false;
+            //$scope.backImage();
         },
             function (response) {
                 debugger;
@@ -564,6 +599,120 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
             });
     }
 
+
+    function makeList(letter) {
+        var tmpList = [];
+
+        for (var i = 1; i <= letter.lenght; i++) {
+            tmpList.push({
+                DisplayValue: 'Item ' + i + letter,
+                value: i
+            });
+        }
+        return tmpList;
+    }
+
+    //$scope.sortableOptions = {
+    //    placeholder: "app",
+    //    connectWith: ".apps-container", scrollSensitivity: 10,
+    //    update: function (event, ui) {
+    //        // on cross list sortings recieved is not true
+    //        // during the first update
+    //        // which is fired on the source sortable
+    //        if (!ui.item.sortable.received && ui.item.sortable.droptargetModel.length >= 10) {
+    //            var originNgModel = ui.item.sortable.sourceModel;
+    //            var itemModel = originNgModel[ui.item.sortable.index];
+
+    //            // check that its an actual moving
+    //            // between the two lists
+    //            if (originNgModel == $scope.features && ui.item.sortable.droptargetModel == $scope.hotelFeatures) {
+    //                var exists = !!$scope.hotelFeatures.filter(function (x) { return x.DisplayValue === itemModel.DisplayValue }).length;
+    //                if (exists) {
+    //                    ui.item.sortable.cancel();
+    //                }
+    //            }
+    //        }
+
+
+    //        //if (// ensure we are in the first update() callback
+    //        //    !ui.item.sortable.received &&
+    //        //  // check that its an actual moving
+    //        //  // between the two lists
+    //        //    ui.item.sortable.source[0] !== ui.item.sortable.droptarget[0] &&
+    //        //  // check the size limitation
+    //        //    ui.item.sortable.droptargetModel.length >= 10) {
+    //        //  ui.item.sortable.cancel();
+    //        //}
+    //    }
+    //};
+
+
+    $scope.logModels = function () {
+        $scope.showSaveFeatureBtn = true;
+        $scope.sortingLogId = [];
+        $scope.sortingLog = [];
+        for (var i = 0; i < $scope.hotelFeatures.length; i++) {
+            var logEntry = "";
+            var logEntryId = "";
+            if ($scope.hotelFeatures[i].Id != null) {
+                logEntryId = $scope.hotelFeatures[i].Id;
+            } else {
+                logEntryId = $scope.hotelFeatures[i].Id;
+            }
+            $scope.sortingLogId.push(logEntryId);
+
+
+            logEntry = $scope.hotelFeatures[i].DisplayValue;
+            logEntry = (i + 1) + ': ' + logEntry;
+            $scope.sortingLog.push(logEntry);
+        }
+        //$scope.saveStaticTopTen();
+    };
+
+
+
+
+    $scope.sortableOptions = {
+        placeholder: "app",
+        connectWith: ".apps-container",
+        update: function (event, ui) {
+            debugger;
+            // on cross list sortings recieved is not true
+            // during the first update
+            // which is fired on the source sortable
+            if (!ui.item.sortable.received) {
+                var originNgModel = ui.item.sortable.sourceModel;
+                var itemModel = originNgModel[ui.item.sortable.index];
+
+                // check that its an actual moving
+                // between the two lists
+                if (originNgModel == $scope.features && ui.item.sortable.droptargetModel == $scope.hotelFeatures) {
+                    var exists = !!$scope.hotelFeatures.filter(function (x) { return x.DisplayValue === itemModel.DisplayValue }).length;
+                    if (exists) {
+                        ui.item.sortable.cancel();
+                    }
+
+                }
+                if (ui.item.sortable.droptargetModel == $scope.features) {
+                    var index;
+                    var exists2 = !!$scope.features.filter(function (x) { return x.DisplayValue === itemModel.DisplayValue }).length;
+                    if (exists2) {
+                        if ($scope.hotelFeatures.length === 1) {
+                            index = $scope.hotelFeatures.indexOf($filter('filter')($scope.hotelFeatures, { 'Id': itemModel.Id }, true)[0]);
+                          //  $scope.hotelFeatures.splice(index, 1);
+                            alert("hotel must have one feature at least");
+                        } else {
+                            index = $scope.hotelFeatures.indexOf($filter('filter')($scope.hotelFeatures, { 'Id': itemModel.Id }, true)[0]);
+                            // $scope.hotelFeatures[index] = angular.copy(response.data);
+                            $scope.hotelFeatures.splice(index, 1);
+                        }
+                        ui.item.sortable.cancel();
+                    }
+                }
+            }
+        }
+    };
+
+
 }
-
-
+ 

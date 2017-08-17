@@ -1,7 +1,7 @@
 ﻿provide.service('FeaturesApi', function ($http) {
     var apiUrl = document.querySelector('#HServicesURL').value; 
     this.GetAll = function (lang) {
-        return $http.get(apiUrl + '/SystemParameters/Features/GetAllWithDeleted?LangId=' + lang);
+        return $http.get(apiUrl + '/SystemParameters/Features/GetAllWithDeleted?langId=' + lang);
     }
 
     this.Save = function (feature) {

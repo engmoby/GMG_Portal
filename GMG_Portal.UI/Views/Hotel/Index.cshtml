@@ -15,6 +15,17 @@
 <input type="hidden" id="HArabicNameUnique" value="@Hotel.TxtTitleUniqueErrorMessage" />
 <input type="hidden" id="HCannotDeleted" value="@Hotel.CannotDeleted" />
 <style>
+    h3 img {
+        max-height: 50px;
+    }
+
+    #map {
+        height: 400px;
+        margin: 20px 0;
+        border-radius: 5px;
+        border: 1px solid silver;
+    }
+
     .btn-file {
         position: relative;
         overflow: hidden;
@@ -38,6 +49,140 @@
     input[readonly] {
         background-color: white !important;
         cursor: text !important;
+    }
+
+    .list {
+        list-style: none outside none;
+        margin: 10px 0 30px;
+    }
+
+    .itemListing {
+        width: 200px;
+        padding: 5px 10px;
+        margin: 5px 0;
+        border: 2px solid #444;
+        border-radius: 5px;
+        background-color: #EA8A8A;
+        font-size: 1.1em;
+        font-weight: bold;
+        text-align: center;
+        cursor: move;
+    }
+
+
+    /***  Extra ***/
+
+
+    .logList {
+        margin-top: 20px;
+        width: 250px;
+        min-height: 200px;
+        padding: 5px 15px;
+        border: 5px solid #000;
+        border-radius: 15px;
+        float: right;
+    }
+
+        .logList:before {
+            content: 'log';
+            padding: 0 5px;
+            position: relative;
+            top: -1.1em;
+            background-color: #FFF;
+        }
+
+    .container {
+        width: 600px;
+        margin: auto;
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    .floatleft {
+        float: left;
+    }
+
+    .floatright {
+        float: right;
+    }
+
+    .clear {
+        clear: both;
+    }
+
+    .list {
+        list-style: none outside none;
+        margin: 10px 0 30px;
+    }
+
+    .apps-container {
+        border: 2px dashed blue;
+        margin: 10px 10px 0 0;
+        padding: 5px;
+    }
+
+    .app {
+        width: 300px;
+        padding: 5px 10px;
+        margin: 5px 0;
+        border: 2px solid #444;
+        border-radius: 5px;
+        background-color: #EA8A8A;
+        font-size: 1.1em;
+        font-weight: bold;
+        text-align: center;
+        cursor: move;
+    }
+
+
+    /***  Extra ***/
+
+    body {
+        font-family: Verdana, 'Trebuchet ms', Tahoma;
+    }
+
+    .logList {
+        margin-top: 20px;
+        width: 300px;
+        min-height: 300px;
+        padding: 5px 15px;
+        border: 5px solid #000;
+        border-radius: 15px;
+    }
+
+    .logItem {
+        margin-bottom: 10px;
+    }
+
+    .logList:before {
+        content: 'log';
+        padding: 0 5px;
+        position: relative;
+        top: -1.1em;
+        background-color: #FFF;
+    }
+
+    .container {
+        width: 800px;
+        margin: auto;
+    }
+
+    h2, h3 {
+        text-align: center;
+    }
+
+    .floatleft {
+        float: left;
+    }
+
+    .floatright {
+        float: right;
+    }
+
+    .clear {
+        clear: both;
     }
 </style>
 <div ng-controller="HotelsController">
@@ -206,26 +351,28 @@
                                         </div>
                                     </div>
                                 </div>*@
-                            @*<div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="TxtLate">@Hotel.Late</label><span class="red-text"> *</span>
-                                            <input type="text" ng-model="Hotel.Late" class="form-control" name="TxtLate"
-                                                   placeholder="@Hotel.Late" required ng-pattern="/@Regex.DecimalNumber/">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="TxtLate">@Hotel.Late</label><span class="red-text"> *</span>
+                                        <input type="text" ng-model="Hotel.Late" class="form-control" name="TxtLate" readonly="readonly"
+                                               placeholder="@Hotel.Late" required ng-pattern="/@Regex.DecimalNumber/">
 
 
-                                        </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="TxtLong">@Hotel.Long</label><span class="red-text"> *</span>
-                                            <input type="text" ng-model="Hotel.Long" class="form-control" name="TxtLong"
-                                                   placeholder="@Hotel.Long" required ng-pattern="/@Regex.DecimalNumber/">
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="TxtLong">@Hotel.Long</label><span class="red-text"> *</span>
+                                        <input type="text" ng-model="Hotel.Long" class="form-control" name="TxtLong" readonly="readonly"
+                                               placeholder="@Hotel.Long" required ng-pattern="/@Regex.DecimalNumber/">
 
 
-                                        </div>
                                     </div>
-                                </div>*@
+                                </div>
+                            </div>
+                            <button ng-click="openLocation()" class="btn btn-primary btn-with-icon pull-right"><i class="ion-android-checkmark-circle"></i>Location</button>
+
                         </div>
                     </div>
 
@@ -307,34 +454,87 @@
         <div class="col-md-12" ng-show="featuresList">
             <div ba-panel ba-panel-name="Form Wizard" ba-panel-class="with-scroll">
                 <span style="margin-left: 468px;">Hotel Title:   {{Hotel.DisplayValue}}</span>
-                <div class="row">
-                    <div class="col-xs-12">
-                        <h2 style="margin-bottom: 0">Features List</h2>
+
+                <div class="floatleft">
+                    <h4>Features list</h4> <div ui-sortable="sortableOptions" class="apps-container screen floatleft" ng-model="features">
+                        <div class="app" ng-repeat="featureObj in features">
+                            <i class="{{featureObj.Icon}}"></i> {{featureObj.DisplayValue}}
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-xs-12 col-sm-6">
-                        <div class="well">
-                            <label ng-repeat="featureObj in features">
-                                <input type="checkbox" ng-click="clickCheck(featureObj)" data-checklist-value="featureObj"> <i class="{{featureObj.Icon}}"></i> {{featureObj.DisplayValue}}
-                            </label>
+                <div>
+                    <h4>Hotel Features </h4>
+                    <div style="width: 300px;" ui-sortable="sortableOptions" class="apps-container screen floatleft" ng-model="hotelFeatures">
+                        <div class="app" ng-repeat="featureObj in hotelFeatures">
+                            <i class="{{featureObj.Icon}}"></i> {{featureObj.DisplayValue}}
+                        </div>
+                    </div>
+                </div>
+
+
+                @*<div class="floatright">
+                        <button type="button" ng-disabled="hotelFeatures.length==0" ng-click="logModels()">Show chosen features</button>
+                        <ul class="list logList">
+                            <li ng-repeat="entry in sortingLog" class="logItem">
+                                {{entry}}
+                            </li>
+                        </ul>
+                    </div>*@
+
+                <div class="clear"></div>
+
+                @*<div class="floatleft list logList">
+                        <h4>Features list</h4>
+                        <div ui-sortable="sortableOptions" class="apps-container screen floatleft top" ng-model="features">
+                            <div class="itemListing" ng-repeat="app in features"> {{app.DisplayValue}}</div>
                         </div>
 
                     </div>
-                    <div class="col-xs-12 col-sm-6">
-                        <h2 style="margin-bottom: 0"> Hotel Features</h2>
+                    <div class="floatright list logList">
+                        <h4>Hotel Features </h4>
 
-                        <label ng-repeat="selectedFeatureObj in selectedFeatures.features">
-                            <i class="{{selectedFeatureObj.Icon}}"></i> {{selectedFeatureObj.DisplayValue}}
+                        <div ui-sortable="sortableOptions" class="apps-container screen floatright" ng-model="hotelFeatures">
+                            <div class="itemListing" ng-repeat="app in hotelFeatures"> {{app.DisplayValue}}</div>
+                        </div>
 
-                        </label>
-
+                        <div style="clear: both;"></div>
                     </div>
-                </div>
+                    <ul class="list logList">
+                        <li ng-repeat="entry in sortingLog" class="logItem">
+                            {{entry}}
+                        </li>
+                    </ul>
+
+                    <div class="clear"></div>*@
+
+                @*<div class="row">
+                        <div class="col-xs-12">
+                            <h2 style="margin-bottom: 0">Features List</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6">
+                            <div class="well">
+                                <label ng-repeat="featureObj in features">
+                                    <input type="checkbox" ng-click="clickCheck(featureObj)" data-checklist-value="featureObj"> <i class="{{featureObj.Icon}}"></i> {{featureObj.DisplayValue}}
+                                </label>
+                            </div>
+
+                        </div>
+                        <div class="col-xs-12 col-sm-6">
+                            <h2 style="margin-bottom: 0"> Hotel Features</h2>
+
+                            <label ng-repeat="selectedFeatureObj in selectedFeatures.features">
+                                <i class="{{selectedFeatureObj.Icon}}"></i> {{selectedFeatureObj.DisplayValue}}
+
+                            </label>
+
+                        </div>
+                    </div>*@
 
                 <div class="row" style="margin-bottom:10px">
                     <div class="col-md-12 pull-right">
-                        <button ng-click="saveFeatures()" ng-disabled="$scope.selectedFeatures" class="btn btn-primary btn-with-icon pull-right"><i class="ion-android-checkmark-circle"></i>@Hotel.btnSaveLbl</button>
+                        <button ng-click="saveFeatures()" ng-disabled="hotelFeatures.length==0" class="btn btn-primary btn-with-icon pull-right"><i class="ion-android-checkmark-circle"></i>@Hotel.btnSaveLbl</button>
                         <button type="button" ng-click="back()" class="btn btn-default btn-with-icon pull-right"><i class="ion-stats-bars"></i>@Hotel.btnBack</button>
                     </div>
                 </div>
@@ -443,6 +643,43 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="modal fade" id="ModelLocation" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">{{action |uppercase}} Location</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Location</label><span class="red-text"> *</span>
+                        <div class="form-group">
+
+                            <form name="searchForm" novalidate
+                                  ng-submit="search()">
+                                <div class="input-group">
+                                    <input name="place" type="text" class="form-control" ng-model="searchPlace" required autofocus />
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-primary"
+                                                ng-disabled="searchForm.$invalid">
+                                            Search
+                                        </button>
+                                    </span>
+                                </div>
+                            </form>
+
+                            <div id="map"></div>
+                        </div>
+                    </div>
+
+                </div>
+                 
+            </div>
+        </div>
+
     </div>
 </div>
 
