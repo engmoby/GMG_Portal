@@ -2,7 +2,7 @@
     var apiUrl = document.querySelector('#HServicesURL').value;
     var langId = document.querySelector('#HCurrentLang').value;
 
-    this.GetAll = function () {
+    this.GetAll = function (lang) {
         return $http.get(apiUrl + '/SystemParameters/CoreValues/GetAllWithDeleted?LangId=' + lang);
     }
 
