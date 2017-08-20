@@ -33,8 +33,7 @@
  
 <script type="text/javascript">
 
-    var e = document.getElementById("addressSearch");
-    e.removeAttribute("disabled");
+  
    
 
 
@@ -56,16 +55,18 @@
 
         $('#checkin').change(function () {
             $('#checkindate').val($('#checkin').val());
-           
         });
 
 
-        $('#checkout').change(function () {        
+        $('#checkout').change(function () {
             $('#checkoutdate').val($('#checkout').val());
         });
+
         //// Fix Jquery DatePicker originally in the Template   
 
     
+    
+
 
       
 
@@ -74,59 +75,50 @@
 </script>
 
 <script type="text/javascript">
-    //$(document).ready(function () {
-    //    alert($('#child').val());
-    //        var e = document.getElementById("addressSearch");
-    //        e.removeAttribute("disabled");
-
-
-    //        $("#child").change(function () {
-    //        alert("Handler for .change() called.");
-    //    });
-
 
     function jsFunction() {
+
+
+        var child = $('#child').val();
+        var adult = $('#adult').val();
+
+        if ($('#checkindate').val() === '') {
+            alert("Please Select Check-in Date");
+            return false;
+        }
+
+      
+        if ($('#checkoutdate').val() === '') {
+            alert("Please Select Check-out Date");
+            return false;
+        }
+
+
        
 
-        //if ($('#checkindate').val() != '') {
-        //    alert("Please Select Check-in Date");
-        //    return false;
-        //}
-
-        //if ($('#checkoutdate').val() != '') {
-        //    alert("Please Select Check-out Date");
-        //    return false;
-        //}
-
-
-
-        //if ($('#child').val() != '') {
-        //    alert("Please Select Child");
-        //    return false;
-        //}
-
-        //if ($('#adult').val() != '') {
-        //    alert("Please Select Adult");
-        //    return false;
-        //}
-
-
-
-
-
-        location.href = '@Url.Action("Index", "BookingLite")?checkin=' +
-            $('#checkindate').val() +
-            '&checkout=' +
-            $('#checkoutdate').val() +
-            '&adult=' +
-            $('#adult').val() +
-            '&child=' +
-            $('#child').val();
-
-
-
-        
+        if (adult === null) {
+            alert("Please Select Adult");
+            return false;
         }
+
+        if (child === null) {
+            alert("Please Select Child");
+            return false;
+        }
+
+
+
+
+       location.href = '@Url.Action("Index", "BookingLite")?checkin=' +
+            $('#checkindate').val() +
+           '&checkout=' +
+            $('#checkoutdate').val() +
+           '&adult=' +
+          $('#adult').val() +
+            '&child=' +
+            $('#child').val(); 
+         return false;
+    }
 
 
 
@@ -169,6 +161,7 @@
                                             <option value="3">3</option>
                                             <option value="4">4</option>
                                         </select>
+                                       
                                     </div>
                                     <div class="col-xs-6">
                                         <select class="cs-select cs-skin-elastic" id="child" name="child">
@@ -178,6 +171,8 @@
                                             <option value="2">2</option>
                                             <option value="3">3</option>
                                         </select>
+                                        
+
                                     </div>
                                 </div>
                             </div>

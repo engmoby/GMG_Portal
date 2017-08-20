@@ -1,4 +1,5 @@
-﻿@using GMG_Portal.API.Models.SystemParameters
+﻿@using Front.Helpers
+@using GMG_Portal.API.Models.SystemParameters
 @model GMG_Portal.API.Models.SystemParameters.News
 
 @{
@@ -99,7 +100,7 @@
     function search(ele) {
         if (event.keyCode == 13) { 
             $.ajax({
-                url: '@Url.Action("Search", "News")?keyword=' + ele.value,
+                url: '@Url.Action("Search", "News")?keyword=' + ele.value + '&langId=@Common.CurrentLang' ,
                 //url: "http://localhost:2798/SystemParameters/News/SearchNews/",
                 type: "Post",
                  data: JSON.stringify([ele.value]), //{ Name: name, Address: address, DOB: dob },
@@ -119,7 +120,7 @@
         var apiUrl = document.querySelector('#HServicesURL').value;
         var newsId = document.querySelector('#HCurrentNewsId').value;
         $.ajax({
-            url: apiUrl + "/SystemParameters/News/GetLatestNewsWithOutCurrentId?langId=En&newsId=" + newsId,
+            url: apiUrl + "/SystemParameters/News/GetLatestNewsWithOutCurrentId?langId=@Common.CurrentLang&newsId=" + newsId,
             type: "Get",
             success: function (data) {
                 for (var i = 0; i < data.length; i++) {

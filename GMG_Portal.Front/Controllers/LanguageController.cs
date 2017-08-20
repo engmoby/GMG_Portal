@@ -23,7 +23,27 @@ namespace Front.Controllers
                 cookie.Value = selectedLanguage;
                 Response.Cookies.Add(cookie);
             }
-            //   return RedirectToAction("Index", "Home");
+
+            //Special Case for Details News
+            if (Request.UrlReferrer != null && Request.UrlReferrer.ToString().Contains("News/Details/"))
+            {
+                return Redirect(System.Configuration.ConfigurationManager.AppSettings["HomeUrl"] + "/News");
+            }
+
+            //Special Case for Details Offers
+            if (Request.UrlReferrer != null && Request.UrlReferrer.ToString().Contains("Offers/GetOfferDetails/"))
+            {
+                return Redirect(System.Configuration.ConfigurationManager.AppSettings["HomeUrl"] + "/Offers");
+            }
+
+            //Special Case for Details Hotels
+            if (Request.UrlReferrer != null && Request.UrlReferrer.ToString().Contains("Hotels/GetHotelDetails/"))
+            {
+                return Redirect(System.Configuration.ConfigurationManager.AppSettings["HomeUrl"] + "/Hotels");
+            }
+
+
+
             return Redirect(Request.UrlReferrer.ToString());
 
         }
