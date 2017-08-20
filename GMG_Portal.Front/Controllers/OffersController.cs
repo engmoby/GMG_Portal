@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Front.Helpers;
 using Newtonsoft.Json;
 using GMG_Portal.API.Models.SystemParameters;
 
@@ -28,7 +29,7 @@ namespace Front.Controllers
         // GET: Offers
         public async Task<ActionResult> Index()
         {
-            string Offers = url + "Offers/GetAll";
+            string Offers = url + "Offers/GetAll?langId=" + Common.CurrentLang;
             var OffersModels = new List<Offer>();
 
             if (Offers == null) throw new ArgumentNullException(nameof(Offers));
@@ -54,7 +55,7 @@ namespace Front.Controllers
 
         public async Task<ActionResult> OfferDetails(int id)
         {
-            string offerdetails = url + "Offers/GetOfferDetails/" + id;
+            string offerdetails = url + "Offers/GetOfferDetails/" + id + "&langId=" + Common.CurrentLang;
             var offersModel = new Offer();
 
             if (offerdetails == null) throw new ArgumentNullException(nameof(offerdetails));
