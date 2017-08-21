@@ -4,8 +4,11 @@ using System.Web.Mvc;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Front.Helpers;
 using Newtonsoft.Json;
 using GMG_Portal.API.Models.SystemParameters;
+using GMG_Portal.API.Models.Hotels;
+using GMG_Portal.Data;
 
 
 namespace Front.Controllers
@@ -28,15 +31,15 @@ namespace Front.Controllers
         // GET: Offers
         public async Task<ActionResult> Index()
         {
-            string Offers = url + "Offers/GetAll";
-            var OffersModels = new List<Offer>();
+            string Offers = url + "Offers/GetAll?langId=" + Common.CurrentLang;
+            var OffersModels = new List<Hotles_Offers>();
 
             if (Offers == null) throw new ArgumentNullException(nameof(Offers));
             HttpResponseMessage responseMessageApi = await _client.GetAsync(Offers);
             if (responseMessageApi.IsSuccessStatusCode)
             {
                 var responseData = responseMessageApi.Content.ReadAsStringAsync().Result;
-                var OffersList = JsonConvert.DeserializeObject<List<Offer>>(responseData);
+                var OffersList = JsonConvert.DeserializeObject<List<Hotles_Offers>>(responseData);
                 OffersModels = OffersList;
                 if (OffersList.Count == 0)
                 { 
@@ -54,15 +57,15 @@ namespace Front.Controllers
 
         public async Task<ActionResult> OfferDetails(int id)
         {
-            string offerdetails = url + "Offers/GetOfferDetails/" + id;
-            var offersModel = new Offer();
+            string offerdetails = url + "Offers/GetOfferDetails/" + id + "?langId=" + Common.CurrentLang;
+            var offersModel = new Hotles_Offers();
 
             if (offerdetails == null) throw new ArgumentNullException(nameof(offerdetails));
             HttpResponseMessage responseMessageApi = await _client.GetAsync(offerdetails);
             if (responseMessageApi.IsSuccessStatusCode)
             {
                 var responseData = responseMessageApi.Content.ReadAsStringAsync().Result;
-                offersModel = JsonConvert.DeserializeObject<Offer>(responseData);
+                offersModel = JsonConvert.DeserializeObject<Hotles_Offers>(responseData);
 
             }
 

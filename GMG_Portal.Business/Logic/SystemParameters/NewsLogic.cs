@@ -65,7 +65,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                             Tags = systemParametersNewse.Tags,
                             Image = systemParametersNewse.Image,
                             IsDeleted = systemParametersNewse.IsDeleted,
-                            Categories = GetAllCatrogry()
+                            Categories = GetAllCatrogryByLang(langId)
                         });
                 }
             }
@@ -119,7 +119,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                             CategoryId = getCatrogryInfo.Id,
                             Tags = systemParametersNewse.Tags,
                             Image = systemParametersNewse.Image,
-                            Categories = GetAllCatrogry()
+                            Categories = GetAllCatrogryByLang(langId)
                         });
                 }
             }
@@ -234,6 +234,12 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         {
             return _db.SystemParameters_Category.Where(p => p.IsDeleted != true).OrderByDescending(n => n.Id).ToList();
         }
+
+        public List<SystemParameters_Category_Translate> GetAllCatrogrybyLangId(string langId)
+        {
+            return _db.SystemParameters_Category_Translate.Where(p => p.IsDeleted != true && p.langId == langId).OrderByDescending(n => n.Id).ToList();
+        }
+
         public List<SystemParameters_Category> GetAllCatrogryByLang(string langId)
         {
             var returnValue = new List<SystemParameters_Category>();
@@ -301,7 +307,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                             CategoryId = getCatrogryInfo.Id,
                             Tags = systemParametersNewse.Tags,
                             Image = systemParametersNewse.Image,
-                            Categories = GetAllCatrogry()
+                            Categories = GetAllCatrogryByLang(langId)
                         });
                 }
             }
