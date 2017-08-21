@@ -237,4 +237,49 @@
   <data name="StyleUrl" xml:space="preserve">
     <value>Content/css/style.css</value>
   </data>
+  <data name="Booking_PageTitle" xml:space="preserve">
+    <value>Booking</value>
+  </data>
+  <data name="Booking_Adults" xml:space="preserve">
+    <value>Adults</value>
+  </data>
+  <data name="Booking_CheckIn" xml:space="preserve">
+    <value>Check in</value>
+  </data>
+  <data name="Booking_Checkout" xml:space="preserve">
+    <value>Check out</value>
+  </data>
+  <data name="Booking_Child" xml:space="preserve">
+    <value>Child</value>
+  </data>
+  <data name="Booking_ConfirmMsg" xml:space="preserve">
+    <value>Thank you! Your booking is Registered, one of our Reservation office will contact Shortly</value>
+  </data>
+  <data name="Booking_Create" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="Booking_Details" xml:space="preserve">
+    <value>Booking Details</value>
+  </data>
+  <data name="Booking_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Booking_FirstName" xml:space="preserve">
+    <value>First Name</value>
+  </data>
+  <data name="Booking_LastName" xml:space="preserve">
+    <value>Last Name</value>
+  </data>
+  <data name="Booking_Mobile" xml:space="preserve">
+    <value>Mobile</value>
+  </data>
+  <data name="Booking_Personalinfo" xml:space="preserve">
+    <value>Personal Info</value>
+  </data>
+  <data name="Booking_ThankYou" xml:space="preserve">
+    <value>Thank You</value>
+  </data>
+  <data name="Booking_ReservationID" xml:space="preserve">
+    <value>Your Reservatiom ID </value>
+  </data>
 </root>

@@ -117,6 +117,51 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Booking_Adults" xml:space="preserve">
+    <value>بالغون</value>
+  </data>
+  <data name="Booking_CheckIn" xml:space="preserve">
+    <value>تاريخ الوصول</value>
+  </data>
+  <data name="Booking_Checkout" xml:space="preserve">
+    <value>تاريخ المغادره</value>
+  </data>
+  <data name="Booking_Child" xml:space="preserve">
+    <value>اطفال</value>
+  </data>
+  <data name="Booking_ConfirmMsg" xml:space="preserve">
+    <value>شكرا لأختيارك فنادق مبارك ! ,تم تسجيل طلبك و سيقوم احد مسئولى خدمه العملاء بالتواصل معك فى اقرب وقت</value>
+  </data>
+  <data name="Booking_Create" xml:space="preserve">
+    <value>تسجيل</value>
+  </data>
+  <data name="Booking_Details" xml:space="preserve">
+    <value>تفاصيل الحجز</value>
+  </data>
+  <data name="Booking_Email" xml:space="preserve">
+    <value>البريد الالكترونى</value>
+  </data>
+  <data name="Booking_FirstName" xml:space="preserve">
+    <value>الاسم الاول</value>
+  </data>
+  <data name="Booking_LastName" xml:space="preserve">
+    <value>اسم العائله</value>
+  </data>
+  <data name="Booking_Mobile" xml:space="preserve">
+    <value>الجوال</value>
+  </data>
+  <data name="Booking_PageTitle" xml:space="preserve">
+    <value>الحجز الالكترونى</value>
+  </data>
+  <data name="Booking_Personalinfo" xml:space="preserve">
+    <value>المعلومات الشخصيه</value>
+  </data>
+  <data name="Booking_ReservationID" xml:space="preserve">
+    <value>الرقم المرجعى للحجز</value>
+  </data>
+  <data name="Booking_ThankYou" xml:space="preserve">
+    <value>! شكرا لك </value>
+  </data>
   <data name="Footer_ContactUs" xml:space="preserve">
     <value>اتصل بنا</value>
   </data>

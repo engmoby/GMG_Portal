@@ -70,6 +70,141 @@ namespace Front.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Adults.
+        /// </summary>
+        public static string Booking_Adults {
+            get {
+                return ResourceManager.GetString("Booking_Adults", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check in.
+        /// </summary>
+        public static string Booking_CheckIn {
+            get {
+                return ResourceManager.GetString("Booking_CheckIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check out.
+        /// </summary>
+        public static string Booking_Checkout {
+            get {
+                return ResourceManager.GetString("Booking_Checkout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Child.
+        /// </summary>
+        public static string Booking_Child {
+            get {
+                return ResourceManager.GetString("Booking_Child", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thank you! Your booking is Registered, one of our Reservation office will contact Shortly.
+        /// </summary>
+        public static string Booking_ConfirmMsg {
+            get {
+                return ResourceManager.GetString("Booking_ConfirmMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create.
+        /// </summary>
+        public static string Booking_Create {
+            get {
+                return ResourceManager.GetString("Booking_Create", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Booking Details.
+        /// </summary>
+        public static string Booking_Details {
+            get {
+                return ResourceManager.GetString("Booking_Details", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        public static string Booking_Email {
+            get {
+                return ResourceManager.GetString("Booking_Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First Name.
+        /// </summary>
+        public static string Booking_FirstName {
+            get {
+                return ResourceManager.GetString("Booking_FirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last Name.
+        /// </summary>
+        public static string Booking_LastName {
+            get {
+                return ResourceManager.GetString("Booking_LastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mobile.
+        /// </summary>
+        public static string Booking_Mobile {
+            get {
+                return ResourceManager.GetString("Booking_Mobile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Booking.
+        /// </summary>
+        public static string Booking_PageTitle {
+            get {
+                return ResourceManager.GetString("Booking_PageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Personal Info.
+        /// </summary>
+        public static string Booking_Personalinfo {
+            get {
+                return ResourceManager.GetString("Booking_Personalinfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your Reservatiom ID .
+        /// </summary>
+        public static string Booking_ReservationID {
+            get {
+                return ResourceManager.GetString("Booking_ReservationID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thank You.
+        /// </summary>
+        public static string Booking_ThankYou {
+            get {
+                return ResourceManager.GetString("Booking_ThankYou", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email Required.
         /// </summary>
         public static string Email_Required {

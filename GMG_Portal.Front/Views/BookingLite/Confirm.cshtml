@@ -9,7 +9,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h2>Booking</h2>
+                <h2>@Front.Resources.Global.Booking_PageTitle</h2>
                 <p></p>
             </div>
         </div>
@@ -26,11 +26,11 @@
                     <ul class="nav nav-tabs" role="tablist">
 
                         <li role="presentation">
-                            <a   aria-controls="personal-info" role="tab" data-toggle="tab"><span class="mg-bs-tab-num">1</span><span class="mg-bs-bar"></span>Personal Info</a>
+                            <a   aria-controls="personal-info" role="tab" data-toggle="tab"><span class="mg-bs-tab-num">1</span><span class="mg-bs-bar"></span>@Front.Resources.Global.Booking_Personalinfo</a>
                         </li>
 
                         <li role="presentation" class="active">
-                            <a href="#thank-you" aria-controls="thank-you" role="tab" data-toggle="tab"><span class="mg-bs-tab-num">2</span>Thank You</a>
+                            <a href="#thank-you" aria-controls="thank-you" role="tab" data-toggle="tab"><span class="mg-bs-tab-num">2</span>@Front.Resources.Global.Booking_ThankYou</a>
                         </li>
                     </ul>
 
@@ -39,11 +39,11 @@
                             <div class="alert alert-success alert-dismissible clearfix">
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 <div class="mg-alert-icon"><i class="fa fa-check"></i></div>
-                                <h3 class="mg-alert-payment">Thank you! Your booking is Registered, one of our Reservation office will contact Shortly</h3>
+                                <h3 class="mg-alert-payment">@Front.Resources.Global.Booking_ConfirmMsg</h3>
                             </div>
                             <div class="mg-cart-container mg-paid">
                                 <aside class="mg-widget mt50" id="mg-room-cart">
-                                    <h2 class="mg-widget-title">Booking Details</h2>
+                                    <h2 class="mg-widget-title">@Front.Resources.Global.Booking_Details</h2>
                                     <div class="mg-widget-cart">
                                         <div class="row">
                                             <div class="col-md-6">
@@ -52,31 +52,31 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <h3 class="mg-payment-id">Your Reservatiom ID: #@Model.OperationId</h3>
+                                                <h3 class="mg-payment-id">@Front.Resources.Global.Booking_ReservationID #@Model.OperationId</h3>
                                                 <div class="mg-widget-cart-row">
-                                                    <strong>First Name:</strong>
+                                                    <strong>@Front.Resources.Global.Booking_FirstName:</strong>
                                                     <span>@Model.FirstName</span>
                                                 </div>
 
                                                 <div class="mg-widget-cart-row">
-                                                    <strong>last Name:</strong>
+                                                    <strong>@Front.Resources.Global.Booking_LastName:</strong>
                                                     <span>@Model.LastName</span>
                                                 </div>
 
                                                 <div class="mg-widget-cart-row">
-                                                    <strong>Check In:</strong>
+                                                    <strong>@Front.Resources.Global.Booking_CheckIn:</strong>
                                                     <span>@Request.QueryString["CheckIn"]</span>
                                                 </div>
                                                 <div class="mg-widget-cart-row">
-                                                    <strong>Check Out:</strong>
+                                                    <strong>@Front.Resources.Global.Booking_Checkout:</strong>
                                                     <span>@Request.QueryString["CheckOut"]</span>
                                                 </div>
                                                 <div class="mg-widget-cart-row">
-                                                    <strong>Adults:</strong>
+                                                    <strong>@Front.Resources.Global.Booking_Adults:</strong>
                                                     <span>@Request.QueryString["Adult"]</span>
                                                 </div>
                                                 <div class="mg-widget-cart-row">
-                                                    <strong>Child:</strong>
+                                                    <strong>@Front.Resources.Global.Booking_Child:</strong>
                                                     <span>@Request.QueryString["Child"]</span>
                                                 </div>
 

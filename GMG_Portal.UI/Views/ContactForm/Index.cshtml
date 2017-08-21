@@ -49,8 +49,9 @@
                     <td>{{ContactForm.Email}}</td>
                     <td>{{ContactForm.PhoneNo}}</td>
                     <td>{{ContactForm.CreationTime   | date:'fullDate'}}</td>
-                
-                    <td>
+                    <td>  <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(ContactForm)"><i class="fa fa-pencil" aria-hidden="true"></i>@ContactForm.View</button>
+                    
+                      <td>
                         <div class="buttons" ng-show="!ContactForm.Seen">
                             <button class="center-block btn btn-default  restore-button btn-xs btn-with-icon" ng-click="Seen(ContactForm)"><i class="fa fa-undo" aria-hidden="true"></i>@ContactForm.Seen</button>
                         </div>

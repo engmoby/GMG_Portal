@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Globalization;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Front.Resources;
@@ -19,6 +21,7 @@ namespace Front.Controllers
 
         public BookingLiteController()
         {
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
 
             _client = new HttpClient();
             _client.BaseAddress = new Uri(url);
@@ -34,8 +37,13 @@ namespace Front.Controllers
         // GET: BookingLite
         public ActionResult Index(string checkin, string checkout, string adult, string child)
         {
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+
+
+
             var reservation = new Reservation
             {
+               
                 CheckIn = Convert.ToDateTime(checkin),
                 CheckOut = Convert.ToDateTime(checkout),
                 Child = Convert.ToInt32(child),
@@ -65,6 +73,8 @@ namespace Front.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Index(Reservation reservation)
         {
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+
             if (string.IsNullOrEmpty(reservation.FirstName))
                 ModelState.AddModelError("FirstName", Global.First_Name_Required);
             if (string.IsNullOrEmpty(reservation.LastName))

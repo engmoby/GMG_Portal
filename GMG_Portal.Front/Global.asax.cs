@@ -6,6 +6,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Front.Helpers;
 
 namespace Front
 {
@@ -23,12 +24,16 @@ namespace Front
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
             HttpCookie cookie = HttpContext.Current.Request.Cookies["Language"];
+          
             if (cookie != null && cookie.Value != null)
             {
                 System.Threading.Thread.CurrentThread.CurrentCulture =
                     new System.Globalization.CultureInfo(cookie.Value);
+
                 System.Threading.Thread.CurrentThread.CurrentUICulture =
                     new System.Globalization.CultureInfo(cookie.Value);
+                //Fix for Different Language in Static & Dynamic Content
+                Common.CurrentLang = cookie.Value;
             }
             else
             {

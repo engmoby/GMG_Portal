@@ -10,7 +10,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h2>Booking</h2>
+                <h2>@Front.Resources.Global.Booking_PageTitle </h2>
                 <p></p>
             </div>
         </div>
@@ -39,11 +39,11 @@
                         <ul class="nav nav-tabs" role="tablist">
 
                             <li role="presentation" class="active">
-                                <a href="#personal-info" aria-controls="personal-info" role="tab" data-toggle="tab"><span class="mg-bs-tab-num">1</span><span class="mg-bs-bar"></span>Personal Info</a>
+                                <a href="#personal-info" aria-controls="personal-info" role="tab" data-toggle="tab"><span class="mg-bs-tab-num">1</span><span class="mg-bs-bar"></span>@Front.Resources.Global.Booking_Personalinfo</a>
                             </li>
 
                             <li role="presentation">
-                                <a   aria-controls="thank-you" role="tab" data-toggle="tab"><span class="mg-bs-tab-num">2</span>Thank You</a>
+                                <a   aria-controls="thank-you" role="tab" data-toggle="tab"><span class="mg-bs-tab-num">2</span>@Front.Resources.Global.Booking_ThankYou</a>
                             </li>
                         </ul>
 
@@ -53,16 +53,16 @@
                                 <div class="row">
                                     <div class="col-md-8">
                                         <div class="mg-book-form-personal">
-                                            <h2 class="mg-sec-left-title">Personal Info</h2>
+                                            <h2 class="mg-sec-left-title">@Front.Resources.Global.Booking_Personalinfo</h2>
                                             <div class="row pb40">
                                                 <div class="col-md-6">
                                                     <div class="mg-book-form-input">
-                                                        <label>First Name</label>
+                                                        <label>@Front.Resources.Global.Booking_FirstName</label>
                                                         @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
                                                         @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
                                                     </div>
                                                     <div class="mg-book-form-input">
-                                                        <label>Email</label>
+                                                        <label>@Front.Resources.Global.Booking_Email</label>
                                                         @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
                                                         @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                                                     </div>
@@ -70,12 +70,12 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="mg-book-form-input">
-                                                        <label>Last Name</label>
+                                                        <label>@Front.Resources.Global.Booking_LastName</label>
                                                         @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
                                                         @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
                                                     </div>
                                                     <div class="mg-book-form-input">
-                                                        <label>Phone Number / Cell</label>
+                                                        <label>@Front.Resources.Global.Booking_Mobile</label>
                                                         @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
                                                         @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
                                                     </div>
@@ -95,7 +95,7 @@
                                             
                                             <div class="form-group">
                                                 <div class="col-md-offset-2 col-md-10">
-                                                    <input type="submit" id="btnSubmit" class="btn btn-dark-main pull-right" value="Create">
+                                                    <input type="submit" id="btnSubmit" class="btn btn-dark-main pull-right" value="@Front.Resources.Global.Booking_Create">
                                                     @*<input type="submit" value="Create" class="btn btn-default" />*@
                                                 </div>
                                             </div>
@@ -107,25 +107,25 @@
                                     <div class="col-md-4">
                                         <div class="mg-cart-container">
                                             <aside class="mg-widget mt50" id="mg-room-cart">
-                                                <h2 class="mg-widget-title">Booking Details</h2>
+                                                <h2 class="mg-widget-title">@Front.Resources.Global.Booking_Details</h2>
                                                 <div class="mg-widget-cart">
                                                     <div class="mg-cart-room">
 
                                                     </div>
                                                     <div class="mg-widget-cart-row">
-                                                        <strong>Check In:</strong>
+                                                        <strong>@Front.Resources.Global.Booking_CheckIn:</strong>
                                                         <span>@Request.QueryString["CheckIn"]</span>
                                                     </div>
                                                     <div class="mg-widget-cart-row">
-                                                        <strong>Check Out:</strong>
+                                                        <strong>@Front.Resources.Global.Booking_Checkout:</strong>
                                                         <span>@Request.QueryString["CheckOut"]</span>
                                                     </div>
                                                     <div class="mg-widget-cart-row">
-                                                        <strong>Adults:</strong>
+                                                        <strong>@Front.Resources.Global.Booking_Adults:</strong>
                                                         <span>@Request.QueryString["Adult"]</span>
                                                     </div>
                                                     <div class="mg-widget-cart-row">
-                                                        <strong>Child:</strong>
+                                                        <strong>@Front.Resources.Global.Booking_Child:</strong>
                                                         <span>@Request.QueryString["Child"]</span>
                                                     </div>
                                                     <div class="mg-cart-total">
@@ -139,7 +139,7 @@
 
                             </div>
 
-                            <div role="tabpanel" class="tab-pane fade" id="thank-you">
+                            @*<div role="tabpanel" class="tab-pane fade" id="thank-you">
                                 <div class="alert alert-success alert-dismissible clearfix">
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                     <div class="mg-alert-icon"><i class="fa fa-check"></i></div>
@@ -193,7 +193,7 @@
                                     </aside>
                                 </div>
 
-                            </div>
+                            </div>*@
                         </div>
 
                     </div>
