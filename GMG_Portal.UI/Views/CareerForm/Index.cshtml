@@ -49,7 +49,7 @@
                     <td>{{CareerForm.FirstName +' '+ CareerForm.LastName}}</td>
                     <td>{{CareerForm.CreationTime   | date:'fullDate'}}</td>
                     <td>
-                        <a class="btn btn-primary editable-table-button btn-xs btn-with-icon" style="width: 94px;" target="_top" href="http://gmgportal-stag.azurewebsites.net/Uploads/{{CareerForm.Attach}}"
+                        <a class="btn btn-primary editable-table-button btn-xs btn-with-icon" style="width: 94px;" target="_top" href="@System.Configuration.ConfigurationManager.AppSettings["HomeUrl"]/Uploads/{{CareerForm.Attach}}"
                            download="{{CareerForm.Attach}}"><i class="fa fa-cloud-download" aria-hidden="true"></i>@CareerForm.Download</a>
                          
                         <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(CareerForm)"><i class="fa fa-pencil" aria-hidden="true"></i>@CareerForm.View</button>
@@ -87,7 +87,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">{{action |uppercase}} @CareerForm.ModalTitle</h4>
+                        <h4 class="modal-title"> View @CareerForm.ModalTitle</h4>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">

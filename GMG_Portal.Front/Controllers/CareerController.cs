@@ -101,7 +101,7 @@ namespace Front.Controllers
                 file.SaveAs(path);
             }
 
-            careerForm.Attach = fileDetails[0].FileName;
+            careerForm.Attach = fileDetails[0].Id.ToString() + fileDetails[0].Extension.ToString() ;
             careerForm.CareerId = careerForm.CareerId;
 
             if (string.IsNullOrEmpty(careerForm.FirstName))
