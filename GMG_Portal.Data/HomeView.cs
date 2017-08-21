@@ -31,6 +31,7 @@ namespace GMG_Portal.Data
         public string About_DisplayValue { get; set; }
         public string About_DisplayValueDesc { get; set; }
         public string About_Url { get; set; }
+        public int Features_Id { get; set; }
         public string Features_DisplayValue { get; set; }
         public bool Features_IsDeleted { get; set; }
         public string Features_DisplayValueDesc { get; set; }

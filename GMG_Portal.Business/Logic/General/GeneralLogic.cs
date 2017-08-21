@@ -18,10 +18,7 @@ namespace GMG_Portal.Business.Logic.General
         {
             return _db.HomeViews.ToList();
         }
-        public int CountOccurenceOfValue(List<HomeView> list, string valueToFind)
-        {
-            return ((from temp in list where temp.Equals(valueToFind) select temp).Count());
-        }
+    
         public List<HomeView> GetAllByLangId(string landId)
         {
             return _db.HomeViews.ToList();

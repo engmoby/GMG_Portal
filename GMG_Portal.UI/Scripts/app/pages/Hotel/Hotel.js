@@ -10,9 +10,9 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
     $scope.sortingLog = [];
     $scope.sortingLogId = [];
     $scope.showSaveFeatureBtn = false;
-     
+
     $scope.sortingLog = [];
- 
+
 
     $scope.place = {};
 
@@ -37,7 +37,7 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
 
     Map.init();
     $scope.openLocation = function () {
-        $('#ModelLocation').modal('show'); 
+        $('#ModelLocation').modal('show');
 
     }
     $("#DropdwonLang").change(function () {
@@ -118,6 +118,7 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
     }
     $scope.saveExist = function () {
         $rootScope.ViewLoading = true;
+        $scope.back();
 
 
         HotelsApi.Save($scope.Hotel).then(function (response) {
@@ -162,7 +163,6 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
 
             }
             $rootScope.ViewLoading = false;
-            $scope.back();
         },
             function (response) {
                 debugger;
@@ -174,6 +174,7 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
         debugger;
         $rootScope.ViewLoading = true;
         $scope.Hotel.LangId = CurrentLanguage;
+        $scope.back();
 
         HotelsApi.Save($scope.Hotel).then(function (response) {
 
@@ -196,14 +197,15 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
                         case 'delete':
                             index = $scope.Hotels.indexOf($filter('filter')($scope.Hotels, { 'Id': $scope.Hotel.Id }, true)[0]);
                             $scope.Hotels[index] = angular.copy(response.data);
-                            HotelsApi.GetHotelDetails($scope.Hotel.Id, CurrentLanguage).then(function (response) {
-                                $scope.HotelDetails = response.data;
-                                $scope.Hotel = response.data;
-                            });
+                            //HotelsApi.GetHotelDetails($scope.Hotel.Id, CurrentLanguage).then(function (response) {
+                            //    $scope.HotelDetails = response.data;
+                            //    $scope.Hotel = response.data;
+                            //});
                             toastr.success($('#HDeleteSuccessMessage').val(), 'Success');
                             $scope.basicInfo = false;
                             $scope.imagesList = true;
-                            $rootScope.ViewLoading = false; break;
+                            $rootScope.ViewLoading = false;
+                            break;
                         case 'add':
 
                             $scope.Hotels.push(angular.copy(response.data));
@@ -211,7 +213,7 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
                             //    $scope.HotelDetails = response.data;
                             //    $scope.Hotel = response.data;
                             //});
-                             $scope.basicInfo = false;
+                            $scope.basicInfo = false;
                             $scope.imagesList = true;
                             $rootScope.ViewLoading = false; toastr.success($('#HSaveSuccessMessage').val(), 'Success');
                             break;
@@ -312,7 +314,7 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
             ss = response;
         });
     }
-   
+
     $scope.DeleteImage = function (hotelImage) {
         debugger;
         $scope.action = 'delete';
@@ -699,7 +701,7 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
                     if (exists2) {
                         if ($scope.hotelFeatures.length === 1) {
                             index = $scope.hotelFeatures.indexOf($filter('filter')($scope.hotelFeatures, { 'Id': itemModel.Id }, true)[0]);
-                          //  $scope.hotelFeatures.splice(index, 1);
+                            //  $scope.hotelFeatures.splice(index, 1);
                             alert("hotel must have one feature at least");
                         } else {
                             index = $scope.hotelFeatures.indexOf($filter('filter')($scope.hotelFeatures, { 'Id': itemModel.Id }, true)[0]);
@@ -715,4 +717,3 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
 
 
 }
- 

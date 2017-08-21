@@ -960,11 +960,6 @@
           <Property Name="Show" Type="bit" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6013: The table/view 'GMG_PORTAL_STAG.dbo.HomeSliderCount' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="HomeSliderCount">
-          <Property Name="HomeSliders_Count" Type="int" />
-        </EntityType>-->
-        <!--Errors Found During Generation:
 warning 6002: The table/view 'GMG_PORTAL_STAG.dbo.HomeView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="HomeView">
           <Key>
@@ -975,6 +970,7 @@ warning 6002: The table/view 'GMG_PORTAL_STAG.dbo.HomeView' does not have a prim
             <PropertyRef Name="News_CreationTime" />
             <PropertyRef Name="HomeSlider_Id" />
             <PropertyRef Name="HomeSlider_IsDeleted" />
+            <PropertyRef Name="Features_Id" />
             <PropertyRef Name="Features_IsDeleted" />
             <PropertyRef Name="Images_IsDeleted" />
           </Key>
@@ -995,6 +991,7 @@ warning 6002: The table/view 'GMG_PORTAL_STAG.dbo.HomeView' does not have a prim
           <Property Name="About_DisplayValue" Type="nvarchar" MaxLength="50" />
           <Property Name="About_DisplayValueDesc" Type="nvarchar(max)" />
           <Property Name="About_Url" Type="nvarchar" MaxLength="100" />
+          <Property Name="Features_Id" Type="int" Nullable="false" />
           <Property Name="Features_DisplayValue" Type="nvarchar" MaxLength="50" />
           <Property Name="Features_IsDeleted" Type="bit" Nullable="false" />
           <Property Name="Features_DisplayValueDesc" Type="nvarchar(max)" />
@@ -1065,6 +1062,7 @@ warning 6002: The table/view 'GMG_PORTAL_STAG.dbo.HomeView' does not have a prim
     [HomeView].[About_DisplayValue] AS [About_DisplayValue], 
     [HomeView].[About_DisplayValueDesc] AS [About_DisplayValueDesc], 
     [HomeView].[About_Url] AS [About_Url], 
+    [HomeView].[Features_Id] AS [Features_Id], 
     [HomeView].[Features_DisplayValue] AS [Features_DisplayValue], 
     [HomeView].[Features_IsDeleted] AS [Features_IsDeleted], 
     [HomeView].[Features_DisplayValueDesc] AS [Features_DisplayValueDesc], 
@@ -2087,6 +2085,7 @@ warning 6002: The table/view 'GMG_PORTAL_STAG.dbo.HomeView' does not have a prim
             <PropertyRef Name="News_CreationTime" />
             <PropertyRef Name="HomeSlider_Id" />
             <PropertyRef Name="HomeSlider_IsDeleted" />
+            <PropertyRef Name="Features_Id" />
             <PropertyRef Name="Features_IsDeleted" />
             <PropertyRef Name="Images_IsDeleted" />
           </Key>
@@ -2107,6 +2106,7 @@ warning 6002: The table/view 'GMG_PORTAL_STAG.dbo.HomeView' does not have a prim
           <Property Name="About_DisplayValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="About_DisplayValueDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="About_Url" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Features_Id" Type="Int32" Nullable="false" />
           <Property Name="Features_DisplayValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Features_IsDeleted" Type="Boolean" Nullable="false" />
           <Property Name="Features_DisplayValueDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -3127,6 +3127,7 @@ warning 6002: The table/view 'GMG_PORTAL_STAG.dbo.HomeView' does not have a prim
                 <ScalarProperty Name="Features_DisplayValueDesc" ColumnName="Features_DisplayValueDesc" />
                 <ScalarProperty Name="Features_IsDeleted" ColumnName="Features_IsDeleted" />
                 <ScalarProperty Name="Features_DisplayValue" ColumnName="Features_DisplayValue" />
+                <ScalarProperty Name="Features_Id" ColumnName="Features_Id" />
                 <ScalarProperty Name="About_Url" ColumnName="About_Url" />
                 <ScalarProperty Name="About_DisplayValueDesc" ColumnName="About_DisplayValueDesc" />
                 <ScalarProperty Name="About_DisplayValue" ColumnName="About_DisplayValue" />

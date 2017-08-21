@@ -26,90 +26,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
         {
             try
             {
-                var retunGeneralAll = new HomeModels();
-
-
-
-                var returnHomeSlider = new List<HomeSlider>();
-                var returnAbout = new About();
-                var returnFeatures = new List<Features>();
-                var returnHotels = new List<Hotels>();
-                var returnOwners = new List<Owners>();
-                var returnNews = new List<News>();
-                var returnContactUs = new ContactUs();
-                var returnHotelImages = new List<HotelImages>();
-
-                var generalLogic = new GeneralLogic();
-
-                //  var getHomeViews = langId == Parameters.DefaultLang ? generalLogic.GetAll() : generalLogic.GetAllByLangId(langId);
-                var getHomeViews = generalLogic.GetAll();
-
-                foreach (var homeView in getHomeViews)
-                {
-                    if (returnHomeSlider.All(x => (x.Id) != homeView.HomeSlider_Id))
-                    {
-                        returnHomeSlider.Add(new HomeSlider
-                        {
-                            Id = homeView.HomeSlider_Id,
-                            DisplayValue = homeView.HomeSlider_DisplayValue,
-                            DisplayValueDesc = homeView.HomeSlider_DisplayValueDesc,
-                            Image = homeView.HomeSlider_Image 
-                        }); 
-                        retunGeneralAll.HomeSliders = returnHomeSlider;
-                    }
-
-                    if (returnHotels.All(x => (x.Id) != homeView.Hotel_Id))
-                    {
-                        returnHotels.Add(new Hotels
-                        {
-                            Id = homeView.Id,
-                            DisplayValue = homeView.DisplayValue,
-                            DisplayValueDesc = homeView.DisplayValueDesc
-                        });
-                        retunGeneralAll.Hotels = returnHotels;
-                    }
-                    if (returnNews.All(x => (x.Id) != homeView.News_Id))
-                    {
-                        returnNews.Add(new News
-                        {
-                            Id = homeView.News_Id,
-                            DisplayValue = homeView.News_DisplayValue,
-                            DisplayValueDesc = homeView.News_DisplayValueDesc,
-                            CreationTime = homeView.News_CreationTime
-                        });
-                        retunGeneralAll.News = returnNews;
-                    }
-
-                    if (returnFeatures.All(x => (x.DisplayValue) != homeView.Features_DisplayValue))
-                    {
-                        returnFeatures.Add(new Features
-                        {
-                            DisplayValue = homeView.Features_DisplayValue,
-                            DisplayValueDesc = homeView.Features_DisplayValueDesc,
-                            Icon = homeView.Features_Icon
-                        });
-                        retunGeneralAll.Features = returnFeatures;
-                    }
-                     
-
-                    if (returnFeatures.All(x => (x.DisplayValue) != homeView.Features_DisplayValue))
-                    {
-                        returnAbout.DisplayValue = homeView.About_DisplayValue;
-                        returnAbout.DisplayValueDesc = homeView.About_DisplayValueDesc;
-                        returnAbout.Url = homeView.About_Url; 
-                        retunGeneralAll.About = returnAbout;
-                    }
-                    if (returnHotelImages.All(x => (x.Image) != homeView.Images_Image))
-                    {
-                        returnHotelImages.Add(new HotelImages
-                        {
-                            Image = homeView.Images_Image
-                        });
-                        retunGeneralAll.Gallery = returnHotelImages;
-                    }
-
-                }
-
+                #region Hash
 
 
                 //#region HomeSlider 
@@ -385,6 +302,94 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 //retunGeneralAll.Gallery = returnHotelImages;
 
                 //#endregion
+
+                #endregion
+                var retunGeneralAll = new HomeModels();
+
+
+
+                var returnHomeSlider = new List<HomeSlider>();
+                var returnAbout = new About();
+                var returnFeatures = new List<Features>();
+                var returnHotels = new List<Hotels>();
+                var returnOwners = new List<Owners>();
+                var returnNews = new List<News>();
+                var returnContactUs = new ContactUs();
+                var returnHotelImages = new List<HotelImages>();
+
+                var generalLogic = new GeneralLogic();
+
+                var getHomeViews = langId == Parameters.DefaultLang ? generalLogic.GetAll() : generalLogic.GetAllByLangId(langId);
+                // var getHomeViews = generalLogic.GetAll();
+
+                foreach (var homeView in getHomeViews)
+                {
+                    if (returnHomeSlider.All(x => (x.Id) != homeView.HomeSlider_Id))
+                    {
+                        returnHomeSlider.Add(new HomeSlider
+                        {
+                            Id = homeView.HomeSlider_Id,
+                            DisplayValue = homeView.HomeSlider_DisplayValue,
+                            DisplayValueDesc = homeView.HomeSlider_DisplayValueDesc,
+                            Image = homeView.HomeSlider_Image
+                        });
+                    }
+
+                    if (returnHotels.All(x => (x.Id) != homeView.Hotel_Id))
+                    {
+                        returnHotels.Add(new Hotels
+                        {
+                            Id = homeView.Id,
+                            DisplayValue = homeView.DisplayValue,
+                            DisplayValueDesc = homeView.DisplayValueDesc
+                        });
+                    }
+                    if (returnNews.All(x => (x.Id) != homeView.News_Id))
+                    {
+                        returnNews.Add(new News
+                        {
+                            Id = homeView.News_Id,
+                            DisplayValue = homeView.News_DisplayValue,
+                            DisplayValueDesc = homeView.News_DisplayValueDesc,
+                            CreationTime = homeView.News_CreationTime
+                        });
+                    }
+
+                    if (returnFeatures.All(x => (x.DisplayValue) != homeView.Features_DisplayValue))
+                    {
+                        returnFeatures.Add(new Features
+                        {
+                            DisplayValue = homeView.Features_DisplayValue,
+                            DisplayValueDesc = homeView.Features_DisplayValueDesc,
+                            Icon = homeView.Features_Icon
+                        });
+                     }
+
+
+                    //if (returnAbout.Url != homeView.About_Url)
+                    //{
+                        returnAbout.DisplayValue = homeView.About_DisplayValue;
+                        returnAbout.DisplayValueDesc = homeView.About_DisplayValueDesc;
+                        returnAbout.Url = homeView.About_Url;
+                   // }
+                    if (returnHotelImages.All(x => (x.Image) != homeView.Images_Image))
+                    {
+                        returnHotelImages.Add(new HotelImages
+                        {
+                            Image = homeView.Images_Image
+                        });
+                    }
+
+                }
+                retunGeneralAll.HomeSliders = returnHomeSlider;
+                retunGeneralAll.Hotels = returnHotels;
+                retunGeneralAll.News = returnNews;
+                retunGeneralAll.Features = returnFeatures;
+                retunGeneralAll.About = returnAbout;
+                retunGeneralAll.Gallery = returnHotelImages;
+
+
+
 
                 return Request.CreateResponse(HttpStatusCode.OK, retunGeneralAll);
             }
