@@ -7,7 +7,7 @@
             <li data-target="#mega-slider" data-slide-to="@Model.HomeSliders[0].Id" class="active"></li>
             @for (var j = 1; j < Model.HomeSliders.Count; j++)
             {
-                <li data-target="#mega-slider" data-slide-to="@Model.HomeSliders[j].Id"></li>
+                <li data-target="#mega-slider" data-slide-to="@Model.HomeSliders[j]"></li>
             }
         </ol>
 

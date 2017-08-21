@@ -219,4 +219,7 @@
   <data name="SeeMore" xml:space="preserve">
     <value>شاهد المزيد</value>
   </data>
+  <data name="StyleUrl" xml:space="preserve">
+    <value>/Content/css/stylear.css</value>
+  </data>
 </root>

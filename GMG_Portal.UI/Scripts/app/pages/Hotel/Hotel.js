@@ -62,7 +62,7 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
     $scope.ShowFrmAddUpdate = false;
     $scope.basicInfo = true;
     $scope.imagesList = false;
-    $scope.featuresList = false;
+    $scope.featuresListDiv = false;
 
     HotelsApi.GetAll(CurrentLanguage).then(function (response) {
         $scope.Hotels = response.data;
@@ -77,7 +77,7 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
         $scope.ShowFrmAddUpdate = true;
         $scope.basicInfo = true;
         $scope.imagesList = false;
-        $scope.featuresList = false;
+        $scope.featuresListDiv = false;
         $scope.action = hotel == null ? 'add' : 'edit';
 
         this.isFrmAddUpdateInvalid = false;
@@ -207,11 +207,11 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
                         case 'add':
 
                             $scope.Hotels.push(angular.copy(response.data));
-                            HotelsApi.GetHotelDetails(response.Hotel.Id, CurrentLanguage).then(function (response) {
-                                $scope.HotelDetails = response.data;
-                                $scope.Hotel = response.data;
-                            });
-                            $scope.basicInfo = false;
+                            //HotelsApi.GetHotelDetails(response.Hotel.Id, CurrentLanguage).then(function (response) {
+                            //    $scope.HotelDetails = response.data;
+                            //    $scope.Hotel = response.data;
+                            //});
+                             $scope.basicInfo = false;
                             $scope.imagesList = true;
                             $rootScope.ViewLoading = false; toastr.success($('#HSaveSuccessMessage').val(), 'Success');
                             break;
@@ -387,7 +387,7 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
     }
     $scope.openImage = function (Hotel) {
         debugger;
-        $('#ModelImage').modal('show');
+        $('#ModelAddUpdateImage').modal('show');
         if (Hotel == null) Hotel = {};
         $scope.Hotel = angular.copy(Hotel);
 
@@ -404,7 +404,7 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
 
         $scope.basicInfo = false;
         $scope.imagesList = false;
-        $scope.featuresList = true;
+        $scope.featuresListDiv = true;
 
         $scope.selectedFeatures.features = [];
         $scope.hotelFeatures = [];

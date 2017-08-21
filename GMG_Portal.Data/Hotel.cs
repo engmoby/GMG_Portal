@@ -26,8 +26,8 @@ namespace GMG_Portal.Data
         public string DisplayValueDesc { get; set; }
         public Nullable<int> LookupKeyDesc { get; set; }
         public Nullable<System.Guid> LookupKeyGuidDesc { get; set; }
-        public Nullable<System.TimeSpan> CheckIn { get; set; }
-        public Nullable<System.TimeSpan> CheckOut { get; set; }
+        public string CheckIn { get; set; }
+        public string CheckOut { get; set; }
         public Nullable<decimal> Late { get; set; }
         public Nullable<decimal> Long { get; set; }
         public string DisplayValueAddress { get; set; }

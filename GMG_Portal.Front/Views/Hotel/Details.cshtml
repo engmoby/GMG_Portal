@@ -4,18 +4,18 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
- 
+
 <div class="mg-page-title parallax">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h2>@Model.DisplayValue</h2>  
+                <h2>@Model.DisplayValue</h2>
             </div>
         </div>
     </div>
 </div>
 <div class="mg-single-room-price">
-    <div class="mg-srp-inner">$@Model.PriceStart<span>/Night</span></div> 
+    <div class="mg-srp-inner">$@Model.PriceStart<span>/Night</span></div>
 </div>
 <div class="mg-single-room">
     <div class="container">
@@ -43,20 +43,21 @@
             <div class="col-md-5 mg-room-fecilities">
                 <h2 class="mg-sec-left-title">Room Fecilities</h2>
                 <div class="row">
-                 
+
                     @for (int i = 0; i < Model.FeaturesList.Count; i++)
                     {
                         if (i > 0 && i % 2 == 0)
                         {
-                            @:</div><div class="row"> 
+                @:
+            </div><div class="row">
                         }
 
-                        <div class="col-xs-6">
-                            <ul>
-                                <li><i class="@Model.FeaturesList[i].Icon"></i> @Model.FeaturesList[i].DisplayValue</li>
-                            </ul>
-                        </div>
-                    } 
+                <div class="col-xs-6">
+                    <ul>
+                        <li><i class="@Model.FeaturesList[i].Icon"></i> @Model.FeaturesList[i].DisplayValue</li>
+                    </ul>
+                </div>
+                    }
                 </div>
             </div>
         </div>
@@ -131,6 +132,6 @@
             </div>
         </div>
 
-				
+
     </div>
 </div>

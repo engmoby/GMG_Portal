@@ -234,4 +234,7 @@
   <data name="SeeMore" xml:space="preserve">
     <value>See More</value>
   </data>
+  <data name="StyleUrl" xml:space="preserve">
+    <value>Content/css/style.css</value>
+  </data>
 </root>

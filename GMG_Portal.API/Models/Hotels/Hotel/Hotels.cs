@@ -26,8 +26,8 @@ namespace GMG_Portal.API.Models.Hotels.Hotel
         public int? CreatorUserId { get; set; }
         public DateTime? DeletionTime { get; set; }
         public int? DeleterUserId { get; set; }
-        public TimeSpan? CheckIn { get; set; }
-        public TimeSpan? CheckOut { get; set; }
+        public string CheckIn { get; set; }
+        public string CheckOut { get; set; }
         public decimal? Late { get; set; }
         public decimal? Long { get; set; }
         public string DisplayValueAddress { get; set; }

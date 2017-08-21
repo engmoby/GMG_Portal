@@ -68,6 +68,9 @@
     <Compile Include="Front_Vision_Translate.cs">
       <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="HomeView.cs">
+      <DependentUpon>Portal_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Hotel.cs">
       <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>

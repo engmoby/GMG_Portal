@@ -64,6 +64,7 @@
     <Compile Include="Logic\Customer\CustomersLogic.cs" />
     <Compile Include="Logic\Customer\InvoiceStatusesLogic.cs" />
     <Compile Include="Logic\Customer\InvoiceTypesLogic.cs" />
+    <Compile Include="Logic\General\GeneralLogic.cs" />
     <Compile Include="Logic\Hotel\HotelLogicTranslate.cs" />
     <Compile Include="Logic\Hotel\OfferLogicTranslate.cs" />
     <Compile Include="Logic\Hotel\ReservationLogic.cs" />

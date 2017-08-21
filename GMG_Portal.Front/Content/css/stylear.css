@@ -1,0 +1,409 @@
+
+p{
+	text-align:right;
+	direction:rtl;}
+	
+	h1, h2, h3, h4, h5, h6{text-align:right;
+	direction:rtl;}
+	
+	.mg-sec-title h2 {
+
+    text-align: center;
+}
+
+.mg-sec-title p {
+
+    text-align: center;
+}
+
+.mg-sec-left-title:after, .mg-widget-title:after {
+
+    left: auto;
+    right: 0;
+}
+
+.mg-feature .mg-feature-icon-title i {
+
+    float: right;
+
+    margin-left: 15px;
+}
+
+.btn-main {
+
+    float: right;
+}
+
+fieldset label{
+	    text-align: center!important;
+    float: none!important;}
+
+.navbar-inverse .navbar-nav > li ul.dropdown-menu {
+
+    right: 0;
+    left: auto;
+	    text-align: right;
+    direction: rtl;
+   
+}
+
+.mg-testimonial-slider blockquote p {
+
+    text-align: center;
+}
+
+.mg-page-title h2 {
+
+    text-align: center;
+}
+
+.mg-page-title p{text-align: center;}
+
+address {
+
+    text-align: right;
+}
+
+.mg-footer-nav > li {
+    float: right;}
+	
+	.mg-booking-form .nav-tabs > li > a span.mg-bs-bar {
+
+    left: -50%;
+    right: 0;}
+	
+	.nav-tabs>li {
+    float: right;}
+	
+
+.navbar-header {
+    float: right!important;
+}
+
+.navbar-nav>li {
+    float: right!important;
+}
+
+.header .navbar-collapse.collapse {
+
+    float: left;
+}
+
+.mg-search-box-cont {
+
+    float: left!important;}
+	
+	.col-md-1,  .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6 {
+
+}
+
+.col-sm-6{
+	float:right;}
+	
+	.mg-available-rooms .mg-room-fecilities ul {
+
+    text-align: right;
+}
+
+.mg-room-fecilities ul li i {
+    margin-left: 10px;
+    float: right;
+}
+
+.mg-book-form-input {
+
+    text-align: right;
+    direction: rtl;
+}
+
+.mg-widget {
+
+    text-align: right;
+    direction: rtl;
+}
+	
+
+.mg-book-now .mg-bn-title {
+ 
+    box-shadow: none;
+    border-left: 3px solid #e7b315;
+    padding-left: 0px;
+    padding-right: 0px;
+    text-align: right;
+    direction: rtl;
+}
+
+.input-group-addon:first-child {
+    border-right: 1px solid #fff;
+}
+
+.input-group {
+
+    text-align: right;
+    direction: rtl;
+}
+
+.cs-select > span {
+    padding-left: 2em;
+	 padding-right: 0;
+}
+
+.cs-select > span::after {
+    
+    left: 1em;
+	   
+}
+.mg-room {
+
+    text-align: right;
+    direction: rtl;
+}
+
+.fa {
+    display: inline;}
+	
+	.mg-room figcaption .mg-room-rating {
+
+    float: left;}
+	
+	.mg-room figcaption .btn.btn-main {
+    float: left;}
+	
+	
+	.mg-widget-cart-row strong {
+
+    margin-left: 5px;
+}
+
+.alert-success {
+
+    text-align: right;
+	 direction: rtl;
+}
+
+.alert-success .close {
+ 
+    left: 0;
+    float: left;
+}
+
+.alert-success .mg-alert-payment {
+
+    margin-right: 20px;}
+	
+	.alert-info {
+
+    text-align: right;
+    direction: rtl;
+}
+
+.alert-info .close {
+
+    left: 0;
+    right: auto;
+	    float: left;
+}
+
+
+.alert-warning {
+    border-color: #f6e4bd;
+    background-color: #fdf8ed;
+    color: #d3a33b;
+    text-align: right;
+    direction: rtl;
+}
+
+.alert-warning .close {
+
+    left: 0;
+    right: auto;
+	    float: left;
+}
+
+.alert-danger {
+    border-color: #faced3;
+    background-color: #fceaec;
+    color: #e74659;
+    text-align: right;
+    direction: rtl;
+}
+.alert-danger .close {
+
+    left: 0;
+    right: auto;
+	    float: left;
+}
+
+.mg-progress-bar-left {
+left: auto!important;
+    right: 0;
+}
+
+
+.progress-bar {
+    float: right;}
+	
+	.mg-progress-bar-popup{    left: 0;}
+	
+	.mg-post .mg-post-meta span:last-child:after {
+    content: '/';
+        padding-left: 15px;
+}
+
+	.mg-post .mg-post-meta span:first-child:after {
+    content: '';
+        padding-left: 0px;
+}
+
+.mg-post .mg-post-meta span:after {
+    content: '/';
+    padding-right: 0px;
+    color: #ced4d7;
+    padding-left: 9px;
+}
+
+.mg-post .mg-post-meta {
+
+    float: right;
+    width: 100%;
+}
+
+.mg-post .mg-post-meta span {
+        padding-left: 0px;
+    float: right;
+}
+
+.tagcloud a {
+
+    float: right;
+}
+
+.media .media-body span {
+
+    text-align: right;
+}
+
+.media .media-body .btn-comment-reply {
+
+    left: 0;
+	right:auto;
+}
+
+form{    text-align: right;
+    direction: rtl;}
+	
+	.mg-available-rooms .mg-avl-room-title span {
+
+    float: left;
+}
+
+.mg-room-fecilities ul li {
+
+    text-align: right;
+}
+
+.mg-reviews .media .media-body .mg-media-user-rating {
+    display: inline-block;
+    float: right;
+    margin-top: 9px;
+    margin-right: 11px;
+}
+
+.media-heading{float:right;}
+
+.mg-reviews .media .media-body .media-date {
+    float: left;
+ 
+}
+
+.mg-reviews .media .media-body p {
+
+    width: 100%;
+    overflow: hidden;
+}
+
+.mg-post .mg-read-more {
+
+    float: right;
+}
+
+fieldset {
+    text-align: center;
+    direction: rtl;
+}
+
+.mg-contact-info li {
+     
+    text-align: right;
+}
+
+.mg-contact-info li i {
+
+    margin-left: 15px;}
+	
+	.mg-404-error-txt .mg-404-txt-search {
+     text-align: right;
+    margin-right: 23px;
+    float: right;
+    overflow: hidden;
+    max-width: 61%;
+    direction: rtl;
+    margin-top: 34px;
+}
+	
+	.mg-404-error-txt .mg-404-txt-search p {
+ 
+    text-align: right;
+}
+
+.mg-404-error-txt .mg-404-txt-search .mg-404-search-form input {
+   
+    float: right;
+   
+    border: 1px solid #fff;
+}
+
+.mg-404-error-txt .mg-404-txt-search .mg-404-search-form button {
+
+    float: right;
+   
+}
+
+.carousel-inner .item.active .carousel-caption > h2 {
+
+    text-align: center;
+}
+
+.carousel-inner .item.active .carousel-caption > p {
+
+    text-align: center;
+}
+
+.mg-testimonial-slider blockquote footer {
+
+    text-align: center;
+}
+
+@media (min-width: 992px)
+{
+.col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9 {
+    float: right;
+}
+
+}
+@media all and (max-width: 768px){
+.mg-book-now .mg-bn-forms {
+    padding: 36px 0px;
+   overflow: hidden; 
+    width: 100%;
+}
+
+.navbar-header {
+    float: none!important;
+}
+
+.navbar-nav>li {
+    float: none!important;
+	    text-align: right;
+}
+}

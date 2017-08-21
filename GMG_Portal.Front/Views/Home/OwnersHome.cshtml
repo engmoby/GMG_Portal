@@ -1,50 +1,54 @@
 ﻿@*@model  Front.Models.HomeModels*@
 @model GMG_Portal.API.Models.General.HomeModels
+@if (Model.Owners != null)
+{
+    <div class="mg-about-testimonial parallax">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="mg-sec-title">
+                        <h2>@Front.Resources.Global.Home_OwnersTitle</h2>
+                        <p>@Front.Resources.Global.Home_OwnersDesc</p>
+                    </div>
+                    <div class="mg-testimonial-slider" id="mg-testimonial-slider">
+                        @{
+                            for (var i = 0; i < Model.Owners.Count; i++)
+                            {
+                                <blockquote>
 
-<div class="mg-about-testimonial parallax">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="mg-sec-title">
-                    <h2>@Front.Resources.Global.Home_OwnersTitle</h2>
-                    <p>@Front.Resources.Global.Home_OwnersDesc</p>
-                </div>
-                <div class="mg-testimonial-slider" id="mg-testimonial-slider">
-                    @{
-                        for (var i = 0; i < Model.Owners.Count; i++)
-                        {
-                            <blockquote>
+                                    @if (@Model.Owners[i].DisplayValueName.Length >= 20)
+                                    {
+                                        <p>@Model.Owners[i].DisplayValueName.Substring(0, 20)</p>
+                                    }
+                                    else
+                                    {
+                                        <p>@Model.Owners[i].DisplayValueName</p>
 
-                                @if (@Model.Owners[i].DisplayValueName.Length >= 20)
-                                {
-                                    <p>@Model.Owners[i].DisplayValueName.Substring(0, 20)</p>
-                                }
-                                else
-                                {
-                                    <p>@Model.Owners[i].DisplayValueName</p>
-
-                                }
-                                @if (@Model.Owners[i].DisplayValuePosition.Length >= 20)
-                                {
-                                    <p>@Model.Owners[i].DisplayValuePosition.Substring(0, 20)</p>
-                                }
-                                else
-                                {
-                                    <p>@Model.Owners[i].DisplayValuePosition</p>
-                                }
-                                @if (@Model.Owners[i].DisplayValueDesc.Length >= 200)
-                                {
-                                    <footer> <p>@Model.Owners[i].DisplayValueDesc.Substring(0, 200)</p></footer>
-                                }
-                                else
-                                {
-                                    <footer> <p>@Model.Owners[i].DisplayValueDesc</p></footer>
-                                } 
-                            </blockquote>
+                                    }
+                                    @if (@Model.Owners[i].DisplayValuePosition.Length >= 20)
+                                    {
+                                        <p>@Model.Owners[i].DisplayValuePosition.Substring(0, 20)</p>
+                                    }
+                                    else
+                                    {
+                                        <p>@Model.Owners[i].DisplayValuePosition</p>
+                                    }
+                                    @if (@Model.Owners[i].DisplayValueDesc.Length >= 200)
+                                    {
+                                        <footer>
+                                            <p>@Model.Owners[i].DisplayValueDesc.Substring(0, 200)</p></footer>
+                                    }
+                                    else
+                                    {
+                                        <footer>
+                                            <p>@Model.Owners[i].DisplayValueDesc</p></footer>
+                                    }
+                                </blockquote>
+                            }
                         }
-                    }
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+}

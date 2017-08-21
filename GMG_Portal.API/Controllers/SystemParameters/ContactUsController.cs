@@ -30,13 +30,13 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 if (langId == Parameters.DefaultLang)
                 {
                     var obj = contactUsLogic.GetAll();
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<SystemParameters_ContactUs>>(obj));
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<SystemParameters_ContactUs>(obj));
                 }
                 else
 
                 {
                     var objByLang = contactUsLogicTranslate.GetAll(langId);
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<SystemParameters_ContactUs_Translate>>(objByLang));
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<SystemParameters_ContactUs_Translate>(objByLang));
                 }
             }
             catch (Exception ex)

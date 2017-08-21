@@ -22,6 +22,7 @@
     <link href="~/Content/css/cs-select.css" rel="stylesheet">
     <link href="~/Content/css/bootstrap-datepicker3.min.css" rel="stylesheet">
     <link href="~/Content/css/freepik.hotels.css" rel="stylesheet">
+    <link href="@Front.Resources.Global.StyleUrl" rel="stylesheet">
     <link href="~/Content/css/style.css" rel="stylesheet">
 
     <script src="~/Content/js/modernizr.custom.min.js"></script>
@@ -152,6 +153,7 @@
 </head>
 <body>
     <input type="hidden" id="HServicesURL" value="@System.Configuration.ConfigurationManager.AppSettings["ServerIp"]" />
+<input type="hidden" name="HCurrentLang" id="HCurrentLang" value="en">
 
 
     <!-- Menu and Search Button -->
@@ -264,6 +266,7 @@
 
         $(document).ready(function () {
             var apiUrl = document.querySelector('#HServicesURL').value;
+            var currentLang = document.querySelector('#HCurrentLang').value;
             document.getElementById("HotelMore").style.display = "none";
 
             //$.blockUI({
@@ -284,7 +287,7 @@
             //    console.log(json); // this will show the info it in firebug console
             //});
             $.ajax({
-                url: apiUrl + "/SystemParameters/Hotels/GetAllWithCount",
+                url: apiUrl + "/SystemParameters/Hotels/GetAllWithCount?langId=" + currentLang,
                 type: "Get",
                 success: function (data) {
                     var more = "View More";
@@ -329,7 +332,7 @@
 
             /*load footer data*/
             $.ajax({
-                url: apiUrl + "/SystemParameters/ContactUs/GetAll",
+                url: apiUrl + "/SystemParameters/ContactUs/GetAll?langId=" + currentLang,
                 type: "Get",
                 success: function (data) {
                     $(
@@ -347,7 +350,7 @@
                     $(
                         "<li>" + "<a target='Blank' href='" + data.Facebook + "'>" + "<i class='fa fa-facebook'></i>" + "</i></a>"
                         + "<li>" + "<a target='Blank' href='" + data.Twitter + "'>" + "<i class='fa fa-twitter'></i>" + "</i></a>"
-                        + "<li>" + "<a target='Blank' href='" + data.Instgram + "'>" + "<i class='fa fa-pinterest'></i>" + "</i></a>" 
+                        + "<li>" + "<a target='Blank' href='" + data.Instgram + "'>" + "<i class='fa fa-instagram'></i>" + "</i></a>"
                         + "<li>" + "<a target='Blank' href='" + data.Youtube + "'>" + "<i class='fa fa-youtube'></i>" + "</i></a>"
                     ).appendTo("#divsocial");
 

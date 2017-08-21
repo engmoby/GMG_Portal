@@ -410,5 +410,14 @@ namespace Front.Resources {
                 return ResourceManager.GetString("SeeMore", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Content/css/style.css.
+        /// </summary>
+        public static string StyleUrl {
+            get {
+                return ResourceManager.GetString("StyleUrl", resourceCulture);
+            }
+        }
     }
 }
