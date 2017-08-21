@@ -113,8 +113,8 @@
           <Property Name="LookupKeyGuidDesc" Type="uniqueidentifier" />
           <Property Name="CheckIn" Type="nvarchar" MaxLength="50" />
           <Property Name="CheckOut" Type="nvarchar" MaxLength="50" />
-          <Property Name="Late" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="Long" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Late" Type="float" />
+          <Property Name="Long" Type="float" />
           <Property Name="DisplayValueAddress" Type="nvarchar(max)" />
           <Property Name="LookupKeyAddress" Type="int" />
           <Property Name="LookupKeyGuidAddress" Type="uniqueidentifier" />
@@ -258,8 +258,8 @@
           <Property Name="LookupKeyGuidDesc" Type="uniqueidentifier" />
           <Property Name="CheckIn" Type="nvarchar" MaxLength="50" />
           <Property Name="CheckOut" Type="nvarchar" MaxLength="50" />
-          <Property Name="Late" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="Long" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Late" Type="float" />
+          <Property Name="Long" Type="float" />
           <Property Name="DisplayValueAddress" Type="nvarchar(max)" />
           <Property Name="LookupKeyAddress" Type="int" />
           <Property Name="LookupKeyGuidAddress" Type="uniqueidentifier" />
@@ -274,6 +274,7 @@
           <Property Name="DeleterUserId" Type="int" />
           <Property Name="Show" Type="bit" Nullable="false" />
           <Property Name="langId" Type="varchar" MaxLength="10" />
+          <Property Name="Original_HotelId" Type="int" />
         </EntityType>
         <EntityType Name="Hotles_Offers">
           <Key>
@@ -978,6 +979,7 @@ warning 6002: The table/view 'GMG_PORTAL_STAG.dbo.HomeView' does not have a prim
           <Property Name="DisplayValue" Type="nvarchar" MaxLength="50" />
           <Property Name="DisplayValueDesc" Type="nvarchar(max)" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="PriceStart" Type="int" />
           <Property Name="News_Id" Type="int" Nullable="false" />
           <Property Name="News_DisplayValue" Type="nvarchar" MaxLength="50" />
           <Property Name="News_IsDeleted" Type="bit" Nullable="false" />
@@ -1049,6 +1051,7 @@ warning 6002: The table/view 'GMG_PORTAL_STAG.dbo.HomeView' does not have a prim
     [HomeView].[DisplayValue] AS [DisplayValue], 
     [HomeView].[DisplayValueDesc] AS [DisplayValueDesc], 
     [HomeView].[IsDeleted] AS [IsDeleted], 
+    [HomeView].[PriceStart] AS [PriceStart], 
     [HomeView].[News_Id] AS [News_Id], 
     [HomeView].[News_DisplayValue] AS [News_DisplayValue], 
     [HomeView].[News_IsDeleted] AS [News_IsDeleted], 
@@ -2025,8 +2028,8 @@ warning 6002: The table/view 'GMG_PORTAL_STAG.dbo.HomeView' does not have a prim
           <Property Name="LookupKeyGuidDesc" Type="Guid" />
           <Property Name="CheckIn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CheckOut" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Late" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="Long" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Late" Type="Double" />
+          <Property Name="Long" Type="Double" />
           <Property Name="DisplayValueAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="LookupKeyAddress" Type="Int32" />
           <Property Name="LookupKeyGuidAddress" Type="Guid" />
@@ -2059,8 +2062,8 @@ warning 6002: The table/view 'GMG_PORTAL_STAG.dbo.HomeView' does not have a prim
           <Property Name="LookupKeyGuidDesc" Type="Guid" />
           <Property Name="CheckIn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CheckOut" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Late" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="Long" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Late" Type="Double" />
+          <Property Name="Long" Type="Double" />
           <Property Name="DisplayValueAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="LookupKeyAddress" Type="Int32" />
           <Property Name="LookupKeyGuidAddress" Type="Guid" />
@@ -2075,6 +2078,7 @@ warning 6002: The table/view 'GMG_PORTAL_STAG.dbo.HomeView' does not have a prim
           <Property Name="DeleterUserId" Type="Int32" />
           <Property Name="Show" Type="Boolean" Nullable="false" />
           <Property Name="langId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Original_HotelId" Type="Int32" />
         </EntityType>
         <EntityType Name="HomeView">
           <Key>
@@ -2093,6 +2097,7 @@ warning 6002: The table/view 'GMG_PORTAL_STAG.dbo.HomeView' does not have a prim
           <Property Name="DisplayValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="DisplayValueDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="PriceStart" Type="Int32" />
           <Property Name="News_Id" Type="Int32" Nullable="false" />
           <Property Name="News_DisplayValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="News_IsDeleted" Type="Boolean" Nullable="false" />
@@ -3084,6 +3089,7 @@ warning 6002: The table/view 'GMG_PORTAL_STAG.dbo.HomeView' does not have a prim
           <EntitySetMapping Name="Hotels_Translate">
             <EntityTypeMapping TypeName="GMG_Portal_DBModel.Hotels_Translate">
               <MappingFragment StoreEntitySet="Hotels_Translate">
+                <ScalarProperty Name="Original_HotelId" ColumnName="Original_HotelId" />
                 <ScalarProperty Name="langId" ColumnName="langId" />
                 <ScalarProperty Name="Show" ColumnName="Show" />
                 <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
@@ -3141,6 +3147,7 @@ warning 6002: The table/view 'GMG_PORTAL_STAG.dbo.HomeView' does not have a prim
                 <ScalarProperty Name="News_IsDeleted" ColumnName="News_IsDeleted" />
                 <ScalarProperty Name="News_DisplayValue" ColumnName="News_DisplayValue" />
                 <ScalarProperty Name="News_Id" ColumnName="News_Id" />
+                <ScalarProperty Name="PriceStart" ColumnName="PriceStart" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="DisplayValueDesc" ColumnName="DisplayValueDesc" />
                 <ScalarProperty Name="DisplayValue" ColumnName="DisplayValue" />

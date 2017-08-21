@@ -28,8 +28,8 @@ namespace GMG_Portal.Data
         public Nullable<System.Guid> LookupKeyGuidDesc { get; set; }
         public string CheckIn { get; set; }
         public string CheckOut { get; set; }
-        public Nullable<decimal> Late { get; set; }
-        public Nullable<decimal> Long { get; set; }
+        public Nullable<double> Late { get; set; }
+        public Nullable<double> Long { get; set; }
         public string DisplayValueAddress { get; set; }
         public Nullable<int> LookupKeyAddress { get; set; }
         public Nullable<System.Guid> LookupKeyGuidAddress { get; set; }
@@ -44,5 +44,6 @@ namespace GMG_Portal.Data
         public Nullable<int> DeleterUserId { get; set; }
         public bool Show { get; set; }
         public string langId { get; set; }
+        public Nullable<int> Original_HotelId { get; set; }
     }
 }

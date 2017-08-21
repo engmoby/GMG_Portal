@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Front.Helpers;
 using GMG_Portal.API.Models.Hotels.Hotel;
+using GMG_Portal.Data;
 using Newtonsoft.Json;
 
 namespace Front.Controllers
@@ -50,15 +51,15 @@ namespace Front.Controllers
         {
            // string hotelDetails = url + "Hotels/GetHotelDetails/"+ id+ "?langId=\" + Common.CurrentLang";
             string hotelDetails = url + "Hotels/GetHotelDetails/"+ id+ "?langId=" + Helpers.Common.CurrentLang;
-            var hotelModels = new Hotels();
+            var hotelModels = new Hotel();
 
             if (hotelDetails == null) throw new ArgumentNullException(nameof(hotelDetails));
             HttpResponseMessage responseMessageApi = await _client.GetAsync(hotelDetails);
             if (responseMessageApi.IsSuccessStatusCode)
             {
                 var responseData = responseMessageApi.Content.ReadAsStringAsync().Result;
-                hotelModels = JsonConvert.DeserializeObject<Hotels>(responseData);
-               
+               var obj  = JsonConvert.DeserializeObject<Hotel>(responseData);
+                hotelModels = obj;
             }
 
             return View(hotelModels);

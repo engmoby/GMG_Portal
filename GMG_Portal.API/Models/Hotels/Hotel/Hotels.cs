@@ -28,8 +28,8 @@ namespace GMG_Portal.API.Models.Hotels.Hotel
         public int? DeleterUserId { get; set; }
         public string CheckIn { get; set; }
         public string CheckOut { get; set; }
-        public decimal? Late { get; set; }
-        public decimal? Long { get; set; }
+        public double? Late { get; set; }
+        public double? Long { get; set; }
         public string DisplayValueAddress { get; set; }
         public int? LookupKeyAddress { get; set; }
         public Guid? LookupKeyGuidAddress { get; set; }
@@ -42,5 +42,7 @@ namespace GMG_Portal.API.Models.Hotels.Hotel
         public int? Rate { get; set; }
         public bool HasImage { get; set; }
         public string langId { get; set; }
+        public int? Original_HotelId { get; set; }
+
     }
 }

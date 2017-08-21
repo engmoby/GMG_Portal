@@ -23,10 +23,15 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             var getHotelInfo = _db.Hotels.ToList();
             foreach (var hotel in getHotelInfo)
             {
+                var haveFeature = true;
+
                 var getHotelImages = _db.Hotels_Images.Where(p => p.IsDeleted != true && p.Hotel_Id == hotel.Id).ToList();
+                var getHotelFeatures = _db.Hotels_Features.FirstOrDefault(p => p.IsDeleted != true && p.Hotel_Id == hotel.Id);
 
                 if (getHotelImages.Any())
                 {
+                    if (getHotelFeatures == null)
+                        haveFeature = false;
                     returnList.Add(new Hotel
                     {
                         Id = hotel.Id,
@@ -35,9 +40,12 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                         Rate = hotel.Rate,
                         PriceStart = hotel.PriceStart,
                         IsDeleted = hotel.IsDeleted,
-                        HasImage = true,
+                        HasImage = haveFeature,
                         Image = getHotelImages[0].Image,
-                        Bootstrap = 12 / getHotelInfo.Count
+                        Late = hotel.Late,
+                        Long = hotel.Long,
+                        CheckIn = hotel.CheckIn,
+                        CheckOut = hotel.CheckOut,
                     });
                 }
                 else
@@ -51,9 +59,13 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                         IsDeleted = hotel.IsDeleted,
                         PriceStart = hotel.PriceStart,
                         HasImage = false,
-                        Bootstrap = 12 / getHotelInfo.Count
+                        Late = hotel.Late,
+                        Long = hotel.Long,
+                        CheckIn = hotel.CheckIn,
+                        CheckOut = hotel.CheckOut
                     });
                 }
+
             }
 
             return returnList;
@@ -66,9 +78,12 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             foreach (var hotel in getHotelInfo)
             {
                 var getHotelImages = _db.Hotels_Images.Where(p => p.IsDeleted != true && p.Hotel_Id == hotel.Id).ToList();
+                var getHotelFeatures = _db.Hotels_Features.FirstOrDefault(p => p.IsDeleted != true && p.Hotel_Id == hotel.Id);
 
                 if (getHotelImages.Any())
                 {
+                    if (getHotelFeatures == null)
+                        continue;
                     returnList.Add(new Hotel
                     {
                         Id = hotel.Id,
@@ -175,6 +190,10 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 returnList.DisplayValueDesc = getHotelInfo.DisplayValueDesc;
                 returnList.Rate = getHotelInfo.Rate;
                 returnList.PriceStart = getHotelInfo.PriceStart;
+                returnList.Late = getHotelInfo.Late;
+                returnList.Long = getHotelInfo.Long;
+                returnList.CheckIn = getHotelInfo.CheckIn;
+                returnList.CheckOut = getHotelInfo.CheckOut;
                 returnList.FeaturesList = featuresList;
 
                 return returnList;
@@ -220,6 +239,10 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 returnList.Rate = getHotelInfo.Rate;
                 returnList.PriceStart = getHotelInfo.PriceStart;
                 returnList.FeaturesList = featuresList;
+                returnList.Late = getHotelInfo.Late;
+                returnList.Long = getHotelInfo.Long;
+                returnList.CheckIn = getHotelInfo.CheckIn;
+                returnList.CheckOut = getHotelInfo.CheckOut;
 
                 return returnList;
             }
@@ -295,6 +318,10 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 IsDeleted = postedhotel.IsDeleted,
                 Show = Parameters.Show,
                 PriceStart = postedhotel.PriceStart,
+                Late = postedhotel.Late,
+                Long = postedhotel.Long,
+                CheckIn = postedhotel.CheckIn,
+                CheckOut = postedhotel.CheckOut,
                 ImageList = postedhotel.ImageList,
                 CreationTime = Parameters.CurrentDateTime,
                 CreatorUserId = Parameters.UserId,
@@ -310,6 +337,10 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             hotel.IsDeleted = postedHotel.IsDeleted;
             hotel.ImageList = postedHotel.ImageList;
             hotel.PriceStart = postedHotel.PriceStart;
+            hotel.Late = postedHotel.Late;
+            hotel.Long = postedHotel.Long;
+            hotel.CheckIn = postedHotel.CheckIn;
+            hotel.CheckOut = postedHotel.CheckOut;
             hotel.LastModificationTime = Parameters.CurrentDateTime;
             hotel.LastModifierUserId = Parameters.UserId;
 

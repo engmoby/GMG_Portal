@@ -1,15 +1,25 @@
 
+
+.wpb_wrapper h5, h3, h4{    line-height: 26px;
+    font-family: "Open Sans";}
+
 p{
-	text-align:right;
-	direction:rtl;}
+    text-align:right;
+    direction:rtl;}
 	
-	h1, h2, h3, h4, h5, h6{text-align:right;
-	direction:rtl;}
+h1, h2, h3, h4, h5, h6{text-align:right;
+    direction:rtl;}
 	
-	.mg-sec-title h2 {
+.mg-sec-title h2 {
 
     text-align: center;
 }
+
+.mg-contact-info li i {
+
+    float: right;
+}
+
 
 .mg-sec-title p {
 
@@ -35,14 +45,14 @@ p{
 }
 
 fieldset label{
-	    text-align: center!important;
+    text-align: center!important;
     float: none!important;}
 
 .navbar-inverse .navbar-nav > li ul.dropdown-menu {
 
     right: 0;
     left: auto;
-	    text-align: right;
+    text-align: right;
     direction: rtl;
    
 }
@@ -67,12 +77,12 @@ address {
 .mg-footer-nav > li {
     float: right;}
 	
-	.mg-booking-form .nav-tabs > li > a span.mg-bs-bar {
+.mg-booking-form .nav-tabs > li > a span.mg-bs-bar {
 
     left: -50%;
     right: 0;}
 	
-	.nav-tabs>li {
+.nav-tabs>li {
     float: right;}
 	
 
@@ -93,14 +103,14 @@ address {
 
     float: left!important;}
 	
-	.col-md-1,  .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6 {
+.col-md-1,  .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6 {
 
 }
 
 .col-sm-6{
-	float:right;}
+    float:right;}
 	
-	.mg-available-rooms .mg-room-fecilities ul {
+.mg-available-rooms .mg-room-fecilities ul {
 
     text-align: right;
 }
@@ -145,7 +155,7 @@ address {
 
 .cs-select > span {
     padding-left: 2em;
-	 padding-right: 0;
+    padding-right: 0;
 }
 
 .cs-select > span::after {
@@ -162,15 +172,15 @@ address {
 .fa {
     display: inline;}
 	
-	.mg-room figcaption .mg-room-rating {
+.mg-room figcaption .mg-room-rating {
 
     float: left;}
 	
-	.mg-room figcaption .btn.btn-main {
+.mg-room figcaption .btn.btn-main {
     float: left;}
 	
 	
-	.mg-widget-cart-row strong {
+.mg-widget-cart-row strong {
 
     margin-left: 5px;
 }
@@ -178,7 +188,7 @@ address {
 .alert-success {
 
     text-align: right;
-	 direction: rtl;
+    direction: rtl;
 }
 
 .alert-success .close {
@@ -191,7 +201,7 @@ address {
 
     margin-right: 20px;}
 	
-	.alert-info {
+.alert-info {
 
     text-align: right;
     direction: rtl;
@@ -201,7 +211,7 @@ address {
 
     left: 0;
     right: auto;
-	    float: left;
+    float: left;
 }
 
 
@@ -217,7 +227,7 @@ address {
 
     left: 0;
     right: auto;
-	    float: left;
+    float: left;
 }
 
 .alert-danger {
@@ -231,11 +241,11 @@ address {
 
     left: 0;
     right: auto;
-	    float: left;
+    float: left;
 }
 
 .mg-progress-bar-left {
-left: auto!important;
+    left: auto!important;
     right: 0;
 }
 
@@ -243,16 +253,16 @@ left: auto!important;
 .progress-bar {
     float: right;}
 	
-	.mg-progress-bar-popup{    left: 0;}
+.mg-progress-bar-popup{    left: 0;}
 	
-	.mg-post .mg-post-meta span:last-child:after {
+.mg-post .mg-post-meta span:last-child:after {
     content: '/';
-        padding-left: 15px;
+    padding-left: 15px;
 }
 
-	.mg-post .mg-post-meta span:first-child:after {
+.mg-post .mg-post-meta span:first-child:after {
     content: '';
-        padding-left: 0px;
+    padding-left: 0px;
 }
 
 .mg-post .mg-post-meta span:after {
@@ -269,7 +279,7 @@ left: auto!important;
 }
 
 .mg-post .mg-post-meta span {
-        padding-left: 0px;
+    padding-left: 0px;
     float: right;
 }
 
@@ -286,13 +296,13 @@ left: auto!important;
 .media .media-body .btn-comment-reply {
 
     left: 0;
-	right:auto;
+    right:auto;
 }
 
 form{    text-align: right;
     direction: rtl;}
 	
-	.mg-available-rooms .mg-avl-room-title span {
+.mg-available-rooms .mg-avl-room-title span {
 
     float: left;
 }
@@ -341,8 +351,8 @@ fieldset {
 
     margin-left: 15px;}
 	
-	.mg-404-error-txt .mg-404-txt-search {
-     text-align: right;
+.mg-404-error-txt .mg-404-txt-search {
+    text-align: right;
     margin-right: 23px;
     float: right;
     overflow: hidden;
@@ -351,7 +361,7 @@ fieldset {
     margin-top: 34px;
 }
 	
-	.mg-404-error-txt .mg-404-txt-search p {
+.mg-404-error-txt .mg-404-txt-search p {
  
     text-align: right;
 }
@@ -386,24 +396,24 @@ fieldset {
 
 @media (min-width: 992px)
 {
-.col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9 {
-    float: right;
-}
+    .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9 {
+        float: right;
+    }
 
 }
 @media all and (max-width: 768px){
-.mg-book-now .mg-bn-forms {
-    padding: 36px 0px;
-   overflow: hidden; 
-    width: 100%;
-}
+    .mg-book-now .mg-bn-forms {
+        padding: 36px 0px;
+        overflow: hidden; 
+        width: 100%;
+    }
 
-.navbar-header {
-    float: none!important;
-}
+    .navbar-header {
+        float: none!important;
+    }
 
-.navbar-nav>li {
-    float: none!important;
-	    text-align: right;
-}
+    .navbar-nav>li {
+        float: none!important;
+        text-align: right;
+    }
 }

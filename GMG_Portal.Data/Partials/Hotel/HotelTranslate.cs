@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GMG_Portal.Data
 {
-    public partial class Hotel
+    public partial class Hotels_Translate
     {
         [NotMapped]
         public string Image { get; set; }
@@ -16,5 +16,6 @@ namespace GMG_Portal.Data
         public List<SystemParameters_Features> FeaturesList { get; set; }
         public List<Hotels_Images> ImageList { get; set; }
         public bool HasImage { get; set; }
+
     }
 }

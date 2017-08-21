@@ -91,6 +91,8 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
             });
 
         }
+        hotel.CheckIn = new Date(hotel.CheckIn);
+        hotel.CheckOut = new Date(hotel.CheckOut);
         $scope.Hotel = angular.copy(hotel);
 
 
@@ -174,7 +176,7 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
         debugger;
         $rootScope.ViewLoading = true;
         $scope.Hotel.LangId = CurrentLanguage;
-        $scope.back();
+      //  $scope.back();
 
         HotelsApi.Save($scope.Hotel).then(function (response) {
 
@@ -473,6 +475,8 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
             //    }
             //}
             data.append("uploadedFile", $scope.files[i]);
+
+            if ($scope.Hotel.ImageList != null || $scope.Hotel.ImageList != 0) {
             $scope.Hotel.ImageList.push(
                 {
                     "Id": 0,
@@ -480,6 +484,17 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
                     "Image": $scope.files[i].name
                 }
             );
+                
+            } else {
+                $scope.Hotel.ImageList = [];
+                $scope.Hotel.ImageList.push(
+                    {
+                        "Id": 0,
+                        "Hotel_Id": $scope.HotelDetails.Id,
+                        "Image": $scope.files[i].name
+                    }
+                );
+            }
 
         }
 
@@ -556,6 +571,7 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
     $scope.saveFeatures = function () {
         $rootScope.ViewLoading = true;
         debugger;
+        $scope.logModels();
         // $scope.selectedFeatures.features.HotelId = $scope.Hotel.Id;
         for (var i = 0; i < $scope.sortingLogId.length; i++) {
             $scope.saveSelectedFeatures.push({

@@ -1,4 +1,4 @@
-﻿@model GMG_Portal.API.Models.Hotels.Hotel.Hotels
+﻿@model GMG_Portal.Data.Hotel
 
 @{
     ViewBag.Title = "Details";
@@ -48,10 +48,8 @@
                     {
                         if (i > 0 && i % 2 == 0)
                         {
-                @:
-            </div><div class="row">
+                            @:</div><div class="row"> 
                         }
-
                 <div class="col-xs-6">
                     <ul>
                         <li><i class="@Model.FeaturesList[i].Icon"></i> @Model.FeaturesList[i].DisplayValue</li>

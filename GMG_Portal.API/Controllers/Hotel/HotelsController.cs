@@ -77,7 +77,7 @@ namespace GMG_Portal.API.Controllers.Hotel
                 else
                 {
                     var objByLang = hotelTranslateLogic.GetAllWithDeleted(langId);
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Data.Hotel>>(objByLang));
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Data.Hotels_Translate>>(objByLang));
                 }
             }
             catch (Exception ex)

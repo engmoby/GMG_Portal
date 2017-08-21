@@ -18,6 +18,7 @@ namespace GMG_Portal.Data
         public string DisplayValue { get; set; }
         public string DisplayValueDesc { get; set; }
         public bool IsDeleted { get; set; }
+        public Nullable<int> PriceStart { get; set; }
         public int News_Id { get; set; }
         public string News_DisplayValue { get; set; }
         public bool News_IsDeleted { get; set; }

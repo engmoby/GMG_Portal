@@ -341,7 +341,9 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                         {
                             Id = homeView.Id,
                             DisplayValue = homeView.DisplayValue,
-                            DisplayValueDesc = homeView.DisplayValueDesc
+                            DisplayValueDesc = homeView.DisplayValueDesc,
+                            Image = homeView.Images_Image,
+                            PriceStart = homeView.PriceStart
                         });
                     }
                     if (returnNews.All(x => (x.Id) != homeView.News_Id))
@@ -355,7 +357,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                         });
                     }
 
-                    if (returnFeatures.All(x => (x.DisplayValue) != homeView.Features_DisplayValue))
+                    if (returnFeatures.All(x => (x.Id) != homeView.Features_Id))
                     {
                         returnFeatures.Add(new Features
                         {
@@ -366,12 +368,12 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                      }
 
 
-                    //if (returnAbout.Url != homeView.About_Url)
-                    //{
+                    if (returnAbout.Url != homeView.About_Url)
+                    {
                         returnAbout.DisplayValue = homeView.About_DisplayValue;
                         returnAbout.DisplayValueDesc = homeView.About_DisplayValueDesc;
                         returnAbout.Url = homeView.About_Url;
-                   // }
+                   }
                     if (returnHotelImages.All(x => (x.Image) != homeView.Images_Image))
                     {
                         returnHotelImages.Add(new HotelImages

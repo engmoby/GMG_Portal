@@ -153,7 +153,7 @@
 </head>
 <body>
     <input type="hidden" id="HServicesURL" value="@System.Configuration.ConfigurationManager.AppSettings["ServerIp"]" />
-<input type="hidden" name="HCurrentLang" id="HCurrentLang" value="en">
+    <input type="hidden" name="HCurrentLang" id="HCurrentLang" value="en">
 
 
     <!-- Menu and Search Button -->
@@ -269,6 +269,7 @@
             var currentLang = document.querySelector('#HCurrentLang').value;
             document.getElementById("HotelMore").style.display = "none";
 
+
             //$.blockUI({
             //    css: {
             //        position: 'fixed',
@@ -287,7 +288,7 @@
             //    console.log(json); // this will show the info it in firebug console
             //});
             $.ajax({
-                url: apiUrl + "/SystemParameters/Hotels/GetAllWithCount?langId=" + currentLang,
+                url: apiUrl + "/SystemParameters/Hotels/GetAllWithCount?langId=@Common.CurrentLang",
                 type: "Get",
                 success: function (data) {
                     var more = "View More";
@@ -302,7 +303,7 @@
                         $(
                             "<li>" +
                             "<a href='/Hotel/Details/" + data[i].Id + "'>" + data[i].DisplayValue + "</i></a>"
-                             
+
                         ).appendTo("#ulAllHotels");
                         //  var result = $.localStorage('hotelId', data[i].Id);
 
@@ -332,7 +333,7 @@
 
             /*load footer data*/
             $.ajax({
-                url: apiUrl + "/SystemParameters/ContactUs/GetAll?langId=" + currentLang,
+                url: apiUrl + "/SystemParameters/ContactUs/GetAll?langId=@Common.CurrentLang",
                 type: "Get",
                 success: function (data) {
                     $(

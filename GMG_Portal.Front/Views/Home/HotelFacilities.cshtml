@@ -1,7 +1,7 @@
 ﻿@*@model  Front.Models.HomeModels*@
 @model GMG_Portal.API.Models.General.HomeModels
 
-@if (Model.Features  != null)
+@if (Model.Features != null)
 {
     <div class="mg-features">
         <div class="container">
@@ -19,7 +19,7 @@
                                     @*<i class="fp-ht-receptionist"></i>*@
                                     <h3>@Model.Features[0].DisplayValue</h3>
                                 </div>
-                                @if (@Model.Features[0].DisplayValueDesc.Length <= 50)
+                                @if (@Model.Features[0].DisplayValueDesc.Length >= 50)
                                 {
                                     <p>@Model.Features[0].DisplayValueDesc.Substring(0, 50)</p>
                                 }
@@ -128,7 +128,7 @@
                             </div>
                         </div>
                     </div>
-                
+
                 </div>
             </div>
         </div>
