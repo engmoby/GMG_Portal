@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -26,369 +27,181 @@ namespace GMG_Portal.API.Controllers.SystemParameters
         {
             try
             {
-                #region Hash
+               
 
-
-                //#region HomeSlider 
-
-                //var homeSliderLogic = new HomeSlidersLogic();
-                //var homeSliderTranslateLogic = new HomeSliderLogicTranslate();
-                //if (langId == Parameters.DefaultLang)
-                //{
-                //    var homeSlider = homeSliderLogic.GetAll();
-                //    foreach (var systemParametersHomeSlider in homeSlider)
-                //    {
-                //        returnHomeSlider.Add(new HomeSlider
-                //        {
-                //            DisplayValue = systemParametersHomeSlider.DisplayValue,
-                //            DisplayValueDesc = systemParametersHomeSlider.DisplayValueDesc,
-                //            Image = systemParametersHomeSlider.Image
-                //        });
-                //    }
-                //    retunGeneralAll.HomeSliders = returnHomeSlider;
-                //}
-                //else
-                //{
-                //    var homeSlider = homeSliderTranslateLogic.GetAll(langId);
-                //    foreach (var systemParametersHomeSlider in homeSlider)
-                //    {
-                //        returnHomeSlider.Add(new HomeSlider
-                //        {
-                //            DisplayValue = systemParametersHomeSlider.DisplayValue,
-                //            DisplayValueDesc = systemParametersHomeSlider.DisplayValueDesc,
-                //            Image = systemParametersHomeSlider.Image
-                //        });
-                //    }
-                //    retunGeneralAll.HomeSliders = returnHomeSlider;
-                //}
-
-
-                //#endregion
-
-                //#region About
-
-
-                //var aboutLogic = new AboutLogic();
-                //var aboutLogicTranslate = new AboutLogicTranslate();
-                //if (langId == Parameters.DefaultLang)
-                //{
-                //    var about = aboutLogic.GetAll();
-                //    returnAbout.DisplayValue = about.DisplayValue;
-                //    returnAbout.DisplayValueDesc = about.DisplayValueDesc;
-                //    returnAbout.Url = about.Url;
-                //    retunGeneralAll.About = returnAbout;
-                //}
-                //else
-                //{
-                //    var about = aboutLogicTranslate.GetAll(langId);
-
-                //    if (about != null)
-                //    {
-                //        returnAbout.DisplayValue = about.DisplayValue;
-                //        returnAbout.DisplayValueDesc = about.DisplayValueDesc;
-                //        returnAbout.Url = about.Url;
-                //        retunGeneralAll.About = returnAbout;
-
-                //    }
-                //}
-
-                //#endregion
-
-                //#region Features
-                //var featuresLogic = new FeaturesLogic();
-                //var featuresLogicTranslate = new FeaturesLogicTranslate();
-                //if (langId == Parameters.DefaultLang)
-                //{
-                //    var features = featuresLogic.GetAllByTake6();
-                //    foreach (var systemParametersfeatures in features)
-                //    {
-                //        returnFeatures.Add(new Features
-                //        {
-                //            DisplayValue = systemParametersfeatures.DisplayValue,
-                //            DisplayValueDesc = systemParametersfeatures.DisplayValueDesc,
-                //            Icon = systemParametersfeatures.Icon
-                //        });
-                //    }
-                //    retunGeneralAll.Features = returnFeatures;
-                //}
-                //else
-                //{
-                //    var features = featuresLogicTranslate.GetAllByTake6(langId);
-                //    foreach (var systemParametersfeatures in features)
-                //    {
-                //        returnFeatures.Add(new Features
-                //        {
-                //            DisplayValue = systemParametersfeatures.DisplayValue,
-                //            DisplayValueDesc = systemParametersfeatures.DisplayValueDesc,
-                //            Icon = systemParametersfeatures.Icon
-                //        });
-                //    }
-                //    retunGeneralAll.Features = returnFeatures;
-
-                //}
-
-
-                //#endregion
-
-                //#region Hotels
-
-                //var hotelsLogic = new HotelLogic();
-                //var hotelsLogicTranslateic = new HotelLogicTranslate();
-                //if (langId == Parameters.DefaultLang)
-                //{
-                //    var hotels = hotelsLogic.GetAll();
-                //    foreach (var systemParametersHotels in hotels)
-                //    {
-                //        returnHotels.Add(new Hotels
-                //        {
-                //            Id = systemParametersHotels.Id,
-                //            DisplayValue = systemParametersHotels.DisplayValue,
-                //            DisplayValueDesc = systemParametersHotels.DisplayValueDesc,
-                //            Image = systemParametersHotels.Image,
-                //            Rate = systemParametersHotels.Rate,
-                //            PriceStart = systemParametersHotels.PriceStart
-                //        });
-                //    }
-                //    retunGeneralAll.Hotels = returnHotels;
-                //}
-                //else
-                //{
-                //    var hotels = hotelsLogicTranslateic.GetAll(langId);
-                //    foreach (var systemParametersHotels in hotels)
-                //    {
-                //        returnHotels.Add(new Hotels
-                //        {
-                //            Id = systemParametersHotels.Id,
-                //            DisplayValue = systemParametersHotels.DisplayValue,
-                //            DisplayValueDesc = systemParametersHotels.DisplayValueDesc,
-                //            Image = systemParametersHotels.Image,
-                //            Rate = systemParametersHotels.Rate,
-                //            PriceStart = systemParametersHotels.PriceStart
-                //        });
-                //    }
-                //    retunGeneralAll.Hotels = returnHotels;
-                //}
-
-                //#endregion
-
-                //#region Owners
-                //var ownersLogic = new OwnerLogic();
-                //var ownersLogicTranslate = new OwnerLogicTranslate();
-                //if (langId == Parameters.DefaultLang)
-                //{
-                //    var owners = ownersLogic.GetAll();
-                //    foreach (var systemParametersOwners in owners)
-                //    {
-                //        returnOwners.Add(new Owners
-                //        {
-                //            Id = systemParametersOwners.Id,
-                //            DisplayValuePosition = systemParametersOwners.DisplayValuePosition,
-                //            DisplayValueName = systemParametersOwners.DisplayValueName,
-                //            DisplayValueDesc = systemParametersOwners.DisplayValueDesc,
-                //            Image = systemParametersOwners.Image
-                //        });
-                //    }
-                //    retunGeneralAll.Owners = returnOwners;
-                //}
-                //else
-                //{
-                //    var owners = ownersLogicTranslate.GetAll(langId);
-                //    foreach (var systemParametersOwners in owners)
-                //    {
-                //        returnOwners.Add(new Owners
-                //        {
-                //            Id = systemParametersOwners.Id,
-                //            DisplayValuePosition = systemParametersOwners.DisplayValuePosition,
-                //            DisplayValueName = systemParametersOwners.DisplayValueName,
-                //            DisplayValueDesc = systemParametersOwners.DisplayValueDesc,
-                //            Image = systemParametersOwners.Image
-                //        });
-                //    }
-                //    retunGeneralAll.Owners = returnOwners;
-
-                //}
-
-                //#endregion
-
-                //#region News
-                //var newsLogic = new NewsLogic();
-
-                //var news = newsLogic.GetAllWithCount(langId);
-                //foreach (var systemParametersNews in news.Take(3))
-                //{
-                //    returnNews.Add(new News
-                //    {
-                //        Id = systemParametersNews.Id,
-                //        DisplayValue = systemParametersNews.DisplayValue,
-                //        DisplayValueDesc = systemParametersNews.DisplayValueDesc,
-                //        Image = systemParametersNews.Image,
-                //        CreationTime = systemParametersNews.CreationTime,
-                //        CreationDay = systemParametersNews.CreationTime.Day,
-                //        CreationMonth = systemParametersNews.CreationTime.ToString("MMM"),
-                //        CreatorUserName = "Administrator",
-                //        CategoryName = systemParametersNews.DisplayValue,
-                //        Categories = Mapper.Map<List<Category>>(newsLogic.GetAllCatrogry())
-                //    });
-                //}
-                //retunGeneralAll.News = returnNews;
-
-
-
-                //#endregion
-
-                //#region ContactUs 
-                //var contactLogic = new ContactUsLogic();
-                //var contactLogicTranslate = new ContactUsLogicTranslate();
-                //if (langId == Parameters.DefaultLang)
-                //{
-                //    var contact = contactLogic.GetAll();
-                //    returnContactUs.DisplayValueAddress = contact.DisplayValueAddress;
-                //    returnContactUs.DisplayValueDesc = contact.DisplayValueDesc;
-                //    returnContactUs.Url = contact.Url;
-                //    returnContactUs.Facebook = contact.Facebook;
-                //    returnContactUs.Twitter = contact.Twitter;
-                //    returnContactUs.Youtube = contact.Youtube;
-                //    returnContactUs.Snapchat = contact.Snapchat;
-                //    returnContactUs.Instgram = contact.Instgram;
-                //    returnContactUs.Fax = contact.Fax;
-                //    returnContactUs.WhatsApp = contact.WhatsApp;
-                //    returnContactUs.PhoneNo1 = contact.PhoneNo1;
-                //    returnContactUs.PhoneNo2 = contact.PhoneNo2;
-                //    returnContactUs.PostalCode = contact.PostalCode;
-                //    returnContactUs.Mailbox = contact.Mailbox;
-                //    returnContactUs.Long = contact.Long;
-                //    returnContactUs.Late = contact.Late;
-                //    returnContactUs.MailNo1 = contact.MailNo1;
-                //    returnContactUs.MailNo2 = contact.MailNo2;
-                //    retunGeneralAll.ContactUs = returnContactUs;
-                //}
-                //else
-                //{
-                //    var contact = contactLogicTranslate.GetAll(langId);
-                //    returnContactUs.DisplayValueAddress = contact.DisplayValueAddress;
-                //    returnContactUs.DisplayValueDesc = contact.DisplayValueDesc;
-                //    returnContactUs.Url = contact.Url;
-                //    returnContactUs.Facebook = contact.Facebook;
-                //    returnContactUs.Twitter = contact.Twitter;
-                //    returnContactUs.Youtube = contact.Youtube;
-                //    returnContactUs.Snapchat = contact.Snapchat;
-                //    returnContactUs.Instgram = contact.Instgram;
-                //    returnContactUs.Fax = contact.Fax;
-                //    returnContactUs.WhatsApp = contact.WhatsApp;
-                //    returnContactUs.PhoneNo1 = contact.PhoneNo1;
-                //    returnContactUs.PhoneNo2 = contact.PhoneNo2;
-                //    returnContactUs.PostalCode = contact.PostalCode;
-                //    returnContactUs.Mailbox = contact.Mailbox;
-                //    returnContactUs.Long = contact.Long;
-                //    returnContactUs.Late = contact.Late;
-                //    returnContactUs.MailNo1 = contact.MailNo1;
-                //    returnContactUs.MailNo2 = contact.MailNo2;
-                //    retunGeneralAll.ContactUs = returnContactUs;
-                //}
-
-                //#endregion
-
-                //#region Gallery
-                //var galleryLogic = new HotelLogic();
-                //var gallery = galleryLogic.GetAllImages();
-                //foreach (var systemParametersGallery in gallery)
-                //{
-                //    returnHotelImages.Add(new HotelImages
-                //    {
-                //        Image = systemParametersGallery.Image
-                //    });
-                //}
-
-                //retunGeneralAll.Gallery = returnHotelImages;
-
-                //#endregion
-
-                #endregion
                 var retunGeneralAll = new HomeModels();
-
-
-
-                var returnHomeSlider = new List<HomeSlider>();
-                var returnAbout = new About();
-                var returnFeatures = new List<Features>();
-                var returnHotels = new List<Hotels>();
-                var returnOwners = new List<Owners>();
-                var returnNews = new List<News>();
-                var returnContactUs = new ContactUs();
-                var returnHotelImages = new List<HotelImages>();
-
                 var generalLogic = new GeneralLogic();
 
-                var getHomeViews = langId == Parameters.DefaultLang ? generalLogic.GetAll() : generalLogic.GetAllByLangId(langId);
-                // var getHomeViews = generalLogic.GetAll();
+                DataTable homeSlidersTable;
+                DataTable hotelsTable;
+                DataTable newsTable;
+                DataTable featuresTable;
+                DataTable aboutTable;
+                DataTable hotelImages;
+                DataTable ownerTable;
 
-                foreach (var homeView in getHomeViews)
+
+
+                if (langId == Parameters.DefaultLang)
                 {
-                    if (returnHomeSlider.All(x => (x.Id) != homeView.HomeSlider_Id))
-                    {
-                        returnHomeSlider.Add(new HomeSlider
-                        {
-                            Id = homeView.HomeSlider_Id,
-                            DisplayValue = homeView.HomeSlider_DisplayValue,
-                            DisplayValueDesc = homeView.HomeSlider_DisplayValueDesc,
-                            Image = homeView.HomeSlider_Image
-                        });
-                    }
-
-                    if (returnHotels.All(x => (x.Id) != homeView.Hotel_Id))
-                    {
-                        returnHotels.Add(new Hotels
-                        {
-                            Id = homeView.Id,
-                            DisplayValue = homeView.DisplayValue,
-                            DisplayValueDesc = homeView.DisplayValueDesc,
-                            Image = homeView.Images_Image,
-                            PriceStart = homeView.PriceStart
-                        });
-                    }
-                    if (returnNews.All(x => (x.Id) != homeView.News_Id))
-                    {
-                        returnNews.Add(new News
-                        {
-                            Id = homeView.News_Id,
-                            DisplayValue = homeView.News_DisplayValue,
-                            DisplayValueDesc = homeView.News_DisplayValueDesc,
-                            CreationTime = homeView.News_CreationTime
-                        });
-                    }
-
-                    if (returnFeatures.All(x => (x.Id) != homeView.Features_Id))
-                    {
-                        returnFeatures.Add(new Features
-                        {
-                            DisplayValue = homeView.Features_DisplayValue,
-                            DisplayValueDesc = homeView.Features_DisplayValueDesc,
-                            Icon = homeView.Features_Icon
-                        });
-                     }
+                     homeSlidersTable = generalLogic
+                        .Sqlread("SELECT * FROM [dbo].[SystemParameters.HomeSlider] WHERE IsDeleted=0").Tables[0];
+                     hotelsTable = generalLogic
+                        .Sqlread(
+                            "SELECT * FROM [dbo].[Hotels] JOIN dbo.[Hotels.Images] ON dbo.Hotels.Id = dbo.[Hotels.Images].Hotel_Id WHERE dbo.Hotels.IsDeleted=0 AND dbo.[Hotels.Images].IsDeleted=0")
+                        .Tables[0];
+                     newsTable = generalLogic
+                        .Sqlread("SELECT * FROM [dbo].[SystemParameters.News] WHERE IsDeleted=0").Tables[0];
+                     featuresTable = generalLogic
+                        .Sqlread("SELECT  TOP 6 * FROM [dbo].[SystemParameters.Features] WHERE IsDeleted=0").Tables[0];
+                     aboutTable = generalLogic
+                        .Sqlread("SELECT * FROM [dbo].[SystemParameters.About] WHERE IsDeleted=0").Tables[0];
+                     hotelImages = generalLogic
+                        .Sqlread(
+                            "SELECT Image FROM [dbo].[Hotels] JOIN dbo.[Hotels.Images] ON dbo.Hotels.Id = dbo.[Hotels.Images].Hotel_Id WHERE dbo.Hotels.IsDeleted=0 AND dbo.[Hotels.Images].IsDeleted=0")
+                        .Tables[0];
+                     ownerTable = generalLogic
+                        .Sqlread("SELECT * FROM [dbo].[SystemParameters.Owners] WHERE IsDeleted=0").Tables[0];
+                }
+                else
+                {
+                    homeSlidersTable = generalLogic
+                        .Sqlread("SELECT * FROM [dbo].[SystemParameters.HomeSlider_Translate] WHERE LangId='" + langId +"' AND IsDeleted=0").Tables[0];
+                    hotelsTable = generalLogic
+                        .Sqlread(
+                            "SELECT * FROM [dbo].[Hotels_Translate] JOIN dbo.[Hotels.Images_Translate] ON [dbo].[Hotels_Translate].Id = [dbo].[Hotels.Images_Translate].Hotel_Id WHERE [dbo].[Hotels_Translate].LangId='" + langId + "' AND dbo.Hotels_Translate.IsDeleted=0 AND dbo.[Hotels.Images_Translate].IsDeleted=0")
+                        .Tables[0];
+                    newsTable = generalLogic
+                        .Sqlread("SELECT * FROM [dbo].[SystemParameters.News_Translate] WHERE LangId='" + langId + "'AND IsDeleted=0 ").Tables[0];
+                    featuresTable = generalLogic
+                        .Sqlread("SELECT  TOP 6 * FROM [dbo].[SystemParameters.Features_Translate] WHERE LangId='" + langId + "' AND IsDeleted=0").Tables[0];
+                    aboutTable = generalLogic
+                        .Sqlread("SELECT * FROM [dbo].[SystemParameters.About_Translate] WHERE LangId='" + langId + "' AND IsDeleted=0").Tables[0];
+                    hotelImages = generalLogic
+                        .Sqlread(
+                            "SELECT Image FROM [dbo].[Hotels_Translate] JOIN dbo.[Hotels.Images_Translate] ON [dbo].[Hotels_Translate].Id = [dbo].[Hotels.Images_Translate].Hotel_Id WHERE [dbo].[Hotels_Translate].LangId='" + langId + "' AND dbo.Hotels_Translate.IsDeleted=0 AND dbo.[Hotels.Images_Translate].IsDeleted=0")
+                        .Tables[0];
+                    ownerTable = generalLogic
+                        .Sqlread("SELECT * FROM [dbo].[SystemParameters.Owners_Translate] WHERE LangId='" + langId + "' AND IsDeleted=0").Tables[0];
+                }
 
 
-                    if (returnAbout.Url != homeView.About_Url)
+
+
+
+
+
+
+                //HomeSliders
+                List<HomeSlider> returnHomeSlider = new List<HomeSlider>(homeSlidersTable.Rows.Count);
+                foreach (DataRow dr in homeSlidersTable.Rows)
+                {
+                    returnHomeSlider.Add(new HomeSlider
                     {
-                        returnAbout.DisplayValue = homeView.About_DisplayValue;
-                        returnAbout.DisplayValueDesc = homeView.About_DisplayValueDesc;
-                        returnAbout.Url = homeView.About_Url;
-                   }
-                    if (returnHotelImages.All(x => (x.Image) != homeView.Images_Image))
+                        Id = (int) dr["Id"],
+                        DisplayValue = (string) dr["DisplayValue"],
+                        DisplayValueDesc = (string) dr["DisplayValueDesc"],
+                        Image = (string) dr["Image"]
+                    });
+                }
+
+
+                //Get Hotels
+                List<Hotels> returnHotels = new List<Hotels>(hotelsTable.Rows.Count);
+                foreach (DataRow dr in hotelsTable.Rows)
+                {
+                    returnHotels.Add(new Hotels
                     {
-                        returnHotelImages.Add(new HotelImages
-                        {
-                            Image = homeView.Images_Image
-                        });
-                    }
+                        Id = (int)dr["Id"],
+                        DisplayValue = (string)dr["DisplayValue"],
+                        DisplayValueDesc = (string)dr["DisplayValueDesc"],
+                        Image = (string)dr["Image"],
+                        PriceStart = (int)dr["Id"]
+                    });
+                }
+
+
+
+          
+              //Get News
+                List<News> returnNews = new List<News>(newsTable.Rows.Count);
+                foreach (DataRow dr in newsTable.Rows)
+                {
+                    returnNews.Add(new News
+                    {
+                        Id = (int)dr["Id"],
+                        DisplayValue = (string)dr["DisplayValue"],
+                        DisplayValueDesc = (string)dr["DisplayValueDesc"],
+                        CreationTime = (DateTime?) dr["CreationTime"]
+                    });
 
                 }
+
+
+               //Get Features
+                List<Features> returnFeatures = new List<Features>(featuresTable.Rows.Count);
+                foreach (DataRow dr in featuresTable.Rows)
+                    returnFeatures.Add(new Features
+                    {
+                        DisplayValue = (string)dr["DisplayValue"],
+                        DisplayValueDesc = (string)dr["DisplayValueDesc"],
+                        Icon = (string)dr["Icon"]
+                    });
+
+
+              
+             //Get About
+                var returnAbout = new About();
+                foreach (DataRow dr in aboutTable.Rows)
+                {
+                    returnAbout.DisplayValue = (string) dr["DisplayValue"];
+                    returnAbout.DisplayValueDesc = (string)dr["DisplayValueDesc"];
+                    returnAbout.Url = (string)dr["Url"];
+
+                }
+
+              
+                //Get Hotel Images
+                List<HotelImages> returnHotelImages = new List<HotelImages>(hotelsTable.Rows.Count);
+                foreach (DataRow dr in hotelImages.Rows)
+                {
+                    returnHotelImages.Add(new HotelImages
+                    {
+                        Image = (string)dr["Image"]
+                    });
+
+                }
+
+                //Get News
+                List<Owners> returnOwners = new List<Owners>(ownerTable.Rows.Count);
+                foreach (DataRow dr in ownerTable.Rows)
+                {
+                    returnOwners.Add(new Owners
+                    {
+                        Id = (int)dr["Id"],
+                        DisplayValueName = (string)dr["DisplayValueName"],
+                        DisplayValuePosition = (string)dr["DisplayValuePosition"],
+                        DisplayValueDesc = (string)dr["DisplayValueDesc"],
+                        CreationTime = (DateTime?)dr["CreationTime"]
+                    });
+
+                }
+
+
+
+
+
+
+
+
+
                 retunGeneralAll.HomeSliders = returnHomeSlider;
                 retunGeneralAll.Hotels = returnHotels;
                 retunGeneralAll.News = returnNews;
                 retunGeneralAll.Features = returnFeatures;
                 retunGeneralAll.About = returnAbout;
                 retunGeneralAll.Gallery = returnHotelImages;
+                retunGeneralAll.Owners = returnOwners;
 
 
 

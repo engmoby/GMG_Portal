@@ -4,10 +4,10 @@
 {
     <div id="mega-slider" class="carousel slide " data-ride="carousel">
         <ol class="carousel-indicators">
-            <li data-target="#mega-slider" data-slide-to="@Model.HomeSliders[0].Id" class="active"></li>
+            <li data-target="#mega-slider" data-slide-to="0" class="active"></li>
             @for (var j = 1; j < Model.HomeSliders.Count; j++)
             {
-                <li data-target="#mega-slider" data-slide-to="@Model.HomeSliders[j]"></li>
+                <li data-target="#mega-slider" data-slide-to="@j"></li>
             }
         </ol>
 
