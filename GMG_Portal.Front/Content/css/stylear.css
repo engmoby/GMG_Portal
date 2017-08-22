@@ -21,6 +21,36 @@ h1, h2, h3, h4, h5, h6{text-align:right;
 }
 
 
+.panel.panel-default .panel-heading a:before {
+
+    left: 30px;
+    right: auto;}
+	
+.panel.panel-default .panel-heading a:after {
+ 
+    left: 20px;
+    right: auto;
+}
+
+.panel-body b{float:right;
+    padding-left: 5px;}
+
+.main_apply {
+
+    float: right;
+}
+
+
+.mg-team-member .mg-team-info h3:after {
+
+    right: 0;}
+	
+.mg-team-member .mg-team-info strong {
+
+    text-align: right;
+}
+
+
 .mg-sec-title p {
 
     text-align: center;

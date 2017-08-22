@@ -77,6 +77,12 @@ function NewsController($scope, NewsApi, uploadNewsService, $rootScope, $timeout
         $scope.action = 'edit';
         $scope.save();
     }
+    $scope.Delete = function (New) {
+        $scope.action = 'delete';
+        $scope.New = New;
+        $scope.New.IsDeleted = true;
+        $scope.save();
+    }
 
     $scope.save = function () {
         $rootScope.ViewLoading = true;

@@ -22,8 +22,8 @@
     <link href="~/Content/css/cs-select.css" rel="stylesheet">
     <link href="~/Content/css/bootstrap-datepicker3.min.css" rel="stylesheet">
     <link href="~/Content/css/freepik.hotels.css" rel="stylesheet">
-    <link href="@Front.Resources.Global.StyleUrl" rel="stylesheet">
     <link href="~/Content/css/style.css" rel="stylesheet">
+    <link href="@Front.Resources.Global.StyleUrl" rel="stylesheet">
 
     <script src="~/Content/js/modernizr.custom.min.js"></script>
 
@@ -309,7 +309,7 @@
 
                         list.push(data[i].Id);
                     }
-                    if (data.length >= 10) {
+                    if (data.length >= 5) {
                         $(
                             "<li>" + "<a href='/Hotel/Index'>" + more + "</i></a>"
                         ).appendTo("#ulAllHotels");

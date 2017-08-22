@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -19,6 +21,7 @@ namespace Front.Controllers
         string url = System.Configuration.ConfigurationManager.AppSettings["ServerIp"] + "/SystemParameters/";
         public NewsController()
         {
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
 
             _client = new HttpClient();
             _client.BaseAddress = new Uri(url);
@@ -28,6 +31,7 @@ namespace Front.Controllers
         // GET: news
         public async Task<ActionResult> Index(int? id)
         {
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
             if (!id.HasValue)
             {
                 return RedirectToAction("Index", "News", new { Id = 0 });
@@ -67,6 +71,7 @@ namespace Front.Controllers
 
         public async Task<ActionResult> IndexCat(int id)
         {
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
             string news = "";
             if (id == 0)
                 news = url + "News/GetAll?langId=" + Common.CurrentLang;
@@ -90,6 +95,7 @@ namespace Front.Controllers
         }
         public async Task<ActionResult> Details(int? id)
         {
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
             if (!id.HasValue)
             {
                 return RedirectToAction("Index", "News", new { Id = 0 });
@@ -126,6 +132,7 @@ namespace Front.Controllers
 
         public async Task<ActionResult> Search(string keyWord)
         {
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
             string news = url + "News/SearchNews?keyword=" + keyWord + "&langId=" + Common.CurrentLang;
 
             var newsModels = new List<News>();

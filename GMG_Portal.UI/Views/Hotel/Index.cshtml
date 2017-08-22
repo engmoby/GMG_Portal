@@ -210,7 +210,7 @@
                     <th st-sort="Image">@Hotel.Title</th>
                     <th st-sort="Title">@Hotel.Desc</th>
                     <th st-sort="Desc">@Hotel.Price</th>
-                    <th st-sort="Visbility">Visbility</th>
+                    <th st-sort="Visbility">Image/Features</th>
                     <th>Actions</th>
                 </tr>
 
@@ -222,8 +222,8 @@
                     <td ng-class="{'red-text': Hotel.IsDeleted == true}">{{Hotel.DisplayValueDesc | limitTo:letterLimit}} </td>
                     <td ng-class="{'red-text': Hotel.IsDeleted == true}">{{Hotel.PriceStart}}</td>
                     <td>
-                        <span ng-show="!Hotel.HasImage" class="btn-xs btn btn-danger">Not Visble</span>
-                        <span ng-show="Hotel.HasImage" class="btn-xs btn btn-success"> Visble</span>
+                        <span ng-show="!Hotel.HasImage" class="btn-xs btn btn-danger">NO</span>
+                        <span ng-show="Hotel.HasImage" class="btn-xs btn btn-success"> YES</span>
                     </td>
                     <td>
                         <div class="buttons" ng-show="!Hotel.IsDeleted">
@@ -381,7 +381,7 @@
                         <div class="col-md-12 pull-right">
                             <button ng-click="save()" class="btn btn-primary btn-with-icon pull-right" ng-disabled="FrmAddUpdateWizard.$invalid"><i class="ion-android-checkmark-circle"></i>Contuine</button>
                             <button type="submit" class="btn btn-primary btn-with-icon" ng-click="saveExist()" ng-show="action=='edit'" ng-disabled="FrmAddUpdateWizard.$invalid"><i class="ion-android-checkmark-circle"></i>Save & exit</button>
-                            <button type="button" ng-click="back()" class="btn btn-default btn-with-icon pull-right"><i class="ion-stats-bars"></i>@Hotel.btnBack</button>
+                            <button type="button" ng-click="back()" class="btn btn-default btn-with-icon pull-right"><i class="ion-stats-bars"></i>Exit</button>
 
 
                         </div>
@@ -446,7 +446,7 @@
                 <div class="row" style="margin-bottom:10px">
                     <div class="col-md-12 pull-right">
                         <button type="submit" class="btn btn-primary btn-with-icon" ng-click="showFeatures()"><i class="ion-android-checkmark-circle"></i>Countiue to featuers</button>
-                        <button type="button" ng-click="back()" class="btn btn-default btn-with-icon pull-right"><i class="ion-stats-bars"></i>@Hotel.btnBack</button>
+                        <button type="button" ng-click="back()" class="btn btn-default btn-with-icon pull-right"><i class="ion-stats-bars"></i>Exit</button>
                     </div>
                 </div>
             </div>
@@ -535,7 +535,7 @@
                 <div class="row" style="margin-bottom:10px">
                     <div class="col-md-12 pull-right">
                         <button ng-click="saveFeatures()" ng-disabled="hotelFeatures.length==0" class="btn btn-primary btn-with-icon pull-right"><i class="ion-android-checkmark-circle"></i>@Hotel.btnSaveLbl</button>
-                        <button type="button" ng-click="back()" class="btn btn-default btn-with-icon pull-right"><i class="ion-stats-bars"></i>@Hotel.btnBack</button>
+                        <button type="button" ng-click="back()" class="btn btn-default btn-with-icon pull-right"><i class="ion-stats-bars"></i>Exit</button>
                     </div>
                 </div>
             </div>
@@ -639,7 +639,7 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary btn-with-icon" ng-click="uploadFiles()"><i class="ion-android-checkmark-circle"></i>@HomeSlider.btnSaveLbl</button>
+                    <button type="submit" class="btn btn-primary btn-with-icon" ng-disabled="files.length !=0" ng-click="uploadFiles()"><i class="ion-android-checkmark-circle"></i>@HomeSlider.btnSaveLbl</button>
                 </div>
             </div>
         </div>

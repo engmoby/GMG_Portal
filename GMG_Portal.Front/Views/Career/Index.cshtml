@@ -10,7 +10,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h2>All Careers</h2>
+                <h2>JOB OPENNINGS</h2>
                 <p>Hospitality and Administartion.</p>
             </div>
         </div>
@@ -26,75 +26,82 @@
 <div class="mg-page">
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
-                <div class="mg-avl-room">
-                    @foreach (Career careerObj in Model)
+            <div class="panel-group mb80" id="accordion" role="tablist" aria-multiselectable="true">
 
-                    {
-                        <div class="mg-tab-left-nav">
+                @foreach (Career careerObj in Model)
 
-                            <ul class="nav nav-tabs nav-justified" role="tablist">
-                                <li role="presentation" class="active"><a href="#@careerObj.Id-1" aria-controls="home3" role="tab" data-toggle="tab"><i class="fa fa-home"></i> Postion Title</a></li>
-                                <li role="presentation"><a href="#@careerObj.Id-8" aria-controls="settings3" role="tab" data-toggle="tab"><i class="fa fa-cogs"></i>  Requirements</a></li>
-                            </ul>
+            {     <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="@careerObj.Id">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#@careerObj.Id" aria-expanded="false" aria-controls="@careerObj.Id" class="collapsed">
+                                @careerObj.DisplayValue
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="@careerObj.Id" class="panel-collapse collapse" role="tabpanel" aria-labelledby="@careerObj.Id" aria-expanded="false" style="height: 0px;">
+                        <div class="panel-body">
+                            <p>
+                                <b>Description :</b>
 
-                            <div class="tab-content">
-                                <div role="tabpanel" class="tab-pane fade in active" id="@careerObj.Id-1">
-                                    <h3><p>@careerObj.DisplayValue </p></h3>
-                                    <h4>Description :</h4>
-                                    <p>@careerObj.DisplayValueDesc </p>
-                                    <h4>Experience :</h4>
-                                    <p>@careerObj.Experience </p>
-                                    <h4>Career Level :</h4>
-                                    <p>@careerObj.CareerLevel </p>
-                                    <h4>Job Type :</h4>
-                                    <p>@careerObj.JobType </p>
-                                    <h4>Education Level :</h4>
-                                    <p>@careerObj.EducationLevel </p>
-                                    <h4>Vacancies :</h4>
-                                    <p>@careerObj.Vacancies </p>
-                                    <a href="/Career/Details/@careerObj.Id" style="font-size: 16px;
-                                      padding: 10px 35px;
-                                      color: #FFF;
-                                      background-color: #e7b315;
-                                      border-color: #e7b315;">Apply to this Job</a>
-                                </div>
-                                <div role="tabpanel" class="tab-pane fade" id="@careerObj.Id-2">
-                                    <p>@careerObj.DisplayValueDesc </p>
-                                </div>
-                                <div role="tabpanel" class="tab-pane fade" id="@careerObj.Id-3">
-                                    <p>@careerObj.Experience </p>
+                                @careerObj.DisplayValueDesc .
+                            </p>
 
-                                </div>
-                                <div role="tabpanel" class="tab-pane fade" id="@careerObj.Id-4">
-                                    <p>@careerObj.CareerLevel </p>
-                                </div>
-                                <div role="tabpanel" class="tab-pane fade" id="@careerObj.Id-5">
-                                    <p>@careerObj.JobType </p>
-                                </div>
+                            <p>
+                                <b>Experience :</b>
 
-                                <div role="tabpanel" class="tab-pane fade" id="@careerObj.Id-6">
-                                    <p>@careerObj.EducationLevel </p>
-                                </div>
-                                <div role="tabpanel" class="tab-pane fade" id="@careerObj.Id-7">
-                                    <p>@careerObj.Vacancies </p>
-                                </div>
-                                <div role="tabpanel" class="tab-pane fade" id="@careerObj.Id-8">
-                                    <p>@careerObj.DisplayValueRequirements </p>
-                                    <a href="/Career/Details/@careerObj.Id" style="font-size: 16px;
-                                                                                                     padding: 10px 35px;
-                                                                                                     color: #FFF;
-                                                                                                     background-color: #e7b315;
-                                                                                                     border-color: #e7b315;">Apply to this Job</a>
-                                </div>
-                            </div>
+                                @careerObj.Experience
+                            </p>
+
+
+                            <p>
+                                <b>Career Level :</b>
+
+                                @careerObj.CareerLevel
+                            </p>
+
+                            <p>
+                                <b>
+                                    Job Type :
+                                </b>
+                                @careerObj.JobType
+                            </p>
+
+                            <p>
+                                <b>
+                                    Education Level :
+                                </b>
+
+                                @careerObj.EducationLevel
+                            </p>
+
+                            <p>
+                                <b>
+                                    Vacancies :
+                                </b>
+
+                                @careerObj.Vacancies
+                            </p>
+
+                            <p>
+                                <b>Reqirements</b>
+
+                                @careerObj.DisplayValueRequirements.
+                            </p>
+
+                            <a href="#" class="main_apply">Apply to this Job</a>
+
+
 
                         </div>
-
-                    }
-                    @*</div>*@
+                    </div>
                 </div>
+
+                }
             </div>
+
+
+
+
         </div>
     </div>
 </div>

@@ -16,8 +16,6 @@ namespace GMG_Portal.Data
         public int Bootstrap { get; set; }
         public List<SystemParameters_Features> FeaturesList { get; set; }
         public List<Hotels_Images> ImageList { get; set; }
-        public bool HasImage { get; set; }
-
-        public int? Original_HotelId { get; set; }
+        public bool HasImage { get; set; } 
     }
 }

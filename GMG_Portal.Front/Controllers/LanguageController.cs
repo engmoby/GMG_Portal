@@ -37,7 +37,7 @@ namespace Front.Controllers
             }
 
             //Special Case for Details Hotels
-            if (Request.UrlReferrer != null && Request.UrlReferrer.ToString().Contains("Hotels/GetHotelDetails/"))
+            if (Request.UrlReferrer != null && Request.UrlReferrer.ToString().Contains("Hotels/Details/"))
             {
                 return Redirect(System.Configuration.ConfigurationManager.AppSettings["HomeUrl"] + "/Hotels");
             }

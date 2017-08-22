@@ -419,7 +419,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         }
         public Hotels_Features DeleteHotelFeatures(int? id)
         {
-            var featureList = _db.Hotels_Features.Where(item => item.Id == id).ToList();
+            var featureList = _db.Hotels_Features.Where(item => item.Hotel_Id == id).ToList();
             if (!featureList.Any())
                 return null;
 

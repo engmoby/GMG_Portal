@@ -431,10 +431,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 .Where(x => x.DisplayValue.Contains(keyword) || x.DisplayValueDesc.Contains(keyword) || x.langId.Equals(langId)).ToList();
 
         }
-
-
-
-
+         
         private SystemParameters_News Save(SystemParameters_News news)
         {
             try
