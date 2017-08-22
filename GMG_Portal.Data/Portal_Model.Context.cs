@@ -35,7 +35,6 @@ namespace GMG_Portal.Data
         public virtual DbSet<Hotels_Payments> Hotels_Payments { get; set; }
         public virtual DbSet<Hotels_Phones> Hotels_Phones { get; set; }
         public virtual DbSet<Hotels_Videos> Hotels_Videos { get; set; }
-        public virtual DbSet<Hotels_Reservation> Hotels_Reservation { get; set; }
         public virtual DbSet<Hotles_Offers> Hotles_Offers { get; set; }
         public virtual DbSet<Hotles_Offers_Translate> Hotles_Offers_Translate { get; set; }
         public virtual DbSet<SystemParameters_About> SystemParameters_About { get; set; }
@@ -66,7 +65,9 @@ namespace GMG_Portal.Data
         public virtual DbSet<SystemParameters_Owners_Translate> SystemParameters_Owners_Translate { get; set; }
         public virtual DbSet<SystemParameters_PaymentType> SystemParameters_PaymentType { get; set; }
         public virtual DbSet<Hotel> Hotels { get; set; }
-        public virtual DbSet<Hotels_Translate> Hotels_Translate { get; set; }
         public virtual DbSet<HomeView> HomeViews { get; set; }
+        public virtual DbSet<Hotels_Reservation> Hotels_Reservation { get; set; }
+        public virtual DbSet<Hotels_Images_Translate> Hotels_Images_Translate { get; set; }
+        public virtual DbSet<Hotels_Translate> Hotels_Translate { get; set; }
     }
 }

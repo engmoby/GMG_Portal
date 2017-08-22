@@ -18,7 +18,7 @@ namespace GMG_Portal.Data
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
-        public Nullable<int> Phone { get; set; }
+        public string Phone { get; set; }
         public Nullable<System.DateTime> CheckIn { get; set; }
         public Nullable<System.DateTime> CheckOut { get; set; }
         public Nullable<int> Adult { get; set; }

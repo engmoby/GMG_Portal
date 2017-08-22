@@ -30,14 +30,14 @@ namespace Front.Controllers
         public async Task<ActionResult> Index()
         {
             string hotels = url + "Hotels/GetAll?langId=" + Common.CurrentLang;
-            var hotelModels = new List<Hotels>();
+            var hotelModels = new List<Hotel>();
 
             if (hotels == null) throw new ArgumentNullException(nameof(hotels));
             HttpResponseMessage responseMessageApi = await _client.GetAsync(hotels);
             if (responseMessageApi.IsSuccessStatusCode)
             {
                 var responseData = responseMessageApi.Content.ReadAsStringAsync().Result;
-                var hotelsList = JsonConvert.DeserializeObject<List<Hotels>>(responseData);
+                var hotelsList = JsonConvert.DeserializeObject<List<Hotel>>(responseData);
                 hotelModels = hotelsList;
             }
 

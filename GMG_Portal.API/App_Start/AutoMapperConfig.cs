@@ -83,6 +83,8 @@ namespace GMG_Portal.API
 
                 cfg.CreateMap<Hotels_Images, HotelImages>();
                 cfg.CreateMap<HotelImages, Hotels_Images>();
+                cfg.CreateMap<Hotels_Images_Translate, HotelImages>();
+                cfg.CreateMap<HotelImages, Hotels_Images_Translate>();
 
                 cfg.CreateMap<Hotels_Features, HotelFeatures>();
                 cfg.CreateMap<HotelFeatures, Hotels_Features>();
