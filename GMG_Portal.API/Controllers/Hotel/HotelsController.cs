@@ -72,7 +72,7 @@ namespace GMG_Portal.API.Controllers.Hotel
                 if (langId == Parameters.DefaultLang)
                 {
                     var obj = hotelLogic.GetAllWithDeleted();
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Data.Hotel>>(obj)); 
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Data.Hotel>>(obj));
                 }
                 else
                 {
@@ -255,16 +255,28 @@ namespace GMG_Portal.API.Controllers.Hotel
             return Request.CreateResponse(HttpStatusCode.BadRequest);
         }
         [HttpPost]
-        public HttpResponseMessage SaveFeatures(List<Hotels_Features> postedFeatures)
+        public HttpResponseMessage SaveFeatures(List<HotelFeatures> postedFeatures)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
                     var hotelLogic = new HotelLogic();
+                    var hotelLogicTranslate = new HotelLogicTranslate();
 
-                    var image = hotelLogic.InsertHotelFeatures(Mapper.Map<List<Hotels_Features>>(postedFeatures));
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Hotels_Features>>(image));
+                    List<Hotels_Features> obj = null;
+                    Hotels_Translate objByLang = null;
+                    if (postedFeatures[0].langId == Parameters.DefaultLang)
+                    {
+                        obj = hotelLogic.InsertHotelFeatures(Mapper.Map<List<Hotels_Features>>(postedFeatures));
+                        return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Hotels_Features>>(obj));
+                    }
+                    //else
+                    //{
+                    //    objByLang = hotelLogicTranslate.InsertHotelFeatures(Mapper.Map<List<Hotels_Features_Translate>>(postedFeatures));
+
+                    //    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Hotels_Features_Translate>>(objByLang));
+                    //}
                 }
                 goto ThrowBadRequest;
             }

@@ -204,10 +204,10 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             var featuresList = new List<SystemParameters_Features>();
 
             var getHotelInfo = _db.Hotels_Translate.FirstOrDefault(p => p.Id == id && p.langId == langId);
-            var getHotelFeatures = _db.Hotels_Features.Where(p => p.Hotel_Id == getHotelInfo.Id).ToList();
+            var getHotelFeatures = _db.Hotels_Features_Translate.Where(p => p.Hotel_Id == getHotelInfo.Id && p.langId == langId).ToList();
             foreach (var hotelFeature in getHotelFeatures)
             {
-                var getFeatures = _db.SystemParameters_Features.Where(p => p.Id == hotelFeature.Feature_Id).ToList();
+                var getFeatures = _db.SystemParameters_Features_Translate.Where(p => p.Id == hotelFeature.Feature_Id && p.langId == langId).ToList();
                 foreach (var feature in getFeatures)
                 {
                     featuresList.Add(new SystemParameters_Features
@@ -218,7 +218,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                     });
                 }
             }
-            var getHotelImages = _db.Hotels_Images.Where(p => p.Hotel_Id == getHotelInfo.Id).ToList();
+            var getHotelImages = _db.Hotels_Images.Where(p => p.Hotel_Id == getHotelInfo.Original_HotelId).ToList();
 
             if (getHotelInfo != null)
             {
@@ -367,34 +367,33 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             return imageObj;
         }
 
-        public List<Hotels_Features> InsertHotelFeatures(List<Hotels_Features> postedfeature)
-        {
-            var hotelLogic = new HotelLogic();
-            var deleteList = hotelLogic.DeleteHotelFeatures(postedfeature[0].Hotel_Id);
+        public List<Hotels_Features_Translate> InsertHotelFeatures(List<Hotels_Features_Translate> postedfeature)
+        { 
+            var deleteList = DeleteHotelFeatures(postedfeature[0].Hotel_Id);
             foreach (var featureObj in postedfeature)
             {
-                var feature = new Hotels_Features()
+                var feature = new Hotels_Features_Translate()
                 {
                     IsDeleted = false,
                     Hotel_Id = postedfeature[0].Hotel_Id,
                     Feature_Id = featureObj.Feature_Id
                 };
-                _db.Hotels_Features.Add(feature);
+                _db.Hotels_Features_Translate.Add(feature);
                 _db.SaveChanges();
             }
             postedfeature[0].OperationStatus = "Succeded";
             return postedfeature;
         }
-        public Hotels_Features DeleteHotelFeatures(int? id)
+        public Hotels_Features_Translate DeleteHotelFeatures(int? id)
         {
-            var featureList = _db.Hotels_Features.Where(item => item.Id == id).ToList();
+            var featureList = _db.Hotels_Features_Translate.Where(item => item.Id == id).ToList();
             if (!featureList.Any())
                 return null;
             try
             {
                 foreach (var hotelsFeaturese in featureList)
                 {
-                    _db.Hotels_Features.Remove(hotelsFeaturese);
+                    _db.Hotels_Features_Translate.Remove(hotelsFeaturese);
                 }
                 _db.SaveChanges();
                 featureList[0].OperationStatus = "Succeded";

@@ -86,7 +86,9 @@ namespace GMG_Portal.API
 
                 cfg.CreateMap<Hotels_Features, HotelFeatures>();
                 cfg.CreateMap<HotelFeatures, Hotels_Features>();
-                 
+                cfg.CreateMap<Hotels_Features_Translate, HotelFeatures>();
+                cfg.CreateMap<HotelFeatures, Hotels_Features_Translate>();
+
 
                 //Owners
                 cfg.CreateMap<SystemParameters_Owners, Owners>();

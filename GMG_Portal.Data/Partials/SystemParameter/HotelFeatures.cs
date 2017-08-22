@@ -10,6 +10,7 @@ namespace GMG_Portal.Data
     public partial class Hotels_Features
     {
         [NotMapped]
+        public string langId { get; set; }
         public string OperationStatus { get; set; }
     }
 }
