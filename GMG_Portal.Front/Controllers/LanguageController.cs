@@ -31,15 +31,15 @@ namespace Front.Controllers
             }
 
             //Special Case for Details Offers
-            if (Request.UrlReferrer != null && Request.UrlReferrer.ToString().Contains("Offers/GetOfferDetails/"))
+            if (Request.UrlReferrer != null && Request.UrlReferrer.ToString().Contains("Offers/offerdetails/"))
             {
                 return Redirect(System.Configuration.ConfigurationManager.AppSettings["HomeUrl"] + "/Offers");
             }
 
             //Special Case for Details Hotels
-            if (Request.UrlReferrer != null && Request.UrlReferrer.ToString().Contains("Hotels/Details/"))
+            if (Request.UrlReferrer != null && Request.UrlReferrer.ToString().Contains("Hotel/Details/"))
             {
-                return Redirect(System.Configuration.ConfigurationManager.AppSettings["HomeUrl"] + "/Hotels");
+                return Redirect(System.Configuration.ConfigurationManager.AppSettings["HomeUrl"] + "/Hotel");
             }
 
 

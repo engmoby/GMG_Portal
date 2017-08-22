@@ -336,17 +336,25 @@
                 url: apiUrl + "/SystemParameters/ContactUs/GetAll?langId=@Common.CurrentLang",
                 type: "Get",
                 success: function (data) {
-                    $(
-                        "<p>" + data.DisplayValueAddress + "</p>"
-                     ).appendTo("#divAddress");
-                    $(
-                        "<p>" + data.PhoneNo1 + "<br>" + data.PhoneNo2 + "</p>"
+                  $(
+                        "<p style='direction: ltr;margin-bottom: 6px;'>" + data.PhoneNo1 + "<br>" + data.PhoneNo2 + "</p>"
                      ).appendTo("#divphones");
                     $(
-                        "<p>" +
-                        "<a href='mailto:#'>" + data.MailNo1 + "</i>"
+                        "<p style='margin-bottom: 6px;'>" +
+                        "<a href='mailto:#'>" + data.MailNo1 + ""
                        + "</p>"
                     ).appendTo("#divmail");
+                    $(
+                        "<p style='margin-bottom: 6px;'>" +
+                        "@Front.Resources.Global.Footer_PostalCode  " + data.PostalCode + ""
+                        + "</p>"
+                    ).appendTo("#divmail");
+                    $(
+                        "<p style='margin-bottom: 6px;'>" +
+                        "@Front.Resources.Global.Footer_Mailbox  " + data.Mailbox + ""
+                        + "</p>"
+                    ).appendTo("#divmail");
+
 
                     $(
                         "<li>" + "<a target='Blank' href='" + data.Facebook + "'>" + "<i class='fa fa-facebook'></i>" + "</i></a>"
