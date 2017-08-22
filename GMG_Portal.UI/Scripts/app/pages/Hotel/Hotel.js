@@ -1,7 +1,8 @@
 ﻿controllerProvider.register('HotelsController', ['$scope', 'HotelsApi', 'uploadHotlesService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', 'Map', HotelsController]);
 function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $timeout, $filter, $uibModal, toastr, Map) {
     $rootScope.ViewLoading = true;
-    var orginalHotelId = 1043;
+    $scope.applayUploadImageBtn = false;
+
 
     var langId = document.querySelector('#HCurrentLang').value;
     var CurrentLanguage = langId;
@@ -121,7 +122,8 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
     }
     $scope.saveExist = function () {
         $rootScope.ViewLoading = true;
-       
+
+        $scope.Hotel.LangId = CurrentLanguage;
 
 
         HotelsApi.Save($scope.Hotel).then(function (response) {
@@ -399,9 +401,9 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
     $scope.backImage = function () {
         $('#ModelAddUpdateImage').modal('hide');
     }
-    $scope.showImagePopup = function () {
+    $scope.showImagePopup = function (imageObj) {
         $('#ModelImage').modal('show');
-
+        $scope.ImageObj = angular.copy(imageObj);
     }
     $scope.showFeatures = function () {
         $rootScope.ViewLoading = true;
@@ -438,10 +440,17 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
     $scope.getFileDetails = function (e) {
 
         $scope.files = [];
-        $scope.$apply(function () {
 
+        $scope.$apply(function () {
+            //if ($scope.files.length !== 0) {
+            //    $scope.applayUploadImageBtn = true;
+            //} else {
+            //    $scope.applayUploadImageBtn = false;
+            //}
             // STORE THE FILE OBJECT IN AN ARRAY.
             for (var i = 0; i < e.files.length; i++) {
+                $scope.applayUploadImageBtn = true;
+
                 $scope.files.push(e.files[i]);
             }
 
@@ -512,6 +521,7 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
                         {
                             "Id": 0,
                             "Hotel_Id": $scope.Hotel.Id,
+                            "langId": CurrentLanguage,
 
                             "Image": $scope.files[i].name
                         }
@@ -521,6 +531,7 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
                             {
                                 "Id": 0,
                                 "Hotel_Id": $scope.Hotel.Id,
+                                "langId": CurrentLanguage,
 
                                 "Image": $scope.files[i].name
                             }
@@ -533,6 +544,7 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
                         {
                             "Id": 0,
                             "Hotel_Id": $scope.HotelDetails.Id,
+                            "langId": CurrentLanguage,
                             "Image": $scope.files[i].name
                         }
                     );

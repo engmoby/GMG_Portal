@@ -262,7 +262,7 @@
     <value>ابحث عن اقامتك</value>
   </data>
   <data name="SeeMore" xml:space="preserve">
-    <value>شاهد المزيد</value>
+    <value> المزيد</value>
   </data>
   <data name="StyleUrl" xml:space="preserve">
     <value>/Content/css/stylear.css</value>

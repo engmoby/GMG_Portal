@@ -94,7 +94,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                         HasImage = true,
                     });
                 }
-                if (returnList.Count >= 10)
+                if (returnList.Count >= 5)
                     return returnList;
             }
 
@@ -104,12 +104,15 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         public List<Hotel> GetAll()
         {
             var returnList = new List<Hotel>();
-            var featuresList = new List<SystemParameters_Features>();
             var getHotelInfo = _db.Hotels.Where(p => p.IsDeleted == false && p.Show).ToList();
             foreach (var hotel in getHotelInfo)
             {
+                var featuresList = new List<SystemParameters_Features>();
 
                 var getHotelFeatures = _db.Hotels_Features.Where(p => p.IsDeleted != true && p.Hotel_Id == hotel.Id).ToList();
+
+                if (!getHotelFeatures.Any())
+                    continue;
                 foreach (var hotelFeature in getHotelFeatures)
                 {
                     var getFeatures = _db.SystemParameters_Features.Where(p => p.IsDeleted != true && p.Id == hotelFeature.Feature_Id).ToList();
@@ -343,7 +346,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             hotel.CheckOut = postedHotel.CheckOut;
             hotel.LastModificationTime = Parameters.CurrentDateTime;
             hotel.LastModifierUserId = Parameters.UserId;
-
+            hotel.HasImage = postedHotel.HasImage;
             return Save(hotel);
         }
         public Hotel Delete(Hotel postedHotel)
@@ -355,6 +358,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             //    return hotel;
             //}
 
+            hotel.HasImage = postedHotel.HasImage;
             hotel.IsDeleted = true;
             hotel.CreationTime = Parameters.CurrentDateTime;
             hotel.CreatorUserId = Parameters.UserId;

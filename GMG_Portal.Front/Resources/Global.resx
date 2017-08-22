@@ -235,7 +235,7 @@
     <value>See More</value>
   </data>
   <data name="StyleUrl" xml:space="preserve">
-    <value>Content/css/style.css</value>
+    <value />
   </data>
   <data name="Booking_PageTitle" xml:space="preserve">
     <value>Booking</value>

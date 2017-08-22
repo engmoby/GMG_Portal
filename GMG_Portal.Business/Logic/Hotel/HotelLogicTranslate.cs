@@ -105,12 +105,15 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         public List<Hotels_Translate> GetAll(string langId)
         {
             var returnList = new List<Hotels_Translate>();
-            var featuresList = new List<SystemParameters_Features_Translate>();
             var getHotelInfo = _db.Hotels_Translate.Where(p => p.IsDeleted == false && p.Show && p.langId == langId).ToList();
             foreach (var hotel in getHotelInfo)
             {
+                var featuresList = new List<SystemParameters_Features_Translate>();
 
                 var getHotelFeatures = _db.Hotels_Features_Translate.Where(p => p.IsDeleted != true && p.Hotel_Id == hotel.Id && p.langId == langId).ToList();
+
+                if (!getHotelFeatures.Any())
+                    continue;
                 foreach (var hotelFeature in getHotelFeatures)
                 {
                     var getFeatures = _db.SystemParameters_Features_Translate.Where(p => p.IsDeleted != true && p.Id == hotelFeature.Feature_Id && p.langId == langId).ToList();

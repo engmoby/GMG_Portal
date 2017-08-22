@@ -547,7 +547,7 @@ namespace Front.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Content/css/style.css.
+        ///   Looks up a localized string similar to .
         /// </summary>
         public static string StyleUrl {
             get {
