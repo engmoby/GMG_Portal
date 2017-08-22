@@ -282,4 +282,10 @@
   <data name="Booking_ReservationID" xml:space="preserve">
     <value>Your Reservatiom ID </value>
   </data>
+  <data name="Footer_Mailbox" xml:space="preserve">
+    <value>MailBox</value>
+  </data>
+  <data name="Footer_PostalCode" xml:space="preserve">
+    <value>Postal Code </value>
+  </data>
 </root>

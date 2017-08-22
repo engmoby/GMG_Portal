@@ -1,4 +1,5 @@
-﻿@using GMG_Portal.API.Models.SystemParameters
+﻿@using System.Diagnostics.Eventing.Reader
+@using GMG_Portal.API.Models.SystemParameters
 @model List<News>
 
 @{
@@ -104,9 +105,7 @@
                                                 <a href="/News/Details/@t.Id">@t.DisplayValue</a>
                                             </h3>
                                             <p>
-                                             
-
-                                                @t.DisplayValueDesc
+                                                @(@t.DisplayValueDesc.Length >= 30 ? t.DisplayValueDesc.Substring(0, 29) : t.DisplayValueDesc)
                                             </p>
                                         </div>
                                     </li>

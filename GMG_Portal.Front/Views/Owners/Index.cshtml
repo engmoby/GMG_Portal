@@ -59,7 +59,7 @@
                                 }
                                 @if (@Model[i].DisplayValuePosition.Length >= 20)
                                 {
-                                    <strong>@Model[i].DisplayValuePosition.Substring(0, 20)</strong>
+                                    <strong>@Model[i].DisplayValuePosition</strong>
                                 }
                                 else
                                 {
@@ -73,6 +73,7 @@
                     <div class="lightbox" id="@Model[i].Id-1">
                         
                         <h2>@Model[i].DisplayValueName</h2>
+                        <h3>@Model[i].DisplayValuePosition</h3>
                         <img src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/Owners/@Model[i].Image" alt="" class="img-responsive"  style="width: 206px;height: 183px;">
                         <p> @Model[i].DisplayValueDesc</p>
                         @if (!string.IsNullOrEmpty(@Model[i].Facebook))

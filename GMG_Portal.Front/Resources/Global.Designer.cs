@@ -241,6 +241,15 @@ namespace Front.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MailBox.
+        /// </summary>
+        public static string Footer_Mailbox {
+            get {
+                return ResourceManager.GetString("Footer_Mailbox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to NewsLetter.
         /// </summary>
         public static string Footer_Newsletter {
@@ -282,6 +291,15 @@ namespace Front.Resources {
         public static string Footer_NewsletterSubmitMsg {
             get {
                 return ResourceManager.GetString("Footer_NewsletterSubmitMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Postal Code .
+        /// </summary>
+        public static string Footer_PostalCode {
+            get {
+                return ResourceManager.GetString("Footer_PostalCode", resourceCulture);
             }
         }
         

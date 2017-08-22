@@ -168,6 +168,9 @@
   <data name="Footer_CopyRights" xml:space="preserve">
     <value>2017 جميع الحقوق محفوظه -شركه جى ام جى لتكنولوجيا المعلومات</value>
   </data>
+  <data name="Footer_Mailbox" xml:space="preserve">
+    <value>ص.ب </value>
+  </data>
   <data name="Footer_Newsletter" xml:space="preserve">
     <value>بريد مبارك</value>
   </data>
@@ -182,6 +185,9 @@
   </data>
   <data name="Footer_NewsletterSubmitMsg" xml:space="preserve">
     <value>تم تسجيل البريد الالكترونى , شكرا لك </value>
+  </data>
+  <data name="Footer_PostalCode" xml:space="preserve">
+    <value>الرقم البريدى</value>
   </data>
   <data name="Footer_SocialMedia" xml:space="preserve">
     <value>التواصل الاجتماعى</value>

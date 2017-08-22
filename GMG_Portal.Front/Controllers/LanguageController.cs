@@ -31,7 +31,7 @@ namespace Front.Controllers
             }
 
             //Special Case for Details Offers
-            if (Request.UrlReferrer != null && Request.UrlReferrer.ToString().Contains("Offers/GetOfferDetails/"))
+            if (Request.UrlReferrer != null && Request.UrlReferrer.ToString().Contains("Offers/offerdetails/"))
             {
                 return Redirect(System.Configuration.ConfigurationManager.AppSettings["HomeUrl"] + "/Offers");
             }
