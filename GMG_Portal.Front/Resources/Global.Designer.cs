@@ -61,6 +61,33 @@ namespace Front.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Our Core Values.
+        /// </summary>
+        public static string About_CoreValuesTitle {
+            get {
+                return ResourceManager.GetString("About_CoreValuesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to for Trading &amp; Real Estate Investment Ltd.
+        /// </summary>
+        public static string About_Description {
+            get {
+                return ResourceManager.GetString("About_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mobark International Company.
+        /// </summary>
+        public static string About_Title {
+            get {
+                return ResourceManager.GetString("About_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Attach file Required.
         /// </summary>
         public static string Attach_file_Required {
@@ -151,6 +178,42 @@ namespace Front.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please Select Check-in Date.
+        /// </summary>
+        public static string Booking_JS1 {
+            get {
+                return ResourceManager.GetString("Booking_JS1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please Select Check-out Date.
+        /// </summary>
+        public static string Booking_JS2 {
+            get {
+                return ResourceManager.GetString("Booking_JS2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please Select Adult.
+        /// </summary>
+        public static string Booking_JS3 {
+            get {
+                return ResourceManager.GetString("Booking_JS3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please Select Child.
+        /// </summary>
+        public static string Booking_JS4 {
+            get {
+                return ResourceManager.GetString("Booking_JS4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Last Name.
         /// </summary>
         public static string Booking_LastName {
@@ -205,11 +268,308 @@ namespace Front.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Attach C.V.
+        /// </summary>
+        public static string Career_Details_Attach {
+            get {
+                return ResourceManager.GetString("Career_Details_Attach", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create.
+        /// </summary>
+        public static string Career_Details_Create {
+            get {
+                return ResourceManager.GetString("Career_Details_Create", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hospitality and Administartion.
+        /// </summary>
+        public static string Career_Details_Description {
+            get {
+                return ResourceManager.GetString("Career_Details_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        public static string Career_Details_Email {
+            get {
+                return ResourceManager.GetString("Career_Details_Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First Name.
+        /// </summary>
+        public static string Career_Details_Firstname {
+            get {
+                return ResourceManager.GetString("Career_Details_Firstname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please upload PDF or Doc.
+        /// </summary>
+        public static string Career_Details_JS_Alert {
+            get {
+                return ResourceManager.GetString("Career_Details_JS_Alert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last Name.
+        /// </summary>
+        public static string Career_Details_LastName {
+            get {
+                return ResourceManager.GetString("Career_Details_LastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Message.
+        /// </summary>
+        public static string Career_Details_Message {
+            get {
+                return ResourceManager.GetString("Career_Details_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone No.
+        /// </summary>
+        public static string Career_Details_PhoneNo {
+            get {
+                return ResourceManager.GetString("Career_Details_PhoneNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Postion Details.
+        /// </summary>
+        public static string Career_Details_PositionTitle {
+            get {
+                return ResourceManager.GetString("Career_Details_PositionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Careers.
+        /// </summary>
+        public static string Career_Details_Title {
+            get {
+                return ResourceManager.GetString("Career_Details_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply to this Job.
+        /// </summary>
+        public static string Career_Index_Apply_Button {
+            get {
+                return ResourceManager.GetString("Career_Index_Apply_Button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hospitality and Administartion.
+        /// </summary>
+        public static string Career_Index_Desc {
+            get {
+                return ResourceManager.GetString("Career_Index_Desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string Career_Index_Job_Desc {
+            get {
+                return ResourceManager.GetString("Career_Index_Job_Desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Education Level.
+        /// </summary>
+        public static string Career_Index_Job_Education {
+            get {
+                return ResourceManager.GetString("Career_Index_Job_Education", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Experience.
+        /// </summary>
+        public static string Career_Index_Job_Exp {
+            get {
+                return ResourceManager.GetString("Career_Index_Job_Exp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Career Level.
+        /// </summary>
+        public static string Career_Index_Job_Level {
+            get {
+                return ResourceManager.GetString("Career_Index_Job_Level", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Requirements.
+        /// </summary>
+        public static string Career_Index_Job_Requirements {
+            get {
+                return ResourceManager.GetString("Career_Index_Job_Requirements", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Job Type.
+        /// </summary>
+        public static string Career_Index_Job_Type {
+            get {
+                return ResourceManager.GetString("Career_Index_Job_Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vacancies.
+        /// </summary>
+        public static string Career_Index_Job_Vacancies {
+            get {
+                return ResourceManager.GetString("Career_Index_Job_Vacancies", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to JOB OPENNINGS.
+        /// </summary>
+        public static string Career_Index_Title {
+            get {
+                return ResourceManager.GetString("Career_Index_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        public static string ContactUs_Email {
+            get {
+                return ResourceManager.GetString("ContactUs_Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Full Name.
+        /// </summary>
+        public static string ContactUs_FullName {
+            get {
+                return ResourceManager.GetString("ContactUs_FullName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to sending...
+        /// </summary>
+        public static string ContactUs_JS_1 {
+            get {
+                return ResourceManager.GetString("ContactUs_JS_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Form Submitted , Thank you !.
+        /// </summary>
+        public static string ContactUs_JS_2 {
+            get {
+                return ResourceManager.GetString("ContactUs_JS_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Message.
+        /// </summary>
+        public static string ContactUs_Message {
+            get {
+                return ResourceManager.GetString("ContactUs_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone.
+        /// </summary>
+        public static string ContactUs_Phone {
+            get {
+                return ResourceManager.GetString("ContactUs_Phone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send.
+        /// </summary>
+        public static string ContactUs_SendButton {
+            get {
+                return ResourceManager.GetString("ContactUs_SendButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send an inquiry.
+        /// </summary>
+        public static string ContactUs_SendInquiry {
+            get {
+                return ResourceManager.GetString("ContactUs_SendInquiry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contact Us.
+        /// </summary>
+        public static string ContactUs_Title {
+            get {
+                return ResourceManager.GetString("ContactUs_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Office Address.
+        /// </summary>
+        public static string CotactUs_OfficeAddress {
+            get {
+                return ResourceManager.GetString("CotactUs_OfficeAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email Required.
         /// </summary>
         public static string Email_Required {
             get {
                 return ResourceManager.GetString("Email_Required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We Are Facing Some issues , Please Check Back Later.
+        /// </summary>
+        public static string ErrorPage_Desc {
+            get {
+                return ResourceManager.GetString("ErrorPage_Desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorry,Page your Are Looking For Doesn&apos;t Exist Or Site Currently Under Maintenance.
+        /// </summary>
+        public static string ErrorPage_Title {
+            get {
+                return ResourceManager.GetString("ErrorPage_Title", resourceCulture);
             }
         }
         
@@ -538,11 +898,191 @@ namespace Front.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Check In.
+        /// </summary>
+        public static string Hotel_Details_CheckIn {
+            get {
+                return ResourceManager.GetString("Hotel_Details_CheckIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check Out.
+        /// </summary>
+        public static string Hotel_Details_Checkout {
+            get {
+                return ResourceManager.GetString("Hotel_Details_Checkout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string Hotel_Details_Description {
+            get {
+                return ResourceManager.GetString("Hotel_Details_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Facilities.
+        /// </summary>
+        public static string Hotel_Details_Facilities {
+            get {
+                return ResourceManager.GetString("Hotel_Details_Facilities", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View Details.
+        /// </summary>
+        public static string Hotel_Index_Button_Details {
+            get {
+                return ResourceManager.GetString("Hotel_Index_Button_Details", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Luxury And Spacious.
+        /// </summary>
+        public static string Hotel_Index_Desc {
+            get {
+                return ResourceManager.GetString("Hotel_Index_Desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Our Hotels.
+        /// </summary>
+        public static string Hotel_Index_Title {
+            get {
+                return ResourceManager.GetString("Hotel_Index_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Night.
+        /// </summary>
+        public static string Hotel_Night {
+            get {
+                return ResourceManager.GetString("Hotel_Night", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Last Name Required.
         /// </summary>
         public static string Last_Name_Required {
             get {
                 return ResourceManager.GetString("Last_Name_Required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Category.
+        /// </summary>
+        public static string News_Category {
+            get {
+                return ResourceManager.GetString("News_Category", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Latest News.
+        /// </summary>
+        public static string News_Index_Desc {
+            get {
+                return ResourceManager.GetString("News_Index_Desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Continue Reading.
+        /// </summary>
+        public static string News_Index_Details {
+            get {
+                return ResourceManager.GetString("News_Index_Details", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All News.
+        /// </summary>
+        public static string News_Index_Title {
+            get {
+                return ResourceManager.GetString("News_Index_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recent News.
+        /// </summary>
+        public static string News_RecentNews {
+            get {
+                return ResourceManager.GetString("News_RecentNews", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Offers Available.
+        /// </summary>
+        public static string Offers_Error {
+            get {
+                return ResourceManager.GetString("Offers_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Latest Offers.
+        /// </summary>
+        public static string Offers_Index_Desc {
+            get {
+                return ResourceManager.GetString("Offers_Index_Desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View Details.
+        /// </summary>
+        public static string Offers_Index_Details {
+            get {
+                return ResourceManager.GetString("Offers_Index_Details", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Our Offers.
+        /// </summary>
+        public static string Offers_Index_Title {
+            get {
+                return ResourceManager.GetString("Offers_Index_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Here are the Visionary Minds Behind our Success.
+        /// </summary>
+        public static string Owners_Desc {
+            get {
+                return ResourceManager.GetString("Owners_Desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Success Team.
+        /// </summary>
+        public static string Owners_SuccessTeam {
+            get {
+                return ResourceManager.GetString("Owners_SuccessTeam", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leadership.
+        /// </summary>
+        public static string Owners_Title {
+            get {
+                return ResourceManager.GetString("Owners_Title", resourceCulture);
             }
         }
         

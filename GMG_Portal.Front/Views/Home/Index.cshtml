@@ -83,13 +83,13 @@
         var adult = $('#adult').val();
 
         if ($('#checkindate').val() === '') {
-            alert("Please Select Check-in Date");
+            alert("@Front.Resources.Global.Booking_JS1");
             return false;
         }
 
       
         if ($('#checkoutdate').val() === '') {
-            alert("Please Select Check-out Date");
+            alert("@Front.Resources.Global.Booking_JS2");
             return false;
         }
 
@@ -97,12 +97,12 @@
        
 
         if (adult === null) {
-            alert("Please Select Adult");
+            alert("@Front.Resources.Global.Booking_JS3");
             return false;
         }
 
         if (child === null) {
-            alert("Please Select Child");
+            alert("@Front.Resources.Global.Booking_JS4");
             return false;
         }
 

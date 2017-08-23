@@ -10,8 +10,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h2>JOB OPENNINGS</h2>
-                <p>Hospitality and Administartion.</p>
+                <h2>@Front.Resources.Global.Career_Index_Title</h2>
+                <p>@Front.Resources.Global.Career_Index_Desc</p>
             </div>
         </div>
     </div>
@@ -43,34 +43,34 @@
                     <div id="@careerObj.Id" class="panel-collapse collapse" role="tabpanel" aria-labelledby="@careerObj.Id-A" aria-expanded="false" style="height: 0px;">
                         <div class="panel-body">
                             <p>
-                                <b>Description :</b>
+                                <b>@Front.Resources.Global.Career_Index_Job_Desc :</b>
 
                                 @careerObj.DisplayValueDesc .
                             </p>
 
                             <p>
-                                <b>Experience :</b>
+                                <b>@Front.Resources.Global.Career_Index_Job_Exp :</b>
 
                                 @careerObj.Experience
                             </p>
 
 
                             <p>
-                                <b>Career Level :</b>
+                                <b>@Front.Resources.Global.Career_Index_Job_Level :</b>
 
                                 @careerObj.CareerLevel
                             </p>
 
                             <p>
                                 <b>
-                                    Job Type :
+                                    @Front.Resources.Global.Career_Index_Job_Type :
                                 </b>
                                 @careerObj.JobType
                             </p>
 
                             <p>
                                 <b>
-                                    Education Level :
+                                    @Front.Resources.Global.Career_Index_Job_Level :
                                 </b>
 
                                 @careerObj.EducationLevel
@@ -78,19 +78,19 @@
 
                             <p>
                                 <b>
-                                    Vacancies :
+                                    @Front.Resources.Global.Career_Index_Job_Vacancies :
                                 </b>
 
                                 @careerObj.Vacancies
                             </p>
 
                             <p>
-                                <b>Requirements</b>
+                                <b>@Front.Resources.Global.Career_Index_Job_Requirements</b>
 
                                 @careerObj.DisplayValueRequirements.
                             </p>
 
-                            <a href="/Career/Details/@careerObj.Id" class="main_apply" style="font-size: 16px;padding: 10px 35px; color: #FFF;background-color: #e7b315 ;border-color: #e7b315 ;">Apply to this Job</a>
+                            <a href="/Career/Details/@careerObj.Id" class="main_apply" style="font-size: 16px;padding: 10px 35px; color: #FFF;background-color: #e7b315 ;border-color: #e7b315 ;">@Front.Resources.Global.Career_Index_Apply_Button</a>
 
 
 

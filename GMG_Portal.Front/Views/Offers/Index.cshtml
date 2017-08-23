@@ -10,8 +10,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h2>Latest Offers</h2>
-                <p>Our Latest Offers.</p>
+                <h2>@Front.Resources.Global.Offers_Index_Title</h2>
+                <p>@Front.Resources.Global.Offers_Index_Desc</p>
             </div>
         </div>
     </div>
@@ -53,7 +53,7 @@
                             {
                                 <p>@Model[i].DisplayValueDesc</p> 
                             }
-                            <a href="/Offers/offerdetails/@Model[i].Id" class="btn btn-link">View Details <i class="fa fa-angle-double-right"></i></a>
+                            <a href="/Offers/offerdetails/@Model[i].Id" class="btn btn-link">@Front.Resources.Global.Offers_Index_Details <i class="fa fa-angle-double-right"></i></a>
                             @*<a href="#" class="btn btn-main">Book</a>*@
                         </figcaption>			
                     </figure>
@@ -65,7 +65,7 @@
         }
         else
         {
-            <p style="    margin-left: 47%;">no offers</p>
+            <p style="    margin-left: 47%;">@Front.Resources.Global.Offers_Error</p>
         }
         
      
