@@ -25,7 +25,7 @@ namespace Front
         {
             HttpCookie cookie = HttpContext.Current.Request.Cookies["Language"];
           
-            if (cookie != null && cookie.Value != null)
+            if (cookie?.Value != null)
             {
                 System.Threading.Thread.CurrentThread.CurrentCulture =
                     new System.Globalization.CultureInfo(cookie.Value);
