@@ -18,7 +18,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         }
         public Front_Mission_Translate GetAllWithDeleted(string langId)
         {
-            return _db.Front_Mission_Translate.OrderBy(p => p.langId == langId).FirstOrDefault();
+            return _db.Front_Mission_Translate.Where(p => p.langId == langId).OrderBy(p => p.langId == langId).FirstOrDefault();
         }
         public Front_Mission_Translate GetAll(string langId)
         {

@@ -20,7 +20,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         //Back and Front  Fetch Logic 
         public List<SystemParameters_HomeSlider_Translate> GetAllWithDeleted(string langId)
         {
-            return _db.SystemParameters_HomeSlider_Translate.OrderBy(p => p.IsDeleted && p.langId == langId).ToList();
+            return _db.SystemParameters_HomeSlider_Translate.Where(p => p.langId == langId).OrderBy(p => p.IsDeleted).ToList();
         }
         public List<SystemParameters_HomeSlider_Translate> GetAll(string langId)
         {
@@ -80,7 +80,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         }
         public SystemParameters_HomeSlider_Translate Edit(SystemParameters_HomeSlider_Translate postedhomeSlider)
         {
-            SystemParameters_HomeSlider_Translate obj = Get(postedhomeSlider.Id,postedhomeSlider.langId);
+            SystemParameters_HomeSlider_Translate obj = Get(postedhomeSlider.Id, postedhomeSlider.langId);
             obj.DisplayValue = postedhomeSlider.DisplayValue;
             obj.DisplayValueDesc = postedhomeSlider.DisplayValueDesc;
             obj.Image = postedhomeSlider.Image;
@@ -94,7 +94,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         }
         public SystemParameters_HomeSlider_Translate Delete(SystemParameters_HomeSlider_Translate postedhomeSlider)
         {
-            SystemParameters_HomeSlider_Translate obj = Get(postedhomeSlider.Id,postedhomeSlider.langId);
+            SystemParameters_HomeSlider_Translate obj = Get(postedhomeSlider.Id, postedhomeSlider.langId);
             //if (_db.SystemParameters_HomeSlider_Translate.Any(p => p.Id == postedhomeSlider.Id && p.IsDeleted != true))
             //{
             //      //  obj.OperationStatus = "HasRelationship";

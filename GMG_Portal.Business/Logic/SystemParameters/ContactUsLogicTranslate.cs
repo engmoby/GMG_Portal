@@ -20,7 +20,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         //Front And Back Fetch Logic 
         public List<SystemParameters_ContactUs_Translate> GetAllWithDeleted(string langId)
         {
-            return _db.SystemParameters_ContactUs_Translate.OrderBy(p => p.IsDeleted && p.langId == langId).ToList();
+            return _db.SystemParameters_ContactUs_Translate.Where(p => p.langId == langId).OrderBy(p => p.IsDeleted && p.langId == langId).ToList();
         }
         public  SystemParameters_ContactUs_Translate GetAll(string langId)
         {

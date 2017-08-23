@@ -16,8 +16,7 @@
             <div class="item active beactive">
                 <img src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/@Model.HomeSliders[0].Image" class="img-responsive" alt="...">
                 <div class="carousel-caption">
-                    <h2>@Model.HomeSliders[0].DisplayValue</h2>
-                    <p>@Model.HomeSliders[0].DisplayValueDesc</p>
+                   
                 </div>
             </div>
             @{  <!-- Indicators -->
@@ -27,8 +26,8 @@
                     <div class="item">
                         <img src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/@Model.HomeSliders[i].Image" class="img-responsive" alt="...">
                         <div class="carousel-caption">
-                            <h2>@Model.HomeSliders[i].DisplayValue</h2>
-                            <p>@Model.HomeSliders[i].DisplayValueDesc</p>
+                            @*<h2>@Model.HomeSliders[i].DisplayValue</h2>
+                            <p>@Model.HomeSliders[i].DisplayValueDesc</p>*@
                         </div>
                     </div>
                 }

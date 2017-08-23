@@ -19,7 +19,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         }
         public List<SystemParameters_CoreValues_Translate> GetAllWithDeleted(string langId)
         {
-            return _db.SystemParameters_CoreValues_Translate.OrderBy(p => p.IsDeleted && p.langId == langId).ToList();
+            return _db.SystemParameters_CoreValues_Translate.Where(p => p.langId == langId).OrderBy(p => p.IsDeleted && p.langId == langId).ToList();
         }
         public List<SystemParameters_CoreValues_Translate> GetAll(string langId)
         {
