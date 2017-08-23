@@ -1,7 +1,4 @@
-﻿@*@model  Front.Models.HomeModels*@
-
-
-
+﻿ 
 <!-- Footer Content  -->
 <footer class="mg-footer">
     <div class="mg-footer-widget">
@@ -39,6 +36,8 @@
                                 <input type="email" class="form-control" data-validation-error-msg="Pleae enter correct email format" placeholder="@Front.Resources.Global.Footer_NewsletterBoxEmail" id="Mail" data-validation="email">
                             </p>
                             <button class="btn btn-main" id="btnSave" onclick="sendnewsletter()" type="button">@Front.Resources.Global.Footer_NewsletterButton</button>
+                            @*<div id="response">from submit script - shows on success</div>
+                            <div id="loading"></div>*@ 
                             <div id="MSG" style="color: white"> </div>
                         </form>
                     </div>
@@ -61,39 +60,37 @@
             </div>
         </div>
     </div>
-</footer>
-
-
+</footer> 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
 <script src="~/Content/js/jquery.form-validator.min.js"></script>
 <script>
-    $.validate({
-        form: '#myForm',
-        modules: 'security',
-        onError: function ($form) {
+    $("#myForm").validate({
+        errorContainer: "#errorcontainer",
+        submitHandler: function () {
+            $("#response").css("display", "none");
+            $("#loading").css("display", "none");
 
-            var form = document.getElementById("myForm");
-            form.reset();
-            alert('Validation of form ' + $form.attr('id') + ' failed!');
-        },
-        onSuccess: function ($form) {
-            sendnewsletter();
-            var form = document.getElementById("myForm");
-            form.reset();
-            return false;
+            $.ajax({
+                type: 'post',
+                url: 'http://gmgapi.azurewebsites.net/SystemParameters/Newsletter/Save', 
+                data: $("form").serialize(),
+                complete: function (results) {
+                    setTimeout(function () {
+                        $("#loading").css("display", "none");
+                        $("#response").css("display", "block");
+                    }, 1500);
+                }
+            });
         }
-
     });
 </script>
 
 
 <script type="text/javascript">
-    function validateEmail(email) {
-        //  var emailReg = '[-0-9a-zA-Z.+_]+@@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,4}';
-        var pattern = new RegExp("[-0-9a-zA-Z.+_]+@@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,4}");
-
+    function validateEmail(email) { 
+        var pattern = new RegExp("[-0-9a-zA-Z.+_]+@@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,4}"); 
         return pattern.test(email);
     }
 
@@ -117,7 +114,7 @@
         }
 
         if (!validateEmail(newsletter.Mail)) {
-            $("#MSG").text(newsletter.Mail + " Pleae enter correct email format ");
+            $("#MSG").text(" Pleae enter correct email format ");
             $("#MSG").css("color", "red");
 
         } else {
