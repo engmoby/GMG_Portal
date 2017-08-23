@@ -31,13 +31,13 @@
                                 
                                 @if (@hotel.DisplayValueDesc.Length >= 110)
                                 { 
-                                    <div class="display-field" style="text-align: right;margin-bottom: 15px;">
+                                    <div class="display-field"  >
                                         @Html.PreserveNewLines(@hotel.DisplayValueDesc.ToString().Substring(0, 110))
                                     </div>
                                 }
                                 else
                                 {
-                                    <div class="display-field" style="text-align: right;margin-bottom: 15px;">
+                                    <div class="display-field" >
                                         @Html.PreserveNewLines(@hotel.DisplayValueDesc)
                                     </div>
                                 }

@@ -494,3 +494,7 @@ bootstrap.min.css:5
 }
 #MSG{    width: 100%;
     overflow: hidden;}
+
+.display-field {
+    text-align: left;margin-bottom: 15px;
+}

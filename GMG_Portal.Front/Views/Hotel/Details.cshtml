@@ -24,9 +24,9 @@
 
             <div class="row">
 
-                <ul class="main_clock">
-                    <li> @Front.Resources.Global.CheckIn: <i class="fa fa-clock-o"></i> @Model.CheckIn.AsDateTime().Date.ToString("hh:mm tt")</li>
-                    <li> @Front.Resources.Global.CheckOut: <i class="fa fa-clock-o"></i> @Model.CheckOut.AsDateTime().Date.ToString("hh:mm tt")</li>
+                <ul class="main_clock"> 
+                    <li> @Front.Resources.Global.CheckIn: <i class="fa fa-clock-o"></i> @Model.CheckIn.AsDateTime().ToString("hh:mm tt")</li>
+                    <li> @Front.Resources.Global.CheckOut: <i class="fa fa-clock-o"></i> @Model.CheckOut.AsDateTime().ToString("hh:mm tt")</li>
                 </ul>
 
             </div>
@@ -75,9 +75,7 @@
                 <div class="mg-single-room-txt">
                     <h2 class="mg-sec-left-title">@Front.Resources.Global.Hotel_Details_Description</h2>
 
-                    <div class="display-field" style="text-align: right;">
-
-
+                    <div class="display-field" > 
                         @Html.PreserveNewLines(@Model.DisplayValueDesc)
                     </div>
                 </div>
