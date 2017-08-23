@@ -14,6 +14,11 @@ function NewsController($scope, NewsApi, uploadNewsService, $rootScope, $timeout
             $scope.News = response.data;
             $rootScope.ViewLoading = false;
         });
+
+        NewsApi.GetAllCategories(CurrentLanguage).then(function (response) {
+            debugger;
+            $scope.Categorys = response.data;
+        });
     });
     $scope.SelectedCategory = null;
 
@@ -49,7 +54,7 @@ function NewsController($scope, NewsApi, uploadNewsService, $rootScope, $timeout
             console.log($scope.SelectedCategory);
             var categoryIndex = $scope.Categorys.indexOf($filter('filter')($scope.Categorys, { 'Id': New.CategoryId }, true)[0]);
             $scope.SelectedCategory = $scope.Categorys[categoryIndex];
-            console.log($scope.SelectedCategory.DisplayValue);
+            //console.log($scope.SelectedCategory.DisplayValue);
         };
         $scope.New = angular.copy(New);
         if ($scope.New.Image)
@@ -94,37 +99,37 @@ function NewsController($scope, NewsApi, uploadNewsService, $rootScope, $timeout
         debugger;
         if ($scope.SelectedCategory != null)
             $scope.New.CategoryId = $scope.SelectedCategory.Id;
-        $scope.New.LangId = CurrentLanguage;
+        $scope.New.langId = CurrentLanguage;
 
         NewsApi.Save($scope.New).then(function (response) {
 
-            switch (response.data.OperationStatus) {
+                switch (response.data.OperationStatus) {
                 case "Succeded":
                     var index;
                     switch ($scope.action) {
-                        case 'edit':
-                            index = $scope.News.indexOf($filter('filter')($scope.News, { 'Id': $scope.New.Id }, true)[0]);
-                            $scope.News[index] = angular.copy(response.data);
-                            //NewsApi.GetAll(CurrentLanguage).then(function (response) {
-                            //    $scope.News = response.data;
-                            //});
-                            toastr.success($('#HUpdateSuccessMessage').val(), 'Success');
-                            break;
-                        case 'delete':
-                            index = $scope.News.indexOf($filter('filter')($scope.News, { 'Id': $scope.New.Id }, true)[0]);
-                            $scope.News[index] = angular.copy(response.data);
-                            //NewsApi.GetAll(CurrentLanguage).then(function (response) {
-                            //    $scope.News = response.data;
-                            //});
-                            toastr.success($('#HDeleteSuccessMessage').val(), 'Success');
-                            break;
-                        case 'add':
-                            //NewsApi.GetAll(CurrentLanguage).then(function (response) {
-                            //    $scope.News = response.data;
-                            //});
-                            $scope.News.push(angular.copy(response.data));
-                            toastr.success($('#HSaveSuccessMessage').val(), 'Success');
-                            break;
+                    case 'edit':
+                        index = $scope.News.indexOf($filter('filter')($scope.News, { 'Id': $scope.New.Id }, true)[0]);
+                        $scope.News[index] = angular.copy(response.data);
+                        //NewsApi.GetAll(CurrentLanguage).then(function (response) {
+                        //    $scope.News = response.data;
+                        //});
+                        toastr.success($('#HUpdateSuccessMessage').val(), 'Success');
+                        break;
+                    case 'delete':
+                        index = $scope.News.indexOf($filter('filter')($scope.News, { 'Id': $scope.New.Id }, true)[0]);
+                        $scope.News[index] = angular.copy(response.data);
+                        //NewsApi.GetAll(CurrentLanguage).then(function (response) {
+                        //    $scope.News = response.data;
+                        //});
+                        toastr.success($('#HDeleteSuccessMessage').val(), 'Success');
+                        break;
+                    case 'add':
+                        //NewsApi.GetAll(CurrentLanguage).then(function (response) {
+                        //    $scope.News = response.data;
+                        //});
+                        $scope.News.push(angular.copy(response.data));
+                        toastr.success($('#HSaveSuccessMessage').val(), 'Success');
+                        break;
                     }
                     break;
                 case "NameEnMustBeUnique":
@@ -138,17 +143,17 @@ function NewsController($scope, NewsApi, uploadNewsService, $rootScope, $timeout
                     break;
                 default:
 
-            }
-            $rootScope.ViewLoading = false;
-            $scope.back();
-        },
-        function (response) {
-            debugger;
-            ss = response;
-        });
+                }
+                $rootScope.ViewLoading = false;
+                $scope.back();
+            },
+            function (response) {
+                debugger;
+                ss = response;
+            });
     }
 
-     $scope.uploading = false;
+    $scope.uploading = false;
     $scope.countFiles = '';
     $scope.data = []; //For displaying file name on browser
     $scope.formdata = new FormData();
@@ -201,29 +206,29 @@ function NewsController($scope, NewsApi, uploadNewsService, $rootScope, $timeout
         uploadNewsService.uploadFiles($scope)
             // then() called when uploadFiles gets back
             .then(function (data) {
-                // promise fulfilled
-                $scope.uploading = false;
-                if (data === '') {
-                    // console.log(data);
-                    //   $scope.Image=data.
-                    $scope.save();
-                    alert("Done!!!");
-                    $scope.formdata = new FormData();
+                    // promise fulfilled
+                    $scope.uploading = false;
+                    if (data === '') {
+                        // console.log(data);
+                        //   $scope.Image=data.
+                        $scope.save();
+                        alert("Done!!!");
+                        $scope.formdata = new FormData();
+                        $scope.data = [];
+                        $scope.countFiles = '';
+                        $scope.$apply;
+                    } else {
+                        // console.log(data);
+                        //Server Error
+                        $scope.data = [];
+                        alert("Shit, What happended up there!!! " + data);
+                    }
+                }, function (error) {
+                    $scope.uploading = false;
                     $scope.data = [];
-                    $scope.countFiles = '';
-                    $scope.$apply;
-                } else {
-                    // console.log(data);
                     //Server Error
-                    $scope.data = [];
-                    alert("Shit, What happended up there!!! " + data);
+                    alert("Shit, What happended up there!!! " + error);
                 }
-            }, function (error) {
-                $scope.uploading = false;
-                $scope.data = [];
-                //Server Error
-                alert("Shit, What happended up there!!! " + error);
-            }
 
             );
     };

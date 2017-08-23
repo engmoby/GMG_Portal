@@ -15,6 +15,8 @@
     }
 
     this.GetAllCategories = function (lang) {
-        return $http.get(apiUrl + '/SystemParameters/NewsCategory/GetAllWithDeleted?LangId=' + lang);
+        return $http.get(apiUrl + '/SystemParameters/NewsCategory/GetAll?LangId=' + lang);
     }
+
+   
 });

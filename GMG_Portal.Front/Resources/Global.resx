@@ -288,4 +288,184 @@
   <data name="Footer_PostalCode" xml:space="preserve">
     <value>Postal Code </value>
   </data>
+  <data name="About_CoreValuesTitle" xml:space="preserve">
+    <value>Our Core Values</value>
+  </data>
+  <data name="About_Description" xml:space="preserve">
+    <value>for Trading &amp; Real Estate Investment Ltd</value>
+  </data>
+  <data name="About_Title" xml:space="preserve">
+    <value>Mobark International Company</value>
+  </data>
+  <data name="Career_Details_Attach" xml:space="preserve">
+    <value>Attach C.V</value>
+  </data>
+  <data name="Career_Details_Create" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="Career_Details_Description" xml:space="preserve">
+    <value>Hospitality and Administartion</value>
+  </data>
+  <data name="Career_Details_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Career_Details_Firstname" xml:space="preserve">
+    <value>First Name</value>
+  </data>
+  <data name="Career_Details_JS_Alert" xml:space="preserve">
+    <value>Please upload PDF or Doc</value>
+  </data>
+  <data name="Career_Details_LastName" xml:space="preserve">
+    <value>Last Name</value>
+  </data>
+  <data name="Career_Details_Message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="Career_Details_PhoneNo" xml:space="preserve">
+    <value>Phone No</value>
+  </data>
+  <data name="Career_Details_PositionTitle" xml:space="preserve">
+    <value>Postion Details</value>
+  </data>
+  <data name="Career_Details_Title" xml:space="preserve">
+    <value>Careers</value>
+  </data>
+  <data name="Career_Index_Apply_Button" xml:space="preserve">
+    <value>Apply to this Job</value>
+  </data>
+  <data name="Career_Index_Desc" xml:space="preserve">
+    <value>Hospitality and Administartion</value>
+  </data>
+  <data name="Career_Index_Job_Desc" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Career_Index_Job_Education" xml:space="preserve">
+    <value>Education Level</value>
+  </data>
+  <data name="Career_Index_Job_Exp" xml:space="preserve">
+    <value>Experience</value>
+  </data>
+  <data name="Career_Index_Job_Level" xml:space="preserve">
+    <value>Career Level</value>
+  </data>
+  <data name="Career_Index_Job_Requirements" xml:space="preserve">
+    <value>Requirements</value>
+  </data>
+  <data name="Career_Index_Job_Type" xml:space="preserve">
+    <value>Job Type</value>
+  </data>
+  <data name="Career_Index_Job_Vacancies" xml:space="preserve">
+    <value>Vacancies</value>
+  </data>
+  <data name="Career_Index_Title" xml:space="preserve">
+    <value>JOB OPENNINGS</value>
+  </data>
+  <data name="ContactUs_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="ContactUs_FullName" xml:space="preserve">
+    <value>Full Name</value>
+  </data>
+  <data name="ContactUs_JS_1" xml:space="preserve">
+    <value>sending..</value>
+  </data>
+  <data name="ContactUs_JS_2" xml:space="preserve">
+    <value>Form Submitted , Thank you !</value>
+  </data>
+  <data name="ContactUs_Message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="ContactUs_Phone" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="ContactUs_SendButton" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="ContactUs_SendInquiry" xml:space="preserve">
+    <value>Send an inquiry</value>
+  </data>
+  <data name="ContactUs_Title" xml:space="preserve">
+    <value>Contact Us</value>
+  </data>
+  <data name="CotactUs_OfficeAddress" xml:space="preserve">
+    <value>Office Address</value>
+  </data>
+  <data name="ErrorPage_Desc" xml:space="preserve">
+    <value>We Are Facing Some issues , Please Check Back Later</value>
+  </data>
+  <data name="ErrorPage_Title" xml:space="preserve">
+    <value>Sorry,Page your Are Looking For Doesn't Exist Or Site Currently Under Maintenance</value>
+  </data>
+  <data name="Hotel_Details_CheckIn" xml:space="preserve">
+    <value>Check In</value>
+  </data>
+  <data name="Hotel_Details_Checkout" xml:space="preserve">
+    <value>Check Out</value>
+  </data>
+  <data name="Hotel_Details_Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Hotel_Details_Facilities" xml:space="preserve">
+    <value>Facilities</value>
+  </data>
+  <data name="Hotel_Index_Button_Details" xml:space="preserve">
+    <value>View Details</value>
+  </data>
+  <data name="Hotel_Index_Desc" xml:space="preserve">
+    <value>Luxury And Spacious</value>
+  </data>
+  <data name="Hotel_Index_Title" xml:space="preserve">
+    <value>Our Hotels</value>
+  </data>
+  <data name="Hotel_Night" xml:space="preserve">
+    <value>Night</value>
+  </data>
+  <data name="News_Category" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="News_Index_Desc" xml:space="preserve">
+    <value>Latest News</value>
+  </data>
+  <data name="News_Index_Details" xml:space="preserve">
+    <value>Continue Reading</value>
+  </data>
+  <data name="News_Index_Title" xml:space="preserve">
+    <value>All News</value>
+  </data>
+  <data name="News_RecentNews" xml:space="preserve">
+    <value>Recent News</value>
+  </data>
+  <data name="Offers_Error" xml:space="preserve">
+    <value>No Offers Available</value>
+  </data>
+  <data name="Offers_Index_Desc" xml:space="preserve">
+    <value>Latest Offers</value>
+  </data>
+  <data name="Offers_Index_Details" xml:space="preserve">
+    <value>View Details</value>
+  </data>
+  <data name="Offers_Index_Title" xml:space="preserve">
+    <value>Our Offers</value>
+  </data>
+  <data name="Owners_Desc" xml:space="preserve">
+    <value>Here are the Visionary Minds Behind our Success</value>
+  </data>
+  <data name="Owners_SuccessTeam" xml:space="preserve">
+    <value>Success Team</value>
+  </data>
+  <data name="Owners_Title" xml:space="preserve">
+    <value>Leadership</value>
+  </data>
+  <data name="Booking_JS1" xml:space="preserve">
+    <value>Please Select Check-in Date</value>
+  </data>
+  <data name="Booking_JS2" xml:space="preserve">
+    <value>Please Select Check-out Date</value>
+  </data>
+  <data name="Booking_JS3" xml:space="preserve">
+    <value>Please Select Adult</value>
+  </data>
+  <data name="Booking_JS4" xml:space="preserve">
+    <value>Please Select Child</value>
+  </data>
 </root>

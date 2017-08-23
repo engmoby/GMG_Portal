@@ -117,358 +117,355 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="About_CoreValuesTitle" xml:space="preserve">
-    <value>قيمنا الجوهريه</value>
-  </data>
-  <data name="About_Description" xml:space="preserve">
-    <value>للتجاره و الاستثمار العقارى</value>
-  </data>
-  <data name="About_Title" xml:space="preserve">
-    <value>شركات مبارك العالميه</value>
-  </data>
-  <data name="Attach_file_Required" xml:space="preserve">
-    <value>يجب ارفاق الملف</value>
-  </data>
-  <data name="Booking_Adults" xml:space="preserve">
-    <value>بالغون</value>
-  </data>
-  <data name="Booking_CheckIn" xml:space="preserve">
-    <value>تاريخ الوصول</value>
-  </data>
-  <data name="Booking_Checkout" xml:space="preserve">
-    <value>تاريخ المغادره</value>
-  </data>
-  <data name="Booking_Child" xml:space="preserve">
-    <value>اطفال</value>
-  </data>
-  <data name="Booking_ConfirmMsg" xml:space="preserve">
-    <value>شكرا لأختيارك فنادق مبارك ! ,تم تسجيل طلبك و سيقوم احد مسئولى خدمه العملاء بالتواصل معك فى اقرب وقت</value>
-  </data>
-  <data name="Booking_Create" xml:space="preserve">
-    <value>تسجيل</value>
-  </data>
-  <data name="Booking_Details" xml:space="preserve">
-    <value>تفاصيل الحجز</value>
-  </data>
-  <data name="Booking_Email" xml:space="preserve">
-    <value>البريد الالكترونى</value>
-  </data>
-  <data name="Booking_FirstName" xml:space="preserve">
-    <value>الاسم الاول</value>
-  </data>
-  <data name="Booking_JS1" xml:space="preserve">
-    <value>يجب اختيار موعد الوصول</value>
-  </data>
-  <data name="Booking_JS2" xml:space="preserve">
-    <value>يجب اختيار موعد المغادره</value>
-  </data>
-  <data name="Booking_JS3" xml:space="preserve">
-    <value>يجب اختيار عدد الاشخاص البالغون</value>
-  </data>
-  <data name="Booking_JS4" xml:space="preserve">
-    <value>يجب اختيار الاطفال المرافقون</value>
-  </data>
-  <data name="Booking_LastName" xml:space="preserve">
-    <value>اسم العائله</value>
-  </data>
-  <data name="Booking_Mobile" xml:space="preserve">
-    <value>الجوال</value>
-  </data>
-  <data name="Booking_PageTitle" xml:space="preserve">
-    <value>الحجز الالكترونى</value>
-  </data>
-  <data name="Booking_Personalinfo" xml:space="preserve">
-    <value>المعلومات الشخصيه</value>
-  </data>
-  <data name="Booking_ReservationID" xml:space="preserve">
-    <value>الرقم المرجعى للحجز</value>
-  </data>
-  <data name="Booking_ThankYou" xml:space="preserve">
-    <value>! شكرا لك </value>
-  </data>
-  <data name="Career_Details_Attach" xml:space="preserve">
-    <value>ارفاق السيره الذاتيه</value>
-  </data>
-  <data name="Career_Details_Create" xml:space="preserve">
-    <value>ارسال</value>
-  </data>
-  <data name="Career_Details_Description" xml:space="preserve">
-    <value>الضيافه و الاداره</value>
-  </data>
-  <data name="Career_Details_Email" xml:space="preserve">
-    <value>البريد الالكترونى</value>
-  </data>
-  <data name="Career_Details_Firstname" xml:space="preserve">
-    <value>الاسم الاول</value>
-  </data>
-  <data name="Career_Details_JS_Alert" xml:space="preserve">
-    <value>من فضلك ارفق ملف PDF</value>
-  </data>
-  <data name="Career_Details_LastName" xml:space="preserve">
-    <value>الاسم الاخير</value>
-  </data>
-  <data name="Career_Details_Message" xml:space="preserve">
-    <value>الرساله</value>
-  </data>
-  <data name="Career_Details_PhoneNo" xml:space="preserve">
-    <value>رقم التليفون</value>
-  </data>
-  <data name="Career_Details_PositionTitle" xml:space="preserve">
-    <value>بيانات الوظيفه</value>
-  </data>
-  <data name="Career_Details_Title" xml:space="preserve">
-    <value>وظائف</value>
-  </data>
-  <data name="Career_Index_Apply_Button" xml:space="preserve">
-    <value>سجل لهذه الوظيفه</value>
-  </data>
-  <data name="Career_Index_Desc" xml:space="preserve">
-    <value>الضيافه و الاعمال الاداريه</value>
-  </data>
-  <data name="Career_Index_Job_Desc" xml:space="preserve">
-    <value>شرح الوظيفه</value>
-  </data>
-  <data name="Career_Index_Job_Education" xml:space="preserve">
-    <value>مستوى التعليم</value>
-  </data>
-  <data name="Career_Index_Job_Exp" xml:space="preserve">
-    <value>الخبره</value>
-  </data>
-  <data name="Career_Index_Job_Level" xml:space="preserve">
-    <value>مستوى التدرج</value>
-  </data>
-  <data name="Career_Index_Job_Requirements" xml:space="preserve">
-    <value>المتطلبات</value>
-  </data>
-  <data name="Career_Index_Job_Type" xml:space="preserve">
-    <value>نوع الوظيفه</value>
-  </data>
-  <data name="Career_Index_Job_Vacancies" xml:space="preserve">
-    <value>الفرص المتاحه</value>
-  </data>
-  <data name="Career_Index_Title" xml:space="preserve">
-    <value>الوظائف المطلوبه</value>
-  </data>
-  <data name="ContactUs_Email" xml:space="preserve">
-    <value>البريد الالكترونى</value>
-  </data>
-  <data name="ContactUs_FullName" xml:space="preserve">
-    <value>الاسم بالكامل</value>
-  </data>
-  <data name="ContactUs_JS_1" xml:space="preserve">
-    <value>..جارى الارسال</value>
-  </data>
-  <data name="ContactUs_JS_2" xml:space="preserve">
-    <value>تم الارسال ,شكرا لك !</value>
-  </data>
-  <data name="ContactUs_Message" xml:space="preserve">
-    <value>الرساله</value>
-  </data>
-  <data name="ContactUs_Phone" xml:space="preserve">
-    <value>التليفون</value>
-  </data>
-  <data name="ContactUs_SendButton" xml:space="preserve">
-    <value>ارسال</value>
-  </data>
-  <data name="ContactUs_SendInquiry" xml:space="preserve">
-    <value>ارسال استفسار</value>
-  </data>
-  <data name="ContactUs_Title" xml:space="preserve">
-    <value>اتصل بنا</value>
-  </data>
-  <data name="CotactUs_OfficeAddress" xml:space="preserve">
-    <value>عناوين</value>
-  </data>
-  <data name="Email_Required" xml:space="preserve">
-    <value>البريد الاكترونى مطلوب</value>
-  </data>
-  <data name="ErrorPage_Desc" xml:space="preserve">
-    <value>نواجه بعض المشاكل حاليا ,برجاء التجربه لاحقا</value>
-  </data>
-  <data name="ErrorPage_Title" xml:space="preserve">
-    <value>عذرا ,الصفحه المطلوبه غير موجوده</value>
-  </data>
-  <data name="First_Name_Required" xml:space="preserve">
-    <value>الاسم الاول مطلوب</value>
-  </data>
   <data name="Footer_ContactUs" xml:space="preserve">
-    <value>اتصل بنا</value>
+    <value>Contactez nous</value>
   </data>
   <data name="Footer_CopyRights" xml:space="preserve">
-    <value>2017 جميع الحقوق محفوظه -شركه جى ام جى لتكنولوجيا المعلومات</value>
-  </data>
-  <data name="Footer_Mailbox" xml:space="preserve">
-    <value>ص.ب </value>
+    <value>© 2017 GMG Technology Group. Tous les droits sont réservés.</value>
   </data>
   <data name="Footer_Newsletter" xml:space="preserve">
-    <value>بريد مبارك</value>
+    <value>Bulletin</value>
   </data>
   <data name="Footer_NewsletterBoxEmail" xml:space="preserve">
-    <value>بريدك الالكترونى</value>
+    <value>Votre Email</value>
   </data>
   <data name="Footer_NewsletterButton" xml:space="preserve">
-    <value>اشترك الان</value>
+    <value>Souscrire</value>
   </data>
   <data name="Footer_NewsletterDesc" xml:space="preserve">
-    <value>اشترك لمتابعه الاخبار و احدث العروض</value>
+    <value>Abonnez-vous à notre newsletter</value>
   </data>
   <data name="Footer_NewsletterSubmitMsg" xml:space="preserve">
-    <value>تم تسجيل البريد الالكترونى , شكرا لك </value>
-  </data>
-  <data name="Footer_PostalCode" xml:space="preserve">
-    <value>الرقم البريدى</value>
+    <value>Courriel envoyé, merci!</value>
   </data>
   <data name="Footer_SocialMedia" xml:space="preserve">
-    <value>التواصل الاجتماعى</value>
+    <value>Des médias sociaux</value>
   </data>
   <data name="Footer_Twitter" xml:space="preserve">
-    <value>تويتر</value>
+    <value>Twitter</value>
   </data>
   <data name="Header_About" xml:space="preserve">
-    <value>عن مبارك</value>
+    <value>Sur Mobarak</value>
   </data>
   <data name="Header_Careers" xml:space="preserve">
-    <value>الوظائف</value>
+    <value>Carrières</value>
   </data>
   <data name="Header_Contact" xml:space="preserve">
-    <value>اتصل بنا</value>
+    <value>Contact</value>
   </data>
   <data name="Header_Home" xml:space="preserve">
-    <value>الرئيسيه</value>
+    <value>Accueil</value>
   </data>
   <data name="Header_Hotels" xml:space="preserve">
-    <value>الفنادق</value>
+    <value>Hôtels</value>
   </data>
   <data name="Header_Languages" xml:space="preserve">
-    <value>اللغه</value>
+    <value>Langues</value>
   </data>
   <data name="Header_News" xml:space="preserve">
-    <value>الاخبار</value>
+    <value>Nouvelles</value>
   </data>
   <data name="Header_Offers" xml:space="preserve">
-    <value>العروض</value>
+    <value>Des offres</value>
   </data>
   <data name="Header_Owners" xml:space="preserve">
-    <value>فريق القياده</value>
+    <value>Direction</value>
   </data>
   <data name="Home_HotelFacilitiesDesc" xml:space="preserve">
-    <value>تمتع بأنترنت مجانى ,صاله جيمانزيوم و مسبح ساخن </value>
+    <value>Ces meilleures chambres choisies par nos clients</value>
   </data>
   <data name="Home_HotelFacilitiesTitle" xml:space="preserve">
-    <value>مزايا الفنادق</value>
+    <value>FACILITÉS DE L'HÔTEL</value>
   </data>
   <data name="Home_OurGallery" xml:space="preserve">
-    <value>معرض الصور</value>
+    <value>NOTRE GALERIE</value>
   </data>
   <data name="Home_OurHotelsDesc" xml:space="preserve">
-    <value>فنادقنا فى مكه المكرمه و جده</value>
+    <value>Ces meilleures chambres choisies par nos clients</value>
   </data>
   <data name="Home_OurHotelsTitle" xml:space="preserve">
-    <value>فنادق مبارك</value>
+    <value>NOS MEILLEURES CHAMBRES</value>
   </data>
   <data name="Home_OwnersDesc" xml:space="preserve">
-    <value>العقول المنيره خلف نجاح المجموعه</value>
+    <value>Voici les esprits visionnaires derrière notre réussite</value>
   </data>
   <data name="Home_OwnersTitle" xml:space="preserve">
-    <value>فريق القياده</value>
+    <value>DIRECTION</value>
   </data>
   <data name="Home_RecentNews" xml:space="preserve">
-    <value>احدث الاخبار</value>
+    <value>NOUVELLES RÉCENTES</value>
   </data>
   <data name="Home_SearchRoomsAdult" xml:space="preserve">
-    <value>بالغ</value>
+    <value>Adulte</value>
   </data>
   <data name="Home_SearchRoomsButton" xml:space="preserve">
-    <value>احجز الان</value>
+    <value>Vérifie maintenant</value>
   </data>
   <data name="Home_SearchRoomsCheckin" xml:space="preserve">
-    <value>تاريخ الاقامه</value>
+    <value>Enregistrement</value>
   </data>
   <data name="Home_SearchRoomsCheckout" xml:space="preserve">
-    <value>تاريخ المغادره</value>
+    <value>Check Out</value>
   </data>
   <data name="Home_SearchRoomsChild" xml:space="preserve">
-    <value>طفل</value>
+    <value>Enfant</value>
   </data>
   <data name="Home_SearchRoomsDesc" xml:space="preserve">
-    <value>افضل الاسعار و اجود خدمه فندقيه</value>
+    <value>POUR TARIFS ET DISPONIBILITÉ</value>
   </data>
   <data name="Home_SearchRoomsTitle" xml:space="preserve">
-    <value>ابحث عن اقامتك</value>
+    <value>RECHERCHE CHAMBRES</value>
   </data>
-  <data name="Hotel_Details_CheckIn" xml:space="preserve">
-    <value>تسجيل الوصول</value>
-  </data>
-  <data name="Hotel_Details_Checkout" xml:space="preserve">
-    <value>تسجيل المغادره</value>
-  </data>
-  <data name="Hotel_Details_Description" xml:space="preserve">
-    <value>معلومات</value>
-  </data>
-  <data name="Hotel_Details_Facilities" xml:space="preserve">
-    <value>مزايا الفندق</value>
-  </data>
-  <data name="Hotel_Index_Button_Details" xml:space="preserve">
-    <value>عرض التفاصيل</value>
-  </data>
-  <data name="Hotel_Index_Desc" xml:space="preserve">
-    <value>فخامه و رقى</value>
-  </data>
-  <data name="Hotel_Index_Title" xml:space="preserve">
-    <value>فنادقنا</value>
-  </data>
-  <data name="Hotel_Night" xml:space="preserve">
-    <value>ليله</value>
+  <data name="First_Name_Required" xml:space="preserve">
+    <value>Prénom (obligatoire)</value>
   </data>
   <data name="Last_Name_Required" xml:space="preserve">
-    <value>الاسم الاخير مطلوب</value>
+    <value>Nom obligatoire</value>
   </data>
-  <data name="News_Category" xml:space="preserve">
-    <value>تصنيف</value>
-  </data>
-  <data name="News_Index_Desc" xml:space="preserve">
-    <value>احدث الاخبار</value>
-  </data>
-  <data name="News_Index_Details" xml:space="preserve">
-    <value>استكمل القراءه</value>
-  </data>
-  <data name="News_Index_Title" xml:space="preserve">
-    <value>جميع الاخبار</value>
-  </data>
-  <data name="News_RecentNews" xml:space="preserve">
-    <value>احدث الاخبار</value>
-  </data>
-  <data name="Offers_Error" xml:space="preserve">
-    <value>لا يوجد عروض متاحه حاليه</value>
-  </data>
-  <data name="Offers_Index_Desc" xml:space="preserve">
-    <value>احدث العروض</value>
-  </data>
-  <data name="Offers_Index_Details" xml:space="preserve">
-    <value>عرض التفاصل</value>
-  </data>
-  <data name="Offers_Index_Title" xml:space="preserve">
-    <value>العروض</value>
-  </data>
-  <data name="Owners_Desc" xml:space="preserve">
-    <value>العقول المنيره خلف نجاح المجموعه</value>
-  </data>
-  <data name="Owners_SuccessTeam" xml:space="preserve">
-    <value>فريق العمل</value>
-  </data>
-  <data name="Owners_Title" xml:space="preserve">
-    <value>القياده</value>
+  <data name="Email_Required" xml:space="preserve">
+    <value>Email (requis)</value>
   </data>
   <data name="PhoneNo_Required" xml:space="preserve">
-    <value>رقم التليفون مطلوب</value>
+    <value>PhoneNo Obligatoire</value>
+  </data>
+  <data name="Attach_file_Required" xml:space="preserve">
+    <value>Joindre le fichier requis</value>
   </data>
   <data name="SeeMore" xml:space="preserve">
-    <value> المزيد</value>
+    <value>Voir plus</value>
   </data>
   <data name="StyleUrl" xml:space="preserve">
-    <value>/Content/css/stylear.css</value>
-  </data>
-  <data name="StyleUrl1" xml:space="preserve">
     <value />
+  </data>
+  <data name="Booking_PageTitle" xml:space="preserve">
+    <value>Réservation</value>
+  </data>
+  <data name="Booking_Adults" xml:space="preserve">
+    <value>Adultes</value>
+  </data>
+  <data name="Booking_CheckIn" xml:space="preserve">
+    <value>Enregistrement</value>
+  </data>
+  <data name="Booking_Checkout" xml:space="preserve">
+    <value>Check out</value>
+  </data>
+  <data name="Booking_Child" xml:space="preserve">
+    <value>Enfant</value>
+  </data>
+  <data name="Booking_ConfirmMsg" xml:space="preserve">
+    <value>Je vous remercie! Votre réservation est enregistrée, l'un de nos bureaux de réservation contactera bientôt</value>
+  </data>
+  <data name="Booking_Create" xml:space="preserve">
+    <value>Créer</value>
+  </data>
+  <data name="Booking_Details" xml:space="preserve">
+    <value>Les détails de réservation</value>
+  </data>
+  <data name="Booking_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Booking_FirstName" xml:space="preserve">
+    <value>Prénom</value>
+  </data>
+  <data name="Booking_LastName" xml:space="preserve">
+    <value>Nom de famille</value>
+  </data>
+  <data name="Booking_Mobile" xml:space="preserve">
+    <value>Mobile</value>
+  </data>
+  <data name="Booking_Personalinfo" xml:space="preserve">
+    <value>Informations personnelles</value>
+  </data>
+  <data name="Booking_ThankYou" xml:space="preserve">
+    <value>Je vous remercie</value>
+  </data>
+  <data name="Booking_ReservationID" xml:space="preserve">
+    <value>Votre identifiant de réserve</value>
+  </data>
+  <data name="Footer_Mailbox" xml:space="preserve">
+    <value>Boites aux lettres</value>
+  </data>
+  <data name="Footer_PostalCode" xml:space="preserve">
+    <value>code postal</value>
+  </data>
+  <data name="About_CoreValuesTitle" xml:space="preserve">
+    <value>Nos valeurs fondamentales</value>
+  </data>
+  <data name="About_Description" xml:space="preserve">
+    <value>for Trading &amp; Real Estate Investment Ltd</value>
+  </data>
+  <data name="About_Title" xml:space="preserve">
+    <value>Mobark International Company</value>
+  </data>
+  <data name="Career_Details_Attach" xml:space="preserve">
+    <value>Joindre C.V</value>
+  </data>
+  <data name="Career_Details_Create" xml:space="preserve">
+    <value>Créer</value>
+  </data>
+  <data name="Career_Details_Description" xml:space="preserve">
+    <value>Hospitalité et administration</value>
+  </data>
+  <data name="Career_Details_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Career_Details_Firstname" xml:space="preserve">
+    <value>Prénom</value>
+  </data>
+  <data name="Career_Details_JS_Alert" xml:space="preserve">
+    <value>Veuillez télécharger le document PDF ou Doc</value>
+  </data>
+  <data name="Career_Details_LastName" xml:space="preserve">
+    <value>Nom de famille</value>
+  </data>
+  <data name="Career_Details_Message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="Career_Details_PhoneNo" xml:space="preserve">
+    <value>téléphone</value>
+  </data>
+  <data name="Career_Details_PositionTitle" xml:space="preserve">
+    <value>Détails de poste</value>
+  </data>
+  <data name="Career_Details_Title" xml:space="preserve">
+    <value>Carrières</value>
+  </data>
+  <data name="Career_Index_Apply_Button" xml:space="preserve">
+    <value>Postuler à ce poste</value>
+  </data>
+  <data name="Career_Index_Desc" xml:space="preserve">
+    <value>Hospitalité et administration</value>
+  </data>
+  <data name="Career_Index_Job_Desc" xml:space="preserve">
+    <value>La description</value>
+  </data>
+  <data name="Career_Index_Job_Education" xml:space="preserve">
+    <value>niveau d'éducation</value>
+  </data>
+  <data name="Career_Index_Job_Exp" xml:space="preserve">
+    <value>Expérience</value>
+  </data>
+  <data name="Career_Index_Job_Level" xml:space="preserve">
+    <value>Niveau de carrière</value>
+  </data>
+  <data name="Career_Index_Job_Requirements" xml:space="preserve">
+    <value>Exigences</value>
+  </data>
+  <data name="Career_Index_Job_Type" xml:space="preserve">
+    <value>Type d'emploi</value>
+  </data>
+  <data name="Career_Index_Job_Vacancies" xml:space="preserve">
+    <value>Offres d'emploi</value>
+  </data>
+  <data name="Career_Index_Title" xml:space="preserve">
+    <value>OUVERTURE D'EMPLOI</value>
+  </data>
+  <data name="ContactUs_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="ContactUs_FullName" xml:space="preserve">
+    <value>Nom complet</value>
+  </data>
+  <data name="ContactUs_JS_1" xml:space="preserve">
+    <value>envoi..</value>
+  </data>
+  <data name="ContactUs_JS_2" xml:space="preserve">
+    <value>Formulaire soumis, merci!</value>
+  </data>
+  <data name="ContactUs_Message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="ContactUs_Phone" xml:space="preserve">
+    <value>Téléphone</value>
+  </data>
+  <data name="ContactUs_SendButton" xml:space="preserve">
+    <value>Envoyer</value>
+  </data>
+  <data name="ContactUs_SendInquiry" xml:space="preserve">
+    <value>Envoyer une demande</value>
+  </data>
+  <data name="ContactUs_Title" xml:space="preserve">
+    <value>Contactez nous</value>
+  </data>
+  <data name="CotactUs_OfficeAddress" xml:space="preserve">
+    <value>Adresse de bureau</value>
+  </data>
+  <data name="ErrorPage_Desc" xml:space="preserve">
+    <value>Nous sommes confrontés à certains problèmes, veuillez revenir plus tard</value>
+  </data>
+  <data name="ErrorPage_Title" xml:space="preserve">
+    <value>Désolé, la page que vous recherchez n'existe pas ou le site est actuellement en maintenance</value>
+  </data>
+  <data name="Hotel_Details_CheckIn" xml:space="preserve">
+    <value>Enregistrement</value>
+  </data>
+  <data name="Hotel_Details_Checkout" xml:space="preserve">
+    <value>Check Out</value>
+  </data>
+  <data name="Hotel_Details_Description" xml:space="preserve">
+    <value>La description</value>
+  </data>
+  <data name="Hotel_Details_Facilities" xml:space="preserve">
+    <value>FACILITÉS</value>
+  </data>
+  <data name="Hotel_Index_Button_Details" xml:space="preserve">
+    <value>Voir les détails</value>
+  </data>
+  <data name="Hotel_Index_Desc" xml:space="preserve">
+    <value>Luxe et spacieux</value>
+  </data>
+  <data name="Hotel_Index_Title" xml:space="preserve">
+    <value>Nos hôtels</value>
+  </data>
+  <data name="Hotel_Night" xml:space="preserve">
+    <value>Nuit</value>
+  </data>
+  <data name="News_Category" xml:space="preserve">
+    <value>Catégorie</value>
+  </data>
+  <data name="News_Index_Desc" xml:space="preserve">
+    <value>Dernières nouvelles</value>
+  </data>
+  <data name="News_Index_Details" xml:space="preserve">
+    <value>Continuer la lecture</value>
+  </data>
+  <data name="News_Index_Title" xml:space="preserve">
+    <value>Toutes les actualités</value>
+  </data>
+  <data name="News_RecentNews" xml:space="preserve">
+    <value>Nouvelles récentes</value>
+  </data>
+  <data name="Offers_Error" xml:space="preserve">
+    <value>Aucune offre disponible</value>
+  </data>
+  <data name="Offers_Index_Desc" xml:space="preserve">
+    <value>Dernières offres</value>
+  </data>
+  <data name="Offers_Index_Details" xml:space="preserve">
+    <value>Voir les détails</value>
+  </data>
+  <data name="Offers_Index_Title" xml:space="preserve">
+    <value>Nos offres</value>
+  </data>
+  <data name="Owners_Desc" xml:space="preserve">
+    <value>Voici les esprits visionnaires derrière notre réussite</value>
+  </data>
+  <data name="Owners_SuccessTeam" xml:space="preserve">
+    <value>Équipe de réussite</value>
+  </data>
+  <data name="Owners_Title" xml:space="preserve">
+    <value>Direction</value>
+  </data>
+  <data name="Booking_JS1" xml:space="preserve">
+    <value>Sélectionnez la date d'arrivée</value>
+  </data>
+  <data name="Booking_JS2" xml:space="preserve">
+    <value>Sélectionnez la date de sortie</value>
+  </data>
+  <data name="Booking_JS3" xml:space="preserve">
+    <value>Sélectionnez un adulte</value>
+  </data>
+  <data name="Booking_JS4" xml:space="preserve">
+    <value>Sélectionnez un enfant</value>
   </data>
 </root>

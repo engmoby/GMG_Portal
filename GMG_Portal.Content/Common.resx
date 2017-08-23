@@ -123,6 +123,9 @@
   <data name="DescMax120" xml:space="preserve">
     <value>120</value>
   </data>
+  <data name="DescMax81" xml:space="preserve">
+    <value>81</value>
+  </data>
   <data name="DescMax200" xml:space="preserve">
     <value>200</value>
   </data>

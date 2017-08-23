@@ -106,6 +106,15 @@ namespace GMG_Portal.Content {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 81.
+        /// </summary>
+        public static string DescMax81 {
+            get {
+                return ResourceManager.GetString("DescMax81", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 30.
         /// </summary>
         public static string DescMin30 {

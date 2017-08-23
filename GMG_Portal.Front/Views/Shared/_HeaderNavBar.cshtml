@@ -59,8 +59,8 @@
                                 CultureInfo currentCulture = Thread.CurrentThread.CurrentCulture;
                                 <li>@Html.ActionLink("English", "ChangeLanguage", "Language", new { SelectedLanguage = "en" }, null)</li>
                                 <li>@Html.ActionLink("العربيه", "ChangeLanguage", "Language", new { SelectedLanguage = "ar" }, null)</li>
-                                <li><a href="">Francais</a></li>
-                                <li><a href="">Urdu</a></li>
+                                <li>@Html.ActionLink("Francais", "ChangeLanguage", "Language", new { SelectedLanguage = "fr" }, null)</li>
+                                
                             }
                         </ul>
                     </li>

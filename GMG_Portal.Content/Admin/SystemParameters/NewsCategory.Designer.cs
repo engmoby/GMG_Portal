@@ -223,7 +223,7 @@ namespace GMG_Portal.Content.Admin.SystemParameters {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Title.
+        ///   Looks up a localized string similar to Category.
         /// </summary>
         public static string Title {
             get {
