@@ -75,7 +75,16 @@
                                 <figure class="mg-room">
                                     <img src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/Hotels/@hotel.Image" alt="img11" class="img-responsive" style="width: 103%;height: 211px;">
                                     <figcaption>
-                                        <h2>@hotel.DisplayValue.ToString().Substring(0, 15)</h2>
+
+                                        @if (@hotel.DisplayValue.Length >= 17)
+                                        {
+                                            <h2>@hotel.DisplayValue.ToString().Substring(0, 17)</h2>
+                                        }
+                                        else
+                                        {
+                                            <h2>@hotel.DisplayValue</h2>
+
+                                        }
                                         <div class="mg-room-rating">
                                             <i class="fa fa-star"></i> @hotel.Rate
                                         </div>
@@ -91,7 +100,7 @@
                                         {
                                             <p>  @hotel.DisplayValueDesc</p>
                                         }
-                                        <a href="/Hotel/Details/@hotel.Id" class="btn btn-link ">View Details <i class="fa fa-angle-double-right"></i></a>
+                                        <a href="/Hotel/Details/@hotel.Id" class="btn btn-link ">@Front.Resources.Global.SeeMore <i class="fa fa-angle-double-right"></i></a>
                                     </figcaption>
                                 </figure>
                             </div>
