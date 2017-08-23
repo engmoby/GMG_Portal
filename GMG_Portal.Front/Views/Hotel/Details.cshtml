@@ -20,32 +20,32 @@
 <div class="mg-single-room">
     <div class="container">
         <div class="row">
-         
+
             <div class="row">
-          
+
                 <ul class="main_clock">
                     <li> Check In: <i class="fa fa-clock-o"></i> @Model.CheckIn.AsDateTime().Date.ToString("hh:mm tt")</li>
                     <li> Check Out: <i class="fa fa-clock-o"></i> @Model.CheckOut.AsDateTime().Date.ToString("hh:mm tt")</li>
                 </ul>
-                       
+
             </div>
-            
+
             <div class="col-md-7">
                 <div class="mg-gallery-container">
 
                     <ul class="mg-gallery" id="mg-gallery">
                         @foreach (var n in Model.ImageList)
                         {
-                            <li><img src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/Hotels/@n.Image" style="width: 103%; height: 362px;" alt="Partner Logo"></li>
+                        <li><img src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/Hotels/@n.Image" style="width: 103%; height: 362px;" alt="Partner Logo"></li>
                         }
                     </ul>
 
                     <ul class="mg-gallery-thumb" id="mg-gallery-thumb">
                         @foreach (var n in Model.ImageList)
                         {
-                            <li>
-                                <img src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/Hotels/@n.Image" style="width: 98px;height: 80px;" alt="Partner Logo">
-                            </li>
+                        <li>
+                            <img src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/Hotels/@n.Image" style="width: 98px;height: 80px;" alt="Partner Logo">
+                        </li>
                         }
                     </ul>
                 </div>
@@ -60,11 +60,11 @@
                         {
                             @:</div><div class="row"> 
                         }
-                <div class="col-xs-6">
-                    <ul>
-                        <li><i class="@Model.FeaturesList[i].Icon"></i> @Model.FeaturesList[i].DisplayValue</li>
-                    </ul>
-                </div>
+                        <div class="col-xs-6">
+                            <ul>
+                                <li><i class="@Model.FeaturesList[i].Icon"></i> @Model.FeaturesList[i].DisplayValue</li>
+                            </ul>
+                        </div>
                     }
                 </div>
             </div>
@@ -73,74 +73,80 @@
             <div class="col-md-12">
                 <div class="mg-single-room-txt">
                     <h2 class="mg-sec-left-title">Room Description</h2>
-                    <p>@Model.DisplayValueDesc.</p>
+
+                    <div class="display-field">
+                        <pre>
+            @Model.DisplayValueDesc
+        </pre>
+                    </div>
+                     
                 </div>
             </div>
         </div>
         <iframe height="300px" width="700px" src="https://maps.google.com/maps?q=@Model.Late,@Model.Long&hl=es;z=14&amp;output=embed" class="mg-map"></iframe>
-       
-        @*<div class="row">
-            <div class="col-md-12 mg-saerch-room pb70">
-                <div class="mg-book-now">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <h2 class="mg-bn-title">Search Rooms <span class="mg-bn-big">For rates & availability</span></h2>
-                        </div>
-                        <div class="col-md-9">
-                            <div class="mg-bn-forms">
-                                <form>
-                                    <div class="row">
-                                        <div class="col-md-3 col-xs-6">
-                                            <div class="input-group date mg-check-in">
-                                                <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                                                <input type="text" class="form-control" id="checkin" placeholder="Check In">
-                                                <input type="hidden" id="checkindate" />
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3 col-xs-6">
-                                            <div class="input-group date mg-check-out">
-                                                <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                                                <input type="text" class="form-control" id="checkout" placeholder="Check Out">
-                                                <input type="hidden" id="checkoutdate" />
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="row">
-                                                <div class="col-xs-6">
-                                                    <select class="cs-select cs-skin-elastic" id="adult">
-                                                        <option value="" disabled selected>Adult</option>
-                                                        <option value="1">1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
-                                                        <option value="4">4</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-xs-6">
-                                                    <select class="cs-select cs-skin-elastic" id="child">
-                                                        <option value="" disabled selected>Child</option>
-                                                        <option value="0">0</option>
-                                                        <option value="1">1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <button class="btn btn-main btn-block" type="button" id="addressSearch"
-                                                    onclick="jsFunction()">
-                                                Check Now
-                                            </button>
 
+        @*<div class="row">
+                <div class="col-md-12 mg-saerch-room pb70">
+                    <div class="mg-book-now">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h2 class="mg-bn-title">Search Rooms <span class="mg-bn-big">For rates & availability</span></h2>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="mg-bn-forms">
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-md-3 col-xs-6">
+                                                <div class="input-group date mg-check-in">
+                                                    <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+                                                    <input type="text" class="form-control" id="checkin" placeholder="Check In">
+                                                    <input type="hidden" id="checkindate" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 col-xs-6">
+                                                <div class="input-group date mg-check-out">
+                                                    <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+                                                    <input type="text" class="form-control" id="checkout" placeholder="Check Out">
+                                                    <input type="hidden" id="checkoutdate" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="row">
+                                                    <div class="col-xs-6">
+                                                        <select class="cs-select cs-skin-elastic" id="adult">
+                                                            <option value="" disabled selected>Adult</option>
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-xs-6">
+                                                        <select class="cs-select cs-skin-elastic" id="child">
+                                                            <option value="" disabled selected>Child</option>
+                                                            <option value="0">0</option>
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <button class="btn btn-main btn-block" type="button" id="addressSearch"
+                                                        onclick="jsFunction()">
+                                                    Check Now
+                                                </button>
+
+                                            </div>
                                         </div>
-                                    </div>
-                                </form>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>*@
+            </div>*@
 
 
     </div>

@@ -46,10 +46,10 @@ function NewsController($scope, NewsApi, uploadNewsService, $rootScope, $timeout
         else {
             $scope.SelectedCategory = null;
 
-            console.log($scope.SelectedCategory);
-            var categoryIndex = $scope.Categorys.indexOf($filter('filter')($scope.Categorys, { 'Id': New.CategoryId }, true)[0]);
-            $scope.SelectedCategory = $scope.Categorys[categoryIndex];
-            console.log($scope.SelectedCategory.DisplayValue);
+            //console.log($scope.SelectedCategory);
+            //var categoryIndex = $scope.Categorys.indexOf($filter('filter')($scope.Categorys, { 'Id': New.CategoryId }, true)[0]);
+            //$scope.SelectedCategory = $scope.Categorys[categoryIndex];
+            //console.log($scope.SelectedCategory.DisplayValue);
         };
         $scope.New = angular.copy(New);
         if ($scope.New.Image)

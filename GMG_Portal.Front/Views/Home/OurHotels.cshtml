@@ -82,7 +82,15 @@
                                         <div class="mg-room-price">
                                             $@hotel.PriceStart<sup>/Night</sup>
                                         </div>
-                                        <p>@hotel.DisplayValueDesc</p>
+                                        @if (@hotel.DisplayValueDesc.Length >= 81)
+                                        {
+                                            <p> @hotel.DisplayValueDesc.ToString().Substring(0, 81)</p>
+
+                                        }
+                                        else
+                                        {
+                                            <p>  @hotel.DisplayValueDesc</p>
+                                        }
                                         <a href="/Hotel/Details/@hotel.Id" class="btn btn-link ">View Details <i class="fa fa-angle-double-right"></i></a>
                                     </figcaption>
                                 </figure>

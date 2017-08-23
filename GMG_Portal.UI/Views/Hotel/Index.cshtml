@@ -273,26 +273,27 @@
                             <div class="form-group">
                                 <label for="TxtTitle">@Hotel.Title</label><span class="red-text"> *</span>
                                 <input type="text" ng-model="Hotel.DisplayValue" class="form-control" name="TxtTitle"
-                                       placeholder="@Hotel.Title" ng-minlength="20" ng-maxlength="30" required ng-pattern="/@Regex.NameAr/">
+                                       placeholder="@Hotel.Title" ng-minlength="15" ng-maxlength="30" required ng-pattern="/@Regex.NameAr/">
 
                                 <div class="red-text" ng-messages="FrmAddUpdateWizard.TxtTitle.$error" ng-show="FrmAddUpdateWizard.TxtTitle.$touched">
                                     <span class="red-text" ng-message="required">@Hotel.TxtTitleRequiredErrorMessage</span>
                                     <span class="red-text" ng-message="pattern">@Hotel.TxtTitlePatternErrorMessage</span>
                                     <span class="red-text" ng-message="notInList">@Hotel.TxtTitleUniqueErrorMessage</span>
-                                    <span class="red-text" ng-message="minlength">Minimum 20 Charachter</span>
+                                    <span class="red-text" ng-message="minlength">Minimum 15 Charachter</span>
                                     <span class="red-text" ng-message="maxlength">Maximum 30 Charachter</span>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="TxtDesc">@Hotel.Desc</label><span class="red-text"> *</span>
                                 <textarea ng-model="Hotel.DisplayValueDesc" class="form-control" name="TxtDesc"
-                                          placeholder="Text" ng-minlength="50" ng-maxlength="500" required ng-pattern="/@Regex.NameEn/"></textarea>
+                                          placeholder="Text" ng-minlength="50" ng-maxlength="@Common.DescMax7000" required ng-pattern="/@Regex.NameEn/"></textarea>
                                 <div class="red-text" ng-messages="FrmAddUpdateWizard.TxtDesc.$error" ng-show="FrmAddUpdateWizard.TxtDesc.$touched">
                                     <span class="red-text" ng-message="required">@Hotel.TxtDescRequiredErrorMessage</span>
                                     <span class="red-text" ng-message="pattern">@Hotel.TxtDescPatternErrorMessage</span>
                                     <span class="red-text" ng-message="notInList">@Hotel.TxtDescUniqueErrorMessage</span>
                                     <span class="red-text" ng-message="minlength">Minimum 50 Charachter</span>
-                                    <span class="red-text" ng-message="maxlength">Maximum 500 Charachter</span>
+                                    <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.DescMax7000 @Common.Charachter</span>
+
                                 </div>
                             </div>
 

@@ -71,15 +71,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
-
-
-
-
-
-
-
-
-
+         
 
         [HttpPost]
         public HttpResponseMessage Save(HomeSlider postedHomeSliders)

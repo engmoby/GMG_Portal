@@ -11,7 +11,7 @@ namespace GMG_Portal.UI.Controllers
 {
     public class FileUploadHotlesController : ApiController
     {
-         
+
         [Route("api/uploadHotles")]
         public async Task<HttpResponseMessage> Post()
         {
@@ -31,7 +31,7 @@ namespace GMG_Portal.UI.Controllers
 
                 //Save file via CustomUploadMultipartFormProvider
                 var multipartFormDataStreamProvider = new CustomUploadMultipartFormProvider(uploadPath);
-                
+
                 // Read the MIME multipart asynchronously 
                 await Request.Content.ReadAsMultipartAsync(multipartFormDataStreamProvider);
 
@@ -52,13 +52,14 @@ namespace GMG_Portal.UI.Controllers
 
                 return Request.CreateResponse(HttpStatusCode.OK);
 
-               // return new HttpResponseMessage(HttpStatusCode.OK, localFileName) ;
-               
+                // return new HttpResponseMessage(HttpStatusCode.OK, localFileName) ;
+
 
             }
             catch (Exception e)
             {
-                return new HttpResponseMessage(HttpStatusCode.NotImplemented) {
+                return new HttpResponseMessage(HttpStatusCode.NotImplemented)
+                {
                     Content = new StringContent(e.Message)
                 };
             }
@@ -66,7 +67,7 @@ namespace GMG_Portal.UI.Controllers
 
 
 
-             
+
         }
     }
 }
