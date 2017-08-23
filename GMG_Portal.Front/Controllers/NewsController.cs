@@ -21,7 +21,9 @@ namespace Front.Controllers
         string url = System.Configuration.ConfigurationManager.AppSettings["ServerIp"] + "/SystemParameters/";
         public NewsController()
         {
-            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+            if (Common.CurrentLang== "ar")
+                Thread.CurrentThread.CurrentCulture = new CultureInfo("ar-EG");  
+
 
             _client = new HttpClient();
             _client.BaseAddress = new Uri(url);
@@ -31,7 +33,7 @@ namespace Front.Controllers
         // GET: news
         public async Task<ActionResult> Index(int? id)
         {
-            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+             
             if (!id.HasValue)
             {
                 return RedirectToAction("Index", "News", new { Id = 0 });

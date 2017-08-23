@@ -13,32 +13,7 @@
 <input type="hidden" id="HDeleteSuccessMessage" value="@CoreValues.DeleteSuccessMessage" />
 <input type="hidden" id="HArabicNameUnique" value="@CoreValues.TxtTitleUniqueErrorMessage" />
 <input type="hidden" id="HCannotDeleted" value="@CoreValues.CannotDeleted" />
-<style>
-    .btn-file {
-        position: relative;
-        overflow: hidden;
-    }
-
-        .btn-file input[type=file] {
-            position: absolute;
-            top: 0;
-            right: 0;
-            min-width: 100%;
-            min-height: 100%;
-            font-size: 100px;
-            text-align: right;
-            filter: alpha(opacity=0);
-            opacity: 0;
-            background: red;
-            cursor: inherit;
-            display: block;
-        }
-
-    input[readonly] {
-        background-color: white !important;
-        cursor: text !important;
-    }
-</style>
+ 
 <div ng-controller="CoreValuesController">
 
     <div ba-panel>
@@ -70,8 +45,7 @@
             <tbody>
                 <tr ng-repeat="CoreValues in TableData">
                     <td ng-class="{'red-text': CoreValues.IsDeleted == true}">{{$index+1}}</td>
-                    <td ng-class="{'red-text': CoreValues.IsDeleted == true}">{{CoreValues.DisplayValue}}</td>
-                    <td ng-class="{'red-text': CoreValues.IsDeleted == true}">{{CoreValues.DisplayValueDesc | limitTo:letterLimit}} </td>
+                    <td ng-class="{'red-text': CoreValues.IsDeleted == true}">{{CoreValues.DisplayValue}}</td> 
                     <td>
                         <div class="buttons" ng-show="!CoreValues.IsDeleted">
                             <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(CoreValues)"><i class="fa fa-pencil" aria-hidden="true"></i>@CoreValues.TableBtnEdit</button>
@@ -114,28 +88,15 @@
                         <div class="form-group">
                             <label for="TxtTitle">@CoreValues.Title</label><span class="red-text"> *</span>
                             <input type="text" ng-model="Values.DisplayValue" class="form-control" name="TxtTitle"
-                                   placeholder="@CoreValues.Title" ng-minlength="@Common.TitleMin5" ng-maxlength="@Common.TitleMax25" required ng-pattern="/@Regex.NameAr/">
+                                   placeholder="@CoreValues.Title" ng-minlength="@Common.TitleMin5" ng-maxlength="@Common.TitleMax65" required ng-pattern="/@Regex.NameAr/">
                             <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
                                 <span class="red-text" ng-message="required">@CoreValues.TxtTitleRequiredErrorMessage</span>
                                 <span class="red-text" ng-message="pattern">@CoreValues.TxtTitlePatternErrorMessage</span>
                                 <span class="red-text" ng-message="notInList">@CoreValues.TxtTitleUniqueErrorMessage</span>
                                 <span class="red-text" ng-message="minlength">Minimum @Common.TitleMin5 Charachter</span>
-                                <span class="red-text" ng-message="maxlength">Maximum @Common.TitleMax25 Charachter</span>
+                                <span class="red-text" ng-message="maxlength">Maximum @Common.TitleMax65 Charachter</span>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="TxtDesc">@CoreValues.Desc</label><span class="red-text"> *</span>
-                            <textarea ng-model="Values.DisplayValueDesc" class="form-control" name="TxtDesc"
-                                      placeholder="Text" ng-minlength="@Common.DescMin50" ng-maxlength="@Common.DescMax120" required ng-pattern="/@Regex.NameEn/"></textarea>
-                            <div class="red-text" ng-messages="FrmAddUpdate.TxtDesc.$error" ng-show="FrmAddUpdate.TxtDesc.$touched">
-                                <span class="red-text" ng-message="required">@CoreValues.TxtDescRequiredErrorMessage</span>
-                                <span class="red-text" ng-message="pattern">@CoreValues.TxtDescPatternErrorMessage</span>
-                                <span class="red-text" ng-message="notInList">@CoreValues.TxtDescUniqueErrorMessage</span>
-                                <span class="red-text" ng-message="minlength">@Common.MinimumKeyWord @Common.DescMin50 @Common.Charachter</span>
-                                <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.DescMax120 @Common.Charachter</span>
-                            </div>
-                        </div>
-
+                        </div> 
 
 
                     </div>

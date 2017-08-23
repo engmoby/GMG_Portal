@@ -45,9 +45,9 @@
     @{var listItems = new List<ListItem>
   {
 
-      new ListItem {Text = "En", Value = "en"},
-          new ListItem {Text = "Ar", Value = "ar"},
-      new ListItem {Text = "Fr", Value = "Fr"}
+      new ListItem {Text = "English", Value = "en"},
+          new ListItem {Text = "العربيه", Value = "ar"},
+      new ListItem {Text = "Francais", Value = "fr"}
   }; }
     @Html.DropDownList("DropdwonLang", new SelectList(listItems, "Value", "Text"))
     <input type="hidden" id="HServicesURL" value="@System.Configuration.ConfigurationManager.AppSettings["ServicesURL"]" />
@@ -211,12 +211,12 @@
 
     <script src="~/Scripts/app/theme/adapt-strap.js"></script>
     <script src="~/Scripts/app/theme/adapt-strap.tpl.js"></script>
-<script src="~/Scripts/app/theme/angular.ui-sortable.js"></script> 
+    <script src="~/Scripts/app/theme/angular.ui-sortable.js"></script>
 
-<script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyB3wGgcIinZF1DW9oiwSCG8JjGQC-nPutA"></script>
-     
-<script src="https://rawgit.com/allenhwkim/angularjs-google-maps/master/build/scripts/ng-map.js"></script>
-<script src="~/Scripts/app/theme/autocomplete.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyB3wGgcIinZF1DW9oiwSCG8JjGQC-nPutA"></script>
+
+    <script src="https://rawgit.com/allenhwkim/angularjs-google-maps/master/build/scripts/ng-map.js"></script>
+    <script src="~/Scripts/app/theme/autocomplete.js"></script>
 
     <script>
 

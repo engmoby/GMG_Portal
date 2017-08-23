@@ -27,7 +27,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
         {
             try
             {
-               
+
 
                 var retunGeneralAll = new HomeModels();
                 var generalLogic = new GeneralLogic();
@@ -44,32 +44,32 @@ namespace GMG_Portal.API.Controllers.SystemParameters
 
                 if (langId == Parameters.DefaultLang)
                 {
-                     homeSlidersTable = generalLogic
-                        .Sqlread("SELECT * FROM [dbo].[SystemParameters.HomeSlider] WHERE IsDeleted=0").Tables[0];
-                     hotelsTable = generalLogic
-                        .Sqlread(
-                            "SELECT * FROM [dbo].[Hotels] JOIN dbo.[Hotels.Images] ON dbo.Hotels.Id = dbo.[Hotels.Images].Hotel_Id WHERE dbo.Hotels.IsDeleted=0 AND dbo.[Hotels.Images].IsDeleted=0")
-                        .Tables[0];
-                     newsTable = generalLogic
-                        .Sqlread("SELECT * FROM [dbo].[SystemParameters.News] WHERE IsDeleted=0").Tables[0];
-                     featuresTable = generalLogic
-                        .Sqlread("SELECT  TOP 6 * FROM [dbo].[SystemParameters.Features] WHERE IsDeleted=0").Tables[0];
-                     aboutTable = generalLogic
-                        .Sqlread("SELECT * FROM [dbo].[SystemParameters.About] WHERE IsDeleted=0").Tables[0];
-                     hotelImages = generalLogic
-                        .Sqlread(
-                            "SELECT Image FROM [dbo].[Hotels] JOIN dbo.[Hotels.Images] ON dbo.Hotels.Id = dbo.[Hotels.Images].Hotel_Id WHERE dbo.Hotels.IsDeleted=0 AND dbo.[Hotels.Images].IsDeleted=0")
-                        .Tables[0];
-                     ownerTable = generalLogic
-                        .Sqlread("SELECT * FROM [dbo].[SystemParameters.Owners] WHERE IsDeleted=0").Tables[0];
+                    homeSlidersTable = generalLogic
+                       .Sqlread("SELECT * FROM [dbo].[SystemParameters.HomeSlider] WHERE IsDeleted=0").Tables[0];
+                    hotelsTable = generalLogic
+                       .Sqlread(
+                           "SELECT * FROM [dbo].[Hotels] JOIN dbo.[Hotels.Images] ON dbo.Hotels.Id = dbo.[Hotels.Images].Hotel_Id WHERE dbo.Hotels.IsDeleted=0 AND dbo.[Hotels.Images].IsDeleted=0")
+                       .Tables[0];
+                    newsTable = generalLogic
+                       .Sqlread("SELECT * FROM [dbo].[SystemParameters.News] WHERE IsDeleted=0").Tables[0];
+                    featuresTable = generalLogic
+                       .Sqlread("SELECT  TOP 6 * FROM [dbo].[SystemParameters.Features] WHERE IsDeleted=0").Tables[0];
+                    aboutTable = generalLogic
+                       .Sqlread("SELECT * FROM [dbo].[SystemParameters.About] WHERE IsDeleted=0").Tables[0];
+                    hotelImages = generalLogic
+                       .Sqlread(
+                           "SELECT Image FROM [dbo].[Hotels] JOIN dbo.[Hotels.Images] ON dbo.Hotels.Id = dbo.[Hotels.Images].Hotel_Id WHERE dbo.Hotels.IsDeleted=0 AND dbo.[Hotels.Images].IsDeleted=0")
+                       .Tables[0];
+                    ownerTable = generalLogic
+                       .Sqlread("SELECT * FROM [dbo].[SystemParameters.Owners] WHERE IsDeleted=0").Tables[0];
                 }
                 else
                 {
                     homeSlidersTable = generalLogic
-                        .Sqlread("SELECT * FROM [dbo].[SystemParameters.HomeSlider_Translate] WHERE LangId='" + langId +"' AND IsDeleted=0").Tables[0];
+                        .Sqlread("SELECT * FROM [dbo].[SystemParameters.HomeSlider_Translate] WHERE LangId='" + langId + "' AND IsDeleted=0").Tables[0];
                     hotelsTable = generalLogic
                         .Sqlread(
-                            "SELECT * FROM [dbo].[Hotels_Translate] JOIN dbo.[Hotels.Images_Translate] ON [dbo].[Hotels_Translate].Id = [dbo].[Hotels.Images_Translate].Hotel_Id WHERE [dbo].[Hotels_Translate].LangId='" + langId + "' AND dbo.Hotels_Translate.IsDeleted=0 AND dbo.[Hotels.Images_Translate].IsDeleted=0")
+                            "SELECT DISTINCT ([dbo].[Hotels_Translate].Id) ,[Hotels.Images_Translate].Image,PriceStart,DisplayValue,DisplayValueDesc FROM [dbo].[Hotels_Translate] JOIN dbo.[Hotels.Images_Translate] ON [dbo].[Hotels_Translate].Id = [dbo].[Hotels.Images_Translate].Hotel_Id WHERE [dbo].[Hotels_Translate].LangId='" + langId + "' AND dbo.Hotels_Translate.IsDeleted=0 AND dbo.[Hotels.Images_Translate].IsDeleted=0")
                         .Tables[0];
                     newsTable = generalLogic
                         .Sqlread("SELECT * FROM [dbo].[SystemParameters.News_Translate] WHERE LangId='" + langId + "'AND IsDeleted=0 ").Tables[0];
@@ -98,10 +98,10 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 {
                     returnHomeSlider.Add(new HomeSlider
                     {
-                        Id = (int) dr["Id"],
-                        DisplayValue = (string) dr["DisplayValue"],
-                        DisplayValueDesc = (string) dr["DisplayValueDesc"],
-                        Image = (string) dr["Image"]
+                        Id = (int)dr["Id"],
+                        DisplayValue = (string)dr["DisplayValue"],
+                        DisplayValueDesc = (string)dr["DisplayValueDesc"],
+                        Image = (string)dr["Image"]
                     });
                 }
 
@@ -110,20 +110,23 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 List<Hotels> returnHotels = new List<Hotels>(hotelsTable.Rows.Count);
                 foreach (DataRow dr in hotelsTable.Rows)
                 {
+
+                    if (returnHotels.FirstOrDefault(x => x.Id == (int)dr["Id"]) != null)
+                        continue;
                     returnHotels.Add(new Hotels
                     {
                         Id = (int)dr["Id"],
                         DisplayValue = (string)dr["DisplayValue"],
                         DisplayValueDesc = (string)dr["DisplayValueDesc"],
                         Image = (string)dr["Image"],
-                        PriceStart = (int)dr["Id"]
+                        PriceStart = (int)dr["PriceStart"]
                     });
                 }
 
 
 
-          
-              //Get News
+
+                //Get News
                 List<News> returnNews = new List<News>(newsTable.Rows.Count);
                 foreach (DataRow dr in newsTable.Rows)
                 {
@@ -132,13 +135,13 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                         Id = (int)dr["Id"],
                         DisplayValue = (string)dr["DisplayValue"],
                         DisplayValueDesc = (string)dr["DisplayValueDesc"],
-                        CreationTime = (DateTime?) dr["CreationTime"]
+                        CreationTime = (DateTime?)dr["CreationTime"]
                     });
 
                 }
 
 
-               //Get Features
+                //Get Features
                 List<Features> returnFeatures = new List<Features>(featuresTable.Rows.Count);
                 foreach (DataRow dr in featuresTable.Rows)
                     returnFeatures.Add(new Features
@@ -149,18 +152,18 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                     });
 
 
-              
-             //Get About
+
+                //Get About
                 var returnAbout = new About();
                 foreach (DataRow dr in aboutTable.Rows)
                 {
-                    returnAbout.DisplayValue = (string) dr["DisplayValue"];
+                    returnAbout.DisplayValue = (string)dr["DisplayValue"];
                     returnAbout.DisplayValueDesc = (string)dr["DisplayValueDesc"];
                     returnAbout.Url = (string)dr["Url"];
 
                 }
 
-              
+
                 //Get Hotel Images
                 List<HotelImages> returnHotelImages = new List<HotelImages>(hotelsTable.Rows.Count);
                 foreach (DataRow dr in hotelImages.Rows)

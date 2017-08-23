@@ -23,9 +23,10 @@
          
             <div class="row">
           
-                <ul>
-                    <li> @Front.Resources.Global.Hotel_Details_CheckIn <i class="fa fa-clock-o"></i> @Model.CheckIn.AsDateTime().Date.ToString("hh:mm tt")</li>
-                    <li> @Front.Resources.Global.Hotel_Details_Checkout: <i class="fa fa-clock-o"></i> @Model.CheckOut.AsDateTime().Date.ToString("hh:mm tt")</li>
+                
+                <ul class="main_clock">
+                    <li> @Front.Resources.Global.Hotel_Details_CheckIn : <i class="fa fa-clock-o"></i> @Model.CheckIn.AsDateTime().Date.ToString("hh:mm tt")</li>
+                    <li> @Front.Resources.Global.Hotel_Details_Checkout : <i class="fa fa-clock-o"></i> @Model.CheckOut.AsDateTime().Date.ToString("hh:mm tt")</li>
                 </ul>
                        
             </div>

@@ -335,6 +335,7 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
     }
     $scope.DeleteImageFunction = function (hotelImage) {
         $rootScope.ViewLoading = true;
+        hotelImage.langId = CurrentLanguage;
         HotelsApi.DeleteImage(hotelImage).then(function (response) {
             debugger;
             switch (response.data.OperationStatus) {

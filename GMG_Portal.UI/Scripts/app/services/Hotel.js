@@ -26,6 +26,7 @@
     }
 
     this.DeleteImage = function (hotelImage) {
+        debugger;
         return $http({
             url: apiUrl + '/SystemParameters/Hotels/DeleteImage',
             method: 'POST',

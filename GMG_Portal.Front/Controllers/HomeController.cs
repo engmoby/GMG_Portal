@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Globalization;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Front.Helpers;
@@ -22,7 +24,8 @@ namespace Front.Controllers
         string url = System.Configuration.ConfigurationManager.AppSettings["ServerIp"] + "/SystemParameters/";
         public HomeController()
         {
-
+            if (Common.CurrentLang == "ar")
+                Thread.CurrentThread.CurrentCulture = new CultureInfo("ar-EG");
             _client = new HttpClient();
             _client.BaseAddress = new Uri(url);
             _client.DefaultRequestHeaders.Accept.Clear();

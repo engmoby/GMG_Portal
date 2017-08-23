@@ -199,6 +199,10 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 returnList.Rate = getHotelInfo.Rate;
                 returnList.PriceStart = getHotelInfo.PriceStart;
                 returnList.FeaturesList = featuresList;
+                returnList.Late = getHotelInfo.Late;
+                returnList.Long = getHotelInfo.Long;
+                returnList.CheckIn = getHotelInfo.CheckIn;
+                returnList.CheckOut = getHotelInfo.CheckOut;
                 returnList.langId = getHotelInfo.langId;
 
                 return returnList;

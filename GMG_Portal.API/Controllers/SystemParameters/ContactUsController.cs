@@ -76,7 +76,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
             }
         }
         [HttpPost]
-        public HttpResponseMessage Save(SystemParameters_ContactUs_Translate postedContactUs)
+        public HttpResponseMessage Save(ContactUs postedContactUs)
         {
             try
             {
@@ -88,31 +88,11 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                     SystemParameters_ContactUs obj = null;
                     SystemParameters_ContactUs_Translate objByLang = null;
 
-                    if (postedContactUs.Id.Equals(0))
-                    {
-                        if (postedContactUs.langId == Parameters.DefaultLang)
-                            obj = contactUsLogic.Insert(Mapper.Map<SystemParameters_ContactUs>(postedContactUs));
-                        else
-                            objByLang = contactUsLogicTranslate.Insert(Mapper.Map<SystemParameters_ContactUs_Translate>(postedContactUs));
-
-                    }
+                    if (postedContactUs.langId == Parameters.DefaultLang)
+                        obj = contactUsLogic.Edit(Mapper.Map<SystemParameters_ContactUs>(postedContactUs));
                     else
-                    {
-                        if (postedContactUs.IsDeleted)
-                        {
-                            if (postedContactUs.langId == Parameters.DefaultLang)
-                                obj = contactUsLogic.Delete(Mapper.Map<SystemParameters_ContactUs>(postedContactUs));
-                            else
-                                objByLang = contactUsLogicTranslate.Delete(Mapper.Map<SystemParameters_ContactUs_Translate>(postedContactUs));
-                        }
-                        else
-                        {
-                            if (postedContactUs.langId == Parameters.DefaultLang)
-                                obj = contactUsLogic.Edit(Mapper.Map<SystemParameters_ContactUs>(postedContactUs));
-                            else
-                                objByLang = contactUsLogicTranslate.Edit(Mapper.Map<SystemParameters_ContactUs_Translate>(postedContactUs));
-                        }
-                    }
+                        objByLang = contactUsLogicTranslate.Edit(Mapper.Map<SystemParameters_ContactUs_Translate>(postedContactUs));
+                     
                     if (postedContactUs.langId == Parameters.DefaultLang)
                         return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<SystemParameters_ContactUs>(obj));
                     else

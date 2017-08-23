@@ -53,38 +53,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 }
                 throw;
             }
-        }
-        public SystemParameters_ContactUs Insert(SystemParameters_ContactUs postedContactUs)
-        {
-
-            var obj = new SystemParameters_ContactUs()
-            {
-                DisplayValueAddress = postedContactUs.DisplayValueAddress,
-                DisplayValueDesc = postedContactUs.DisplayValueDesc,
-                Image = postedContactUs.Image,
-                Show = Parameters.Show,
-                Url = postedContactUs.Url,
-                Facebook = postedContactUs.Facebook,
-                Fax = postedContactUs.Fax,
-                Twitter = postedContactUs.Twitter,
-                Youtube = postedContactUs.Youtube,
-                Instgram = postedContactUs.Instgram,
-                Snapchat = postedContactUs.Snapchat,
-                PhoneNo1 = postedContactUs.PhoneNo1,
-                PhoneNo2 = postedContactUs.PhoneNo2,
-                PostalCode = postedContactUs.PostalCode,
-                Late = postedContactUs.Late,
-                Long = postedContactUs.Long,
-                Mailbox = postedContactUs.Mailbox,
-                WhatsApp = postedContactUs.WhatsApp,
-                MailNo1 = postedContactUs.MailNo1,
-                MailNo2 = postedContactUs.MailNo2,
-                CreationTime = Parameters.CurrentDateTime,
-                CreatorUserId = Parameters.UserId,
-            };
-            _db.SystemParameters_ContactUs.Add(obj);
-            return Save(obj);
-        }
+        } 
         public SystemParameters_ContactUs Edit(SystemParameters_ContactUs postedContactUs)
         {
             SystemParameters_ContactUs contactUs = Get(postedContactUs.Id);
@@ -112,21 +81,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             contactUs.LastModificationTime = Parameters.CurrentDateTime;
             contactUs.LastModifierUserId = Parameters.UserId;
             return Save(contactUs);
-        }
-        public SystemParameters_ContactUs Delete(SystemParameters_ContactUs postedContactUs)
-        {
-            SystemParameters_ContactUs obj = Get(postedContactUs.Id);
-            if (_db.SystemParameters_ContactUs.Any(p => p.Id == postedContactUs.Id && p.IsDeleted != true))
-            {
-                //  ContactUs.OperationStatus = "HasRelationship";
-                return obj;
-            }
-
-            obj.IsDeleted = true;
-            obj.CreationTime = Parameters.CurrentDateTime;
-            obj.CreatorUserId = Parameters.UserId;
-            return Save(obj);
-        }
+        } 
 
     }
 }
