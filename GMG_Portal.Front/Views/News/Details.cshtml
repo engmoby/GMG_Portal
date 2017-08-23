@@ -37,8 +37,12 @@
                                 <span><a href="/News/Index/@Model.CategoryId">@Model.CategoryName</a> </span>
                             </div>
                         </header>
-                        <div>
-                            <p>@Model.DisplayValueDesc.</p>
+                        <div> 
+                            
+                            <div class="display-field" style="text-align: right;"> 
+
+                                @Html.PreserveNewLines(@Model.DisplayValueDesc)
+                            </div>
                         </div>
 
                     </article>

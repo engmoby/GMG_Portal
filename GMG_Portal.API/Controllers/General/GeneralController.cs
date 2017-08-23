@@ -67,9 +67,14 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 {
                     homeSlidersTable = generalLogic
                         .Sqlread("SELECT * FROM [dbo].[SystemParameters.HomeSlider_Translate] WHERE LangId='" + langId + "' AND IsDeleted=0").Tables[0];
+                
                     hotelsTable = generalLogic
-                        .Sqlread(
-                            "SELECT DISTINCT ([dbo].[Hotels_Translate].Id) ,[Hotels.Images_Translate].Image,PriceStart,DisplayValue,DisplayValueDesc FROM [dbo].[Hotels_Translate] JOIN dbo.[Hotels.Images_Translate] ON [dbo].[Hotels_Translate].Id = [dbo].[Hotels.Images_Translate].Hotel_Id WHERE [dbo].[Hotels_Translate].LangId='" + langId + "' AND dbo.Hotels_Translate.IsDeleted=0 AND dbo.[Hotels.Images_Translate].IsDeleted=0")
+                        .Sqlread("SELECT DISTINCT ([dbo].[Hotels_Translate].Id) ,[Hotels.Images_Translate].Image,[dbo].[Hotels_Translate].LangId,PriceStart,DisplayValue,DisplayValueDesc," +
+                                 "[Image], [dbo].[Hotels.Features_Translate].Id FROM [dbo].[Hotels_Translate] INNER JOIN dbo.[Hotels.Images_Translate]  " +
+                                 " ON [dbo].[Hotels_Translate].Id = [dbo].[Hotels.Images_Translate].Hotel_Id INNER JOIN dbo.[Hotels.Features_Translate]   " +
+                                 "ON [dbo].[Hotels_Translate].Id = [dbo].[Hotels.Features_Translate].Hotel_Id  WHERE [dbo].[Hotels_Translate].LangId='" + langId + "' " +
+                                 "  AND dbo.Hotels_Translate.IsDeleted=0  AND [dbo].[Hotels.Images_Translate].LangId='" + langId + "'  AND  dbo.[Hotels.Images_Translate].IsDeleted=0 " +
+                                 " AND [dbo].[Hotels.Features_Translate].LangId='" + langId + "'  AND  dbo.[Hotels.Features_Translate].IsDeleted=0")
                         .Tables[0];
                     newsTable = generalLogic
                         .Sqlread("SELECT * FROM [dbo].[SystemParameters.News_Translate] WHERE LangId='" + langId + "'AND IsDeleted=0 ").Tables[0];
@@ -99,8 +104,8 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                     returnHomeSlider.Add(new HomeSlider
                     {
                         Id = (int)dr["Id"],
-                        DisplayValue = (string)dr["DisplayValue"],
-                        DisplayValueDesc = (string)dr["DisplayValueDesc"],
+                        //DisplayValue = (string)dr["DisplayValue"],
+                        //DisplayValueDesc = (string)dr["DisplayValueDesc"],
                         Image = (string)dr["Image"]
                     });
                 }

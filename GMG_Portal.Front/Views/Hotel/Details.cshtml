@@ -1,4 +1,5 @@
-﻿@model GMG_Portal.Data.Hotel
+﻿@using Front.Helpers
+@model GMG_Portal.Data.Hotel
 
 @{
     ViewBag.Title = "Details";
@@ -15,7 +16,7 @@
     </div>
 </div>
 <div class="mg-single-room-price">
-    <div class="mg-srp-inner">$@Model.PriceStart<span>/Night</span></div>
+    <div class="mg-srp-inner">$@Model.PriceStart<span>/@Front.Resources.Global.Hotel_Night</span></div>
 </div>
 <div class="mg-single-room">
     <div class="container">
@@ -24,8 +25,8 @@
             <div class="row">
 
                 <ul class="main_clock">
-                    <li> Check In: <i class="fa fa-clock-o"></i> @Model.CheckIn.AsDateTime().Date.ToString("hh:mm tt")</li>
-                    <li> Check Out: <i class="fa fa-clock-o"></i> @Model.CheckOut.AsDateTime().Date.ToString("hh:mm tt")</li>
+                    <li> @Front.Resources.Global.CheckIn: <i class="fa fa-clock-o"></i> @Model.CheckIn.AsDateTime().Date.ToString("hh:mm tt")</li>
+                    <li> @Front.Resources.Global.CheckOut: <i class="fa fa-clock-o"></i> @Model.CheckOut.AsDateTime().Date.ToString("hh:mm tt")</li>
                 </ul>
 
             </div>
@@ -51,7 +52,7 @@
                 </div>
             </div>
             <div class="col-md-5 mg-room-fecilities">
-                <h2 class="mg-sec-left-title">Room Fecilities</h2>
+                <h2 class="mg-sec-left-title">@Front.Resources.Global.Hotel_Details_Facilities</h2>
                 <div class="row">
 
                     @for (int i = 0; i < Model.FeaturesList.Count; i++)
@@ -72,14 +73,13 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="mg-single-room-txt">
-                    <h2 class="mg-sec-left-title">Room Description</h2>
+                    <h2 class="mg-sec-left-title">@Front.Resources.Global.Hotel_Details_Description</h2>
 
-                    <div class="display-field">
-                        <pre>
-            @Model.DisplayValueDesc
-        </pre>
+                    <div class="display-field" style="text-align: right;">
+
+
+                        @Html.PreserveNewLines(@Model.DisplayValueDesc)
                     </div>
-                     
                 </div>
             </div>
         </div>

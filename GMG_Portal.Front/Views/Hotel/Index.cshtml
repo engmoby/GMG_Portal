@@ -1,4 +1,5 @@
-﻿@model List<GMG_Portal.Data.Hotel>
+﻿@using Front.Helpers
+@model List<GMG_Portal.Data.Hotel>
 
 
 <div class="mg-page-title parallax">
@@ -25,9 +26,23 @@
                             </div>
                             <div class="col-sm-7">
                                 <h3 class="mg-avl-room-title">
-                                    <a href="/Hotel/Details/@hotel.Id">@hotel.DisplayValue</a> <span>$@hotel.PriceStart/Night</span>
+                                    <a href="/Hotel/Details/@hotel.Id">@hotel.DisplayValue</a> <span>$@hotel.PriceStart/@Front.Resources.Global.Hotel_Night</span>
                                 </h3>
-                                <p>@hotel.DisplayValueDesc</p>
+                                
+                                @if (@hotel.DisplayValueDesc.Length >= 110)
+                                { 
+                                    <div class="display-field" style="text-align: right;margin-bottom: 15px;">
+                                        @Html.PreserveNewLines(@hotel.DisplayValueDesc.ToString().Substring(0, 110))
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="display-field" style="text-align: right;margin-bottom: 15px;">
+                                        @Html.PreserveNewLines(@hotel.DisplayValueDesc)
+                                    </div>
+                                }
+                                
+                             
                                 <div class="row mg-room-fecilities">
                                     @for (int i = 0; i < hotel.FeaturesList.Count; i++)
                                     {

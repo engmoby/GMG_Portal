@@ -249,6 +249,12 @@
   <data name="Career_Index_Title" xml:space="preserve">
     <value>الوظائف المطلوبه</value>
   </data>
+  <data name="CheckIn" xml:space="preserve">
+    <value>دخول</value>
+  </data>
+  <data name="CheckOut" xml:space="preserve">
+    <value>خروج</value>
+  </data>
   <data name="ContactUs_Email" xml:space="preserve">
     <value>البريد الالكترونى</value>
   </data>
@@ -467,8 +473,5 @@
   </data>
   <data name="StyleUrl" xml:space="preserve">
     <value>/Content/css/stylear.css</value>
-  </data>
-  <data name="StyleUrl1" xml:space="preserve">
-    <value />
   </data>
 </root>

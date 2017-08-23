@@ -468,4 +468,10 @@
   <data name="Booking_JS4" xml:space="preserve">
     <value>Sélectionnez un enfant</value>
   </data>
+  <data name="CheckIn" xml:space="preserve">
+    <value>Enregistrement</value>
+  </data>
+  <data name="CheckOut" xml:space="preserve">
+    <value>quitter</value>
+  </data>
 </root>

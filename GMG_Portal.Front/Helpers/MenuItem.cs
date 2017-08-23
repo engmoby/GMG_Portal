@@ -37,6 +37,10 @@ namespace Front.Helpers
             sb.Append("</li>");
             return new MvcHtmlString(sb.ToString());
         }
+        public static IHtmlString PreserveNewLines(this HtmlHelper htmlHelper, string message)
+        {
+            return message == null ? null : htmlHelper.Raw(htmlHelper.Encode(message).Replace("\n", "<br/>"));
+        }
     }
 
 }

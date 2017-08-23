@@ -137,6 +137,9 @@ input[type=radio]:checked:before {
     background: #fff!important;
 }
 
+#MSG{    width: 100%;
+    overflow: hidden;}
+
 .main_clock{ list-style: none;
     margin-right: 37px;
     margin-bottom: 15px;
@@ -145,7 +148,7 @@ input[type=radio]:checked:before {
     text-align: left;}
 
 .main_clock li{    float: left;
-    margin-left: 15px;
+    margin-right: 15px;
     font-weight: bold;
     color: #000;}
 
@@ -2867,6 +2870,7 @@ div.cs-skin-elastic .cs-options .cs-selected span::after {
     padding-bottom: 15px;
     margin-bottom: 8px;
     color: #fff;
+    font-size: 20px;
 }
 .mg-team-member .mg-team-info h3:after {
     content: '';
@@ -2989,8 +2993,7 @@ div.cs-skin-elastic .cs-options .cs-selected span::after {
     display: none;
 }
 
-.mg-team-member .mg-team-info h3:after{right:0;
-    left:auto;}
+
 
 .carousel-inner>.item>a>img, .carousel-inner>.item>img {
  
@@ -4386,6 +4389,15 @@ div.cs-skin-elastic .cs-options .cs-selected span::after {
         padding-top: 70px;
     }
 }
+
+@media (max-width: 1280px) {
+
+    .carousel-inner>.item {
+        max-height: 481px;
+        overflow: hidden;
+    }
+}
+
 @media (max-width: 500px) {
     .mg-boxed {
         width: 100%;
@@ -4394,5 +4406,3 @@ div.cs-skin-elastic .cs-options .cs-selected span::after {
         max-width: 100%;
     }
 }
-#MSG{    width: 100%;
-    overflow: hidden;}
