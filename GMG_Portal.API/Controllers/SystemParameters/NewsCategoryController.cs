@@ -123,7 +123,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                         return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<SystemParameters_Category_Translate>(objByLang));
 
                 }
-                goto ThrowBadRequest;
+                //goto ThrowBadRequest;
             }
 
             catch (Exception ex)
@@ -132,7 +132,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
 
-            ThrowBadRequest:
+        //    ThrowBadRequest:
             return Request.CreateResponse(HttpStatusCode.BadRequest);
         }
     }

@@ -105,7 +105,7 @@ namespace GMG_Portal.API.Controllers.Offer
             }
         }
         [HttpPost]
-        public HttpResponseMessage Save(Hotles_Offers_Translate postedOffers)
+        public HttpResponseMessage Save(Hotles_Offers postedOffers)
         {
             try
             {

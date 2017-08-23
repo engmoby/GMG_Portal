@@ -64,8 +64,8 @@ function NewsCategorysController($scope, NewsCategoryApi, uploadService, $rootSc
 
     $scope.save = function () {
         $rootScope.ViewLoading = true;
-        
-        $scope.NewsCategory.LangId = CurrentLanguage;
+
+        $scope.NewsCategory.langId = CurrentLanguage;
 
         debugger;
         NewsCategoryApi.Save($scope.NewsCategory).then(function (response) {
@@ -76,25 +76,25 @@ function NewsCategorysController($scope, NewsCategoryApi, uploadService, $rootSc
                     switch ($scope.action) {
                     case 'edit':
                         index = $scope.NewsCategorys.indexOf($filter('filter')($scope.NewsCategorys, { 'Id': $scope.NewsCategory.Id }, true)[0]);
-                        // $scope.NewsCategorys[index] = angular.copy(response.data);
-                        NewsCategoryApi.GetAll().then(function (response) {
-                            $scope.NewsCategorys = response.data;
-                        });
+                         $scope.NewsCategorys[index] = angular.copy(response.data);
+                        //NewsCategoryApi.GetAll().then(function (response) {
+                        //    $scope.NewsCategorys = response.data;
+                        //});
                         toastr.success($('#HUpdateSuccessMessage').val(), 'Success');
                         break;
                     case 'delete':
                         index = $scope.NewsCategorys.indexOf($filter('filter')($scope.NewsCategorys, { 'Id': $scope.NewsCategory.Id }, true)[0]);
-                        // $scope.NewsCategorys[index] = angular.copy(response.data);
-                        NewsCategoryApi.GetAll().then(function (response) {
-                            $scope.NewsCategorys = response.data;
-                        });
+                         $scope.NewsCategorys[index] = angular.copy(response.data);
+                        //NewsCategoryApi.GetAll().then(function (response) {
+                        //    $scope.NewsCategorys = response.data;
+                        //});
                         toastr.success($('#HDeleteSuccessMessage').val(), 'Success');
                         break;
                     case 'add':
-                        NewsCategoryApi.GetAll().then(function (response) {
-                            $scope.NewsCategorys = response.data;
-                        });
-                        // $scope.NewsCategorys.push(angular.copy(response.data));
+                        //NewsCategoryApi.GetAll().then(function (response) {
+                        //    $scope.NewsCategorys = response.data;
+                        //});
+                        $scope.NewsCategorys.push(angular.copy(response.data));
                         toastr.success($('#HSaveSuccessMessage').val(), 'Success');
                         break;
                     }

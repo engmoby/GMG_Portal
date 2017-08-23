@@ -117,7 +117,7 @@ namespace GMG_Portal.API
                 cfg.CreateMap<Offer, Hotles_Offers>();
                 cfg.CreateMap<Hotles_Offers_Translate, Offer>();
                 cfg.CreateMap<Offer, Hotles_Offers_Translate>();
-
+                cfg.CreateMap<Hotles_Offers_Translate, Hotles_Offers>();
 
 
 

@@ -9,6 +9,8 @@ namespace GMG_Portal.Data
 {
     public partial class Hotles_Offers
     {
+        public string langId;
+
         [NotMapped] 
         public string HotelTitle { get; set; }
         public string OperationStatus { get; set; }
