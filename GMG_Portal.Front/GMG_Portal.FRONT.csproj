@@ -219,6 +219,7 @@
     <Content Include="Content\css\owl.carousel.css" />
     <Content Include="Content\css\owl.theme.css" />
     <Content Include="Content\css\owl.transitions.css" />
+    <Content Include="Content\css\stylefr.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\css\stylear.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
