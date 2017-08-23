@@ -36,13 +36,13 @@ function ContactController($scope, ContactApi, uploadService, $rootScope, $timeo
          
     } 
     $scope.back = function () {
-        $('#ModelAddUpdate').modal('hIde');
+        $('#ModelAddUpdate').modal('hide');
     }
      
 
     $scope.save = function () {
         $rootScope.ViewLoading = true; 
-        $scope.Contact.LangId = CurrentLanguage;
+        $scope.Contact.langId = CurrentLanguage;
 
         ContactApi.Save($scope.Contact).then(function (response) {
 

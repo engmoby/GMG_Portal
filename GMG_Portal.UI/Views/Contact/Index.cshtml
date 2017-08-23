@@ -98,7 +98,7 @@
                                 <div class="form-group">
                                     <label>@Contact.PhoneNo1</label><span class="red-text"> *</span>
                                     <input type="text" ng-model="Contact.PhoneNo1" class="form-control" name="TxtPhoneNo1"
-                                           placeholder="@Contact.PhoneNo1" ng-minlength="@Common.TitleMin5" ng-maxlength="@Common.TitleMax25" required ng-pattern="/@Regex.InternationalPhone/">
+                                           placeholder="@Contact.PhoneNo1" ng-minlength="@Common.TitleMin5" ng-maxlength="@Common.TitleMax25" required ng-pattern="/@Regex.Phone/">
 
                                     <div class="red-text" ng-messages="FrmAddUpdate.TxtPhoneNo1.$error" ng-show="FrmAddUpdate.TxtPhoneNo1.$touched">
                                         <span class="red-text" ng-message="required">@Contact.TxtPhoneNo1RequiredErrorMessage</span>
@@ -113,7 +113,7 @@
                                 <div class="form-group">
                                     <label>@Contact.PhoneNo2</label><span class="red-text"> *</span>
                                     <input type="text" ng-model="Contact.PhoneNo2" class="form-control" name="TxtPhoneNo2"
-                                           placeholder="@Contact.PhoneNo2" ng-minlength="@Common.TitleMin5" ng-maxlength="@Common.TitleMax25" required ng-pattern="/@Regex.InternationalPhone/">
+                                           placeholder="@Contact.PhoneNo2" ng-minlength="@Common.TitleMin5" ng-maxlength="@Common.TitleMax25" required>
 
                                     <div class="red-text" ng-messages="FrmAddUpdate.TxtPhoneNo2.$error" ng-show="FrmAddUpdate.TxtPhoneNo2.$touched">
                                         <span class="red-text" ng-message="required">@Contact.TxtPhoneNo2RequiredErrorMessage</span>
@@ -170,7 +170,7 @@
 
                                     <div class="red-text" ng-messages="FrmAddUpdate.TxtUrl.$error" ng-show="FrmAddUpdate.TxtUrl.$touched">
                                         <span class="red-text" ng-message="required">@Contact.TxtUrlRequiredErrorMessage</span>
-                                        <span class="red-text" ng-message="pattern">@Contact.TxtUrlPatternErrorMessage</span> 
+                                        <span class="red-text" ng-message="pattern">@Contact.TxtUrlPatternErrorMessage</span>
                                         <span class="red-text" ng-message="minlength">@Common.MinimumKeyWord @Common.TitleMin5 @Common.Charachter</span>
                                         <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax65 @Common.Charachter</span>
                                     </div>
@@ -184,7 +184,7 @@
 
                                     <div class="red-text" ng-messages="FrmAddUpdate.TxtFacebook.$error" ng-show="FrmAddUpdate.TxtFacebook.$touched">
                                         <span class="red-text" ng-message="required">@Contact.TxtFacebookRequiredErrorMessage</span>
-                                        <span class="red-text" ng-message="pattern">@Contact.TxtFacebookPatternErrorMessage</span> 
+                                        <span class="red-text" ng-message="pattern">@Contact.TxtFacebookPatternErrorMessage</span>
                                         <span class="red-text" ng-message="minlength">@Common.MinimumKeyWord @Common.TitleMin5 @Common.Charachter</span>
                                         <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax65 @Common.Charachter</span>
                                     </div>
@@ -201,7 +201,7 @@
 
                                     <div class="red-text" ng-messages="FrmAddUpdate.TxtTwitter.$error" ng-show="FrmAddUpdate.TxtTwitter.$touched">
                                         <span class="red-text" ng-message="required">@Contact.TxtTwitterRequiredErrorMessage</span>
-                                        <span class="red-text" ng-message="pattern">@Contact.TxtTwitterPatternErrorMessage</span> 
+                                        <span class="red-text" ng-message="pattern">@Contact.TxtTwitterPatternErrorMessage</span>
                                         <span class="red-text" ng-message="minlength">@Common.MinimumKeyWord @Common.TitleMin5 @Common.Charachter</span>
                                         <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax65 @Common.Charachter</span>
                                     </div>
@@ -215,7 +215,7 @@
 
                                     <div class="red-text" ng-messages="FrmAddUpdate.TxtInstgram.$error" ng-show="FrmAddUpdate.TxtInstgram.$touched">
                                         <span class="red-text" ng-message="required">@Contact.TxtInstgramRequiredErrorMessage</span>
-                                        <span class="red-text" ng-message="pattern">@Contact.TxtInstgramPatternErrorMessage</span> 
+                                        <span class="red-text" ng-message="pattern">@Contact.TxtInstgramPatternErrorMessage</span>
                                         <span class="red-text" ng-message="minlength">@Common.MinimumKeyWord @Common.TitleMin5 @Common.Charachter</span>
                                         <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax65 @Common.Charachter</span>
                                     </div>
@@ -232,7 +232,7 @@
 
                                     <div class="red-text" ng-messages="FrmAddUpdate.TxtYoutube.$error" ng-show="FrmAddUpdate.TxtYoutube.$touched">
                                         <span class="red-text" ng-message="required">@Contact.TxtYoutubeRequiredErrorMessage</span>
-                                        <span class="red-text" ng-message="pattern">@Contact.TxtYoutubePatternErrorMessage</span> 
+                                        <span class="red-text" ng-message="pattern">@Contact.TxtYoutubePatternErrorMessage</span>
                                         <span class="red-text" ng-message="minlength">@Common.MinimumKeyWord @Common.TitleMin5 @Common.Charachter</span>
                                         <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax65 @Common.Charachter</span>
                                     </div>
@@ -246,7 +246,7 @@
 
                                     <div class="red-text" ng-messages="FrmAddUpdate.TxtSnapchat.$error" ng-show="FrmAddUpdate.TxtSnapchat.$touched">
                                         <span class="red-text" ng-message="required">@Contact.TxtSnapchatRequiredErrorMessage</span>
-                                        <span class="red-text" ng-message="pattern">@Contact.TxtSnapchatPatternErrorMessage</span> 
+                                        <span class="red-text" ng-message="pattern">@Contact.TxtSnapchatPatternErrorMessage</span>
                                         <span class="red-text" ng-message="minlength">@Common.MinimumKeyWord @Common.TitleMin5 @Common.Charachter</span>
                                         <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax65 @Common.Charachter</span>
                                     </div>
@@ -260,11 +260,11 @@
                                 <div class="form-group">
                                     <label>@Contact.Fax</label><span class="red-text"> *</span>
                                     <input type="text" ng-model="Contact.Fax" class="form-control" name="TxtFax"
-                                           placeholder="@Contact.Fax" ng-minlength="@Common.TitleMin5" ng-maxlength="@Common.TitleMax25" required ng-pattern="/@Regex.InternationalPhone/">
+                                           placeholder="@Contact.Fax" ng-minlength="@Common.TitleMin5" ng-maxlength="@Common.TitleMax25" required>
 
                                     <div class="red-text" ng-messages="FrmAddUpdate.TxtFax.$error" ng-show="FrmAddUpdate.TxtFax.$touched">
                                         <span class="red-text" ng-message="required">@Contact.TxtFaxRequiredErrorMessage</span>
-                                        <span class="red-text" ng-message="pattern">@Contact.TxtFaxPatternErrorMessage</span> 
+                                        <span class="red-text" ng-message="pattern">@Contact.TxtFaxPatternErrorMessage</span>
                                         <span class="red-text" ng-message="minlength">@Common.MinimumKeyWord @Common.TitleMin5 @Common.Charachter</span>
                                         <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax25 @Common.Charachter</span>
                                     </div>
@@ -274,11 +274,11 @@
                                 <div class="form-group">
                                     <label>@Contact.WhatsApp</label><span class="red-text"> *</span>
                                     <input type="text" ng-model="Contact.WhatsApp" class="form-control" name="TxtWhatsApp"
-                                           placeholder="@Contact.WhatsApp" ng-minlength="@Common.TitleMin5" ng-maxlength="@Common.TitleMax25" required ng-pattern="/@Regex.InternationalPhone/">
+                                           placeholder="@Contact.WhatsApp" ng-minlength="@Common.TitleMin5" ng-maxlength="@Common.TitleMax25" required>
 
                                     <div class="red-text" ng-messages="FrmAddUpdate.TxtWhatsApp.$error" ng-show="FrmAddUpdate.TxtWhatsApp.$touched">
                                         <span class="red-text" ng-message="required">@Contact.TxtWhatsAppRequiredErrorMessage</span>
-                                        <span class="red-text" ng-message="pattern">@Contact.TxtWhatsAppPatternErrorMessage</span> 
+                                        <span class="red-text" ng-message="pattern">@Contact.TxtWhatsAppPatternErrorMessage</span>
                                         <span class="red-text" ng-message="minlength">@Common.MinimumKeyWord @Common.TitleMin5 @Common.Charachter</span>
                                         <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax25 @Common.Charachter</span>
                                     </div>
@@ -294,11 +294,11 @@
                                 <div class="form-group">
                                     <label>@Contact.PostalCode</label><span class="red-text"> *</span>
                                     <input type="text" ng-model="Contact.PostalCode" class="form-control" name="TxtPostalCode"
-                                           placeholder="@Contact.PostalCode" ng-minlength="@Common.TitleMin5" ng-maxlength="@Common.TitleMax25" required ng-pattern="/@Regex.AccessCode/">
+                                           placeholder="@Contact.PostalCode" ng-minlength="3" ng-maxlength="@Common.TitleMax25" required>
                                     <div class="red-text" ng-messages="FrmAddUpdate.TxtPostalCode.$error" ng-show="FrmAddUpdate.TxtPostalCode.$touched">
                                         <span class="red-text" ng-message="required">@Contact.TxtPostalcodeRequiredErrorMessage</span>
-                                        <span class="red-text" ng-message="pattern">@Contact.TxtPostalcodePatternErrorMessage</span> 
-                                        <span class="red-text" ng-message="minlength">@Common.MinimumKeyWord @Common.TitleMin5 @Common.Charachter</span>
+                                        <span class="red-text" ng-message="pattern">@Contact.TxtPostalcodePatternErrorMessage</span>
+                                        <span class="red-text" ng-message="minlength">@Common.MinimumKeyWord 3 @Common.Charachter</span>
                                         <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax25 @Common.Charachter</span>
                                     </div>
                                 </div>
@@ -307,11 +307,11 @@
                                 <div class="form-group">
                                     <label>@Contact.Mailbox</label><span class="red-text"> *</span>
                                     <input type="text" ng-model="Contact.Mailbox" class="form-control" name="TxtMailbox"
-                                           placeholder="@Contact.Mailbox" ng-minlength="@Common.TitleMin5" ng-maxlength="@Common.TitleMax25" required  >
+                                           placeholder="@Contact.Mailbox" ng-minlength="@Common.TitleMin5" ng-maxlength="@Common.TitleMax25" required>
 
                                     <div class="red-text" ng-messages="FrmAddUpdate.TxtMailbox.$error" ng-show="FrmAddUpdate.TxtMailbox.$touched">
                                         <span class="red-text" ng-message="required">@Contact.TxtMailboxRequiredErrorMessage</span>
-                                        <span class="red-text" ng-message="pattern">@Contact.TxtMailboxPatternErrorMessage</span> 
+                                        <span class="red-text" ng-message="pattern">@Contact.TxtMailboxPatternErrorMessage</span>
                                         <span class="red-text" ng-message="minlength">@Common.MinimumKeyWord @Common.TitleMin5 @Common.Charachter</span>
                                         <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax25 @Common.Charachter</span>
                                     </div>
@@ -324,11 +324,11 @@
                                 <div class="form-group">
                                     <label>@Contact.Late</label><span class="red-text"> *</span>
                                     <input type="text" ng-model="Contact.Late" class="form-control" name="TxtLate"
-                                           placeholder="@Contact.Late" ng-minlength="@Common.TitleMin5" ng-maxlength="@Common.TitleMax25" required  >
+                                           placeholder="@Contact.Late" ng-minlength="@Common.TitleMin5" ng-maxlength="@Common.TitleMax25" required>
 
                                     <div class="red-text" ng-messages="FrmAddUpdate.TxtLate.$error" ng-show="FrmAddUpdate.TxtLate.$touched">
                                         <span class="red-text" ng-message="required">@Contact.TxtLateRequiredErrorMessage</span>
-                                        <span class="red-text" ng-message="pattern">@Contact.TxtLatePatternErrorMessage</span> 
+                                        <span class="red-text" ng-message="pattern">@Contact.TxtLatePatternErrorMessage</span>
                                         <span class="red-text" ng-message="minlength">@Common.MinimumKeyWord @Common.TitleMin5 @Common.Charachter</span>
                                         <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax25 @Common.Charachter</span>
                                     </div>
@@ -338,11 +338,11 @@
                                 <div class="form-group">
                                     <label>@Contact.Long</label><span class="red-text"> *</span>
                                     <input type="text" ng-model="Contact.Long" class="form-control" name="TxtLong"
-                                           placeholder="@Contact.Long" ng-minlength="@Common.TitleMin5" ng-maxlength="@Common.TitleMax25" required  >
+                                           placeholder="@Contact.Long" ng-minlength="@Common.TitleMin5" ng-maxlength="@Common.TitleMax25" required>
 
                                     <div class="red-text" ng-messages="FrmAddUpdate.TxtLong.$error" ng-show="FrmAddUpdate.TxtLong.$touched">
                                         <span class="red-text" ng-message="required">@Contact.TxtLongRequiredErrorMessage</span>
-                                        <span class="red-text" ng-message="pattern">@Contact.TxtLongPatternErrorMessage</span> 
+                                        <span class="red-text" ng-message="pattern">@Contact.TxtLongPatternErrorMessage</span>
                                         <span class="red-text" ng-message="minlength">@Common.MinimumKeyWord @Common.TitleMin5 @Common.Charachter</span>
                                         <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax25 @Common.Charachter</span>
                                     </div>

@@ -291,7 +291,7 @@
                 url: apiUrl + "/SystemParameters/Hotels/GetAllWithCount?langId=@Common.CurrentLang",
                 type: "Get",
                 success: function (data) {
-                    var more = "View More";
+                    //var more = @Front.Resources.Global.SeeMore;
                     var list = [];
                     if (data.length === 0) {
                         document.getElementById("hotelMenu").style.display = "none";
@@ -311,7 +311,7 @@
                     }
                     if (data.length >= 5) {
                         $(
-                            "<li>" + "<a href='/Hotel/Index'>" + more + "</i></a>"
+                            "<li>" + "<a href='/Hotel/Index'>" +  @Front.Resources.Global.SeeMore + "</i></a>"
                         ).appendTo("#ulAllHotels");
                     }
                     // $.localStorage('listlist', list);
