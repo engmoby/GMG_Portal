@@ -21,92 +21,91 @@
         </div>
     </div>
 </div> 
-    <div class="mg-team pb70">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="mg-sec-title">
-                        <h2>@Front.Resources.Global.Owners_SuccessTeam</h2>
-                        <p></p>
-                    </div>
+<div class="mg-team pb70">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="mg-sec-title">
+                    <h2>@Front.Resources.Global.Owners_SuccessTeam</h2>
+                    <p></p>
                 </div>
             </div>
+        </div>
+        
 
-
-            <div class="row">
-                @for (int i = 0; i < Model.Count; i++)
+        <div class="row">
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                if (i > 0 && i % 4 == 0)
                 {
-                    if (i > 0 && i % 4 == 0)
-                    {
-        @:
-    </div><div class="row">
-                    }
-        <div class="col-md-3">
-            <a href="#@Model[i].Id-1" data-featherlight="#@Model[i].Id-1">
-                <div class="mg-team-member">
+                    @:</div><div class="row"> 
+                }
+                <div class="col-md-3">
+                    <a href="#@Model[i].Id-1" data-featherlight="#@Model[i].Id-1">
+                        <div class="mg-team-member">
 
-                    <figure>
-                        <img src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/Owners/@Model[i].Image" alt="" class="img-responsive" style="width: 262px;height: 262px;">
-                    </figure>
-                    <div class="mg-team-member-overlayer"></div>
-                    <div class="mg-team-info">
-                        @if (@Model[i].DisplayValueName.Length >= 20)
-                                    {
+                            <figure>
+                                <img src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/Owners/@Model[i].Image" alt="" class="img-responsive" style="width: 262px;height: 262px;">
+                            </figure>
+                            <div class="mg-team-member-overlayer"></div>
+                            <div class="mg-team-info">
+                                @if (@Model[i].DisplayValueName.Length >= 20)
+                                {
                                     <h3>@Model[i].DisplayValueName.Substring(0, 20)</h3>
-                                    }
-                                    else
-                                    {
+                                }
+                                else
+                                {
                                     <h3>@Model[i].DisplayValueName</h3>
 
-                                    }
-                        @if (@Model[i].DisplayValuePosition.Length >= 20)
-                                    {
+                                }
+                                @if (@Model[i].DisplayValuePosition.Length >= 20)
+                                {
                                     <h3>@Model[i].DisplayValuePosition</h3>
-                                    }
-                                    else
-                                    {
+                                }
+                                else
+                                {
                                     <h3>@Model[i].DisplayValuePosition</h3>
-                                    }
+                                }
 
+                            </div>
+
+                        </div>
+                    </a>
+                    <div class="lightbox" id="@Model[i].Id-1">
+                        
+                        <h2>@Model[i].DisplayValueName</h2>
+                        <h3>@Model[i].DisplayValuePosition</h3>
+                        <img src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/Owners/@Model[i].Image" alt="" class="img-responsive"  style="width: 206px;height: 183px;">
+                          
+                        <div class="display-field" >
+
+
+                            @Html.PreserveNewLines(@Model[i].DisplayValueDesc)
+                        </div>
+                        @if (!string.IsNullOrEmpty(@Model[i].Facebook))
+                        {
+                            <a target='Blank' href="@Model[i].Facebook"><i class="fa fa-facebook"></i></a> 
+                        }
+                        @if (!string.IsNullOrEmpty(@Model[i].Twitter))
+                        {
+                            <a target='Blank' href="@Model[i].Twitter"><i class="fa fa-twitter"></i></a> 
+                        }
+                        @if (!string.IsNullOrEmpty(@Model[i].LinkedIn))
+
+                        {
+                            <a target='Blank' href="@Model[i].LinkedIn"><i class="fa fa-linkedin"></i></a> 
+                        }
                     </div>
+                    
 
                 </div>
-            </a>
-            <div class="lightbox" id="@Model[i].Id-1">
-
-                <h2>@Model[i].DisplayValueName</h2>
-                <h3>@Model[i].DisplayValuePosition</h3>
-                <img src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/Owners/@Model[i].Image" alt="" class="img-responsive" style="width: 206px;height: 183px;">
-
-                <div class="display-field">
-
-
-                    @Html.PreserveNewLines(@Model[i].DisplayValueDesc)
-                </div>
-                @if (!string.IsNullOrEmpty(@Model[i].Facebook))
-                            {
-                            <a target='Blank' href="@Model[i].Facebook"><i class="fa fa-facebook"></i></a>
-                            }
-                @if (!string.IsNullOrEmpty(@Model[i].Twitter))
-                            {
-                            <a target='Blank' href="@Model[i].Twitter"><i class="fa fa-twitter"></i></a>
-                            }
-                @if (!string.IsNullOrEmpty(@Model[i].LinkedIn))
-
-                            {
-                            <a target='Blank' href="@Model[i].LinkedIn"><i class="fa fa-linkedin"></i></a>
-                            }
-            </div>
-
-
+            }
         </div>
-                }
-            </div>
+        
+        <script src="~/Scripts/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
 
-            <script src="~/Scripts/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
-
-        </div>
     </div>
+</div>
  
 
 

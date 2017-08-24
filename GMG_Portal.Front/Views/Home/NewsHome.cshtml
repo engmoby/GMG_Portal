@@ -26,11 +26,9 @@
                                     </div>
 
                                 </div>
-                                <h3>
-
-                                    <a href="/News/Details/@t.Id">@t.DisplayValue </a>
-                                </h3>
-                                    @*<p>@t.DisplayValueDesc.</p>*@
+                                    <h3 class="display-field">
+                                        <a href="/News/Details/@t.Id" >@t.DisplayValue </a>
+                                </h3> 
                                     @if (@t.DisplayValueDesc.Length >= 81)
                                     {
                                         <p> @t.DisplayValueDesc.ToString().Substring(0, 81)</p>
