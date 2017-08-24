@@ -728,7 +728,7 @@ ul.styled-list.list-star li:before {
     transition: background-color 0.3s;
 }
 .navbar-inverse .navbar-nav > li > a {
-    font-size: 13px;
+    font-size: 16px;
     color: #fff;
     -webkit-transition: color 0.3s, padding 0.3s;
     transition: color 0.3s, padding 0.3s;
@@ -767,6 +767,8 @@ ul.styled-list.list-star li:before {
     left: 0px;
     box-shadow: none;
     border-width: 0;
+    float: right;
+
 }
 .navbar-inverse .navbar-nav > li ul.dropdown-menu > li > a {
     color: #fff;
@@ -4408,4 +4410,13 @@ div.cs-skin-elastic .cs-options .cs-selected span::after {
      .display-field {
          text-align: left;margin-bottom: 15px;
     }
+}
+
+.top_phone{overflow: hidden;
+    display: inline-block;
+    margin-top: 6px;
+}
+.top_phone p {
+    margin-bottom: 0px!important;
+    color: #fff;
 }
