@@ -105,7 +105,7 @@ namespace GMG_Portal.API.Controllers.Offer
             }
         }
         [HttpPost]
-        public HttpResponseMessage Save(Hotles_Offers postedOffers)
+        public HttpResponseMessage Save(Models.SystemParameters.Offer postedOffers)
         {
             try
             {

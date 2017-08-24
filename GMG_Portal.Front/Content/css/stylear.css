@@ -7,8 +7,12 @@ p{
     text-align:right;
     direction:rtl;}
 	
-h1, h2, h3, h4, h5, h6{text-align:right;
-    direction:rtl;}
+h1, h2, h3, h4, h5, h6{
+    /*text-align:right;*/
+    direction:rtl;
+
+
+}
 	
 .mg-sec-title h2 {
 
@@ -496,5 +500,5 @@ bootstrap.min.css:5
     overflow: hidden;}
 
 .display-field {
-    text-align: left;margin-bottom: 15px;
+    text-align: right;margin-bottom: 15px;
 }
