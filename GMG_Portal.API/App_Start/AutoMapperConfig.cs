@@ -140,6 +140,13 @@ namespace GMG_Portal.API
                 cfg.CreateMap<Hotels_Reservation, Reservation>();
                 cfg.CreateMap<Reservation, Hotels_Reservation>();
 
+
+                cfg.CreateMap<SystemParameters_Notify, Notify>();
+                cfg.CreateMap<Notify, SystemParameters_Notify>();
+
+                cfg.CreateMap<SystemParameters_NotifyDepartment, Department>();
+                cfg.CreateMap<Department, SystemParameters_NotifyDepartment>();
+
                 cfg.CreateMap<SystemParameters_Countries, GMG_Portal.API.Models.SystemParameters.Countries>();
                 cfg.CreateMap<GMG_Portal.API.Models.SystemParameters.Countries, SystemParameters_Countries>();
 
@@ -159,9 +166,7 @@ namespace GMG_Portal.API
                 cfg.CreateMap<GMG_Portal.Data.Customers, GMG_Portal.API.Models.SystemParameters.Customer>();
                 cfg.CreateMap<GMG_Portal.API.Models.SystemParameters.Customer, GMG_Portal.Data.Customers>();
 
-
-                cfg.CreateMap<GMG_Portal.Data.Departments, GMG_Portal.API.Models.SystemParameters.Departments>();
-                cfg.CreateMap<GMG_Portal.API.Models.SystemParameters.Departments, GMG_Portal.Data.Departments>();
+                 
 
 
                 cfg.CreateMap<GMG_Portal.Data.Customers, Customer>();

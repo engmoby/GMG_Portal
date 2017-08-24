@@ -19,6 +19,7 @@ namespace Front
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
         }
 
         protected void Application_BeginRequest(object sender, EventArgs e)
@@ -42,6 +43,13 @@ namespace Front
                 System.Threading.Thread.CurrentThread.CurrentUICulture =
                     new System.Globalization.CultureInfo("en");
             }
+        }
+
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            Exception exc = Server.GetLastError();
+            Server.ClearError();
+            Response.Redirect("/Error/Index");
         }
     }
 }

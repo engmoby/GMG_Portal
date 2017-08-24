@@ -102,8 +102,8 @@ namespace Front.Controllers
 
                 var path = Path.Combine(Server.MapPath("~/Uploads/"), fileDetail.Id + fileDetail.Extension);
                 file.SaveAs(path);
+                careerForm.Attach = fileDetails[0].Id.ToString() + fileDetails[0].Extension.ToString();
             }
-            careerForm.Attach = fileDetails[0].Id.ToString() + fileDetails[0].Extension.ToString();
 
             careerForm.CareerId = careerForm.CareerId;
 

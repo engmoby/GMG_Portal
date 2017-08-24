@@ -10,94 +10,76 @@ using System.Data;
 
 namespace GMG_Portal.Business.Logic.SystemParameters
 {
-  public class DepartmentLogic
+    public class DepartmentLogic
     {
-        GMG_Portal_DBEntities1 DB;
+        GMG_Portal_DBEntities1 _db;
 
         public DepartmentLogic()
         {
-            DB = new GMG_Portal_DBEntities1();
+            _db = new GMG_Portal_DBEntities1();
         }
 
-        public List<Departments> GetAll()
+        public List<SystemParameters_NotifyDepartment> GetAll()
         {
-            return null;
-
-            //return DB.Departments.Where(p => p.IsDeleted!=true).ToList();
-
+            return _db.SystemParameters_NotifyDepartment.Where(p => p.IsDeleted != true).ToList();
         }
-        public List<Departments> GetAllWithDeleted()
+        public List<SystemParameters_NotifyDepartment> GetAllWithDeleted()
         {
-
-            return null;
-            //return DB.Departments.OrderBy(p => p.IsDeleted).ToList();
-
+            return _db.SystemParameters_NotifyDepartment.OrderBy(p => p.IsDeleted).ToList();
         }
 
-        public Departments Get(int ID)
+        public SystemParameters_NotifyDepartment Get(int id)
         {
-            return null;
-           // return DB.Departments.Find(ID);
+            return _db.SystemParameters_NotifyDepartment.Find(id);
         }
-        private Departments Save(Departments Department)
+        public SystemParameters_NotifyDepartment GetDepartmentByName(string department)
+        {
+            return _db.SystemParameters_NotifyDepartment.FirstOrDefault(x => x.DisplayValue == department );
+        }
+        
+        private SystemParameters_NotifyDepartment Save(SystemParameters_NotifyDepartment department)
         {
             try
             {
-                DB.SaveChanges();
-                Department.OperationStatus = "Succeded";
-                return Department;
+                _db.SaveChanges();
+                department.OperationStatus = "Succeded";
+                return department;
             }
             catch (Exception e)
             {
                 if (e.InnerException != null)
                 {
-                    if (e.InnerException.ToString().Contains("IX_Departments_Ar"))
-                    {
-                        Department.OperationStatus = "NameArMustBeUnique";
-                        return Department;
-                    }
-                    else if (e.InnerException.ToString().Contains("IX_Departments_En"))
-                    {
-                        Department.OperationStatus = "NameEnMustBeUnique";
-                        return Department;
-                    }
+
                 }
                 throw;
             }
         }
 
-        public Departments Insert(Departments PostedDepartments)
+        public SystemParameters_NotifyDepartment Insert(SystemParameters_NotifyDepartment postedDepartments)
         {
-            return null;
-            //var Department = new Departments()
-            //{
-            //    NameAr = PostedDepartments.NameAr,
-            //    NameEn = PostedDepartments.NameEn,
-            //    IsDeleted = false
+            var department = new SystemParameters_NotifyDepartment()
+            {
+                DisplayValue = postedDepartments.DisplayValue,
+                IsDeleted = false
 
-            //};
-            //DB.Departments.Add(Department);
-            //return Save(Department);
+            };
+            _db.SystemParameters_NotifyDepartment.Add(department);
+            return Save(department);
         }
-        public Departments Edit(Departments PostedDepartment)
+        public SystemParameters_NotifyDepartment Edit(SystemParameters_NotifyDepartment postedDepartment)
         {
-            return null;
-            //Departments Department = Get(PostedDepartment.ID);
-            //Department.NameEn = PostedDepartment.NameEn;
-            //Department.NameAr = PostedDepartment.NameAr;
-            //Department.IsDeleted = PostedDepartment.IsDeleted;
+            SystemParameters_NotifyDepartment department = Get(postedDepartment.Id);
+            department.DisplayValue = postedDepartment.DisplayValue;
+            department.IsDeleted = postedDepartment.IsDeleted;
+            return Save(department);
+        }
+        public SystemParameters_NotifyDepartment Delete(SystemParameters_NotifyDepartment postedDepartment)
+        {
+            SystemParameters_NotifyDepartment department = Get(postedDepartment.Id);
 
-            //return Save(Department);
-        }
-        public Departments Delete(Departments PostedDepartment)
-        {
-            return null;
-            //Departments Department = Get(PostedDepartment.ID);
-           
-            ////Department.NameAr = Department.ID + "-" + Department.NameAr;
-            ////Department.NameEn = Department.ID + "-" + Department.NameEn;
-            //Department.IsDeleted = true;
-            //return Save(Department);
+            department.DisplayValue = department.DisplayValue;
+            department.IsDeleted = true;
+            return Save(department);
         }
 
 

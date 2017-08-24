@@ -79,6 +79,8 @@
     <Compile Include="Logic\SystemParameters\ContactUsLogicTranslate.cs" />
     <Compile Include="Logic\SystemParameters\CoreValuesLogicTranslate.cs" />
     <Compile Include="Logic\SystemParameters\CoreValuesLogic.cs" />
+    <Compile Include="Logic\SystemParameters\NotifyLogic.cs" />
+    <Compile Include="Logic\SystemParameters\DepartmentLogic.cs" />
     <Compile Include="Logic\SystemParameters\FeaturesLogicTranslate.cs" />
     <Compile Include="Logic\SystemParameters\HomeSliderLogicTranslate.cs" />
     <Compile Include="Logic\SystemParameters\MissionLogicTranslate.cs" />

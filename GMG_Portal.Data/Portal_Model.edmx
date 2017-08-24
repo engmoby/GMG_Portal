@@ -902,6 +902,49 @@
           <Property Name="SeenDate" Type="datetime" />
           <Property Name="SeenBy" Type="int" />
         </EntityType>
+        <EntityType Name="SystemParameters_Notify">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SGuid" Type="uniqueidentifier" />
+          <Property Name="DisplayValue" Type="nvarchar" MaxLength="50" />
+          <Property Name="LookupKey" Type="int" />
+          <Property Name="LookupKeyGuid" Type="uniqueidentifier" />
+          <Property Name="IsCurrent" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Show" Type="bit" />
+          <Property Name="LookupKeyDesc" Type="int" />
+          <Property Name="LookupKeyGuidDesc" Type="uniqueidentifier" />
+          <Property Name="Image" Type="nvarchar" MaxLength="100" />
+          <Property Name="LastModificationTime" Type="datetime" />
+          <Property Name="LastModifierUserId" Type="int" />
+          <Property Name="CreationTime" Type="datetime" Nullable="false" />
+          <Property Name="CreatorUserId" Type="int" />
+          <Property Name="DeletionTime" Type="datetime" />
+          <Property Name="DeleterUserId" Type="int" />
+          <Property Name="DepartmentId" Type="int" />
+        </EntityType>
+        <EntityType Name="SystemParameters_NotifyDepartment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SGuid" Type="uniqueidentifier" />
+          <Property Name="DisplayValue" Type="nvarchar" MaxLength="50" />
+          <Property Name="LookupKey" Type="int" />
+          <Property Name="LookupKeyGuid" Type="uniqueidentifier" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Show" Type="bit" />
+          <Property Name="LookupKeyDesc" Type="int" />
+          <Property Name="LookupKeyGuidDesc" Type="uniqueidentifier" />
+          <Property Name="LastModificationTime" Type="datetime" />
+          <Property Name="LastModifierUserId" Type="int" />
+          <Property Name="CreationTime" Type="datetime" />
+          <Property Name="CreatorUserId" Type="int" />
+          <Property Name="DeletionTime" Type="datetime" />
+          <Property Name="DeleterUserId" Type="int" />
+        </EntityType>
         <EntityType Name="SystemParameters_Owners">
           <Key>
             <PropertyRef Name="Id" />
@@ -1060,6 +1103,8 @@ warning 6002: The table/view 'GMG_PORTAL_STAG.dbo.HomeView' does not have a prim
           <EntitySet Name="SystemParameters_News" EntityType="Self.SystemParameters_News" Schema="dbo" Table="SystemParameters.News" store:Type="Tables" />
           <EntitySet Name="SystemParameters_News_Translate" EntityType="Self.SystemParameters_News_Translate" Schema="dbo" Table="SystemParameters.News_Translate" store:Type="Tables" />
           <EntitySet Name="SystemParameters_Newsletter" EntityType="Self.SystemParameters_Newsletter" Schema="dbo" Table="SystemParameters.Newsletter" store:Type="Tables" />
+          <EntitySet Name="SystemParameters_Notify" EntityType="Self.SystemParameters_Notify" Schema="dbo" Table="SystemParameters.Notify" store:Type="Tables" />
+          <EntitySet Name="SystemParameters_NotifyDepartment" EntityType="Self.SystemParameters_NotifyDepartment" Schema="dbo" Table="SystemParameters.NotifyDepartment" store:Type="Tables" />
           <EntitySet Name="SystemParameters_Owners" EntityType="Self.SystemParameters_Owners" Schema="dbo" Table="SystemParameters.Owners" store:Type="Tables" />
           <EntitySet Name="SystemParameters_Owners_Translate" EntityType="Self.SystemParameters_Owners_Translate" Schema="dbo" Table="SystemParameters.Owners_Translate" store:Type="Tables" />
           <EntitySet Name="SystemParameters_PaymentType" EntityType="Self.SystemParameters_PaymentType" Schema="dbo" Table="SystemParameters.PaymentType" store:Type="Tables" />
@@ -1143,6 +1188,8 @@ warning 6002: The table/view 'GMG_PORTAL_STAG.dbo.HomeView' does not have a prim
           <EntitySet Name="Hotels_Reservation" EntityType="GMG_Portal_DBModel.Hotels_Reservation" />
           <EntitySet Name="Hotels_Images_Translate" EntityType="GMG_Portal_DBModel.Hotels_Images_Translate" />
           <EntitySet Name="Hotels_Translate" EntityType="GMG_Portal_DBModel.Hotels_Translate" />
+          <EntitySet Name="SystemParameters_Notify" EntityType="GMG_Portal_DBModel.SystemParameters_Notify" />
+          <EntitySet Name="SystemParameters_NotifyDepartment" EntityType="GMG_Portal_DBModel.SystemParameters_NotifyDepartment" />
         </EntityContainer>
         <EntityType Name="Front_Mission">
           <Key>
@@ -2155,6 +2202,49 @@ warning 6002: The table/view 'GMG_PORTAL_STAG.dbo.HomeView' does not have a prim
           <Property Name="DeleterUserId" Type="Int32" />
           <Property Name="Show" Type="Boolean" Nullable="false" />
           <Property Name="langId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="SystemParameters_Notify">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SGuid" Type="Guid" />
+          <Property Name="DisplayValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LookupKey" Type="Int32" />
+          <Property Name="LookupKeyGuid" Type="Guid" />
+          <Property Name="IsCurrent" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Show" Type="Boolean" />
+          <Property Name="LookupKeyDesc" Type="Int32" />
+          <Property Name="LookupKeyGuidDesc" Type="Guid" />
+          <Property Name="Image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LastModificationTime" Type="DateTime" Precision="3" />
+          <Property Name="LastModifierUserId" Type="Int32" />
+          <Property Name="CreationTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatorUserId" Type="Int32" />
+          <Property Name="DeletionTime" Type="DateTime" Precision="3" />
+          <Property Name="DeleterUserId" Type="Int32" />
+          <Property Name="DepartmentId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SystemParameters_NotifyDepartment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SGuid" Type="Guid" />
+          <Property Name="DisplayValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LookupKey" Type="Int32" />
+          <Property Name="LookupKeyGuid" Type="Guid" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Show" Type="Boolean" />
+          <Property Name="LookupKeyDesc" Type="Int32" />
+          <Property Name="LookupKeyGuidDesc" Type="Guid" />
+          <Property Name="LastModificationTime" Type="DateTime" Precision="3" />
+          <Property Name="LastModifierUserId" Type="Int32" />
+          <Property Name="CreationTime" Type="DateTime" Precision="3" />
+          <Property Name="CreatorUserId" Type="Int32" />
+          <Property Name="DeletionTime" Type="DateTime" Precision="3" />
+          <Property Name="DeleterUserId" Type="Int32" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -3201,6 +3291,51 @@ warning 6002: The table/view 'GMG_PORTAL_STAG.dbo.HomeView' does not have a prim
                 <ScalarProperty Name="CityId" ColumnName="CityId" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="IsCurrent" ColumnName="IsCurrent" />
+                <ScalarProperty Name="LookupKeyGuid" ColumnName="LookupKeyGuid" />
+                <ScalarProperty Name="LookupKey" ColumnName="LookupKey" />
+                <ScalarProperty Name="DisplayValue" ColumnName="DisplayValue" />
+                <ScalarProperty Name="SGuid" ColumnName="SGuid" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SystemParameters_Notify">
+            <EntityTypeMapping TypeName="GMG_Portal_DBModel.SystemParameters_Notify">
+              <MappingFragment StoreEntitySet="SystemParameters_Notify">
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
+                <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
+                <ScalarProperty Name="CreatorUserId" ColumnName="CreatorUserId" />
+                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+                <ScalarProperty Name="LastModifierUserId" ColumnName="LastModifierUserId" />
+                <ScalarProperty Name="LastModificationTime" ColumnName="LastModificationTime" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="LookupKeyGuidDesc" ColumnName="LookupKeyGuidDesc" />
+                <ScalarProperty Name="LookupKeyDesc" ColumnName="LookupKeyDesc" />
+                <ScalarProperty Name="Show" ColumnName="Show" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsCurrent" ColumnName="IsCurrent" />
+                <ScalarProperty Name="LookupKeyGuid" ColumnName="LookupKeyGuid" />
+                <ScalarProperty Name="LookupKey" ColumnName="LookupKey" />
+                <ScalarProperty Name="DisplayValue" ColumnName="DisplayValue" />
+                <ScalarProperty Name="SGuid" ColumnName="SGuid" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SystemParameters_NotifyDepartment">
+            <EntityTypeMapping TypeName="GMG_Portal_DBModel.SystemParameters_NotifyDepartment">
+              <MappingFragment StoreEntitySet="SystemParameters_NotifyDepartment">
+                <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
+                <ScalarProperty Name="DeletionTime" ColumnName="DeletionTime" />
+                <ScalarProperty Name="CreatorUserId" ColumnName="CreatorUserId" />
+                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+                <ScalarProperty Name="LastModifierUserId" ColumnName="LastModifierUserId" />
+                <ScalarProperty Name="LastModificationTime" ColumnName="LastModificationTime" />
+                <ScalarProperty Name="LookupKeyGuidDesc" ColumnName="LookupKeyGuidDesc" />
+                <ScalarProperty Name="LookupKeyDesc" ColumnName="LookupKeyDesc" />
+                <ScalarProperty Name="Show" ColumnName="Show" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="LookupKeyGuid" ColumnName="LookupKeyGuid" />
                 <ScalarProperty Name="LookupKey" ColumnName="LookupKey" />
                 <ScalarProperty Name="DisplayValue" ColumnName="DisplayValue" />
