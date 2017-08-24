@@ -4,7 +4,32 @@
 
 
 <header class="header transp sticky">
-    <nav class="navbar navbar-inverse">
+
+    <div style="width: 100%;/* overflow: hidden; */background-color: #000000;">
+        <div class="container">
+
+            <p id="divPhonesHeader">
+                +966 12 561 0887
+            </p>
+
+            <p id="divMailHeader">
+                <a href="mailto:#"> sales@mobarkhotel.com</a>
+            </p>
+            <ul class="nav navbar-nav navbar-right" style="/* float: left!important; */padding: 0;margin-right: 0px;
+                                     ">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="padding: 10px;">Lang<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        CultureInfo currentCulture = Thread.CurrentThread.CurrentCulture;
+                        <li>@Html.ActionLink("English", "ChangeLanguage", "Language", new { SelectedLanguage = "en" }, null)</li>
+                        <li>@Html.ActionLink("العربيه", "ChangeLanguage", "Language", new { SelectedLanguage = "ar" }, null)</li>
+                        <li>@Html.ActionLink("Francais", "ChangeLanguage", "Language", new { SelectedLanguage = "fr" }, null)</li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+    </div>  <nav class="navbar navbar-inverse">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -52,18 +77,18 @@
                     @Html.ListItemAction(@Front.Resources.Global.Header_Contact, "Index", "Contact")
 
 
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@Front.Resources.Global.Header_Languages<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            @{
-                                CultureInfo currentCulture = Thread.CurrentThread.CurrentCulture;
-                                <li>@Html.ActionLink("English", "ChangeLanguage", "Language", new { SelectedLanguage = "en" }, null)</li>
-                                <li>@Html.ActionLink("العربيه", "ChangeLanguage", "Language", new { SelectedLanguage = "ar" }, null)</li>
-                                <li>@Html.ActionLink("Francais", "ChangeLanguage", "Language", new { SelectedLanguage = "fr" }, null)</li>
-                                
-                            }
-                        </ul>
-                    </li>
+                    @*<li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@Front.Resources.Global.Header_Languages<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                @{
+                                    CultureInfo currentCulture = Thread.CurrentThread.CurrentCulture;
+                                    <li>@Html.ActionLink("English", "ChangeLanguage", "Language", new { SelectedLanguage = "en" }, null)</li>
+                                    <li>@Html.ActionLink("العربيه", "ChangeLanguage", "Language", new { SelectedLanguage = "ar" }, null)</li>
+                                    <li>@Html.ActionLink("Francais", "ChangeLanguage", "Language", new { SelectedLanguage = "fr" }, null)</li>
+
+                                }
+                            </ul>
+                        </li>*@
                 </ul>
             </div><!-- /.navbar-collapse -->
             @*<div class="mg-search-box-cont pull-right">

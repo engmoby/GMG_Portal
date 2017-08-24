@@ -24,7 +24,7 @@ namespace Front.Controllers
         string url = System.Configuration.ConfigurationManager.AppSettings["ServerIp"] + "/SystemParameters/";
         public ContactController()
         {
-
+            Thread.CurrentThread.CurrentCulture = Common.CurrentLang == "ar" ? new CultureInfo("ar-EG") : new CultureInfo("en-US"); 
             _client = new HttpClient();
             _client.BaseAddress = new Uri(url);
             _client.DefaultRequestHeaders.Accept.Clear();
@@ -34,7 +34,6 @@ namespace Front.Controllers
         public async Task<ActionResult> Index()
         {
 
-            Thread.CurrentThread.CurrentCulture = Common.CurrentLang == "ar" ? new CultureInfo("ar-EG") : new CultureInfo("en-US");
 
             string contactUs = url + "ContactUs/GetAll?langId=" + Common.CurrentLang;
             var contactUsModels = new ContactUs();

@@ -33,6 +33,7 @@ namespace Front.Controllers
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
         // GET: Career
+        [HandleError]
         public async Task<ActionResult> Index()
         {
             string career = "";
@@ -73,12 +74,14 @@ namespace Front.Controllers
         }
 
 
+        [HandleError]
         public ActionResult Upload(CareerForm careerForm)
         {
             return View(careerForm);
         }
 
         [HttpPost]
+        [HandleError]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Upload(CareerForm careerForm, HttpPostedFileBase file)
         {
@@ -99,13 +102,13 @@ namespace Front.Controllers
 
                 var path = Path.Combine(Server.MapPath("~/Uploads/"), fileDetail.Id + fileDetail.Extension);
                 file.SaveAs(path);
-            careerForm.Attach = fileDetails[0].Id.ToString() + fileDetails[0].Extension.ToString() ;
             }
+            careerForm.Attach = fileDetails[0].Id.ToString() + fileDetails[0].Extension.ToString();
 
             careerForm.CareerId = careerForm.CareerId;
 
             if (string.IsNullOrEmpty(careerForm.FirstName))
-                ModelState.AddModelError("FirstName", "First Name is Not THERE");
+                ModelState.AddModelError("FirstName", Global.Last_Name_Required);
             if (string.IsNullOrEmpty(careerForm.LastName))
                 ModelState.AddModelError("LastName", Global.Last_Name_Required);
             if (string.IsNullOrEmpty(careerForm.Email))

@@ -6,11 +6,11 @@ namespace GMG_Portal.API.Models.Hotels.Reservation
     public class Reservation
     {
         public int Id { get; set; }
-        [Required(ErrorMessage = "Please Enter Your FirstName")]
+        //[Required(ErrorMessage = "Please Enter Your FirstName")]
         [Display(Name = "FirstName")]
         [MaxLength(100)]
         public string FirstName { get; set; }
-        [Required(ErrorMessage = "Please Enter Your LastName")]
+        //[Required(ErrorMessage = "Please Enter Your LastName")]
         [Display(Name = "LastName")]
         [MaxLength(100)]
         public string LastName { get; set; }

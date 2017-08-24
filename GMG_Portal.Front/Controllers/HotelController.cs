@@ -29,6 +29,7 @@ namespace Front.Controllers
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
         // GET: Hotel
+        [HandleError]
         public async Task<ActionResult> Index()
         {
             string hotels = url + "Hotels/GetAll?langId=" + Common.CurrentLang;
@@ -49,8 +50,14 @@ namespace Front.Controllers
 
 
         // GET: Hotel/Details/5
-        public async Task<ActionResult> Details(int id)
+        [HandleError]
+        public async Task<ActionResult> Details(int? id)
         {
+
+            if (!id.HasValue)
+            {
+                return RedirectToAction("Index", "Hotel");
+            }
             //Fix for Map Co-Ordinates on Multi Lingual 
             Thread.CurrentThread.CurrentCulture = Common.CurrentLang == "ar" ? new CultureInfo("ar-EG") : new CultureInfo("en-US");
             // string hotelDetails = url + "Hotels/GetHotelDetails/"+ id+ "?langId=\" + Common.CurrentLang";

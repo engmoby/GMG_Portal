@@ -20,8 +20,7 @@ namespace Front.Controllers
         string url = System.Configuration.ConfigurationManager.AppSettings["ServerIp"] + "/SystemParameters/";
 
         public BookingLiteController()
-        {
-            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+        { 
 
             _client = new HttpClient();
             _client.BaseAddress = new Uri(url);
@@ -73,7 +72,7 @@ namespace Front.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Index(Reservation reservation)
         {
-            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+            //Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
 
             if (string.IsNullOrEmpty(reservation.FirstName))
                 ModelState.AddModelError("FirstName", Global.First_Name_Required);
