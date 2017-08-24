@@ -474,4 +474,16 @@
   <data name="CheckOut" xml:space="preserve">
     <value>Check Out</value>
   </data>
+  <data name="ContactUs_Email_Val" xml:space="preserve">
+    <value>Please check Email</value>
+  </data>
+  <data name="ContactUs_Firstname_Val" xml:space="preserve">
+    <value>Please Enter First Name</value>
+  </data>
+  <data name="ContactUs_Message_Val" xml:space="preserve">
+    <value>Please Check Message</value>
+  </data>
+  <data name="ContactUs_Phone_Val" xml:space="preserve">
+    <value>Please Check Phone</value>
+  </data>
 </root>
