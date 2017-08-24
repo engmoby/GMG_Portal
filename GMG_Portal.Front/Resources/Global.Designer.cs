@@ -484,6 +484,24 @@ namespace Front.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please check Email.
+        /// </summary>
+        public static string ContactUs_Email_Val {
+            get {
+                return ResourceManager.GetString("ContactUs_Email_Val", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please Enter First Name.
+        /// </summary>
+        public static string ContactUs_Firstname_Val {
+            get {
+                return ResourceManager.GetString("ContactUs_Firstname_Val", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Full Name.
         /// </summary>
         public static string ContactUs_FullName {
@@ -520,11 +538,29 @@ namespace Front.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please Check Message.
+        /// </summary>
+        public static string ContactUs_Message_Val {
+            get {
+                return ResourceManager.GetString("ContactUs_Message_Val", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Phone.
         /// </summary>
         public static string ContactUs_Phone {
             get {
                 return ResourceManager.GetString("ContactUs_Phone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please Check Phone.
+        /// </summary>
+        public static string ContactUs_Phone_Val {
+            get {
+                return ResourceManager.GetString("ContactUs_Phone_Val", resourceCulture);
             }
         }
         

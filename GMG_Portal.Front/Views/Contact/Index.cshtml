@@ -25,19 +25,19 @@
                 <form id="myForm">
                     <div class="mg-contact-form-input">
                         <label for="FirstName">@Front.Resources.Global.ContactUs_FullName</label>
-                        <input type="text" class="form-control" id="FirstName" data-validation="length alphanumeric" data-validation-length="min4">
+                        <input type="text" class="form-control" id="FirstName" data-validation="length alphanumeric" data-validation-length="min4" data-validation-error-msg="@Front.Resources.Global.ContactUs_Firstname_Val">
                     </div>
                     <div class="mg-contact-form-input">
                         <label for="Email">@Front.Resources.Global.ContactUs_Email</label>
-                        <input type="email" class="form-control" id="Email" data-validation="email">
+                        <input type="email" class="form-control" id="Email" data-validation="email" data-validation-error-msg="@Front.Resources.Global.ContactUs_Email_Val">
                     </div>
                     <div class="mg-contact-form-input">
                         <label for="PhoneNo">@Front.Resources.Global.ContactUs_Phone</label>
-                        <input type="number" class="form-control" id="PhoneNo" data-validation="required">
+                        <input type="number" class="form-control" id="PhoneNo" data-validation="required" data-validation-error-msg="@Front.Resources.Global.ContactUs_Phone_Val">
                     </div>
                     <div class="mg-contact-form-input">
                         <label for="Message">@Front.Resources.Global.ContactUs_Message</label>
-                        <textarea class="form-control" id="Message" rows="5" data-validation="required"></textarea>
+                        <textarea class="form-control" id="Message" rows="5" data-validation="required" data-validation-error-msg="@Front.Resources.Global.ContactUs_Message_Val"></textarea>
                     </div>
                     <button class="btn btn-dark-main pull-right" onclick="$.validate()">@Front.Resources.Global.ContactUs_SendButton</button>
                 </form>

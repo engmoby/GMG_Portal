@@ -5,6 +5,7 @@ using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using Front.Helpers;
 using Front.Resources;
 using GMG_Portal.API.Models.Hotels.Reservation;
 using Newtonsoft.Json;
@@ -85,7 +86,25 @@ namespace Front.Controllers
 
             if (ModelState.IsValid)
             {
+
+              
+                HttpResponseMessage responseMessageEmails = await _client.GetAsync("Reservation/Save?Department=Reservation");
+                if (responseMessageEmails.IsSuccessStatusCode)
+                {
+                    var responseData = responseMessageEmails.Content.ReadAsStringAsync().Result;
+                    //    careerModels = JsonConvert.DeserializeObject<Career>(responseData);
+                    string EmailMessage = ""; 
+
+
+
+               var  notifyemail  = new NotifyEmail();
+                    notifyemail.SendMail("");
+                }
+
+
+
                 HttpResponseMessage responseMessageApi = await _client.PostAsJsonAsync("Reservation/Save/", reservation);
+            
                 if (responseMessageApi.IsSuccessStatusCode)
                 {
                     var responseData = responseMessageApi.Content.ReadAsStringAsync().Result;

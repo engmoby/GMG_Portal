@@ -258,6 +258,12 @@
   <data name="ContactUs_Email" xml:space="preserve">
     <value>البريد الالكترونى</value>
   </data>
+  <data name="ContactUs_Email_Val" xml:space="preserve">
+    <value>من فضلك افحص البريد الالكترونى</value>
+  </data>
+  <data name="ContactUs_Firstname_Val" xml:space="preserve">
+    <value>من فضلك ادخل الاسم الاول</value>
+  </data>
   <data name="ContactUs_FullName" xml:space="preserve">
     <value>الاسم بالكامل</value>
   </data>
@@ -270,8 +276,14 @@
   <data name="ContactUs_Message" xml:space="preserve">
     <value>الرساله</value>
   </data>
+  <data name="ContactUs_Message_Val" xml:space="preserve">
+    <value>من فضلك تأكد من محتوى الرساله</value>
+  </data>
   <data name="ContactUs_Phone" xml:space="preserve">
     <value>التليفون</value>
+  </data>
+  <data name="ContactUs_Phone_Val" xml:space="preserve">
+    <value>من فضلك افحص رقم الهاتف</value>
   </data>
   <data name="ContactUs_SendButton" xml:space="preserve">
     <value>ارسال</value>

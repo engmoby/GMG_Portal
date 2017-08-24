@@ -187,6 +187,7 @@
     </Compile>
     <Compile Include="Helpers\Common.cs" />
     <Compile Include="Helpers\MenuItem.cs" />
+    <Compile Include="Helpers\NotifyEmail.cs" />
     <Compile Include="Models\MultiLang.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Global.fr.Designer.cs">
