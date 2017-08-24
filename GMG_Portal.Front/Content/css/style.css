@@ -4419,4 +4419,6 @@ div.cs-skin-elastic .cs-options .cs-selected span::after {
 .top_phone p {
     margin-bottom: 0px!important;
     color: #fff;
+    margin-top: 24px;
+
 }

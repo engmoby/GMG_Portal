@@ -10,11 +10,11 @@ using System.Data;
 
 namespace GMG_Portal.Business.Logic.SystemParameters
 {
-    public class Notify
+    public class NotifyLogic
     {
         GMG_Portal_DBEntities1 _db;
 
-        public Notify()
+        public NotifyLogic()
         {
             _db = new GMG_Portal_DBEntities1();
         }
