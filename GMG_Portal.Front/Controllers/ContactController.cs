@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Web.Mvc;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Threading;
 using System.Threading.Tasks;
 using Front.Helpers;
 using Newtonsoft.Json;
@@ -30,7 +32,9 @@ namespace Front.Controllers
         }
         // GET: About Content
         public async Task<ActionResult> Index()
-        { 
+        {
+
+            Thread.CurrentThread.CurrentCulture = Common.CurrentLang == "ar" ? new CultureInfo("ar-EG") : new CultureInfo("en-US");
 
             string contactUs = url + "ContactUs/GetAll?langId=" + Common.CurrentLang;
             var contactUsModels = new ContactUs();

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -49,7 +51,9 @@ namespace Front.Controllers
         // GET: Hotel/Details/5
         public async Task<ActionResult> Details(int id)
         {
-           // string hotelDetails = url + "Hotels/GetHotelDetails/"+ id+ "?langId=\" + Common.CurrentLang";
+            //Fix for Map Co-Ordinates on Multi Lingual 
+            Thread.CurrentThread.CurrentCulture = Common.CurrentLang == "ar" ? new CultureInfo("ar-EG") : new CultureInfo("en-US");
+            // string hotelDetails = url + "Hotels/GetHotelDetails/"+ id+ "?langId=\" + Common.CurrentLang";
             string hotelDetails = url + "Hotels/GetHotelDetails/"+ id+ "?langId=" + Helpers.Common.CurrentLang;
             var hotelModels = new Hotel();
 
