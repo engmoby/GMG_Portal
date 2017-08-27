@@ -42,14 +42,14 @@
     <link href="~/Content/css/adapt-strap.css" rel="stylesheet" />
 </head>
 <body>
-    @{var listItems = new List<ListItem>
+    @*@{var listItems = new List<ListItem>
   {
 
       new ListItem {Text = "English", Value = "en"},
           new ListItem {Text = "العربيه", Value = "ar"},
       new ListItem {Text = "Francais", Value = "fr"}
   }; }
-    @Html.DropDownList("DropdwonLang", new SelectList(listItems, "Value", "Text"))
+    @Html.DropDownList("DropdwonLang", new SelectList(listItems, "Value", "Text"))*@
      
 
 <input type="hidden" id="HServicesURL" value="@System.Configuration.ConfigurationManager.AppSettings["ServicesURL"]" />
