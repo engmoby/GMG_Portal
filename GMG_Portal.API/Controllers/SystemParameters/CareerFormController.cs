@@ -11,6 +11,7 @@ using GMG_Portal.API.Models.SystemParameters;
 using GMG_Portal.Data;
 using GMG_Portal.Business.Logic.SystemParameters;
 using AutoMapper;
+using Front.Helpers;
 using GMG_Portal.API.Models.SystemParameters.CareerForm; 
 using Helpers;
 
@@ -60,7 +61,25 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                     SystemParameters_CareerForm careerForm = null;
                     if (postedCareerForms.Id.Equals(0))
                     {
+             
                         careerForm = careerFormLogic.Insert(Mapper.Map<SystemParameters_CareerForm>(postedCareerForms));
+
+                        //Instant Notifications Logic
+                        var notifyemail = new NotifyEmail();
+                        var departmentLogic = new DepartmentLogic();
+                        var notifyLogic = new NotifyLogic();
+                        var obj = departmentLogic.GetDepartmentByName("Career");
+                        var objList = notifyLogic.GetNotifyByDepId(obj.Id);
+                    
+                        string emailMessage = "Job Applied For :  " + postedCareerForms.CareerTitle + "<br/>" +
+                            "First Name : " + postedCareerForms.FirstName + "<br/>" +
+                                              "Last Name : " + postedCareerForms.LastName + "<br/>" +
+                                              "Email : " + postedCareerForms.Email + "<br/>" + "Phone Number :" +
+                                              postedCareerForms.PhoneNo +
+                                              "<br />" + "Message : " + postedCareerForms.Message + "<br/>" +
+                                              "C.v  : <a href='" + System.Configuration.ConfigurationManager.AppSettings["HomeUrl"] +
+                                              "/Uploads/" + postedCareerForms.Attach + "'> Download / View Applicant C.v</a><br/>";
+                        notifyemail.SendMail("Careers Notification :  " + postedCareerForms.CareerTitle, emailMessage, objList);
                     }
                     else
                     {

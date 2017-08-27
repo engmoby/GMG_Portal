@@ -32,7 +32,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 return Request.CreateResponse(ex);
             }
         }
-        public HttpResponseMessage GetAllNoficy(string department)
+        public HttpResponseMessage GetAllNotify(string department)
         {
             try
             {
@@ -40,7 +40,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 var notifyLogic = new NotifyLogic();
                 var obj = departmentLogic.GetDepartmentByName(department);
                 var objList = notifyLogic.GetNotifyByDepId(obj.Id);
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Department>>(objList));
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<SystemParameters_Notify>>(objList));
 
             }
             catch (Exception ex)

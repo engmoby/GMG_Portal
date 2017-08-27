@@ -8,6 +8,7 @@ using GMG_Portal.API.Models.SystemParameters;
 using GMG_Portal.Data;
 using GMG_Portal.Business.Logic.SystemParameters;
 using AutoMapper;
+using Front.Helpers;
 using GMG_Portal.API.Models.SystemParameters.ContactUs;
 using Helpers;
 
@@ -54,9 +55,21 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 {
                     var contactFormLogic = new ContactFormLogic();
                     SystemParameters_ContactForm ContactForm = null;
+                   
                     if (postedContactForms.Id.Equals(0))
                     {
                         ContactForm = contactFormLogic.Insert(Mapper.Map<SystemParameters_ContactForm>(postedContactForms));
+                        //Instant Notifications Logic
+                        var notifyemail = new NotifyEmail();
+                        var departmentLogic = new DepartmentLogic();
+                        var notifyLogic = new NotifyLogic();
+                        var obj = departmentLogic.GetDepartmentByName("Contact");
+                        var objList = notifyLogic.GetNotifyByDepId(obj.Id);
+                        string emailMessage = "Full Name : " + postedContactForms.FirstName + "<br/>" + 
+                                              "Email : " + postedContactForms.Email + "<br/>" + "Phone Number :" +
+                                              postedContactForms.PhoneNo +
+                                              "<br />" + "Inquiry : " + postedContactForms.Message + "<br/>";
+                        notifyemail.SendMail("Contact Form Inquiry : " + postedContactForms.FirstName, emailMessage, objList);
                     }
                     else
                     {

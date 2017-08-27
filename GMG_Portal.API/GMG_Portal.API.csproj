@@ -204,6 +204,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\LocalizedRegexAttribute.cs" />
+    <Compile Include="Helpers\NotifyEmail.cs" />
     <Compile Include="Models\Customer\Customers\Customer.cs" />
     <Compile Include="Models\General\AboutAll\AboutAllTranslate.cs" />
     <Compile Include="Models\General\AboutAll\AboutAll.cs" />

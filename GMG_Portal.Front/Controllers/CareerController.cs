@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
+using Front.Helpers;
 using Front.Resources;
 using GMG_Portal.API.Models.General;
 using GMG_Portal.API.Models.SystemParameters;
@@ -131,8 +132,9 @@ namespace Front.Controllers
                         TempData["alertMessage"] = "Thanks, Kindly our team will contact with you shortly";
 
                     }
-                }
-                return RedirectToAction("Index");
+
+            }
+            return RedirectToAction("Index");
             }
 
             return View(careerForm);

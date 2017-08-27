@@ -141,8 +141,8 @@ namespace GMG_Portal.API
                 cfg.CreateMap<Reservation, Hotels_Reservation>();
 
 
-                cfg.CreateMap<SystemParameters_Notify, Notify>();
-                cfg.CreateMap<Notify, SystemParameters_Notify>();
+                cfg.CreateMap<SystemParameters_Notify, NotifyViewModel>();
+                cfg.CreateMap<NotifyViewModel, SystemParameters_Notify>();
 
                 cfg.CreateMap<SystemParameters_NotifyDepartment, Department>();
                 cfg.CreateMap<Department, SystemParameters_NotifyDepartment>();
