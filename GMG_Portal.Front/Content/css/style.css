@@ -728,7 +728,7 @@ ul.styled-list.list-star li:before {
     transition: background-color 0.3s;
 }
 .navbar-inverse .navbar-nav > li > a {
-    font-size: 16px;
+    font-size: 13px;
     color: #fff;
     -webkit-transition: color 0.3s, padding 0.3s;
     transition: color 0.3s, padding 0.3s;
@@ -767,8 +767,6 @@ ul.styled-list.list-star li:before {
     left: 0px;
     box-shadow: none;
     border-width: 0;
-    float: right;
-
 }
 .navbar-inverse .navbar-nav > li ul.dropdown-menu > li > a {
     color: #fff;
@@ -2241,10 +2239,10 @@ div.cs-skin-elastic .cs-options .cs-selected span::after {
     font-style: italic;
 }
 .mg-reviews .media .media-body p:after {
-    content: '”';
+    content: 'â€';
 }
 .mg-reviews .media .media-body p:before {
-    content: '“';
+    content: 'â€œ';
 }
 .mg-reviews .media .media-body .media-date {
     float: right;
@@ -4407,26 +4405,7 @@ div.cs-skin-elastic .cs-options .cs-selected span::after {
     .mg-boxed .header {
         max-width: 100%;
     }
-     .display-field {
-         text-align: left;margin-bottom: 15px;
+    .display-field {
+        text-align: right;margin-bottom: 15px;
     }
 }
-
-.top_phone{overflow: hidden;
-    display: inline-block;
-    margin-top: 6px;
-}
-.top_phone p {
-    margin-bottom: 0px!important;
-    color: #fff;
-    margin-top: 24px;
-
-}
-
-.navbar-nav .open .dropdown-menu>li>a {
-    line-height: 20px;
-    color: #fff;
-}
-
-
-.dropdown-menu { background-color: #16262e; }

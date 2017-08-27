@@ -8,6 +8,7 @@ using GMG_Portal.API.Models.SystemParameters;
 using GMG_Portal.Data;
 using GMG_Portal.Business.Logic.SystemParameters;
 using AutoMapper;
+using Front.Helpers;
 using GMG_Portal.API.Models.Hotels.Reservation;
 using GMG_Portal.API.Models.SystemParameters.ContactUs;
 using Helpers;
@@ -56,9 +57,12 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 {
                     var ReservationLogic = new ReservationLogic();
                     Hotels_Reservation Reservation = null;
+               
+
                     if (postedReservations.Id.Equals(0))
                     {
                         Reservation = ReservationLogic.Insert(Mapper.Map<Hotels_Reservation>(postedReservations));
+                     
                     }
                     else
                     {

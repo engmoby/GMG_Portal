@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -8,6 +9,9 @@ using System.Web.Mvc;
 using Front.Helpers;
 using Front.Resources;
 using GMG_Portal.API.Models.Hotels.Reservation;
+using GMG_Portal.API.Models.SystemParameters;
+using GMG_Portal.Business.Logic.SystemParameters;
+using GMG_Portal.Data;
 using Newtonsoft.Json;
 
 
@@ -77,32 +81,53 @@ namespace Front.Controllers
             if (ModelState.IsValid)
             {
 
-              
-                HttpResponseMessage responseMessageEmails = await _client.GetAsync("Reservation/Save?Department=Reservation");
-                if (responseMessageEmails.IsSuccessStatusCode)
-                {
-                    var responseData = responseMessageEmails.Content.ReadAsStringAsync().Result;
-                    //    careerModels = JsonConvert.DeserializeObject<Career>(responseData);
-                    string EmailMessage = ""; 
-
-
-
-               var  notifyemail  = new NotifyEmail();
-                    notifyemail.SendMail("");
-                }
-
+             
 
 
                 HttpResponseMessage responseMessageApi = await _client.PostAsJsonAsync("Reservation/Save/", reservation);
             
                 if (responseMessageApi.IsSuccessStatusCode)
                 {
-                    var responseData = responseMessageApi.Content.ReadAsStringAsync().Result;
-                    reservation = JsonConvert.DeserializeObject<Reservation>(responseData);
-                    if (reservation != null)
+                    //Send Instant Notifications to Selected Personnells
+                    HttpResponseMessage responseMessageEmails = await _client.GetAsync(url + "DepartmentNotifyController/GetAllNotify?Department=Reservation");
+                    if (responseMessageEmails.IsSuccessStatusCode)
                     {
-                        TempData["alertMessage"] = "ok";
+
+
+                        var responseData = responseMessageApi.Content.ReadAsStringAsync().Result;
+                        reservation = JsonConvert.DeserializeObject<Reservation>(responseData);
+                        if (reservation != null)
+                        {
+                            TempData["alertMessage"] = "ok";
+                        }
+
+
+                        //Start Send Instant Notifications
+                        var responseDataEmails = responseMessageEmails.Content.ReadAsStringAsync().Result;
+                        var emailModel = JsonConvert.DeserializeObject<List<NotifyViewModel>>(responseDataEmails);
+
+
+
+                        string emailMessage = "FirstName : " + reservation.FirstName + "<br/>" + "Last Name : " +
+                                              reservation.LastName + "<br/>" +
+                                              "Email : " + reservation.Email + "<br/>" + "Phone Number :" +
+                                              reservation.Phone +
+                                              "<br />" + "Check In : " + reservation.CheckIn + "<br/>" + "Check out : " +
+                                              reservation.CheckOut + "<br/>" +
+                                              "Adult : " + reservation.Adult + "<br/>" + "Child : " + reservation.Child ;
+
+                        var notifyemail = new NotifyEmail();
+                        notifyemail.SendMail("Reservation Request : " + reservation.FirstName, emailMessage, emailModel);
                     }
+                    /////
+
+
+
+
+
+
+
+                   
                 }
                 return RedirectToAction("Confirm", reservation);
 

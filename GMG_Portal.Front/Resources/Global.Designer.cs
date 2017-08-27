@@ -250,7 +250,7 @@ namespace Front.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your Reservatiom ID .
+        ///   Looks up a localized string similar to Your Reservation ID .
         /// </summary>
         public static string Booking_ReservationID {
             get {

@@ -5,15 +5,17 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Net.Mail;
+using System.Text.RegularExpressions;
 using GMG_Portal.API.Models.SystemParameters;
 using GMG_Portal.Business.Logic.SystemParameters;
+using GMG_Portal.Data;
 
 
 namespace Front.Helpers
 {
     public class NotifyEmail
     {
-        public void SendMail(string subj,string message,List<NotifyViewModel> receipients)
+        public void SendMail(string subj , string message,List<SystemParameters_Notify> receipients)
         {
             try
             {
@@ -21,9 +23,11 @@ namespace Front.Helpers
                 if (receipients != null)
                 {
 
-                    msg.Subject = subj;
+                    msg.Subject = Regex.Replace(subj, @"\t|\n|\r", "");
+
 
                     msg.IsBodyHtml = true;
+
                     string headerTmp =
                         "<table width=100% ><tr><td align ='center' style='background: #000000'><img src = 'http://gmgportal.azurewebsites.net/Content/images/logo1.png' /></td></tr><br/><tr><td>";
 
@@ -70,11 +74,8 @@ namespace Front.Helpers
 
 
         }
-
-     
-
-
-    }
+          
+        }
 
        
     }

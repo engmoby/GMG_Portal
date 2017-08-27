@@ -109,7 +109,7 @@
         $('#MSGCONTACT').html('@Front.Resources.Global.ContactUs_JS_1');
 
         $.ajax({
-            url: 'http://gmgapi.azurewebsites.net/SystemParameters/ContactForm/Save',
+            url: '@System.Configuration.ConfigurationManager.AppSettings["ServerIp"]/SystemParameters/ContactForm/Save',
             type: 'post',
             dataType: 'json',
             success: function (data) {
