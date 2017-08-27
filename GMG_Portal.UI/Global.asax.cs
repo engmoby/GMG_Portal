@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -18,6 +18,21 @@ namespace blur_admin_1._3._1
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+        }
+        protected void Application_BeginRequest(object sender, EventArgs e)
+        {
+            //HttpCookie cookie = HttpContext.Current.Request.Cookies["Global"];
+
+            //if (cookie?.Value != null)
+            //{
+            //    Response.Redirect("/Admin/Index");
+
+            //}
+            //else
+            //{
+            //    Response.Redirect("/Login/Index");
+
+            //}
         }
     }
 }

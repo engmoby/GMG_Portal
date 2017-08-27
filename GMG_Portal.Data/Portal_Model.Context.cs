@@ -71,5 +71,6 @@ namespace GMG_Portal.Data
         public virtual DbSet<Hotels_Translate> Hotels_Translate { get; set; }
         public virtual DbSet<SystemParameters_Notify> SystemParameters_Notify { get; set; }
         public virtual DbSet<SystemParameters_NotifyDepartment> SystemParameters_NotifyDepartment { get; set; }
+        public virtual DbSet<Systemparameters_Admin> Systemparameters_Admin { get; set; }
     }
 }

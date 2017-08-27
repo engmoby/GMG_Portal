@@ -113,6 +113,7 @@
     <Compile Include="Partials\Hotel\Offer.cs" />
     <Compile Include="Partials\Hotel\HotelsImages.cs" />
     <Compile Include="Partials\Hotel\Hotel.cs" />
+    <Compile Include="Partials\SystemParameter\Admin.cs" />
     <Compile Include="Partials\SystemParameter\NotifyDepartment.cs" />
     <Compile Include="Partials\SystemParameter\Notify.cs" />
     <Compile Include="Partials\SystemParameter\AboutTranslate.cs" />
@@ -171,6 +172,9 @@
       <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="SystemParameters_About_Translate.cs">
+      <DependentUpon>Portal_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Systemparameters_Admin.cs">
       <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="SystemParameters_CareerForm.cs">

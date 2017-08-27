@@ -51,24 +51,14 @@ namespace Front.Controllers
             };
             return View(reservation);
         }
-
-
-
-
+         
         public ActionResult Confirm(Reservation reservation)
         {
 
             return View(reservation);
         }
 
-
-
-
-
-
-
-
-
+         
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Index(Reservation reservation)
