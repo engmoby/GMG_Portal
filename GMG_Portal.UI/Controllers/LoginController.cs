@@ -32,14 +32,16 @@ namespace GMG_Portal.UI.Controllers
         // GET: Login
         public ActionResult Index()
         {
-          
-            return View();
+            //if (Request.Cookies["Global"] != null) 
+            //return RedirectToAction("Index", "Admin"); 
+            //else
+                return View();
         }
         [HttpPost]
         [HandleError]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Index(API.Models.SystemParameters.Admin.Admin admin)
-        { 
+        {
             if (ModelState.IsValid)
             {
 
@@ -47,7 +49,7 @@ namespace GMG_Portal.UI.Controllers
                 if (responseMessageApi.IsSuccessStatusCode)
                 {
                     var responseData = responseMessageApi.Content.ReadAsStringAsync().Result;
-                   var  retunObj = JsonConvert.DeserializeObject<API.Models.SystemParameters.Admin.Admin>(responseData);
+                    var retunObj = JsonConvert.DeserializeObject<API.Models.SystemParameters.Admin.Admin>(responseData);
                     if (retunObj != null)
                     {
                         var cookie = new HttpCookie("Global");
@@ -57,7 +59,7 @@ namespace GMG_Portal.UI.Controllers
 
                     }
                 }
-                return RedirectToAction("Index","Admin");
+                return RedirectToAction("Index", "Admin");
             }
 
             return View(admin);

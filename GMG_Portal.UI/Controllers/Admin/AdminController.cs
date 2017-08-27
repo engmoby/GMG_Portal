@@ -10,7 +10,10 @@ namespace GMG_Portal.UI.Controllers.Admin
     {
         public ActionResult Index()
         {
-            return View();
+            if (Request.Cookies["Global"] == null)
+                return RedirectToAction("Index", "Login");
+            else
+                return View();
         }
 
         // GET: Layout

@@ -549,6 +549,7 @@ app.factory('Scopes', function ($rootScope) {
     };
 });
 
+
 app.directive('googleplace', function () {
     return {
         require: 'ngModel',
@@ -567,7 +568,6 @@ app.directive('googleplace', function () {
         }
     };
 });
-
 
 
 app.service('Map', function ($q) {
