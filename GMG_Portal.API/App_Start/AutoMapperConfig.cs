@@ -6,6 +6,7 @@ using System.Web;
 using GMG_Portal.API.Models.Hotels.Hotel;
 using GMG_Portal.API.Models.Hotels.Reservation;
 using GMG_Portal.API.Models.SystemParameters;
+using GMG_Portal.API.Models.SystemParameters.Admin;
 using GMG_Portal.API.Models.SystemParameters.CareerForm;
 using GMG_Portal.API.Models.SystemParameters.ContactUs;
 using GMG_Portal.API.Models.SystemParameters.Newsletter; 
@@ -143,6 +144,9 @@ namespace GMG_Portal.API
 
                 cfg.CreateMap<SystemParameters_Notify, NotifyViewModel>();
                 cfg.CreateMap<NotifyViewModel, SystemParameters_Notify>();
+
+                cfg.CreateMap<Systemparameters_Admin, Admin>();
+                cfg.CreateMap<Admin, Systemparameters_Admin>();
 
                 cfg.CreateMap<SystemParameters_NotifyDepartment, Department>();
                 cfg.CreateMap<Department, SystemParameters_NotifyDepartment>();

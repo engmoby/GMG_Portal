@@ -179,6 +179,7 @@
     <Compile Include="Controllers\Hotel\OffersController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\Hotel\HotelsController.cs" />
+    <Compile Include="Controllers\SystemParameters\AdminController.cs" />
     <Compile Include="Controllers\SystemParameters\NotifyController.cs" />
     <Compile Include="Controllers\SystemParameters\DepartmentNotifyController.cs" />
     <Compile Include="Controllers\SystemParameters\CareerController.cs" />
@@ -216,6 +217,7 @@
     <Compile Include="Models\Hotels\HotelFeatures\HotelFeatures.cs" />
     <Compile Include="Models\Hotels\Hotel\HotelImages.cs" />
     <Compile Include="Models\Hotels\Hotel\Hotels.cs" />
+    <Compile Include="Models\SystemParameters\Admin\Admin.cs" />
     <Compile Include="Models\SystemParameters\Career\Career.cs" />
     <Compile Include="Models\SystemParameters\CareerForm\CareerForm.cs" />
     <Compile Include="Models\SystemParameters\Department\Department.cs" />

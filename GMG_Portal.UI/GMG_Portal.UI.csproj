@@ -535,6 +535,7 @@
     <Content Include="Scripts\app\services\Vision.js" />
     <Content Include="Scripts\app\theme\adapt-strap.js" />
     <Content Include="Scripts\app\theme\adapt-strap.tpl.js" />
+    <Content Include="Scripts\app\theme\angular-cookies.min.js" />
     <Content Include="Scripts\app\theme\angular-sanitize.js" />
     <Content Include="Scripts\app\theme\angularjs-google-maps.js" />
     <Content Include="Scripts\app\theme\autocomplete.js" />
@@ -849,6 +850,7 @@
     <Content Include="Scripts\app\theme\components\toastrLibConfig.js" />
     <Content Include="Scripts\app\theme\components\widgets\widgets.directive.js" />
     <Content Include="Scripts\app\theme\components\widgets\widgets.html" />
+    <Content Include="Scripts\app\theme\Cookeis.js" />
     <Content Include="Scripts\app\theme\directives\animatedChange.js" />
     <Content Include="Scripts\app\theme\directives\autoExpand.js" />
     <Content Include="Scripts\app\theme\directives\autoFocus.js" />
@@ -871,6 +873,7 @@
     <Content Include="Scripts\app\theme\services\fileReader.js" />
     <Content Include="Scripts\app\theme\services\preloader.js" />
     <Content Include="Scripts\app\theme\services\stopableInterval.js" />
+    <Content Include="Scripts\app\theme\tests.js" />
     <Content Include="Scripts\app\theme\theme.config.js" />
     <Content Include="Scripts\app\theme\theme.configProvider.js" />
     <Content Include="Scripts\app\theme\theme.constants.js" />
@@ -1070,6 +1073,9 @@
     <Content Include="Views\ContactForm\Index.cshtml" />
     <Content Include="Views\CoreValues\Index.cshtml" />
     <Content Include="Scripts\app\theme\angular.ui-sortable.js" />
+    <Content Include="Views\Login\Index_Old.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Scripts\app\theme\js.cookie" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GMG_Portal.API\GMG_Portal.API.csproj">
