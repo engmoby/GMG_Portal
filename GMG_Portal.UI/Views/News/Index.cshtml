@@ -123,7 +123,7 @@
                         <div class="form-group">
                             <label for="TxtTitle">@News.Title</label><span class="red-text"> *</span>
                             <input type="text" ng-model="New.DisplayValue" class="form-control" name="TxtTitle"
-                                   placeholder="Text" ng-maxlength="@Common.TitleMax65" required ng-pattern="/@Regex.NameAr/">
+                                   placeholder="Text" ng-maxlength="@Common.TitleMax65" required ng-pattern="">
 
                             <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
                                 <span class="red-text" ng-message="required">@News.TxtTitleRequiredErrorMessage</span>
@@ -135,7 +135,7 @@
                         <div class="form-group">
                             <label for="TxtDesc">@News.Desc</label><span class="red-text"> *</span>
                             <textarea ng-model="New.DisplayValueDesc" class="form-control" name="TxtDesc"
-                                      placeholder="Text" ng-maxlength="@Common.DescMax7000" required ng-pattern="/@Regex.NameEn/"></textarea>
+                                      placeholder="Text" ng-maxlength="@Common.DescMax7000" required ng-pattern=""></textarea>
                             <div class="red-text" ng-messages="FrmAddUpdate.TxtDesc.$error" ng-show="FrmAddUpdate.TxtDesc.$touched">
                                 <span class="red-text" ng-message="required">@News.TxtDescRequiredErrorMessage</span>
                                 <span class="red-text" ng-message="pattern">@News.TxtDescPatternErrorMessage</span>

@@ -99,7 +99,7 @@
                         <div class="form-group">
                             <label for="TxtTitle">@NewsCategory.Title</label><span class="red-text"> *</span>
                             <input type="text" ng-model="NewsCategory.DisplayValue" class="form-control" name="TxtTitle"
-                                   placeholder="Text" ng-maxlength="@Common.TitleMax65" required ng-pattern="/@Regex.NameAr/">
+                                   placeholder="Text" ng-maxlength="@Common.TitleMax65" required ng-pattern="">
 
                             <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
                                 <span class="red-text" ng-message="required">@NewsCategory.TxtTitleRequiredErrorMessage</span>
