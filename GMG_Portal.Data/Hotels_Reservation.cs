@@ -31,5 +31,6 @@ namespace GMG_Portal.Data
         public Nullable<System.DateTime> CreationTime { get; set; }
         public Nullable<int> OperationId { get; set; }
         public Nullable<bool> Seen { get; set; }
+        public string HotelName { get; set; }
     }
 }

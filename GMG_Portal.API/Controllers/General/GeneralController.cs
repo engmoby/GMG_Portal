@@ -67,7 +67,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 {
                     homeSlidersTable = generalLogic
                         .Sqlread("SELECT * FROM [dbo].[SystemParameters.HomeSlider_Translate] WHERE LangId='" + langId + "' AND IsDeleted=0").Tables[0];
-                
+
                     hotelsTable = generalLogic
                         .Sqlread("SELECT DISTINCT ([dbo].[Hotels_Translate].Id) ,[Hotels.Images_Translate].Image,[dbo].[Hotels_Translate].LangId,PriceStart,DisplayValue,DisplayValueDesc," +
                                  "[Image], [dbo].[Hotels.Features_Translate].Id FROM [dbo].[Hotels_Translate] INNER JOIN dbo.[Hotels.Images_Translate]  " +
@@ -223,6 +223,48 @@ namespace GMG_Portal.API.Controllers.SystemParameters
             }
         }
 
+        public HttpResponseMessage GetAllAppliedCarrer()
+        {
+            try
+            {
+                var careerFormLogic = new CareerFormLogic(); 
+                var obj = careerFormLogic.GetAllWithSeen();
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<About>>(obj)); 
+            }
+            catch (Exception ex)
+            {
+                Log.LogError(ex);
+                return Request.CreateResponse(ex);
+            }
+        }
+        public HttpResponseMessage GetAllContactInquiry()
+        {
+            try
+            {
+                var contactFormLogic = new ContactFormLogic();
+                var obj = contactFormLogic.GetAllWithSeen();
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<About>>(obj)); 
+            }
+            catch (Exception ex)
+            {
+                Log.LogError(ex);
+                return Request.CreateResponse(ex);
+            }
+        }
+        //public HttpResponseMessage GetAllHotelReservation()
+        //{
+        //    try
+        //    {
+        //        var hotelLogic = new HotelLogic();
+        //        //var obj = hotelLogic.GetAllWithSeen();
+        //        //return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<About>>(obj));
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Log.LogError(ex);
+        //        return Request.CreateResponse(ex);
+        //    }
+        //}
     }
 
 }

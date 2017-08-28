@@ -257,6 +257,7 @@
           <Property Name="CreationTime" Type="datetime" />
           <Property Name="OperationId" Type="int" />
           <Property Name="Seen" Type="bit" />
+          <Property Name="HotelName" Type="nvarchar" MaxLength="150" />
         </EntityType>
         <EntityType Name="Hotels_Translate">
           <Key>
@@ -1210,12 +1211,12 @@ warning 6002: The table/view 'GMG_PORTAL_STAG.dbo.HomeView' does not have a prim
           <EntitySet Name="SystemParameters_PaymentType" EntityType="GMG_Portal_DBModel.SystemParameters_PaymentType" />
           <EntitySet Name="Hotels" EntityType="GMG_Portal_DBModel.Hotel" />
           <EntitySet Name="HomeViews" EntityType="GMG_Portal_DBModel.HomeView" />
-          <EntitySet Name="Hotels_Reservation" EntityType="GMG_Portal_DBModel.Hotels_Reservation" />
           <EntitySet Name="Hotels_Images_Translate" EntityType="GMG_Portal_DBModel.Hotels_Images_Translate" />
           <EntitySet Name="Hotels_Translate" EntityType="GMG_Portal_DBModel.Hotels_Translate" />
           <EntitySet Name="SystemParameters_Notify" EntityType="GMG_Portal_DBModel.SystemParameters_Notify" />
           <EntitySet Name="SystemParameters_NotifyDepartment" EntityType="GMG_Portal_DBModel.SystemParameters_NotifyDepartment" />
           <EntitySet Name="Systemparameters_Admin" EntityType="GMG_Portal_DBModel.Systemparameters_Admin" />
+          <EntitySet Name="Hotels_Reservation" EntityType="GMG_Portal_DBModel.Hotels_Reservation" />
         </EntityContainer>
         <EntityType Name="Front_Mission">
           <Key>
@@ -2154,28 +2155,6 @@ warning 6002: The table/view 'GMG_PORTAL_STAG.dbo.HomeView' does not have a prim
           <Property Name="Images_IsDeleted" Type="Boolean" Nullable="false" />
           <Property Name="Hotel_Id" Type="Int32" />
         </EntityType>
-        <EntityType Name="Hotels_Reservation">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="LastName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CheckIn" Type="DateTime" Precision="3" />
-          <Property Name="CheckOut" Type="DateTime" Precision="3" />
-          <Property Name="Adult" Type="Int32" />
-          <Property Name="Child" Type="Int32" />
-          <Property Name="HotelId" Type="Int32" />
-          <Property Name="CountryId" Type="Int32" />
-          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="SeenDate" Type="DateTime" Precision="3" />
-          <Property Name="SeenBy" Type="Int32" />
-          <Property Name="CreationTime" Type="DateTime" Precision="3" />
-          <Property Name="OperationId" Type="Int32" />
-          <Property Name="Seen" Type="Boolean" />
-        </EntityType>
         <EntityType Name="Hotels_Images_Translate">
           <Key>
             <PropertyRef Name="Id" />
@@ -2295,6 +2274,29 @@ warning 6002: The table/view 'GMG_PORTAL_STAG.dbo.HomeView' does not have a prim
           <Property Name="DeletionTime" Type="DateTime" Precision="3" />
           <Property Name="DeleterUserId" Type="Int32" />
           <Property Name="DisplayFront" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Hotels_Reservation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CheckIn" Type="DateTime" Precision="3" />
+          <Property Name="CheckOut" Type="DateTime" Precision="3" />
+          <Property Name="Adult" Type="Int32" />
+          <Property Name="Child" Type="Int32" />
+          <Property Name="HotelId" Type="Int32" />
+          <Property Name="CountryId" Type="Int32" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SeenDate" Type="DateTime" Precision="3" />
+          <Property Name="SeenBy" Type="Int32" />
+          <Property Name="CreationTime" Type="DateTime" Precision="3" />
+          <Property Name="OperationId" Type="Int32" />
+          <Property Name="Seen" Type="Boolean" />
+          <Property Name="HotelName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -3271,29 +3273,6 @@ warning 6002: The table/view 'GMG_PORTAL_STAG.dbo.HomeView' does not have a prim
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Hotels_Reservation">
-            <EntityTypeMapping TypeName="GMG_Portal_DBModel.Hotels_Reservation">
-              <MappingFragment StoreEntitySet="Hotels_Reservation">
-                <ScalarProperty Name="Seen" ColumnName="Seen" />
-                <ScalarProperty Name="OperationId" ColumnName="OperationId" />
-                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
-                <ScalarProperty Name="SeenBy" ColumnName="SeenBy" />
-                <ScalarProperty Name="SeenDate" ColumnName="SeenDate" />
-                <ScalarProperty Name="Notes" ColumnName="Notes" />
-                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
-                <ScalarProperty Name="HotelId" ColumnName="HotelId" />
-                <ScalarProperty Name="Child" ColumnName="Child" />
-                <ScalarProperty Name="Adult" ColumnName="Adult" />
-                <ScalarProperty Name="CheckOut" ColumnName="CheckOut" />
-                <ScalarProperty Name="CheckIn" ColumnName="CheckIn" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Hotels_Images_Translate">
             <EntityTypeMapping TypeName="GMG_Portal_DBModel.Hotels_Images_Translate">
               <MappingFragment StoreEntitySet="Hotels_Images_Translate">
@@ -3415,6 +3394,30 @@ warning 6002: The table/view 'GMG_PORTAL_STAG.dbo.HomeView' does not have a prim
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="SGuid" ColumnName="SGuid" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hotels_Reservation">
+            <EntityTypeMapping TypeName="GMG_Portal_DBModel.Hotels_Reservation">
+              <MappingFragment StoreEntitySet="Hotels_Reservation">
+                <ScalarProperty Name="HotelName" ColumnName="HotelName" />
+                <ScalarProperty Name="Seen" ColumnName="Seen" />
+                <ScalarProperty Name="OperationId" ColumnName="OperationId" />
+                <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+                <ScalarProperty Name="SeenBy" ColumnName="SeenBy" />
+                <ScalarProperty Name="SeenDate" ColumnName="SeenDate" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="HotelId" ColumnName="HotelId" />
+                <ScalarProperty Name="Child" ColumnName="Child" />
+                <ScalarProperty Name="Adult" ColumnName="Adult" />
+                <ScalarProperty Name="CheckOut" ColumnName="CheckOut" />
+                <ScalarProperty Name="CheckIn" ColumnName="CheckIn" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

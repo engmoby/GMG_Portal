@@ -490,6 +490,7 @@
     </Content>
     <Content Include="Scripts\app\app.js" />
     <Content Include="Scripts\app\Login.js" />
+    <Content Include="Scripts\app\pages\HomePage\HomePage.js" />
     <Content Include="Scripts\app\pages\About\About.js" />
     <Content Include="Scripts\app\pages\CoreValues\CoreValues.js" />
     <Content Include="Scripts\app\pages\General.js" />
@@ -512,6 +513,7 @@
     <Content Include="Scripts\app\pages\pages.module.js" />
     <Content Include="Scripts\app\pages\Settings.js" />
     <Content Include="Scripts\app\pages\Vision\Vision.js" />
+    <Content Include="Scripts\app\services\HomePage.js" />
     <Content Include="Scripts\app\services\About.js" />
     <Content Include="Scripts\app\services\CoreValues.js" />
     <Content Include="Scripts\app\services\Offers.js" />
@@ -1010,7 +1012,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Scripts\app\pages\AccountTypes\" />
     <Folder Include="Scripts_Customer\app\theme\" />
   </ItemGroup>
   <ItemGroup>
