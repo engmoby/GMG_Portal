@@ -486,4 +486,7 @@
   <data name="ContactUs_Phone_Val" xml:space="preserve">
     <value>Veuillez vérifier le téléphone</value>
   </data>
+  <data name="Booking_HotelName" xml:space="preserve">
+    <value>HÔTEL</value>
+  </data>
 </root>

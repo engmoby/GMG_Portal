@@ -282,4 +282,7 @@
   <data name="DisplayValueAddress" xml:space="preserve">
     <value>Address</value>
   </data>
+  <data name="OperationId" xml:space="preserve">
+    <value>Res. Number #</value>
+  </data>
 </root>

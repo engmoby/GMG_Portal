@@ -71,6 +71,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 CheckOut = postedReservation.CheckOut,
                 Notes = postedReservation.Notes,
                 HotelId = postedReservation.HotelId,
+                HotelName = postedReservation.HotelName,
                 CountryId = postedReservation.CountryId,
                 OperationId = n,
                 CreationTime = Parameters.CurrentDateTime

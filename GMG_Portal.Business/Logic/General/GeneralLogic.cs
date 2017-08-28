@@ -18,15 +18,15 @@ namespace GMG_Portal.Business.Logic.General
         }
 
 
-        public List<HomeView> GetAll()
-        {
-            return _db.HomeViews.ToList();
-        }
+        //public List<HomeView> GetAll()
+        //{
+        //    return _db.HomeViews.ToList();
+        //}
     
-        public List<HomeView> GetAllByLangId(string landId)
-        {
-            return _db.HomeViews.ToList();
-        }
+        //public List<HomeView> GetAllByLangId(string landId)
+        //{
+        //    return _db.HomeViews.ToList();
+        //}
         public DataSet Sqlread(string sqlquery)
         {
             DataSet functionReturnValue = default(DataSet);

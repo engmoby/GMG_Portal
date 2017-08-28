@@ -156,6 +156,9 @@
   <data name="Booking_FirstName" xml:space="preserve">
     <value>الاسم الاول</value>
   </data>
+  <data name="Booking_HotelName" xml:space="preserve">
+    <value>الفندق</value>
+  </data>
   <data name="Booking_JS1" xml:space="preserve">
     <value>يجب اختيار موعد الوصول</value>
   </data>
