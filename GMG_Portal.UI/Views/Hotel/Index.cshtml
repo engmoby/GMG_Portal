@@ -333,7 +333,7 @@
                                             <input type="time" ng-model="Hotel.CheckIn" class="form-control" name="TxtCheckin"
                                                    placeholder="@Hotel.Checkin" required ng-pattern="/@Regex.NameAr/">
 
-                                            <div class="red-text" ng-messages="FrmAddUpdateWizard.TxtCheckin.$error" ng-show="FrmAddUpdateWizard.TxtTitle.$touched">
+                                            <div class="red-text" ng-messages="FrmAddUpdateWizard.TxtCheckin.$error" ng-show="FrmAddUpdateWizard.TxtCheckin.$touched">
                                                     <span class="red-text" ng-message="required">@Hotel.TxtCheckinRequiredErrorMessage</span>
                                                     <span class="red-text" ng-message="pattern">@Hotel.TxtCheckinPatternErrorMessage</span>
                                                 </div>
@@ -345,7 +345,7 @@
                                             <input type="time" ng-model="Hotel.CheckOut" class="form-control" name="TxtCheckOut"
                                                    placeholder="@Hotel.CheckOut" required ng-pattern="/@Regex.NameAr/">
 
-                                            <div class="red-text" ng-messages="FrmAddUpdateWizard.TxtCheckOut.$error" ng-show="FrmAddUpdateWizard.TxtTitle.$touched">
+                                            <div class="red-text" ng-messages="FrmAddUpdateWizard.TxtCheckOut.$error" ng-show="FrmAddUpdateWizard.TxtCheckOut.$touched">
                                                     <span class="red-text" ng-message="required">@Hotel.TxtCheckoutRequiredErrorMessage</span>
                                                     <span class="red-text" ng-message="pattern">@Hotel.TxtCheckoutPatternErrorMessage</span>
                                                 </div>

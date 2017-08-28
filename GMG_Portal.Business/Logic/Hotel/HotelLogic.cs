@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Objects;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -334,6 +335,8 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         }
         public Hotel Edit(Hotel postedHotel)
         {
+
+            DateTime dateTime = DateTime.ParseExact(postedHotel.CheckIn, "HH:mm:ss",CultureInfo.InvariantCulture);
             var hotel = GetHotelInfoById(postedHotel.Id);
             hotel.DisplayValue = postedHotel.DisplayValue;
             hotel.DisplayValueDesc = postedHotel.DisplayValueDesc;
@@ -342,7 +345,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             hotel.PriceStart = postedHotel.PriceStart;
             hotel.Late = postedHotel.Late;
             hotel.Long = postedHotel.Long;
-            hotel.CheckIn = postedHotel.CheckIn;
+            hotel.CheckIn = dateTime.ToString();
             hotel.CheckOut = postedHotel.CheckOut;
             hotel.LastModificationTime = Parameters.CurrentDateTime;
             hotel.LastModifierUserId = Parameters.UserId;

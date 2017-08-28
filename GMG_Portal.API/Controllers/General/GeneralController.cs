@@ -11,6 +11,8 @@ using GMG_Portal.Business.Logic.SystemParameters;
 using AutoMapper;
 using GMG_Portal.API.Models.General;
 using GMG_Portal.API.Models.Hotels.Hotel;
+using GMG_Portal.API.Models.Hotels.Reservation;
+using GMG_Portal.API.Models.SystemParameters.CareerForm;
 using GMG_Portal.API.Models.SystemParameters.ContactUs;
 using GMG_Portal.Business.Logic.General;
 using Heloper;
@@ -228,8 +230,8 @@ namespace GMG_Portal.API.Controllers.SystemParameters
             try
             {
                 var careerFormLogic = new CareerFormLogic(); 
-                var obj = careerFormLogic.GetAllWithSeen();
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<About>>(obj)); 
+                var obj = careerFormLogic.GetAllWithSeen().Take(5);
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<CareerForm>>(obj)); 
             }
             catch (Exception ex)
             {
@@ -242,8 +244,8 @@ namespace GMG_Portal.API.Controllers.SystemParameters
             try
             {
                 var contactFormLogic = new ContactFormLogic();
-                var obj = contactFormLogic.GetAllWithSeen();
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<About>>(obj)); 
+                var obj = contactFormLogic.GetAllWithSeen().Take(5);
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<ContactForm>>(obj)); 
             }
             catch (Exception ex)
             {
@@ -251,20 +253,20 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 return Request.CreateResponse(ex);
             }
         }
-        //public HttpResponseMessage GetAllHotelReservation()
-        //{
-        //    try
-        //    {
-        //        var hotelLogic = new HotelLogic();
-        //        //var obj = hotelLogic.GetAllWithSeen();
-        //        //return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<About>>(obj));
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Log.LogError(ex);
-        //        return Request.CreateResponse(ex);
-        //    }
-        //}
+        public HttpResponseMessage GetAllHotelReservation()
+        {
+            try
+            {
+                var reservationLogic = new ReservationLogic();
+                var obj = reservationLogic.GetAllWithSeen().Take(5);
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Reservation>>(obj));
+            }
+            catch (Exception ex)
+            {
+                Log.LogError(ex);
+                return Request.CreateResponse(ex);
+            }
+        }
     }
 
 }

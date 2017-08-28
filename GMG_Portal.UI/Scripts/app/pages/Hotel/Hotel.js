@@ -1,9 +1,10 @@
-﻿controllerProvider.register('HotelsController', ['$scope', 'HotelsApi', 'uploadHotlesService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', 'Map', HotelsController]);
+﻿
+
+
+controllerProvider.register('HotelsController', ['$scope', 'HotelsApi', 'uploadHotlesService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', 'Map', HotelsController]);
 function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $timeout, $filter, $uibModal, toastr, Map) {
     $rootScope.ViewLoading = true;
-    $scope.applayUploadImageBtn = false;
-
-
+    $scope.applayUploadImageBtn = false; 
     var langId = document.querySelector('#HCurrentLang').value;
     var CurrentLanguage = langId;
     $scope.features = "";
@@ -93,8 +94,12 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
             });
 
         }
-        hotel.CheckIn = new Date(hotel.CheckIn);
-        hotel.CheckOut = new Date(hotel.CheckOut);
+        //hotel.CheckIn = new Date(hotel.CheckIn);
+        //hotel.CheckOut = new Date(hotel.CheckOut);
+
+        hotel.CheckIn = new Date();
+        hotel.CheckOut = new Date();
+
         $scope.Hotel = angular.copy(hotel);
 
 
