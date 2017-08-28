@@ -16,12 +16,13 @@ namespace Front.Controllers
         {
             if (selectedLanguage != null)
             {
-                Common.CurrentLang = selectedLanguage;
-               // Thread.CurrentThread.CurrentCulture =CultureInfo.CreateSpecificCulture(selectedLanguage);
-               // Thread.CurrentThread.CurrentUICulture = new CultureInfo(selectedLanguage);
                 var cookie = new HttpCookie("Language");
                 cookie.Value = selectedLanguage;
                 Response.Cookies.Add(cookie);
+                Common.CurrentLang = selectedLanguage;
+               // Thread.CurrentThread.CurrentCulture =CultureInfo.CreateSpecificCulture(selectedLanguage);
+               // Thread.CurrentThread.CurrentUICulture = new CultureInfo(selectedLanguage);
+            
             }
 
             //Special Case for Details News
