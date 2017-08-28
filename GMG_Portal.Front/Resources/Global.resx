@@ -273,6 +273,9 @@
   <data name="Booking_Mobile" xml:space="preserve">
     <value>Mobile</value>
   </data>
+  <data name="Booking_HotelName" xml:space="preserve">
+    <value>Hotel </value>
+  </data>
   <data name="Booking_Personalinfo" xml:space="preserve">
     <value>Personal Info</value>
   </data>

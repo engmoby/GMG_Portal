@@ -178,6 +178,15 @@ namespace Front.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hotel .
+        /// </summary>
+        public static string Booking_HotelName {
+            get {
+                return ResourceManager.GetString("Booking_HotelName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please Select Check-in Date.
         /// </summary>
         public static string Booking_JS1 {

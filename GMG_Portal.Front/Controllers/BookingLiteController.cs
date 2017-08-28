@@ -75,8 +75,11 @@ namespace Front.Controllers
                 ModelState.AddModelError("LastName", Global.Last_Name_Required);
             if (string.IsNullOrEmpty(reservation.Email))
                 ModelState.AddModelError("Email", Global.Email_Required);
-            if (reservation.Phone == 0)
+            if (string.IsNullOrEmpty(reservation.Phone))
                 ModelState.AddModelError("PhoneNo", Global.PhoneNo_Required);
+         
+
+
 
             if (ModelState.IsValid)
             {
@@ -114,7 +117,8 @@ namespace Front.Controllers
                                               reservation.Phone +
                                               "<br />" + "Check In : " + reservation.CheckIn + "<br/>" + "Check out : " +
                                               reservation.CheckOut + "<br/>" +
-                                              "Adult : " + reservation.Adult + "<br/>" + "Child : " + reservation.Child ;
+                                              "Adult : " + reservation.Adult + "<br/>" + "Child : " + reservation.Child + "<br/>" +
+                                              "Hotel Name : " + reservation.HotelName;
 
                         var notifyemail = new NotifyEmail();
                         notifyemail.SendMail("Reservation Request : " + reservation.FirstName, emailMessage, emailModel);

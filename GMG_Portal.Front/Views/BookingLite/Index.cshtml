@@ -1,10 +1,87 @@
-﻿@model GMG_Portal.API.Models.Hotels.Reservation.Reservation
+﻿@using Front.Helpers
+@model GMG_Portal.API.Models.Hotels.Reservation.Reservation
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
+
+
+
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+      
+        //   var currentLang = document.querySelector('#HCurrentLang').value;
+        //  document.getElementById("HotelMore").style.display = "none";
+
+
+        $('#HotelName').change(function () {
+            $('#HotelNameVal').val($('#HotelName').val());
+        });
+
+
+
+
+
+
+        var apiUrl = document.querySelector('#HServicesURL').value;
+        $.ajax({
+            url: apiUrl + "/SystemParameters/Hotels/GetAll?langId=@Common.CurrentLang",
+            type: "Get",
+            success: function (data) {
+                var more = "View More";
+                var list = [];
+                if (data.length === 0) {
+                    //   document.getElementById("Hotelname").style.display = "none";
+                }
+                //if (data.length <= 10) {
+                //    document.getElementById("HotelMore").style.display = "block";
+                //}
+                for (var i = 0; i < data.length; i++) {
+                    $(
+                        "<option value='" + data[i].DisplayValue + "'>" + data[i].DisplayValue + "</option>"
+
+                    ).appendTo("#HotelName");
+                    //  var result = $.localStorage('hotelId', data[i].Id);
+
+                    list.push(data[i].Id);
+                }
+
+                // $.localStorage('listlist', list);
+
+
+                //  var value = $.localStorage('hotelList');
+                //for (var i = 0; i < value.length; i++) {
+                //  //  console.log(value[i].DisplayValue);
+                //  //  $.localStorage('hotelListRead', value[i].DisplayValue);
+                //}
+                // unblock when ajax activity stops
+                $(document).ajaxStop($.unblockUI);
+            },
+            error: function (msg) {
+                // alert("hotel error");
+            }
+
+
+
+        });
+
+
+
+
+
+    });
+
+
+
+
+</script>
+        
 
 <div class="mg-page-title parallax">
     <div class="container">
@@ -25,6 +102,9 @@
     @Html.Hidden("CheckOut", Model.CheckOut);
     @Html.Hidden("Adult", Model.Adult);
     @Html.Hidden("Child", Model.Child);
+    @Html.Hidden("HotelNameVal", Model.HotelName);
+
+
 
 
 
@@ -66,6 +146,15 @@
                                                         @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
                                                         @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                                                     </div>
+                                                    <div class="mg-book-form-input">
+                                                        <label>@Front.Resources.Global.Booking_HotelName</label>
+                                                        <select class="form-control" id="HotelName" name="HotelName">
+                                                        </select>
+
+                                                    </div>
+                                                    
+                                                    
+                                                    
 
                                                 </div>
                                                 <div class="col-md-6">
@@ -79,30 +168,44 @@
                                                         @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
                                                         @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
                                                     </div>
-
-
+                                          
 
                                                 </div>
-                                            </div>
+                                                
+                                                
+                                                
+                                                
+                                                
 
-                                            @*<div class="clearfix mg-terms-input">
+                                                
+
+                                            </div>
+                                       
+                                             
+                                                    
+
+
+
+
+
+                                                @*<div class="clearfix mg-terms-input">
                                                 <div class="pull-right">
 
                                                 </div>
                                             </div>*@
 
-                                            @*<input type="submit" value="Create" class="btn btn-default" />*@
-                                            
-                                            <div class="form-group">
-                                                <div class="col-md-offset-2 col-md-10">
-                                                    <input type="submit" id="btnSubmit" class="btn btn-dark-main pull-right" value="@Front.Resources.Global.Booking_Create">
-                                                    @*<input type="submit" value="Create" class="btn btn-default" />*@
+                                                @*<input type="submit" value="Create" class="btn btn-default" />*@
+
+                                                <div class="form-group">
+                                                    <div class="col-md-offset-2 col-md-10">
+                                                        <input type="submit" id="btnSubmit" class="btn btn-dark-main pull-right" value="@Front.Resources.Global.Booking_Create">
+                                                        @*<input type="submit" value="Create" class="btn btn-default" />*@
+                                                    </div>
                                                 </div>
+                                                @*<input type="submit" value="Reserve" class="btn btn-dark-main btn-next-tab pull-right" />*@
+                                                @*<a href="#payment" class="btn btn-dark-main btn-next-tab pull-right">Next</a>*@
+                                                @*<a href="#select-room" class="btn btn-default btn-prev-tab pull-left">Back</a>*@
                                             </div>
-                                            @*<input type="submit" value="Reserve" class="btn btn-dark-main btn-next-tab pull-right" />*@
-                                            @*<a href="#payment" class="btn btn-dark-main btn-next-tab pull-right">Next</a>*@
-                                            @*<a href="#select-room" class="btn btn-default btn-prev-tab pull-left">Back</a>*@
-                                        </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="mg-cart-container">
@@ -148,5 +251,14 @@
         </div>
     </div>
 
-
+  
+        
+   
 }
+        
+
+ 
+
+
+
+     

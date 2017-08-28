@@ -322,6 +322,15 @@ namespace GMG_Portal.Content.Admin.Hotel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Res. Number #.
+        /// </summary>
+        public static string OperationId {
+            get {
+                return ResourceManager.GetString("OperationId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Phone.
         /// </summary>
         public static string Phone {

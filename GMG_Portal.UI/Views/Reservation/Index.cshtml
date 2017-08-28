@@ -36,6 +36,7 @@
                     <th st-sort="Name">@Reservation.FirstName</th>
                     <th st-sort="Title">@Reservation.Email</th>
                     <th st-sort="Title">@Reservation.Phone</th>
+                    <th st-sort="Title">@Reservation.OperationId</th>
                     <th st-sort="Title">@Reservation.CreationTime</th>
                     <th>@Reservation.Action</th>
                     <th>@Reservation.Action</th>
@@ -50,6 +51,7 @@
                     <td>{{Reservation.FirstName +' '+ Reservation.LastName}}</td>
                     <td>{{Reservation.Email}}</td>
                     <td>{{Reservation.Phone}}</td>
+                    <td>{{Reservation.OperationId}}</td>
                     <td>{{Reservation.CreationTime   | date:'fullDate'}}</td>
                     <td>
                         <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(Reservation)"><i class="fa fa-pencil" aria-hidden="true"></i>@Reservation.View</button>
@@ -87,7 +89,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">{{action |uppercase}} @Reservation.ModalTitle</h4>
+                        <h4 class="modal-title">@Reservation.ModalTitle</h4>
                     </div>
                     <div class="modal-body">
                         @*CreationTime*@
@@ -97,6 +99,14 @@
                             <input type="text" ng-model="Reservation.CreationTime" class="form-control" name="TxtTitle" readonly="readonly"
                                    placeholder="@Reservation.CreationTime" required ng-pattern="/@Regex.NameAr/">
                         </div>
+                        
+                        
+                        <div class="form-group">
+                            <label>@Reservation.OperationId</label><span class="red-text"> *</span>
+                            <input type="text" ng-model="Reservation.OperationId" class="form-control" name="TxtTitle" readonly="readonly"
+                                   placeholder="@Reservation.OperationId" required ng-pattern="/@Regex.NameAr/">
+                        </div>
+                        
 
                         <div class="row">
                             <div class="col-md-6">
@@ -168,6 +178,20 @@
                                            placeholder="@Reservation.Child" required ng-pattern="/@Regex.NameAr/">
                                 </div>
                             </div>
+
+                        </div>
+                        
+                        
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="TxtTitle">@Reservation.HotelName</label><span class="red-text"> *</span>
+                                    <input type="text" ng-model="Reservation.HotelName" class="form-control" name="TxtTitle" readonly="readonly"
+                                           placeholder="@Reservation.HotelName" required ng-pattern="">
+
+                                </div>
+                            </div>
+                        
                         </div>
 
 
