@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Objects;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -188,6 +189,8 @@ namespace GMG_Portal.Business.Logic.SystemParameters
 
             if (getHotelInfo != null)
             {
+                DateTime dtCheckin = DateTime.Parse(getHotelInfo.CheckIn, new CultureInfo("ar-SA"));
+                DateTime dtCheckout = DateTime.Parse(getHotelInfo.CheckOut, new CultureInfo("ar-SA"));
                 if (getHotelImages.Any())
                 {
                     returnList.Image = getHotelImages[0].Image;
@@ -201,8 +204,9 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 returnList.FeaturesList = featuresList;
                 returnList.Late = getHotelInfo.Late;
                 returnList.Long = getHotelInfo.Long;
-                returnList.CheckIn = getHotelInfo.CheckIn;
-                returnList.CheckOut = getHotelInfo.CheckOut;
+
+                returnList.CheckIn = dtCheckin.ToString();
+                returnList.CheckOut = dtCheckout.ToString();
                 returnList.langId = getHotelInfo.langId;
 
                 return returnList;
@@ -238,6 +242,8 @@ namespace GMG_Portal.Business.Logic.SystemParameters
 
             if (getHotelInfo != null)
             {
+                DateTime dtCheckin = DateTime.Parse(getHotelInfo.CheckIn, new CultureInfo("ar-SA"));
+                DateTime dtCheckout = DateTime.Parse(getHotelInfo.CheckOut, new CultureInfo("ar-SA"));
                 if (getHotelImages.Any())
                 {
                     returnList.Image = getHotelImages[0].Image;
@@ -249,6 +255,8 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 returnList.Rate = getHotelInfo.Rate;
                 returnList.PriceStart = getHotelInfo.PriceStart;
                 returnList.FeaturesList = featuresList;
+                returnList.CheckIn = dtCheckin.ToString();
+                returnList.CheckOut = dtCheckout.ToString();
                 returnList.langId = getHotelInfo.langId;
                 return returnList;
             }

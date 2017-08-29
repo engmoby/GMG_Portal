@@ -489,4 +489,7 @@
   <data name="ContactUs_Phone_Val" xml:space="preserve">
     <value>Please Check Phone</value>
   </data>
+  <data name="Footer_NewsletterError" xml:space="preserve">
+    <value>Please enter correct email format</value>
+  </data>
 </root>

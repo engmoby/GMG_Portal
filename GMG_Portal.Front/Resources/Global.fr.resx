@@ -489,4 +489,7 @@
   <data name="Booking_HotelName" xml:space="preserve">
     <value>HÔTEL</value>
   </data>
+  <data name="Footer_NewsletterError" xml:space="preserve">
+    <value>Entrez le format de courrier électronique correct</value>
+  </data>
 </root>

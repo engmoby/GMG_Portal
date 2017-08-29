@@ -709,6 +709,15 @@ namespace Front.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please enter correct email format.
+        /// </summary>
+        public static string Footer_NewsletterError {
+            get {
+                return ResourceManager.GetString("Footer_NewsletterError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email Submitted , Thank you !.
         /// </summary>
         public static string Footer_NewsletterSubmitMsg {
