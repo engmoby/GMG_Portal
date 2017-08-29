@@ -22,14 +22,14 @@ namespace GMG_Portal.Content.Admin.SystemParameters {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class ContactForm {
+    public class InstantNotify {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ContactForm() {
+        internal InstantNotify() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace GMG_Portal.Content.Admin.SystemParameters {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("GMG_Portal.Content.Admin.SystemParameters.ContactForm", typeof(ContactForm).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("GMG_Portal.Content.Admin.SystemParameters.InstantNotify", typeof(InstantNotify).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -70,15 +70,6 @@ namespace GMG_Portal.Content.Admin.SystemParameters {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Apply Count.
-        /// </summary>
-        public static string ApplyCount {
-            get {
-                return ResourceManager.GetString("ApplyCount", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Add.
         /// </summary>
         public static string BtnAdd {
@@ -102,33 +93,6 @@ namespace GMG_Portal.Content.Admin.SystemParameters {
         public static string CannotDeleted {
             get {
                 return ResourceManager.GetString("CannotDeleted", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Career Level.
-        /// </summary>
-        public static string CareerLevel {
-            get {
-                return ResourceManager.GetString("CareerLevel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to CreationTime.
-        /// </summary>
-        public static string CreationTime {
-            get {
-                return ResourceManager.GetString("CreationTime", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Submit Date.
-        /// </summary>
-        public static string Date {
-            get {
-                return ResourceManager.GetString("Date", resourceCulture);
             }
         }
         
@@ -169,24 +133,6 @@ namespace GMG_Portal.Content.Admin.SystemParameters {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Download.
-        /// </summary>
-        public static string Download {
-            get {
-                return ResourceManager.GetString("Download", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Email.
-        /// </summary>
-        public static string Email {
-            get {
-                return ResourceManager.GetString("Email", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Display name must be unique.
         /// </summary>
         public static string EnglishNameUnique {
@@ -196,43 +142,25 @@ namespace GMG_Portal.Content.Admin.SystemParameters {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to First Name.
+        ///   Looks up a localized string similar to Icon.
         /// </summary>
-        public static string FirstName {
+        public static string Icon {
             get {
-                return ResourceManager.GetString("FirstName", resourceCulture);
+                return ResourceManager.GetString("Icon", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Last Name.
+        ///   Looks up a localized string similar to Image.
         /// </summary>
-        public static string LastName {
+        public static string Image {
             get {
-                return ResourceManager.GetString("LastName", resourceCulture);
+                return ResourceManager.GetString("Image", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mail.
-        /// </summary>
-        public static string Mail {
-            get {
-                return ResourceManager.GetString("Mail", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Message.
-        /// </summary>
-        public static string Message {
-            get {
-                return ResourceManager.GetString("Message", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Contact Form Details.
+        ///   Looks up a localized string similar to Instant Notify.
         /// </summary>
         public static string ModalTitle {
             get {
@@ -241,38 +169,20 @@ namespace GMG_Portal.Content.Admin.SystemParameters {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Name.
+        ///   Looks up a localized string similar to Rate.
         /// </summary>
-        public static string Name {
+        public static string Rate {
             get {
-                return ResourceManager.GetString("Name", resourceCulture);
+                return ResourceManager.GetString("Rate", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Phone.
+        ///   Looks up a localized string similar to Rate.
         /// </summary>
-        public static string Phone {
+        public static string RateDisplay {
             get {
-                return ResourceManager.GetString("Phone", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to PhoneNo.
-        /// </summary>
-        public static string PhoneNo {
-            get {
-                return ResourceManager.GetString("PhoneNo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Postion.
-        /// </summary>
-        public static string Postion {
-            get {
-                return ResourceManager.GetString("Postion", resourceCulture);
+                return ResourceManager.GetString("RateDisplay", resourceCulture);
             }
         }
         
@@ -282,15 +192,6 @@ namespace GMG_Portal.Content.Admin.SystemParameters {
         public static string SaveSuccessMessage {
             get {
                 return ResourceManager.GetString("SaveSuccessMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Seen.
-        /// </summary>
-        public static string Seen {
-            get {
-                return ResourceManager.GetString("Seen", resourceCulture);
             }
         }
         
@@ -313,7 +214,16 @@ namespace GMG_Portal.Content.Admin.SystemParameters {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Title.
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        public static string Title {
+            get {
+                return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Department.
         /// </summary>
         public static string TitleDisplay {
             get {
@@ -376,65 +286,38 @@ namespace GMG_Portal.Content.Admin.SystemParameters {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid Pattern.
-        /// </summary>
-        public static string TxtNamePatternErrorMessage {
-            get {
-                return ResourceManager.GetString("TxtNamePatternErrorMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Name is required.
-        /// </summary>
-        public static string TxtNameRequiredErrorMessage {
-            get {
-                return ResourceManager.GetString("TxtNameRequiredErrorMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Name  is unique.
-        /// </summary>
-        public static string TxtNameUniqueErrorMessage {
-            get {
-                return ResourceManager.GetString("TxtNameUniqueErrorMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Invalid Pattern.
-        /// </summary>
-        public static string TxtPostionPatternErrorMessage {
-            get {
-                return ResourceManager.GetString("TxtPostionPatternErrorMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Postion is required.
-        /// </summary>
-        public static string TxtPostionRequiredErrorMessage {
-            get {
-                return ResourceManager.GetString("TxtPostionRequiredErrorMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Postion  is unique.
-        /// </summary>
-        public static string TxtPostionUniqueErrorMessage {
-            get {
-                return ResourceManager.GetString("TxtPostionUniqueErrorMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to search ....
         /// </summary>
         public static string txtSearchLbl {
             get {
                 return ResourceManager.GetString("txtSearchLbl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Pattern.
+        /// </summary>
+        public static string TxtTitlePatternErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtTitlePatternErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title is required.
+        /// </summary>
+        public static string TxtTitleRequiredErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtTitleRequiredErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title  is unique.
+        /// </summary>
+        public static string TxtTitleUniqueErrorMessage {
+            get {
+                return ResourceManager.GetString("TxtTitleUniqueErrorMessage", resourceCulture);
             }
         }
         
@@ -457,11 +340,11 @@ namespace GMG_Portal.Content.Admin.SystemParameters {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to View.
+        ///   Looks up a localized string similar to URL.
         /// </summary>
-        public static string View {
+        public static string Url {
             get {
-                return ResourceManager.GetString("View", resourceCulture);
+                return ResourceManager.GetString("Url", resourceCulture);
             }
         }
     }

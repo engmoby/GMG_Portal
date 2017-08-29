@@ -187,6 +187,15 @@ namespace GMG_Portal.Content {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Instant Notify.
+        /// </summary>
+        public static string InstantNotify {
+            get {
+                return ResourceManager.GetString("InstantNotify", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Languages.
         /// </summary>
         public static string Languages {

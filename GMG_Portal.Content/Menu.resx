@@ -189,4 +189,7 @@
   <data name="CoreValues" xml:space="preserve">
     <value>Core Values</value>
   </data>
+  <data name="InstantNotify" xml:space="preserve">
+    <value>Instant Notify</value>
+  </data>
 </root>
