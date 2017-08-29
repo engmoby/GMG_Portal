@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using GMG_Portal.Data;
 using AutoMapper;
 using System.Data;
+using System.Security.AccessControl;
+using Heloper;
 
 
 namespace GMG_Portal.Business.Logic.SystemParameters
@@ -27,7 +29,6 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         {
 
             var returnList = new List<SystemParameters_Notify>();
-
             var list= _db.SystemParameters_Notify.OrderBy(p => p.IsDeleted).ToList();
             foreach (var systemParametersNotify in list)
             {
@@ -39,12 +40,16 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                         Id = systemParametersNotify.Id,
                         DisplayValue = systemParametersNotify.DisplayValue,
                         DepartmentName = departmentOnj.DisplayValue,
+                        DepartmentId =  systemParametersNotify.DepartmentId,
                     });
             }
             return returnList;
         }
         public SystemParameters_Notify Get(int id)
         {
+
+            //var obj = _db.SystemParameters_Notify.Find(id);
+            //obj.DepartmentName = _db.SystemParameters_NotifyDepartment.FirstOrDefault(p => p.Id == systemParametersNotify.DepartmentId);
             return _db.SystemParameters_Notify.Find(id);
         }
         public List<SystemParameters_Notify> GetNotifyByDepId(int id)
@@ -73,6 +78,10 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             var notify = new SystemParameters_Notify()
             {
                 DisplayValue = postedDepartments.DisplayValue,
+                DepartmentId = postedDepartments.DepartmentId,
+                DepartmentName = postedDepartments.DepartmentName,
+                CreationTime = Parameters.CurrentDateTime,
+                CreatorUserId = Parameters.UserId,
                 IsDeleted = false
             };
             _db.SystemParameters_Notify.Add(notify);
@@ -82,14 +91,19 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         {
             SystemParameters_Notify notify = Get(postedDepartment.Id);
             notify.DisplayValue = postedDepartment.DisplayValue;
+            notify.DepartmentId = postedDepartment.DepartmentId;
+        //    notify.DepartmentName = postedDepartment.DepartmentName;
+            notify.LastModificationTime = Parameters.CurrentDateTime;
+            notify.LastModifierUserId = Parameters.UserId;
             notify.IsDeleted = postedDepartment.IsDeleted;
             return Save(notify);
         }
         public SystemParameters_Notify Delete(SystemParameters_Notify postedDepartment)
         {
             SystemParameters_Notify Notify = Get(postedDepartment.Id);
-
+            Notify.DepartmentName = postedDepartment.DepartmentName;
             Notify.DisplayValue = Notify.DisplayValue;
+            Notify.DepartmentId = postedDepartment.DepartmentId;
             Notify.IsDeleted = true;
             return Save(Notify);
         }

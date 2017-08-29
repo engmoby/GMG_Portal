@@ -1,5 +1,5 @@
-﻿controllerProvider.register('NewsController', ['$scope', 'NotifyApi', 'uploadNewsService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', NewsController]);
-function NewsController($scope, NotifyApi, uploadNewsService, $rootScope, $timeout, $filter, $uibModal, toastr) {
+﻿controllerProvider.register('InstantNotifyController', ['$scope', 'NotifyApi', 'uploadNewsService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', InstantNotifyController]);
+function InstantNotifyController($scope, NotifyApi, uploadNewsService, $rootScope, $timeout, $filter, $uibModal, toastr) {
 
     $rootScope.ViewLoading = true;
     var langId = document.querySelector('#HCurrentLang').value;
@@ -11,7 +11,7 @@ function NewsController($scope, NotifyApi, uploadNewsService, $rootScope, $timeo
         CurrentLanguage = selectedValue;
 
         NotifyApi.GetAll().then(function (response) {
-            $scope.News = response.data;
+            $scope.Notifies = response.data;
             $rootScope.ViewLoading = false;
         });
 
@@ -29,7 +29,7 @@ function NewsController($scope, NotifyApi, uploadNewsService, $rootScope, $timeo
 
     $scope.letterLimit = 20;
     NotifyApi.GetAll().then(function (response) {
-        $scope.News = response.data;
+        $scope.Notifies = response.data;
         $rootScope.ViewLoading = false;
     });
     //get Categories
@@ -108,27 +108,39 @@ function NewsController($scope, NotifyApi, uploadNewsService, $rootScope, $timeo
                     var index;
                     switch ($scope.action) {
                     case 'edit':
-                        index = $scope.News.indexOf($filter('filter')($scope.News, { 'Id': $scope.New.Id }, true)[0]);
-                        $scope.News[index] = angular.copy(response.data);
+                        index = $scope.Notifies.indexOf($filter('filter')($scope.Notifies, { 'Id': $scope.New.Id }, true)[0]);
+                        $scope.Notifies[index] = angular.copy(response.data);
                         //NotifyApi.GetAll(CurrentLanguage).then(function (response) {
-                        //    $scope.News = response.data;
+                        //    $scope.Notifies = response.data;
                         //});
                         toastr.success($('#HUpdateSuccessMessage').val(), 'Success');
+                        //Reload the UI After Saving to Reflect Changes
+                        NotifyApi.GetAll().then(function (response) {
+                            $scope.Notifies = response.data;
+                            $rootScope.ViewLoading = false;
+                        });
+
+
                         break;
                     case 'delete':
-                        index = $scope.News.indexOf($filter('filter')($scope.News, { 'Id': $scope.New.Id }, true)[0]);
-                        $scope.News[index] = angular.copy(response.data);
-                        //NotifyApi.GetAll(CurrentLanguage).then(function (response) {
-                        //    $scope.News = response.data;
+                        index = $scope.Notifies.indexOf($filter('filter')($scope.Notifies, { 'Id': $scope.New.Id }, true)[0]);
+                        $scope.Notifies[index] = angular.copy(response.data);
+                        //Reload the UI After Saving to Reflect Changes
+                       
+                        //toastr.success($('#HDeleteSuccessMessage').val(), 'Success');
+                        //NotifyApi.GetAll().then(function (response) {
+                        //    $scope.Notifies = response.data;
+                        //    $rootScope.ViewLoading = false;
                         //});
-                        toastr.success($('#HDeleteSuccessMessage').val(), 'Success');
                         break;
                     case 'add':
-                        //NotifyApi.GetAll(CurrentLanguage).then(function (response) {
-                        //    $scope.News = response.data;
-                        //});
-                        $scope.News.push(angular.copy(response.data));
+                      
+                        $scope.Notifies.push(angular.copy(response.data));
                         toastr.success($('#HSaveSuccessMessage').val(), 'Success');
+                        //NotifyApi.GetAll().then(function (response) {
+                        //    $scope.Notifies = response.data;
+                        //    $rootScope.ViewLoading = false;
+                        //});
                         break;
                     }
                     break;

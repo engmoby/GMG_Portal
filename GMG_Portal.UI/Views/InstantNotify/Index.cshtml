@@ -39,10 +39,10 @@
         cursor: text !important;
     }
 </style>
-<div ng-controller="NewsController">
+<div ng-controller="InstantNotifyController">
 
     <div ba-panel>
-        <table class="table table-hover table-condensed" st-table="TableData" st-safe-src="News">
+        <table class="table table-hover table-condensed" st-table="TableData" st-safe-src="Notifies">
             <thead>
             <tr class="toolbar">
                 <th colspan="2">
@@ -63,6 +63,7 @@
                 <th>#</th>
         
                 <th st-sort="Title">@InstantNotify.Title</th>
+                <th st-sort="Title">@InstantNotify.TitleDisplay</th>
                 
                 <th>Actions</th>
             </tr>
@@ -72,6 +73,7 @@
             <tr ng-repeat="New in TableData">
                 <td ng-class="{'red-text': New.IsDeleted == true}">{{$index+1}}</td>
                 <td ng-class="{'red-text': New.IsDeleted == true}">{{New.DisplayValue}}</td>
+                <td ng-class="{'red-text': New.IsDeleted == true}">{{New.DepartmentName}}</td>
                 <td>
                     <div class="buttons" ng-show="!New.IsDeleted">
                         <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(New)"><i class="fa fa-pencil" aria-hidden="true"></i>@InstantNotify.TableBtnEdit</button>
@@ -141,7 +143,7 @@
                             <div class="red-text" ng-messages="FrmAddUpdate.LstCategory.$error" ng-show="FrmAddUpdate.LstCategory.$touched">
                                 <span class="error" ng-message="required">required</span>
                             </div>
-                            @*<span class="red-text">* Current Choosen Catgory : {{ New.CategoryName }}</span>*@  
+                            <span class="red-text">* Current Choosen Catgory : {{ New.DepartmentName }}</span>  
                         </div>
 
                     
