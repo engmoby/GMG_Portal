@@ -189,6 +189,8 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                     returnList.Image = getHotelImages[0].Image;
                     returnList.ImageList = getHotelImages;
                 }
+                DateTime dt = DateTime.Parse(getHotelInfo.CheckIn, new CultureInfo("ar-EG"));
+
                 returnList.Id = getHotelInfo.Id;
                 returnList.DisplayValue = getHotelInfo.DisplayValue;
                 returnList.DisplayValueDesc = getHotelInfo.DisplayValueDesc;
@@ -336,7 +338,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         public Hotel Edit(Hotel postedHotel)
         {
 
-            DateTime dateTime = DateTime.ParseExact(postedHotel.CheckIn, "HH:mm:ss",CultureInfo.InvariantCulture);
+          //  DateTime dateTime = DateTime.ParseExact(postedHotel.CheckIn, "HH:mm:ss",CultureInfo.InvariantCulture);
             var hotel = GetHotelInfoById(postedHotel.Id);
             hotel.DisplayValue = postedHotel.DisplayValue;
             hotel.DisplayValueDesc = postedHotel.DisplayValueDesc;
@@ -345,7 +347,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             hotel.PriceStart = postedHotel.PriceStart;
             hotel.Late = postedHotel.Late;
             hotel.Long = postedHotel.Long;
-            hotel.CheckIn = dateTime.ToString();
+            hotel.CheckIn = postedHotel.CheckIn;
             hotel.CheckOut = postedHotel.CheckOut;
             hotel.LastModificationTime = Parameters.CurrentDateTime;
             hotel.LastModifierUserId = Parameters.UserId;

@@ -871,7 +871,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SGuid" Type="uniqueidentifier" />
-          <Property Name="DisplayValue" Type="nvarchar" MaxLength="50" />
+          <Property Name="DisplayValue" Type="nvarchar" MaxLength="250" />
           <Property Name="LookupKey" Type="int" />
           <Property Name="LookupKeyGuid" Type="uniqueidentifier" />
           <Property Name="IsCurrent" Type="bit" />
@@ -896,7 +896,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SGuid" Type="uniqueidentifier" />
-          <Property Name="DisplayValue" Type="nvarchar" MaxLength="50" />
+          <Property Name="DisplayValue" Type="nvarchar" MaxLength="250" />
           <Property Name="LookupKey" Type="int" />
           <Property Name="LookupKeyGuid" Type="uniqueidentifier" />
           <Property Name="IsCurrent" Type="bit" />
@@ -2011,7 +2011,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SGuid" Type="Guid" />
-          <Property Name="DisplayValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DisplayValue" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="LookupKey" Type="Int32" />
           <Property Name="LookupKeyGuid" Type="Guid" />
           <Property Name="IsCurrent" Type="Boolean" />
@@ -2036,7 +2036,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SGuid" Type="Guid" />
-          <Property Name="DisplayValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DisplayValue" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="LookupKey" Type="Int32" />
           <Property Name="LookupKeyGuid" Type="Guid" />
           <Property Name="IsCurrent" Type="Boolean" />
