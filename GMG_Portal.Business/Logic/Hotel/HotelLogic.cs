@@ -189,7 +189,8 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                     returnList.Image = getHotelImages[0].Image;
                     returnList.ImageList = getHotelImages;
                 }
-                DateTime dt = DateTime.Parse(getHotelInfo.CheckIn, new CultureInfo("ar-EG"));
+                DateTime dtCheckin = DateTime.Parse(getHotelInfo.CheckIn, new CultureInfo("ar-SA"));
+                DateTime dtCheckout = DateTime.Parse(getHotelInfo.CheckOut, new CultureInfo("ar-SA"));
 
                 returnList.Id = getHotelInfo.Id;
                 returnList.DisplayValue = getHotelInfo.DisplayValue;
@@ -198,8 +199,8 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 returnList.PriceStart = getHotelInfo.PriceStart;
                 returnList.Late = getHotelInfo.Late;
                 returnList.Long = getHotelInfo.Long;
-                returnList.CheckIn = getHotelInfo.CheckIn;
-                returnList.CheckOut = getHotelInfo.CheckOut;
+                returnList.CheckIn = dtCheckin.ToString();
+                returnList.CheckOut = dtCheckout.ToString();
                 returnList.FeaturesList = featuresList;
 
                 return returnList;
@@ -234,6 +235,8 @@ namespace GMG_Portal.Business.Logic.SystemParameters
 
             if (getHotelInfo != null)
             {
+                DateTime dtCheckin = DateTime.Parse(getHotelInfo.CheckIn, new CultureInfo("ar-SA"));
+                DateTime dtCheckout = DateTime.Parse(getHotelInfo.CheckOut, new CultureInfo("ar-SA"));
                 if (getHotelImages.Any())
                 {
                     returnList.Image = getHotelImages[0].Image;
@@ -247,8 +250,8 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 returnList.FeaturesList = featuresList;
                 returnList.Late = getHotelInfo.Late;
                 returnList.Long = getHotelInfo.Long;
-                returnList.CheckIn = getHotelInfo.CheckIn;
-                returnList.CheckOut = getHotelInfo.CheckOut;
+                returnList.CheckIn = dtCheckin.ToString();
+                returnList.CheckOut = dtCheckout.ToString();
 
                 return returnList;
             }

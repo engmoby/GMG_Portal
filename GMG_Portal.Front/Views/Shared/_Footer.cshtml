@@ -23,8 +23,8 @@
                 <div class="col-md-3 col-sm-6">
                     <div class="widget">
                         <h2 class="mg-widget-title">@Front.Resources.Global.Footer_Twitter</h2>
-                        <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="twitter-timeline twitter-timeline-rendered" style="position: static; visibility: visible; display: inline-block; width: 300px; height: 200px; padding: 0px; border: none; max-width: 100%; min-width: 180px; margin-top: 0px; margin-bottom: 0px; min-height: 200px;" data-widget-id="profile:mobark_hotel" title="Twitter Timeline"></iframe>
-                        <script async="" src="https//platform.twitter.com/widgets.js" charset="utf-8"></script>
+                        <a class="twitter-timeline" data-height="300" data-theme="dark" href="https://twitter.com/mobark_hotel">Tweets by mobark_hotel</a>
+                        <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6">
@@ -114,7 +114,7 @@
         }
 
         if (!validateEmail(newsletter.Mail)) {
-            $("#MSG").text(" Pleae enter correct email format ");
+            $("#MSG").text("@Front.Resources.Global.Footer_NewsletterError");
             $("#MSG").css("color", "red");
 
         } else {

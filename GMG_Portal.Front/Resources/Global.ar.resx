@@ -333,6 +333,9 @@
   <data name="Footer_NewsletterDesc" xml:space="preserve">
     <value>اشترك لمتابعه الاخبار و احدث العروض</value>
   </data>
+  <data name="Footer_NewsletterError" xml:space="preserve">
+    <value>الرجاء إدخال تنسيق البريد الإلكتروني الصحيح</value>
+  </data>
   <data name="Footer_NewsletterSubmitMsg" xml:space="preserve">
     <value>تم تسجيل البريد الالكترونى , شكرا لك </value>
   </data>
