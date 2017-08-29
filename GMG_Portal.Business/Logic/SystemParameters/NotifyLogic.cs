@@ -25,9 +25,23 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         }
         public List<SystemParameters_Notify> GetAllWithDeleted()
         {
-         
 
-            return _db.SystemParameters_Notify.OrderBy(p => p.IsDeleted).ToList();
+            var returnList = new List<SystemParameters_Notify>();
+
+            var list= _db.SystemParameters_Notify.OrderBy(p => p.IsDeleted).ToList();
+            foreach (var systemParametersNotify in list)
+            {
+                var departmentOnj= _db.SystemParameters_NotifyDepartment.FirstOrDefault(p => p.Id== systemParametersNotify.DepartmentId);
+
+                if (departmentOnj != null)
+                    returnList.Add(new SystemParameters_Notify
+                    {
+                        Id = systemParametersNotify.Id,
+                        DisplayValue = systemParametersNotify.DisplayValue,
+                        DepartmentName = departmentOnj.DisplayValue,
+                    });
+            }
+            return returnList;
         }
         public SystemParameters_Notify Get(int id)
         {

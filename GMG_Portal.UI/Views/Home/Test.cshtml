@@ -2,6 +2,181 @@
 @{
     Layout = "";
 }
-<div ba-panel>
-    Home Page..
+
+@{
+    ViewBag.Title = "Index";
+}
+@using GMG_Portal.Content.Admin
+@using GMG_Portal.Content.Admin.Hotel
+@using GMG_Portal.Content.Admin.SystemParameters
+<script type="text/javascript" src="~/Scripts/app/services/HomePage.js"></script>
+<script type="text/javascript" src="~/Scripts/app/pages/HomePage/HomePage.js"></script>
+<div ng-controller="HomePageController">
+
+    <div ba-panel>
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div style="background-color: #1C84C6;color: #fff;    padding: 15px 20px;margin-bottom: 10px;">
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <i class="fa fa-cloud fa-5x"></i>
+                                </div>
+                                <div class="col-xs-8 text-right">
+                                    <span>   Total Hotels </span>
+                                    <h2 class="font-bold" ng-cloack ng-bind="TotalHotels"> </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div style="background-color: #ed5565;color: #fff;    padding: 15px 20px;margin-bottom: 10px;">
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <i class="fa fa-envelope-o fa-5x"></i>
+                                </div>
+                                <div class="col-xs-8 text-right">
+                                    <span> Total Reservation  </span>
+                                    <h2 class="font-bold" ng-cloack ng-bind="TotalReservation"> </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div style="background-color: #f8ac59;color: #fff;    padding: 15px 20px;margin-bottom: 10px;">
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <i class="fa fa-user fa-5x"></i>
+                                </div>
+                                <div class="col-xs-8 text-right">
+                                    <span> Total Inquiry </span>
+                                    <h2 class="font-bold" ng-cloack ng-bind="TotalInquiry"> </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="inqbox float-e-margins">
+                    <div class="inqbox-title border-top-info">
+                        <h5>Latest 5 Reservation</h5>
+                    </div>
+                    <div class="inqbox-content" style="height: 241px;">
+                        <div class="row">
+                            <div class="col-lg-6" style="width: 100%;">
+                                <table class="table table-hover margin bottom">
+                                    <thead>
+                                    <tr>
+                                        <th style="width: 1%" class="text-center"></th>
+                                        <th class="text-center">@Reservation.FirstName</th>
+                                        <th class="text-center">@Reservation.Email</th>
+                                        <th class="text-center">@Reservation.Phone</th>
+                                        <th class="text-center">@Reservation.CreationTime</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="UserFor in HomePageReservation">
+                                        <td class="text-center" ng-cloack ng-bind="$index+1"> </td>
+                                        <td>
+                                            <span ng-cloack ng-bind="UserFor.FirstName"></span>
+                                            <span ng-cloack ng-bind="UserFor.LastName"></span>
+                                        </td>
+                                        <td class="text-center" ng-cloack ng-bind="UserFor.Email"> </td>
+                                        <td class="text-center" ng-cloack ng-bind="UserFor.Phone"> </td>
+
+                                        @*<td class="text-center small">
+                                                    <span ng-cloack ng-bind="UserFor.CreationTime  | date:'fullDate'"></span>
+                                                </td>*@
+                                        <td class="text-center"><span class="label label-primary" ng-cloack ng-bind="UserFor.CreationTime  | date:'fullDate'"></span></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                
+
+            </div>
+            <div class="col-lg-4">
+                <div class="inqbox float-e-margins">
+                    <div class="inqbox-title border-top-info">
+                        <h5>Latest 5 Reservation</h5>
+                    </div>
+                    <div class="inqbox-content" style="height: 241px;">
+                        <div class="row">
+                            <div class="col-lg-6" style="width: 100%;">
+                                <table class="table table-hover margin bottom">
+                                    <thead>
+                                    <tr>
+                                        <th style="width: 1%" class="text-center"></th>
+                                        <th class="text-center">@Reservation.FirstName</th>
+                                        <th class="text-center">@Reservation.Email</th> 
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="UserFor in HomePageReservation">
+                                        <td class="text-center" ng-cloack ng-bind="$index+1"> </td>
+                                        <td>
+                                            <span ng-cloack ng-bind="UserFor.FirstName"></span>
+                                            <span ng-cloack ng-bind="UserFor.LastName"></span>
+                                        </td>
+                                        <td class="text-center" ng-cloack ng-bind="UserFor.Email"> </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                 
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8">
+
+
+                <div class="inqbox float-e-margins">
+                    <div class="inqbox-title border-top-info">
+                        <h5>Latest 5  Applayied Carrer</h5>
+                    </div>
+                    <div class="inqbox-content" style="height: 241px;">
+                        <div class="row">
+                            <div class="col-lg-6" style="width: 100%;">
+                                <table class="table table-hover margin bottom">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 1%" class="text-center"></th>
+                                            <th class="text-center">@CareerForm.Postion</th>
+                                            <th class="text-center">@CareerForm.Name</th>
+                                            <th class="text-center">@CareerForm.Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="UserFor in HomePageCarrer">
+                                            <td class="text-center" ng-cloack ng-bind="$index+1"> </td>
+                                            <td class="text-center"><span ng-cloack ng-bind="UserFor.CareerTitle"></span> </td>
+                                            <td>
+                                                <span ng-cloack ng-bind="UserFor.FirstName"></span>
+                                                <span ng-cloack ng-bind="UserFor.LastName"></span>
+                                            </td>
+
+
+                                            <td class="text-center"><span class="label label-primary" ng-cloack ng-bind="UserFor.CreationTime | date:'fullDate'"></span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
 </div>

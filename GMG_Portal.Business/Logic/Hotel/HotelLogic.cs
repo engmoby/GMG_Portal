@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Objects;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -188,6 +189,8 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                     returnList.Image = getHotelImages[0].Image;
                     returnList.ImageList = getHotelImages;
                 }
+                DateTime dt = DateTime.Parse(getHotelInfo.CheckIn, new CultureInfo("ar-EG"));
+
                 returnList.Id = getHotelInfo.Id;
                 returnList.DisplayValue = getHotelInfo.DisplayValue;
                 returnList.DisplayValueDesc = getHotelInfo.DisplayValueDesc;
@@ -334,6 +337,8 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         }
         public Hotel Edit(Hotel postedHotel)
         {
+
+          //  DateTime dateTime = DateTime.ParseExact(postedHotel.CheckIn, "HH:mm:ss",CultureInfo.InvariantCulture);
             var hotel = GetHotelInfoById(postedHotel.Id);
             hotel.DisplayValue = postedHotel.DisplayValue;
             hotel.DisplayValueDesc = postedHotel.DisplayValueDesc;

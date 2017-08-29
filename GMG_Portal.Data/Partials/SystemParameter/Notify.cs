@@ -14,6 +14,7 @@ namespace GMG_Portal.Data
 
         [NotMapped]
         public string OperationStatus { get; set; }
+        public string DepartmentName { get; set; }
 
         public List<SystemParameters_NotifyDepartment>  Departments { get; set; }
        

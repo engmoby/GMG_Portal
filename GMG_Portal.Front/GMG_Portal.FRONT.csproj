@@ -422,7 +422,6 @@
     <Content Include="Views\Home\HotelFacilities.cshtml" />
     <Content Include="Views\Home\OwnersHome.cshtml" />
     <Content Include="Views\Home\NewsHome.cshtml" />
-    <Content Include="Views\Hotel\_Details.cshtml" />
     <Content Include="Views\Hotel\Index.cshtml" />
     <Content Include="Views\Owners\Index.cshtml" />
     <Content Include="Views\Offers\Index.cshtml" />

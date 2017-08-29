@@ -36,8 +36,8 @@ namespace GMG_Portal.API.Controllers.SystemParameters
         {
             try
             {
-                var NotifyLogic = new NotifyLogic();
-                var obj = NotifyLogic.GetAllWithDeleted();
+                var notifyLogic = new NotifyLogic();
+                var obj = notifyLogic.GetAllWithDeleted();
                 return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<NotifyViewModel>>(obj));
             }
             catch (Exception ex)

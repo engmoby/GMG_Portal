@@ -23,7 +23,7 @@ namespace GMG_Portal.API.Models.SystemParameters
         public int? CreatorUserId { get; set; }
         public string CreatorUserName { get; set; }
         public int? DepartmentId { get; set; }
-        public string CategoryName { get; set; }
+        public string DepartmentName { get; set; }
         public DateTime? DeletionTime { get; set; }
         public int? DeleterUserId { get; set; }
         public string OperationStatus { get; set; } 

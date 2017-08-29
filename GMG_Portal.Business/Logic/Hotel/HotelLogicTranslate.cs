@@ -350,12 +350,14 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             hotel.LastModificationTime = Parameters.CurrentDateTime;
             hotel.LastModifierUserId = Parameters.UserId;
             hotel.langId = postedHotel.langId;
+            hotel.HasImage = postedHotel.HasImage;
             return Save(hotel);
         }
         public Hotels_Translate Delete(Hotels_Translate postedHotel)
         {
             var hotel = GetHotelInfoById(postedHotel.Id, postedHotel.langId);
 
+            hotel.HasImage = postedHotel.HasImage;
 
             hotel.IsDeleted = true;
             hotel.CreationTime = Parameters.CurrentDateTime;

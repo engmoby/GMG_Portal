@@ -3152,7 +3152,7 @@ a {
     padding-top: 1px; }
 .table > tbody > tr > td {
     padding: 0px 8px;
-    line-height: 35px;
+    line-height: 30px;
     border-top: 1px solid gainsboro; }
 .table > tbody > tr > td:first-child {
     text-align: center; }
