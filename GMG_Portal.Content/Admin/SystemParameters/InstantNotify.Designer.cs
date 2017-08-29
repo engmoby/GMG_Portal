@@ -295,7 +295,7 @@ namespace GMG_Portal.Content.Admin.SystemParameters {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid Pattern.
+        ///   Looks up a localized string similar to Invalid Email Format , Please Check.
         /// </summary>
         public static string TxtTitlePatternErrorMessage {
             get {

@@ -145,7 +145,7 @@
     <value>Department</value>
   </data>
   <data name="TxtTitlePatternErrorMessage" xml:space="preserve">
-    <value>Invalid Pattern</value>
+    <value>Invalid Email Format , Please Check</value>
   </data>
   <data name="DisplayFront" xml:space="preserve">
     <value>Display Front</value>

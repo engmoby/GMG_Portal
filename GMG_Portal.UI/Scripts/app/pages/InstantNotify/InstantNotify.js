@@ -127,7 +127,7 @@ function InstantNotifyController($scope, NotifyApi, uploadNewsService, $rootScop
                         $scope.Notifies[index] = angular.copy(response.data);
                         //Reload the UI After Saving to Reflect Changes
                        
-                        //toastr.success($('#HDeleteSuccessMessage').val(), 'Success');
+                        toastr.success($('#HDeleteSuccessMessage').val(), 'Success');
                         //NotifyApi.GetAll().then(function (response) {
                         //    $scope.Notifies = response.data;
                         //    $rootScope.ViewLoading = false;
@@ -137,10 +137,10 @@ function InstantNotifyController($scope, NotifyApi, uploadNewsService, $rootScop
                       
                         $scope.Notifies.push(angular.copy(response.data));
                         toastr.success($('#HSaveSuccessMessage').val(), 'Success');
-                        //NotifyApi.GetAll().then(function (response) {
-                        //    $scope.Notifies = response.data;
-                        //    $rootScope.ViewLoading = false;
-                        //});
+                        NotifyApi.GetAll().then(function (response) {
+                            $scope.Notifies = response.data;
+                            $rootScope.ViewLoading = false;
+                        });
                         break;
                     }
                     break;
