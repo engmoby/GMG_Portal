@@ -136,31 +136,40 @@
     <value>Display name must be unique</value>
   </data>
   <data name="ModalTitle" xml:space="preserve">
-    <value>Contact Form Details</value>
+    <value>Instant Notify</value>
   </data>
-  <data name="Name" xml:space="preserve">
-    <value>Name</value>
+  <data name="Title" xml:space="preserve">
+    <value>Email</value>
   </data>
   <data name="TitleDisplay" xml:space="preserve">
-    <value>Title</value>
+    <value>Department</value>
   </data>
-  <data name="TxtNamePatternErrorMessage" xml:space="preserve">
-    <value>Invalid Pattern</value>
+  <data name="TxtTitlePatternErrorMessage" xml:space="preserve">
+    <value>Invalid Email Format , Please Check</value>
   </data>
   <data name="DisplayFront" xml:space="preserve">
     <value>Display Front</value>
   </data>
-  <data name="LastName" xml:space="preserve">
-    <value>Last Name</value>
+  <data name="Icon" xml:space="preserve">
+    <value>Icon</value>
   </data>
-  <data name="TxtNameUniqueErrorMessage" xml:space="preserve">
-    <value>Name  is unique</value>
+  <data name="TxtTitleUniqueErrorMessage" xml:space="preserve">
+    <value>Title  is unique</value>
   </data>
   <data name="Desc" xml:space="preserve">
     <value>Description</value>
   </data>
   <data name="DescDisplay" xml:space="preserve">
     <value>Description</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>Image</value>
+  </data>
+  <data name="Rate" xml:space="preserve">
+    <value>Rate</value>
+  </data>
+  <data name="RateDisplay" xml:space="preserve">
+    <value>Rate</value>
   </data>
   <data name="SaveSuccessMessage" xml:space="preserve">
     <value>Save Done Successfully</value>
@@ -192,8 +201,8 @@
   <data name="txtSearchLbl" xml:space="preserve">
     <value>search ...</value>
   </data>
-  <data name="TxtNameRequiredErrorMessage" xml:space="preserve">
-    <value>Name is required</value>
+  <data name="TxtTitleRequiredErrorMessage" xml:space="preserve">
+    <value>Title is required</value>
   </data>
   <data name="TxtUrlPatternErrorMessage" xml:space="preserve">
     <value>Url Invalid Pattern</value>
@@ -201,55 +210,7 @@
   <data name="UpdateSuccessMessage" xml:space="preserve">
     <value>Updated Successfully</value>
   </data>
-  <data name="TxtPostionPatternErrorMessage" xml:space="preserve">
-    <value>Invalid Pattern</value>
-  </data>
-  <data name="TxtPostionRequiredErrorMessage" xml:space="preserve">
-    <value>Postion is required</value>
-  </data>
-  <data name="TxtPostionUniqueErrorMessage" xml:space="preserve">
-    <value>Postion  is unique</value>
-  </data>
-  <data name="Postion" xml:space="preserve">
-    <value>Postion</value>
-  </data>
-  <data name="ApplyCount" xml:space="preserve">
-    <value>Apply Count</value>
-  </data>
-  <data name="CareerLevel" xml:space="preserve">
-    <value>Career Level</value>
-  </data>
-  <data name="Phone" xml:space="preserve">
-    <value>Phone</value>
-  </data>
-  <data name="FirstName" xml:space="preserve">
-    <value>First Name</value>
-  </data>
-  <data name="Mail" xml:space="preserve">
-    <value>Mail</value>
-  </data>
-  <data name="Date" xml:space="preserve">
-    <value>Submit Date</value>
-  </data>
-  <data name="Download" xml:space="preserve">
-    <value>Download</value>
-  </data>
-  <data name="Seen" xml:space="preserve">
-    <value>Seen</value>
-  </data>
-  <data name="View" xml:space="preserve">
-    <value>View</value>
-  </data>
-  <data name="CreationTime" xml:space="preserve">
-    <value>CreationTime</value>
-  </data>
-  <data name="Message" xml:space="preserve">
-    <value>Message</value>
-  </data>
-  <data name="PhoneNo" xml:space="preserve">
-    <value>PhoneNo</value>
-  </data>
-  <data name="Email" xml:space="preserve">
-    <value>Email</value>
+  <data name="Url" xml:space="preserve">
+    <value>URL</value>
   </data>
 </root>

@@ -19,12 +19,12 @@ namespace GMG_Portal.API.Models.Hotels.Reservation
         public string Email { get; set; }
         [RegularExpression("^(?!0+$)(\\+\\d{1,3}[- ]?)?(?!0+$)\\d{10,20}$")]
         public string Phone { get; set; }
+        public string HotelName { get; set; }
         public DateTime? CheckIn { get; set; }
         public DateTime? CheckOut { get; set; }
         public int? Adult { get; set; }
         public int? Child { get; set; }
         public int? HotelId { get; set; }
-        public string HotelName{ get; set; }
         public int? CountryId { get; set; }
         public string Notes { get; set; } 
         public DateTime? SeenDate { get; set; }

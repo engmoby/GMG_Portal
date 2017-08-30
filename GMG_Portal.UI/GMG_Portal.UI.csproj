@@ -215,6 +215,7 @@
     <Compile Include="Controllers\Admin\ContactController.cs" />
     <Compile Include="Controllers\Admin\ContactFormController.cs" />
     <Compile Include="Controllers\Admin\CoreValuesController.cs" />
+    <Compile Include="Controllers\Admin\InstantNotifyController.cs" />
     <Compile Include="Controllers\Admin\NewsCategoryController.cs" />
     <Compile Include="Controllers\Admin\NewsController.cs" />
     <Compile Include="Controllers\Admin\NewsLetterController.cs" />
@@ -494,6 +495,7 @@
     <Content Include="Scripts\app\pages\About\About.js" />
     <Content Include="Scripts\app\pages\CoreValues\CoreValues.js" />
     <Content Include="Scripts\app\pages\General.js" />
+    <Content Include="Scripts\app\pages\InstantNotify\InstantNotify.js" />
     <Content Include="Scripts\app\pages\Offers\Offers.js" />
     <Content Include="Scripts\app\pages\ContactForm\ContactForm.js" />
     <Content Include="Scripts\app\pages\Reservation\Reservation.js" />
@@ -516,6 +518,7 @@
     <Content Include="Scripts\app\services\HomePage.js" />
     <Content Include="Scripts\app\services\About.js" />
     <Content Include="Scripts\app\services\CoreValues.js" />
+    <Content Include="Scripts\app\services\InstantNotify.js" />
     <Content Include="Scripts\app\services\Offers.js" />
     <Content Include="Scripts\app\services\ContactForm.js" />
     <Content Include="Scripts\app\services\Reservation.js" />
@@ -1077,6 +1080,7 @@
     <Content Include="Views\Login\Index_Old.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Scripts\app\theme\js.cookie" />
+    <Content Include="Views\InstantNotify\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GMG_Portal.API\GMG_Portal.API.csproj">

@@ -100,6 +100,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Admin\SystemParameters\InstantNotify.Designer.cs">
+      <DependentUpon>InstantNotify.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Admin\SystemParameters\NewsLetters.Designer.cs">
       <DependentUpon>NewsLetters.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -224,6 +229,11 @@
     <EmbeddedResource Include="Admin\SystemParameters\CoreValues.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>CoreValues.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\SystemParameters\InstantNotify.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>InstantNotify.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\SystemParameters\NewsLetters.resx">
