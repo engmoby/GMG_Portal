@@ -88,6 +88,9 @@ function CareerFormsController($scope, CareerFormsApi, uploadService, $rootScope
                     break;
                 case "HasRelationship":
                     toastr.error($('#HCannotDeleted').val(), 'Error');
+                    //CareerFormsApi.GetAll().then(function (response) {
+                    //    $scope.CareerForms = response.data; 
+                    //}); 
                     break;
                 default:
 
