@@ -26,8 +26,8 @@
 
                 <ul class="main_clock">  
 
-                    <li> @Front.Resources.Global.CheckIn: <i class="fa fa-clock-o"></i> @Model.CheckIn.AsDateTime().ToString("hh:mm tt")</li>
-                    <li> @Front.Resources.Global.CheckOut: <i class="fa fa-clock-o"></i> @Model.CheckOut.AsDateTime().ToString("hh:mm tt")</li>
+                    <li> @Front.Resources.Global.CheckIn: <i class="fa fa-clock-o"></i> @Convert.ToDateTime(Model.CheckIn).AddHours(2).ToShortTimeString().</li>
+                    <li> @Front.Resources.Global.CheckOut: <i class="fa fa-clock-o"></i> @Convert.ToDateTime(Model.CheckOut).AddHours(2).ToShortTimeString()</li>
                 </ul>
 
             </div>
