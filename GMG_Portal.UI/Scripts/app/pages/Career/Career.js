@@ -89,6 +89,9 @@ function CareersController($scope, CareersApi, uploadService, $rootScope, $timeo
                 case "HasRelationship":
                     index = $scope.Careers.indexOf($filter('filter')($scope.Careers, { 'Id': $scope.Career.Id }, true)[0]);
                     $scope.Careers[index] = angular.copy(response.data); toastr.error($('#HCannotDeleted').val(), 'Error');
+                    CareersApi.GetAll().then(function (response) {
+                        $scope.Careers = response.data;
+                    });
                     break;
                 default:
 

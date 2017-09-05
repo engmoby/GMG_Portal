@@ -62,7 +62,26 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                     if (postedReservations.Id.Equals(0))
                     {
                         Reservation = ReservationLogic.Insert(Mapper.Map<Hotels_Reservation>(postedReservations));
-                     
+
+                        //Instant Notifications Logic
+                        var notifyemail = new NotifyEmail();
+                        var departmentLogic = new DepartmentLogic();
+                        var notifyLogic = new NotifyLogic();
+                        var obj = departmentLogic.GetDepartmentByName("Reservation");
+                        var objList = notifyLogic.GetNotifyByDepId(obj.Id);
+                        string emailMessage = "FirstName : " + postedReservations.FirstName + "<br/>" + "Last Name : " +
+                                              postedReservations.LastName + "<br/>" +
+                                              "Email : " + postedReservations.Email + "<br/>" + "Phone Number :" +
+                                              postedReservations.Phone +
+                                              "<br />" + "Check In : " + postedReservations.CheckIn + "<br/>" +
+                                              "Check out : " +
+                                              postedReservations.CheckOut + "<br/>" +
+                                              "Adult : " + postedReservations.Adult + "<br/>" + "Child : " +
+                                              postedReservations.Child + "<br/>" +
+                                              "Hotel Name : " + postedReservations.HotelName;
+
+                        notifyemail.SendMail("Reservation : " + postedReservations.FirstName, emailMessage, objList);
+
                     }
                     else
                     {
