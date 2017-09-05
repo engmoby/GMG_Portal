@@ -50,12 +50,12 @@
             }
 
 
-            @if (true)
+            @*@if (true)
         {
                 <text>
                     { "name": "@GMG_Portal.Content.Menu.Languages", "title": "@GMG_Portal.Content.Menu.Languages", "level": "1", "stateRef": "Languages", "templateUrl": "/Languages" },
                 </text>
-            }
+            }*@
 
 
 
@@ -235,4 +235,26 @@
     });
     </text>
     }
+
+
+    
+    @if (true)
+    {
+        <text>
+    menuItems.push({
+        "name": "Notify", "title": "Users", "level": "0", "icon": "ion-gear-a", "subMenu": [
+            @if (true)
+        {
+
+                               <text>
+                                   { "name": "@GMG_Portal.Content.Menu.InstantNotify", "title": "@GMG_Portal.Content.Menu.InstantNotify", "level": "1", "stateRef": "InstantNotify", "templateUrl": "/InstantNotify" }
+                               </text>
+    }
+       
+        ]
+    });
+        </text>
+    }
+
+
 </script>

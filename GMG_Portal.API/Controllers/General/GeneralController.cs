@@ -229,9 +229,9 @@ namespace GMG_Portal.API.Controllers.SystemParameters
         {
             try
             {
-                var careerFormLogic = new CareerFormLogic(); 
+                var careerFormLogic = new CareerFormLogic();
                 var obj = careerFormLogic.GetAllWithSeen().Take(5);
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<CareerForm>>(obj)); 
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<CareerForm>>(obj));
             }
             catch (Exception ex)
             {
@@ -245,7 +245,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
             {
                 var contactFormLogic = new ContactFormLogic();
                 var obj = contactFormLogic.GetAllWithSeen().Take(5);
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<ContactForm>>(obj)); 
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<ContactForm>>(obj));
             }
             catch (Exception ex)
             {
@@ -267,6 +267,9 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 return Request.CreateResponse(ex);
             }
         }
+
+   
+
     }
 
 }

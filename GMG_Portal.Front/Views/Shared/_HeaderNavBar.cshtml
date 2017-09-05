@@ -1,8 +1,7 @@
 ﻿@using System.Globalization
 @using System.Threading
 @using Front.Helpers
-
-
+ 
 <header class="header transp sticky">
 
     <div style="width: 100%;/* overflow: hidden; */background-color: #16262e ;">
@@ -74,6 +73,11 @@
                         <a href="/Hotel/Index" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@Front.Resources.Global.Header_Hotels  <span class="caret"></span></a>
                         <ul class="dropdown-menu" id="ulAllHotels">
                             <li id="HotelMore">@*<a href='/Hotel/Index/'>@Front.Resources.Global.SeeMore</a>*@</li>
+                            @foreach (var hotelFor in  Common.Hotels)
+                            { 
+                               <li> <a href='/Hotel/Details/@hotelFor.Id'> @hotelFor.DisplayValue  </a></li>
+
+                            }
                         </ul>
                     </li>
                     @*<li><a href="/Offers/Index">@Front.Resources.Global.Header_Offers </a></li>*@

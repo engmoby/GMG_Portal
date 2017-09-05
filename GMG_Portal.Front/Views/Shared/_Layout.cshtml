@@ -239,19 +239,19 @@
                     //    document.getElementById("HotelMore").style.display = "block";
                     //}
                     for (var i = 0; i < data.length; i++) {
-                        $(
-                            "<li>" +
-                            "<a href='/Hotel/Details/" + data[i].Id + "'>" + data[i].DisplayValue + "</i></a>"
+                        //$(
+                        //    "<li>" +
+                        //    "<a href='/Hotel/Details/" + data[i].Id + "'>" + data[i].DisplayValue + "</i></a>"
 
-                        ).appendTo("#ulAllHotels");
-                        //  var result = $.localStorage('hotelId', data[i].Id);
+                        //).appendTo("#ulAllHotels");
+                        ////  var result = $.localStorage('hotelId', data[i].Id);
 
                         list.push(data[i].Id);
                     }
                     if (data.length >= 5) {
-                        $(
-                            "<li>" + "<a href='/Hotel/Index'>" + more + "</i></a>"
-                        ).appendTo("#ulAllHotels");
+                        //$(
+                        //    "<li>" + "<a href='/Hotel/Index'>" + more + "</i></a>"
+                        //).appendTo("#ulAllHotels");
                     }
                     // $.localStorage('listlist', list);
 

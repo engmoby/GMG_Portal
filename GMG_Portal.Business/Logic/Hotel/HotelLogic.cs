@@ -5,6 +5,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GMG_Portal.Business.Logic.General;
 using GMG_Portal.Data;
 using Heloper;
 
@@ -191,9 +192,14 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                  {
                     returnList.Image = getHotelImages[0].Image;
                     returnList.ImageList = getHotelImages;
-                } 
-                DateTime dtCheckin = DateTime.Parse(getHotelInfo.CheckIn, new CultureInfo("ar-SA"));
-                DateTime dtCheckout = DateTime.Parse(getHotelInfo.CheckOut, new CultureInfo("ar-SA"));
+                }
+      
+
+                DateTime dtCheckin = DateTime.Parse(getHotelInfo.CheckIn);
+                DateTime dtCheckout = DateTime.Parse(getHotelInfo.CheckOut);
+                DateTime dtCheckin1 = GeneralLogic.GetKsaDate(getHotelInfo.CheckIn);
+                string dtCheckinn= GeneralLogic.GetCountryTime("Saudi Arabia", getHotelInfo.CheckIn);
+                string dtCheckout1 = GeneralLogic.GetCountryTime("Saudi Arabia", getHotelInfo.CheckOut);
                 returnList.Id = getHotelInfo.Id;
                 returnList.DisplayValue = getHotelInfo.DisplayValue;
                 returnList.DisplayValueDesc = getHotelInfo.DisplayValueDesc;
@@ -239,6 +245,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             {
                 DateTime dtCheckin = DateTime.Parse(getHotelInfo.CheckIn, new CultureInfo("ar-SA"));
                 DateTime dtCheckout = DateTime.Parse(getHotelInfo.CheckOut, new CultureInfo("ar-SA"));
+
                 if (getHotelImages.Any())
                 {
                     returnList.Image = getHotelImages[0].Image;

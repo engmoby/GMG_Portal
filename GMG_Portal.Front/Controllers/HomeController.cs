@@ -32,27 +32,35 @@ namespace Front.Controllers
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-     
+
         public async Task<ActionResult> Index()
         {
-            string General = url + "General/GetAll?langId=" + Common.CurrentLang;
+            string general = url + "General/GetAll?langId=" + Common.CurrentLang;
 
             var homeModels = new HomeModels();
+            var list = new List<Hotels>();
 
-             
-            HttpResponseMessage responseMessage = await _client.GetAsync(General);
+            HttpResponseMessage responseMessage = await _client.GetAsync(general);
             if (responseMessage.IsSuccessStatusCode)
             {
                 var responseData = responseMessage.Content.ReadAsStringAsync().Result;
                 var homesliders = JsonConvert.DeserializeObject<HomeModels>(responseData);
-                homeModels = homesliders; 
-            }
+                homeModels = homesliders;
+                foreach (var homeslider in homesliders.Hotels)
+                {
+                    list.Add(new Hotels
+                    {
+                        Id = homeslider.Id,
+                        DisplayValue = homeslider.DisplayValue
+                    });
+                }
 
-            //}
+            }
+            Common.Hotels = list; 
             return View(homeModels);
 
         }
-     
+
         public ActionResult Error()
         {
             return View();
@@ -64,7 +72,7 @@ namespace Front.Controllers
             return Slider();
         }
 
-     
+
         public ActionResult AboutHome()
         {
             return AboutHome();
