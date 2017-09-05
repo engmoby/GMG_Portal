@@ -1,10 +1,7 @@
-﻿
-
-
-controllerProvider.register('HotelsController', ['$scope', 'HotelsApi', 'uploadHotlesService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', 'Map', HotelsController]);
+﻿controllerProvider.register('HotelsController', ['$scope', 'HotelsApi', 'uploadHotlesService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', 'Map', HotelsController]);
 function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $timeout, $filter, $uibModal, toastr, Map) {
     $rootScope.ViewLoading = true;
-    $scope.applayUploadImageBtn = false; 
+    $scope.applayUploadImageBtn = false;
     var langId = document.querySelector('#HCurrentLang').value;
     var CurrentLanguage = langId;
     $scope.features = "";
@@ -184,7 +181,7 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
         debugger;
         $rootScope.ViewLoading = true;
         $scope.Hotel.LangId = CurrentLanguage;
-
+        var hours = $scope.Hotel.CheckIn.getHours();
         HotelsApi.Save($scope.Hotel).then(function (response) {
 
             switch (response.data.OperationStatus) {

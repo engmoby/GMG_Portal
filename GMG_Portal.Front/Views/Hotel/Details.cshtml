@@ -24,8 +24,7 @@
 
             <div class="row">
 
-                <ul class="main_clock"> 
-                    @TimeZoneInfo.ConvertTimeFromUtc(@Model.CheckIn.AsDateTime(), TimeZoneInfo.FindSystemTimeZoneById("Arab Standard Time"))
+                <ul class="main_clock">  
 
                     <li> @Front.Resources.Global.CheckIn: <i class="fa fa-clock-o"></i> @Model.CheckIn.AsDateTime().ToString("hh:mm tt")</li>
                     <li> @Front.Resources.Global.CheckOut: <i class="fa fa-clock-o"></i> @Model.CheckOut.AsDateTime().ToString("hh:mm tt")</li>
