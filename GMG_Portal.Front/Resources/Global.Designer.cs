@@ -718,6 +718,15 @@ namespace Front.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sending.
+        /// </summary>
+        public static string Footer_NewsletterSending {
+            get {
+                return ResourceManager.GetString("Footer_NewsletterSending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email Submitted , Thank you !.
         /// </summary>
         public static string Footer_NewsletterSubmitMsg {

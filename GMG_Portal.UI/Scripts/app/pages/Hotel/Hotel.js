@@ -97,8 +97,8 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
         //hotel.CheckIn = new Date(hotel.CheckIn);
         //hotel.CheckOut = new Date(hotel.CheckOut);
 
-        hotel.CheckIn = new Date();
-        hotel.CheckOut = new Date();
+        //hotel.CheckIn = new Date();
+        //hotel.CheckOut = new Date();
 
         $scope.Hotel = angular.copy(hotel);
 

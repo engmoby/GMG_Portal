@@ -29,8 +29,11 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 var getHotelImages = _db.Hotels_Images.Where(p => p.IsDeleted != true && p.Hotel_Id == hotel.Id).ToList();
                 var getHotelFeatures = _db.Hotels_Features.FirstOrDefault(p => p.IsDeleted != true && p.Hotel_Id == hotel.Id);
 
+                DateTime dtCheckin = DateTime.Parse(hotel.CheckIn, new CultureInfo("ar-SA"));
+                DateTime dtCheckout = DateTime.Parse(hotel.CheckOut, new CultureInfo("ar-SA"));
                 if (getHotelImages.Any())
                 {
+
                     if (getHotelFeatures == null)
                         haveFeature = false;
                     returnList.Add(new Hotel
@@ -45,8 +48,8 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                         Image = getHotelImages[0].Image,
                         Late = hotel.Late,
                         Long = hotel.Long,
-                        CheckIn = hotel.CheckIn,
-                        CheckOut = hotel.CheckOut,
+                        CheckIn = dtCheckin.ToString(),
+                        CheckOut = dtCheckout.ToString(),
                     });
                 }
                 else
@@ -62,8 +65,8 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                         HasImage = false,
                         Late = hotel.Late,
                         Long = hotel.Long,
-                        CheckIn = hotel.CheckIn,
-                        CheckOut = hotel.CheckOut
+                        CheckIn = dtCheckin.ToString(),
+                        CheckOut = dtCheckout.ToString(),
                     });
                 }
 
@@ -185,13 +188,12 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             if (getHotelInfo != null)
             {
                 if (getHotelImages.Any())
-                {
+                 {
                     returnList.Image = getHotelImages[0].Image;
                     returnList.ImageList = getHotelImages;
-                }
+                } 
                 DateTime dtCheckin = DateTime.Parse(getHotelInfo.CheckIn, new CultureInfo("ar-SA"));
                 DateTime dtCheckout = DateTime.Parse(getHotelInfo.CheckOut, new CultureInfo("ar-SA"));
-
                 returnList.Id = getHotelInfo.Id;
                 returnList.DisplayValue = getHotelInfo.DisplayValue;
                 returnList.DisplayValueDesc = getHotelInfo.DisplayValueDesc;

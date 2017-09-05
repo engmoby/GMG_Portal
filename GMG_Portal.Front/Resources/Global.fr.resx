@@ -492,4 +492,7 @@
   <data name="Footer_NewsletterError" xml:space="preserve">
     <value>Entrez le format de courrier électronique correct</value>
   </data>
+  <data name="Footer_NewsletterSending" xml:space="preserve">
+    <value>envoi</value>
+  </data>
 </root>
