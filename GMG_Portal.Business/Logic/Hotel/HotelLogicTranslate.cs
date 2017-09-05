@@ -28,6 +28,8 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 var getHotelImages = _db.Hotels_Images_Translate.Where(p => p.IsDeleted != true && p.Hotel_Id == hotel.Id && p.langId == langId).ToList();
                 var getHotelFeatures = _db.Hotels_Features_Translate.FirstOrDefault(p => p.IsDeleted != true && p.Hotel_Id == hotel.Id && p.langId == langId);
 
+                DateTime dtCheckin = DateTime.Parse(hotel.CheckIn, new CultureInfo("ar-SA"));
+                DateTime dtCheckout = DateTime.Parse(hotel.CheckOut, new CultureInfo("ar-SA"));
                 if (getHotelImages.Any())
                 {
                     if (getHotelFeatures == null)
@@ -44,8 +46,8 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                         Image = getHotelImages[0].Image,
                         Late = hotel.Late,
                         Long = hotel.Long,
-                        CheckIn = hotel.CheckIn,
-                        CheckOut = hotel.CheckOut,
+                        CheckIn = dtCheckin.ToString(),
+                        CheckOut = dtCheckout.ToString(),
                         langId = hotel.langId
                     });
                 }
@@ -62,8 +64,8 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                         HasImage = false,
                         Late = hotel.Late,
                         Long = hotel.Long,
-                        CheckIn = hotel.CheckIn,
-                        CheckOut = hotel.CheckOut,
+                        CheckIn = dtCheckin.ToString(),
+                        CheckOut = dtCheckout.ToString(),
                         langId = hotel.langId
                     });
                 }
