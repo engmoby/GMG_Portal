@@ -330,7 +330,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="TxtCheckin">@Hotel.Checkin</label><span class="red-text"> *</span>
-                                            <input type="time" ng-model="Hotel.CheckIn" class="form-control" name="TxtCheckin"
+                                            <input type="time" ng-model="Hotel.CheckIn" class="form-control" name="TxtCheckin" value="Hotel.CheckIn"
                                                    placeholder="@Hotel.Checkin" required ng-pattern="/@Regex.NameAr/">
 
                                             <div class="red-text" ng-messages="FrmAddUpdateWizard.TxtCheckin.$error" ng-show="FrmAddUpdateWizard.TxtCheckin.$touched">

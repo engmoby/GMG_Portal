@@ -43,7 +43,6 @@ namespace GMG_Portal.Data
         public virtual DbSet<Hotles_Offers_Translate> Hotles_Offers_Translate { get; set; }
         public virtual DbSet<SystemParameters_About> SystemParameters_About { get; set; }
         public virtual DbSet<SystemParameters_About_Translate> SystemParameters_About_Translate { get; set; }
-        public virtual DbSet<Systemparameters_Admin> Systemparameters_Admin { get; set; }
         public virtual DbSet<SystemParameters_CareerForm> SystemParameters_CareerForm { get; set; }
         public virtual DbSet<SystemParameters_Careers> SystemParameters_Careers { get; set; }
         public virtual DbSet<SystemParameters_Careers_Translate> SystemParameters_Careers_Translate { get; set; }
@@ -71,5 +70,6 @@ namespace GMG_Portal.Data
         public virtual DbSet<SystemParameters_Owners> SystemParameters_Owners { get; set; }
         public virtual DbSet<SystemParameters_Owners_Translate> SystemParameters_Owners_Translate { get; set; }
         public virtual DbSet<SystemParameters_PaymentType> SystemParameters_PaymentType { get; set; }
+        public virtual DbSet<Systemparameters_Admin> Systemparameters_Admin { get; set; }
     }
 }

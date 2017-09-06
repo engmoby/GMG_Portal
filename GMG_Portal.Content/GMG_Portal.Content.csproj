@@ -135,6 +135,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Admin\SystemParameters\Admin.Designer.cs">
+      <DependentUpon>Admin.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Admin\SystemParameters\Owner.Designer.cs">
       <DependentUpon>Owner.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -263,6 +268,11 @@
     <EmbeddedResource Include="Admin\SystemParameters\News.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>News.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\SystemParameters\Admin.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Admin.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\SystemParameters\Owner.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

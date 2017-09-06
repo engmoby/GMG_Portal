@@ -30,8 +30,8 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         }
         public Systemparameters_Admin Login(Systemparameters_Admin admin)
         {
-            var ss= _db.Systemparameters_Admin.FirstOrDefault(x => x.UserName == admin.UserName && x.PassWd == admin.PassWd);
-            return ss;
+            return _db.Systemparameters_Admin.FirstOrDefault(x => x.UserName == admin.UserName && x.PassWd == admin.PassWd && x.IsDeleted);
+
         }
         private Systemparameters_Admin Save(Systemparameters_Admin admin)
         {
@@ -67,6 +67,8 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 DisplayName = postedAdmin.DisplayName,
                 UserName = postedAdmin.UserName,
                 Email = postedAdmin.Email,
+                PassWd = postedAdmin.PassWd,
+                Phone = postedAdmin.Phone,
                 Department = postedAdmin.Department,
                 DisplayFront = postedAdmin.DisplayFront,
                 DateOfBirth = postedAdmin.DateOfBirth,
@@ -83,6 +85,8 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             Systemparameters_Admin admin = Get(postedAdmin.Id);
             admin.DisplayName = postedAdmin.DisplayName;
             admin.UserName = postedAdmin.UserName;
+            admin.PassWd = postedAdmin.PassWd;
+            admin.Phone = postedAdmin.Phone;
             admin.Email = postedAdmin.Email;
             admin.Department = postedAdmin.Department;
             admin.DisplayFront = postedAdmin.DisplayFront;

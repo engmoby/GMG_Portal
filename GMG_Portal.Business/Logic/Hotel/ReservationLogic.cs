@@ -20,6 +20,10 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         {
             return _db.Hotels_Reservation.OrderBy(p => p.SeenBy).ToList();
         }
+        public IEnumerable<Hotels_Reservation> GetAllWithSeenHomePage()
+        {
+            return _db.Hotels_Reservation.OrderBy(p => p.SeenBy).ToList().Take(5);
+        }
         public List<Hotels_Reservation> GetAll()
         {
             return _db.Hotels_Reservation.Where(p => p.SeenDate != null).ToList();

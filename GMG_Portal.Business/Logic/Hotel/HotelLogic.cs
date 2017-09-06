@@ -30,8 +30,8 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 var getHotelImages = _db.Hotels_Images.Where(p => p.IsDeleted != true && p.Hotel_Id == hotel.Id).ToList();
                 var getHotelFeatures = _db.Hotels_Features.FirstOrDefault(p => p.IsDeleted != true && p.Hotel_Id == hotel.Id);
 
-                DateTime dtCheckin = DateTime.Parse(hotel.CheckIn, new CultureInfo("ar-SA"));
-                DateTime dtCheckout = DateTime.Parse(hotel.CheckOut, new CultureInfo("ar-SA"));
+                DateTime dtCheckin = DateTime.Parse(hotel.CheckIn).AddHours(2);
+                DateTime dtCheckout = DateTime.Parse(hotel.CheckOut).AddHours(2);
                 if (getHotelImages.Any())
                 {
 
@@ -193,7 +193,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                     returnList.Image = getHotelImages[0].Image;
                     returnList.ImageList = getHotelImages;
                 }
-      
+
 
                 DateTime dtCheckin = DateTime.Parse(getHotelInfo.CheckIn);
                 DateTime dtCheckout = DateTime.Parse(getHotelInfo.CheckOut);
@@ -243,9 +243,11 @@ namespace GMG_Portal.Business.Logic.SystemParameters
 
             if (getHotelInfo != null)
             {
-                DateTime dtCheckin = DateTime.Parse(getHotelInfo.CheckIn, new CultureInfo("ar-SA"));
-                DateTime dtCheckout = DateTime.Parse(getHotelInfo.CheckOut, new CultureInfo("ar-SA"));
+                //DateTime dtCheckin = DateTime.Parse(getHotelInfo.CheckIn, new CultureInfo("ar-SA"));
+                //DateTime dtCheckout = DateTime.Parse(getHotelInfo.CheckOut, new CultureInfo("ar-SA"));
 
+                DateTime dtCheckin = DateTime.Parse(getHotelInfo.CheckIn).AddHours(2);
+                DateTime dtCheckout = DateTime.Parse(getHotelInfo.CheckOut).AddHours(2);
                 if (getHotelImages.Any())
                 {
                     returnList.Image = getHotelImages[0].Image;

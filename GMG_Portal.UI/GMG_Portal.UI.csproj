@@ -219,6 +219,7 @@
     <Compile Include="Controllers\Admin\NewsCategoryController.cs" />
     <Compile Include="Controllers\Admin\NewsController.cs" />
     <Compile Include="Controllers\Admin\NewsLetterController.cs" />
+    <Compile Include="Controllers\Admin\UserController.cs" />
     <Compile Include="Controllers\Admin\OwnersController.cs" />
     <Compile Include="Controllers\Admin\MissionController.cs" />
     <Compile Include="Controllers\Admin\VisionController.cs" />
@@ -491,6 +492,7 @@
     </Content>
     <Content Include="Scripts\app\app.js" />
     <Content Include="Scripts\app\Login.js" />
+    <Content Include="Scripts\app\pages\User\User.js" />
     <Content Include="Scripts\app\pages\HomePage\HomePage.js" />
     <Content Include="Scripts\app\pages\About\About.js" />
     <Content Include="Scripts\app\pages\CoreValues\CoreValues.js" />
@@ -515,6 +517,7 @@
     <Content Include="Scripts\app\pages\pages.module.js" />
     <Content Include="Scripts\app\pages\Settings.js" />
     <Content Include="Scripts\app\pages\Vision\Vision.js" />
+    <Content Include="Scripts\app\services\User.js" />
     <Content Include="Scripts\app\services\HomePage.js" />
     <Content Include="Scripts\app\services\About.js" />
     <Content Include="Scripts\app\services\CoreValues.js" />
@@ -1081,6 +1084,7 @@
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Scripts\app\theme\js.cookie" />
     <Content Include="Views\InstantNotify\Index.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GMG_Portal.API\GMG_Portal.API.csproj">

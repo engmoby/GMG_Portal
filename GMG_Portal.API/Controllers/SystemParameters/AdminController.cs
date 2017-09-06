@@ -37,8 +37,8 @@ namespace GMG_Portal.API.Controllers.SystemParameters
         {
             try
             {
-                var AdminLogic = new AdminLogic();
-                var obj = AdminLogic.GetAllWithDeleted();
+                var adminLogic = new AdminLogic();
+                var obj = adminLogic.GetAllWithDeleted();
                 return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Admin>>(obj));
             }
             catch (Exception ex)

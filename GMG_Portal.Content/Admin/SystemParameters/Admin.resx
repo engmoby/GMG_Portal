@@ -117,82 +117,139 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AccountType" xml:space="preserve">
-    <value>Account Type</value>
+  <data name="Action" xml:space="preserve">
+    <value>Actions</value>
   </data>
-  <data name="Countries" xml:space="preserve">
-    <value>Countries</value>
+  <data name="BtnAdd" xml:space="preserve">
+    <value>Add</value>
   </data>
-  <data name="Cities" xml:space="preserve">
-    <value>Cities</value>
+  <data name="btnSaveLbl" xml:space="preserve">
+    <value>Save</value>
   </data>
-  <data name="Departments" xml:space="preserve">
-    <value>Departments</value>
+  <data name="CannotDeleted" xml:space="preserve">
+    <value>Can't be deleted</value>
   </data>
-  <data name="Languages" xml:space="preserve">
-    <value>Languages</value>
+  <data name="DeleteSuccessMessage" xml:space="preserve">
+    <value>Deleted Successfully</value>
   </data>
-  <data name="HomeSlider" xml:space="preserve">
-    <value>Home Slider</value>
+  <data name="EnglishNameUnique" xml:space="preserve">
+    <value>Display name must be unique</value>
   </data>
-  <data name="Mission" xml:space="preserve">
-    <value>Mission</value>
+  <data name="ModalTitle" xml:space="preserve">
+    <value>Owner</value>
   </data>
-  <data name="News" xml:space="preserve">
-    <value>News</value>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
   </data>
-  <data name="Vision" xml:space="preserve">
-    <value>Vision</value>
+  <data name="TitleDisplay" xml:space="preserve">
+    <value>Title</value>
   </data>
-  <data name="CareerForm" xml:space="preserve">
-    <value>Career Form</value>
+  <data name="TxtNamePatternErrorMessage" xml:space="preserve">
+    <value>Invalid Pattern</value>
   </data>
-  <data name="Careers" xml:space="preserve">
-    <value>Careers</value>
+  <data name="DisplayFront" xml:space="preserve">
+    <value>Display Front</value>
   </data>
-  <data name="Categories" xml:space="preserve">
-    <value>Categories</value>
+  <data name="Icon" xml:space="preserve">
+    <value>Icon</value>
   </data>
-  <data name="ContactForm" xml:space="preserve">
-    <value>Contact Form</value>
+  <data name="TxtNameUniqueErrorMessage" xml:space="preserve">
+    <value>Name  is unique</value>
   </data>
-  <data name="ContactUs" xml:space="preserve">
-    <value>ContactUs</value>
+  <data name="Desc" xml:space="preserve">
+    <value>Description</value>
   </data>
-  <data name="Features" xml:space="preserve">
-    <value>Features</value>
+  <data name="DescDisplay" xml:space="preserve">
+    <value>Description</value>
   </data>
-  <data name="Hotels" xml:space="preserve">
-    <value>Hotels</value>
+  <data name="Image" xml:space="preserve">
+    <value>Image</value>
   </data>
-  <data name="NewsLetter" xml:space="preserve">
-    <value>NewsLetter</value>
+  <data name="Rate" xml:space="preserve">
+    <value>Rate</value>
   </data>
-  <data name="Offers" xml:space="preserve">
-    <value>Offers</value>
+  <data name="RateDisplay" xml:space="preserve">
+    <value>Rate</value>
   </data>
-  <data name="Owners" xml:space="preserve">
-    <value>Owners</value>
+  <data name="SaveSuccessMessage" xml:space="preserve">
+    <value>Save Done Successfully</value>
   </data>
-  <data name="PaymentTypes" xml:space="preserve">
-    <value>Payment Types</value>
+  <data name="TableBtnDelete" xml:space="preserve">
+    <value>Delete</value>
   </data>
-  <data name="Reservation" xml:space="preserve">
-    <value>Reservation</value>
+  <data name="TableBtnEdit" xml:space="preserve">
+    <value>Edit</value>
   </data>
-  <data name="About" xml:space="preserve">
-    <value>About</value>
+  <data name="TxtDescPatternErrorMessage" xml:space="preserve">
+    <value>Description Invalid Pattern</value>
   </data>
-  <data name="NewsCategory" xml:space="preserve">
-    <value>News Category</value>
+  <data name="TxtDescRequiredErrorMessage" xml:space="preserve">
+    <value>Descriptionis required</value>
   </data>
-  <data name="CoreValues" xml:space="preserve">
-    <value>Core Values</value>
+  <data name="TxtDescUniqueErrorMessage" xml:space="preserve">
+    <value>Description is unique</value>
   </data>
-  <data name="InstantNotify" xml:space="preserve">
-    <value>Instant Notify</value>
+  <data name="TxtImagePatternErrorMessage" xml:space="preserve">
+    <value>Image Invalid Pattern</value>
   </data>
-  <data name="Users" xml:space="preserve">
-    <value>Users</value>
+  <data name="TxtImageRequiredErrorMessage" xml:space="preserve">
+    <value>Image required</value>
+  </data>
+  <data name="TxtImageUniqueErrorMessage" xml:space="preserve">
+    <value>Image is unique</value>
+  </data>
+  <data name="txtSearchLbl" xml:space="preserve">
+    <value>search ...</value>
+  </data>
+  <data name="TxtNameRequiredErrorMessage" xml:space="preserve">
+    <value>Name is required</value>
+  </data>
+  <data name="TxtUrlPatternErrorMessage" xml:space="preserve">
+    <value>Url Invalid Pattern</value>
+  </data>
+  <data name="UpdateSuccessMessage" xml:space="preserve">
+    <value>Updated Successfully</value>
+  </data>
+  <data name="Url" xml:space="preserve">
+    <value>URL</value>
+  </data>
+  <data name="TxtDisplayNamePatternErrorMessage" xml:space="preserve">
+    <value>Invalid Pattern</value>
+  </data>
+  <data name="TxtDisplayNameRequiredErrorMessage" xml:space="preserve">
+    <value>DisplayName is required</value>
+  </data>
+  <data name="Postion" xml:space="preserve">
+    <value>Postion</value>
+  </data>
+  <data name="Facebook" xml:space="preserve">
+    <value>Facebook</value>
+  </data>
+  <data name="LinkedIn" xml:space="preserve">
+    <value>LinkedIn</value>
+  </data>
+  <data name="Twitter" xml:space="preserve">
+    <value>Twitter</value>
+  </data>
+  <data name="DisplayName" xml:space="preserve">
+    <value>DisplayName</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>UserName</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>phone</value>
+  </data>
+  <data name="TxtPasswordRequiredErrorMessage" xml:space="preserve">
+    <value>Password is required</value>
+  </data>
+  <data name="TxtUserNameRequiredErrorMessage" xml:space="preserve">
+    <value>Username is required</value>
   </data>
 </root>

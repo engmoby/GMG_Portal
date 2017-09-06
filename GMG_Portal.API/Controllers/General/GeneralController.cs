@@ -230,7 +230,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
             try
             {
                 var careerFormLogic = new CareerFormLogic();
-                var obj = careerFormLogic.GetAllWithSeen().Take(5);
+                var obj = careerFormLogic.GetAllWithSeenHomePage();
                 return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<CareerForm>>(obj));
             }
             catch (Exception ex)
@@ -244,8 +244,8 @@ namespace GMG_Portal.API.Controllers.SystemParameters
             try
             {
                 var contactFormLogic = new ContactFormLogic();
-                var obj = contactFormLogic.GetAllWithSeen().Take(5);
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<ContactForm>>(obj));
+                var obj = contactFormLogic.GetAllWithSeenHomePage();
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<ContactForm>(obj));
             }
             catch (Exception ex)
             {
@@ -258,7 +258,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
             try
             {
                 var reservationLogic = new ReservationLogic();
-                var obj = reservationLogic.GetAllWithSeen().Take(5);
+                var obj = reservationLogic.GetAllWithSeenHomePage();
                 return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Reservation>>(obj));
             }
             catch (Exception ex)

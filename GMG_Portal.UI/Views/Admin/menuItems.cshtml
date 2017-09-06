@@ -230,31 +230,30 @@
                                    { "name": "@GMG_Portal.Content.Menu.InstantNotify", "title": "@GMG_Portal.Content.Menu.InstantNotify", "level": "1", "stateRef": "InstantNotify", "templateUrl": "/InstantNotify" }
                                </text>
                            }
-       
+
         ]
     });
     </text>
     }
 
-
-    
     @if (true)
-    {
-        <text>
+     {
+         <text>
     menuItems.push({
         "name": "Notify", "title": "Users", "level": "0", "icon": "ion-gear-a", "subMenu": [
             @if (true)
-        {
+         {
 
-                               <text>
-                                   { "name": "@GMG_Portal.Content.Menu.InstantNotify", "title": "@GMG_Portal.Content.Menu.InstantNotify", "level": "1", "stateRef": "InstantNotify", "templateUrl": "/InstantNotify" }
-                               </text>
-    }
-       
+                                <text>
+                                    { "name": "@GMG_Portal.Content.Menu.Users", "title": "@GMG_Portal.Content.Menu.Users", "level": "1", "stateRef": "Users", "templateUrl": "/User" }
+                                </text>
+     }
+
         ]
     });
-        </text>
+    </text>
     }
+
 
 
 </script>

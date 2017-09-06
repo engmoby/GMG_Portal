@@ -5,20 +5,16 @@
 }
 
 <div class="page-top clearfix" scroll-position="scrolled" max-height="50" ng-class="{'scrolled': scrolled}">
-    <a href="#/dashboard" class="al-logo clearfix">     <img src="~/assets/img/logo.png" style="    height: 68px;" /></a>
+    <a href="#/dashboard" class="al-logo clearfix"><img src="~/assets/img/logo.png" style="height: 68px;" /></a>
     <a href="#" class="collapse-menu-link ion-navicon" ba-sidebar-toggle-menu></a>
 
-    <p class="search" style=" color: black;font-size: 19px;">
-        
-        @*<i class="ion-ios-search-strong" ng-click="startSearch()"></i>*@
-        
-      Content Language : 
-        <select id="DropdwonLang" name="DropdwonLang"><option value="en">English</option>
+    <div class="search" style="width: 354px;;font-size: 19px;">
+        Content Language :
+        <select id="DropdwonLang" name="DropdwonLang" style="color: black;">
+            <option value="en">English</option>
             <option value="ar">العربيه</option>
             <option value="fr">Francais</option>
         </select>
-        
-        
 
     </div>
 
@@ -29,11 +25,13 @@
             </a>
             <ul class="top-dropdown-menu profile-dropdown" uib-dropdown-menu>
                 <li><i class="dropdown-arr"></i></li>
-                <li><a href="#/profile"><i class="fa fa-user"></i>Profile</a></li>
-                <li><a href="#"><i class="fa fa-cog"></i>Settings</a></li>
-                <li><a href="#" class="signout"><i class="fa fa-power-off"></i>Sign out</a></li>
+                @*<li><a href="#/profile"><i class="fa fa-user"></i>Profile</a></li>
+                <li><a href="#"><i class="fa fa-cog"></i>Settings</a></li>*@
+                <li><a href="#" class="signout"><i class="fa fa-power-off"></i>Sign out</a></li> 
+                @Html.ActionLink("Sign", "Index", "Login") 
             </ul>
         </div>
         <msg-center></msg-center>
     </div>
 </div>
+

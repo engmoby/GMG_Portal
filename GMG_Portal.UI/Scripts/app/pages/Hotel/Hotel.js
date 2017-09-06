@@ -94,8 +94,8 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
         //hotel.CheckIn = new Date(hotel.CheckIn);
         //hotel.CheckOut = new Date(hotel.CheckOut);
 
-        //hotel.CheckIn = new Date();
-        //hotel.CheckOut = new Date();
+        hotel.CheckIn = new Date($filter('date')(hotel.CheckIn, 'yyyy-MM-dd HH:mm'));
+        hotel.CheckOut = new Date($filter('date')(hotel.CheckOut, 'yyyy-MM-dd HH:mm'));
 
         $scope.Hotel = angular.copy(hotel);
 
@@ -181,7 +181,10 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
         debugger;
         $rootScope.ViewLoading = true;
         $scope.Hotel.LangId = CurrentLanguage;
-        var hours = $scope.Hotel.CheckIn.getHours();
+        //  var hours = $scope.Hotel.CheckIn.getHours();
+        $scope.Hotel.CheckIn = new Date($filter('date')($scope.Hotel.CheckIn, 'yyyy-MM-dd HH:mm'));
+        $scope.Hotel.CheckOut = new Date($filter('date')($scope.Hotel.CheckOut, 'yyyy-MM-dd HH:mm'));
+
         HotelsApi.Save($scope.Hotel).then(function (response) {
 
             switch (response.data.OperationStatus) {

@@ -12,6 +12,8 @@ namespace GMG_Portal.API.Models.SystemParameters.Admin
         public string DisplayName { get; set; }
         public string UserName { get; set; }
         public string PassWd { get; set; }
+        public string Phone { get; set; }
+
         public string Email { get; set; }
         public string DateOfBirth { get; set; }
         public string Department { get; set; }
@@ -23,5 +25,6 @@ namespace GMG_Portal.API.Models.SystemParameters.Admin
         public DateTime? DeletionTime { get; set; }
         public int? DeleterUserId { get; set; }
         public string DisplayFront { get; set; }
+        public string OperationStatus { get; set; }
     }
 }

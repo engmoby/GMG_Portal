@@ -16,6 +16,11 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         {
             _db = new GMG_Portal_DBEntities1();
         }
+        public SystemParameters_ContactForm GetAllWithSeenHomePage()
+        {
+            return _db.SystemParameters_ContactForm.OrderByDescending(x => x.Id).FirstOrDefault();
+
+        }
         public List<SystemParameters_ContactForm> GetAllWithSeen()
         {
             return _db.SystemParameters_ContactForm.OrderBy(p => p.SeenBy).ToList();

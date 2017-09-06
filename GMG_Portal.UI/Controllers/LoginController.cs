@@ -34,8 +34,9 @@ namespace GMG_Portal.UI.Controllers
         {
             //if (Request.Cookies["Global"] != null) 
             //return RedirectToAction("Index", "Admin"); 
-            //else
-                return View();
+            //else 
+            Response.Cookies.Remove("Global");
+            return View();
         }
         [HttpPost]
         [HandleError]
@@ -55,6 +56,7 @@ namespace GMG_Portal.UI.Controllers
                         var cookie = new HttpCookie("Global");
                         cookie.Value = retunObj.UserName;
                         Response.Cookies.Add(cookie);
+                        Response.Expires= 1;
                         TempData["alertMessage"] = "Thanks, Kindly our team will contact with you shortly";
 
                     }

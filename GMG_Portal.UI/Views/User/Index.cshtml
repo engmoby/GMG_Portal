@@ -1,0 +1,187 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+@using GMG_Portal.Content;
+@using GMG_Portal.Content.Admin
+@using GMG_Portal.Content.Admin.SystemParameters
+<script type="text/javascript" src="~/Scripts/app/services/User.js"></script>
+<script type="text/javascript" src="~/Scripts/app/pages/User/User.js"></script>
+<input type="hidden" id="HUpdateSuccessMessage" value="@Admin.UpdateSuccessMessage" />
+<input type="hidden" id="HSaveSuccessMessage" value="@Admin.SaveSuccessMessage" />
+<input type="hidden" id="HDeleteSuccessMessage" value="@Admin.DeleteSuccessMessage" />
+@*<input type="hidden" id="HArabicNameUnique" value="@User.TxtTitleUniqueErrorMessage" />*@
+<input type="hidden" id="HCannotDeleted" value="@Admin.CannotDeleted" />
+
+<div ng-controller="UsersController">
+
+    <div ba-panel>
+        <table class="table table-hover table-condensed" st-table="TableData" st-safe-src="Users">
+            <thead>
+                <tr class="toolbar">
+                    <th colspan="2">
+                        <div class="input-group">
+                            <span class="input-group-addon addon-left"><i class="fa fa-search" aria-hidden="true"></i></span>
+                            <input st-search="" class="form-control" placeholder="@Admin.txtSearchLbl" type="text" />
+                        </div>
+                    </th>
+                    <th colspan="1"></th>
+                    <th>
+                        <div class="input-group">
+                            <button class="btn btn-primary btn-with-icon" ng-click="open(null)"><i class="fa fa-plus" aria-hidden="true"></i>@Admin.BtnAdd</button>
+                        </div>
+                    </th>
+                </tr>
+
+                <tr class="sortable">
+                    <th>#</th>
+                    <th st-sort="Image">@Admin.UserName</th>
+                    <th st-sort="Title">@Admin.DisplayName</th>
+                    <th st-sort="Desc">@Admin.Email</th>
+                    <th st-sort="Desc">@Admin.Phone</th>
+                    <th>Actions</th>
+                </tr>
+
+            </thead>
+            <tbody>
+                <tr ng-repeat="User in TableData">
+                    <td ng-class="{'red-text': User.IsDeleted == true}">{{$index+1}}</td>
+                    <td ng-class="{'red-text': User.IsDeleted == true}">{{User.UserName}}</td>
+                    <td ng-class="{'red-text': User.IsDeleted == true}">{{User.DisplayName}}</td>
+                    <td ng-class="{'red-text': User.IsDeleted == true}">{{User.Email}}</td>
+                    <td ng-class="{'red-text': User.IsDeleted == true}">{{User.Phone}}</td>
+                    <td>
+                        <div class="buttons" ng-show="!User.IsDeleted">
+                            <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(User)"><i class="fa fa-pencil" aria-hidden="true"></i>@Admin.TableBtnEdit</button>
+                            <button class="btn btn-danger editable-table-button btn-xs btn-with-icon" ng-confirm="Confirm Delete ?" ng-click="Delete(User)"><i class="fa fa-trash-o" aria-hidden="true"></i>@Admin.TableBtnDelete</button>
+                        </div>
+                        <div class="buttons restore-button" ng-show="User.IsDeleted">
+                            <button class="center-block btn btn-default  restore-button btn-xs btn-with-icon" ng-click="Restore(User)"><i class="fa fa-undo" aria-hidden="true"></i>Restore</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr ng-show="TableData.length==0">
+                    <td colspan="4">
+                        @Shared.GridNoData
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4" class="text-center">
+                        <div st-pagination="" st-items-by-page="10"></div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+
+    @*<form name="FrmAddUpdate" novalidate ng-submit="save()" autocomplete="off">*@
+    <form name="FrmAddUpdate" ng-submit="save()" novalidate autocomplete="off">
+
+        <div class="modal fade" id="ModelAddUpdate" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">{{action |uppercase}} @Admin.ModalTitle</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="TxtDisplayName">@Admin.DisplayName</label><span class="red-text"> *</span>
+                            <input type="text" ng-model="User.DisplayName" class="form-control" name="TxtDisplayName"
+                                   placeholder="@Admin.DisplayName" ng-minlength="@Common.TitleMin5" ng-maxlength="@Common.TitleMax25" required ng-pattern="/@Regex.NameAr/">
+
+                            <div class="red-text" ng-messages="FrmAddUpdate.TxtDisplayName.$error" ng-show="FrmAddUpdate.TxtDisplayName.$touched">
+                                <span class="red-text" ng-message="required">@Admin.TxtDisplayNameRequiredErrorMessage</span>
+                                <span class="red-text" ng-message="pattern">@Admin.TxtDisplayNamePatternErrorMessage</span>
+                                <span class="red-text" ng-message="minlength">@Common.MinimumKeyWord @Common.TitleMin5 @Common.Charachter</span>
+                                <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax25 @Common.Charachter</span>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="TxtEmail">@Admin.Email</label><span class="red-text"> *</span>
+                                    <input type="text" ng-model="User.Email" class="form-control" name="TxtEmail"
+                                           placeholder="@Admin.Email" ng-minlength="@Common.TitleMin5" ng-maxlength="@Common.TitleMax25" required ng-pattern="/@Regex.Email/">
+
+                                    <div class="red-text" ng-messages="FrmAddUpdate.TxtEmail.$error" ng-show="FrmAddUpdate.TxtEmail.$touched">
+                                        <span class="red-text" ng-message="required">@Contact.TxtMailRequiredErrorMessage</span>
+                                        <span class="red-text" ng-message="pattern">@Contact.TxtMailPatternErrorMessage</span>
+                                        <span class="red-text" ng-message="notInList">@Contact.TxtMailUniqueErrorMessage</span>
+                                        <span class="red-text" ng-message="minlength">@Common.MinimumKeyWord @Common.TitleMin5 @Common.Charachter</span>
+                                        <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax25 @Common.Charachter</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="TxtUserLevel">@Admin.Phone</label><span class="red-text"> *</span>
+                                    <input type="text" ng-model="User.Phone" class="form-control" name="TxtPhone"
+                                           placeholder="@Admin.Phone" ng-minlength="@Common.TitleMin5" ng-maxlength="@Common.TitleMax25" required ng-pattern="/@Regex.Phone/">
+
+                                    <div class="red-text" ng-messages="FrmAddUpdate.TxtPhone.$error" ng-show="FrmAddUpdate.TxtPhone.$touched">
+
+                                        <span class="red-text" ng-message="required">@Contact.TxtPhoneNo1RequiredErrorMessage</span>
+                                        <span class="red-text" ng-message="pattern">@Contact.TxtPhoneNo1PatternErrorMessage</span>
+                                        <span class="red-text" ng-message="notInList">@Contact.TxtPhoneNo1UniqueErrorMessage</span>
+                                        <span class="red-text" ng-message="minlength">@Common.MinimumKeyWord @Common.TitleMin5 @Common.Charachter</span>
+                                        <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax25 @Common.Charachter</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="TxtUserName">@Admin.UserName</label><span class="red-text"> *</span>
+                                    <input type="text" ng-model="User.UserName" class="form-control" name="TxtUserName"
+                                           placeholder="@Admin.UserName" ng-minlength="@Common.TitleMin5" ng-maxlength="@Common.TitleMax25" required>
+
+                                    <div class="red-text" ng-messages="FrmAddUpdate.TxtUserName.$error" ng-show="FrmAddUpdate.TxtUserName.$touched">
+                                        <span class="red-text" ng-message="required">@Admin.TxtUserNameRequiredErrorMessage</span>
+
+                                        <span class="red-text" ng-message="minlength">@Common.MinimumKeyWord @Common.TitleMin5 @Common.Charachter</span>
+                                        <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax25 @Common.Charachter</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="TxtPassword">@Admin.Password</label><span class="red-text"> *</span>
+                                    <input type="password" ng-model="User.PassWd" class="form-control" name="TxtPassword"
+                                           placeholder="@Admin.Password" ng-minlength="@Common.TitleMin5" ng-maxlength="@Common.TitleMax25" required>
+
+                                    <div class="red-text" ng-messages="FrmAddUpdate.TxtPassword.$error" ng-show="FrmAddUpdate.TxtPassword.$touched">
+                                        <span class="red-text" ng-message="required">@Admin.TxtPasswordRequiredErrorMessage</span>
+                                        <span class="red-text" ng-message="minlength">@Common.MinimumKeyWord @Common.TitleMin5 @Common.Charachter</span>
+                                        <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax25 @Common.Charachter</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary btn-with-icon" ng-disabled="FrmAddUpdate.$invalid"><i class="ion-android-checkmark-circle"></i>@Admin.btnSaveLbl</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+
+
+</div>
+
+
+
+
+
+

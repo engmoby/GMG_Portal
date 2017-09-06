@@ -28,8 +28,11 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 var getHotelImages = _db.Hotels_Images_Translate.Where(p => p.IsDeleted != true && p.Hotel_Id == hotel.Id && p.langId == langId).ToList();
                 var getHotelFeatures = _db.Hotels_Features_Translate.FirstOrDefault(p => p.IsDeleted != true && p.Hotel_Id == hotel.Id && p.langId == langId);
 
-                DateTime dtCheckin = DateTime.Parse(hotel.CheckIn, new CultureInfo("ar-SA"));
-                DateTime dtCheckout = DateTime.Parse(hotel.CheckOut, new CultureInfo("ar-SA"));
+                //DateTime dtCheckin = DateTime.Parse(hotel.CheckIn, new CultureInfo("ar-SA"));
+                //DateTime dtCheckout = DateTime.Parse(hotel.CheckOut, new CultureInfo("ar-SA"));
+
+                DateTime dtCheckin = DateTime.Parse(hotel.CheckIn).AddHours(2);
+                DateTime dtCheckout = DateTime.Parse(hotel.CheckOut).AddHours(2);
                 if (getHotelImages.Any())
                 {
                     if (getHotelFeatures == null)
@@ -191,8 +194,11 @@ namespace GMG_Portal.Business.Logic.SystemParameters
 
             if (getHotelInfo != null)
             {
-                DateTime dtCheckin = DateTime.Parse(getHotelInfo.CheckIn, new CultureInfo("ar-SA"));
-                DateTime dtCheckout = DateTime.Parse(getHotelInfo.CheckOut, new CultureInfo("ar-SA"));
+                //DateTime dtCheckin = DateTime.Parse(getHotelInfo.CheckIn, new CultureInfo("ar-SA"));
+                //DateTime dtCheckout = DateTime.Parse(getHotelInfo.CheckOut, new CultureInfo("ar-SA"));
+
+                DateTime dtCheckin = DateTime.Parse(getHotelInfo.CheckIn);
+                DateTime dtCheckout = DateTime.Parse(getHotelInfo.CheckOut);
                 if (getHotelImages.Any())
                 {
                     returnList.Image = getHotelImages[0].Image;
@@ -244,8 +250,11 @@ namespace GMG_Portal.Business.Logic.SystemParameters
 
             if (getHotelInfo != null)
             {
-                DateTime dtCheckin = DateTime.Parse(getHotelInfo.CheckIn, new CultureInfo("ar-SA"));
-                DateTime dtCheckout = DateTime.Parse(getHotelInfo.CheckOut, new CultureInfo("ar-SA"));
+                //DateTime dtCheckin = DateTime.Parse(getHotelInfo.CheckIn, new CultureInfo("ar-SA"));
+                //DateTime dtCheckout = DateTime.Parse(getHotelInfo.CheckOut, new CultureInfo("ar-SA"));
+
+                DateTime dtCheckin = DateTime.Parse(getHotelInfo.CheckIn).AddHours(2);
+                DateTime dtCheckout = DateTime.Parse(getHotelInfo.CheckOut).AddHours(2);
                 if (getHotelImages.Any())
                 {
                     returnList.Image = getHotelImages[0].Image;
