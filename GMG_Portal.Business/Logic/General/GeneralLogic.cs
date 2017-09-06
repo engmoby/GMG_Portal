@@ -32,13 +32,14 @@ namespace GMG_Portal.Business.Logic.General
             DataSet functionReturnValue = default(DataSet);
             try
             {
-               
-                //string conStr = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString.ToString();
-                string conStr = "Data Source = tcp:gmg.database.windows.net,1433; Initial Catalog = GMG_PORTAL_STAG; User Id = gmg_admin@gmg; Password = gCv3XfIkABJWl2hK;";
+                var connectionString = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+
+                ////string conStr = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString.ToString();
+                //string conStr = "Data Source = tcp:gmg.database.windows.net,1433; Initial Catalog = GMG_PORTAL_STAG; User Id = gmg_admin@gmg; Password = gCv3XfIkABJWl2hK;";
 
 
                 SqlConnection thisConnection = default(SqlConnection);
-                thisConnection = new SqlConnection(conStr);
+                thisConnection = new SqlConnection(connectionString);
                 string sql = sqlquery;
 
                 thisConnection.Open();

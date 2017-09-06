@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Net.Mail;
+using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using GMG_Portal.API.Models.SystemParameters;
 using GMG_Portal.Business.Logic.SystemParameters;
@@ -19,7 +21,10 @@ namespace Front.Helpers
         {
             try
             {
-                var msg = new MailMessage {From = new MailAddress("info@mobarkhotel.com") };
+
+         
+
+                var msg = new MailMessage {From = new MailAddress(System.Configuration.ConfigurationManager.AppSettings["MailAddress"]) };
                 if (receipients != null)
                 {
 
@@ -44,17 +49,22 @@ namespace Front.Helpers
                     }
 
 
+
+
+                    var mailusername = System.Configuration.ConfigurationManager.AppSettings["Mailusername"];
+                    var mailPassword = System.Configuration.ConfigurationManager.AppSettings["Mailpassword"];
+
                     SmtpClient client = new SmtpClient
                     {
-                        Host = "smtp.sendgrid.net",
-                        Port = 587,
+                        Host = System.Configuration.ConfigurationManager.AppSettings["MailHost"],
+                        Port = Int32.Parse( System.Configuration.ConfigurationManager.AppSettings["MailPort"]),
                         UseDefaultCredentials = false,
                         DeliveryMethod = SmtpDeliveryMethod.Network,
                         EnableSsl= true,
                         Timeout = 10000,
                      
 
-                        Credentials = new NetworkCredential("apikey", "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")
+                        Credentials = new NetworkCredential(mailusername, mailPassword)
                     };
 
 
@@ -67,8 +77,11 @@ namespace Front.Helpers
             catch (Exception e)
             {
                 Console.WriteLine(e);
-              //  throw;
+                return;
+
+                //  throw;
             }
+            return ;
 
 
 
