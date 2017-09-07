@@ -1,5 +1,13 @@
 ﻿controllerProvider.register('UsersController', ['$scope', 'UsersApi', 'uploadService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', UsersController]);
 function UsersController($scope, UsersApi, uploadService, $rootScope, $timeout, $filter, $uibModal, toastr) {
+
+    
+    $scope.showPassword = false;
+  
+    $scope.toggleShowPassword = function() {
+        $scope.showPassword = !$scope.showPassword;
+    }
+
     $scope.Image = "";
     $scope.letterLimit = 20;
     $rootScope.ViewLoading = true;
@@ -44,7 +52,8 @@ function UsersController($scope, UsersApi, uploadService, $rootScope, $timeout, 
     }
 
     $scope.save = function () {
-        $rootScope.ViewLoading = true; 
+        $scope.back();
+        $rootScope.ViewLoading = true;
         debugger;
         UsersApi.Save($scope.User).then(function (response) {
 
@@ -95,7 +104,6 @@ function UsersController($scope, UsersApi, uploadService, $rootScope, $timeout, 
             }
 
            
-            $scope.back();
             $rootScope.ViewLoading = false;
         },
         function (response) {

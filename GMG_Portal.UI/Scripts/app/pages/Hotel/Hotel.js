@@ -107,14 +107,16 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
     $scope.back = function () {
         $rootScope.ViewLoading = true;
 
-        HotelsApi.GetAll(CurrentLanguage).then(function (response) {
-            $scope.Hotels = response.data;
+        //HotelsApi.GetAll(CurrentLanguage).then(function (response) {
+        //    $scope.Hotels = response.data;
 
-            $rootScope.ViewLoading = false;
-            $scope.ShowFrmAddUpdate = false;
-            $scope.ShowTableData = true;
-        });
-
+        //    $rootScope.ViewLoading = false;
+        //    $scope.ShowFrmAddUpdate = false;
+        //    $scope.ShowTableData = true;
+        //});
+        $scope.ShowFrmAddUpdate = false;
+        $scope.ShowTableData = true;
+        $rootScope.ViewLoading = false;
     }
     $scope.Restore = function (hotel) {
         $scope.Hotel = angular.copy(hotel);

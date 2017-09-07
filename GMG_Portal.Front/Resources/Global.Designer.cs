@@ -682,6 +682,15 @@ namespace Front.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your Email Already Exist.
+        /// </summary>
+        public static string Footer_NewsletterAlreadyExist {
+            get {
+                return ResourceManager.GetString("Footer_NewsletterAlreadyExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your Email.
         /// </summary>
         public static string Footer_NewsletterBoxEmail {

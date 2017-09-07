@@ -24,9 +24,9 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         {
             return _db.SystemParameters_Newsletter.Where(p => p.Seen != true).ToList();
         }
-        public SystemParameters_Newsletter Get(int id)
+        public SystemParameters_Newsletter Get(string mail)
         {
-            return _db.SystemParameters_Newsletter.Find(id);
+            return _db.SystemParameters_Newsletter.FirstOrDefault(x => x.Mail==mail);
         }
         private SystemParameters_Newsletter Save(SystemParameters_Newsletter newsletter)
         {
@@ -56,7 +56,12 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         }
         public SystemParameters_Newsletter Insert(SystemParameters_Newsletter postedNewsletter)
         {
-
+            SystemParameters_Newsletter checkNewsletter= Get(postedNewsletter.Mail);
+            if (checkNewsletter != null)
+            {
+                checkNewsletter.OperationStatus = "AlreadyExist";
+                return checkNewsletter;
+            }
             var newsletter = new SystemParameters_Newsletter()
             {
                 Mail = postedNewsletter.Mail,
@@ -67,7 +72,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         }
         public SystemParameters_Newsletter Edit(SystemParameters_Newsletter postedNewsletter)
         {
-            SystemParameters_Newsletter newsletter = Get(postedNewsletter.Id);
+            SystemParameters_Newsletter newsletter = Get(postedNewsletter.Mail);
             newsletter.SeenDate = Parameters.CurrentDateTime;
             newsletter.SeenBy = Parameters.UserId; 
             newsletter.Seen = postedNewsletter.Seen;

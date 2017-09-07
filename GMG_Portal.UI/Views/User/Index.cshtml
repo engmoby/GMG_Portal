@@ -156,8 +156,49 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="TxtPassword">@Admin.Password</label><span class="red-text"> *</span>
-                                    <input type="password" ng-model="User.PassWd" class="form-control" name="TxtPassword"
+                                    @*<input type="password" ng-model="User.PassWd" class="form-control" name="TxtPassword" 
+                                           placeholder="@Admin.Password" ng-minlength="@Common.TitleMin5" ng-maxlength="@Common.TitleMax25" required>*@
+                                    
+                                    @*<input ng-show="showpassword"  type="text" ng-model="User.PassWd"  name="TxtPassword" 
                                            placeholder="@Admin.Password" ng-minlength="@Common.TitleMin5" ng-maxlength="@Common.TitleMax25" required>
+                                    <input ng-hide="showpassword" type="password" ng-model="User.PassWd"   name="TxtPassword" 
+                                           placeholder="@Admin.Password" ng-minlength="@Common.TitleMin5" ng-maxlength="@Common.TitleMax25" required>
+                                    <input type="checkbox" ng-model="showpassword" ng-checked="false">*@
+                                     
+                                     
+                                    <!-- show password as type="password" -->
+                                    <div ng-if="!showPassword"
+                                         class="form-group has-feedback"> 
+                                        <input type="password"
+                                               ng-model="User.PassWd"
+                                               class="form-control"
+                                               name="TxtPassword" 
+                                               placeholder="@Admin.Password"
+                                               ng-minlength="@Common.TitleMin5"
+                                                ng-maxlength="@Common.TitleMax25" required>
+                                        <span ng-if="User.PassWd"
+                                              ng-click="toggleShowPassword()"
+                                              class="glyphicon glyphicon-eye-open form-control-feedback" 
+                                              style="cursor: pointer; pointer-events: all;">
+                                        </span>
+                                    </div>
+      
+                                    <!-- show password as type="text" -->
+                                    <div ng-if="showPassword"
+                                         class="form-group has-feedback"> 
+                                        <input type="text"
+                                               ng-model="User.PassWd" 
+                                               class="form-control"
+                                               name="TxtPassword" 
+                                               placeholder="@Admin.Password"
+                                               ng-minlength="@Common.TitleMin5"
+                                               ng-maxlength="@Common.TitleMax25" required>
+                                        <span ng-if="User.PassWd"
+                                              ng-click="toggleShowPassword()"
+                                              class="glyphicon glyphicon-eye-close form-control-feedback" 
+                                              style="cursor: pointer; pointer-events: all;">
+                                        </span>
+                                    </div>
 
                                     <div class="red-text" ng-messages="FrmAddUpdate.TxtPassword.$error" ng-show="FrmAddUpdate.TxtPassword.$touched">
                                         <span class="red-text" ng-message="required">@Admin.TxtPasswordRequiredErrorMessage</span>

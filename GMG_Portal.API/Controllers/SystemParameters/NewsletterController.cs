@@ -60,16 +60,9 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 {
                     var newsletterLogic = new NewsletterLogic();
                     SystemParameters_Newsletter newsletter = null;
-                    if (postedNewsletters.Id.Equals(0))
-                    {
+                    
                         newsletter = newsletterLogic.Insert(Mapper.Map<SystemParameters_Newsletter>(postedNewsletters));
-                    }
-                    else
-                    {
-
-                        newsletter = newsletterLogic.Edit(Mapper.Map<SystemParameters_Newsletter>(postedNewsletters));
-
-                    }
+                 
                     return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Newsletter>(newsletter));
                 }
                 goto ThrowBadRequest;

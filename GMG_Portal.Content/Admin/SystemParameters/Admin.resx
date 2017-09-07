@@ -136,7 +136,7 @@
     <value>Display name must be unique</value>
   </data>
   <data name="ModalTitle" xml:space="preserve">
-    <value>Owner</value>
+    <value>User</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>

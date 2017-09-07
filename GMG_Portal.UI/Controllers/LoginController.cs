@@ -35,7 +35,12 @@ namespace GMG_Portal.UI.Controllers
             //if (Request.Cookies["Global"] != null) 
             //return RedirectToAction("Index", "Admin"); 
             //else 
-            Response.Cookies.Remove("Global");
+            if (Request.Cookies["Global"] != null)
+            {
+                var c = new HttpCookie("Global");
+                c.Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies.Add(c);
+            } 
             return View();
         }
         [HttpPost]
@@ -57,7 +62,7 @@ namespace GMG_Portal.UI.Controllers
                         cookie.Value = retunObj.UserName;
                         Response.Cookies.Add(cookie);
                         Response.Expires= 1;
-                        TempData["alertMessage"] = "Thanks, Kindly our team will contact with you shortly";
+                        TempData["UserName"] = retunObj.UserName;
 
                     }
                 }
@@ -66,6 +71,51 @@ namespace GMG_Portal.UI.Controllers
 
             return View(admin);
         }
+
+        //
+        // GET: /Account/ForgotPassword
+        [AllowAnonymous]
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        //
+        // POST: /Account/ForgotPassword
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ForgotPassword(API.Models.SystemParameters.Admin.Admin model)
+        {
+            if (ModelState.IsValid)
+            {
+                //var user = await UserManager.FindByNameAsync(model.Email);
+                //if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
+                //{
+                //    // Don't reveal that the user does not exist or is not confirmed
+                //    return View("ForgotPasswordConfirmation");
+                //}
+
+                // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
+                // Send an email with this link
+                // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
+                // await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                // return RedirectToAction("ForgotPasswordConfirmation", "Account");
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
+        //
+        // GET: /Account/ForgotPasswordConfirmation
+        [AllowAnonymous]
+        public ActionResult ForgotPasswordConfirmation()
+        {
+            return View();
+        }
+
 
     }
 }

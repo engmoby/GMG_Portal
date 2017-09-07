@@ -495,4 +495,7 @@
   <data name="Footer_NewsletterSending" xml:space="preserve">
     <value>Sending</value>
   </data>
+  <data name="Footer_NewsletterAlreadyExist" xml:space="preserve">
+    <value>Your Email Already Exist</value>
+  </data>
 </root>

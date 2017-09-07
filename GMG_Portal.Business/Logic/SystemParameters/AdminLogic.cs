@@ -30,7 +30,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         }
         public Systemparameters_Admin Login(Systemparameters_Admin admin)
         {
-            return _db.Systemparameters_Admin.FirstOrDefault(x => x.UserName == admin.UserName && x.PassWd == admin.PassWd && x.IsDeleted);
+            return _db.Systemparameters_Admin.FirstOrDefault(x => x.UserName == admin.UserName && x.PassWd == admin.PassWd && x.IsDeleted==false);
 
         }
         private Systemparameters_Admin Save(Systemparameters_Admin admin)

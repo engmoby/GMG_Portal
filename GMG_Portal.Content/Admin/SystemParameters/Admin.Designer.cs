@@ -196,7 +196,7 @@ namespace GMG_Portal.Content.Admin.SystemParameters {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Owner.
+        ///   Looks up a localized string similar to User.
         /// </summary>
         public static string ModalTitle {
             get {

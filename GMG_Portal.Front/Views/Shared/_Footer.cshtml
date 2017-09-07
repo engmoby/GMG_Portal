@@ -1,5 +1,4 @@
-﻿ 
-<!-- Footer Content  -->
+﻿<!-- Footer Content  -->
 <footer class="mg-footer">
     <div class="mg-footer-widget">
         <div class="container">
@@ -37,14 +36,14 @@
                             </p>
                             <button class="btn btn-main" id="btnSave" onclick="sendnewsletter()" type="button">@Front.Resources.Global.Footer_NewsletterButton</button>
                             @*<div id="response">from submit script - shows on success</div>
-                            <div id="loading"></div>*@ 
+                                <div id="loading"></div>*@
                             <div id="MSG" style="color: white"> </div>
                         </form>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6">
                     <div class="widget">
-                        <h2 class="mg-widget-title">@Front.Resources.Global.Footer_SocialMedia</h2> 
+                        <h2 class="mg-widget-title">@Front.Resources.Global.Footer_SocialMedia</h2>
                         <ul class="mg-footer-social" id="divsocial"></ul>
                     </div>
                 </div>
@@ -60,7 +59,7 @@
             </div>
         </div>
     </div>
-</footer> 
+</footer>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
@@ -74,7 +73,7 @@
 
             $.ajax({
                 type: 'post',
-                url: 'http://gmgapi.azurewebsites.net/SystemParameters/Newsletter/Save', 
+                url: 'http://gmgapi.azurewebsites.net/SystemParameters/Newsletter/Save',
                 data: $("form").serialize(),
                 complete: function (results) {
                     setTimeout(function () {
@@ -89,13 +88,14 @@
 
 
 <script type="text/javascript">
-    function validateEmail(email) { 
-        var pattern = new RegExp("[-0-9a-zA-Z.+_]+@@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,4}"); 
+    function validateEmail(email) {
+        var pattern = new RegExp("[-0-9a-zA-Z.+_]+@@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,4}");
         return pattern.test(email);
     }
 
 
     $(document).ready(function () {
+
         $('#btnSave').attr('disabled', true);
         $('#Mail').keyup(function () {
             if ($(this).val().length != 0) {
@@ -118,15 +118,20 @@
             $("#MSG").css("color", "red");
 
         } else {
-            $('#btnSave').attr('disabled', true); 
+            $('#btnSave').attr('disabled', true);
             $('#MSG').html('@Front.Resources.Global.Footer_NewsletterSending');
+            var apiUrl = document.querySelector('#HServicesURL').value;
             $.ajax({
-                url: 'http://gmgapi.azurewebsites.net/SystemParameters/Newsletter/Save',
+                url: apiUrl + "/SystemParameters/Newsletter/Save",
                 type: 'post',
                 dataType: 'json',
                 success: function (data) {
-                    $('#MSG').html("@Front.Resources.Global.Footer_NewsletterSubmitMsg");
-                    $('#btnSave').attr('disabled', false);
+                    if (data.OperationStatus === "Succeded") {
+                        $('#MSG').html("@Front.Resources.Global.Footer_NewsletterSubmitMsg");
+                        $('#btnSave').attr('disabled', false);
+                    } else {
+                        $('#MSG').html("@Front.Resources.Global.Footer_NewsletterAlreadyExist");
+                    }
 
                 },
                 data: newsletter
