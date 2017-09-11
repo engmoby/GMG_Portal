@@ -274,7 +274,7 @@
                                 <label for="TxtTitle">@Hotel.Title</label><span class="red-text"> *</span>
                                 <input type="text" ng-model="Hotel.DisplayValue" class="form-control" name="TxtTitle"
                                        placeholder="@Hotel.Title" ng-minlength="15" ng-maxlength="30" required ng-pattern="/@Regex.NameAr/">
-
+                         
                                 <div class="red-text" ng-messages="FrmAddUpdateWizard.TxtTitle.$error" ng-show="FrmAddUpdateWizard.TxtTitle.$touched">
                                     <span class="red-text" ng-message="required">@Hotel.TxtTitleRequiredErrorMessage</span>
                                     <span class="red-text" ng-message="pattern">@Hotel.TxtTitlePatternErrorMessage</span>
@@ -381,7 +381,12 @@
                     <div class="row" style="margin-bottom:10px">
                         <div class="col-md-12 pull-right">
                             <button ng-click="save()" class="btn btn-primary btn-with-icon pull-right" ng-disabled="FrmAddUpdateWizard.$invalid"><i class="ion-android-checkmark-circle"></i>Contuine</button>
-                            <button type="submit" class="btn btn-primary btn-with-icon" ng-click="saveExist()" ng-show="action=='edit'" ng-disabled="FrmAddUpdateWizard.$invalid"><i class="ion-android-checkmark-circle"></i>Save & exit</button>
+                            <div ng-show="!FrmAddUpdateWizard.$dirty">
+                                <button type="submit" class="btn btn-primary btn-with-icon" ng-click="back()" ng-show="action=='edit'" ng-disabled="FrmAddUpdateWizard.$invalid"><i class="ion-android-checkmark-circle"></i>Save & exit</button>
+                            </div>
+                            <div ng-show="FrmAddUpdateWizard.$dirty">
+                                <button type="submit" class="btn btn-primary btn-with-icon" ng-click="saveExist()" ng-show="action=='edit'" ng-disabled="FrmAddUpdateWizard.$invalid"><i class="ion-android-checkmark-circle"></i>Save & exit</button>
+                            </div>
                             <button type="button" ng-click="back()" class="btn btn-default btn-with-icon pull-right"><i class="ion-stats-bars"></i>Exit</button>
 
 
@@ -395,8 +400,8 @@
 
         <div class="col-md-12" ng-show="imagesListDiv">
             <div ba-panel ba-panel-name="Form Wizard" ba-panel-class="with-scroll">
-                <h2 style="margin-left: 468px;">Hotel Title:   {{Hotel.DisplayValue}}</h2>
-                <h5 style="margin-left: 388px;"> Note: If no images added hotel will not appear (At least one image)</h5>
+                <h2  >Hotel Title:   {{Hotel.DisplayValue}}</h2>
+                <span> Note: If no images added hotel will not appear (At least one image)</span>
                 <table class="table table-hover table-condensed" st-table="TableData" st-safe-src="Hotel.ImageList">
                     <thead>
                         <tr class="toolbar">
@@ -455,7 +460,7 @@
         </div>
         <div class="col-md-12" ng-show="featuresListDiv">
             <div ba-panel ba-panel-name="Form Wizard" ba-panel-class="with-scroll">
-                <span style="margin-left: 468px;">Hotel Title:   {{Hotel.DisplayValue}}</span>
+                <h2 >Hotel Title:   {{Hotel.DisplayValue}}</h2>
                 <span> Note: If no facilities added hotel will not appear (At least one facility)</span>
 
                 <div class="floatleft">

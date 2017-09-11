@@ -21,16 +21,17 @@
     <div class="user-profile clearfix">
         <div class="al-user-profile" uib-dropdown>
             <a uib-dropdown-toggle class="profile-toggle-link">
-                <img ng-src="{{::( 'Nasta' | profilePicture )}}">
+                <img ng-src="{{::( 'Kostya' | profilePicture )}}">
             </a>
             <ul class="top-dropdown-menu profile-dropdown" uib-dropdown-menu>
                 <li><i class="dropdown-arr"></i></li>
                 @*<li><a href="#/profile"><i class="fa fa-user"></i>Profile</a></li>
                 <li><a href="#"><i class="fa fa-cog"></i>Settings</a></li>*@
-                <li><a href="#" class="signout"><i class="fa fa-power-off"></i>Sign out</a></li> 
-                @Html.ActionLink("Sign", "Index", "Login") 
+                <li>@*<a href="#" class="signout"><i class="fa fa-power-off"></i>Sign out</a>*@</li> 
+                @Html.ActionLink("Sign out", "Index", "Login" ) 
             </ul>
         </div>
+        @TempData["alertMessage"]
         <msg-center></msg-center>
     </div>
 </div>
