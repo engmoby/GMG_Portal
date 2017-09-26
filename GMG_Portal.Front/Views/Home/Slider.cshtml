@@ -16,7 +16,18 @@
             <div class="item active beactive">
                 <img src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/@Model.HomeSliders[0].Image" class="img-responsive" alt="...">
                 <div class="carousel-caption">
-                   
+                    @if (@Model.HomeSliders[0].Rating == 1)
+                    {<img src="/Content/images/stars1.png" alt="">}
+                    @if (@Model.HomeSliders[0].Rating == 2)
+                    {<img src="/Content/images/stars2.png" alt="">}
+                    @if (@Model.HomeSliders[0].Rating == 3)
+                    {<img src="/Content/images/stars3.png" alt="">}
+                    @if (@Model.HomeSliders[0].Rating == 4)
+                    {<img src="/Content/images/stars4.png" alt="">}
+                    @if (@Model.HomeSliders[0].Rating == 5)
+                    {<img src="/Content/images/stars.png" alt="">}
+                    <h2>@Model.HomeSliders[0].DisplayValue</h2>
+                    <p>@Model.HomeSliders[0].DisplayValueDesc</p>
                 </div>
             </div>
             @{  <!-- Indicators -->
@@ -26,8 +37,18 @@
                     <div class="item">
                         <img src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/@Model.HomeSliders[i].Image" class="img-responsive" alt="...">
                         <div class="carousel-caption">
-                            @*<h2>@Model.HomeSliders[i].DisplayValue</h2>
-                            <p>@Model.HomeSliders[i].DisplayValueDesc</p>*@
+                            @if (@Model.HomeSliders[i].Rating == 1)
+                            {<img src="/Content/images/stars1.png" alt="">}
+                            @if (@Model.HomeSliders[i].Rating == 2)
+                            {<img src="/Content/images/stars2.png" alt="">}
+                            @if (@Model.HomeSliders[i].Rating == 3)
+                            {<img src="/Content/images/stars3.png" alt="">}
+                            @if (@Model.HomeSliders[i].Rating == 4)
+                            {<img src="/Content/images/stars4.png" alt="">}
+                            @if (@Model.HomeSliders[i].Rating == 5)
+                            {<img src="/Content/images/stars.png" alt="">}
+                            <h2>@Model.HomeSliders[i].DisplayValue</h2>
+                            <p>@Model.HomeSliders[i].DisplayValueDesc</p>
                         </div>
                     </div>
                 }

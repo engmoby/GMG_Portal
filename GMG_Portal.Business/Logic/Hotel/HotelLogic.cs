@@ -338,6 +338,8 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 IsDeleted = postedhotel.IsDeleted,
                 Show = Parameters.Show,
                 PriceStart = postedhotel.PriceStart,
+                Rate = postedhotel.Rate,
+                Currency = postedhotel.Currency,
                 Late = postedhotel.Late,
                 Long = postedhotel.Long,
                 CheckIn = postedhotel.CheckIn,
@@ -358,6 +360,8 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             hotel.DisplayValueDesc = postedHotel.DisplayValueDesc;
             hotel.IsDeleted = postedHotel.IsDeleted;
             hotel.ImageList = postedHotel.ImageList;
+            hotel.Rate = postedHotel.Rate;
+            hotel.Currency = postedHotel.Currency;
             hotel.PriceStart = postedHotel.PriceStart;
             hotel.Late = postedHotel.Late;
             hotel.Long = postedHotel.Long;

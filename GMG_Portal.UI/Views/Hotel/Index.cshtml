@@ -220,7 +220,7 @@
                     <td ng-class="{'red-text': Hotel.IsDeleted == true }">{{$index+1}}</td>
                     <td ng-class="{'red-text': Hotel.IsDeleted == true}">{{Hotel.DisplayValue}}</td>
                     <td ng-class="{'red-text': Hotel.IsDeleted == true}">{{Hotel.DisplayValueDesc | limitTo:letterLimit}} </td>
-                    <td ng-class="{'red-text': Hotel.IsDeleted == true}">{{Hotel.PriceStart}}</td>
+                    <td ng-class="{'red-text': Hotel.IsDeleted == true}">{{Hotel.PriceStart}} {{Hotel.Cuurency}}</td>
                     <td>
                         <span ng-show="!Hotel.HasImage" class="btn-xs btn btn-danger" title="this hotel will (not) appear in the website">NO</span>
                         <span ng-show="Hotel.HasImage" class="btn-xs btn btn-success" title="this hotel will appear in the website"> YES</span>
@@ -274,7 +274,7 @@
                                 <label for="TxtTitle">@Hotel.Title</label><span class="red-text"> *</span>
                                 <input type="text" ng-model="Hotel.DisplayValue" class="form-control" name="TxtTitle"
                                        placeholder="@Hotel.Title" ng-minlength="15" ng-maxlength="30" required ng-pattern="/@Regex.NameAr/">
-                         
+
                                 <div class="red-text" ng-messages="FrmAddUpdateWizard.TxtTitle.$error" ng-show="FrmAddUpdateWizard.TxtTitle.$touched">
                                     <span class="red-text" ng-message="required">@Hotel.TxtTitleRequiredErrorMessage</span>
                                     <span class="red-text" ng-message="pattern">@Hotel.TxtTitlePatternErrorMessage</span>
@@ -310,6 +310,21 @@
                                                 </div>
                                         </div>
                                     </div>*@
+                                <div class="form-group">
+                                    <label for="TxtRate">@HomeSlider.Rate</label><span class="red-text"> *</span>
+                                    <select ng-model="DDLHotelRate" required ng-change="changedRateValue(DDLHotelRate)">
+                                        <option ng-repeat="x in hotelRating" value="{{x.id}}">{{x.value}}</option>
+                                    </select>
+
+                                </div>
+                                <div class="form-group">
+                                    <label>@Hotel.Curreny</label><span class="red-text"> *</span>
+                                    <select ng-model="DDLHotelCurrency" required ng-change="changedCurrencyValue(DDLHotelCurrency)">
+                                        <option ng-repeat="x in currencyList" value="{{x.value}}">{{x.value}}</option>
+                                    </select>
+
+
+                                </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="TxtPrice">@Hotel.Price</label><span class="red-text"> *</span>
@@ -327,31 +342,31 @@
                             </div>
 
                             <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="TxtCheckin">@Hotel.Checkin</label><span class="red-text"> *</span>
-                                            <input type="time" ng-model="Hotel.CheckIn" class="form-control" name="TxtCheckin" value="Hotel.CheckIn"
-                                                   placeholder="@Hotel.Checkin" required ng-pattern="/@Regex.NameAr/">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="TxtCheckin">@Hotel.Checkin</label><span class="red-text"> *</span>
+                                        <input type="time" ng-model="Hotel.CheckIn" class="form-control" name="TxtCheckin" value="Hotel.CheckIn"
+                                               placeholder="@Hotel.Checkin" required ng-pattern="/@Regex.NameAr/">
 
-                                            <div class="red-text" ng-messages="FrmAddUpdateWizard.TxtCheckin.$error" ng-show="FrmAddUpdateWizard.TxtCheckin.$touched">
-                                                    <span class="red-text" ng-message="required">@Hotel.TxtCheckinRequiredErrorMessage</span>
-                                                    <span class="red-text" ng-message="pattern">@Hotel.TxtCheckinPatternErrorMessage</span>
-                                                </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="TxtCheckOut">@Hotel.CheckOut</label><span class="red-text"> *</span>
-                                            <input type="time" ng-model="Hotel.CheckOut" class="form-control" name="TxtCheckOut"
-                                                   placeholder="@Hotel.CheckOut" required ng-pattern="/@Regex.NameAr/">
-
-                                            <div class="red-text" ng-messages="FrmAddUpdateWizard.TxtCheckOut.$error" ng-show="FrmAddUpdateWizard.TxtCheckOut.$touched">
-                                                    <span class="red-text" ng-message="required">@Hotel.TxtCheckoutRequiredErrorMessage</span>
-                                                    <span class="red-text" ng-message="pattern">@Hotel.TxtCheckoutPatternErrorMessage</span>
-                                                </div>
+                                        <div class="red-text" ng-messages="FrmAddUpdateWizard.TxtCheckin.$error" ng-show="FrmAddUpdateWizard.TxtCheckin.$touched">
+                                            <span class="red-text" ng-message="required">@Hotel.TxtCheckinRequiredErrorMessage</span>
+                                            <span class="red-text" ng-message="pattern">@Hotel.TxtCheckinPatternErrorMessage</span>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="TxtCheckOut">@Hotel.CheckOut</label><span class="red-text"> *</span>
+                                        <input type="time" ng-model="Hotel.CheckOut" class="form-control" name="TxtCheckOut"
+                                               placeholder="@Hotel.CheckOut" required ng-pattern="/@Regex.NameAr/">
+
+                                        <div class="red-text" ng-messages="FrmAddUpdateWizard.TxtCheckOut.$error" ng-show="FrmAddUpdateWizard.TxtCheckOut.$touched">
+                                            <span class="red-text" ng-message="required">@Hotel.TxtCheckoutRequiredErrorMessage</span>
+                                            <span class="red-text" ng-message="pattern">@Hotel.TxtCheckoutPatternErrorMessage</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -400,7 +415,7 @@
 
         <div class="col-md-12" ng-show="imagesListDiv">
             <div ba-panel ba-panel-name="Form Wizard" ba-panel-class="with-scroll">
-                <h2  >Hotel Title:   {{Hotel.DisplayValue}}</h2>
+                <h2>Hotel Title:   {{Hotel.DisplayValue}}</h2>
                 <span> Note: If no images added hotel will not appear (At least one image)</span>
                 <table class="table table-hover table-condensed" st-table="TableData" st-safe-src="Hotel.ImageList">
                     <thead>
@@ -460,7 +475,7 @@
         </div>
         <div class="col-md-12" ng-show="featuresListDiv">
             <div ba-panel ba-panel-name="Form Wizard" ba-panel-class="with-scroll">
-                <h2 >Hotel Title:   {{Hotel.DisplayValue}}</h2>
+                <h2>Hotel Title:   {{Hotel.DisplayValue}}</h2>
                 <span> Note: If no facilities added hotel will not appear (At least one facility)</span>
 
                 <div class="floatleft">
@@ -678,16 +693,16 @@
                                     </span>
                                 </div>
                             </form>
-                            
-                             
-                                <ui-gmap-google-map center="map.center" zoom="map.zoom" options="options"></ui-gmap-google-map>
-                             
+
+
+                            <ui-gmap-google-map center="map.center" zoom="map.zoom" options="options"></ui-gmap-google-map>
+
                             <div id="map"></div>
                         </div>
                     </div>
 
                 </div>
-                 
+
             </div>
         </div>
 

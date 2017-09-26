@@ -54,6 +54,14 @@ function HomeSlidersController($scope, HomeSlidersApi, uploadService, $rootScope
         //    $scope.countFiles = $scope.homeSlider.Image;
 
     }
+
+    $scope.sliderRating = [
+        { id: "1", value: "1" },
+        { id: "2", value: "2" },
+        { id: "3", value: "3" },
+        { id: "4", value: "4" },
+        { id: "5", value: "5" }
+    ];
     $scope.back = function () {
         $('#ModelAddUpdate').modal('hide');
     }
@@ -74,6 +82,7 @@ function HomeSlidersController($scope, HomeSlidersApi, uploadService, $rootScope
             $scope.Image = "";
         }
         $scope.HomeSlider.LangId = CurrentLanguage;
+        $scope.HomeSlider.Rating = $scope.selectedRate;
 
         HomeSlidersApi.Save($scope.HomeSlider).then(function (response) {
 

@@ -258,4 +258,7 @@
   <data name="HotelGallery" xml:space="preserve">
     <value>Hotel Gallery</value>
   </data>
+  <data name="Curreny" xml:space="preserve">
+    <value>Currency</value>
+  </data>
 </root>

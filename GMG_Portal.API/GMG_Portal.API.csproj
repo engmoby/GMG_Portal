@@ -268,8 +268,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\CoreValues\" />
-    <Folder Include="Views\CorValues\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GMG_Portal.Business\GMG_Portal.Business.csproj">

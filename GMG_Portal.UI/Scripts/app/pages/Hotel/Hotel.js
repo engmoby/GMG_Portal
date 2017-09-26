@@ -3,16 +3,15 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
     $rootScope.ViewLoading = true;
     $scope.applayUploadImageBtn = false;
     var langId = document.querySelector('#HCurrentLang').value;
-    var CurrentLanguage = langId;
+    var currentLanguage = langId;
     $scope.features = "";
     $scope.hotelFeatures = [];
     $scope.hotelFeatures = makeList('b');
     $scope.sortingLog = [];
     $scope.sortingLogId = [];
     $scope.showSaveFeatureBtn = false;
-
+  
     $scope.sortingLog = [];
-
 
     $scope.place = {};
 
@@ -44,8 +43,8 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
         var selectedText = $(this).find("option:selected").text();
         var selectedValue = $(this).val();
         document.getElementById("HCurrentLang").value = selectedValue;
-        CurrentLanguage = selectedValue;
-        HotelsApi.GetAll(CurrentLanguage).then(function (response) {
+        currentLanguage = selectedValue;
+        HotelsApi.GetAll(currentLanguage).then(function (response) {
             $scope.Hotels = response.data;
             $rootScope.ViewLoading = false;
         });
@@ -64,10 +63,36 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
     $scope.imagesListDiv = false;
     $scope.featuresListDiv = false;
 
-    HotelsApi.GetAll(CurrentLanguage).then(function (response) {
+    HotelsApi.GetAll(currentLanguage).then(function (response) {
         $scope.Hotels = response.data;
         $rootScope.ViewLoading = false;
     });
+
+    $scope.hotelRating =
+        [{ id: "1", value: "1" },
+            { id: "2", value: "2" },
+            { id: "3", value: "3" },
+            { id: "4", value: "4" },
+            { id: "5", value: "5" }];
+     
+
+    $scope.currencyList = [
+        { id: "1", value: "SAR" },
+        { id: "2", value: "Dollar" },
+        { id: "3", value: "EGP" },
+        { id: "4", value: "AED" },
+        { id: "5", value: "EUR" },
+        { id: "6", value: "BHD" }
+    ];
+
+    $scope.changedRateValue = function (item) {
+        $scope.getSelectedRating = item;
+    }
+
+    $scope.changedCurrencyValue = function (item) {
+        $scope.getSelectedCurrency = item;
+    }
+
 
     $scope.open = function (hotel) {
         debugger;
@@ -86,7 +111,7 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
 
         if (hotel == null) hotel = {};
         else {
-            HotelsApi.GetHotelDetails(hotel.Id, CurrentLanguage).then(function (response) {
+            HotelsApi.GetHotelDetails(hotel.Id, currentLanguage).then(function (response) {
                 $scope.HotelDetails = response.data;
             });
 
@@ -101,7 +126,7 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
 
 
         $rootScope.ViewLoading = false;
-
+        $scope.getSelectedRating = $scope.selectedHotelRate;
 
     }
     $scope.back = function () {
@@ -126,8 +151,12 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
     }
     $scope.saveExist = function () {
         $rootScope.ViewLoading = true;
-
-        $scope.Hotel.LangId = CurrentLanguage;
+        if ($scope.userSelect != "" && $scope.userSelect != undefined) {
+            $scope.msg = $scope.userSelect;
+        }
+        $scope.Hotel.LangId = currentLanguage; 
+        $scope.Hotel.Rate = $scope.getSelectedRating;
+        $scope.Hotel.Currency = $scope.getSelectedCurrency;
 
 
         HotelsApi.Save($scope.Hotel).then(function (response) {
@@ -180,9 +209,12 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
 
     }
     $scope.save = function () {
-        debugger;
+        debugger; 
         $rootScope.ViewLoading = true;
-        $scope.Hotel.LangId = CurrentLanguage;
+        $scope.Hotel.LangId = currentLanguage; 
+        $scope.Hotel.Rate = $scope.getSelectedRating;
+        $scope.Hotel.Currency = $scope.getSelectedCurrency;
+
         //  var hours = $scope.Hotel.CheckIn.getHours();
         $scope.Hotel.CheckIn = new Date($filter('date')($scope.Hotel.CheckIn, 'yyyy-MM-dd HH:mm'));
         $scope.Hotel.CheckOut = new Date($filter('date')($scope.Hotel.CheckOut, 'yyyy-MM-dd HH:mm'));
@@ -196,7 +228,7 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
                         case 'edit':
                             index = $scope.Hotels.indexOf($filter('filter')($scope.Hotels, { 'Id': $scope.Hotel.Id }, true)[0]);
                             $scope.Hotels[index] = angular.copy(response.data);
-                            HotelsApi.GetHotelDetails($scope.Hotel.Id, CurrentLanguage).then(function (response1) {
+                            HotelsApi.GetHotelDetails($scope.Hotel.Id, currentLanguage).then(function (response1) {
                                 $scope.HotelDetails = response1.data;
                                 $scope.Hotel = response1.data;
                             });
@@ -220,7 +252,7 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
                         case 'add':
 
                             $scope.Hotels.push(angular.copy(response.data));
-                            HotelsApi.GetHotelDetails(response.data.Id, CurrentLanguage).then(function (response) {
+                            HotelsApi.GetHotelDetails(response.data.Id, currentLanguage).then(function (response) {
                                 $scope.HotelDetails = response.data;
                                 $scope.Hotel = response.data;
                             });
@@ -342,7 +374,7 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
     }
     $scope.DeleteImageFunction = function (hotelImage) {
         $rootScope.ViewLoading = true;
-        hotelImage.langId = CurrentLanguage;
+        hotelImage.langId = currentLanguage;
         HotelsApi.DeleteImage(hotelImage).then(function (response) {
             debugger;
             switch (response.data.OperationStatus) {
@@ -416,7 +448,7 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
     $scope.showFeatures = function () {
         $rootScope.ViewLoading = true;
         $scope.features = [];
-        HotelsApi.GetAllFeatures(CurrentLanguage).then(function (response) {
+        HotelsApi.GetAllFeatures(currentLanguage).then(function (response) {
             $scope.features = response.data;
         });
 
@@ -499,13 +531,13 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
 
             //if ($scope.Hotel.ImageList !== null || $scope.Hotel.ImageList !== 0 || $scope.Hotel.ImageList !== undefined) {
 
-            if (CurrentLanguage !== "en") {
+            if (currentLanguage !== "en") {
                 if ($scope.Hotel.ImageList !== null) {
                     $scope.Hotel.ImageList.push(
                         {
                             "Id": 0,
                             "Hotel_Id": $scope.Hotel.Id,
-                            "langId": CurrentLanguage,
+                            "langId": currentLanguage,
                             "Image": $scope.files[i].name
                         }
                     );
@@ -516,7 +548,7 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
                         {
                             "Id": 0,
                             "Hotel_Id": $scope.Hotel.Id,
-                            "langId": CurrentLanguage,
+                            "langId": currentLanguage,
                             "Image": $scope.files[i].name
                         }
                     );
@@ -529,7 +561,7 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
                         {
                             "Id": 0,
                             "Hotel_Id": $scope.Hotel.Id,
-                            "langId": CurrentLanguage,
+                            "langId": currentLanguage,
 
                             "Image": $scope.files[i].name
                         }
@@ -539,7 +571,7 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
                             {
                                 "Id": 0,
                                 "Hotel_Id": $scope.Hotel.Id,
-                                "langId": CurrentLanguage,
+                                "langId": currentLanguage,
 
                                 "Image": $scope.files[i].name
                             }
@@ -552,7 +584,7 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
                         {
                             "Id": 0,
                             "Hotel_Id": $scope.HotelDetails.Id,
-                            "langId": CurrentLanguage,
+                            "langId": currentLanguage,
                             "Image": $scope.files[i].name
                         }
                     );
@@ -644,7 +676,7 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
             $scope.saveSelectedFeatures.push({
                 Hotel_Id: $scope.Hotel.Id,
                 Feature_Id: $scope.sortingLogId[i],
-                langId: CurrentLanguage
+                langId: currentLanguage
             });
         }
         HotelsApi.SaveFeature($scope.saveSelectedFeatures).then(function (response) {

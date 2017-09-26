@@ -72,37 +72,42 @@
                         @foreach (var hotel in Model.Hotels.Take(3))
                         {
                             <div class="col-sm-4">
-                                <figure class="mg-room">
-                                    <img src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/Hotels/@hotel.Image" alt="img11" class="img-responsive" style="width: 103%;height: 211px;">
-                                    <figcaption>
+                                <a href="/Hotel/Details/@hotel.Id" style="color: #edf0f3 !important;">
+                                     <figure class="mg-room">
+                                        <img src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/Hotels/@hotel.Image" alt="img11" class="img-responsive" style="width: 103%; height: 211px;">
+                                        <figcaption>
 
-                                        @if (@hotel.DisplayValue.Length >= 17)
-                                        {
-                                            <h2>@hotel.DisplayValue.ToString().Substring(0, 17)</h2>
-                                        }
-                                        else
-                                        {
-                                            <h2>@hotel.DisplayValue</h2>
+                                            @if (@hotel.DisplayValue.Length >= 17)
+                                            {
+                                                <h2>@hotel.DisplayValue.ToString().Substring(0, 17)</h2>
+                                            }
+                                            else
+                                            {
+                                                <h2>@hotel.DisplayValue</h2>
 
-                                        }
-                                        <div class="mg-room-rating">
-                                            <i class="fa fa-star"></i> @hotel.Rate
-                                        </div>
-                                        <div class="mg-room-price">
-                                            $@hotel.PriceStart<sup>/@Front.Resources.Global.Hotel_Night</sup>
-                                        </div>
-                                        @if (@hotel.DisplayValueDesc.Length >= 81)
-                                        {
-                                            <p> @hotel.DisplayValueDesc.ToString().Substring(0, 81)</p>
+                                            }
+                                            <div class="mg-room-rating">
+                                                <i class="fa fa-star"></i> @hotel.Rate
+                                            </div>
+                                            <div class="mg-room-price">
+                                                @hotel.PriceStart<sup style="margin-left: 4px;">(@hotel.Currency)</sup> <span style="font-size: 21px;">@Front.Resources.Global.Hotel_Night</span>
+                                            </div>
+                                            @*<div class="mg-room-price">
+                                                @hotel.PriceStart<sup style="margin-left: 4px;">/@Front.Resources.Global.Hotel_Night</sup> <span style="font-size: 21px;">(@hotel.Currency)</span>
+                                            </div>*@
+                                            @if (@hotel.DisplayValueDesc.Length >= 81)
+                                            {
+                                                <p> @hotel.DisplayValueDesc.ToString().Substring(0, 81)</p>
 
-                                        }
-                                        else
-                                        {
-                                            <p>  @hotel.DisplayValueDesc</p>
-                                        }
-                                        <a href="/Hotel/Details/@hotel.Id" class="btn btn-link ">@Front.Resources.Global.SeeMore <i class="fa fa-angle-double-right"></i></a>
-                                    </figcaption>
-                                </figure>
+                                            }
+                                            else
+                                            {
+                                                <p> @hotel.DisplayValueDesc</p>
+                                            }
+                                            <a href="/Hotel/Details/@hotel.Id" class="btn btn-link ">@Front.Resources.Global.SeeMore <i class="fa fa-angle-double-right"></i></a>
+                                        </figcaption>
+                                    </figure>
+                                </a>
                             </div>
                         }
 

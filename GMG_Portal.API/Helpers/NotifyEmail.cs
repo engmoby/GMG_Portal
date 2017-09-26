@@ -1,30 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.IO;
-using System.Linq;
 using System.Net;
-using System.Web;
 using System.Net.Mail;
-using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
-using GMG_Portal.API.Models.SystemParameters;
-using GMG_Portal.Business.Logic.SystemParameters;
 using GMG_Portal.Data;
 
-
-namespace Front.Helpers
+namespace GMG_Portal.API.Helpers
 {
     public class NotifyEmail
     {
-        public void SendMail(string subj , string message,List<SystemParameters_Notify> receipients)
+        public void SendMail(string subj, string message, List<SystemParameters_Notify> receipients)
         {
             try
             {
 
-         
 
-                var msg = new MailMessage {From = new MailAddress(System.Configuration.ConfigurationManager.AppSettings["MailAddress"]) };
+
+                var msg = new MailMessage { From = new MailAddress(System.Configuration.ConfigurationManager.AppSettings["MailAddress"]) };
                 if (receipients != null)
                 {
 
@@ -57,12 +49,12 @@ namespace Front.Helpers
                     SmtpClient client = new SmtpClient
                     {
                         Host = System.Configuration.ConfigurationManager.AppSettings["MailHost"],
-                        Port = Int32.Parse( System.Configuration.ConfigurationManager.AppSettings["MailPort"]),
+                        Port = Int32.Parse(System.Configuration.ConfigurationManager.AppSettings["MailPort"]),
                         UseDefaultCredentials = false,
                         DeliveryMethod = SmtpDeliveryMethod.Network,
-                        EnableSsl= true,
+                        EnableSsl = true,
                         Timeout = 10000,
-                     
+
 
                         Credentials = new NetworkCredential(mailusername, mailPassword)
                     };
@@ -81,14 +73,14 @@ namespace Front.Helpers
 
                 //  throw;
             }
-            return ;
+            return;
 
 
 
 
         }
-          
-        }
 
-       
     }
+
+
+}

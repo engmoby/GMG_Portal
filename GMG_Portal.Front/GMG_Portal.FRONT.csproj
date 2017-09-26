@@ -318,6 +318,10 @@
     <Content Include="Content\images\slide-3.png" />
     <Content Include="Content\images\slide-4.png" />
     <Content Include="Content\images\stars.png" />
+    <Content Include="Content\images\stars1.png" />
+    <Content Include="Content\images\stars2.png" />
+    <Content Include="Content\images\stars3.png" />
+    <Content Include="Content\images\stars4.png" />
     <Content Include="Content\js\bootstrap-datepicker.min.js" />
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\classie.js" />

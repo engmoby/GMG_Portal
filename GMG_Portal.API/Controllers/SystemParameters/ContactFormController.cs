@@ -8,7 +8,7 @@ using GMG_Portal.API.Models.SystemParameters;
 using GMG_Portal.Data;
 using GMG_Portal.Business.Logic.SystemParameters;
 using AutoMapper;
-using Front.Helpers;
+using GMG_Portal.API.Helpers;
 using GMG_Portal.API.Models.SystemParameters.ContactUs;
 using Helpers;
 

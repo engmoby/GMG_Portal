@@ -106,9 +106,10 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                     returnHomeSlider.Add(new HomeSlider
                     {
                         Id = (int)dr["Id"],
-                        //DisplayValue = (string)dr["DisplayValue"],
-                        //DisplayValueDesc = (string)dr["DisplayValueDesc"],
-                        Image = (string)dr["Image"]
+                        DisplayValue = (string)dr["DisplayValue"],
+                        DisplayValueDesc = (string)dr["DisplayValueDesc"],
+                        Image = (string)dr["Image"],
+                        Rating = (int)dr["Rating"]
                     });
                 }
 
@@ -126,7 +127,9 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                         DisplayValue = (string)dr["DisplayValue"],
                         DisplayValueDesc = (string)dr["DisplayValueDesc"],
                         Image = (string)dr["Image"],
-                        PriceStart = (int)dr["PriceStart"]
+                        PriceStart = (int)dr["PriceStart"],
+                        Rate = (int)dr["Rate"],
+                        Currency = (string)dr["Currency"]
                     });
                 }
 
@@ -268,7 +271,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
             }
         }
 
-   
+
 
     }
 
