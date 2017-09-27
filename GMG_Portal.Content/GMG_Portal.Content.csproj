@@ -150,6 +150,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Admin\SystemParameters\Currency.Designer.cs">
+      <DependentUpon>Currency.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Admin\SystemParameters\Vission.Designer.cs">
       <DependentUpon>Vission.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -283,6 +288,10 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>About.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Admin\SystemParameters\Currency.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Currency.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Admin\SystemParameters\Vission.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Vission.Designer.cs</LastGenOutput>
@@ -311,6 +320,7 @@
     <EmbeddedResource Include="Common.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Common.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

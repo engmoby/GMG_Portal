@@ -117,63 +117,55 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Charachter" xml:space="preserve">
-    <value>Charachter</value>
+  <data name="Action" xml:space="preserve">
+    <value>Actions</value>
   </data>
-  <data name="DescMax120" xml:space="preserve">
-    <value>120</value>
+  <data name="BtnAdd" xml:space="preserve">
+    <value>Add</value>
   </data>
-  <data name="DescMax81" xml:space="preserve">
-    <value>81</value>
+  <data name="btnSaveLbl" xml:space="preserve">
+    <value>Save</value>
   </data>
-  <data name="DescMax200" xml:space="preserve">
-    <value>200</value>
+  <data name="CannotDeleted" xml:space="preserve">
+    <value>Can't be deleted</value>
   </data>
-  <data name="DescMax7000" xml:space="preserve">
-    <value>7000</value>
+  <data name="DeleteSuccessMessage" xml:space="preserve">
+    <value>Deleted Successfully</value>
   </data>
-  <data name="DescMax800" xml:space="preserve">
-    <value>800</value>
+  <data name="ModalTitle" xml:space="preserve">
+    <value>Currency</value>
   </data>
-  <data name="DescMin30" xml:space="preserve">
-    <value>30</value>
+  <data name="Title" xml:space="preserve">
+    <value>Code</value>
   </data>
-  <data name="DescMin50" xml:space="preserve">
-    <value>50</value>
+  <data name="TxtTitlePatternErrorMessage" xml:space="preserve">
+    <value>Code Invalid Pattern</value>
   </data>
-  <data name="Digtis" xml:space="preserve">
-    <value>Digits</value>
+  <data name="Desc" xml:space="preserve">
+    <value>Name</value>
   </data>
-  <data name="MaximumKeyWord" xml:space="preserve">
-    <value>Maximum</value>
+  <data name="SaveSuccessMessage" xml:space="preserve">
+    <value>Save Done Successfully</value>
   </data>
-  <data name="MinimumKeyWord" xml:space="preserve">
-    <value>Minimum</value>
+  <data name="TableBtnDelete" xml:space="preserve">
+    <value>Delete</value>
   </data>
-  <data name="TitleMax25" xml:space="preserve">
-    <value>25</value>
+  <data name="TableBtnEdit" xml:space="preserve">
+    <value>Edit</value>
   </data>
-  <data name="TitleMax5" xml:space="preserve">
-    <value>5</value>
+  <data name="TxtDescPatternErrorMessage" xml:space="preserve">
+    <value>Name Invalid Pattern</value>
   </data>
-  <data name="TitleMax65" xml:space="preserve">
-    <value>65</value>
+  <data name="TxtDescRequiredErrorMessage" xml:space="preserve">
+    <value>Name required</value>
   </data>
-  <data name="TitleMin25" xml:space="preserve">
-    <value>25</value>
+  <data name="txtSearchLbl" xml:space="preserve">
+    <value>search ...</value>
   </data>
-  <data name="TitleMin30" xml:space="preserve">
-    <value>30</value>
+  <data name="TxtTitleRequiredErrorMessage" xml:space="preserve">
+    <value>Code is required</value>
   </data>
-  <data name="TitleMin5" xml:space="preserve">
-    <value>5</value>
-  </data>
-
-  <data name="TitleMin1" xml:space="preserve">
-    <value>1</value>
-  </data>
-
-  <data name="TitleMax3" xml:space="preserve">
-    <value>3</value>
+  <data name="UpdateSuccessMessage" xml:space="preserve">
+    <value>Updated Successfully</value>
   </data>
 </root>

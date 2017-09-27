@@ -56,6 +56,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Currency.cs">
+      <DependentUpon>Portal_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Currency_Translate.cs">
+      <DependentUpon>Portal_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Front_Mission.cs">
       <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
@@ -111,6 +117,8 @@
     <Compile Include="Partials\Hotel\HotelsImages.cs" />
     <Compile Include="Partials\Hotel\Hotel.cs" />
     <Compile Include="Partials\SystemParameter\Admin.cs" />
+    <Compile Include="Partials\SystemParameter\CurrencyTranslate.cs" />
+    <Compile Include="Partials\SystemParameter\Currency.cs" />
     <Compile Include="Partials\SystemParameter\NotifyDepartment.cs" />
     <Compile Include="Partials\SystemParameter\Notify.cs" />
     <Compile Include="Partials\SystemParameter\AboutTranslate.cs" />

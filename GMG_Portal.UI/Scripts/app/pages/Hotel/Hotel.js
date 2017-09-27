@@ -10,7 +10,8 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
     $scope.sortingLog = [];
     $scope.sortingLogId = [];
     $scope.showSaveFeatureBtn = false;
-  
+    $scope.getSelectedRating = "";
+    $scope.getSelectedCurrency= "";
     $scope.sortingLog = [];
 
     $scope.place = {};
