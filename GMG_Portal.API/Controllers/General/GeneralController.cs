@@ -71,7 +71,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                         .Sqlread("SELECT * FROM [dbo].[SystemParameters.HomeSlider_Translate] WHERE LangId='" + langId + "' AND IsDeleted=0").Tables[0];
 
                     hotelsTable = generalLogic
-                        .Sqlread("SELECT DISTINCT ([dbo].[Hotels_Translate].Id) ,[Hotels.Images_Translate].Image,[dbo].[Hotels_Translate].LangId,PriceStart,DisplayValue,DisplayValueDesc," +
+                        .Sqlread("SELECT DISTINCT ([dbo].[Hotels_Translate].Id) ,[Hotels.Images_Translate].Image,[Hotels_Translate].Rate,[Hotels_Translate].Currency,[dbo].[Hotels_Translate].LangId,PriceStart,DisplayValue,DisplayValueDesc," +
                                  "[Image], [dbo].[Hotels.Features_Translate].Id FROM [dbo].[Hotels_Translate] INNER JOIN dbo.[Hotels.Images_Translate]  " +
                                  " ON [dbo].[Hotels_Translate].Id = [dbo].[Hotels.Images_Translate].Hotel_Id INNER JOIN dbo.[Hotels.Features_Translate]   " +
                                  "ON [dbo].[Hotels_Translate].Id = [dbo].[Hotels.Features_Translate].Hotel_Id  WHERE [dbo].[Hotels_Translate].LangId='" + langId + "' " +

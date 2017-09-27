@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GMG_Portal.Content {
+namespace GMG_Portal.Content.Admin.SystemParameters {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace GMG_Portal.Content {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Common {
+    public class Currency {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Common() {
+        internal Currency() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace GMG_Portal.Content {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("GMG_Portal.Content.Common", typeof(Common).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("GMG_Portal.Content.Admin.SystemParameters.Currency", typeof(Currency).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,173 +61,155 @@ namespace GMG_Portal.Content {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Charachter.
+        ///   Looks up a localized string similar to Actions.
         /// </summary>
-        public static string Charachter {
+        public static string Action {
             get {
-                return ResourceManager.GetString("Charachter", resourceCulture);
+                return ResourceManager.GetString("Action", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 120.
+        ///   Looks up a localized string similar to Add.
         /// </summary>
-        public static string DescMax120 {
+        public static string BtnAdd {
             get {
-                return ResourceManager.GetString("DescMax120", resourceCulture);
+                return ResourceManager.GetString("BtnAdd", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 200.
+        ///   Looks up a localized string similar to Save.
         /// </summary>
-        public static string DescMax200 {
+        public static string btnSaveLbl {
             get {
-                return ResourceManager.GetString("DescMax200", resourceCulture);
+                return ResourceManager.GetString("btnSaveLbl", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 7000.
+        ///   Looks up a localized string similar to Can&apos;t be deleted.
         /// </summary>
-        public static string DescMax7000 {
+        public static string CannotDeleted {
             get {
-                return ResourceManager.GetString("DescMax7000", resourceCulture);
+                return ResourceManager.GetString("CannotDeleted", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 800.
+        ///   Looks up a localized string similar to Deleted Successfully.
         /// </summary>
-        public static string DescMax800 {
+        public static string DeleteSuccessMessage {
             get {
-                return ResourceManager.GetString("DescMax800", resourceCulture);
+                return ResourceManager.GetString("DeleteSuccessMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 81.
+        ///   Looks up a localized string similar to Name.
         /// </summary>
-        public static string DescMax81 {
+        public static string Desc {
             get {
-                return ResourceManager.GetString("DescMax81", resourceCulture);
+                return ResourceManager.GetString("Desc", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 30.
+        ///   Looks up a localized string similar to Currency.
         /// </summary>
-        public static string DescMin30 {
+        public static string ModalTitle {
             get {
-                return ResourceManager.GetString("DescMin30", resourceCulture);
+                return ResourceManager.GetString("ModalTitle", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 50.
+        ///   Looks up a localized string similar to Save Done Successfully.
         /// </summary>
-        public static string DescMin50 {
+        public static string SaveSuccessMessage {
             get {
-                return ResourceManager.GetString("DescMin50", resourceCulture);
+                return ResourceManager.GetString("SaveSuccessMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Digits.
+        ///   Looks up a localized string similar to Delete.
         /// </summary>
-        public static string Digtis {
+        public static string TableBtnDelete {
             get {
-                return ResourceManager.GetString("Digtis", resourceCulture);
+                return ResourceManager.GetString("TableBtnDelete", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Maximum.
+        ///   Looks up a localized string similar to Edit.
         /// </summary>
-        public static string MaximumKeyWord {
+        public static string TableBtnEdit {
             get {
-                return ResourceManager.GetString("MaximumKeyWord", resourceCulture);
+                return ResourceManager.GetString("TableBtnEdit", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Minimum.
+        ///   Looks up a localized string similar to Code.
         /// </summary>
-        public static string MinimumKeyWord {
+        public static string Title {
             get {
-                return ResourceManager.GetString("MinimumKeyWord", resourceCulture);
+                return ResourceManager.GetString("Title", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 25.
+        ///   Looks up a localized string similar to Name Invalid Pattern.
         /// </summary>
-        public static string TitleMax25 {
+        public static string TxtDescPatternErrorMessage {
             get {
-                return ResourceManager.GetString("TitleMax25", resourceCulture);
+                return ResourceManager.GetString("TxtDescPatternErrorMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 3.
+        ///   Looks up a localized string similar to Name required.
         /// </summary>
-        public static string TitleMax3 {
+        public static string TxtDescRequiredErrorMessage {
             get {
-                return ResourceManager.GetString("TitleMax3", resourceCulture);
+                return ResourceManager.GetString("TxtDescRequiredErrorMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 5.
+        ///   Looks up a localized string similar to search ....
         /// </summary>
-        public static string TitleMax5 {
+        public static string txtSearchLbl {
             get {
-                return ResourceManager.GetString("TitleMax5", resourceCulture);
+                return ResourceManager.GetString("txtSearchLbl", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 65.
+        ///   Looks up a localized string similar to Code Invalid Pattern.
         /// </summary>
-        public static string TitleMax65 {
+        public static string TxtTitlePatternErrorMessage {
             get {
-                return ResourceManager.GetString("TitleMax65", resourceCulture);
+                return ResourceManager.GetString("TxtTitlePatternErrorMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1.
+        ///   Looks up a localized string similar to Code is required.
         /// </summary>
-        public static string TitleMin1 {
+        public static string TxtTitleRequiredErrorMessage {
             get {
-                return ResourceManager.GetString("TitleMin1", resourceCulture);
+                return ResourceManager.GetString("TxtTitleRequiredErrorMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 25.
+        ///   Looks up a localized string similar to Updated Successfully.
         /// </summary>
-        public static string TitleMin25 {
+        public static string UpdateSuccessMessage {
             get {
-                return ResourceManager.GetString("TitleMin25", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 30.
-        /// </summary>
-        public static string TitleMin30 {
-            get {
-                return ResourceManager.GetString("TitleMin30", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 5.
-        /// </summary>
-        public static string TitleMin5 {
-            get {
-                return ResourceManager.GetString("TitleMin5", resourceCulture);
+                return ResourceManager.GetString("UpdateSuccessMessage", resourceCulture);
             }
         }
     }

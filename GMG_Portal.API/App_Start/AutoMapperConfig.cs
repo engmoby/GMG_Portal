@@ -121,6 +121,11 @@ namespace GMG_Portal.API
                 cfg.CreateMap<Hotles_Offers_Translate, Hotles_Offers>();
 
 
+                //Currency
+                cfg.CreateMap<Currency, CurrencyVm>();
+                cfg.CreateMap<CurrencyVm, Currency>();
+                cfg.CreateMap<Currency_Translate, CurrencyVm>();
+                cfg.CreateMap<CurrencyVm, Currency_Translate>();
 
 
                 cfg.CreateMap<SystemParameters_Newsletter, Newsletter>();
@@ -171,7 +176,6 @@ namespace GMG_Portal.API
                 cfg.CreateMap<GMG_Portal.API.Models.SystemParameters.Customer, GMG_Portal.Data.Customers>();
 
                  
-
 
                 cfg.CreateMap<GMG_Portal.Data.Customers, Customer>();
                 cfg.CreateMap<Customer, GMG_Portal.Data.Customers>();

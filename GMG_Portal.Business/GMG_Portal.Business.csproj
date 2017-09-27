@@ -71,6 +71,8 @@
     <Compile Include="Logic\Hotel\ReservationLogic.cs" />
     <Compile Include="Logic\Hotel\OfferLogic.cs" />
     <Compile Include="Logic\Hotel\HotelLogic.cs" />
+    <Compile Include="Logic\SystemParameters\CurrencyLogic.cs" />
+    <Compile Include="Logic\SystemParameters\CurrencyLogicTranslate .cs" />
     <Compile Include="Logic\SystemParameters\AdminLogic.cs" />
     <Compile Include="Logic\SystemParameters\AboutLogicTranslate.cs" />
     <Compile Include="Logic\SystemParameters\CareerLogic.cs" />

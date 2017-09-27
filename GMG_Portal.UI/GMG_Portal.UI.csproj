@@ -209,6 +209,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\Admin\CurrencyController.cs" />
     <Compile Include="Controllers\Admin\AboutController.cs" />
     <Compile Include="Controllers\Admin\CareerController.cs" />
     <Compile Include="Controllers\Admin\CareerFormController.cs" />
@@ -492,6 +493,7 @@
     </Content>
     <Content Include="Scripts\app\app.js" />
     <Content Include="Scripts\app\Login.js" />
+    <Content Include="Scripts\app\pages\Currency\Currency.js" />
     <Content Include="Scripts\app\pages\User\User.js" />
     <Content Include="Scripts\app\pages\HomePage\HomePage.js" />
     <Content Include="Scripts\app\pages\About\About.js" />
@@ -517,6 +519,7 @@
     <Content Include="Scripts\app\pages\pages.module.js" />
     <Content Include="Scripts\app\pages\Settings.js" />
     <Content Include="Scripts\app\pages\Vision\Vision.js" />
+    <Content Include="Scripts\app\services\Currency.js" />
     <Content Include="Scripts\app\services\User.js" />
     <Content Include="Scripts\app\services\HomePage.js" />
     <Content Include="Scripts\app\services\About.js" />
@@ -1087,6 +1090,7 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Login\ForgotPassword.cshtml" />
     <Content Include="Views\Login\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Currency\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GMG_Portal.API\GMG_Portal.API.csproj">
