@@ -208,6 +208,17 @@
             var currentLang = document.querySelector('#HCurrentLang').value;
             document.getElementById("HotelMore").style.display = "none";
 
+       //   var searchkeys = document.querySelector('#searchkey').value;
+      //      alert(searchkeys);
+
+            $("#searchnow").click(function () {
+              window.location.href =  "@System.Configuration.ConfigurationManager.AppSettings["HomeUrl"]" + "/news/Search?keyword=" + document.querySelector('#searchkeyword').value;
+
+            }
+          );
+
+
+
 
             //$.blockUI({
             //    css: {

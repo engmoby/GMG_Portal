@@ -1,120 +1,153 @@
-﻿@using GMG_Portal.API.Models.SystemParameters
+﻿@using System.Diagnostics.Eventing.Reader
+@using GMG_Portal.API.Models.SystemParameters
 @model List<News>
 
 @{
-    ViewBag.Title = "Search Result";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+  ViewBag.Title = "Index";
+  Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="mg-page-title parallax">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h2>Search Result</h2>
-                <p>Cogitavisse erant puerilis utrum efficiantur adhuc expeteretur.</p>
-            </div>
-        </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h2>@Front.Resources.Global.Search_Label</h2>
+        <p>@Front.Resources.Global.Search_Desc</p>
+      </div>
     </div>
+  </div>
 </div>
+@if (null != TempData["alertMessage"])
+{
+  <script type="text/javascript">
+    alert("@TempData["alertMessage"]");
+  </script>
+}
 @if (Model != null)
 {
-    <div class="mg-blog-list">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8">
-                    <main>
-                        @foreach (News newsObj in Model)
-                        {
-                            <article class="mg-post">
-                                <header>
-                                    @if (newsObj.Image != null)
-                                    {
-                                        <a href="/News/Details/@newsObj.Id"><img src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/News/@newsObj.Image" alt="" class="img-responsive"></a>
-                                    }
-                                    <h2 class="mg-post-title">
-                                        <a href="/News/Details/@newsObj.Id" rel="bookmark">
-                                            @newsObj.DisplayValue.ToString().Substring(0, 20)
-                                        </a>
-                                    </h2>
-                                    <div class="mg-post-meta">
-                                        <span> @newsObj.CreationTime.Value.ToString("D")</span>
-                                        <span>by  @newsObj.CreatorUserName </span>
-                                        <span><a href="/News/Index/@newsObj.CategoryId">@newsObj.CategoryName</a> </span>
-                                          @*   <span><a href="#">3 Comments</a></span>*@
-                                    </div>
-                                </header>
-                                <div>
-                                    <p>@newsObj.DisplayValueDesc.Substring(0, 50).</p>
-                                </div>
-                                <footer class="clearfix">
-                                    <a href="/News/Details/@newsObj.Id" class="mg-read-more">Continue Reading <i class="fa fa-long-arrow-right"></i></a>
-                                </footer>
-                            </article>
+  <div class="mg-blog-list">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <main>
+            @foreach (News newsObj in Model)
+            {
+              <article class="mg-post">
+                <header>
+                  @if (newsObj.Image != null)
+                  {
+                    <a href="/News/Details/@newsObj.Id">
+                      <img style="width: 650px; height: 350px;" src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/News/@newsObj.Image" alt="" class="img-responsive">
+                    </a>
+                  }
+                  <h2 class="mg-post-title">
+                    <a href="/News/Details/@newsObj.Id" rel="bookmark">
+                      @*@if (@newsObj.DisplayValue.Length >= 20)
+                                            {
+                                                @newsObj.DisplayValue.ToString().Substring(0, 20)
 
-                        }
-                    </main>
+                                            }
+                                            else
+                                            {*@
+                      @newsObj.DisplayValue
+                      @*}*@
+                    </a>
+                  </h2>
+                  <div class="mg-post-meta">
+                    <span>
+                      @if (newsObj.CreationTime != null)
+                      {
+                        @newsObj.CreationTime.Value.ToString("D")
+                      }
+                    </span>
+                    <span>by  @newsObj.CreatorUserName </span>
+                    <span><a href="/News/Index/@newsObj.CategoryId">@newsObj.CategoryName</a> </span>
+                    @*   <span><a href="#">3 Comments</a></span>*@
+                  </div>
+                </header>
+                <div>
+                  @if (@newsObj.DisplayValueDesc.Length >= 50)
+                  {
+                    <p>
+                      @newsObj.DisplayValueDesc.ToString().Substring(0, 50)
+                    </p>
+                  }
+                  else
+                  {
+                    @newsObj.DisplayValueDesc
+                  }
                 </div>
-                <div class="col-md-4">
-                    <div class="mg-widget-area">
-                        <aside class="mg-widget">
-                            <input type="text" placeholder="Search..." class="form-control">
-                        </aside>
-                        <aside class="mg-widget">
-                            <h2 class="mg-widget-title">Recent Posts</h2>
-                            <ul class="mg-recnt-posts">
-                                @foreach (News t in Model.Take(3))
-                                {
-                                   
-                                     <li>
-                                        <div class="mg-recnt-post">
-                                            <div class="mg-rp-date">
-                                                <div class="mg-rp-date">@t.CreationTime.Value.Day <div class="mg-rp-month">@t.CreationTime.Value.ToString("MMM")</div></div>
-                                            </div>
-                                            <h3>
-                                                <a href="/News/Details/@t.Id">@t.DisplayValue</a>
-                                            </h3>
-                                            <p>@t.DisplayValueDesc.ToString().Substring(0, 30)</p>
-                                        </div>
-                                    </li>
-                                }
+                <footer class="clearfix">
+                  <a href="/News/Details/@newsObj.Id" class="mg-read-more">@Front.Resources.Global.News_Index_Details <i class="fa fa-long-arrow-right"></i></a>
+                </footer>
+              </article>
 
-                            </ul>
-                        </aside>
-                        <aside class="mg-widget">
-                            <h2 class="mg-widget-title">Category</h2>
-                            <ul>
-                                @if (Model != null)
-                                {
-                                    foreach (Category cat in Model[0].Categories.Take(4))
-                                    { 
-                                        <li>
-                                            <a href="/News/Index/@cat.Id">@cat.DisplayValue</a>
-                                        </li> 
-                                    }
-                                }
-                            </ul>
-                        </aside>
-                        @*<aside class="mg-widget">
-                            <h2 class="mg-widget-title">Tags</h2>
-                            <div class="tagcloud">
-                                @foreach (string tag in Model[0].Tags)
-                                {
-                                   <a href="#">@tag.</a>
-                                }
-                                <a href="#">Events</a>
-                                <a href="#">Promotion</a>
-                                <a href="#">Audio</a>
-                                <a href="#">Video</a>
-                                <a href="#">Gallery</a>
-                                <a href="#">New</a>
-                                <a href="#">Travel</a>
-                            </div>
-                        </aside>*@
-                    </div>
-                </div>
-            </div>
+            }
+          </main>
         </div>
+        <div class="col-md-4">
+          <div class="mg-widget-area">
+            @*<aside class="mg-widget">
+                                <input type="text" placeholder="Search..." class="form-control">
+                            </aside>*@
+            <aside class="mg-widget">
+              <h2 class="mg-widget-title">@Front.Resources.Global.News_RecentNews</h2>
+              <ul class="mg-recnt-posts">
+                @foreach (News t in Model.Take(3))
+                {
+
+                  <li>
+                    <div class="mg-recnt-post">
+                      <div class="mg-rp-date">
+                        <div class="mg-rp-date">@t.CreationTime.Value.Day <div class="mg-rp-month">@t.CreationTime.Value.ToString("MMM")</div></div>
+                      </div>
+                      <h3>
+                        <a href="/News/Details/@t.Id">@t.DisplayValue</a>
+                      </h3>
+                      <p>
+                        @(@t.DisplayValueDesc.Length >= 30 ? t.DisplayValueDesc.Substring(0, 29) : t.DisplayValueDesc)
+                      </p>
+                    </div>
+                  </li>
+                }
+
+              </ul>
+            </aside>
+            <aside class="mg-widget">
+              <h2 class="mg-widget-title">@Front.Resources.Global.News_Category</h2>
+              <ul>
+                @if (Model.Count > 0)
+                {
+                  foreach (Category cat in Model[0].Categories)
+                  {
+                    <li>
+                      <a href="/News/Index/@cat.Id">@cat.DisplayValue</a>
+                    </li>
+                  }
+                }
+              </ul>
+            </aside>
+            @*<aside class="mg-widget">
+                                <h2 class="mg-widget-title">Tags</h2>
+                                <div class="tagcloud">
+                                    @foreach (string tag in Model[0].Tags)
+                                    {
+                                       <a href="#">@tag.</a>
+                                    }
+                                    <a href="#">Events</a>
+                                    <a href="#">Promotion</a>
+                                    <a href="#">Audio</a>
+                                    <a href="#">Video</a>
+                                    <a href="#">Gallery</a>
+                                    <a href="#">New</a>
+                                    <a href="#">Travel</a>
+                                </div>
+                            </aside>*@
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 
 }
 

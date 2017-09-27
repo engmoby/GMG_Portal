@@ -498,4 +498,13 @@
   <data name="Footer_NewsletterAlreadyExist" xml:space="preserve">
     <value>Your Email Already Exist</value>
   </data>
+  <data name="Search_Box" xml:space="preserve">
+    <value>Type Keyword...</value>
+  </data>
+  <data name="Search_Desc" xml:space="preserve">
+    <value>all of your Search results</value>
+  </data>
+  <data name="Search_Label" xml:space="preserve">
+    <value>Search Results</value>
+  </data>
 </root>

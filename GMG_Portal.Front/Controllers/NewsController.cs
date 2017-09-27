@@ -137,7 +137,7 @@ namespace Front.Controllers
             Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
             string news = url + "News/SearchNews?keyword=" + keyWord + "&langId=" + Common.CurrentLang;
 
-            var newsModels = new List<News>();
+            var newsresult = new List<News>();
 
 
             if (news == null) throw new ArgumentNullException(nameof(news));
@@ -147,17 +147,19 @@ namespace Front.Controllers
             {
                 var responseData = responseMessageApi.Content.ReadAsStringAsync().Result;
                 var newsList = JsonConvert.DeserializeObject<List<News>>(responseData);
-                newsModels = newsList;
+                newsresult = newsList;
             }
-            return RedirectToAction("SearchResult", newsModels);
+           // return RedirectToAction("SearchResults",newsresult);
+
+            return View("SearchResult", newsresult);
 
             //return View(newsModels);
 
         }
-        public ActionResult SearchResult(List<News> newsList)
-        {
-            return View(newsList);
+        //public ActionResult SearchResults(List<News> newsList)
+        //{
+        //    return View("SearchResult",newsList);
 
-        }
+        //}
     }
 }

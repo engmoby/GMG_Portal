@@ -1186,6 +1186,33 @@ namespace Front.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Type Keyword....
+        /// </summary>
+        public static string Search_Box {
+            get {
+                return ResourceManager.GetString("Search_Box", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to all of your Search results.
+        /// </summary>
+        public static string Search_Desc {
+            get {
+                return ResourceManager.GetString("Search_Desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search Results.
+        /// </summary>
+        public static string Search_Label {
+            get {
+                return ResourceManager.GetString("Search_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to See More.
         /// </summary>
         public static string SeeMore {

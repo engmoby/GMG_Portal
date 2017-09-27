@@ -445,6 +445,7 @@
     <Content Include="Views\BookingLite\Confirm.cshtml" />
     <Content Include="Views\Offers\OfferDetails.cshtml" />
     <Content Include="Views\Hotel\Details.cshtml" />
+    <Content Include="Views\News\SearchResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

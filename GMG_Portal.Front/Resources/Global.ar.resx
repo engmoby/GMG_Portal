@@ -492,6 +492,15 @@
   <data name="PhoneNo_Required" xml:space="preserve">
     <value>رقم التليفون مطلوب</value>
   </data>
+  <data name="Search_Box" xml:space="preserve">
+    <value>....كلمه البحث</value>
+  </data>
+  <data name="Search_Desc" xml:space="preserve">
+    <value>جميع نتائج البحث</value>
+  </data>
+  <data name="Search_Label" xml:space="preserve">
+    <value>نتائج البحث</value>
+  </data>
   <data name="SeeMore" xml:space="preserve">
     <value> المزيد</value>
   </data>
