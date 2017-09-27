@@ -26,7 +26,7 @@
                             </div>
                             <div class="col-sm-7">
                                 <h3 class="mg-avl-room-title">
-                                    <a href="/Hotel/Details/@hotel.Id">@hotel.DisplayValue</a> <span>$@hotel.PriceStart/@Front.Resources.Global.Hotel_Night</span>
+                                    <a href="/Hotel/Details/@hotel.Id">@hotel.DisplayValue</a> <span>(@hotel.Currency)@hotel.PriceStart/@Front.Resources.Global.Hotel_Night</span>
                                 </h3>
                                 
                                 @if (@hotel.DisplayValueDesc.Length >= 110)

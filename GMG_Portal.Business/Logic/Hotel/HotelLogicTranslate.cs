@@ -44,6 +44,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                         DisplayValueDesc = hotel.DisplayValueDesc,
                         Rate = hotel.Rate,
                         PriceStart = hotel.PriceStart,
+                        Currency = hotel.Currency,
                         IsDeleted = hotel.IsDeleted,
                         HasImage = haveFeature,
                         Image = getHotelImages[0].Image,
@@ -64,6 +65,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                         Rate = hotel.Rate,
                         IsDeleted = hotel.IsDeleted,
                         PriceStart = hotel.PriceStart,
+                        Currency = hotel.Currency,
                         HasImage = false,
                         Late = hotel.Late,
                         Long = hotel.Long,
@@ -97,6 +99,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                         DisplayValueDesc = hotel.DisplayValueDesc,
                         Rate = hotel.Rate,
                         PriceStart = hotel.PriceStart,
+                        Currency = hotel.Currency,
                         HasImage = true,
                         langId = hotel.langId
                     });
@@ -145,6 +148,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                         DisplayValueDesc = hotel.DisplayValueDesc,
                         Rate = hotel.Rate,
                         PriceStart = hotel.PriceStart,
+                        Currency = hotel.Currency,
                         FeaturesList = featuresList,
                         Image = getHotelImages[0].Image,
                         Bootstrap = 12 / getHotelInfo.Count,
@@ -161,6 +165,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                         DisplayValueDesc = hotel.DisplayValueDesc,
                         Rate = hotel.Rate,
                         PriceStart = hotel.PriceStart,
+                        Currency = hotel.Currency,
                         FeaturesList = featuresList,
                         Bootstrap = 12 / getHotelInfo.Count,
                         langId = hotel.langId
@@ -265,6 +270,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 returnList.DisplayValueDesc = getHotelInfo.DisplayValueDesc;
                 returnList.Rate = getHotelInfo.Rate;
                 returnList.PriceStart = getHotelInfo.PriceStart;
+                returnList.Currency = getHotelInfo.Currency;
                 returnList.FeaturesList = featuresList;
                 returnList.CheckIn = dtCheckin.ToString();
                 returnList.CheckOut = dtCheckout.ToString();
@@ -342,6 +348,8 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 IsDeleted = postedhotel.IsDeleted,
                 Show = Parameters.Show,
                 PriceStart = postedhotel.PriceStart,
+                Currency = postedhotel.Currency,
+                Rate = postedhotel.Rate,
                 Late = postedhotel.Late,
                 Long = postedhotel.Long,
                 CheckIn = postedhotel.CheckIn,
@@ -362,6 +370,8 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             hotel.IsDeleted = postedHotel.IsDeleted;
             hotel.ImageList = postedHotel.ImageList;
             hotel.PriceStart = postedHotel.PriceStart;
+            hotel.Currency = postedHotel.Currency;
+            hotel.Rate = postedHotel.Rate;
             hotel.Late = postedHotel.Late;
             hotel.Long = postedHotel.Long;
             hotel.CheckIn = postedHotel.CheckIn;

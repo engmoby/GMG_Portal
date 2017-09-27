@@ -1,5 +1,5 @@
-﻿controllerProvider.register('HotelsController', ['$scope', 'HotelsApi', 'uploadHotlesService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', 'Map', HotelsController]);
-function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $timeout, $filter, $uibModal, toastr, Map) {
+﻿controllerProvider.register('HotelsController', ['$scope', 'HotelsApi', 'CurrencyApi', 'uploadHotlesService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', 'Map', HotelsController]);
+function HotelsController($scope, HotelsApi, CurrencyApi, uploadHotlesService, $rootScope, $timeout, $filter, $uibModal, toastr, Map) {
     $rootScope.ViewLoading = true;
     $scope.applayUploadImageBtn = false;
     var langId = document.querySelector('#HCurrentLang').value;
@@ -11,7 +11,7 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
     $scope.sortingLogId = [];
     $scope.showSaveFeatureBtn = false;
     $scope.getSelectedRating = "";
-    $scope.getSelectedCurrency= "";
+    $scope.getSelectedCurrency = "";
     $scope.sortingLog = [];
 
     $scope.place = {};
@@ -49,6 +49,12 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
             $scope.Hotels = response.data;
             $rootScope.ViewLoading = false;
         });
+
+        HotelsApi.GetAllCurrency(currentLanguage).then(function (response) {
+            debugger;
+            $scope.currencyList = response.data;
+        });
+
     });
 
     $scope.Image = "";
@@ -68,23 +74,28 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
         $scope.Hotels = response.data;
         $rootScope.ViewLoading = false;
     });
-
+    HotelsApi.GetAllCurrency(currentLanguage).then(function (response) {
+        debugger;
+        $scope.currencyList = response.data;
+    });
     $scope.hotelRating =
-        [{ id: "1", value: "1" },
+        [
+            { id: "1", value: "1" },
             { id: "2", value: "2" },
             { id: "3", value: "3" },
             { id: "4", value: "4" },
-            { id: "5", value: "5" }];
-     
+            { id: "5", value: "5" }
+        ];
 
-    $scope.currencyList = [
-        { id: "1", value: "SAR" },
-        { id: "2", value: "Dollar" },
-        { id: "3", value: "EGP" },
-        { id: "4", value: "AED" },
-        { id: "5", value: "EUR" },
-        { id: "6", value: "BHD" }
-    ];
+
+    //$scope.currencyList = [
+    //    { id: "1", value: "SAR" },
+    //    { id: "2", value: "Dollar" },
+    //    { id: "3", value: "EGP" },
+    //    { id: "4", value: "AED" },
+    //    { id: "5", value: "EUR" },
+    //    { id: "6", value: "BHD" }
+    //];
 
     $scope.changedRateValue = function (item) {
         $scope.getSelectedRating = item;
@@ -113,7 +124,10 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
         if (hotel == null) hotel = {};
         else {
             HotelsApi.GetHotelDetails(hotel.Id, currentLanguage).then(function (response) {
+                debugger;
                 $scope.HotelDetails = response.data;
+                $scope.DDLHotelCurrency = response.data.Currency;
+                $scope.DDLHotelRate = response.data.Rate;
             });
 
         }
@@ -155,7 +169,7 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
         if ($scope.userSelect != "" && $scope.userSelect != undefined) {
             $scope.msg = $scope.userSelect;
         }
-        $scope.Hotel.LangId = currentLanguage; 
+        $scope.Hotel.LangId = currentLanguage;
         $scope.Hotel.Rate = $scope.getSelectedRating;
         $scope.Hotel.Currency = $scope.getSelectedCurrency;
 
@@ -210,9 +224,9 @@ function HotelsController($scope, HotelsApi, uploadHotlesService, $rootScope, $t
 
     }
     $scope.save = function () {
-        debugger; 
+        debugger;
         $rootScope.ViewLoading = true;
-        $scope.Hotel.LangId = currentLanguage; 
+        $scope.Hotel.LangId = currentLanguage;
         $scope.Hotel.Rate = $scope.getSelectedRating;
         $scope.Hotel.Currency = $scope.getSelectedCurrency;
 

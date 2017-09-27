@@ -7,6 +7,7 @@
 @using GMG_Portal.Content.Admin.Hotel
 @using GMG_Portal.Content.Admin.SystemParameters
 <script type="text/javascript" src="~/Scripts/app/services/Hotel.js"></script>
+<script type="text/javascript" src="~/Scripts/app/services/Currency.js"></script>
 <script type="text/javascript" src="~/Scripts/app/pages/Hotel/Hotel.js"></script>
 <input type="hidden" id="HEnglishNameUnique" value="@Hotel.EnglishNameUnique" />
 <input type="hidden" id="HUpdateSuccessMessage" value="@Hotel.UpdateSuccessMessage" />
@@ -220,7 +221,7 @@
                     <td ng-class="{'red-text': Hotel.IsDeleted == true }">{{$index+1}}</td>
                     <td ng-class="{'red-text': Hotel.IsDeleted == true}">{{Hotel.DisplayValue}}</td>
                     <td ng-class="{'red-text': Hotel.IsDeleted == true}">{{Hotel.DisplayValueDesc | limitTo:letterLimit}} </td>
-                    <td ng-class="{'red-text': Hotel.IsDeleted == true}">{{Hotel.PriceStart}} {{Hotel.Cuurency}}</td>
+                    <td ng-class="{'red-text': Hotel.IsDeleted == true}">{{Hotel.PriceStart}} {{Hotel.Currency}}</td>
                     <td>
                         <span ng-show="!Hotel.HasImage" class="btn-xs btn btn-danger" title="this hotel will (not) appear in the website">NO</span>
                         <span ng-show="Hotel.HasImage" class="btn-xs btn btn-success" title="this hotel will appear in the website"> YES</span>
@@ -310,20 +311,24 @@
                                                 </div>
                                         </div>
                                     </div>*@
-                                <div class="form-group">
-                                    <label for="TxtRate">@HomeSlider.Rate</label><span class="red-text"> *</span>
-                                    <select ng-model="DDLHotelRate" required ng-change="changedRateValue(DDLHotelRate)">
-                                        <option ng-repeat="x in hotelRating" value="{{x.id}}">{{x.value}}</option>
-                                    </select>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="TxtRate">@HomeSlider.Rate</label><span class="red-text"> *</span>
+                                        <select ng-model="DDLHotelRate" required ng-change="changedRateValue(DDLHotelRate)">
+                                            <option ng-repeat="x in hotelRating" value="{{x.id}}">{{x.value}}</option>
+                                        </select>
 
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label>@Hotel.Curreny</label><span class="red-text"> *</span>
-                                    <select ng-model="DDLHotelCurrency" required ng-change="changedCurrencyValue(DDLHotelCurrency)">
-                                        <option ng-repeat="x in currencyList" value="{{x.value}}">{{x.value}}</option>
-                                    </select>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>@Hotel.Curreny</label><span class="red-text"> *</span>
+                                        <select ng-model="DDLHotelCurrency" required ng-change="changedCurrencyValue(DDLHotelCurrency)">
+                                            <option ng-repeat="x in currencyList" value="{{x.DisplayValue}}">{{x.DisplayValue}}</option>
+                                        </select>
 
 
+                                    </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">

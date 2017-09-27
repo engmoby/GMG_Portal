@@ -20,6 +20,7 @@ function CurrencysController($scope, CurrencyApi, uploadService, $rootScope, $ti
     $scope.letterLimit = 20;
     $rootScope.ViewLoading = true;
     CurrencyApi.GetAll(currentLanguage).then(function (response) {
+        debugger;
         $scope.Currencys = response.data;
         $rootScope.ViewLoading = false;
     });
