@@ -31,6 +31,9 @@ namespace GMG_Portal.API.Controllers.SystemParameters
             {
 
 
+                var currencyLogic = new CurrencyLogic();
+                var currencyLogicTranslateogic = new CurrencyLogicTranslate();
+
                 var retunGeneralAll = new HomeModels();
                 var generalLogic = new GeneralLogic();
 
@@ -118,19 +121,42 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 List<Hotels> returnHotels = new List<Hotels>(hotelsTable.Rows.Count);
                 foreach (DataRow dr in hotelsTable.Rows)
                 {
-
-                    if (returnHotels.FirstOrDefault(x => x.Id == (int)dr["Id"]) != null)
-                       continue;
-                    returnHotels.Add(new Hotels
+                    if (langId == Parameters.DefaultLang)
                     {
-                        Id = (int)dr["Id"],
-                        DisplayValue = (string)dr["DisplayValue"],
-                        DisplayValueDesc = (string)dr["DisplayValueDesc"],
-                        Image = (string)dr["Image"],
-                        PriceStart = (int)dr["PriceStart"],
-                        Rate = (int)dr["Rate"],
-                        Currency = (int)dr["Currency"]
-                    });
+                        var currencyInfo = currencyLogic.Get((int)dr["Currency"]);
+                        if (returnHotels.FirstOrDefault(x => x.Id == (int)dr["Id"]) != null)
+                            continue;
+                        returnHotels.Add(new Hotels
+                        {
+                            Id = (int)dr["Id"],
+                            DisplayValue = (string)dr["DisplayValue"],
+                            DisplayValueDesc = (string)dr["DisplayValueDesc"],
+                            Image = (string)dr["Image"],
+                            PriceStart = (int)dr["PriceStart"],
+                            Rate = (int)dr["Rate"],
+                            CurrencyTitle = currencyInfo.DisplayValue
+                        });
+                    }
+
+                    else
+                    {
+                        var currencyTranslateInfo = currencyLogicTranslateogic.Get((int)dr["Currency"], langId);
+                        if (returnHotels.FirstOrDefault(x => x.Id == (int)dr["Id"]) != null)
+                            continue;
+                        returnHotels.Add(new Hotels
+                        {
+                            Id = (int)dr["Id"],
+                            DisplayValue = (string)dr["DisplayValue"],
+                            DisplayValueDesc = (string)dr["DisplayValueDesc"],
+                            Image = (string)dr["Image"],
+                            PriceStart = (int)dr["PriceStart"],
+                            Rate = (int)dr["Rate"],
+                            CurrencyTitle = currencyTranslateInfo.DisplayValue
+                        });
+
+                    }
+
+
                 }
 
 

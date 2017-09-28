@@ -43,6 +43,7 @@ namespace GMG_Portal.API.Models.Hotels.Hotel
         public bool HasImage { get; set; }
         public string langId { get; set; } 
         public int Currency { get; set; }
+        public string CurrencyTitle { get; set; }
 
     }
 }

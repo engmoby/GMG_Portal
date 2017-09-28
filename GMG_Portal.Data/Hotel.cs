@@ -43,6 +43,6 @@ namespace GMG_Portal.Data
         public Nullable<System.DateTime> DeletionTime { get; set; }
         public Nullable<int> DeleterUserId { get; set; }
         public bool Show { get; set; }
-        public string Currency { get; set; }
+        public Nullable<int> Currency { get; set; }
     }
 }

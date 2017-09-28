@@ -177,6 +177,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
 
             var getHotelInfo = _db.Hotels.FirstOrDefault(p => p.Id == id);
             var getHotelFeatures = _db.Hotels_Features.Where(p => p.Hotel_Id == getHotelInfo.Id).ToList();
+            var getCurrencyInfo = _db.Currencies.FirstOrDefault(p => p.Id == getHotelInfo.Currency);
             foreach (var hotelFeature in getHotelFeatures)
             {
                 var getFeatures = _db.SystemParameters_Features.Where(p => p.Id == hotelFeature.Feature_Id).ToList();
@@ -210,7 +211,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 returnList.DisplayValueDesc = getHotelInfo.DisplayValueDesc;
                 returnList.Rate = getHotelInfo.Rate;
                 returnList.PriceStart = getHotelInfo.PriceStart;
-                returnList.Currency = getHotelInfo.Currency;
+                returnList.CurrencyTitle = getCurrencyInfo.DisplayValue;
                 returnList.Late = getHotelInfo.Late;
                 returnList.Long = getHotelInfo.Long;
                 returnList.CheckIn = dtCheckin.ToString();

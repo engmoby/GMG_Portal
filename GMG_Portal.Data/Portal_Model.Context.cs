@@ -69,9 +69,9 @@ namespace GMG_Portal.Data
         public virtual DbSet<SystemParameters_Owners_Translate> SystemParameters_Owners_Translate { get; set; }
         public virtual DbSet<SystemParameters_PaymentType> SystemParameters_PaymentType { get; set; }
         public virtual DbSet<Systemparameters_Admin> Systemparameters_Admin { get; set; }
-        public virtual DbSet<Hotel> Hotels { get; set; }
-        public virtual DbSet<Hotels_Translate> Hotels_Translate { get; set; }
         public virtual DbSet<Currency> Currencies { get; set; }
         public virtual DbSet<Currency_Translate> Currency_Translate { get; set; }
+        public virtual DbSet<Hotel> Hotels { get; set; }
+        public virtual DbSet<Hotels_Translate> Hotels_Translate { get; set; }
     }
 }

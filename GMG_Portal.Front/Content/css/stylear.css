@@ -502,3 +502,19 @@ bootstrap.min.css:5
 .display-field {
     text-align: right;margin-bottom: 15px;
 }
+
+
+.mg-room figcaption .mg-room-price {
+    direction: rtl;
+     font-family: "Open Sans";
+    font-size: 24px;
+    font-weight: 300;
+    margin-bottom: 10px;
+    -webkit-transform: translate(0, 120px);
+    -ms-transform: translate(0, 120px);
+    transform: translate(0, 120px);
+    -webkit-transition: opacity 0.4s, -webkit-transform 0.4s;
+    transition: opacity 0.4s, transform 0.4s;
+    -webkit-transition-delay: 0.4s;
+    transition-delay: 0.4s;
+}
