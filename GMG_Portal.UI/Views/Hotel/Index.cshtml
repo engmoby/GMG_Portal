@@ -324,7 +324,7 @@
                                     <div class="form-group">
                                         <label>@Hotel.Curreny</label><span class="red-text"> *</span>
                                         <select ng-model="DDLHotelCurrency" required ng-change="changedCurrencyValue(DDLHotelCurrency)">
-                                            <option ng-repeat="x in currencyList" value="{{x.DisplayValue}}">{{x.DisplayValue}}</option>
+                                            <option ng-repeat="x in currencyList" value="{{x.Id}}">{{x.DisplayValue}}</option>
                                         </select>
 
 

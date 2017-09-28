@@ -27,6 +27,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 var haveFeature = true;
                 var getHotelImages = _db.Hotels_Images_Translate.Where(p => p.IsDeleted != true && p.Hotel_Id == hotel.Id && p.langId == langId).ToList();
                 var getHotelFeatures = _db.Hotels_Features_Translate.FirstOrDefault(p => p.IsDeleted != true && p.Hotel_Id == hotel.Id && p.langId == langId);
+                var getCurrency = _db.Currencies.FirstOrDefault(p => p.Id == hotel.Currency);
 
                 //DateTime dtCheckin = DateTime.Parse(hotel.CheckIn, new CultureInfo("ar-SA"));
                 //DateTime dtCheckout = DateTime.Parse(hotel.CheckOut, new CultureInfo("ar-SA"));
@@ -45,6 +46,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                         Rate = hotel.Rate,
                         PriceStart = hotel.PriceStart,
                         Currency = hotel.Currency,
+                        CurrencyTitle = getCurrency.DisplayValue,
                         IsDeleted = hotel.IsDeleted,
                         HasImage = haveFeature,
                         Image = getHotelImages[0].Image,
@@ -66,6 +68,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                         IsDeleted = hotel.IsDeleted,
                         PriceStart = hotel.PriceStart,
                         Currency = hotel.Currency,
+                        CurrencyTitle = getCurrency.DisplayValue,
                         HasImage = false,
                         Late = hotel.Late,
                         Long = hotel.Long,
@@ -85,7 +88,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             var getHotelInfo = _db.Hotels_Translate.Where(p => p.IsDeleted == false && p.langId == langId).OrderByDescending(h => h.Id).ToList();
             foreach (var hotel in getHotelInfo)
             {
-                var getHotelImages = _db.Hotels_Images_Translate.Where(p => p.IsDeleted != true && p.Hotel_Id == hotel.Id && p.langId==langId).ToList();
+                var getHotelImages = _db.Hotels_Images_Translate.Where(p => p.IsDeleted != true && p.Hotel_Id == hotel.Id && p.langId == langId).ToList();
                 var getHotelFeatures = _db.Hotels_Features_Translate.FirstOrDefault(p => p.IsDeleted != true && p.Hotel_Id == hotel.Id && p.langId == langId);
 
                 if (getHotelImages.Any())
@@ -118,6 +121,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             foreach (var hotel in getHotelInfo)
             {
                 var featuresList = new List<SystemParameters_Features_Translate>();
+                var getCurrency = _db.Currencies.FirstOrDefault(p => p.Id == hotel.Currency);
 
                 var getHotelFeatures = _db.Hotels_Features_Translate.Where(p => p.IsDeleted != true && p.Hotel_Id == hotel.Id && p.langId == langId).ToList();
 
@@ -149,6 +153,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                         Rate = hotel.Rate,
                         PriceStart = hotel.PriceStart,
                         Currency = hotel.Currency,
+                        CurrencyTitle = getCurrency.DisplayValue,
                         FeaturesList = featuresList,
                         Image = getHotelImages[0].Image,
                         Bootstrap = 12 / getHotelInfo.Count,
@@ -166,6 +171,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                         Rate = hotel.Rate,
                         PriceStart = hotel.PriceStart,
                         Currency = hotel.Currency,
+                        CurrencyTitle = getCurrency.DisplayValue,
                         FeaturesList = featuresList,
                         Bootstrap = 12 / getHotelInfo.Count,
                         langId = hotel.langId
@@ -181,6 +187,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             var featuresList = new List<SystemParameters_Features_Translate>();
 
             var getHotelInfo = _db.Hotels_Translate.FirstOrDefault(p => p.Id == id && p.langId == langId);
+            var getCurrency = _db.Currencies.FirstOrDefault(p => p.Id == getHotelInfo.Currency);
             var getHotelFeatures = _db.Hotels_Features_Translate.Where(p => p.Hotel_Id == getHotelInfo.Id && p.langId == langId).ToList();
             foreach (var hotelFeature in getHotelFeatures)
             {
@@ -214,6 +221,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 returnList.DisplayValueDesc = getHotelInfo.DisplayValueDesc;
                 returnList.Rate = getHotelInfo.Rate;
                 returnList.PriceStart = getHotelInfo.PriceStart;
+                returnList.CurrencyTitle = getCurrency.DisplayValue;
                 returnList.FeaturesList = featuresList;
                 returnList.Late = getHotelInfo.Late;
                 returnList.Long = getHotelInfo.Long;
@@ -236,6 +244,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             var featuresList = new List<SystemParameters_Features_Translate>();
 
             var getHotelInfo = _db.Hotels_Translate.FirstOrDefault(p => p.Id == id && p.langId == langId);
+            var getCurrency = _db.Currencies.FirstOrDefault(p => p.Id == getHotelInfo.Currency);
             var getHotelFeatures = _db.Hotels_Features_Translate.Where(p => p.Hotel_Id == getHotelInfo.Id && p.langId == langId).ToList();
             foreach (var hotelFeature in getHotelFeatures)
             {
@@ -271,6 +280,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 returnList.Rate = getHotelInfo.Rate;
                 returnList.PriceStart = getHotelInfo.PriceStart;
                 returnList.Currency = getHotelInfo.Currency;
+                returnList.CurrencyTitle = getCurrency.DisplayValue;
                 returnList.FeaturesList = featuresList;
                 returnList.CheckIn = dtCheckin.ToString();
                 returnList.CheckOut = dtCheckout.ToString();

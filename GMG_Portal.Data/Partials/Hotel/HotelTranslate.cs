@@ -16,6 +16,6 @@ namespace GMG_Portal.Data
         public List<SystemParameters_Features_Translate> FeaturesList { get; set; }
         public List<Hotels_Images_Translate> ImageList { get; set; }
         public bool HasImage { get; set; }
-
+        public string CurrencyTitle { get; set; }
     }
 }

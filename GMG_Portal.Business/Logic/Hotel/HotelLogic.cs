@@ -29,6 +29,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
 
                 var getHotelImages = _db.Hotels_Images.Where(p => p.IsDeleted != true && p.Hotel_Id == hotel.Id).ToList();
                 var getHotelFeatures = _db.Hotels_Features.FirstOrDefault(p => p.IsDeleted != true && p.Hotel_Id == hotel.Id);
+                var getCurrency = _db.Currencies.FirstOrDefault(p => p.Id == hotel.Currency);
 
                 DateTime dtCheckin = DateTime.Parse(hotel.CheckIn).AddHours(2);
                 DateTime dtCheckout = DateTime.Parse(hotel.CheckOut).AddHours(2);
@@ -45,6 +46,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                         Rate = hotel.Rate,
                         PriceStart = hotel.PriceStart,
                         Currency = hotel.Currency,
+                        CurrencyTitle = getCurrency.DisplayValue,
                         IsDeleted = hotel.IsDeleted,
                         HasImage = haveFeature,
                         Image = getHotelImages[0].Image,
@@ -65,6 +67,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                         IsDeleted = hotel.IsDeleted,
                         PriceStart = hotel.PriceStart,
                         Currency = hotel.Currency,
+                        CurrencyTitle = getCurrency.DisplayValue,
                         HasImage = false,
                         Late = hotel.Late,
                         Long = hotel.Long,
@@ -86,6 +89,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             {
                 var getHotelImages = _db.Hotels_Images.Where(p => p.IsDeleted != true && p.Hotel_Id == hotel.Id).ToList();
                 var getHotelFeatures = _db.Hotels_Features.FirstOrDefault(p => p.IsDeleted != true && p.Hotel_Id == hotel.Id);
+                // var getCurrency = _db.Currencies.FirstOrDefault(p => p.Id == hotel.Currency);
 
                 if (getHotelImages.Any())
                 {
@@ -99,6 +103,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                         Rate = hotel.Rate,
                         PriceStart = hotel.PriceStart,
                         Currency = hotel.Currency,
+                        // CurrencyTitle = getCurrency.DisplayValue,
                         HasImage = true,
                     });
                 }
@@ -116,7 +121,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             foreach (var hotel in getHotelInfo)
             {
                 var featuresList = new List<SystemParameters_Features>();
-
+                var getCurrency = _db.Currencies.FirstOrDefault(p => p.Id == hotel.Currency);
                 var getHotelFeatures = _db.Hotels_Features.Where(p => p.IsDeleted != true && p.Hotel_Id == hotel.Id).ToList();
 
                 if (!getHotelFeatures.Any())
@@ -146,6 +151,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                         Rate = hotel.Rate,
                         PriceStart = hotel.PriceStart,
                         Currency = hotel.Currency,
+                        CurrencyTitle = getCurrency.DisplayValue,
                         FeaturesList = featuresList,
                         Image = getHotelImages[0].Image,
                         Bootstrap = 12 / getHotelInfo.Count
@@ -162,6 +168,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                         Rate = hotel.Rate,
                         PriceStart = hotel.PriceStart,
                         Currency = hotel.Currency,
+                        CurrencyTitle = getCurrency.DisplayValue,
                         FeaturesList = featuresList,
                         Bootstrap = 12 / getHotelInfo.Count
                     });
@@ -195,7 +202,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             if (getHotelInfo != null)
             {
                 if (getHotelImages.Any())
-                 {
+                {
                     returnList.Image = getHotelImages[0].Image;
                     returnList.ImageList = getHotelImages;
                 }
@@ -204,7 +211,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 DateTime dtCheckin = DateTime.Parse(getHotelInfo.CheckIn);
                 DateTime dtCheckout = DateTime.Parse(getHotelInfo.CheckOut);
                 DateTime dtCheckin1 = GeneralLogic.GetKsaDate(getHotelInfo.CheckIn);
-                string dtCheckinn= GeneralLogic.GetCountryTime("Saudi Arabia", getHotelInfo.CheckIn);
+                string dtCheckinn = GeneralLogic.GetCountryTime("Saudi Arabia", getHotelInfo.CheckIn);
                 string dtCheckout1 = GeneralLogic.GetCountryTime("Saudi Arabia", getHotelInfo.CheckOut);
                 returnList.Id = getHotelInfo.Id;
                 returnList.DisplayValue = getHotelInfo.DisplayValue;
@@ -232,6 +239,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             var featuresList = new List<SystemParameters_Features>();
 
             var getHotelInfo = _db.Hotels.FirstOrDefault(p => p.Id == id);
+            var getCurrency = _db.Currencies.FirstOrDefault(p => p.Id == getHotelInfo.Currency);
             var getHotelFeatures = _db.Hotels_Features.Where(p => p.Hotel_Id == getHotelInfo.Id).ToList();
             foreach (var hotelFeature in getHotelFeatures)
             {
@@ -266,6 +274,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 returnList.Rate = getHotelInfo.Rate;
                 returnList.PriceStart = getHotelInfo.PriceStart;
                 returnList.Currency = getHotelInfo.Currency;
+                returnList.CurrencyTitle = getCurrency.DisplayValue;
                 returnList.FeaturesList = featuresList;
                 returnList.Late = getHotelInfo.Late;
                 returnList.Long = getHotelInfo.Long;
@@ -362,7 +371,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         public Hotel Edit(Hotel postedHotel)
         {
 
-          //  DateTime dateTime = DateTime.ParseExact(postedHotel.CheckIn, "HH:mm:ss",CultureInfo.InvariantCulture);
+            //  DateTime dateTime = DateTime.ParseExact(postedHotel.CheckIn, "HH:mm:ss",CultureInfo.InvariantCulture);
             var hotel = GetHotelInfoById(postedHotel.Id);
             hotel.DisplayValue = postedHotel.DisplayValue;
             hotel.DisplayValueDesc = postedHotel.DisplayValueDesc;
