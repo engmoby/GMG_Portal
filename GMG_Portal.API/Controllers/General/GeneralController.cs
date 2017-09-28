@@ -120,7 +120,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 {
 
                     if (returnHotels.FirstOrDefault(x => x.Id == (int)dr["Id"]) != null)
-                        continue;
+                       continue;
                     returnHotels.Add(new Hotels
                     {
                         Id = (int)dr["Id"],
@@ -129,7 +129,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                         Image = (string)dr["Image"],
                         PriceStart = (int)dr["PriceStart"],
                         Rate = (int)dr["Rate"],
-                        Currency = (string)dr["Currency"]
+                        Currency = (int)dr["Currency"]
                     });
                 }
 

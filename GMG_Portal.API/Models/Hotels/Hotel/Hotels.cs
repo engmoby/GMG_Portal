@@ -42,7 +42,7 @@ namespace GMG_Portal.API.Models.Hotels.Hotel
         public int? Rate { get; set; }
         public bool HasImage { get; set; }
         public string langId { get; set; } 
-        public string Currency { get; set; }
+        public int Currency { get; set; }
 
     }
 }
