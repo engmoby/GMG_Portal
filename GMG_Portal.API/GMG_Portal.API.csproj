@@ -261,6 +261,7 @@
     <None Include="Properties\PublishProfiles\GMGAPI - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\gmgportal-stag - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\gmgportal-stag - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -384,6 +384,7 @@
     <None Include="Properties\PublishProfiles\gmgportal-stag - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\gmgportal-stag - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\gmgportal-stag - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\LOCAL.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\featherlight.css" />
     <Content Include="Scripts\featherlight.gallery.css" />
