@@ -221,7 +221,7 @@
                     <td ng-class="{'red-text': Hotel.IsDeleted == true }">{{$index+1}}</td>
                     <td ng-class="{'red-text': Hotel.IsDeleted == true}">{{Hotel.DisplayValue}}</td>
                     <td ng-class="{'red-text': Hotel.IsDeleted == true}">{{Hotel.DisplayValueDesc | limitTo:letterLimit}} </td>
-                    <td ng-class="{'red-text': Hotel.IsDeleted == true}">{{Hotel.PriceStart}} {{Hotel.Currency}}</td>
+                    <td ng-class="{'red-text': Hotel.IsDeleted == true}">{{Hotel.PriceStart}} {{Hotel.CurrencyTitle}}</td>
                     <td>
                         <span ng-show="!Hotel.HasImage" class="btn-xs btn btn-danger" title="this hotel will (not) appear in the website">NO</span>
                         <span ng-show="Hotel.HasImage" class="btn-xs btn btn-success" title="this hotel will appear in the website"> YES</span>
