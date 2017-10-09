@@ -518,3 +518,5 @@ bootstrap.min.css:5
     -webkit-transition-delay: 0.4s;
     transition-delay: 0.4s;
 }
+
+.mg-srp-inner {    direction: rtl;}
