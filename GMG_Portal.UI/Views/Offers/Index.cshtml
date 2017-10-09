@@ -144,18 +144,40 @@
 
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="TxtPrice">@Offers.Price</label><span class="red-text"> *</span>
-                            <input type="number" ng-model="offer.Price" class="form-control" name="TxtPrice"
-                                   placeholder=""   ng-maxlength="@Common.TitleMax5" required ng-pattern="/@Regex.NumberWithoutZero/" />
-                            <div class="red-text" ng-messages="FrmAddUpdate.TxtPrice.$error" ng-show="FrmAddUpdate.TxtPrice.$touched">
-                                <span class="red-text" ng-message="required">@Offers.TxtPriceRequiredErrorMessage</span>
-                                <span class="red-text" ng-message="pattern">@Offers.TxtPricePatternErrorMessage</span>
-                                <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax5 @Common.Charachter</span>
+                      <div class="form-group">
+                        <label for="TxtPrice">@Offers.Price</label><span class="red-text"> *</span>
+                        <input type="number" ng-model="offer.Price" class="form-control" name="TxtPrice"
+                               placeholder=""   ng-maxlength="@Common.TitleMax5" required ng-pattern="/@Regex.NumberWithoutZero/" />
+                        <div class="red-text" ng-messages="FrmAddUpdate.TxtPrice.$error" ng-show="FrmAddUpdate.TxtPrice.$touched">
+                          <span class="red-text" ng-message="required">@Offers.TxtPriceRequiredErrorMessage</span>
+                          <span class="red-text" ng-message="pattern">@Offers.TxtPricePatternErrorMessage</span>
+                          <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax5 @Common.Charachter</span>
 
-                            </div>
                         </div>
-                        @*<div class="form-group">
+                      </div>
+                      
+                      
+                    
+                      <div class="form-group">
+                        <label for="TxtDesc">@Offers.Title</label><span class="red-text"> *</span>
+                        <select name="LstCategory" class="form-control" ng-options="Category as Category.DisplayValue for Category in Categorys"
+                                ng-model="selectedCategory" ng-change="selectedCategorysChanged(selectedCategory)" required>
+                          <option value=''> choose</option>
+                        </select>
+                        <div class="red-text" ng-messages="FrmAddUpdate.LstCategory.$error" ng-show="FrmAddUpdate.LstCategory.$touched">
+                          <span class="error" ng-message="required">required</span>
+                        </div>
+                        <span class="red-text">* Current Choosen Catgory : {{ New.CategoryName }}</span>  
+                      </div>
+                   
+                      
+                      
+                      
+                      
+                      
+                      
+
+                      @*<div class="form-group">
                                 <label for="TxtUrl">@Offers.Url</label>
                                 <input type="text" ng-model="Offers.URL" not-in-list="HomeSliders" list-item-id="Offers.ID" class="form-control" name="TxtUrl"
                                        placeholder="@Offers.Url" ng-pattern="/@Regex.Name/">

@@ -10,7 +10,24 @@ function OffersController($scope, offersApi, uploadOffersService, $rootScope, $t
             $scope.offerList = response.data;
             $rootScope.ViewLoading = false;
         });
-    });
+
+
+        //offersApi.GetAllCurrency(CurrentLanguage).then(function (response) {
+        //debugger;
+      //$scope.currencyList = response.data;
+
+
+
+      offersApi.GetAllCategories(CurrentLanguage).then(function (response) {
+        debugger;
+        $scope.Categorys = response.data;
+      });
+
+
+      });
+
+
+
     $scope.Image = "";
     $scope.ImageFormatValidaiton = "Please upload Images ";
     $scope.ImageSizeValidaiton = "Can't upload image more than 2MB";
@@ -23,12 +40,19 @@ function OffersController($scope, offersApi, uploadOffersService, $rootScope, $t
         $rootScope.ViewLoading = false;
     });
 
+
+  //$scope.changedCurrencyValue = function (item) {
+  //  $scope.getSelectedCurrency = item;
+  //}
+
+
+
     //get Categories
 
-    //offersApi.GetAllCategories().then(function (response) {
-    //    debugger;
-    //    $scope.Categorys = response.data;
-    //});
+    offersApi.GetAllCategories().then(function (response) {
+        debugger;
+        $scope.Categorys = response.data;
+    });
     $scope.open = function (offer) {
         debugger;
         $scope.countFiles = '';

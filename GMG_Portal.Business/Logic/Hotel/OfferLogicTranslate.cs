@@ -18,16 +18,13 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         }
         public List<Hotles_Offers_Translate> GetAllWithDeleted(string langId)
         {
-            return _db.Hotles_Offers_Translate.Where(p=> p.langId == langId).OrderBy(p => p.IsDeleted && p.langId == langId).ToList();
-        }
-        public List<Hotles_Offers_Translate> GetAll(string langId)
-        {
-             var returnList = new List<Hotles_Offers_Translate>();
-             var offerList = _db.Hotles_Offers_Translate.Where(p => p.IsDeleted == false && p.Show == true && p.langId == langId).OrderByDescending(o => o.Id).ToList();
+            var returnList = new List<Hotles_Offers_Translate>();
+            var offerList = _db.Hotles_Offers_Translate.Where(p => p.IsDeleted == true && p.Show == false && p.langId == langId).OrderByDescending(o => o.Id).ToList();
 
             foreach (var offer in offerList)
             {
-               // var getHotelInfo = _db.Hotels.Where(p => p.IsDeleted != true && p.Id == offer.Hotel_Id).ToList();
+                var getCurrency = _db.Currencies.FirstOrDefault(p => p.Id == offer.Currency);
+                // var getHotelInfo = _db.Hotels.Where(p => p.IsDeleted != true && p.Id == offer.Hotel_Id).ToList();
                 returnList.Add(new Hotles_Offers_Translate
                 {
                     Id = offer.Id,
@@ -36,11 +33,34 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                     Image = offer.Image,
                     StartDate = offer.StartDate,
                     EndDate = offer.EndDate,
-                    Price = offer.Price, 
+                    Price = offer.Price,
+                    CurrencyTitle = getCurrency.DisplayValue,
                 });
             }
             return offerList;
-            //return _db.Hotles_Offers_Translate.Where(p => p.IsDeleted != true).ToList();
+        }
+        public List<Hotles_Offers_Translate> GetAll(string langId)
+        {
+            var returnList = new List<Hotles_Offers_Translate>();
+            var offerList = _db.Hotles_Offers_Translate.Where(p => p.IsDeleted == false  && p.Show == true && p.langId == langId).OrderByDescending(o => o.Id).ToList();
+
+            foreach (var offer in offerList)
+            {
+                var getCurrency = _db.Currencies.FirstOrDefault(p => p.Id == offer.Currency);
+                // var getHotelInfo = _db.Hotels.Where(p => p.IsDeleted != true && p.Id == offer.Hotel_Id).ToList();
+                returnList.Add(new Hotles_Offers_Translate
+                {
+                    Id = offer.Id,
+                    DisplayValue = offer.DisplayValue,
+                    DisplayValueDesc = offer.DisplayValueDesc,
+                    Image = offer.Image,
+                    StartDate = offer.StartDate,
+                    EndDate = offer.EndDate,
+                    Price = offer.Price,
+                    CurrencyTitle = getCurrency.DisplayValue,
+                });
+            }
+            return offerList;
         }
         public Hotles_Offers_Translate Get(int id, string langId)
         {
@@ -55,8 +75,8 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 returnList.Price = getOfferInfo.Price;
                 returnList.StartDate = getOfferInfo.StartDate;
                 returnList.EndDate = getOfferInfo.EndDate;
-                returnList.Image = getOfferInfo.Image; 
-
+                returnList.Image = getOfferInfo.Image;
+                returnList.CurrencyTitle = _db.Currencies.FirstOrDefault(p => p.Id == getOfferInfo.Currency).DisplayValue;
 
                 return returnList;
             }
@@ -109,6 +129,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 CreationTime = Parameters.CurrentDateTime,
                 CreatorUserId = Parameters.UserId,
                 langId = postedoffer.langId,
+                Currency = postedoffer.Currency,
             };
             _db.Hotles_Offers_Translate.Add(offer);
             return Save(offer);
@@ -126,6 +147,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             offer.Image = postedOffer.Image;
             offer.LastModificationTime = Parameters.CurrentDateTime;
             offer.LastModifierUserId = Parameters.UserId;
+            offer.Currency = postedOffer.Currency;
             return Save(offer);
         }
         public Hotles_Offers_Translate Delete(Hotles_Offers_Translate postedOffer)

@@ -62,6 +62,9 @@
     <Compile Include="Currency_Translate.cs">
       <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="database_firewall_rules.cs">
+      <DependentUpon>Portal_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Front_Mission.cs">
       <DependentUpon>Portal_Model.tt</DependentUpon>
     </Compile>
