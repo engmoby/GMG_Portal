@@ -90,7 +90,8 @@
                                                 <i class="fa fa-star"></i> @hotel.Rate
                                             </div>
                                             <div class="mg-room-price">
-                                                @hotel.PriceStart<sup style="margin-left: 4px;">(@hotel.CurrencyTitle)</sup> <span style="font-size: 21px;">@Front.Resources.Global.Hotel_Night</span>
+                                                <sub>@hotel.CurrencyTitle</sub>@hotel.PriceStart<span style="font-size: 18px;">/Night</span>
+                                                  @*@hotel.PriceStart<sup style="margin-left: 4px;">(@hotel.CurrencyTitle)</sup> <span style="font-size: 21px;">@Front.Resources.Global.Hotel_Night</span>*@
                                             </div>
                                             @*<div class="mg-room-price">
                                                 @hotel.PriceStart<sup style="margin-left: 4px;">/@Front.Resources.Global.Hotel_Night</sup> <span style="font-size: 21px;">(@hotel.Currency)</span>
