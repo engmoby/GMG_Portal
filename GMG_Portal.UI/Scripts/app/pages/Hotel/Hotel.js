@@ -101,10 +101,20 @@ function HotelsController($scope, HotelsApi, CurrencyApi, uploadHotlesService, $
         $scope.getSelectedRating = item;
     }
 
-    $scope.changedCurrencyValue = function (item) {
-        $scope.getSelectedCurrency = item;
-    }
+    //$scope.changedCurrencyValue = function (item) {
+    //    $scope.getSelectedCurrency = item;
+    //}
 
+    $scope.changedRateValue = function (selectedItem) {
+        if (selectedItem != null) {
+            $scope.DDLHotelRate = selectedItem;
+        }
+    };
+    $scope.changedCurrencyValue = function (selectedItem) {
+        if (selectedItem != null) { 
+            $scope.DDLHotelCurrency = selectedItem;
+        } 
+    };
 
     $scope.open = function (hotel) {
         debugger;
@@ -125,9 +135,18 @@ function HotelsController($scope, HotelsApi, CurrencyApi, uploadHotlesService, $
         else {
             HotelsApi.GetHotelDetails(hotel.Id, currentLanguage).then(function (response) {
                 debugger;
+
+
+
                 $scope.HotelDetails = response.data;
-                $scope.DDLHotelCurrency = response.data.Currency;
-                $scope.DDLHotelRate = response.data.Rate;
+                //$scope.DDLHotelCurrency = response.data.Currency;
+                // $scope.DDLHotelRate = response.data.Rate;
+                //var Index     = $scope.currencyList.indexOf($filter('filter')($scope.currencyList, { 'Id': response.data.Currency }, true)[0]);
+                var rateCurrentSelected = $filter('filter')($scope.hotelRating, response.data.Rate);
+                $scope.DDLHotelRate = rateCurrentSelected[0].id;
+
+                var indexRate = $scope.currencyList.indexOf($filter('filter')($scope.currencyList, { 'Id': response.data.Currency }, true)[0]);
+                $scope.DDLHotelCurrency = $scope.currencyList[indexRate];
             });
 
         }
@@ -141,7 +160,7 @@ function HotelsController($scope, HotelsApi, CurrencyApi, uploadHotlesService, $
 
 
         $rootScope.ViewLoading = false;
-        $scope.getSelectedRating = $scope.selectedHotelRate;
+       // $scope.getSelectedRating = $scope.selectedHotelRate;
 
     }
     $scope.back = function () {
@@ -170,10 +189,12 @@ function HotelsController($scope, HotelsApi, CurrencyApi, uploadHotlesService, $
             $scope.msg = $scope.userSelect;
         }
         $scope.Hotel.LangId = currentLanguage;
-        $scope.Hotel.Rate = $scope.getSelectedRating;
-        $scope.Hotel.Currency = $scope.getSelectedCurrency;
+        //$scope.Hotel.Rate = $scope.getSelectedRating;
+        //$scope.Hotel.Currency = $scope.getSelectedCurrency;
 
 
+        $scope.Hotel.Rate = $scope.DDLHotelRate;
+        $scope.Hotel.Currency = $scope.DDLHotelCurrency.Id;
         HotelsApi.Save($scope.Hotel).then(function (response) {
 
             switch (response.data.OperationStatus) {
@@ -227,12 +248,17 @@ function HotelsController($scope, HotelsApi, CurrencyApi, uploadHotlesService, $
         debugger;
         $rootScope.ViewLoading = true;
         $scope.Hotel.LangId = currentLanguage;
-        $scope.Hotel.Rate = $scope.getSelectedRating;
-        $scope.Hotel.Currency = $scope.getSelectedCurrency;
-
-        //  var hours = $scope.Hotel.CheckIn.getHours();
+       // $scope.Hotel.Rate = $scope.getSelectedRating;
+        //  $scope.Hotel.Currency = $scope.getSelectedCurrency;
+        if ($scope.DDLHotelRate) {
+        $scope.Hotel.Rate = $scope.DDLHotelRate;
+        $scope.Hotel.Currency = $scope.DDLHotelCurrency.Id;
         $scope.Hotel.CheckIn = new Date($filter('date')($scope.Hotel.CheckIn, 'yyyy-MM-dd HH:mm'));
         $scope.Hotel.CheckOut = new Date($filter('date')($scope.Hotel.CheckOut, 'yyyy-MM-dd HH:mm'));
+            
+        }
+
+        //  var hours = $scope.Hotel.CheckIn.getHours();
 
         HotelsApi.Save($scope.Hotel).then(function (response) {
 

@@ -313,8 +313,8 @@
                                     </div>*@
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="TxtRate">@HomeSlider.Rate</label><span class="red-text"> *</span>
-                                        <select ng-model="DDLHotelRate" required ng-change="changedRateValue(DDLHotelRate)">
+                                        <label>@HomeSlider.Rate</label><span class="red-text"> *</span>
+                                        <select class="form-control" ng-model="DDLHotelRate" required ng-change="changedRateValue(DDLHotelRate)">
                                             <option ng-repeat="x in hotelRating" value="{{x.id}}">{{x.value}}</option>
                                         </select>
 
@@ -323,11 +323,17 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>@Hotel.Curreny</label><span class="red-text"> *</span>
-                                        <select ng-model="DDLHotelCurrency" required ng-change="changedCurrencyValue(DDLHotelCurrency)">
-                                            <option ng-repeat="x in currencyList" value="{{x.Id}}">{{x.DisplayValue}}</option>
+                                        @*<select ng-model="DDLHotelCurrency" required ng-change="changedCurrencyValue(DDLHotelCurrency)">
+                                                <option ng-repeat="x in currencyList" value="{{x.Id}}">{{x.DisplayValue}}</option>
+                                            </select>*@
+
+                                        <select class="form-control" ng-options="x as x.DisplayValue  for x in currencyList" name="LstHotelCurrency" ng-model="DDLHotelCurrency"
+                                                ng-change="changedCurrencyValue(DDLHotelCurrency)" required>
+                                            <option value=''>choose</option>
                                         </select>
-
-
+                                        <div class="red-text" ng-messages="FrmAddUpdateWizard.LstHotelCurrency.$error" ng-show="FrmAddUpdateWizard.LstHotelCurrency.$touched">
+                                            <span class="error" ng-message="required">Currency required</span>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">

@@ -285,8 +285,8 @@
             $.ajax({
                 url: apiUrl + "/SystemParameters/ContactUs/GetAll?langId=@Common.CurrentLang",
                 type: "Get",
-                success: function (data) {
-                  $(
+                success: function (data) { 
+                    $(
                         "<p style='direction: ltr;margin-bottom: 6px;'>" + data.PhoneNo1 + "<br>" + data.PhoneNo2 + "</p>"
                      ).appendTo("#divphones");
                     $(

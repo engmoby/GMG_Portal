@@ -121,11 +121,14 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 List<Hotels> returnHotels = new List<Hotels>(hotelsTable.Rows.Count);
                 foreach (DataRow dr in hotelsTable.Rows)
                 {
+                    var rateVlaue = 1;
                     if (langId == Parameters.DefaultLang)
                     {
+                       
                         var currencyInfo = currencyLogic.Get((int)dr["Currency"]);
                         if (returnHotels.FirstOrDefault(x => x.Id == (int)dr["Id"]) != null)
                             continue;
+                        rateVlaue = (int)dr["Rate"];
                         returnHotels.Add(new Hotels
                         {
                             Id = (int)dr["Id"],
@@ -133,7 +136,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                             DisplayValueDesc = (string)dr["DisplayValueDesc"],
                             Image = (string)dr["Image"],
                             PriceStart = (int)dr["PriceStart"],
-                            Rate = (int)dr["Rate"],
+                            Rate = rateVlaue,
                             CurrencyTitle = currencyInfo.DisplayValue
                         });
                     }
@@ -143,6 +146,8 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                         var currencyTranslateInfo = currencyLogicTranslateogic.Get((int)dr["Currency"], langId);
                         if (returnHotels.FirstOrDefault(x => x.Id == (int)dr["Id"]) != null)
                             continue;
+
+                        rateVlaue = (int)dr["Rate"];
                         returnHotels.Add(new Hotels
                         {
                             Id = (int)dr["Id"],
@@ -150,7 +155,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                             DisplayValueDesc = (string)dr["DisplayValueDesc"],
                             Image = (string)dr["Image"],
                             PriceStart = (int)dr["PriceStart"],
-                            Rate = (int)dr["Rate"],
+                            Rate = rateVlaue,
                             CurrencyTitle = currencyTranslateInfo.DisplayValue
                         });
 
