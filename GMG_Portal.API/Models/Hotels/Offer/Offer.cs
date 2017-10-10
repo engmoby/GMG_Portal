@@ -34,5 +34,9 @@ namespace GMG_Portal.API.Models.SystemParameters
         public string OperationStatus { get; set; }
 
         public string langId { get; set; }
+
+        public string CurrencyTitle { get; set; }
+        public int? Currency { get; set; }
+
     }
 }

@@ -37,5 +37,7 @@ namespace GMG_Portal.Data
         public Nullable<int> DeleterUserId { get; set; }
         public string Image { get; set; }
         public string langId { get; set; }
+        public Nullable<int> Currency { get; set; }
+        public string CurrencyTitle { get; set; }
     }
 }

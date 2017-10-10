@@ -14,7 +14,6 @@ namespace GMG_Portal.Data
     public string HotelTitle { get; set; }
 
     public string OperationStatus { get; set; }
-        public string CurrencyTitle { get; set; }
-        public int Currency { get; set; }
+        public string CurrencyTitlex { get; set; }
     }
 }

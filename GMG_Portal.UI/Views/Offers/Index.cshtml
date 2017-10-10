@@ -159,15 +159,15 @@
                       
                     
                       <div class="form-group">
-                        <label for="TxtDesc">@Offers.Title</label><span class="red-text"> *</span>
+                        <label for="TxtDesc">@Offers.Currency</label><span class="red-text"> *</span>
                         <select name="LstCategory" class="form-control" ng-options="Category as Category.DisplayValue for Category in Categorys"
                                 ng-model="selectedCategory" ng-change="selectedCategorysChanged(selectedCategory)" required>
-                          <option value=''> choose</option>
+                          <option value=''>... Open to Choose Sign</option>
                         </select>
                         <div class="red-text" ng-messages="FrmAddUpdate.LstCategory.$error" ng-show="FrmAddUpdate.LstCategory.$touched">
                           <span class="error" ng-message="required">required</span>
                         </div>
-                        <span class="red-text">* Current Choosen Catgory : {{ New.CategoryName }}</span>  
+                        <span class="red-text">* Current Choosen Currency Sign : {{ offer.CurrencyTitle }}  </span>  
                       </div>
                    
                       

@@ -86,12 +86,12 @@ namespace GMG_Portal.API.Controllers.Offer
                 var offerLogicTranslate = new OfferLogicTranslate();
                 if (langId == Parameters.DefaultLang)
                 {
-                    var obj = offerLogic.GetOfferInfo(id);
+                    var obj = offerLogic.Get(id);
                     return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Hotles_Offers>(obj));
                 }
                 else
                 {
-                    var objTranslate = offerLogicTranslate.GetOfferInfo(id,langId);
+                    var objTranslate = offerLogicTranslate.Get(id,langId);
                     return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Hotles_Offers_Translate>(objTranslate));
                 }
                   

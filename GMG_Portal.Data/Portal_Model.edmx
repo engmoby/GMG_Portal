@@ -356,6 +356,7 @@
           <Property Name="DeleterUserId" Type="int" />
           <Property Name="Image" Type="nvarchar" MaxLength="250" />
           <Property Name="Currency" Type="int" />
+          <Property Name="CurrencyTitle" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Hotles_Offers_Translate">
           <Key>
@@ -384,6 +385,8 @@
           <Property Name="DeleterUserId" Type="int" />
           <Property Name="Image" Type="nvarchar" MaxLength="250" />
           <Property Name="langId" Type="varchar" MaxLength="10" />
+          <Property Name="CurrencyTitle" Type="nvarchar" MaxLength="50" />
+          <Property Name="Currency" Type="int" />
         </EntityType>
         <EntityType Name="SystemParameters_About">
           <Key>
@@ -1641,6 +1644,7 @@ warning 6002: The table/view 'GMG_PORTAL.sys.database_firewall_rules' does not h
           <Property Name="DeleterUserId" Type="Int32" />
           <Property Name="Image" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Currency" Type="Int32" />
+          <Property Name="CurrencyTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Hotles_Offers_Translate">
           <Key>
@@ -1669,6 +1673,8 @@ warning 6002: The table/view 'GMG_PORTAL.sys.database_firewall_rules' does not h
           <Property Name="DeleterUserId" Type="Int32" />
           <Property Name="Image" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="langId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CurrencyTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Currency" Type="Int32" />
         </EntityType>
         <EntityType Name="SystemParameters_About">
           <Key>
@@ -2774,6 +2780,7 @@ warning 6002: The table/view 'GMG_PORTAL.sys.database_firewall_rules' does not h
           <EntitySetMapping Name="Hotles_Offers">
             <EntityTypeMapping TypeName="GMG_Portal_DBModel.Hotles_Offers">
               <MappingFragment StoreEntitySet="Hotles_Offers">
+                <ScalarProperty Name="CurrencyTitle" ColumnName="CurrencyTitle" />
                 <ScalarProperty Name="Currency" ColumnName="Currency" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
@@ -2803,6 +2810,8 @@ warning 6002: The table/view 'GMG_PORTAL.sys.database_firewall_rules' does not h
           <EntitySetMapping Name="Hotles_Offers_Translate">
             <EntityTypeMapping TypeName="GMG_Portal_DBModel.Hotles_Offers_Translate">
               <MappingFragment StoreEntitySet="Hotles_Offers_Translate">
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+                <ScalarProperty Name="CurrencyTitle" ColumnName="CurrencyTitle" />
                 <ScalarProperty Name="langId" ColumnName="langId" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="DeleterUserId" ColumnName="DeleterUserId" />
