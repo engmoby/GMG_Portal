@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Mapping;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,16 +19,13 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         }
         public List<Hotles_Offers> GetAllWithDeleted()
         {
-            return _db.Hotles_Offers.OrderBy(p => p.IsDeleted).ToList();
-        }
-        public List<Hotles_Offers> GetAll()
-        {
-             var returnList = new List<Hotles_Offers>();
-             var offerList = _db.Hotles_Offers.Where(p => p.IsDeleted == false && p.Show == true).OrderByDescending(o => o.Id).ToList();
+            var returnList = new List<Hotles_Offers>();
+            var offerList = _db.Hotles_Offers.Where(p => p.Show == true).OrderByDescending(o => o.Id).ToList();
 
             foreach (var offer in offerList)
             {
-               // var getHotelInfo = _db.Hotels.Where(p => p.IsDeleted != true && p.Id == offer.Hotel_Id).ToList();
+                var getCurrency = _db.Currencies.FirstOrDefault(p => p.Id == offer.Currency);
+                // var getHotelInfo = _db.Hotels.Where(p => p.IsDeleted != true && p.Id == offer.Hotel_Id).ToList();
                 returnList.Add(new Hotles_Offers
                 {
                     Id = offer.Id,
@@ -36,16 +34,42 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                     Image = offer.Image,
                     StartDate = offer.StartDate,
                     EndDate = offer.EndDate,
-                    Price = offer.Price, 
+                    Price = offer.Price,
+                    Currency = offer.Currency,
+                    CurrencyTitle = getCurrency.DisplayValue.ToString()
                 });
             }
-            return offerList;
-            //return _db.Hotles_Offers.Where(p => p.IsDeleted != true).ToList();
+            return returnList;
+        }
+        public List<Hotles_Offers> GetAll()
+        {
+             var returnList = new List<Hotles_Offers>();
+             var offerList = _db.Hotles_Offers.Where(p => p.IsDeleted == false && p.Show == true).OrderByDescending(o => o.Id).ToList();
+
+            foreach (var offer in offerList)
+            {
+                var getCurrency = _db.Currencies.FirstOrDefault(p => p.Id == offer.Currency);
+                // var getHotelInfo = _db.Hotels.Where(p => p.IsDeleted != true && p.Id == offer.Hotel_Id).ToList();
+                returnList.Add(new Hotles_Offers
+                {
+                    Id = offer.Id,
+                    DisplayValue = offer.DisplayValue,
+                    DisplayValueDesc = offer.DisplayValueDesc,
+                    Image = offer.Image,
+                    StartDate = offer.StartDate,
+                    EndDate = offer.EndDate,
+                    Price = offer.Price,
+                    Currency = offer.Currency,
+                    CurrencyTitle = getCurrency.DisplayValue,
+                });
+            }
+            return returnList;
+            //return _db.Hotles_Offers.Where(p => p.IsDeleted != true).CurrencyTitle();0
         }
         public Hotles_Offers Get(int id)
         {
             var returnList = new Hotles_Offers();
-
+           
             var getOfferInfo = _db.Hotles_Offers.FirstOrDefault(p => p.Id == id && p.IsDeleted == false && p.Show == true);  
             if (getOfferInfo != null)
             {
@@ -55,9 +79,9 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 returnList.Price = getOfferInfo.Price;
                 returnList.StartDate = getOfferInfo.StartDate;
                 returnList.EndDate = getOfferInfo.EndDate;
-                returnList.Image = getOfferInfo.Image; 
-
-
+                returnList.Image = getOfferInfo.Image;
+                returnList.Currency = getOfferInfo.Currency;
+                returnList.CurrencyTitle = _db.Currencies.FirstOrDefault(p => p.Id == getOfferInfo.Currency)?.DisplayValue;
                 return returnList;
             }
             else return null;
@@ -108,6 +132,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 Show = Parameters.Show,
                 CreationTime = Parameters.CurrentDateTime,
                 CreatorUserId = Parameters.UserId,
+                Currency =  postedoffer.Currency,
             };
             _db.Hotles_Offers.Add(offer);
             return Save(offer);
@@ -118,13 +143,14 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             offer.DisplayValue = postedOffer.DisplayValue;
             offer.DisplayValueDesc = postedOffer.DisplayValueDesc;
             offer.IsDeleted = postedOffer.IsDeleted;
-            offer.Show = postedOffer.Show;
+            offer.Show = true;
             offer.StartDate = postedOffer.StartDate;
             offer.EndDate = postedOffer.EndDate;
             offer.Price = postedOffer.Price;
             offer.Image = postedOffer.Image;
             offer.LastModificationTime = Parameters.CurrentDateTime;
             offer.LastModifierUserId = Parameters.UserId;
+            offer.Currency = postedOffer.Currency;
             return Save(offer);
         }
         public Hotles_Offers Delete(Hotles_Offers postedOffer)

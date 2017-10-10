@@ -22,8 +22,8 @@
         <EntityTypeShape EntityType="GMG_Portal_DBModel.Hotels_Reservation" Width="1.5" PointX="12.75" PointY="0.75" />
         <EntityTypeShape EntityType="GMG_Portal_DBModel.Hotels_Translate" Width="1.5" PointX="0.75" PointY="12.75" />
         <EntityTypeShape EntityType="GMG_Portal_DBModel.Hotles_Offers" Width="1.5" PointX="12.75" PointY="6.75" />
-        <EntityTypeShape EntityType="GMG_Portal_DBModel.Hotles_Offers_Translate" Width="1.5" PointX="12.75" PointY="12.75" />
-        <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_About" Width="1.5" PointX="6.75" PointY="13.75" />
+        <EntityTypeShape EntityType="GMG_Portal_DBModel.Hotles_Offers_Translate" Width="1.5" PointX="6.75" PointY="13.75" />
+        <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_About" Width="1.5" PointX="12.75" PointY="13.75" />
         <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_About_Translate" Width="1.5" PointX="14.75" PointY="0.75" />
         <EntityTypeShape EntityType="GMG_Portal_DBModel.Systemparameters_Admin" Width="1.5" PointX="2.75" PointY="14.75" />
         <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_CareerForm" Width="1.5" PointX="14.75" PointY="6.75" />
@@ -36,24 +36,25 @@
         <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_ContactUs" Width="1.5" PointX="18.75" PointY="0.75" />
         <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_ContactUs_Translate" Width="1.5" PointX="18.75" PointY="9.75" />
         <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_CoreValues" Width="1.5" PointX="18.75" PointY="18.75" />
-        <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_CoreValues_Translate" Width="1.5" PointX="4.75" PointY="19.75" />
-        <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_Countries" Width="1.5" PointX="10.75" PointY="19.75" />
-        <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_Departments" Width="1.5" PointX="12.75" PointY="19.75" />
-        <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_Features" Width="1.5" PointX="20.75" PointY="0.75" />
-        <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_Features_Translate" Width="1.5" PointX="0.75" PointY="20.75" />
-        <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_HomeSlider" Width="1.5" PointX="20.75" PointY="6.75" />
-        <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_HomeSlider_Translate" Width="1.5" PointX="20.75" PointY="12.75" />
-        <EntityTypeShape EntityType="GMG_Portal_DBModel.Systemparameters_Languages" Width="1.5" PointX="20.75" PointY="18.75" />
-        <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_LanguageText" Width="1.5" PointX="14.75" PointY="21.75" />
-        <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_News" Width="1.5" PointX="22.75" PointY="0.75" />
-        <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_News_Translate" Width="1.5" PointX="22.75" PointY="6.75" />
-        <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_Newsletter" Width="1.5" PointX="6.75" PointY="22.75" />
-        <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_Notify" Width="1.5" PointX="22.75" PointY="12.75" />
-        <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_NotifyDepartment" Width="1.5" PointX="22.75" PointY="18.75" />
-        <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_Owners" Width="1.5" PointX="20.75" PointY="23.75" />
-        <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_Owners_Translate" Width="1.5" PointX="22.75" PointY="23.75" />
-        <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_PaymentType" Width="1.5" PointX="24.75" PointY="0.75" />
-        <EntityTypeShape EntityType="GMG_Portal_DBModel.HomeView" Width="1.5" PointX="24.75" PointY="5.75" />
+        <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_CoreValues_Translate" Width="1.5" PointX="10.75" PointY="19.75" />
+        <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_Countries" Width="1.5" PointX="12.75" PointY="19.75" />
+        <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_Departments" Width="1.5" PointX="20.75" PointY="0.75" />
+        <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_Features" Width="1.5" PointX="0.75" PointY="20.75" />
+        <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_Features_Translate" Width="1.5" PointX="2.75" PointY="20.75" />
+        <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_HomeSlider" Width="1.5" PointX="4.75" PointY="20.75" />
+        <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_HomeSlider_Translate" Width="1.5" PointX="20.75" PointY="5.75" />
+        <EntityTypeShape EntityType="GMG_Portal_DBModel.Systemparameters_Languages" Width="1.5" PointX="20.75" PointY="11.75" />
+        <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_LanguageText" Width="1.5" PointX="20.75" PointY="16.75" />
+        <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_News" Width="1.5" PointX="20.75" PointY="20.75" />
+        <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_News_Translate" Width="1.5" PointX="14.75" PointY="21.75" />
+        <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_Newsletter" Width="1.5" PointX="22.75" PointY="0.75" />
+        <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_Notify" Width="1.5" PointX="22.75" PointY="3.75" />
+        <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_NotifyDepartment" Width="1.5" PointX="6.75" PointY="22.75" />
+        <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_Owners" Width="1.5" PointX="22.75" PointY="9.75" />
+        <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_Owners_Translate" Width="1.5" PointX="22.75" PointY="16.75" />
+        <EntityTypeShape EntityType="GMG_Portal_DBModel.SystemParameters_PaymentType" Width="1.5" PointX="22.75" PointY="23.75" />
+        <EntityTypeShape EntityType="GMG_Portal_DBModel.HomeView" Width="1.5" PointX="24.75" PointY="0.75" />
+        <EntityTypeShape EntityType="GMG_Portal_DBModel.database_firewall_rules" Width="1.5" PointX="24.75" PointY="7.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

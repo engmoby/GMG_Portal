@@ -97,6 +97,15 @@ namespace GMG_Portal.Content.Admin.Hotel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Currency Sign.
+        /// </summary>
+        public static string Currency {
+            get {
+                return ResourceManager.GetString("Currency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Deleted Successfully.
         /// </summary>
         public static string DeleteSuccessMessage {
