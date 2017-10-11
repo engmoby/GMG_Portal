@@ -420,7 +420,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         {
            
                 return _db.SystemParameters_News
-                    .Where(x => x.DisplayValue.Contains(keyword) || x.DisplayValueDesc.Contains(keyword)).ToList();
+                    .Where(x => x.DisplayValue.Contains(keyword) && x.IsDeleted == false).ToList();
 
             }
 
@@ -428,7 +428,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         {
 
             return _db.SystemParameters_News_Translate
-                .Where(x => x.DisplayValue.Contains(keyword) || x.DisplayValueDesc.Contains(keyword) || x.langId.Equals(langId)).ToList();
+                .Where(x => x.DisplayValue.Contains(keyword) && x.langId.Equals(langId) && x.IsDeleted == false).ToList();
 
         }
          

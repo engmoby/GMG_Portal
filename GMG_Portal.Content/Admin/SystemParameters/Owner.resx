@@ -234,4 +234,7 @@
   <data name="Twitter" xml:space="preserve">
     <value>Twitter</value>
   </data>
+  <data name="Order" xml:space="preserve">
+    <value>View Order </value>
+  </data>
 </root>

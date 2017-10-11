@@ -67,10 +67,10 @@ namespace Front.Controllers
 
         }
         // Home Partial Views Loading 
-        public ActionResult Slider()
-        {
-            return Slider();
-        }
+        //public ActionResult Slider()
+        //{
+        //    //return Slider();
+        //}
 
 
         public ActionResult AboutHome()

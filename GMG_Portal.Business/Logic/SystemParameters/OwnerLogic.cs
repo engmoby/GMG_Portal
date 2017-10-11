@@ -18,12 +18,12 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         }
         public List<SystemParameters_Owners> GetAllWithDeleted()
         {
-            return _db.SystemParameters_Owners.OrderBy(p => p.IsDeleted).ToList();
+            return _db.SystemParameters_Owners.OrderBy(p => p.IsDeleted).ThenBy(p => p.Sorder).ToList();
         }
         public List<SystemParameters_Owners> GetAll()
         {
             var returnList = new List<SystemParameters_Owners>();
-            var getOwnerList = _db.SystemParameters_Owners.Where(p => p.IsDeleted == false && p.Show == true).ToList();
+            var getOwnerList = _db.SystemParameters_Owners.Where(p => p.IsDeleted == false && p.Show == true).ToList().OrderBy(p => p.Sorder).ToList();
             foreach (var ownerse in getOwnerList)
             {
 
@@ -37,7 +37,9 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                     Facebook = ownerse.Facebook,
                     Twitter = ownerse.Twitter,
                     LinkedIn = ownerse.LinkedIn,
-                    Bootstrap = 12 / getOwnerList.Count
+                    Bootstrap = 12 / getOwnerList.Count,
+                    Sorder = ownerse.Sorder
+                  
                 });
             }
             return returnList;
@@ -88,6 +90,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 Show = Parameters.Show,  
                 CreationTime = Parameters.CurrentDateTime,
                 CreatorUserId = Parameters.UserId, 
+                Sorder = postedOwner.Sorder
             };
             _db.SystemParameters_Owners.Add(obj);
             return Save(obj);
@@ -106,6 +109,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             owner.Show = postedOwner.Show; 
             owner.LastModificationTime = Parameters.CurrentDateTime;
             owner.LastModifierUserId = Parameters.UserId;
+            owner.Sorder = postedOwner.Sorder;
             return Save(owner);
         }
         public SystemParameters_Owners Delete(SystemParameters_Owners postedOwner)

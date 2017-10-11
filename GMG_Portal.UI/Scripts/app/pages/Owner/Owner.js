@@ -76,6 +76,12 @@ function OwnersController($scope, OwnersApi, uploadOwnersService, $rootScope, $t
                             index = $scope.Owners.indexOf($filter('filter')($scope.Owners, { 'Id': $scope.Owner.Id }, true)[0]);
                             $scope.Owners[index] = angular.copy(response.data); 
                             toastr.success($('#HUpdateSuccessMessage').val(), 'Success');
+
+                            OwnersApi.GetAll(CurrentLanguage).then(function (response) {
+                            $scope.Owners = response.data;
+                            $rootScope.ViewLoading = false;
+                            });
+
                             break;
                         case 'delete':
                             index = $scope.Owners.indexOf($filter('filter')($scope.Owners, { 'Id': $scope.Owner.Id }, true)[0]);

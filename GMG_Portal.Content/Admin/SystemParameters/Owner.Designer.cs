@@ -196,6 +196,15 @@ namespace GMG_Portal.Content.Admin.SystemParameters {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to View Order .
+        /// </summary>
+        public static string Order {
+            get {
+                return ResourceManager.GetString("Order", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Postion.
         /// </summary>
         public static string Postion {

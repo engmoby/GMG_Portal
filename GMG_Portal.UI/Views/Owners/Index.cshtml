@@ -60,8 +60,9 @@
                 </tr>
 
                 <tr class="sortable">
-                    <th>#</th>
-                    <th st-sort="Image">@Owner.Image</th>
+                    <th>#View Order</th>
+                  <th st-sort="Image">@Owner.Image</th>
+                  <th st-sort="Image">@Owner.Order</th>
                     <th st-sort="Title">@Owner.Name</th>
                     <th st-sort="Rate">@Owner.Postion</th>
                     <th st-sort="Desc">@Owner.Desc</th>
@@ -70,22 +71,24 @@
 
             </thead>
             <tbody>
-                <tr ng-repeat="Owner in TableData">
-                    <td ng-class="{'red-text': Owner.IsDeleted == true}">{{$index+1}}</td>
-                    <td style="width: 50px;" ng-class="{'red-text': Owner.IsDeleted == true}"><img ng-click="openImage(Owner)" width="70px" height="70px" src="@System.Configuration.ConfigurationManager.AppSettings["ImageUrl"]/Uploads/Owners/{{Owner.Image}}" /></td>
-                    <td ng-class="{'red-text': Owner.IsDeleted == true}">{{Owner.DisplayValueName}}</td>
-                    <td ng-class="{'red-text': Owner.IsDeleted == true}">{{Owner.DisplayValuePosition}}</td>
-                    <td ng-class="{'red-text': Owner.IsDeleted == true}">{{Owner.DisplayValueDesc | limitTo:letterLimit}} </td>
-                    <td>
-                        <div class="buttons" ng-show="!Owner.IsDeleted">
-                            <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(Owner)"><i class="fa fa-pencil" aria-hidden="true"></i>@Owner.TableBtnEdit</button>
-                            <button class="btn btn-danger editable-table-button btn-xs btn-with-icon" ng-confirm="Confirm Delete ?" ng-click="Delete(Owner)"><i class="fa fa-trash-o" aria-hidden="true"></i>@Owner.TableBtnDelete</button>
-                        </div>
-                        <div class="buttons restore-button" ng-show="Owner.IsDeleted">
-                            <button class="center-block btn btn-default  restore-button btn-xs btn-with-icon" ng-click="Restore(Owner)"><i class="fa fa-undo" aria-hidden="true"></i>Restore</button>
-                        </div>
-                    </td>
-                </tr>
+            <tr ng-repeat="Owner in TableData">
+              <td ng-class="{'red-text': Owner.IsDeleted == true}">{{Owner.Sorder}}</td>
+              @*<td ng-class="{'red-text': Owner.IsDeleted == true}">{{$index+1}}</td>*@
+              <td style="width: 50px;" ng-class="{'red-text': Owner.IsDeleted == true}"><img ng-click="openImage(Owner)" width="70px" height="70px" src="@System.Configuration.ConfigurationManager.AppSettings["ImageUrl"]/Uploads/Owners/{{Owner.Image}}"/></td>
+
+              <td ng-class="{'red-text': Owner.IsDeleted == true}">{{Owner.DisplayValueName}}</td>
+              <td ng-class="{'red-text': Owner.IsDeleted == true}">{{Owner.DisplayValuePosition}}</td>
+              <td ng-class="{'red-text': Owner.IsDeleted == true}">{{Owner.DisplayValueDesc | limitTo:letterLimit}} </td>
+              <td>
+                <div class="buttons" ng-show="!Owner.IsDeleted">
+                  <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(Owner)"><i class="fa fa-pencil" aria-hidden="true"></i>@Owner.TableBtnEdit</button>
+                  <button class="btn btn-danger editable-table-button btn-xs btn-with-icon" ng-confirm="Confirm Delete ?" ng-click="Delete(Owner)"><i class="fa fa-trash-o" aria-hidden="true"></i>@Owner.TableBtnDelete</button>
+                </div>
+                <div class="buttons restore-button" ng-show="Owner.IsDeleted">
+                  <button class="center-block btn btn-default  restore-button btn-xs btn-with-icon" ng-click="Restore(Owner)"><i class="fa fa-undo" aria-hidden="true"></i>Restore</button>
+                </div>
+              </td>
+            </tr>
                 <tr ng-show="TableData.length==0">
                     <td colspan="4">
                         @Shared.GridNoData
@@ -120,105 +123,129 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title">{{action |uppercase}} @Owner.ModalTitle</h4>
                     </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="TxtName">@Owner.Name</label><span class="red-text"> *</span>
-                            <input type="text" ng-model="Owner.DisplayValueName" class="form-control" name="TxtName"
-                                   placeholder="Text" ng-maxlength="@Common.TitleMax65" required ng-pattern="/@Regex.NameAr/">
+                  <div class="modal-body">
+                    
 
-                            <div class="red-text" ng-messages="FrmAddUpdate.TxtName.$error" ng-show="FrmAddUpdate.TxtName.$touched">
-                                <span class="red-text" ng-message="required">@Owner.TxtNameRequiredErrorMessage</span>
-                                <span class="red-text" ng-message="pattern">@Owner.TxtNamePatternErrorMessage</span>
-                                <span class="red-text" ng-message="notInList">@Owner.TxtNameUniqueErrorMessage</span>
-                                <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax65 @Common.Charachter</span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="TxtPostion">@Owner.Postion</label><span class="red-text"> *</span>
-                            <textarea ng-model="Owner.DisplayValuePosition" class="form-control" name="TxtPostion"
-                                      placeholder="Text" ng-maxlength="@Common.TitleMax65" required ng-pattern="/@Regex.NameEn/"></textarea>
-                            <div class="red-text" ng-messages="FrmAddUpdate.TxtPostion.$error" ng-show="FrmAddUpdate.TxtPostion.$touched">
-                                <span class="red-text" ng-message="required">@Owner.TxtPostionRequiredErrorMessage</span>
-                                <span class="red-text" ng-message="pattern">@Owner.TxtPostionPatternErrorMessage</span>
-                                <span class="red-text" ng-message="notInList">@Owner.TxtPostionUniqueErrorMessage</span>
-                                <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax65 @Common.Charachter</span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="TxtDesc">@Owner.Desc</label><span class="red-text"> *</span>
-                            <textarea ng-model="Owner.DisplayValueDesc" class="form-control" name="TxtDesc"
-                                      placeholder="Text" ng-maxlength="@Common.DescMax800" required ng-pattern="/@Regex.NameEn/"></textarea>
-                            <div class="red-text" ng-messages="FrmAddUpdate.TxtDesc.$error" ng-show="FrmAddUpdate.TxtDesc.$touched">
-                                <span class="red-text" ng-message="required">@Owner.TxtDescRequiredErrorMessage</span>
-                                <span class="red-text" ng-message="pattern">@Owner.TxtDescPatternErrorMessage</span>
-                                <span class="red-text" ng-message="notInList">@Owner.TxtDescUniqueErrorMessage</span>
-                                <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.DescMax800 @Common.Charachter</span>
+                    <div class="form-group">
+                      <label for="TxtName">@Owner.Order</label><span class="red-text"> *</span>
+                      <input type="text" ng-model="Owner.Sorder" class="form-control" name="TxtName"
+                             placeholder="Text" ng-maxlength="@Common.TitleMax65" required ng-pattern="/@Regex.NameAr/">
 
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="TxtFacebook">@Owner.Facebook</label> 
-                                    <input type="text" ng-model="Owner.Facebook" class="form-control" name="TxtFacebook"
-                                           placeholder="@Owner.Facebook" ng-maxlength="@Common.TitleMax65"   ng-pattern="/@Regex.URL/">
-
-                                    <div class="red-text" ng-messages="FrmAddUpdate.TxtFacebook.$error" ng-show="FrmAddUpdate.TxtFacebook.$touched"> 
-                                        <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax65 @Common.Charachter</span>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="TxtTwitter">@Owner.Twitter</label> 
-                                    <input type="text" ng-model="Owner.Twitter" class="form-control" name="TxtTwitter"
-                                           placeholder="@Owner.Twitter" ng-maxlength="@Common.TitleMax65"   ng-pattern="/@Regex.URL/">
-
-                                    <div class="red-text" ng-messages="FrmAddUpdate.TxtTwitter.$error" ng-show="FrmAddUpdate.TxtTwitter.$touched"> 
-                                        <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax65 @Common.Charachter</span>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="TxtLinkedIn">@Owner.LinkedIn</label> 
-                                    <input type="text" ng-model="Owner.LinkedIn" class="form-control" name="TxtLinkedIn"
-                                           placeholder="@Owner.LinkedIn" ng-maxlength="@Common.TitleMax65"   ng-pattern="/@Regex.URL/"> 
-                                    <div class="red-text" ng-messages="FrmAddUpdate.TxtLinkedIn.$error" ng-show="FrmAddUpdate.TxtLinkedIn.$touched"> 
-                                        <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax65 @Common.Charachter</span>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="TxtRate">@Owner.Image</label><span class="red-text"> *</span>
-
-                            <div class="fileinput fileinput-new" data-provides="fileinput">
-
-                                <div class="col-lg-6 col-sm-6 col-12">
-
-                                    <div class="input-group">
-                                        <span class="input-group-btn">
-                                            <span class="btn btn-primary btn-file">
-                                                Browse...<input type="file" my-directory="getFiles(file)" ng-disabled="uploading" />
-                                            </span>
-
-                                        </span>
-                                        <input type="text" ng-model="countFiles" required class="form-control" readonly>
-                                    </div>
-                                    @*<input type="button" class="btn btn-default  btn-primary" ng-click="uploadFiles()" value="Upload" ng-disabled="uploading || countFiles===''" />*@
-
-                                    <img style="width: 100px; height: 100px" src="@System.Configuration.ConfigurationManager.AppSettings["ImageUrl"]/Uploads/Owners/{{Owner.Image}}" ng-show="Owner.Image" />
-
-                                </div>
-                            </div>
-                        </div>
+                      <div class="red-text" ng-messages="FrmAddUpdate.TxtName.$error" ng-show="FrmAddUpdate.TxtName.$touched">
+                        <span class="red-text" ng-message="required">@Owner.TxtNameRequiredErrorMessage</span>
+                        <span class="red-text" ng-message="pattern">@Owner.TxtNamePatternErrorMessage</span>
+                        <span class="red-text" ng-message="notInList">@Owner.TxtNameUniqueErrorMessage</span>
+                        <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax65 @Common.Charachter</span>
+                      </div>
                     </div>
+
+
+
+
+
+
+
+                    <div class="form-group">
+                      <label for="TxtName">@Owner.Name</label><span class="red-text"> *</span>
+                      <input type="text" ng-model="Owner.DisplayValueName" class="form-control" name="TxtName"
+                             placeholder="Text" ng-maxlength="@Common.TitleMax65" required ng-pattern="/@Regex.NameAr/">
+
+                      <div class="red-text" ng-messages="FrmAddUpdate.TxtName.$error" ng-show="FrmAddUpdate.TxtName.$touched">
+                        <span class="red-text" ng-message="required">@Owner.TxtNameRequiredErrorMessage</span>
+                        <span class="red-text" ng-message="pattern">@Owner.TxtNamePatternErrorMessage</span>
+                        <span class="red-text" ng-message="notInList">@Owner.TxtNameUniqueErrorMessage</span>
+                        <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax65 @Common.Charachter</span>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="TxtPostion">@Owner.Postion</label><span class="red-text"> *</span>
+                      <textarea ng-model="Owner.DisplayValuePosition" class="form-control" name="TxtPostion"
+                                      placeholder="Text" ng-maxlength="@Common.TitleMax65" required ng-pattern="/@Regex.NameEn/"></textarea>
+                      <div class="red-text" ng-messages="FrmAddUpdate.TxtPostion.$error" ng-show="FrmAddUpdate.TxtPostion.$touched">
+                        <span class="red-text" ng-message="required">@Owner.TxtPostionRequiredErrorMessage</span>
+                        <span class="red-text" ng-message="pattern">@Owner.TxtPostionPatternErrorMessage</span>
+                        <span class="red-text" ng-message="notInList">@Owner.TxtPostionUniqueErrorMessage</span>
+                        <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax65 @Common.Charachter</span>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="TxtDesc">@Owner.Desc</label><span class="red-text"> *</span>
+                      <textarea ng-model="Owner.DisplayValueDesc" class="form-control" name="TxtDesc"
+                                      placeholder="Text" ng-maxlength="@Common.DescMax800" required ng-pattern="/@Regex.NameEn/"></textarea>
+                      <div class="red-text" ng-messages="FrmAddUpdate.TxtDesc.$error" ng-show="FrmAddUpdate.TxtDesc.$touched">
+                        <span class="red-text" ng-message="required">@Owner.TxtDescRequiredErrorMessage</span>
+                        <span class="red-text" ng-message="pattern">@Owner.TxtDescPatternErrorMessage</span>
+                        <span class="red-text" ng-message="notInList">@Owner.TxtDescUniqueErrorMessage</span>
+                        <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.DescMax800 @Common.Charachter</span>
+
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="TxtFacebook">@Owner.Facebook</label>
+                          <input type="text" ng-model="Owner.Facebook" class="form-control" name="TxtFacebook"
+                                 placeholder="@Owner.Facebook" ng-maxlength="@Common.TitleMax65" ng-pattern="/@Regex.URL/">
+
+                          <div class="red-text" ng-messages="FrmAddUpdate.TxtFacebook.$error" ng-show="FrmAddUpdate.TxtFacebook.$touched">
+                            <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax65 @Common.Charachter</span>
+
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="TxtTwitter">@Owner.Twitter</label>
+                          <input type="text" ng-model="Owner.Twitter" class="form-control" name="TxtTwitter"
+                                 placeholder="@Owner.Twitter" ng-maxlength="@Common.TitleMax65" ng-pattern="/@Regex.URL/">
+
+                          <div class="red-text" ng-messages="FrmAddUpdate.TxtTwitter.$error" ng-show="FrmAddUpdate.TxtTwitter.$touched">
+                            <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax65 @Common.Charachter</span>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="TxtLinkedIn">@Owner.LinkedIn</label>
+                          <input type="text" ng-model="Owner.LinkedIn" class="form-control" name="TxtLinkedIn"
+                                 placeholder="@Owner.LinkedIn" ng-maxlength="@Common.TitleMax65" ng-pattern="/@Regex.URL/">
+                          <div class="red-text" ng-messages="FrmAddUpdate.TxtLinkedIn.$error" ng-show="FrmAddUpdate.TxtLinkedIn.$touched">
+                            <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax65 @Common.Charachter</span>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="TxtRate">@Owner.Image</label><span class="red-text"> *</span>
+
+                      <div class="fileinput fileinput-new" data-provides="fileinput">
+
+                        <div class="col-lg-6 col-sm-6 col-12">
+
+                          <div class="input-group">
+                            <span class="input-group-btn">
+                              <span class="btn btn-primary btn-file">
+                                Browse...<input type="file" my-directory="getFiles(file)" ng-disabled="uploading"/>
+                              </span>
+
+                            </span>
+                            <input type="text" ng-model="countFiles" required class="form-control" readonly>
+                          </div>
+                          @*<input type="button" class="btn btn-default  btn-primary" ng-click="uploadFiles()" value="Upload" ng-disabled="uploading || countFiles===''" />*@
+
+                          <img style="width: 100px; height: 100px" src="@System.Configuration.ConfigurationManager.AppSettings["ImageUrl"]/Uploads/Owners/{{Owner.Image}}" ng-show="Owner.Image"/>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary btn-with-icon" ng-click="uploadFiles()" ng-disabled="FrmAddUpdate.$invalid"><i class="ion-android-checkmark-circle"></i>@Owner.btnSaveLbl</button>
                     </div>

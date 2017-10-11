@@ -20,11 +20,11 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         //Back and Front  Fetch Logic 
         public List<SystemParameters_Owners_Translate> GetAllWithDeleted(string langId)
         {
-            return _db.SystemParameters_Owners_Translate.Where(p => p.langId == langId).OrderBy(p => p.IsDeleted && p.langId == langId).ToList();
+            return _db.SystemParameters_Owners_Translate.Where(p => p.langId == langId).OrderBy(p => p.IsDeleted && p.langId == langId).ToList().OrderBy(p => p.Sorder).ToList();
         }
         public List<SystemParameters_Owners_Translate> GetAll(string langId)
         {
-            return _db.SystemParameters_Owners_Translate.Where(p => p.IsDeleted != true && p.langId == langId).ToList();
+            return _db.SystemParameters_Owners_Translate.Where(p => p.IsDeleted != true && p.langId == langId).OrderBy(p => p.Sorder).ToList();
         }
 
 
@@ -72,6 +72,8 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 CreationTime = Parameters.CurrentDateTime,
                 CreatorUserId = Parameters.UserId, 
                 langId  = postedOwner.langId,
+                Sorder = postedOwner.Sorder,
+
             };
             _db.SystemParameters_Owners_Translate.Add(obj);
             return Save(obj);
@@ -87,6 +89,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             obj.Show = postedOwner.Show; 
             obj.LastModificationTime = Parameters.CurrentDateTime;
             obj.LastModifierUserId = Parameters.UserId;
+            obj.Sorder = postedOwner.Sorder;
             return Save(obj);
         }
         public SystemParameters_Owners_Translate Delete(SystemParameters_Owners_Translate postedOwner)

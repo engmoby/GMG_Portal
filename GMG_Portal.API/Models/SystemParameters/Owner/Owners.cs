@@ -33,5 +33,8 @@ namespace GMG_Portal.API.Models.SystemParameters
         public string Facebook { get; set; }
         public string Twitter { get; set; }
         public string LinkedIn { get; set; }
+
+        public int? Sorder { get; set; }
+
     }
 }
