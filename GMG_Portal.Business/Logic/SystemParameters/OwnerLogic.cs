@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GMG_Portal.Business.Logic.General;
 using GMG_Portal.Data;
 using Heloper; 
 
@@ -49,6 +53,12 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         {
             return _db.SystemParameters_Owners.Find(id);
         }
+
+        public SystemParameters_Owners GetByOrder(int Sorder)
+        {
+            //var getOwnerOrder = _db.SystemParameters_Owners.Where(p => p.IsDeleted == false && p.Show == true && p.Sorder == Sorder ).ToList().OrderBy(p => p.Sorder).ToList();
+            return _db.SystemParameters_Owners.FirstOrDefault(p => p.IsDeleted == false && p.Show == true && p.Sorder == Sorder);
+        }
         private SystemParameters_Owners Save(SystemParameters_Owners obj)
         {
             try
@@ -78,6 +88,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         public SystemParameters_Owners Insert(SystemParameters_Owners postedOwner)
         {
 
+            var maxcount = GetMaxCountofOrder();
             var obj = new SystemParameters_Owners()
             {
                 DisplayValueName = postedOwner.DisplayValueName,
@@ -90,7 +101,8 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 Show = Parameters.Show,  
                 CreationTime = Parameters.CurrentDateTime,
                 CreatorUserId = Parameters.UserId, 
-                Sorder = postedOwner.Sorder
+                Sorder = maxcount,
+
             };
             _db.SystemParameters_Owners.Add(obj);
             return Save(obj);
@@ -109,7 +121,18 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             owner.Show = postedOwner.Show; 
             owner.LastModificationTime = Parameters.CurrentDateTime;
             owner.LastModifierUserId = Parameters.UserId;
-            owner.Sorder = postedOwner.Sorder;
+            //Update to Magically Replace the Numbers !
+            var corder = GetCurrentOrder(postedOwner.Id);
+            Savetheorder(postedOwner.Sorder, corder, postedOwner.Id);
+
+
+
+
+
+
+
+
+
             return Save(owner);
         }
         public SystemParameters_Owners Delete(SystemParameters_Owners postedOwner)
@@ -126,6 +149,121 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             obj.CreatorUserId = Parameters.UserId;
             return Save(obj);
         }
+
+
+
+
+        public DataSet Sqlread(string sqlquery)
+        {
+            DataSet functionReturnValue = default(DataSet);
+            try
+            {
+                var connectionString = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+
+             
+                SqlConnection thisConnection = default(SqlConnection);
+                thisConnection = new SqlConnection(connectionString);
+                string sql = sqlquery;
+
+                thisConnection.Open();
+                DataSet DS = new DataSet();
+                SqlDataAdapter da = new SqlDataAdapter(sql, thisConnection);
+                da.Fill(DS);
+                functionReturnValue = DS;
+                thisConnection.Close();
+            }
+            catch (Exception ex)
+            {
+                //  Lookups.LogErrorToText("Web", "Settings.vb", "FillMenus", ex.Message)
+            }
+            return functionReturnValue;
+        }
+        public string Sqlinsert(string sqlquery)
+        {
+            string functionReturnValue = null;
+            try
+            {
+
+
+                var connectionString = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+
+                SqlConnection thisConnection = default(SqlConnection);
+
+
+                thisConnection = new SqlConnection(connectionString);
+                string sql = sqlquery;
+
+                thisConnection.Open();
+
+                dynamic objCmd = null;
+                objCmd = new System.Data.SqlClient.SqlCommand();
+                var _with1 = objCmd;
+                _with1.Connection = thisConnection;
+                _with1.CommandType = CommandType.Text;
+                _with1.CommandText = sql;
+                objCmd.ExecuteNonQuery();
+
+
+
+
+                functionReturnValue = "SQL Execution Successful !";
+                thisConnection.Close();
+
+            }
+            catch (Exception ex)
+            {
+                return ex.ToString();
+
+                //  Lookups.LogErrorToText("Web", "Settings.vb", "FillMenus", ex.Message)
+                //
+            }
+            return functionReturnValue;
+        }
+        public string Savetheorder(int Sorder, int currentOrder , int Sid)
+        {
+            DataTable DT;
+            DT = Sqlread("SELECT * FROM [dbo].[SystemParameters.Owners] WHERE Sorder=" + Sorder).Tables[0];
+            if (DT.Rows.Count > 0)
+            {
+                Sqlinsert("UPDATE [dbo].[SystemParameters.Owners] SET Sorder=" + Sorder + " WHERE Id=" + Sid);
+                var SQ = "UPDATE [dbo].[SystemParameters.Owners] SET Sorder=" + currentOrder + " WHERE Id=" +
+                         DT.Rows[0].Field<int>("Id");
+                Sqlinsert(SQ);
+            }
+            else
+            {
+                Sqlinsert("UPDATE [dbo].[SystemParameters.Owners] SET Sorder=" + Sorder + " WHERE Id=" + Sid);
+            }
+
+
+
+
+            return null;
+
+        }
+        public int GetCurrentOrder(int sId)
+        {
+            DataTable DT;
+            DT = Sqlread("SELECT Sorder FROM [dbo].[SystemParameters.Owners] WHERE Id=" + sId).Tables[0];
+            if (DT.Rows.Count > 0)
+            {
+                return DT.Rows[0].Field<int>("Sorder");
+            }
+
+            return 99;
+        }
+        public int GetMaxCountofOrder()
+        {
+            DataTable DT;
+            DT = Sqlread("SELECT * FROM [dbo].[SystemParameters.Owners] ORDER BY Sorder DESC").Tables[0];
+            if (DT.Rows.Count > 0)
+            {
+                return DT.Rows[0].Field<int>("Sorder") + 1;
+            }
+
+            return 99;
+        }
+
 
     }
 }

@@ -37,6 +37,6 @@ namespace GMG_Portal.Data
         public string Twitter { get; set; }
         public string LinkedIn { get; set; }
         public string langId { get; set; }
-        public Nullable<int> Sorder { get; set; }
+        public int Sorder { get; set; }
     }
 }

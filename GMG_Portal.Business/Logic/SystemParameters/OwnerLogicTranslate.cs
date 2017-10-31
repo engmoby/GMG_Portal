@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -61,7 +64,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         }
         public SystemParameters_Owners_Translate Insert(SystemParameters_Owners_Translate postedOwner)
         {
-
+            var maxcount = GetMaxCountofOrder();
             var obj = new SystemParameters_Owners_Translate()
             {
                 DisplayValueName = postedOwner.DisplayValueName,
@@ -72,7 +75,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 CreationTime = Parameters.CurrentDateTime,
                 CreatorUserId = Parameters.UserId, 
                 langId  = postedOwner.langId,
-                Sorder = postedOwner.Sorder,
+                Sorder = maxcount,
 
             };
             _db.SystemParameters_Owners_Translate.Add(obj);
@@ -89,7 +92,9 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             obj.Show = postedOwner.Show; 
             obj.LastModificationTime = Parameters.CurrentDateTime;
             obj.LastModifierUserId = Parameters.UserId;
-            obj.Sorder = postedOwner.Sorder;
+            //Update to Magically Replace the Numbers !
+            var corder = GetCurrentOrder(postedOwner.Id);
+            Savetheorder(postedOwner.Sorder, corder, postedOwner.Id);
             return Save(obj);
         }
         public SystemParameters_Owners_Translate Delete(SystemParameters_Owners_Translate postedOwner)
@@ -101,6 +106,122 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             obj.CreatorUserId = Parameters.UserId;
             return Save(obj);
         }
+
+
+
+
+        public DataSet Sqlread(string sqlquery)
+        {
+            DataSet functionReturnValue = default(DataSet);
+            try
+            {
+                var connectionString = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+
+
+                SqlConnection thisConnection = default(SqlConnection);
+                thisConnection = new SqlConnection(connectionString);
+                string sql = sqlquery;
+
+                thisConnection.Open();
+                DataSet DS = new DataSet();
+                SqlDataAdapter da = new SqlDataAdapter(sql, thisConnection);
+                da.Fill(DS);
+                functionReturnValue = DS;
+                thisConnection.Close();
+            }
+            catch (Exception ex)
+            {
+                //  Lookups.LogErrorToText("Web", "Settings.vb", "FillMenus", ex.Message)
+            }
+            return functionReturnValue;
+        }
+        public string Sqlinsert(string sqlquery)
+        {
+            string functionReturnValue = null;
+            try
+            {
+
+
+                var connectionString = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+
+                SqlConnection thisConnection = default(SqlConnection);
+
+
+                thisConnection = new SqlConnection(connectionString);
+                string sql = sqlquery;
+
+                thisConnection.Open();
+
+                dynamic objCmd = null;
+                objCmd = new System.Data.SqlClient.SqlCommand();
+                var _with1 = objCmd;
+                _with1.Connection = thisConnection;
+                _with1.CommandType = CommandType.Text;
+                _with1.CommandText = sql;
+                objCmd.ExecuteNonQuery();
+
+
+
+
+                functionReturnValue = "SQL Execution Successful !";
+                thisConnection.Close();
+
+            }
+            catch (Exception ex)
+            {
+                return ex.ToString();
+
+                //  Lookups.LogErrorToText("Web", "Settings.vb", "FillMenus", ex.Message)
+                //
+            }
+            return functionReturnValue;
+        }
+        public string Savetheorder(int Sorder, int currentOrder, int Sid)
+        {
+            DataTable DT;
+            DT = Sqlread("SELECT * FROM [dbo].[SystemParameters.Owners_Translate] WHERE Sorder=" + Sorder).Tables[0];
+            if (DT.Rows.Count > 0)
+            {
+                Sqlinsert("UPDATE [dbo].[SystemParameters.Owners_Translate] SET Sorder=" + Sorder + " WHERE Id=" + Sid);
+                var SQ = "UPDATE [dbo].[SystemParameters.Owners_Translate] SET Sorder=" + currentOrder + " WHERE Id=" +
+                         DT.Rows[0].Field<int>("Id");
+                Sqlinsert(SQ);
+            }
+            else
+            {
+                Sqlinsert("UPDATE [dbo].[SystemParameters.Owners_Translate] SET Sorder=" + Sorder + " WHERE Id=" + Sid);
+            }
+
+
+
+
+            return null;
+
+        }
+        public int GetCurrentOrder(int sId)
+        {
+            DataTable DT;
+            DT = Sqlread("SELECT Sorder FROM [dbo].[SystemParameters.Owners_Translate] WHERE Id=" + sId).Tables[0];
+            if (DT.Rows.Count > 0)
+            {
+                return DT.Rows[0].Field<int>("Sorder");
+            }
+
+            return 99;
+        }
+
+        public int GetMaxCountofOrder()
+        {
+            DataTable DT;
+            DT = Sqlread("SELECT * FROM [dbo].[SystemParameters.Owners_Translate] ORDER BY Sorder DESC").Tables[0];
+            if (DT.Rows.Count > 0)
+            {
+                return DT.Rows[0].Field<int>("Sorder") + 1;
+            }
+
+            return 99;
+        }
+
 
     }
 }

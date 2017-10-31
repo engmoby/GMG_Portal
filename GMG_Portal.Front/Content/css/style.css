@@ -2013,6 +2013,11 @@ padding-bottom: 40px;
     height: 400px;
     position: relative;
 }
+
+.mg-gallery-container-offers {
+    /*height: 400px;*/
+    position: relative;
+}
 .mg-gallery {
     margin: 0;
     padding: 0;
