@@ -844,7 +844,7 @@ namespace Front.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Owners.
+        ///   Looks up a localized string similar to Leadership.
         /// </summary>
         public static string Header_Owners {
             get {
