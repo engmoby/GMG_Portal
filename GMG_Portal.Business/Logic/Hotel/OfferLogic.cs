@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity.Core.Mapping;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using GMG_Portal.Data;
 using Heloper;
 
@@ -17,86 +14,68 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         {
             _db = new GMG_Portal_DBEntities1();
         }
-        public List<Hotles_Offers> GetAllWithDeleted()
-        {
-            var returnList = new List<Hotles_Offers>();
-            var offerList = _db.Hotles_Offers.Where(p => p.Show == true).OrderByDescending(o => o.Id).ToList();
-
-            foreach (var offer in offerList)
-            {
-                var getCurrency = _db.Currencies.FirstOrDefault(p => p.Id == offer.Currency);
-                // var getHotelInfo = _db.Hotels.Where(p => p.IsDeleted != true && p.Id == offer.Hotel_Id).ToList();
-                returnList.Add(new Hotles_Offers
-                {
-                    Id = offer.Id,
-                    DisplayValue = offer.DisplayValue,
-                    DisplayValueDesc = offer.DisplayValueDesc,
-                    Image = offer.Image,
-                    StartDate = offer.StartDate,
-                    EndDate = offer.EndDate,
-                    Price = offer.Price,
-                    Currency = offer.Currency,
-                    CurrencyTitle = getCurrency.DisplayValue.ToString()
-                });
-            }
-            return returnList;
+        public List<Offer> GetAllWithDeleted()
+        { 
+            var offerList = _db.Offers.OrderByDescending(o => o.Id).ToList();  
+            return offerList;
         }
-        public List<Hotles_Offers> GetAll()
+        public List<Offer> GetAll()
         {
-             var returnList = new List<Hotles_Offers>();
-             var offerList = _db.Hotles_Offers.Where(p => p.IsDeleted == false && p.Show == true).OrderByDescending(o => o.Id).ToList();
+             var returnList = new List<Offer>();
+             return _db.Offers.Where(p => p.IsDeleted == false).OrderByDescending(o => o.Id).ToList();
 
-            foreach (var offer in offerList)
-            {
-                var getCurrency = _db.Currencies.FirstOrDefault(p => p.Id == offer.Currency);
-                // var getHotelInfo = _db.Hotels.Where(p => p.IsDeleted != true && p.Id == offer.Hotel_Id).ToList();
-                returnList.Add(new Hotles_Offers
-                {
-                    Id = offer.Id,
-                    DisplayValue = offer.DisplayValue,
-                    DisplayValueDesc = offer.DisplayValueDesc,
-                    Image = offer.Image,
-                    StartDate = offer.StartDate,
-                    EndDate = offer.EndDate,
-                    Price = offer.Price,
-                    Currency = offer.Currency,
-                    CurrencyTitle = getCurrency.DisplayValue,
-                });
-            }
-            return returnList;
+            //foreach (var offer in offerList)
+            //{
+            //    var getCurrency = _db.Currency_Translate.FirstOrDefault(p => p.RecordId == offer.Currency); 
+            //    // var getHotelInfo = _db.Hotels.Where(p => p.IsDeleted != true && p.Id == offer.Hotel_Id).ToList();
+            //    returnList.Add(new Offer
+            //    {
+            //        Id = offer.Id, 
+            //        Image = offer.Image,
+            //        StartDate = offer.StartDate,
+            //        EndDate = offer.EndDate,
+            //        Price = offer.Price,
+            //        Currency = offer.Currency,
+            //        CurrencyTitle = getCurrency.Title,
+            //    });
+            //}
+            //return returnList;
             //return _db.Hotles_Offers.Where(p => p.IsDeleted != true).CurrencyTitle();0
         }
-        public Hotles_Offers Get(int id)
+        public Offer Get(int id)
         {
-            var returnList = new Hotles_Offers();
+            var returnList = new Offer();
            
-            var getOfferInfo = _db.Hotles_Offers.FirstOrDefault(p => p.Id == id && p.IsDeleted == false && p.Show == true);  
-            if (getOfferInfo != null)
-            {
-                returnList.Id = getOfferInfo.Id;
-                returnList.DisplayValue = getOfferInfo.DisplayValue;
-                returnList.DisplayValueDesc = getOfferInfo.DisplayValueDesc;
-                returnList.Price = getOfferInfo.Price;
-                returnList.StartDate = getOfferInfo.StartDate;
-                returnList.EndDate = getOfferInfo.EndDate;
-                returnList.Image = getOfferInfo.Image;
-                returnList.Currency = getOfferInfo.Currency;
-                returnList.CurrencyTitle = _db.Currencies.FirstOrDefault(p => p.Id == getOfferInfo.Currency)?.DisplayValue;
-                return returnList;
-            }
-            else return null;
+           return _db.Offers.FirstOrDefault(p => p.Id == id && p.IsDeleted == false);  
+            //if (getOfferInfo != null)
+            //{
+            //    returnList.Id = getOfferInfo.Id; 
+            //    returnList.Price = getOfferInfo.Price;
+            //    returnList.StartDate = getOfferInfo.StartDate;
+            //    returnList.EndDate = getOfferInfo.EndDate;
+            //    returnList.Image = getOfferInfo.Image;
+            //    returnList.Currency = getOfferInfo.Currency;
+            //    returnList.CurrencyTitle = _db.Currency_Translate.FirstOrDefault(p => p.RecordId== getOfferInfo.Currency)?.Title;
+            //    return returnList;
+            //}
+            //else return null;
 
         }
-        public Hotles_Offers GetOfferInfo(int id)
+        public List<Offers_Translate> GetTranslates(int recordId)
+        {
+            return _db.Offers_Translate.Where(x => x.RecordId == recordId).ToList();
+        }
+
+        public Offer GetOfferInfo(int id)
         { 
-           return _db.Hotles_Offers.Find(id);
+           return _db.Offers.Find(id);
             
         }
-        private Hotles_Offers Save(Hotles_Offers offer)
+        private Offer Save(Offer offer)
         {
             try
             {
-                _db.SaveChanges();
+                 _db.SaveChanges();
                 offer.OperationStatus = "Succeded";
                 return offer;
             }
@@ -118,34 +97,56 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 throw;
             }
         }
-        public Hotles_Offers Insert(Hotles_Offers postedoffer)
+        public Offer Insert(Offer postedoffer)
         {
-            var offer = new Hotles_Offers()
-            {
-                DisplayValue = postedoffer.DisplayValue,
-                DisplayValueDesc = postedoffer.DisplayValueDesc,
+            var obj = new Offer()
+            { 
                 StartDate = postedoffer.StartDate,
                 EndDate = postedoffer.EndDate,
                 Price = postedoffer.Price,
                 Image = postedoffer.Image,
-                IsDeleted = postedoffer.IsDeleted,
-                Show = Parameters.Show,
+                IsDeleted = postedoffer.IsDeleted, 
                 CreationTime = Parameters.CurrentDateTime,
                 CreatorUserId = Parameters.UserId,
-                Currency =  postedoffer.Currency,
+                Currency =  postedoffer.Currency
             };
-            _db.Hotles_Offers.Add(offer);
-            return Save(offer);
+            _db.Offers.Add(obj);
+            _db.SaveChanges();
+            var objTrasnlate = new Offers_Translate();
+            {
+                foreach (var offerTitle in postedoffer.OfferTitleDictionary)
+                {
+                    objTrasnlate.Title = offerTitle.Value;
+                    objTrasnlate.Description= postedoffer.OfferDescDictionary[offerTitle.Key]; 
+                    objTrasnlate.langId = offerTitle.Key;
+                    objTrasnlate.RecordId = obj.Id;
+                    _db.Offers_Translate.Add(objTrasnlate);
+                    _db.SaveChanges();
+                }
+            }
+            return Save(obj);
         }
-        public Hotles_Offers Edit(Hotles_Offers postedOffer)
+        public Offer Edit(Offer postedOffer)
         {
-            Hotles_Offers offer = GetOfferInfo(postedOffer.Id);
-            offer.DisplayValue = postedOffer.DisplayValue;
-            offer.DisplayValueDesc = postedOffer.DisplayValueDesc;
-            offer.IsDeleted = postedOffer.IsDeleted;
-            offer.Show = true;
-            offer.StartDate = postedOffer.StartDate;
-            offer.EndDate = postedOffer.EndDate;
+            Offer offer = GetOfferInfo(postedOffer.Id);
+
+            List<Offers_Translate> objTranslate = GetTranslates(postedOffer.Id);
+            foreach (var offerTitle in postedOffer.OfferTitleDictionary)
+            { 
+                foreach (var offerTranslate in objTranslate)
+                {
+                    if (offerTitle.Key == offerTranslate.langId)
+                    {
+                        offerTranslate.Title = offerTitle.Value;
+                        offerTranslate.Description= postedOffer.OfferDescDictionary[offerTitle.Key]; 
+                        _db.SaveChanges();
+                    }
+                }
+            }
+
+            offer.IsDeleted = postedOffer.IsDeleted; 
+            //offer.StartDate = postedOffer.StartDate;
+            //offer.EndDate = postedOffer.EndDate;
             offer.Price = postedOffer.Price;
             offer.Image = postedOffer.Image;
             offer.LastModificationTime = Parameters.CurrentDateTime;
@@ -153,14 +154,15 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             offer.Currency = postedOffer.Currency;
             return Save(offer);
         }
-        public Hotles_Offers Delete(Hotles_Offers postedOffer)
+        public Offer Delete(Offer postedOffer)
         {
-            Hotles_Offers offer = GetOfferInfo(postedOffer.Id);
+            Offer offer = GetOfferInfo(postedOffer.Id);
        
 
             offer.IsDeleted = true;
             offer.CreationTime = Parameters.CurrentDateTime;
             offer.CreatorUserId = Parameters.UserId;
+            _db.SaveChanges();
             return Save(offer);
         }
 

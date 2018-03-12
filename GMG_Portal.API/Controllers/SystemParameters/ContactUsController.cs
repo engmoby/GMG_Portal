@@ -23,21 +23,8 @@ namespace GMG_Portal.API.Controllers.SystemParameters
             try
             {
                 var contactUsLogic = new ContactUsLogic();
-                var contactUsLogicTranslate = new ContactUsLogicTranslate();
-
-
-
-                if (langId == Parameters.DefaultLang)
-                {
-                    var obj = contactUsLogic.GetAll();
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<SystemParameters_ContactUs>(obj));
-                }
-                else
-
-                {
-                    var objByLang = contactUsLogicTranslate.GetAll(langId);
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<SystemParameters_ContactUs_Translate>(objByLang));
-                }
+                var obj = contactUsLogic.GetAll();
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<ContactUsModel>(obj));
             }
             catch (Exception ex)
             {
@@ -50,23 +37,9 @@ namespace GMG_Portal.API.Controllers.SystemParameters
             try
             {
                 var contactUsLogic = new ContactUsLogic();
-                var contactUsLogicTranslate = new ContactUsLogicTranslate();
+                var obj = contactUsLogic.GetAllWithDeleted();
 
-                if (langId == Parameters.DefaultLang)
-                {
-                    var obj = contactUsLogic.GetAllWithDeleted();
-
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<SystemParameters_ContactUs>>(obj));
-
-                }
-                else
-
-                {
-                    var objByLang = contactUsLogicTranslate.GetAllWithDeleted(langId);
-
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<SystemParameters_ContactUs_Translate>>(objByLang));
-
-                }
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<ContactUsModel>>(obj));
 
             }
             catch (Exception ex)
@@ -76,27 +49,17 @@ namespace GMG_Portal.API.Controllers.SystemParameters
             }
         }
         [HttpPost]
-        public HttpResponseMessage Save(ContactUs postedContactUs)
+        public HttpResponseMessage Save(ContactUsModel postedContactUs)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
                     var contactUsLogic = new ContactUsLogic();
-                    var contactUsLogicTranslate = new ContactUsLogicTranslate();
+                    ContactU obj = null;
+                    obj = contactUsLogic.Edit(Mapper.Map<ContactU>(postedContactUs));
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<ContactUsModel>(obj));
 
-                    SystemParameters_ContactUs obj = null;
-                    SystemParameters_ContactUs_Translate objByLang = null;
-
-                    if (postedContactUs.langId == Parameters.DefaultLang)
-                        obj = contactUsLogic.Edit(Mapper.Map<SystemParameters_ContactUs>(postedContactUs));
-                    else
-                        objByLang = contactUsLogicTranslate.Edit(Mapper.Map<SystemParameters_ContactUs_Translate>(postedContactUs));
-                     
-                    if (postedContactUs.langId == Parameters.DefaultLang)
-                        return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<SystemParameters_ContactUs>(obj));
-                    else
-                        return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<SystemParameters_ContactUs_Translate>(objByLang));
                 }
                 goto ThrowBadRequest;
             }

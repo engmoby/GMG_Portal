@@ -5,16 +5,20 @@
 }
 
 <div class="page-top clearfix" scroll-position="scrolled" max-height="50" ng-class="{'scrolled': scrolled}">
-    <a href="#/dashboard" class="al-logo clearfix"><img src="~/assets/img/logo.png" style="height: 68px;" /></a>
+    <a href="#/dashboard" class="al-logo clearfix">
+        <img src="~/assets/img/logo1.png" style="height: 68px;"/>
+    </a>
     <a href="#" class="collapse-menu-link ion-navicon" ba-sidebar-toggle-menu></a>
 
-    <div class="search" style="width: 354px;;font-size: 19px;">
+    <div class="search"  >
         Content Language :
-        <select id="DropdwonLang" name="DropdwonLang" style="color: black;">
+
+        <select id="DropdwonLang" name="DropdwonLang" class="select-simple form-control pmd-select2"  >
             <option value="en">English</option>
             <option value="ar">العربيه</option>
             <option value="fr">Francais</option>
-        </select>
+        </select> 
+      
 
     </div>
 
@@ -24,14 +28,10 @@
                 <img ng-src="{{::( 'Kostya' | profilePicture )}}">
             </a>
             <ul class="top-dropdown-menu profile-dropdown" uib-dropdown-menu>
-                <li><i class="dropdown-arr"></i></li>
-                @*<li><a href="#/profile"><i class="fa fa-user"></i>Profile</a></li>
-                <li><a href="#"><i class="fa fa-cog"></i>Settings</a></li>*@
-                <li>@*<a href="#" class="signout"><i class="fa fa-power-off"></i>Sign out</a>*@</li> 
+                <li><i class="dropdown-arr"></i></li> 
                 @Html.ActionLink("Sign out", "Index", "Login" ) 
             </ul>
-        </div>
-        @TempData["alertMessage"]
+        </div> 
         <msg-center></msg-center>
     </div>
 </div>

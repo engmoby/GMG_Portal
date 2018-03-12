@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using GMG_Portal.Data;
 using Heloper;
 
@@ -16,23 +14,22 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         {
             _db = new GMG_Portal_DBEntities1();
         }
-        public List<SystemParameters_Careers> GetAllWithDeleted()
+        public List<Career> GetAllWithDeleted()
         {
-            var returnList = new List<SystemParameters_Careers>(); 
-            var getCareersList = _db.SystemParameters_Careers.ToList();
+            var returnList = new List<Career>(); 
+            var getCareersList = _db.Careers.ToList();
             foreach (var caeerCareerse in getCareersList)
             {
 
                 var getCareerForms = _db.SystemParameters_CareerForm.Where(p => p.CareerId== caeerCareerse.Id).ToList();
            
-                returnList.Add(new SystemParameters_Careers
+                returnList.Add(new Career
                 {
                     Id = caeerCareerse.Id,
-                    DisplayValue = caeerCareerse.DisplayValue,
-                    DisplayValueDesc = caeerCareerse.DisplayValueDesc, 
+                    Title = caeerCareerse.Title,
+                    Description = caeerCareerse.Description, 
                     Experience = caeerCareerse.Experience, 
-                    EducationLevel = caeerCareerse.EducationLevel, 
-                    DisplayValueRequirements = caeerCareerse.DisplayValueRequirements, 
+                    EducationLevel = caeerCareerse.EducationLevel,  
                     SalaryAverage = caeerCareerse.SalaryAverage, 
                     CareerLevel = caeerCareerse.CareerLevel, 
                     Vacancies = caeerCareerse.Vacancies,  
@@ -44,15 +41,15 @@ namespace GMG_Portal.Business.Logic.SystemParameters
 
             return returnList;
         }
-        public List<SystemParameters_Careers> GetAll()
+        public List<Career> GetAll()
         {
-            return _db.SystemParameters_Careers.Where(p => p.IsDeleted != true).ToList();
+            return _db.Careers.Where(p => p.IsDeleted != true).ToList();
         }
-        public SystemParameters_Careers Get(int id)
+        public Career Get(int id)
         {
-            return _db.SystemParameters_Careers.Find(id);
+            return _db.Careers.Find(id);
         }
-        private SystemParameters_Careers Save(SystemParameters_Careers obj)
+        private Career Save(Career obj)
         {
             try
             {
@@ -78,34 +75,31 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 throw;
             }
         }
-        public SystemParameters_Careers Insert(SystemParameters_Careers postedCareer)
+        public Career Insert(Career postedCareer)
         { 
-            var obj = new SystemParameters_Careers
+            var obj = new Career
             {
-                DisplayValue = postedCareer.DisplayValue,
-                DisplayValueDesc = postedCareer.DisplayValueDesc,
-                DisplayValueRequirements= postedCareer.DisplayValueRequirements,
+                Title = postedCareer.Title,
+                Description = postedCareer.Description, 
                 CareerLevel= postedCareer.CareerLevel,
                 JobType = postedCareer.JobType,
                 EducationLevel = postedCareer.EducationLevel,
                 Vacancies = postedCareer.Vacancies,
                 Experience = postedCareer.Experience,
                 Image = postedCareer.Image,
-                IsDeleted = postedCareer.IsDeleted,
-                Show = Parameters.Show, 
+                IsDeleted = postedCareer.IsDeleted, 
                 SalaryAverage = postedCareer.SalaryAverage,
                 CreationTime = Parameters.CurrentDateTime,
                 CreatorUserId = Parameters.UserId, 
             };
-            _db.SystemParameters_Careers.Add(obj);
+            _db.Careers.Add(obj);
             return Save(obj);
         }
-        public SystemParameters_Careers Edit(SystemParameters_Careers postedCareer)
+        public Career Edit(Career postedCareer)
         {
             var obj = Get(postedCareer.Id);
-            obj.DisplayValue = postedCareer.DisplayValue;
-            obj.DisplayValueDesc = postedCareer.DisplayValueDesc;
-            obj.DisplayValueRequirements = postedCareer.DisplayValueRequirements;
+            obj.Title = postedCareer.Title;
+            obj.Description = postedCareer.Description; 
             obj.CareerLevel = postedCareer.CareerLevel;
             obj.JobType = postedCareer.JobType;
             obj.EducationLevel = postedCareer.EducationLevel;
@@ -113,24 +107,23 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             obj.Experience = postedCareer.Experience;
             obj.Image = postedCareer.Image;
             obj.SalaryAverage= postedCareer.SalaryAverage; 
-            obj.IsDeleted = postedCareer.IsDeleted;
-           // obj.Show = postedCareer.Show; 
+            obj.IsDeleted = postedCareer.IsDeleted; 
             obj.LastModificationTime = Parameters.CurrentDateTime;
             obj.LastModifierUserId = Parameters.UserId;
             return Save(obj);
         }
-        public SystemParameters_Careers Delete(SystemParameters_Careers postedCareer)
+        public Career Delete(Career postedCareer)
         {
-            SystemParameters_Careers obj = Get(postedCareer.Id);
-            if (_db.SystemParameters_CareerForm.Any(p => p.CareerId == postedCareer.Id))
-            {
-                obj.OperationStatus = "HasRelationship";
-                return obj;
-            }
+            Career obj = Get(postedCareer.Id);
+            //if (_db.SystemParameters_CareerForm.Any(p => p.CareerId == postedCareer.Id))
+            //{
+            //    obj.OperationStatus = "HasRelationship";
+            //    return obj;
+            //}
 
             obj.IsDeleted = true;
             obj.CreationTime = Parameters.CurrentDateTime;
-            obj.CreatorUserId = Parameters.UserId;
+            obj.CreatorUserId = Parameters.UserId; 
             return Save(obj);
         }
 

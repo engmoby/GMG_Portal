@@ -45,7 +45,7 @@ var provide = null;
         //      templateUrl: menuItem.templateUrl,
         //      title: menuItem.title
         //  });
-
+        debugger;
         for (var i = 0; i < menuItems.length; i++) {
             addRouteStates($stateProvider,menuItems[i]);
         }        

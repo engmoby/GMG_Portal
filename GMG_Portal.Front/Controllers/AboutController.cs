@@ -1,52 +1,44 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Web.Mvc;
+﻿using Front.Helpers;
+using GMG_Portal.API.Models.SystemParameters;
+using Newtonsoft.Json;
+using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using Front.Helpers;
-using Newtonsoft.Json;
-using GMG_Portal.API.Models.SystemParameters;
+using System.Web.Mvc;
 
 namespace Front.Controllers
 {
     public class AboutController : Controller
     {
         // GET: About Content
-        readonly HttpClient _client;
-        string url = System.Configuration.ConfigurationManager.AppSettings["ServerIp"] + "/SystemParameters/";
+        private readonly HttpClient _client;
+
+        private string url = System.Configuration.ConfigurationManager.AppSettings["ServerIp"] + "/SystemParameters/";
+
         public AboutController()
         {
-
             _client = new HttpClient();
             _client.BaseAddress = new Uri(url);
             _client.DefaultRequestHeaders.Accept.Clear();
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
+
         // GET: About Content
         public async Task<ActionResult> Index()
         {
-            string About = url + "About/Aboutall?langId=" + Common.CurrentLang; 
-            var AboutModels = new AboutAll();
+            string about = url + "About/GetAll?langId=" + Common.CurrentLang;
+            var aboutModels = new AboutModel();
 
-            if (About == null) throw new ArgumentNullException(nameof(About));
-            HttpResponseMessage responseMessageApi = await _client.GetAsync(About);
+            if (about == null) throw new ArgumentNullException(nameof(about));
+            HttpResponseMessage responseMessageApi = await _client.GetAsync(about);
             if (responseMessageApi.IsSuccessStatusCode)
             {
                 var responseData = responseMessageApi.Content.ReadAsStringAsync().Result;
-                var AboutList = JsonConvert.DeserializeObject<AboutAll>(responseData);
-                AboutModels = AboutList;
+                var aboutList = JsonConvert.DeserializeObject<AboutModel>(responseData);
+                aboutModels = aboutList;
             }
-            return View(AboutModels);
-
+            return View(aboutModels);
         }
-
-
-
-
-
-
-
-
     }
 }

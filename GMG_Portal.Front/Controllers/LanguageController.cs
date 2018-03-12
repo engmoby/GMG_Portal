@@ -1,25 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Front.Helpers;
+using System;
 using System.Globalization;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Front.Helpers;
-using GMG_Portal.API.Models.General;
-using GMG_Portal.API.Models.Hotels.Hotel;
-using Newtonsoft.Json;
 
 namespace Front.Controllers
 {
     public class LanguageController : Controller
     {
-        readonly HttpClient _client;
+        private readonly HttpClient _client;
 
-        string url = System.Configuration.ConfigurationManager.AppSettings["ServerIp"] + "/SystemParameters/";
+        private string url = System.Configuration.ConfigurationManager.AppSettings["ServerIp"] + "/SystemParameters/";
+
         public LanguageController()
         {
             if (Common.CurrentLang == "ar")
@@ -30,9 +25,13 @@ namespace Front.Controllers
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-
         // GET: Lang
-        public async Task<ActionResult> ChangeLanguage(string selectedLanguage)
+        public static void Change(string selectedLanguage)
+        {
+            Common.CurrentLang = selectedLanguage;
+        }
+
+        public ActionResult ChangeLanguage(string selectedLanguage)
         {
             if (selectedLanguage != null)
             {
@@ -42,52 +41,49 @@ namespace Front.Controllers
                 Common.CurrentLang = selectedLanguage;
                 // Thread.CurrentThread.CurrentCulture =CultureInfo.CreateSpecificCulture(selectedLanguage);
                 // Thread.CurrentThread.CurrentUICulture = new CultureInfo(selectedLanguage);
-                string general = url + "General/GetAll?langId=" + Common.CurrentLang;
+                //string general = url + "General/GetAll?langId=" + Common.CurrentLang;
 
-                var homeModels = new HomeModels();
-                var list = new List<Hotels>();
+                //var homeModels = new HomeModels();
+                //var list = new List<Hotels>();
 
-                HttpResponseMessage responseMessage = await _client.GetAsync(general);
-                if (responseMessage.IsSuccessStatusCode)
-                {
-                    var responseData = responseMessage.Content.ReadAsStringAsync().Result;
-                    var homesliders = JsonConvert.DeserializeObject<HomeModels>(responseData);
-                    homeModels = homesliders;
-                    foreach (var homeslider in homesliders.Hotels)
-                    {
-                        list.Add(new Hotels
-                        {
-                            Id = homeslider.Id,
-                            DisplayValue = homeslider.DisplayValue
-                        });
-                    }
+                //HttpResponseMessage responseMessage = await _client.GetAsync(general);
+                //if (responseMessage.IsSuccessStatusCode)
+                //{
+                //    var responseData = responseMessage.Content.ReadAsStringAsync().Result;
+                //    var homesliders = JsonConvert.DeserializeObject<HomeModels>(responseData);
+                //    homeModels = homesliders;
+                //    foreach (var homeslider in homesliders.Hotels)
+                //    {
+                //        list.Add(new Hotels
+                //        {
+                //            Id = homeslider.Id,
+                //            DisplayValue = homeslider.DisplayValue
+                //        });
+                //    }
 
-                }
-                Common.Hotels = list;
+                //}
+                //Common.Hotels = list;
             }
 
             //Special Case for Details News
-            if (Request.UrlReferrer != null && Request.UrlReferrer.ToString().Contains("News/Details/"))
-            {
-                return Redirect(System.Configuration.ConfigurationManager.AppSettings["HomeUrl"] + "/News");
-            }
+            //if (Request.UrlReferrer != null && Request.UrlReferrer.ToString().Contains("News/Details/"))
+            //{
+            //    return Redirect(System.Configuration.ConfigurationManager.AppSettings["HomeUrl"] + "/News");
+            //}
 
-            //Special Case for Details Offers
-            if (Request.UrlReferrer != null && Request.UrlReferrer.ToString().Contains("Offers/offerdetails/"))
-            {
-                return Redirect(System.Configuration.ConfigurationManager.AppSettings["HomeUrl"] + "/Offers");
-            }
+            ////Special Case for Details Offers
+            //if (Request.UrlReferrer != null && Request.UrlReferrer.ToString().Contains("Offers/offerdetails/"))
+            //{
+            //    return Redirect(System.Configuration.ConfigurationManager.AppSettings["HomeUrl"] + "/Offers");
+            //}
 
-            //Special Case for Details Hotels
-            if (Request.UrlReferrer != null && Request.UrlReferrer.ToString().Contains("Hotel/Details/"))
-            {
-                return Redirect(System.Configuration.ConfigurationManager.AppSettings["HomeUrl"] + "/Hotel");
-            }
-
-
+            ////Special Case for Details Hotels
+            //if (Request.UrlReferrer != null && Request.UrlReferrer.ToString().Contains("Hotel/Details/"))
+            //{
+            //    return Redirect(System.Configuration.ConfigurationManager.AppSettings["HomeUrl"] + "/Hotel");
+            //}
 
             return Redirect(Request.UrlReferrer.ToString());
-
         }
     }
 }

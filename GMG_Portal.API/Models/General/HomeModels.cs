@@ -7,13 +7,14 @@ namespace GMG_Portal.API.Models.General
 {
     public class HomeModels
     {
-        public List<HomeSlider> HomeSliders { get; set; }
-        public About About { get; set; }
-        public List<Features> Features { get; set; }
-        public List<Hotels.Hotel.Hotels> Hotels { get; set; }
-        public List<Owners> Owners { get; set; }
-        public List<News> News { get; set; }
-        public ContactUs ContactUs { get; set; }
+        public List<HomeSliderModel> HomeSliders { get; set; }
+        public AboutModel About { get; set; }
+        public List<FeaturesModel> Features { get; set; }
+        public List<HotelsModel> Hotels { get; set; }
+        public List<OwnerModel> Owners { get; set; }
+        public List<NewsModel> News { get; set; }
+        public ContactUsModel ContactUs { get; set; }
         public List<HotelImages> Gallery { get; set; }
+        public List<CurrencyModel> Currency { get; set; }
     }
 }

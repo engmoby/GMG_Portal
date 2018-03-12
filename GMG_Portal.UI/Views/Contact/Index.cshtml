@@ -34,18 +34,20 @@
             <tbody>
                 <tr ng-repeat="Contact in TableData">
                     <td ng-class="{'red-text': Contact.IsDeleted == true}">{{$index+1}}</td>
-                    <td ng-class="{'red-text': Contact.IsDeleted == true}">{{Contact.DisplayValueAddress  | limitTo:letterLimit}}</td>
+
+                    <td ng-class="{'red-text': Contact.IsDeleted == true}">
+                        <span ng-repeat="(name, age) in Contact.DescDictionary" ng-if="name == CurrentLanguage">
+                            {{age | limitTo:letterLimit}}
+                        </span>
+                    </td>
                     <td ng-class="{'red-text': Contact.IsDeleted == true}">{{Contact.PhoneNo1}}</td>
                     <td ng-class="{'red-text': Contact.IsDeleted == true}">{{Contact.PhoneNo2}}</td>
                     <td ng-class="{'red-text': Contact.IsDeleted == true}">{{Contact.MailNo1}}</td>
                     <td>
                         <div class="buttons" ng-show="!Contact.IsDeleted">
                             <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(Contact)"><i class="fa fa-pencil" aria-hidden="true"></i>@Career.TableBtnEdit</button>
-                            @*<button class="btn btn-danger editable-table-button btn-xs btn-with-icon" ng-confirm="Confirm Delete ?" ng-click="Delete(Contact)"><i class="fa fa-trash-o" aria-hidden="true"></i>@Contact.TableBtnDelete</button>*@
                         </div>
-                        @*<div class="buttons restore-button" ng-show="Contact.IsDeleted">
-                                <button class="center-block btn btn-default  restore-button btn-xs btn-with-icon" ng-click="Restore(Contact)"><i class="fa fa-undo" aria-hidden="true"></i>Restore</button>
-                            </div>*@
+
                     </td>
                 </tr>
                 <tr ng-show="TableData.length==0">
@@ -79,18 +81,48 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label>@Contact.DisplayValueAddress</label><span class="red-text"> *</span>
-                            <textarea type="text" ng-model="Contact.DisplayValueAddress" class="form-control" name="TxtAddress"
-                                      placeholder="@Contact.DisplayValueAddress" ng-minlength="@Common.DescMin50" ng-maxlength="@Common.DescMax200" required ng-pattern="/@Regex.NameAr/"></textarea>
+                            <div class="tabs-container">
+                                <ul class="nav nav-tabs tab-border-top-primary" style="border-bottom: 1px solid transparent;background-color: #d6ece9;">
+                                    <li ng-repeat="lang in language" ng-class="{active:$first}">
+                                        <a data-toggle="tab" data-target="#tab-{{lang.id}}">
+                                            {{lang.value}}
+                                        </a>
+                                    </li>
+                                </ul>
 
-                            <div class="red-text" ng-messages="FrmAddUpdate.TxtAddress.$error" ng-show="FrmAddUpdate.TxtAddress.$touched">
-                                <span class="red-text" ng-message="required">@Contact.TxtaddressRequiredErrorMessage</span>
-                                <span class="red-text" ng-message="pattern">@Contact.TxtaddressPatternErrorMessage</span>
-                                <span class="red-text" ng-message="notInList">@Contact.TxtaddressUniqueErrorMessage</span>
-                                <span class="red-text" ng-message="minlength">@Common.MinimumKeyWord @Common.DescMin50 @Common.Charachter</span>
-                                <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.DescMax200 @Common.Charachter</span>
+                                <div class="tab-content">
+                                    <div ng-repeat="lang in language" id="tab-{{lang.id}}" class="tab-pane" ng-class="{active:$first}">
+                                        <div class="panel-body">
+                                            <div class="form-group">
+                                                <label>{{lang.value}}  Address</label>
+                                                <textarea type="text" ng-model="Contact.DescDictionary[lang.key]" placeholder="Enter {{lang.value}}  desc"
+                                                          class="form-control" name="{{lang.key+'desc'}}" required=""></textarea>
+                                                <br />
+                                                <div ng-show="FrmAddUpdate.$submitted || FrmAddUpdate.{{lang.key+'desc'}}.$touched">
+                                                    <label id="-error" class="red-text" ng-show="FrmAddUpdate.{{lang.key+'desc'}}.$error.required">{{lang.value}} description is missing.</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
                             </div>
                         </div>
+
+                        @*<div class="form-group">
+                                <label>@Contact.DisplayValueAddress</label><span class="red-text"> *</span>
+                                <textarea type="text" ng-model="Contact.DisplayValueAddress" class="form-control" name="TxtAddress"
+                                          placeholder="@Contact.DisplayValueAddress" ng-minlength="@Common.DescMin50" ng-maxlength="@Common.DescMax200" required ng-pattern="/@Regex.NameAr/"></textarea>
+
+                                <div class="red-text" ng-messages="FrmAddUpdate.TxtAddress.$error" ng-show="FrmAddUpdate.TxtAddress.$touched">
+                                    <span class="red-text" ng-message="required">@Contact.TxtaddressRequiredErrorMessage</span>
+                                    <span class="red-text" ng-message="pattern">@Contact.TxtaddressPatternErrorMessage</span>
+                                    <span class="red-text" ng-message="notInList">@Contact.TxtaddressUniqueErrorMessage</span>
+                                    <span class="red-text" ng-message="minlength">@Common.MinimumKeyWord @Common.DescMin50 @Common.Charachter</span>
+                                    <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.DescMax200 @Common.Charachter</span>
+                                </div>
+                            </div>*@
 
 
                         <div class="row">

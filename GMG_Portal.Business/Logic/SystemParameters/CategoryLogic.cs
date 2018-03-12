@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using GMG_Portal.Data;
 using Heloper;
 
@@ -16,19 +14,19 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         {
             _db = new GMG_Portal_DBEntities1();
         }
-        public List<SystemParameters_Category> GetAllWithDeleted()
+        public List<Category> GetAllWithDeleted()
         {
-            return _db.SystemParameters_Category.OrderBy(p => p.IsDeleted).ToList();
+            return _db.Categories.OrderBy(p => p.IsDeleted).ToList();
         }
-        public List<SystemParameters_Category> GetAll()
+        public List<Category> GetAll()
         {
-            return _db.SystemParameters_Category.Where(p => p.IsDeleted != true).ToList();
+            return _db.Categories.Where(p => p.IsDeleted != true).ToList();
         }
-        public SystemParameters_Category Get(int id)
+        public Category Get(int id)
         {
-            return _db.SystemParameters_Category.Find(id);
+            return _db.Categories.Find(id);
         }
-        private SystemParameters_Category Save(SystemParameters_Category category)
+        private Category Save(Category category)
         {
             try
             {
@@ -54,38 +52,68 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 throw;
             }
         }
-        public SystemParameters_Category Insert(SystemParameters_Category postedCategory)
+        public Category Insert(Category postedCategory)
         {
 
-            var category = new SystemParameters_Category()
-            {
-                DisplayValue = postedCategory.DisplayValue,
-                DisplayValueDesc = postedCategory.DisplayValueDesc,
+            var obj = new Category()
+            { 
                 Image = postedCategory.Image,
-                IsDeleted = postedCategory.IsDeleted,
-                Show = Parameters.Show,
+                IsDeleted = postedCategory.IsDeleted, 
                 CreationTime = Parameters.CurrentDateTime,
                 CreatorUserId = Parameters.UserId,
             };
-            _db.SystemParameters_Category.Add(category);
-            return Save(category);
+            _db.Categories.Add(obj);
+            _db.SaveChanges();
+            var objTrasnlate = new Category_Translate();
+            {
+                foreach (var ownerName in postedCategory.TitleDictionary)
+                {
+                    objTrasnlate.Title = ownerName.Value;
+                  //  objTrasnlate.Description= postedCategory.DescDictionary[ownerName.Key]; 
+                    objTrasnlate.langId = ownerName.Key;
+                    objTrasnlate.RecordId = obj.Id;
+                    _db.Category_Translate.Add(objTrasnlate);
+                    _db.SaveChanges();
+                }
+            }
+            Category owner = Get(obj.Id);
+            List<Category_Translate> categoryTranslate = GetTranslates(obj.Id);
+            return Save(owner);
         }
-        public SystemParameters_Category Edit(SystemParameters_Category postedCategory)
+
+        public List<Category_Translate> GetTranslates(int recordId)
         {
-            SystemParameters_Category category = Get(postedCategory.Id);
-            category.DisplayValue = postedCategory.DisplayValue;
-            category.DisplayValueDesc = postedCategory.DisplayValueDesc;
+            return _db.Category_Translate.Where(x => x.RecordId == recordId).ToList();
+        }
+
+        public Category Edit(Category postedCategory)
+        {
+            Category category = Get(postedCategory.Id);
+
+            List<Category_Translate> cTranslate = GetTranslates(postedCategory.Id);
+            foreach (var categoryName in postedCategory.TitleDictionary)
+            { 
+                foreach (var categoryTranslate in cTranslate)
+                {
+                    if (categoryName.Key == categoryTranslate.langId)
+                    {
+                        categoryTranslate.Title = categoryName.Value;
+                       // categoryTranslate.Description = postedCategory.DescDictionary[categoryName.Key]; 
+                        _db.SaveChanges();
+                    }
+                }
+            }
+
             category.Image = postedCategory.Image;
-            category.IsDeleted = postedCategory.IsDeleted;
-            category.Show = postedCategory.Show;
+            category.IsDeleted = postedCategory.IsDeleted; 
             category.LastModificationTime = Parameters.CurrentDateTime;
             category.LastModifierUserId = Parameters.UserId;
             return Save(category);
         }
-        public SystemParameters_Category Delete(SystemParameters_Category postedCategory)
+        public Category Delete(Category postedCategory)
         {
-            SystemParameters_Category category = Get(postedCategory.Id);
-            if (_db.SystemParameters_News.Any(p => p.CategoryId == postedCategory.Id && p.IsDeleted != true))
+            Category category = Get(postedCategory.Id);
+            if (_db.News.Any(p => p.CategoryId == postedCategory.Id && p.IsDeleted != true))
             {
                 category.OperationStatus = "HasRelationship";
                 return category;

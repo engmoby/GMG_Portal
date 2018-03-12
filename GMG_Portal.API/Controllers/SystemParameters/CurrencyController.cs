@@ -22,18 +22,18 @@ namespace GMG_Portal.API.Controllers.SystemParameters
             try
             {
                 var currencyLogic = new CurrencyLogic();
-                var currencyLogicTranslate = new CurrencyLogicTranslate();
-                if (langId == Parameters.DefaultLang)
-                {
+                //var currencyLogicTranslate = new CurrencyLogicTranslate();
+                //if (langId == Parameters.DefaultLang)
+                //{
                     var obj = currencyLogic.GetAll();
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<CurrencyVm>>(obj));
-                }
-                else
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<CurrencyModel>>(obj));
+                //}
+                //else
 
-                {
-                    var objByLang = currencyLogicTranslate.GetAll(langId);
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<CurrencyVm>>(objByLang));
-                }
+                //{
+                //    var objByLang = currencyLogicTranslate.GetAll(langId);
+                //    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<CurrencyVm>>(objByLang));
+                //}
             }
             catch (Exception ex)
             {
@@ -46,23 +46,23 @@ namespace GMG_Portal.API.Controllers.SystemParameters
             try
             {
                 var currencyLogic = new CurrencyLogic();
-                var currencyLogicTranslate = new CurrencyLogicTranslate();
+                //var currencyLogicTranslate = new CurrencyLogicTranslate();
 
-                if (langId == Parameters.DefaultLang)
-                {
+                //if (langId == Parameters.DefaultLang)
+                //{
                     var obj = currencyLogic.GetAllWithDeleted();
 
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<CurrencyVm>>(obj));
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<CurrencyModel>>(obj));
 
-                }
-                else
+                //}
+                //else
 
-                {
-                    var objByLang = currencyLogicTranslate.GetAllWithDeleted(langId);
+                //{
+                //    var objByLang = currencyLogicTranslate.GetAllWithDeleted(langId);
 
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<CurrencyVm>>(objByLang));
+                //    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<CurrencyVm>>(objByLang));
 
-                }
+                //}
 
             }
             catch (Exception ex)
@@ -72,47 +72,47 @@ namespace GMG_Portal.API.Controllers.SystemParameters
             }
         }
         [HttpPost]
-        public HttpResponseMessage Save(CurrencyVm postedCurrencys)
+        public HttpResponseMessage Save(CurrencyModel postedCurrencys)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
                     var currencyLogic = new CurrencyLogic();
-                    var currencyLogicTranslate = new CurrencyLogicTranslate();
+                  //var currencyLogicTranslate = new CurrencyLogicTranslate();
 
                     Currency obj = null;
-                    Currency_Translate objByLang = null;
+                  //  Currency_Translate objByLang = null;
 
                     if (postedCurrencys.Id.Equals(0))
                     {
-                        if (postedCurrencys.LangId == Parameters.DefaultLang)
+                       // if (postedCurrencys.LangId == Parameters.DefaultLang)
                             obj = currencyLogic.Insert(Mapper.Map<Currency>(postedCurrencys));
-                        else
-                            objByLang = currencyLogicTranslate.Insert(Mapper.Map<Currency_Translate>(postedCurrencys));
+                        //else
+                        //    objByLang = currencyLogicTranslate.Insert(Mapper.Map<Currency_Translate>(postedCurrencys));
 
                     }
                     else
                     {
                         if (postedCurrencys.IsDeleted)
                         {
-                            if (postedCurrencys.LangId == Parameters.DefaultLang)
+                          //  if (postedCurrencys.LangId == Parameters.DefaultLang)
                                 obj = currencyLogic.Delete(Mapper.Map<Currency>(postedCurrencys));
-                            else
-                                objByLang = currencyLogicTranslate.Delete(Mapper.Map<Currency_Translate>(postedCurrencys));
+                            //else
+                            //    objByLang = currencyLogicTranslate.Delete(Mapper.Map<Currency_Translate>(postedCurrencys));
                         }
                         else
                         {
-                            if (postedCurrencys.LangId == Parameters.DefaultLang)
+                          //  if (postedCurrencys.LangId == Parameters.DefaultLang)
                                 obj = currencyLogic.Edit(Mapper.Map<Currency>(postedCurrencys));
-                            else
-                                objByLang = currencyLogicTranslate.Edit(Mapper.Map<Currency_Translate>(postedCurrencys));
+                            //else
+                            //    objByLang = currencyLogicTranslate.Edit(Mapper.Map<Currency_Translate>(postedCurrencys));
                         }
                     }
-                    if (postedCurrencys.LangId == Parameters.DefaultLang)
-                        return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Currency>(obj));
-                    else
-                        return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Currency_Translate>(objByLang));
+                    //if (postedCurrencys.LangId == Parameters.DefaultLang)
+                        return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<CurrencyModel>(obj));
+                    //else
+                    //    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Currency_Translate>(objByLang));
                 }
                 goto ThrowBadRequest;
             }

@@ -17,6 +17,7 @@ namespace GMG_Portal.UI.Controllers
         {
             try
             {
+               
                 if (!Request.Content.IsMimeMultipartContent())
                 {
                     throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);

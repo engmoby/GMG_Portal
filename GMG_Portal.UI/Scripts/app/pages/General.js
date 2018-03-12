@@ -1,5 +1,6 @@
-﻿controllerProvider.register('GeneralController', ['$scope', 'LanguagesApi', 'uploadNewsService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', GeneralController]);
-function GeneralController($scope, LanguagesApi, uploadNewsService, $rootScope, $timeout, $filter, $uibModal, toastr) {
+﻿controllerProvider.register('GeneralController', ['$scope', 'appCONSTANTS', 'LanguagesApi', 'uploadNewsService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', GeneralController]);
+function GeneralController($scope,appCONSTANTS, LanguagesApi, uploadNewsService, $rootScope, $timeout, $filter, $uibModal, toastr) {
+    $scope.language = appCONSTANTS.supportedLanguage;
     $scope.Image = "";
     $scope.ImageFormatValidaiton = "Please upload Images ";
     $scope.ImageSizeValidaiton = "Can't upload image more than 2MB";

@@ -72,8 +72,16 @@
                 <tr ng-repeat="Feature in TableData">
                     <td ng-class="{'red-text': Feature.IsDeleted == true}">{{$index+1}}</td>
                     <td ng-class="{'red-text': Feature.IsDeleted == true}"><i class="{{Feature.Icon}}"></i> </td>
-                    <td ng-class="{'red-text': Feature.IsDeleted == true}">{{Feature.DisplayValue}}</td>
-                    <td ng-class="{'red-text': Feature.IsDeleted == true}">{{Feature.DisplayValueDesc | limitTo:letterLimit}} </td>
+                    <td ng-class="{'red-text': Feature.IsDeleted == true}">
+                        <span ng-repeat="(name, age) in Feature.TitleDictionary" ng-if="name == CurrentLanguage">
+                            {{age}}
+                        </span>
+                    </td>
+                    <td ng-class="{'red-text': Feature.IsDeleted == true}">
+                        <span ng-repeat="(name, age) in Feature.DescDictionary" ng-if="name == CurrentLanguage">
+                            {{age | limitTo:letterLimit}}
+                        </span>
+                    </td>
                     <td>
                         <div class="buttons" ng-show="!Feature.IsDeleted">
                             <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(Feature)"><i class="fa fa-pencil" aria-hidden="true"></i>@Feature.TableBtnEdit</button>
@@ -122,6 +130,44 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
+                            <div class="tabs-container">
+                                <ul class="nav nav-tabs tab-border-top-primary" style="border-bottom: 1px solid transparent;background-color: #d6ece9;">
+                                    <li ng-repeat="lang in language" ng-class="{active:$first}">
+                                        <a data-toggle="tab" data-target="#tab-{{lang.id}}">
+                                            {{lang.value}}
+                                        </a>
+                                    </li>
+                                </ul>
+
+                                <div class="tab-content">
+                                    <div ng-repeat="lang in language" id="tab-{{lang.id}}" class="tab-pane" ng-class="{active:$first}">
+                                        <div class="panel-body">
+                                            <div class="form-group">
+                                                <label>{{lang.value}}  title</label>
+                                                <input type="text" ng-model="Feature.TitleDictionary[lang.key]" placeholder="Enter {{lang.value}}  title"
+                                                       class="form-control" name="u{{lang.value+'name'}}" required="">
+                                                <br />
+                                                <div ng-show="FrmAddUpdate.$submitted || FrmAddUpdate.u{{lang.value+'name'}}.$touched">
+                                                    <label id="-error" class="red-text" ng-show="FrmAddUpdate.u{{lang.value+'name'}}.$error.required">{{lang.value}} Name is missing.</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>{{lang.value}}  Description</label>
+                                                <textarea type="text" ng-model="Feature.DescDictionary[lang.key]" placeholder="Enter {{lang.value}}  desc"
+                                                          class="form-control" name="{{lang.key+'desc'}}" required=""></textarea>
+                                                <br />
+                                                <div ng-show="FrmAddUpdate.$submitted || FrmAddUpdate.{{lang.key+'desc'}}.$touched">
+                                                    <label id="-error" class="red-text" ng-show="FrmAddUpdate.{{lang.key+'desc'}}.$error.required">{{lang.value}} description is missing.</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>   @*<div class="form-group">
                             <label for="TxtTitle">@Feature.Title</label><span class="red-text"> *</span>
                             <input type="text" ng-model="Feature.DisplayValue" class="form-control" name="TxtTitle"
                                    placeholder="Text" ng-maxlength="@Common.TitleMax25" required ng-pattern="/@Regex.NameAr/">
@@ -146,7 +192,7 @@
                                 <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.DescMax200 @Common.Charachter</span>
 
                             </div>
-                        </div>
+                        </div>*@
 
                         <div class="form-group">
                             <label for="TxtIcon">@Feature.Icon</label>

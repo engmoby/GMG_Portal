@@ -1,19 +1,15 @@
 ﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using GMG_Portal.API.Models.Hotels.Hotel;
 using GMG_Portal.API.Models.Hotels.Reservation;
 using GMG_Portal.API.Models.SystemParameters;
 using GMG_Portal.API.Models.SystemParameters.Admin;
 using GMG_Portal.API.Models.SystemParameters.CareerForm;
 using GMG_Portal.API.Models.SystemParameters.ContactUs;
-using GMG_Portal.API.Models.SystemParameters.Newsletter; 
+using GMG_Portal.API.Models.SystemParameters.Newsletter;
 using GMG_Portal.Data;
 using AccountTypes = GMG_Portal.Data.Partials.SystemParameters.AccountTypes;
 using Customer = GMG_Portal.API.Models.Customer.Customers.Customer;
-using HomeSlider = GMG_Portal.API.Models.SystemParameters.HomeSlider;
 using HotelFeatures = GMG_Portal.API.Models.Hotels.Hotel.HotelFeatures;
 
 namespace GMG_Portal.API
@@ -29,103 +25,140 @@ namespace GMG_Portal.API
                 cfg.CreateMap<AccountType, AccountTypes>();
 
 
-                cfg.CreateMap<Systemparameters_Languages, Models.SystemParameters.Languages>();
-                cfg.CreateMap<GMG_Portal.API.Models.SystemParameters.Languages, Systemparameters_Languages>();
+                cfg.CreateMap<Systemparameters_Languages, Languages>();
+                cfg.CreateMap<Languages, Systemparameters_Languages>();
+
+                //News Category
+                cfg.CreateMap<Category, CategoryModel>()
+                    .ForMember(x => x.TitleDictionary, o => o.MapFrom(src => src.Category_Translate.ToDictionary(lang => lang.langId.ToLower(), lang => lang.Title)))
+                    .ForMember(x => x.DescDictionary, o => o.MapFrom(src => src.Category_Translate.ToDictionary(lang => lang.langId.ToLower(), lang => lang.Description)));
+
+                cfg.CreateMap<CategoryModel, Category>();
+
 
 
                 //About 
-                cfg.CreateMap<SystemParameters_About, About>();
-                cfg.CreateMap<About, SystemParameters_About>();
-                cfg.CreateMap<SystemParameters_About_Translate, About>();
-                cfg.CreateMap<About, SystemParameters_About_Translate>();
-                 
+                cfg.CreateMap<About, AboutModel>()
+                    .ForMember(x => x.AboutTitleDictionary, o => o.MapFrom(src => src.About_Translate.ToDictionary(lang => lang.langId.ToLower(), lang => lang.AboutTitle)))
+                    .ForMember(x => x.AboutDescDictionary, o => o.MapFrom(src => src.About_Translate.ToDictionary(lang => lang.langId.ToLower(), lang => lang.AboutDescription)))
+                    .ForMember(x => x.VisionTitleDictionary, o => o.MapFrom(src => src.About_Translate.ToDictionary(lang => lang.langId.ToLower(), lang => lang.VisionTitle)))
+                    .ForMember(x => x.VisionDescDictionary, o => o.MapFrom(src => src.About_Translate.ToDictionary(lang => lang.langId.ToLower(), lang => lang.VisionDescription)))
+                    .ForMember(x => x.MissionTitleDictionary, o => o.MapFrom(src => src.About_Translate.ToDictionary(lang => lang.langId.ToLower(), lang => lang.MissionTitle)))
+                    .ForMember(x => x.MissionDescDictionary, o => o.MapFrom(src => src.About_Translate.ToDictionary(lang => lang.langId.ToLower(), lang => lang.MissionDescription)))
+                    .ForMember(x => x.CoreValueTitleDictionary, o => o.MapFrom(src => src.About_Translate.ToDictionary(lang => lang.langId.ToLower(), lang => lang.CoreValueTitle)))
+                    .ForMember(x => x.CoreValueDescDictionary, o => o.MapFrom(src => src.About_Translate.ToDictionary(lang => lang.langId.ToLower(), lang => lang.CoreValueDescription)));
+
+                cfg.CreateMap<AboutModel, About>();
+
                 //HomeSlider
-                cfg.CreateMap<SystemParameters_HomeSlider, HomeSlider>();
-                cfg.CreateMap<HomeSlider, SystemParameters_HomeSlider>(); 
-                cfg.CreateMap<SystemParameters_HomeSlider_Translate, HomeSlider>();
-                cfg.CreateMap<HomeSlider, SystemParameters_HomeSlider_Translate>();
+                cfg.CreateMap<HomeSlider, HomeSliderModel>()
+                    .ForMember(x => x.TitleDictionary, o => o.MapFrom(src => src.HomeSlider_Translate.ToDictionary(lang => lang.langId.ToLower(), lang => lang.Title)))
+                    .ForMember(x => x.DescDictionary, o => o.MapFrom(src => src.HomeSlider_Translate.ToDictionary(lang => lang.langId.ToLower(), lang => lang.Description)));
 
+                cfg.CreateMap<HomeSliderModel, HomeSlider>();
                 //News
-                cfg.CreateMap<SystemParameters_News, News>();
-                cfg.CreateMap<News, SystemParameters_News>();
-                cfg.CreateMap<SystemParameters_News_Translate, News>();
-                cfg.CreateMap<News, SystemParameters_News_Translate>();
+                cfg.CreateMap<News, NewsModel>()
+                    .ForMember(x => x.TitleDictionary, o => o.MapFrom(src => src.News_Translate.ToDictionary(lang => lang.langId.ToLower(), lang => lang.Title)))
+                    .ForMember(x => x.DescDictionary, o => o.MapFrom(src => src.News_Translate.ToDictionary(lang => lang.langId.ToLower(), lang => lang.Description)));
 
-                //News Category
-                cfg.CreateMap<SystemParameters_Category, Category>();
-                cfg.CreateMap<Category, SystemParameters_Category>();
-                cfg.CreateMap<SystemParameters_Category_Translate, Category>();
-                cfg.CreateMap<Category, SystemParameters_Category_Translate>();
+                cfg.CreateMap<NewsModel, News>();
+
+
 
                 //Vision
-                cfg.CreateMap<Front_Vision, Vision>();
-                cfg.CreateMap<Vision, Front_Vision>();
-                cfg.CreateMap<Front_Vision_Translate, Vision>();
-                cfg.CreateMap<Vision, Front_Vision_Translate>();
+                //cfg.CreateMap<Vision, VisionModel>()
+                //    .ForMember(x => x.TitleDictionary, o => o.MapFrom(src => src.Vision_Translate.ToDictionary(lang => lang.langId.ToLower(), lang => lang.Title)))
+                //    .ForMember(x => x.DescDictionary, o => o.MapFrom(src => src.Vision_Translate.ToDictionary(lang => lang.langId.ToLower(), lang => lang.Description)));
 
-                //Mission
-                cfg.CreateMap<Front_Mission,  Mission>();
-                cfg.CreateMap<Mission, Front_Mission>();
-                cfg.CreateMap<Front_Mission_Translate, Mission>();
-                cfg.CreateMap<Mission, Front_Mission_Translate>();
+                //cfg.CreateMap<VisionModel, Vision>(); 
+
+                ////Mission
+                //cfg.CreateMap<Mission, MissionModel>()
+                //    .ForMember(x => x.TitleDictionary, o => o.MapFrom(src => src.Mission_Translate.ToDictionary(lang => lang.langId.ToLower(), lang => lang.Title)))
+                //    .ForMember(x => x.DescDictionary, o => o.MapFrom(src => src.Mission_Translate.ToDictionary(lang => lang.langId.ToLower(), lang => lang.Description)));
+
+                cfg.CreateMap<MissionModel, Mission>();
 
                 // Features
-                cfg.CreateMap<SystemParameters_Features, Features>();
-                cfg.CreateMap<Features, SystemParameters_Features>();
-                cfg.CreateMap<SystemParameters_Features_Translate, Features>();
-                cfg.CreateMap<Features, SystemParameters_Features_Translate>();
+                cfg.CreateMap<Feature, FeaturesModel>()
+                    .ForMember(x => x.TitleDictionary, o => o.MapFrom(src => src.Features_Translate.ToDictionary(lang => lang.langId.ToLower(), lang => lang.Title)))
+                    .ForMember(x => x.DescDictionary, o => o.MapFrom(src => src.Features_Translate.ToDictionary(lang => lang.langId.ToLower(), lang => lang.Description)));
+
+                cfg.CreateMap<FeaturesModel, Feature>();
+                //cfg.CreateMap<SystemParameters_Features_Translate, Features>();
+                //cfg.CreateMap<Features, SystemParameters_Features_Translate>();
 
                 //Hotels
-                cfg.CreateMap<Data.Hotel, Hotels>();
-                cfg.CreateMap<Hotels, Data.Hotel>(); 
-                cfg.CreateMap<Data.Hotels_Translate, Hotels>();
-                cfg.CreateMap<Hotels, Data.Hotels_Translate>();
+                cfg.CreateMap<Hotel, HotelsModel>()
+                    .ForMember(x => x.TitleDictionary, o => o.MapFrom(src => src.Hotels_Translate.ToDictionary(lang => lang.langId.ToLower(), lang => lang.Title)))
+                    .ForMember(x => x.DescDictionary, o => o.MapFrom(src => src.Hotels_Translate.ToDictionary(lang => lang.langId.ToLower(), lang => lang.Descrtiption)))
+                    .ForMember(x => x.ImageList, o => o.MapFrom(src => src.Hotels_Images.Where(x => x.IsDeleted == false).ToList()))
+                    .ForMember(x => x.FeaturesList, o => o.MapFrom(src => src.Hotels_Features.Where(x => x.IsDeleted == false).ToList()));
+
+                cfg.CreateMap<HotelsModel, Hotel>();
 
 
                 cfg.CreateMap<Hotels_Images, HotelImages>();
                 cfg.CreateMap<HotelImages, Hotels_Images>();
-                cfg.CreateMap<Hotels_Images_Translate, HotelImages>();
-                cfg.CreateMap<HotelImages, Hotels_Images_Translate>();
+                //cfg.CreateMap<Hotels_Images_Translate, HotelImages>();
+                //cfg.CreateMap<HotelImages, Hotels_Images_Translate>();
+
+                cfg.CreateMap<HotelFeatures, Feature>();
+                cfg.CreateMap<Feature, HotelFeatures>();
 
                 cfg.CreateMap<Hotels_Features, HotelFeatures>();
                 cfg.CreateMap<HotelFeatures, Hotels_Features>();
-                cfg.CreateMap<Hotels_Features_Translate, HotelFeatures>();
-                cfg.CreateMap<HotelFeatures, Hotels_Features_Translate>();
+
+
+                //cfg.CreateMap<Hotels_Features_Translate, HotelFeatures>();
+                //cfg.CreateMap<HotelFeatures, Hotels_Features_Translate>();
 
 
                 //Owners
-                cfg.CreateMap<SystemParameters_Owners, Owners>();
-                cfg.CreateMap<Owners, SystemParameters_Owners>();
-                cfg.CreateMap<SystemParameters_Owners_Translate, Owners>();
-                cfg.CreateMap<Owners, SystemParameters_Owners_Translate>();
+                cfg.CreateMap<Owner, OwnerModel>()
+                       .ForMember(x => x.OwnerNameDictionary, o => o.MapFrom(src => src.Owners_Translate.ToDictionary(lang => lang.langId.ToLower(), lang => lang.DisplayValueName)))
+                       .ForMember(x => x.OwnerPostionDictionary, o => o.MapFrom(src => src.Owners_Translate.ToDictionary(lang => lang.langId.ToLower(), lang => lang.DisplayValuePosition)))
+                       .ForMember(x => x.OwnerDescDictionary, o => o.MapFrom(src => src.Owners_Translate.ToDictionary(lang => lang.langId.ToLower(), lang => lang.DisplayValueDesc)));
+
+                cfg.CreateMap<OwnerModel, Owner>();
+                //cfg.CreateMap<SystemParameters_Owners_Translate, Owners>();
+                //cfg.CreateMap<Owners, SystemParameters_Owners_Translate>();
 
 
-                //Core Values
-                cfg.CreateMap<SystemParameters_CoreValues, CoreValues>();
-                cfg.CreateMap<CoreValues, SystemParameters_CoreValues>();
-                cfg.CreateMap<SystemParameters_CoreValues_Translate, CoreValues>();
-                cfg.CreateMap<CoreValues, SystemParameters_CoreValues_Translate>();
+                ////Core Values
+                //cfg.CreateMap<CoreValues, CoreValuesModel>()
+                //    .ForMember(x => x.TitleDictionary, o => o.MapFrom(src => src.CoreValues_Translate.ToDictionary(lang => lang.langId.ToLower(), lang => lang.Title)))
+                //    .ForMember(x => x.DescDictionary, o => o.MapFrom(src => src.Mission_Translate.ToDictionary(lang => lang.langId.ToLower(), lang => lang.Description)));
+
+
+                //  cfg.CreateMap<CoreValuesModel, CoreValues>(); 
 
                 //Contact Us
-                cfg.CreateMap<SystemParameters_ContactUs, ContactUs>();
-                cfg.CreateMap<ContactUs, SystemParameters_ContactUs>();
-                cfg.CreateMap<SystemParameters_ContactUs_Translate, ContactUs>();
-                cfg.CreateMap<ContactUs, SystemParameters_ContactUs_Translate>();
+                cfg.CreateMap<ContactU, ContactUsModel>()
+                .ForMember(x => x.DescDictionary, o => o.MapFrom(src => src.ContactUs_Translate.ToDictionary(lang => lang.langId.ToLower(), lang => lang.Description)));
+
+                cfg.CreateMap<ContactUsModel, ContactU>();
 
 
                 //Offers
-                cfg.CreateMap<Hotles_Offers, Offer>();
-                cfg.CreateMap<Offer, Hotles_Offers>();
-                cfg.CreateMap<Hotles_Offers_Translate, Offer>();
-                cfg.CreateMap<Offer, Hotles_Offers_Translate>();
-                cfg.CreateMap<Hotles_Offers_Translate, Hotles_Offers>();
+                cfg.CreateMap<Offer, OfferModel>()
+                    .ForMember(x => x.OfferTitleDictionary, o => o.MapFrom(src => src.Offers_Translate.ToDictionary(lang => lang.langId.ToLower(), lang => lang.Title)))
+                    .ForMember(x => x.OfferDescDictionary, o => o.MapFrom(src => src.Offers_Translate.ToDictionary(lang => lang.langId.ToLower(), lang => lang.Description)));
+
+                cfg.CreateMap<OfferModel, Offer>();
+                //cfg.CreateMap<Hotles_Offers_Translate, Offer>();
+                //cfg.CreateMap<Offer, Hotles_Offers_Translate>();
+                //cfg.CreateMap<Hotles_Offers_Translate, Hotles_Offers>();
 
 
                 //Currency
-                cfg.CreateMap<Currency, CurrencyVm>();
-                cfg.CreateMap<CurrencyVm, Currency>();
-                cfg.CreateMap<Currency_Translate, CurrencyVm>();
-                cfg.CreateMap<CurrencyVm, Currency_Translate>();
+                cfg.CreateMap<Currency, CurrencyModel>()
+                    .ForMember(x => x.TitleDictionary, o => o.MapFrom(src => src.Currency_Translate.ToDictionary(lang => lang.LangId.ToLower(), lang => lang.Title)))
+                    .ForMember(x => x.DescDictionary, o => o.MapFrom(src => src.Currency_Translate.ToDictionary(lang => lang.LangId.ToLower(), lang => lang.Description)));
+
+                cfg.CreateMap<CurrencyModel, Currency>();
+                //cfg.CreateMap<Currency_Translate, CurrencyVm>();
+                //cfg.CreateMap<CurrencyVm, Currency_Translate>();
 
 
                 cfg.CreateMap<SystemParameters_Newsletter, Newsletter>();
@@ -135,8 +168,8 @@ namespace GMG_Portal.API
                 cfg.CreateMap<ContactForm, SystemParameters_ContactForm>();
 
 
-                cfg.CreateMap<SystemParameters_Careers, Career>();
-                cfg.CreateMap<Career, SystemParameters_Careers>();
+                cfg.CreateMap<Career, CareerModel>();
+                cfg.CreateMap<CareerModel, Career>();
 
                 cfg.CreateMap<SystemParameters_CareerForm, CareerForm>();
                 cfg.CreateMap<CareerForm, SystemParameters_CareerForm>();
@@ -175,7 +208,7 @@ namespace GMG_Portal.API
                 cfg.CreateMap<GMG_Portal.Data.Customers, GMG_Portal.API.Models.SystemParameters.Customer>();
                 cfg.CreateMap<GMG_Portal.API.Models.SystemParameters.Customer, GMG_Portal.Data.Customers>();
 
-                 
+
 
                 cfg.CreateMap<GMG_Portal.Data.Customers, Customer>();
                 cfg.CreateMap<Customer, GMG_Portal.Data.Customers>();

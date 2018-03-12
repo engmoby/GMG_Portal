@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using GMG_Portal.API.Models.Hotels.Reservation;
 using System.Web.Mvc;
-using GMG_Portal.API.Models.Hotels.Reservation;
 
 namespace Front.Controllers
 {
@@ -33,7 +29,6 @@ namespace Front.Controllers
         {
             try
             {
-
                 var dd = collection.FirstName;
                 // TODO: Add insert logic here
 

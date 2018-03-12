@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GMG_Portal.Data
 {
-    public partial class SystemParameters_Features_Translate
+    public partial class Features_Translate
     {
         [NotMapped]
         public string OperationStatus { get; set; }

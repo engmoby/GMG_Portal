@@ -1,4 +1,6 @@
 ﻿@*@model  Front.Models.HomeModels*@
+@using Front.Helpers
+@using GMG_Portal.API.Models.SystemParameters
 @model GMG_Portal.API.Models.General.HomeModels
 @if (Model.Owners != null)
 {
@@ -11,40 +13,39 @@
                         <p>@Front.Resources.Global.Home_OwnersDesc</p>
                     </div>
                     <div class="mg-testimonial-slider" id="mg-testimonial-slider">
-                        @{
-                            for (var i = 0; i < Model.Owners.Count; i++)
-                            {
-                                <blockquote>
 
-                                    @if (@Model.Owners[i].DisplayValueName.Length >= 20)
-                                    {
-                                        <p>@Model.Owners[i].DisplayValueName.Substring(0, 20)</p>
-                                    }
-                                    else
-                                    {
-                                        <p>@Model.Owners[i].DisplayValueName</p>
+                        @foreach (OwnerModel t in Model.Owners)
+                        {
+                            <blockquote>
 
-                                    }
-                                    @if (@Model.Owners[i].DisplayValuePosition.Length >= 20)
-                                    {
-                                        <p>@Model.Owners[i].DisplayValuePosition.Substring(0, 20)</p>
-                                    }
-                                    else
-                                    {
-                                        <p>@Model.Owners[i].DisplayValuePosition</p>
-                                    }
-                                    @if (@Model.Owners[i].DisplayValueDesc.Length >= 200)
-                                    {
-                                        <footer>
-                                            <p>@Model.Owners[i].DisplayValueDesc.Substring(0, 200)</p></footer>
-                                    }
-                                    else
-                                    {
-                                        <footer>
-                                            <p>@Model.Owners[i].DisplayValueDesc</p></footer>
-                                    }
-                                </blockquote>
-                            }
+                                @if (t.OwnerNameDictionary[Common.CurrentLang].Length >= 20)
+                                {
+                                    <p>@t.OwnerNameDictionary[Common.CurrentLang].Substring(0, 20)</p>
+                                }
+                                else
+                                {
+                                    <p>@t.OwnerNameDictionary[Common.CurrentLang]</p>
+
+                                }
+                                @if (t.OwnerPostionDictionary[Common.CurrentLang].Length >= 20)
+                                {
+                                    <p>@t.OwnerPostionDictionary[Common.CurrentLang].Substring(0, 20)</p>
+                                }
+                                else
+                                {
+                                    <p>@t.OwnerPostionDictionary[Common.CurrentLang]</p>
+                                }
+                                @if (t.OwnerDescDictionary[Common.CurrentLang].Length >= 200)
+                                {
+                                    <footer>
+                                        <p>@t.OwnerDescDictionary[Common.CurrentLang].Substring(0, 200)</p></footer>
+                                }
+                                else
+                                {
+                                    <footer>
+                                        <p>@t.OwnerDescDictionary[Common.CurrentLang]</p></footer>
+                                }
+                            </blockquote>
                         }
                     </div>
                 </div>

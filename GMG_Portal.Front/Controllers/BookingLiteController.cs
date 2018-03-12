@@ -1,53 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Front.Resources;
+using GMG_Portal.API.Models.Hotels.Reservation;
+using Newtonsoft.Json;
+using System;
 using System.Globalization;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using Front.Helpers;
-using Front.Resources;
-using GMG_Portal.API.Models.Hotels.Reservation;
-using GMG_Portal.API.Models.SystemParameters;
-using GMG_Portal.Business.Logic.SystemParameters;
-using GMG_Portal.Data;
-using Newtonsoft.Json;
-
 
 namespace Front.Controllers
 {
     public class BookingLiteController : Controller
     {
+        private readonly HttpClient _client;
 
-        readonly HttpClient _client;
-
-        string url = System.Configuration.ConfigurationManager.AppSettings["ServerIp"] + "/SystemParameters/";
+        private string url = System.Configuration.ConfigurationManager.AppSettings["ServerIp"] + "/SystemParameters/";
 
         public BookingLiteController()
         {
-
             _client = new HttpClient();
             _client.BaseAddress = new Uri(url);
             _client.DefaultRequestHeaders.Accept.Clear();
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-
-
-
-
-
         // GET: BookingLite
         public ActionResult Index(string checkin, string checkout, string adult, string child)
         {
             Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
 
-
-
             var reservation = new Reservation
             {
-
                 CheckIn = Convert.ToDateTime(checkin),
                 CheckOut = Convert.ToDateTime(checkout),
                 Child = Convert.ToInt32(child),
@@ -57,16 +41,13 @@ namespace Front.Controllers
             Session["SCheckIn"] = Convert.ToDateTime(checkin);
             Session["SCheckOut"] = Convert.ToDateTime(checkout);
 
-
             return View(reservation);
         }
 
         public ActionResult Confirm(Reservation reservation)
         {
-
             return View(reservation);
         }
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -86,14 +67,8 @@ namespace Front.Controllers
             reservation.CheckIn = Convert.ToDateTime(Session["SCheckIn"].ToString());
             reservation.CheckOut = Convert.ToDateTime(Session["SCheckOut"].ToString());
 
-
-
             //if (ModelState.IsValid)
             //{
-
-
-
-
             HttpResponseMessage responseMessageApi =
                 await _client.PostAsJsonAsync("Reservation/Save/", reservation);
 
@@ -108,19 +83,12 @@ namespace Front.Controllers
                     TempData["alertMessage"] = "ok";
                 }
 
-
-
-
                 return RedirectToAction("Confirm", reservation);
 
+                //}
+            }
 
-
-            //}
-
-        }
-
-
-        return View(reservation);
+            return View(reservation);
         }
     }
 }

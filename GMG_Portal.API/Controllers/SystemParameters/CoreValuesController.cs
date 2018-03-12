@@ -22,19 +22,9 @@ namespace GMG_Portal.API.Controllers.SystemParameters
         {
             try
             {
-                var coreValuesLogic = new CoreValuesLogic();
-                var coreValuesLogicTranslate = new CoreValuesLogicTranslate();
-                if (langId == Parameters.DefaultLang)
-                {
+                var coreValuesLogic = new CoreValuesLogic(); 
                     var obj = coreValuesLogic.GetAll();
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<CoreValues>>(obj));
-                }
-                else
-
-                {
-                    var objByLang = coreValuesLogicTranslate.GetAll(langId);
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<SystemParameters_CoreValues_Translate>>(objByLang));
-                }
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<CoreValues>>(obj)); 
             }
             catch (Exception ex)
             {

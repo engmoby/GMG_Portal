@@ -13,12 +13,26 @@
 <input type="hidden" id="HDeleteSuccessMessage" value="@About.DeleteSuccessMessage" />
 <input type="hidden" id="HArabicNameUnique" value="@About.TxtTitleUniqueErrorMessage" />
 <input type="hidden" id="HCannotDeleted" value="@About.CannotDeleted" />
+
 <div ng-controller="AboutController">
 
     <div ba-panel>
         <table class="table table-hover table-condensed" st-table="TableData" st-safe-src="About">
             <thead>
-
+                <tr class="toolbar">
+                    <th colspan="2">
+                        <div class="input-group">
+                            <span class="input-group-addon addon-left"><i class="fa fa-search" aria-hidden="true"></i></span>
+                            <input st-search="" class="form-control" placeholder="@Currency.txtSearchLbl" type="text" />
+                        </div>
+                    </th>
+                    <th colspan="1"></th>
+                    <th>
+                        <div class="input-group">
+                            @*<button class="btn btn-primary btn-with-icon" ng-click="open(null)"><i class="fa fa-plus" aria-hidden="true"></i>@Currency.BtnAdd</button>*@
+                        </div>
+                    </th>
+                </tr>
 
                 <tr class="sortable">
 
@@ -29,9 +43,16 @@
             </thead>
             <tbody>
                 <tr ng-repeat="aboutObj in TableData">
-                    <td ng-class="{'red-text': aboutObj.IsDeleted == true}">{{aboutObj.DisplayValue}}</td>
-                    <td ng-class="{'red-text': aboutObj.IsDeleted == true}">{{aboutObj.DisplayValueDesc | limitTo:letterLimit}}</td>
-
+                    <td ng-class="{'red-text': aboutObj.IsDeleted == true}">
+                        <span ng-repeat="(name, age) in aboutObj.AboutTitleDictionary" ng-if="name == CurrentLanguage">
+                            {{age}}
+                        </span>
+                    </td>
+                    <td ng-class="{'red-text': aboutObj.IsDeleted == true}">
+                        <span ng-repeat="(name, age) in aboutObj.AboutDescDictionary" ng-if="name == CurrentLanguage">
+                            {{age | limitTo:letterLimit}}
+                        </span>
+                    </td>
                     <td>
                         <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(aboutObj)"><i class="fa fa-pencil" aria-hidden="true"></i>@About.TableBtnEdit</button>
 
@@ -67,31 +88,174 @@
                         <h4 class="modal-title">{{action |uppercase}} @About.ModalTitle</h4>
                     </div>
                     <div class="modal-body">
-                        <div class="form-group">
-                            <label for="TxtTitle">@About.Title</label><span class="red-text"> *</span>
-                            <input type="text" ng-model="aboutObj.DisplayValue" class="form-control" name="TxtTitle"
-                                   placeholder="Text" ng-maxlength="@Common.TitleMax65" required ng-pattern="/@Regex.NameAr/">
+                        @*<div class="form-group">
+                                <label for="TxtTitle">@About.Title</label><span class="red-text"> *</span>
+                                <input type="text" ng-model="aboutObj.DisplayValue" class="form-control" name="TxtTitle"
+                                       placeholder="Text" ng-maxlength="@Common.TitleMax65" required ng-pattern="/@Regex.NameAr/">
 
-                            <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
-                                <span class="red-text" ng-message="required">@About.TxtTitleRequiredErrorMessage</span>
-                                <span class="red-text" ng-message="pattern">@About.TxtTitlePatternErrorMessage</span>
-                                <span class="red-text" ng-message="notInList">@About.TxtTitleUniqueErrorMessage</span>
-                                <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax65 @Common.Charachter</span>
+                                <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
+                                    <span class="red-text" ng-message="required">@About.TxtTitleRequiredErrorMessage</span>
+                                    <span class="red-text" ng-message="pattern">@About.TxtTitlePatternErrorMessage</span>
+                                    <span class="red-text" ng-message="notInList">@About.TxtTitleUniqueErrorMessage</span>
+                                    <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax65 @Common.Charachter</span>
 
+                                </div>
                             </div>
-                        </div> 
+                            <div class="form-group">
+                                <label for="TxtDesc">@About.Desc</label><span class="red-text"> *</span>
+                                <textarea ng-model="aboutObj.DisplayValueDesc" class="form-control" name="TxtDesc"
+                                          placeholder="Text" ng-maxlength="@Common.DescMax7000" required ng-pattern="/@Regex.NameEn/"></textarea>
+                                <div class="red-text" ng-messages="FrmAddUpdate.TxtDesc.$error" ng-show="FrmAddUpdate.TxtDesc.$touched">
+                                    <span class="red-text" ng-message="required">@About.TxtDescRequiredErrorMessage</span>
+                                    <span class="red-text" ng-message="pattern">@About.TxtDescPatternErrorMessage</span>
+                                    <span class="red-text" ng-message="notInList">@About.TxtDescUniqueErrorMessage</span>
+                                    <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.DescMax7000 @Common.Charachter</span>
+                                </div>
+                            </div>*@
+
+ 
                         <div class="form-group">
-                            <label for="TxtDesc">@About.Desc</label><span class="red-text"> *</span>
-                            <textarea ng-model="aboutObj.DisplayValueDesc" class="form-control" name="TxtDesc"
-                                      placeholder="Text" ng-maxlength="@Common.DescMax7000" required ng-pattern="/@Regex.NameEn/"></textarea>
-                            <div class="red-text" ng-messages="FrmAddUpdate.TxtDesc.$error" ng-show="FrmAddUpdate.TxtDesc.$touched">
-                                <span class="red-text" ng-message="required">@About.TxtDescRequiredErrorMessage</span>
-                                <span class="red-text" ng-message="pattern">@About.TxtDescPatternErrorMessage</span>
-                                <span class="red-text" ng-message="notInList">@About.TxtDescUniqueErrorMessage</span>
-                                <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.DescMax7000 @Common.Charachter</span>
+                            <div class="tabs-container">
+                                <ul class="nav nav-tabs tab-border-top-primary" style="border-bottom: 1px solid transparent;background-color: #d6ece9;">
+                                    <li ng-repeat="lang in language" ng-class="{active:$first}">
+                                        <a data-toggle="tab" data-target="#tab-{{lang.id}}">
+                                            {{lang.value}}
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div ng-repeat="lang in language" id="tab-{{lang.id}}" class="tab-pane" ng-class="{active:$first}">
+                                        <uib-accordion close-others="oneAtATime">
+                                            <uib-accordion-group heading="About {{lang.value}}"  >
+                                                <div class="panel-body">
+                                                    <div class="form-group">
+                                                        <label> About {{lang.value}}  title</label>
+                                                        <input type="text" ng-model="aboutObj.AboutTitleDictionary[lang.key]" placeholder="Enter About {{lang.value}}  title"
+                                                               class="form-control" name="u{{lang.value+'name'}}" required="">
+                                                        <br />
+                                                        <div ng-show="FrmAddUpdate.$submitted || FrmAddUpdate.u{{lang.value+'name'}}.$touched">
+                                                            <label id="-error" class="red-text" ng-show="FrmAddUpdate.u{{lang.value+'name'}}.$error.required">About {{lang.value}} Name is missing.</label>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label>About {{lang.value}}  Description</label>
+                                                        <textarea type="text" ng-model="aboutObj.AboutDescDictionary[lang.key]" placeholder="Enter About {{lang.value}}  desc"
+                                                                  class="form-control" name="{{lang.key+'desc'}}" required=""></textarea>
+                                                        <br />
+                                                        <div ng-show="FrmAddUpdate.$submitted || FrmAddUpdate.{{lang.key+'desc'}}.$touched">
+                                                            <label id="-error" class="red-text" ng-show="FrmAddUpdate.{{lang.key+'desc'}}.$error.required">About {{lang.value}} description is missing.</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </uib-accordion-group>
+                                            <uib-accordion-group heading="{{group.title}}" ng-repeat="group in groups">
+                                                {{group.content}}
+                                            </uib-accordion-group>
+                                        </uib-accordion>
+
+
+                                        <uib-accordion close-others="oneAtATime">
+                                            <uib-accordion-group heading="Vision {{lang.value}}"  >
+                                                
+                                                <div class="panel-body">
+                                                    <div class="form-group">
+                                                        <label>Vision {{lang.value}}  title</label>
+                                                        <input type="text" ng-model="aboutObj.VisionTitleDictionary[lang.key]" placeholder="Enter Vision {{lang.value}}  title"
+                                                               class="form-control" name="u{{lang.value+'name'}}" required="">
+                                                        <br />
+                                                        <div ng-show="FrmAddUpdate.$submitted || FrmAddUpdate.u{{lang.value+'name'}}.$touched">
+                                                            <label id="-error" class="red-text" ng-show="FrmAddUpdate.u{{lang.value+'name'}}.$error.required">Vision {{lang.value}} Name is missing.</label>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label>Vision {{lang.value}}  Description</label>
+                                                        <textarea type="text" ng-model="aboutObj.VisionDescDictionary[lang.key]" placeholder="Enter Vision {{lang.value}}  desc"
+                                                                  class="form-control" name="{{lang.key+'desc'}}" required=""></textarea>
+                                                        <br />
+                                                        <div ng-show="FrmAddUpdate.$submitted || FrmAddUpdate.{{lang.key+'desc'}}.$touched">
+                                                            <label id="-error" class="red-text" ng-show="FrmAddUpdate.{{lang.key+'desc'}}.$error.required">Vision {{lang.value}} description is missing.</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </uib-accordion-group>
+                                            <uib-accordion-group heading="{{group.title}}" ng-repeat="group in groups">
+                                                {{group.content}}
+                                            </uib-accordion-group>
+                                        </uib-accordion>
+
+
+                                        
+
+                                        <uib-accordion close-others="oneAtATime">
+                                            <uib-accordion-group heading="Mission {{lang.value}}" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+
+                                                <div class="panel-body">
+                                                    <div class="form-group">
+                                                        <label>Mission {{lang.value}}  title</label>
+                                                        <input type="text" ng-model="aboutObj.MissionTitleDictionary[lang.key]" placeholder="Enter Mission {{lang.value}}  title"
+                                                               class="form-control" name="u{{lang.value+'name'}}" required="">
+                                                        <br />
+                                                        <div ng-show="FrmAddUpdate.$submitted || FrmAddUpdate.u{{lang.value+'name'}}.$touched">
+                                                            <label id="-error" class="red-text" ng-show="FrmAddUpdate.u{{lang.value+'name'}}.$error.required">Mission {{lang.value}} Name is missing.</label>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label>Mission {{lang.value}}  Description</label>
+                                                        <textarea type="text" ng-model="aboutObj.MissionDescDictionary[lang.key]" placeholder="Enter Mission {{lang.value}}  desc"
+                                                          class="form-control" name="{{lang.key+'desc'}}" required=""></textarea>
+                                                        <br />
+                                                        <div ng-show="FrmAddUpdate.$submitted || FrmAddUpdate.{{lang.key+'desc'}}.$touched">
+                                                            <label id="-error" class="red-text" ng-show="FrmAddUpdate.{{lang.key+'desc'}}.$error.required">Mission {{lang.value}} description is missing.</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </uib-accordion-group>
+                                            <uib-accordion-group heading="{{group.title}}" ng-repeat="group in groups">
+                                                {{group.content}}
+                                            </uib-accordion-group>
+                                        </uib-accordion>
+
+                                        
+                                        <uib-accordion close-others="oneAtATime">
+                                            <uib-accordion-group heading="Core Value {{lang.value}}" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+
+                                                <div class="panel-body">
+                                                    <div class="form-group">
+                                                        <label>Core Value {{lang.value}}  title</label>
+                                                        <input type="text" ng-model="aboutObj.CoreValueTitleDictionary[lang.key]" placeholder="Enter Core Value {{lang.value}}  title"
+                                                               class="form-control" name="u{{lang.value+'name'}}" required="">
+                                                        <br />
+                                                        <div ng-show="FrmAddUpdate.$submitted || FrmAddUpdate.u{{lang.value+'name'}}.$touched">
+                                                            <label id="-error" class="red-text" ng-show="FrmAddUpdate.u{{lang.value+'name'}}.$error.required">Core Value {{lang.value}} Name is missing.</label>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label>Mission {{lang.value}}  Description</label>
+                                                        <textarea type="text" ng-model="aboutObj.CoreValueDescDictionary[lang.key]" placeholder="Enter Core Value {{lang.value}}  desc"
+                                                          class="form-control" name="{{lang.key+'desc'}}" required=""></textarea>
+                                                        <br />
+                                                        <div ng-show="FrmAddUpdate.$submitted || FrmAddUpdate.{{lang.key+'desc'}}.$touched">
+                                                            <label id="-error" class="red-text" ng-show="FrmAddUpdate.{{lang.key+'desc'}}.$error.required">Core Value {{lang.value}} description is missing.</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </uib-accordion-group>
+                                            <uib-accordion-group heading="{{group.title}}" ng-repeat="group in groups">
+                                                {{group.content}}
+                                            </uib-accordion-group>
+                                        </uib-accordion>
+
+                                        
+                                    </div>
+
+
+                                </div>
                             </div>
                         </div>
-                        
                         <div class="form-group">
                             <label for="TxtUrl">@About.Url</label><span class="red-text"> *</span>
                             <textarea ng-model="aboutObj.Url" class="form-control" name="TxtUrl"
@@ -103,8 +267,8 @@
                                 <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.DescMax7000 @Common.Charachter</span>
                             </div>
                         </div>
-                        
-                        
+
+
 
 
 
@@ -121,8 +285,6 @@
 
 
 </div>
-
-
 
 
 

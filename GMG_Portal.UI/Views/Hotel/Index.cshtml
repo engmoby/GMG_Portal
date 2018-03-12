@@ -219,12 +219,24 @@
             <tbody>
                 <tr ng-repeat="Hotel in TableData">
                     <td ng-class="{'red-text': Hotel.IsDeleted == true }">{{$index+1}}</td>
-                    <td ng-class="{'red-text': Hotel.IsDeleted == true}">{{Hotel.DisplayValue}}</td>
-                    <td ng-class="{'red-text': Hotel.IsDeleted == true}">{{Hotel.DisplayValueDesc | limitTo:letterLimit}} </td>
-                    <td ng-class="{'red-text': Hotel.IsDeleted == true}">{{Hotel.PriceStart}} {{Hotel.CurrencyTitle}}</td>
-                    <td>
-                        <span ng-show="!Hotel.HasImage" class="btn-xs btn btn-danger" title="this hotel will (not) appear in the website">NO</span>
-                        <span ng-show="Hotel.HasImage" class="btn-xs btn btn-success" title="this hotel will appear in the website"> YES</span>
+                    <td ng-class="{'red-text': Hotel.IsDeleted == true}">
+                  <span ng-repeat="(name, age) in Hotel.TitleDictionary" ng-if="name == currentLanguage">
+                            {{age}}
+                        </span>
+                    </td>
+                    <td ng-class="{'red-text': Hotel.IsDeleted == true}">
+                        <span ng-repeat="(name, age) in Hotel.DescDictionary" ng-if="name == currentLanguage">
+                            {{age | limitTo:letterLimit}}
+                        </span>
+                    </td>
+                    <td ng-class="{'red-text': Hotel.IsDeleted == true}">{{Hotel.PriceStart}} {{(currencyList  |filter: {Id: Hotel.Currency})[0].TitleDictionary[currentLanguage] }}</td>
+                    <td> 
+                       
+                    
+                          <span ng-show="Hotel.ImageList.length <= 0  || Hotel.FeaturesList.length <= 0" class="btn-xs btn btn-danger" title="this hotel will (not) appear in the website">NO</span>
+                        @*<button type="submit" class="btn btn-primary btn-with-icon pull-right" ng-click="showFeatures()"><i class="ion-android-checkmark-circle"></i>Countiue to featuers</button>*@
+
+                        <span ng-show="Hotel.ImageList.length > 0  && Hotel.FeaturesList.length > 0" class="btn-xs btn btn-success" title="this hotel will appear in the website"> YES</span>
                     </td>
                     <td>
                         <div class="buttons" ng-show="!Hotel.IsDeleted">
@@ -254,7 +266,7 @@
 
     <div class="modal fade" id="ModelImage" role="dialog">
         <div class="modal-dialog">
-            <img style="width: 100%;height: 65%;" src="@System.Configuration.ConfigurationManager.AppSettings["ImageUrl"]/Uploads/Hotels/{{ImageObj.Image}}" />
+            <img style="width: 100%;height: 65%;" ng-src="@System.Configuration.ConfigurationManager.AppSettings["ImageUrl"]/Uploads/Hotels/{{ImageObj.Image}}" />
         </div>
     </div>
 
@@ -272,31 +284,71 @@
                         <div class="col-md-8">
                             <input name="txtHide" type="hidden" value="{{ctrl.isFrmAddUpdateInvalid=FrmAddUpdateWizard.$invalid}}" />
                             <div class="form-group">
-                                <label for="TxtTitle">@Hotel.Title</label><span class="red-text"> *</span>
-                                <input type="text" ng-model="Hotel.DisplayValue" class="form-control" name="TxtTitle"
-                                       placeholder="@Hotel.Title" ng-minlength="15" ng-maxlength="30" required ng-pattern="/@Regex.NameAr/">
+                                <div class="tabs-container">
+                                    <ul class="nav nav-tabs tab-border-top-primary" style="border-bottom: 1px solid transparent;background-color: #d6ece9;">
+                                        <li ng-repeat="lang in language" ng-class="{active:$first}">
+                                            <a data-toggle="tab" data-target="#tab-{{lang.id}}">
+                                                {{lang.value}}
+                                            </a>
+                                        </li>
+                                    </ul>
 
-                                <div class="red-text" ng-messages="FrmAddUpdateWizard.TxtTitle.$error" ng-show="FrmAddUpdateWizard.TxtTitle.$touched">
-                                    <span class="red-text" ng-message="required">@Hotel.TxtTitleRequiredErrorMessage</span>
-                                    <span class="red-text" ng-message="pattern">@Hotel.TxtTitlePatternErrorMessage</span>
-                                    <span class="red-text" ng-message="notInList">@Hotel.TxtTitleUniqueErrorMessage</span>
-                                    <span class="red-text" ng-message="minlength">Minimum 15 Charachter</span>
-                                    <span class="red-text" ng-message="maxlength">Maximum 30 Charachter</span>
+                                    <div class="tab-content">
+                                        <div ng-repeat="lang in language" id="tab-{{lang.id}}" class="tab-pane" ng-class="{active:$first}">
+                                            <div class="panel-body" style="height: calc(40% - 44px); ">
+                                                <div class="form-group">
+                                                    <label>{{lang.value}}  title</label>
+                                                    <input type="text" ng-model="Hotel.TitleDictionary[lang.key]" placeholder="Enter {{lang.value}}  title"
+                                                           class="form-control" name="u{{lang.value+'name'}}" required="">
+                                                    <br />
+                                                    <div ng-show="FrmAddUpdate.$submitted || FrmAddUpdate.u{{lang.value+'name'}}.$touched">
+                                                        <label id="-error" class="red-text" ng-show="FrmAddUpdate.u{{lang.value+'name'}}.$error.required">{{lang.value}} Name is missing.</label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label>{{lang.value}}  Description</label>
+                                                    <textarea type="text" ng-model="Hotel.DescDictionary[lang.key]" placeholder="Enter {{lang.value}}  desc"
+                                                          class="form-control" name="{{lang.key+'desc'}}" required=""></textarea>
+                                                    <br />
+                                                    <div ng-show="FrmAddUpdate.$submitted || FrmAddUpdate.{{lang.key+'desc'}}.$touched">
+                                                        <label id="-error" class="red-text" ng-show="FrmAddUpdate.{{lang.key+'desc'}}.$error.required">{{lang.value}} description is missing.</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="TxtDesc">@Hotel.Desc</label><span class="red-text"> *</span>
-                                <textarea ng-model="Hotel.DisplayValueDesc" class="form-control" name="TxtDesc"
-                                          placeholder="Text" ng-minlength="50" ng-maxlength="@Common.DescMax7000" required ng-pattern="/@Regex.NameEn/"></textarea>
-                                <div class="red-text" ng-messages="FrmAddUpdateWizard.TxtDesc.$error" ng-show="FrmAddUpdateWizard.TxtDesc.$touched">
-                                    <span class="red-text" ng-message="required">@Hotel.TxtDescRequiredErrorMessage</span>
-                                    <span class="red-text" ng-message="pattern">@Hotel.TxtDescPatternErrorMessage</span>
-                                    <span class="red-text" ng-message="notInList">@Hotel.TxtDescUniqueErrorMessage</span>
-                                    <span class="red-text" ng-message="minlength">Minimum 50 Charachter</span>
-                                    <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.DescMax7000 @Common.Charachter</span>
 
+                            @*<div class="form-group">
+                                    <label for="TxtTitle">@Hotel.Title</label><span class="red-text"> *</span>
+                                    <input type="text" ng-model="Hotel.DisplayValue" class="form-control" name="TxtTitle"
+                                           placeholder="@Hotel.Title" ng-minlength="15" ng-maxlength="30" required ng-pattern="/@Regex.NameAr/">
+
+                                    <div class="red-text" ng-messages="FrmAddUpdateWizard.TxtTitle.$error" ng-show="FrmAddUpdateWizard.TxtTitle.$touched">
+                                        <span class="red-text" ng-message="required">@Hotel.TxtTitleRequiredErrorMessage</span>
+                                        <span class="red-text" ng-message="pattern">@Hotel.TxtTitlePatternErrorMessage</span>
+                                        <span class="red-text" ng-message="notInList">@Hotel.TxtTitleUniqueErrorMessage</span>
+                                        <span class="red-text" ng-message="minlength">Minimum 15 Charachter</span>
+                                        <span class="red-text" ng-message="maxlength">Maximum 30 Charachter</span>
+                                    </div>
                                 </div>
-                            </div>
+                                <div class="form-group">
+                                    <label for="TxtDesc">@Hotel.Desc</label><span class="red-text"> *</span>
+                                    <textarea ng-model="Hotel.DisplayValueDesc" class="form-control" name="TxtDesc"
+                                              placeholder="Text" ng-minlength="50" ng-maxlength="@Common.DescMax7000" required ng-pattern="/@Regex.NameEn/"></textarea>
+                                    <div class="red-text" ng-messages="FrmAddUpdateWizard.TxtDesc.$error" ng-show="FrmAddUpdateWizard.TxtDesc.$touched">
+                                        <span class="red-text" ng-message="required">@Hotel.TxtDescRequiredErrorMessage</span>
+                                        <span class="red-text" ng-message="pattern">@Hotel.TxtDescPatternErrorMessage</span>
+                                        <span class="red-text" ng-message="notInList">@Hotel.TxtDescUniqueErrorMessage</span>
+                                        <span class="red-text" ng-message="minlength">Minimum 50 Charachter</span>
+                                        <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.DescMax7000 @Common.Charachter</span>
+
+                                    </div>
+                                </div>*@
 
                             <div class="row">
                                 @*<div class="col-md-6">
@@ -322,12 +374,9 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>@Hotel.Curreny</label><span class="red-text"> *</span>
-                                        @*<select ng-model="DDLHotelCurrency" required ng-change="changedCurrencyValue(DDLHotelCurrency)">
-                                                <option ng-repeat="x in currencyList" value="{{x.Id}}">{{x.DisplayValue}}</option>
-                                            </select>*@
+                                        <label>@Hotel.Curreny</label><span class="red-text"> *</span> 
 
-                                        <select class="form-control" ng-options="x as x.DisplayValue  for x in currencyList" name="LstHotelCurrency" ng-model="DDLHotelCurrency"
+                                        <select class="form-control" ng-options="x as x.TitleDictionary[currentLanguage]  for x in currencyList" name="LstHotelCurrency" ng-model="DDLHotelCurrency"
                                                 ng-change="changedCurrencyValue(DDLHotelCurrency)" required>
                                             <option value=''>choose</option>
                                         </select>
@@ -426,9 +475,9 @@
 
         <div class="col-md-12" ng-show="imagesListDiv">
             <div ba-panel ba-panel-name="Form Wizard" ba-panel-class="with-scroll">
-                <h2>Hotel Title:   {{Hotel.DisplayValue}}</h2>
-                <span> Note: If no images added hotel will not appear (At least one image)</span>
-                <table class="table table-hover table-condensed" st-table="TableData" st-safe-src="Hotel.ImageList">
+                <h2>Hotel Title:   {{Hotel.TitleDictionary[currentLanguage]}}</h2>
+                <span> Note: If no images added hotel will not appear <strong>(At least one image)</strong></span>
+                <table class="table table-hover table-condensed" st-table="TableData" st-safe-src="HotelDetails.ImageList">
                     <thead>
                         <tr class="toolbar">
                             <th>
@@ -448,8 +497,8 @@
                     <tbody>
                         <tr ng-repeat="Image in TableData">
                             <td ng-class="{'red-text': Image.IsDeleted == true}">{{$index+1}}</td>
-                            <td ng-class="{'red-text': Image.IsDeleted == true}"><img ng-click="showImagePopup(Image)" width="70px" height="70px" src="@System.Configuration.ConfigurationManager.AppSettings["ImageUrl"]/Uploads/Hotels/{{Image.Image}}" /></td>
-
+                            <td ng-class="{'red-text': Image.IsDeleted == true}"><img ng-click="showImagePopup(Image)" width="70px" height="70px" ng-src="@System.Configuration.ConfigurationManager.AppSettings["ImageUrl"]/Uploads/Hotels/{{Image.Image}}" /></td>
+                           
                             <td>
                                 <div class="buttons" ng-show="!Image.IsDeleted">
                                     <button class="btn btn-danger editable-table-button btn-xs btn-with-icon" ng-confirm="Confirm Delete ?" ng-click="DeleteImage(Image)"><i class="fa fa-trash-o" aria-hidden="true"></i>@Hotel.TableBtnDelete</button>
@@ -484,15 +533,16 @@
                 </div>
             </div>
         </div>
+    
         <div class="col-md-12" ng-show="featuresListDiv">
             <div ba-panel ba-panel-name="Form Wizard" ba-panel-class="with-scroll">
-                <h2>Hotel Title:   {{Hotel.DisplayValue}}</h2>
+                <h2>Hotel Title:   {{Hotel.TitleDictionary[currentLanguage]}}</h2>
                 <span> Note: If no facilities added hotel will not appear (At least one facility)</span>
 
                 <div class="floatleft">
                     <h4>Features list</h4> <div ui-sortable="sortableOptions" class="apps-container screen floatleft" ng-model="features">
                         <div class="app" ng-repeat="featureObj in features">
-                            <i class="{{featureObj.Icon}}"></i> {{featureObj.DisplayValue}}
+                            <i class="{{featureObj.Icon}}"></i> {{featureObj.TitleDictionary[currentLanguage]}}
                         </div>
                     </div>
                 </div>
@@ -500,7 +550,7 @@
                     <h4>Hotel Features </h4>
                     <div style="width: 300px;" ui-sortable="sortableOptions" class="apps-container screen floatleft" ng-model="hotelFeatures">
                         <div class="app" ng-repeat="featureObj in hotelFeatures">
-                            <i class="{{featureObj.Icon}}"></i> {{featureObj.DisplayValue}}
+                            <i class="{{featureObj.Icon}}"></i> {{featureObj.TitleDictionary[currentLanguage]}}
                         </div>
                     </div>
                 </div>
@@ -633,7 +683,7 @@
                     <div class="form-group">
                         <label for="TxtRate">@Hotel.Image</label><span class="red-text"> *</span>
 
-                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                        <div class="fileinput fileinput-Hotel" data-provides="fileinput">
 
                             <div class="col-lg-6 col-sm-6 col-12">
 

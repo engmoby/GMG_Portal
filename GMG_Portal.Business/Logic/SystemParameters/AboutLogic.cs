@@ -16,19 +16,19 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         {
             _db = new GMG_Portal_DBEntities1();
         }
-        public List<SystemParameters_About> GetAllWithDeleted()
+        public List<About> GetAllWithDeleted()
         {
-            return _db.SystemParameters_About.OrderBy(p => p.IsDeleted).ToList();
+            return _db.Abouts.OrderBy(p => p.IsDeleted).ToList();
         }
-        public SystemParameters_About GetAll()
+        public About GetAll()
         {
-            return _db.SystemParameters_About.FirstOrDefault(p => p.IsDeleted != true);
+            return _db.Abouts.FirstOrDefault(p => p.IsDeleted != true);
         }
-        public SystemParameters_About Get(int id)
+        public About Get(int id)
         {
-            return _db.SystemParameters_About.Find(id);
+            return _db.Abouts.Find(id);
         }
-        private SystemParameters_About Save(SystemParameters_About about)
+        private About Save(About about)
         {
             try
             {
@@ -54,53 +54,101 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 throw;
             }
         }
-        public SystemParameters_About Insert(SystemParameters_About postedabout)
+        public List<About_Translate> GetTranslates(int recordId)
         {
-
-            var About = new SystemParameters_About()
+            return _db.About_Translate.Where(x => x.RecordId == recordId).ToList();
+        }
+        public About Insert(About postedabout)
+        {
+            var obj = new About()
             {
-                DisplayValue = postedabout.DisplayValue,
-                DisplayValueDesc = postedabout.DisplayValueDesc,
                 Image = postedabout.Image,
                 IsDeleted = postedabout.IsDeleted,
-                Show = Parameters.Show,
                 Url = postedabout.Url,
                 CreationTime = Parameters.CurrentDateTime,
                 CreatorUserId = Parameters.UserId,
             };
-            _db.SystemParameters_About.Add(About);
-            return Save(About);
+            _db.Abouts.Add(obj);
+            _db.SaveChanges();
+            var objTrasnlate = new About_Translate();
+            {
+                foreach (var title in postedabout.AboutTitleDictionary)
+                {
+                    objTrasnlate.AboutTitle = title.Value;
+                    objTrasnlate.AboutDescription = postedabout.AboutDescDictionary[title.Key];
+
+                    objTrasnlate.VisionTitle = postedabout.VisionTitleDictionary[title.Key];
+                    objTrasnlate.VisionDescription = postedabout.VisionDescDictionary[title.Key];
+
+                    objTrasnlate.MissionTitle = postedabout.MissionTitleDictionary[title.Key];
+                    objTrasnlate.MissionDescription = postedabout.MissionDescDictionary[title.Key];
+
+                    objTrasnlate.CoreValueTitle = postedabout.CoreValueTitleDictionary[title.Key];
+                    objTrasnlate.CoreValueDescription = postedabout.CoreValueDescDictionary[title.Key];
+
+                    objTrasnlate.langId = title.Key;
+                    objTrasnlate.RecordId = obj.Id;
+                    _db.About_Translate.Add(objTrasnlate);
+                    _db.SaveChanges();
+                }
+            }
+            About about = Get(postedabout.Id);
+            List<About_Translate> translate = GetTranslates(postedabout.Id);
+
+            return Save(about);
         }
-        public SystemParameters_About Edit(SystemParameters_About postedAbout)
+        public About Edit(About postedAbout)
         {
-            SystemParameters_About about = Get(postedAbout.Id);
-            about.DisplayValue = postedAbout.DisplayValue;
-            about.DisplayValueDesc = postedAbout.DisplayValueDesc;
+            About about = Get(postedAbout.Id);
+            List<About_Translate> translate = GetTranslates(postedAbout.Id);
+            foreach (var title in postedAbout.AboutTitleDictionary)
+            {
+                foreach (var objTrasnlate in translate)
+                {
+                    if (title.Key == objTrasnlate.langId)
+                    {
+
+                        objTrasnlate.AboutTitle = title.Value;
+                        objTrasnlate.AboutDescription = postedAbout.AboutDescDictionary[title.Key];
+
+                        objTrasnlate.VisionTitle = postedAbout.VisionTitleDictionary[title.Key];
+                        objTrasnlate.VisionDescription = postedAbout.VisionDescDictionary[title.Key];
+
+                        objTrasnlate.MissionTitle = postedAbout.MissionTitleDictionary[title.Key];
+                        objTrasnlate.MissionDescription = postedAbout.MissionDescDictionary[title.Key];
+
+                        objTrasnlate.CoreValueTitle = postedAbout.CoreValueTitleDictionary[title.Key];
+                        objTrasnlate.CoreValueDescription = postedAbout.CoreValueDescDictionary[title.Key];
+
+
+                        _db.SaveChanges();
+                    }
+                }
+            }
             about.Image = postedAbout.Image;
             about.Url = postedAbout.Url;
             about.IsDeleted = postedAbout.IsDeleted;
-            about.Show = postedAbout.Show;
             about.LastModificationTime = Parameters.CurrentDateTime;
             about.LastModifierUserId = Parameters.UserId;
             return Save(about);
         }
-        public SystemParameters_About Delete(SystemParameters_About postedAbout)
+        public About Delete(About postedAbout)
         {
-            SystemParameters_About about = Get(postedAbout.Id);
-            if (_db.SystemParameters_About.Any(p => p.Id == postedAbout.Id && p.IsDeleted != true))
-            {
-                //  About.OperationStatus = "HasRelationship";
-                return about;
-            }
+            About about = Get(postedAbout.Id);
+            //if (_db.Abouts.Any(p => p.Id == postedAbout.Id && p.IsDeleted != true))
+            //{
+            //    //  About.OperationStatus = "HasRelationship";
+            //    return about;
+            //}
 
             about.IsDeleted = true;
             about.CreationTime = Parameters.CurrentDateTime;
             about.CreatorUserId = Parameters.UserId;
             return Save(about);
         }
-        public List<SystemParameters_About> GetAboutAll()
+        public List<About> GetAboutAll()
         {
-            return _db.SystemParameters_About.Where(p => p.IsDeleted != true).ToList();
+            return _db.Abouts.Where(p => p.IsDeleted != true).ToList();
         }
     }
 }

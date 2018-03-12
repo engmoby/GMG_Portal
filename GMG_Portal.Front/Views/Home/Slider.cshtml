@@ -1,4 +1,5 @@
 ﻿@*@model  Front.Models.HomeModels*@
+@using Front.Helpers
 @model GMG_Portal.API.Models.General.HomeModels
 @if (Model.HomeSliders.Count != 0 && Model.HomeSliders != null)
 {
@@ -26,8 +27,8 @@
                     {<img src="/Content/images/stars4.png" alt="">}
                     @if (@Model.HomeSliders[0].Rating == 5)
                     {<img src="/Content/images/stars.png" alt="">}
-                    <h2>@Model.HomeSliders[0].DisplayValue</h2>
-                    <p>@Model.HomeSliders[0].DisplayValueDesc</p>
+                    <h2>  @Model.HomeSliders[0].TitleDictionary[Common.CurrentLang]</h2>
+                    <p>@Model.HomeSliders[0].DescDictionary[Common.CurrentLang]</p>
                 </div>
             </div>
             @{  <!-- Indicators -->
@@ -47,14 +48,30 @@
                             {<img src="/Content/images/stars4.png" alt="">}
                             @if (@Model.HomeSliders[i].Rating == 5)
                             {<img src="/Content/images/stars.png" alt="">}
-                            <h2>@Model.HomeSliders[i].DisplayValue</h2>
-                            <p>@Model.HomeSliders[i].DisplayValueDesc</p>
+                        
+                            @if (Model.HomeSliders[i].TitleDictionary[Common.CurrentLang].Length >= 17)
+                            {
+                                <h2>@Model.HomeSliders[i].TitleDictionary[Common.CurrentLang].ToString().Substring(0, 17)</h2>
+                            }
+                            else
+                            {
+                                <h2>@Model.HomeSliders[i].TitleDictionary[Common.CurrentLang]</h2>
+
+                            }
+                            @if (Model.HomeSliders[i].DescDictionary[Common.CurrentLang].Length >= 40)
+                            {
+                                <h2>@Model.HomeSliders[i].DescDictionary[Common.CurrentLang].ToString().Substring(0, 40)</h2>
+                            }
+                            else
+                            {
+                                <p>@Model.HomeSliders[i].DescDictionary[Common.CurrentLang]</p>
+
+
+                            }
                         </div>
                     </div>
                 }
             }
-
-
         </div>
 
         <!-- Controls -->
@@ -67,7 +84,6 @@
                 else
                 {
                     <div style="margin-bottom: 150px">
-
                     </div>
 
                 }

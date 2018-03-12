@@ -36,7 +36,6 @@
 		background: rgba(255,255,255,0.25);
 	}
 
-
 	.featherlight-next span,
 	.featherlight-previous span {
 		display: none;
@@ -64,7 +63,6 @@
 		right: 5%;
 		left: auto;
 	}
-
 
 	.featherlight-next:hover span,
 	.featherlight-previous:hover span {

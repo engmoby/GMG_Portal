@@ -22,31 +22,32 @@ namespace GMG_Portal.API.Controllers.SystemParameters
             try
             {
                 var featuresLogic = new FeaturesLogic();
-                var featuresLogicTranslate = new FeaturesLogicTranslate();
-                if (langId == Parameters.DefaultLang)
-                {
+                //var featuresLogicTranslate = new FeaturesLogicTranslate();
+                //if (langId == Parameters.DefaultLang)
+                //{
                     var obj = featuresLogic.GetAll();
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Features>>(obj));
-                }
-                else
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<FeaturesModel>>(obj));
+                //}
+                //else
 
-                {
-                    var objByLang = featuresLogicTranslate.GetAll(langId);
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Features>>(objByLang));
-                }
+                //{
+                //    var objByLang = featuresLogicTranslate.GetAll(langId);
+                //    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Features>>(objByLang));
+                //}
             }
             catch (Exception ex)
             {
                 Log.LogError(ex);
                 return Request.CreateResponse(ex);
             }
-        }  public HttpResponseMessage GetAllByTake6()
+        }
+        public HttpResponseMessage GetAllByTake6()
         {
             try
             {
                 var featuresLogic = new FeaturesLogic();
                 var features = featuresLogic.GetAllByTake6();
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Features>>(features));
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<FeaturesModel>>(features));
             }
             catch (Exception ex)
             {
@@ -59,23 +60,23 @@ namespace GMG_Portal.API.Controllers.SystemParameters
             try
             {
                 var featuresLogic = new FeaturesLogic();
-                var featuresLogicTranslate = new FeaturesLogicTranslate();
+                //var featuresLogicTranslate = new FeaturesLogicTranslate();
 
-                if (langId == Parameters.DefaultLang)
-                {
+                //if (langId == Parameters.DefaultLang)
+                //{
                     var obj = featuresLogic.GetAllWithDeleted();
 
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Features>>(obj));
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<FeaturesModel>>(obj));
 
-                }
-                else
+                //}
+                //else
 
-                {
-                    var objByLang = featuresLogicTranslate.GetAllWithDeleted(langId);
+                //{
+                //    var objByLang = featuresLogicTranslate.GetAllWithDeleted(langId);
 
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Features>>(objByLang));
+                //    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Features>>(objByLang));
 
-                }
+                //}
 
             }
             catch (Exception ex)
@@ -85,45 +86,45 @@ namespace GMG_Portal.API.Controllers.SystemParameters
             }
         }
         [HttpPost]
-        public HttpResponseMessage Save(Features postedFeatures)
+        public HttpResponseMessage Save(FeaturesModel postedFeatures)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
                     var featuresLogic = new FeaturesLogic();
-                    var featuresLogicTranslate = new FeaturesLogicTranslate();
+                  //  var featuresLogicTranslate = new FeaturesLogicTranslate();
 
-                    SystemParameters_Features obj = null;
-                    SystemParameters_Features_Translate objByLang = null;
+                    Feature obj = null;
+                 //   SystemParameters_Features_Translate objByLang = null;
                     if (postedFeatures.Id.Equals(0))
                     {
-                        if (postedFeatures.langId == Parameters.DefaultLang)
-                            obj = featuresLogic.Insert(Mapper.Map<SystemParameters_Features>(postedFeatures));
-                        else
-                            objByLang = featuresLogicTranslate.Insert(Mapper.Map<SystemParameters_Features_Translate>(postedFeatures));
+                      //  if (postedFeatures.langId == Parameters.DefaultLang)
+                            obj = featuresLogic.Insert(Mapper.Map<Feature>(postedFeatures));
+                        //else
+                        //    objByLang = featuresLogicTranslate.Insert(Mapper.Map<SystemParameters_Features_Translate>(postedFeatures));
                     }
                     else
                     {
                         if (postedFeatures.IsDeleted)
                         {
-                            if (postedFeatures.langId == Parameters.DefaultLang)
-                                obj = featuresLogic.Delete(Mapper.Map<SystemParameters_Features>(postedFeatures));
-                            else
-                                objByLang = featuresLogicTranslate.Delete(Mapper.Map<SystemParameters_Features_Translate>(postedFeatures));
+                          //  if (postedFeatures.langId == Parameters.DefaultLang)
+                                obj = featuresLogic.Delete(Mapper.Map<Feature>(postedFeatures));
+                            //else
+                            //    objByLang = featuresLogicTranslate.Delete(Mapper.Map<SystemParameters_Features_Translate>(postedFeatures));
                         }
                         else
                         {
-                            if (postedFeatures.langId == Parameters.DefaultLang)
-                                obj = featuresLogic.Edit(Mapper.Map<SystemParameters_Features>(postedFeatures));
-                            else
-                                objByLang = featuresLogicTranslate.Edit(Mapper.Map<SystemParameters_Features_Translate>(postedFeatures));
+                            //if (postedFeatures.langId == Parameters.DefaultLang)
+                                obj = featuresLogic.Edit(Mapper.Map<Feature>(postedFeatures));
+                            //else
+                            //    objByLang = featuresLogicTranslate.Edit(Mapper.Map<SystemParameters_Features_Translate>(postedFeatures));
                         }
                     }
-                    if (postedFeatures.langId == Parameters.DefaultLang)
-                        return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<SystemParameters_Features>(obj));
-                    else
-                        return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<SystemParameters_Features_Translate>(objByLang));
+                   // if (postedFeatures.langId == Parameters.DefaultLang)
+                        return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<FeaturesModel>(obj));
+                    //else
+                    //    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<SystemParameters_Features_Translate>(objByLang));
 
                 }
                 goto ThrowBadRequest;

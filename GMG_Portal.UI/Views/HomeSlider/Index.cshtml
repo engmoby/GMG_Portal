@@ -72,9 +72,17 @@
             <tbody>
                 <tr ng-repeat="HomeSlider in TableData">
                     <td ng-class="{'red-text': HomeSlider.IsDeleted == true}">{{$index+1}}</td>
-                    <td ng-class="{'red-text': HomeSlider.IsDeleted == true}"><img ng-click="openImage(HomeSlider)" width="70px" height="70px" src="@System.Configuration.ConfigurationManager.AppSettings["ImageUrl"]/Uploads/{{HomeSlider.Image}}" /></td>
-                    <td ng-class="{'red-text': HomeSlider.IsDeleted == true}">{{HomeSlider.DisplayValue}}</td>
-                    <td ng-class="{'red-text': HomeSlider.IsDeleted == true}">{{HomeSlider.DisplayValueDesc | limitTo:letterLimit}} </td>
+                    <td ng-class="{'red-text': HomeSlider.IsDeleted == true}"><img ng-click="openImage(HomeSlider)" width="70px" height="70px" ng-src="@System.Configuration.ConfigurationManager.AppSettings["ImageUrl"]/Uploads/{{HomeSlider.Image}}" /></td>
+                    <td ng-class="{'red-text': HomeSlider.IsDeleted == true}">
+                        <span ng-repeat="(name, age) in HomeSlider.TitleDictionary" ng-if="name == CurrentLanguage">
+                            {{age}}
+                        </span>
+                    </td>
+                    <td ng-class="{'red-text': HomeSlider.IsDeleted == true}">
+                        <span ng-repeat="(name, age) in HomeSlider.DescDictionary" ng-if="name == CurrentLanguage">
+                            {{age | limitTo:letterLimit}}
+                        </span>
+                    </td>
                     <td ng-class="{'red-text': HomeSlider.IsDeleted == true}">{{HomeSlider.Rating}} </td>
                     <td>
                         <div class="buttons" ng-show="!HomeSlider.IsDeleted">
@@ -104,7 +112,7 @@
 
     <div class="modal fade" id="ModelImage" role="dialog">
         <div class="modal-dialog">
-            <img style="width: 100%;height: 65%;" src="@System.Configuration.ConfigurationManager.AppSettings["ImageUrl"]/Uploads/{{homeSlider.Image}}" />
+            <img style="width: 100%;height: 65%;" ng-src="@System.Configuration.ConfigurationManager.AppSettings["ImageUrl"]/Uploads/{{homeSlider.Image}}" />
         </div>
     </div>
 
@@ -122,39 +130,97 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="TxtTitle">@HomeSlider.Title</label><span class="red-text"> *</span>
-                            <input type="text" ng-model="HomeSlider.DisplayValue" not-in-list="HomeSliders" list-item-id="HomeSlider.ID" class="form-control" name="TxtTitle"
-                                   placeholder="@HomeSlider.Title" ng-minlength="20" ng-maxlength="30" required ng-pattern="/@Regex.NameAr/">
+                            <div class="tabs-container">
+                                <ul class="nav nav-tabs tab-border-top-primary" style="border-bottom: 1px solid transparent;background-color: #d6ece9;">
+                                    <li ng-repeat="lang in language" ng-class="{active:$first}">
+                                        <a data-toggle="tab" data-target="#tab-{{lang.id}}">
+                                            {{lang.value}}
+                                        </a>
+                                    </li>
+                                </ul>
 
-                            <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
-                                <span class="red-text" ng-message="required">@HomeSlider.TxtTitleRequiredErrorMessage</span>
-                                <span class="red-text" ng-message="pattern">@HomeSlider.TxtTitlePatternErrorMessage</span>
-                                <span class="red-text" ng-message="notInList">@HomeSlider.TxtTitleUniqueErrorMessage</span>
-                                <span class="red-text" ng-message="minlength">Minimum 20 Charachter</span>
-                                <span class="red-text" ng-message="maxlength">Maximum 30 Charachter</span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="TxtDesc">@HomeSlider.Desc</label><span class="red-text"> *</span>
-                            <textarea ng-model="HomeSlider.DisplayValueDesc" not-in-list="HomeSliders" list-item-id="HomeSlider.ID" class="form-control" name="TxtDesc"
-                                      placeholder="Text" ng-minlength="20" ng-maxlength="50" required ng-pattern="/@Regex.NameEn/"></textarea>
-                            <div class="red-text" ng-messages="FrmAddUpdate.TxtDesc.$error" ng-show="FrmAddUpdate.TxtDesc.$touched">
-                                <span class="red-text" ng-message="required">@HomeSlider.TxtDescRequiredErrorMessage</span>
-                                <span class="red-text" ng-message="pattern">@HomeSlider.TxtDescPatternErrorMessage</span>
-                                <span class="red-text" ng-message="notInList">@HomeSlider.TxtDescUniqueErrorMessage</span>
-                                <span class="red-text" ng-message="minlength">Minimum 20 Charachter</span>
-                                <span class="red-text" ng-message="maxlength">Maximum 50 Charachter</span>
-                            </div>
-                        </div>
+                                <div class="tab-content">
+                                    <div ng-repeat="lang in language" id="tab-{{lang.id}}" class="tab-pane" ng-class="{active:$first}">
+                                        <div class="panel-body">
+                                            <div class="form-group">
+                                                <label>{{lang.value}}  title</label>
+                                                <input type="text" ng-model="HomeSlider.TitleDictionary[lang.key]" placeholder="Enter {{lang.value}}  title"
+                                                       class="form-control" name="u{{lang.value+'name'}}" ng-minlength="20" ng-maxlength="30" required="">
+                                              
 
-                        @*<div class="form-group">
-                                <label for="TxtUrl">@HomeSlider.Url</label>
-                                <input type="text" ng-model="HomeSlider.URL" not-in-list="HomeSliders" list-item-id="HomeSlider.ID" class="form-control" name="TxtUrl"
-                                       placeholder="@HomeSlider.Url" ng-pattern="/@Regex.Name/">
-                                <div class="red-text" ng-messages="FrmAddUpdate.TxtUrl.$error" ng-show="FrmAddUpdate.TxtUrl.$touched">
-                                    <span class="red-text" ng-message="pattern">@HomeSlider.TxtUrlPatternErrorMessage</span>
+                                                  <div ng-show="FrmAddUpdate.$submitted || FrmAddUpdate.u{{lang.value+'name'}}.$touched"> 
+                                                      <label id="-error" class="red-text" ng-show="FrmAddUpdate.u{{lang.value+'name'}}.$error.required">
+                                                          {{lang.value}} Name is missing.
+                                                      </label>
+                                                      <label id="Error" class="red-text" ng-show="FrmAddUpdate.u{{lang.value+'name'}}.$error.maxlength">
+                                                          {{lang.value}} Title Maximum 30 Charachter.
+                                                      </label>
+
+                                                      <label id="eError" class="red-text" ng-show="FrmAddUpdate.u{{lang.value+'name'}}.$error.minlength">
+                                                          {{lang.value}} Title Minimum 20  Charachter.
+                                                      </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>{{lang.value}}  Description</label>
+                                                <textarea type="text" ng-model="HomeSlider.DescDictionary[lang.key]" placeholder="Enter {{lang.value}}  desc"
+                                                      ng-minlength="20" ng-maxlength="50"    class="form-control" name="{{lang.value+'desc'}}" required=""></textarea>
+                                                <br />
+                                                <div ng-show="FrmAddUpdate.$submitted || FrmAddUpdate.{{lang.value+'desc'}}.$touched">
+                                                    <label id="-error" class="red-text" ng-show="FrmAddUpdate.{{lang.value+'desc'}}.$error.required">{{lang.value}} description is missing.</label>
+
+                                                    <label id="eError" class="red-text" ng-show="FrmAddUpdate.{{lang.value+'desc'}}.$error.minlength">
+                                                        {{lang.value}} description Minimum 20  Charachter.
+                                                    </label> 
+
+                                                    <label id="Error" class="red-text" ng-show="FrmAddUpdate.{{lang.value+'desc'}}.$error.maxlength">
+                                                        {{lang.value}} description Maximum 50 Charachter.
+                                                    </label>
+ 
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
                                 </div>
-                            </div>*@
+                            </div>
+                        </div>
+                            @*  <div class="form-group">
+          <label for="TxtTitle">@HomeSlider.Title</label><span class="red-text"> *</span>
+          <input type="text" ng-model="HomeSlider.DisplayValue" not-in-list="HomeSliders" list-item-id="HomeSlider.ID" class="form-control" name="TxtTitle"
+                 placeholder="@HomeSlider.Title" ng-minlength="20" ng-maxlength="30" required ng-pattern="/@Regex.NameAr/">
+
+          <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
+              <span class="red-text" ng-message="required">@HomeSlider.TxtTitleRequiredErrorMessage</span>
+              <span class="red-text" ng-message="pattern">@HomeSlider.TxtTitlePatternErrorMessage</span>
+              <span class="red-text" ng-message="notInList">@HomeSlider.TxtTitleUniqueErrorMessage</span>
+              <span class="red-text" ng-message="minlength">Minimum 20 Charachter</span>
+              <span class="red-text" ng-message="maxlength">Maximum 30 Charachter</span>
+          </div>
+      </div>
+      <div class="form-group">
+          <label for="TxtDesc">@HomeSlider.Desc</label><span class="red-text"> *</span>
+          <textarea ng-model="HomeSlider.DisplayValueDesc" not-in-list="HomeSliders" list-item-id="HomeSlider.ID" class="form-control" name="TxtDesc"
+                    placeholder="Text" ng-minlength="20" ng-maxlength="50" required ng-pattern="/@Regex.NameEn/"></textarea>
+          <div class="red-text" ng-messages="FrmAddUpdate.TxtDesc.$error" ng-show="FrmAddUpdate.TxtDesc.$touched">
+              <span class="red-text" ng-message="required">@HomeSlider.TxtDescRequiredErrorMessage</span>
+              <span class="red-text" ng-message="pattern">@HomeSlider.TxtDescPatternErrorMessage</span>
+              <span class="red-text" ng-message="notInList">@HomeSlider.TxtDescUniqueErrorMessage</span>
+              <span class="red-text" ng-message="minlength">Minimum 20 Charachter</span>
+              <span class="red-text" ng-message="maxlength">Maximum 50 Charachter</span>
+          </div>
+      </div>
+
+    <div class="form-group">
+              <label for="TxtUrl">@HomeSlider.Url</label>
+              <input type="text" ng-model="HomeSlider.URL" not-in-list="HomeSliders" list-item-id="HomeSlider.ID" class="form-control" name="TxtUrl"
+                     placeholder="@HomeSlider.Url" ng-pattern="/@Regex.Name/">
+              <div class="red-text" ng-messages="FrmAddUpdate.TxtUrl.$error" ng-show="FrmAddUpdate.TxtUrl.$touched">
+                  <span class="red-text" ng-message="pattern">@HomeSlider.TxtUrlPatternErrorMessage</span>
+              </div>
+          </div>*@
                         <div class="form-group">
                             <label for="TxtRate">@HomeSlider.Rate</label><span class="red-text"> *</span>
                             @*<input type="text" ng-model="HomeSlider.Rating" not-in-list="HomeSliders" list-item-id="HomeSlider.ID" class="form-control" name="TxtRate"

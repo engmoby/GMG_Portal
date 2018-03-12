@@ -1,16 +1,17 @@
-﻿controllerProvider.register('ContactController', ['$scope', 'ContactApi', 'uploadService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', ContactController]);
-function ContactController($scope, ContactApi, uploadService, $rootScope, $timeout, $filter, $uibModal, toastr) {
+﻿controllerProvider.register('ContactController', ['$scope','appCONSTANTS', 'ContactApi', 'uploadService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', ContactController]);
+function ContactController($scope,appCONSTANTS, ContactApi, uploadService, $rootScope, $timeout, $filter, $uibModal, toastr) {
+    $scope.language = appCONSTANTS.supportedLanguage;
     var langId = document.querySelector('#HCurrentLang').value;
-    var CurrentLanguage = langId;
+    $scope.CurrentLanguage = langId;
     $("#DropdwonLang").change(function () {
         var selectedText = $(this).find("option:selected").text();
         var selectedValue = $(this).val();
         document.getElementById("HCurrentLang").value = selectedValue;
-        CurrentLanguage = selectedValue;
+        $scope.CurrentLanguage = selectedValue;
 
         debugger;
 
-        ContactApi.GetAll(CurrentLanguage).then(function (response) {
+        ContactApi.GetAll($scope.CurrentLanguage).then(function (response) {
             $scope.Contacts = response.data;
             $rootScope.ViewLoading = false;
         });
@@ -19,7 +20,7 @@ function ContactController($scope, ContactApi, uploadService, $rootScope, $timeo
     $scope.Image = "";
     $scope.letterLimit = 20;
     $rootScope.ViewLoading = true;
-    ContactApi.GetAll(CurrentLanguage).then(function (response) {
+    ContactApi.GetAll($scope.CurrentLanguage).then(function (response) {
         $scope.Contacts = response.data;
         $rootScope.ViewLoading = false;
     });
@@ -42,7 +43,7 @@ function ContactController($scope, ContactApi, uploadService, $rootScope, $timeo
 
     $scope.save = function () {
         $rootScope.ViewLoading = true; 
-        $scope.Contact.langId = CurrentLanguage;
+        $scope.Contact.langId = $scope.CurrentLanguage;
 
         ContactApi.Save($scope.Contact).then(function (response) {
 

@@ -1,4 +1,5 @@
 ﻿@*@model  Front.Models.HomeModels*@
+@using Front.Helpers
 @model GMG_Portal.API.Models.General.HomeModels
 
 @if (Model.Features != null)
@@ -17,9 +18,8 @@
                                 <div class="mg-feature-icon-title">
                                     <i class="@Model.Features[0].Icon"></i>
                                     @*<i class="fp-ht-receptionist"></i>*@
-                                    <h3>@Model.Features[0].DisplayValue</h3>
+                                    <h3>@Model.Features[0].TitleDictionary[Common.CurrentLang]</h3>
                                 </div>
-                          
                             </div>
                         </div>
                         <div class="col-sm-4">
@@ -29,9 +29,8 @@
                                         <i class="@Model.Features[1].Icon"></i>
 
                                         @*<i class="fa fa-cogs"></i>*@
-                                        <h3>@Model.Features[1].DisplayValue</h3>
+                                        <h3>@Model.Features[1].TitleDictionary[Common.CurrentLang]</h3>
                                     </div>
-                                  
                                 </div>
                             </div>
                         </div>
@@ -41,12 +40,10 @@
                                     <i class="@Model.Features[2].Icon"></i>
 
                                     @*<i class="fa fa-car"></i>*@
-                                    <h3>@Model.Features[2].DisplayValue</h3>
+                                    <h3>@Model.Features[2].TitleDictionary[Common.CurrentLang]</h3>
                                 </div>
-                              
                             </div>
                         </div>
-
                     </div>
                     <div class="row">
 
@@ -56,9 +53,8 @@
                                     <i class="@Model.Features[3].Icon"></i>
 
                                     @*<i class="fa fa-phone"></i>*@
-                                    <h3>@Model.Features[3].DisplayValue</h3>
+                                    <h3>@Model.Features[3].TitleDictionary[Common.CurrentLang]</h3>
                                 </div>
-                              
                             </div>
                         </div>
                         <div class="col-sm-4">
@@ -67,9 +63,8 @@
                                     <i class="@Model.Features[4].Icon"></i>
 
                                     @*<i class="fa fa-coffee"></i>*@
-                                    <h3>@Model.Features[4].DisplayValue</h3>
+                                    <h3>@Model.Features[4].TitleDictionary[Common.CurrentLang]</h3>
                                 </div>
-                              
                             </div>
                         </div>
                         <div class="col-sm-4">
@@ -78,16 +73,13 @@
                                     <i class="@Model.Features[5].Icon"></i>
 
                                     @*<i class="fa fa-cogs"></i>*@
-                                    <h3>@Model.Features[5].DisplayValue</h3>
+                                    <h3>@Model.Features[5].TitleDictionary[Common.CurrentLang]</h3>
                                 </div>
- 
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
 }
-

@@ -1,62 +1,63 @@
-﻿using System;
+﻿using Front.Resources;
+using GMG_Portal.API.Models.General;
+using GMG_Portal.API.Models.SystemParameters;
+using GMG_Portal.API.Models.SystemParameters.CareerForm;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using AutoMapper;
-using Front.Helpers;
-using Front.Resources;
-using GMG_Portal.API.Models.General;
-using GMG_Portal.API.Models.SystemParameters;
-using GMG_Portal.API.Models.SystemParameters.CareerForm;
-using GMG_Portal.Business.Logic.SystemParameters;
-using GMG_Portal.Data;
-using Newtonsoft.Json;
 
 namespace Front.Controllers
 {
     public class CareerController : Controller
     {
         // GET: Career
-        readonly HttpClient _client;
+        private readonly HttpClient _client;
 
-        string url = System.Configuration.ConfigurationManager.AppSettings["ServerIp"] + "/SystemParameters/";
+        private string url = System.Configuration.ConfigurationManager.AppSettings["ServerIp"] + "/SystemParameters/";
+
         public CareerController()
         {
-
             _client = new HttpClient();
             _client.BaseAddress = new Uri(url);
             _client.DefaultRequestHeaders.Accept.Clear();
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
+
         // GET: Career
         [HandleError]
         public async Task<ActionResult> Index()
         {
             string career = "";
             career = url + "Career/GetAll";
-            var careerModels = new List<Career>();
+            var careerModels = new List<CareerModel>();
 
             if (career == null) throw new ArgumentNullException(nameof(career));
             HttpResponseMessage responseMessageApi = await _client.GetAsync(career);
             if (responseMessageApi.IsSuccessStatusCode)
             {
                 var responseData = responseMessageApi.Content.ReadAsStringAsync().Result;
-                var careerList = JsonConvert.DeserializeObject<List<Career>>(responseData);
+                var careerList = JsonConvert.DeserializeObject<List<CareerModel>>(responseData);
                 careerModels = careerList;
+                if (careerModels.Count == 0)
+                {
+                    TempData["alertMessage"] = "No Carrer ";
+                    return RedirectToAction("Index", "Error");
+                }
             }
 
             return View(careerModels);
-
         }
+
         public async Task<ActionResult> Details(int id)
         {
             string careerDetails = url + "Career/GetCareerDetails/" + id;
-            var careerModels = new Career();
+            var careerModels = new CareerModel();
             var careerForm = new CareerForm();
 
             if (careerDetails == null) throw new ArgumentNullException(nameof(careerDetails));
@@ -64,16 +65,15 @@ namespace Front.Controllers
             if (responseMessageApi.IsSuccessStatusCode)
             {
                 var responseData = responseMessageApi.Content.ReadAsStringAsync().Result;
-                careerModels = JsonConvert.DeserializeObject<Career>(responseData);
+                careerModels = JsonConvert.DeserializeObject<CareerModel>(responseData);
                 careerForm.CareerId = careerModels.Id;
-                careerForm.CareerTitle = careerModels.DisplayValue;
+                careerForm.CareerTitle = careerModels.Title;
             }
-            ViewBag.Title = careerModels.DisplayValue;
+            ViewBag.Title = careerModels.Title;
             return RedirectToAction("Upload", careerForm);
 
             //return View(careerForm);
         }
-
 
         [HandleError]
         public ActionResult Upload(CareerForm careerForm)
@@ -89,7 +89,6 @@ namespace Front.Controllers
             string fileName = "";
             var fileDetails = new List<FileDetail>();
 
-            
             if (file != null && file.ContentLength > 0)
             {
                 fileName = Path.GetFileName(file.FileName);
@@ -121,7 +120,6 @@ namespace Front.Controllers
 
             if (ModelState.IsValid)
             {
-                 
                 HttpResponseMessage responseMessageApi = await _client.PostAsJsonAsync("CareerForm/Save/", careerForm);
                 if (responseMessageApi.IsSuccessStatusCode)
                 {
@@ -130,11 +128,9 @@ namespace Front.Controllers
                     if (careerForm != null)
                     {
                         TempData["alertMessage"] = "Thanks, Kindly our team will contact with you shortly";
-
                     }
-
-            }
-            return RedirectToAction("Index");
+                }
+                return RedirectToAction("Index");
             }
 
             return View(careerForm);

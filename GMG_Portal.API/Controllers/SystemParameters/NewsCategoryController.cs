@@ -17,25 +17,15 @@ namespace GMG_Portal.API.Controllers.SystemParameters
     [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*")]
     public class NewsCategoryController : ApiController
     {
-  
+
 
         public HttpResponseMessage GetAll(string langId)
         {
             try
             {
                 var categoryLogic = new CategoryLogic();
-                var categoryLogicTranslate = new CategoryLogicTranslate();
-                if (langId == Parameters.DefaultLang)
-                {
-                    var obj = categoryLogic.GetAll();
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Category>>(obj));
-                }
-                else
-
-                {
-                    var objByLang = categoryLogicTranslate.GetAll(langId);
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<SystemParameters_Category_Translate>>(objByLang));
-                }
+                var obj = categoryLogic.GetAll();
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<CategoryModel>>(obj));
             }
             catch (Exception ex)
             {
@@ -48,24 +38,8 @@ namespace GMG_Portal.API.Controllers.SystemParameters
             try
             {
                 var categoryLogic = new CategoryLogic();
-                var categoryLogicTranslate = new CategoryLogicTranslate();
-
-                if (langId == Parameters.DefaultLang)
-                {
-                    var obj = categoryLogic.GetAllWithDeleted();
-
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Category>>(obj));
-
-                }
-                else
-
-                {
-                    var objByLang = categoryLogicTranslate.GetAllWithDeleted(langId);
-
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<SystemParameters_Category_Translate>>(objByLang));
-
-                }
-
+                var obj = categoryLogic.GetAllWithDeleted(); 
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<CategoryModel>>(obj));
             }
             catch (Exception ex)
             {
@@ -73,12 +47,6 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
-
-
-
-
-
-
 
 
         [HttpPost]
@@ -89,38 +57,24 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 if (ModelState.IsValid)
                 {
                     var categoryLogic = new CategoryLogic();
-                    var categoryLogicTranslate = new CategoryLogicTranslate();
 
-                    SystemParameters_Category obj = null;
-                    SystemParameters_Category_Translate objByLang = null;
+                    Category obj = null;
                     if (postedCategory.Id.Equals(0))
                     {
-                        if (postedCategory.langId == Parameters.DefaultLang)
-                            obj = categoryLogic.Insert(Mapper.Map<SystemParameters_Category>(postedCategory));
-                        else
-                            objByLang = categoryLogicTranslate.Insert(Mapper.Map<SystemParameters_Category_Translate>(postedCategory));
+                        obj = categoryLogic.Insert(Mapper.Map<Category>(postedCategory));
                     }
                     else
                     {
                         if (postedCategory.IsDeleted)
                         {
-                            if (postedCategory.langId == Parameters.DefaultLang)
-                                obj = categoryLogic.Delete(Mapper.Map<SystemParameters_Category>(postedCategory));
-                            else
-                                objByLang = categoryLogicTranslate.Delete(Mapper.Map<SystemParameters_Category_Translate>(postedCategory));
+                            obj = categoryLogic.Delete(Mapper.Map<Category>(postedCategory));
                         }
                         else
                         {
-                            if (postedCategory.langId == Parameters.DefaultLang)
-                                obj = categoryLogic.Edit(Mapper.Map<SystemParameters_Category>(postedCategory));
-                            else
-                                objByLang = categoryLogicTranslate.Edit(Mapper.Map<SystemParameters_Category_Translate>(postedCategory));
+                            obj = categoryLogic.Edit(Mapper.Map<Category>(postedCategory));
                         }
                     }
-                    if (postedCategory.langId == Parameters.DefaultLang)
-                        return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Category>(obj));
-                    else
-                        return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<SystemParameters_Category_Translate>(objByLang));
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<CategoryModel>(obj));
 
                 }
                 //goto ThrowBadRequest;
@@ -132,7 +86,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
 
-        //    ThrowBadRequest:
+            //    ThrowBadRequest:
             return Request.CreateResponse(HttpStatusCode.BadRequest);
         }
     }

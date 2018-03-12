@@ -1,5 +1,6 @@
-﻿@using GMG_Portal.API.Models.SystemParameters
-@model   GMG_Portal.API.Models.SystemParameters.ContactUs.ContactUs
+﻿@using Front.Helpers
+@using GMG_Portal.API.Models.SystemParameters
+@model   GMG_Portal.API.Models.SystemParameters.ContactUs.ContactUsModel
 @{
     ViewBag.Title = "Contact";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -42,13 +43,12 @@
                     <button class="btn btn-dark-main pull-right" onclick="$.validate()">@Front.Resources.Global.ContactUs_SendButton</button>
                 </form>
 
-
                 <div id="MSGCONTACT" style="color: red;"> </div>
             </div>
             <div class="col-md-7">
                 <h2 class="mg-sec-left-title">@Front.Resources.Global.CotactUs_OfficeAddress</h2>
                 <ul class="mg-contact-info">
-                    <li><i class="fa fa-map-marker"></i> @Model.DisplayValueAddress</li>
+                    <li><i class="fa fa-map-marker"></i> @Model.DescDictionary[@Common.CurrentLang]</li>
                     <li><i class="fa fa-phone"></i> @Model.PhoneNo1 </li>
                     <li><i class="fa fa-phone"></i> @Model.PhoneNo2 </li>
                     @*<li><i class="fa fa-phone"></i> @Model.PostalCode </li>
@@ -57,16 +57,12 @@
                     <li><i class="fa fa-envelope"></i> <a href="mailto:#"> @Model.MailNo1 </a></li>
                     <li><i class="fa fa-envelope"></i> <a href="mailto:#"> @Model.MailNo2 </a></li>
                 </ul>
-                
-                <iframe height="300px" width="700px" src="https://maps.google.com/maps?q=@Model.Late,@Model.Long&hl=es;z=14&amp;output=embed" class="mg-map"></iframe>
 
+                <iframe height="300px" width="700px" src="https://maps.google.com/maps?q=@Model.Late,@Model.Long&hl=es;z=14&amp;output=embed" class="mg-map"></iframe>
             </div>
         </div>
     </div>
 </div>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
 
 <script>
     $.validate({
@@ -83,20 +79,9 @@
     });
 </script>
 
-
 <script type="text/javascript">
 
-
-
-
-
-
-
-
-
     function sendContact() {
-
-
 
         var contact = {
             FirstName: $("#FirstName").val(),
@@ -118,5 +103,4 @@
             data: contact
         });
     }
-
 </script>

@@ -1,5 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
-using AutoMapper.XpressionMapper;
+﻿using AutoMapper.XpressionMapper;
+using System.ComponentModel.DataAnnotations;
 
 namespace Front.Models
 {

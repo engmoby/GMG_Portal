@@ -15,27 +15,34 @@
 
     <div ba-panel>
         <table class="table table-hover table-condensed" st-table="TableData" st-safe-src="Currencys">
-            <thead> 
-            <tr class="toolbar">
-                <th colspan="2">
-                    <div class="input-group">
-                        <span class="input-group-addon addon-left"><i class="fa fa-search" aria-hidden="true"></i></span>
-                        <input st-search="" class="form-control" placeholder="@Currency.txtSearchLbl" type="text" />
-                    </div>
-                </th>
-                <th colspan="1"></th>
-                <th>
-                    <div class="input-group">
-                        <button class="btn btn-primary btn-with-icon" ng-click="open(null)"><i class="fa fa-plus" aria-hidden="true"></i>@Currency.BtnAdd</button>
-                    </div>
-                </th>
-            </tr>
+            <thead>
+                <tr class="toolbar">
+                    <th colspan="2">
+                        <div class="input-group">
+                            <span class="input-group-addon addon-left"><i class="fa fa-search" aria-hidden="true"></i></span>
+                            <input st-search="" class="form-control" placeholder="@Currency.txtSearchLbl" type="text" />
+                        </div>
+                    </th>
+                    <th colspan="1"></th>
+                    <th>
+                        <div class="input-group">
+                            <button class="btn btn-primary btn-with-icon" ng-click="open(null)"><i class="fa fa-plus" aria-hidden="true"></i>@Currency.BtnAdd</button>
+                        </div>
+                    </th>
+                </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="Currency in TableData">
-                    <td ng-class="{'red-text': Currency.IsDeleted == true}">{{Currency.DisplayValue}}</td>
-                    <td ng-class="{'red-text': Currency.IsDeleted == true}">{{Currency.DisplayValueDesc| limitTo:letterLimit}} </td>
-
+                <tr ng-repeat="Currency in TableData"> 
+                    <td ng-class="{'red-text': Currency.IsDeleted == true}">
+                        <span ng-repeat="(name, age) in Currency.TitleDictionary" ng-if="name == CurrentLanguage">
+                            {{age}}
+                        </span>
+                    </td>
+                    <td ng-class="{'red-text': Currency.IsDeleted == true}">
+                        <span ng-repeat="(name, age) in Currency.DescDictionary" ng-if="name == CurrentLanguage">
+                            {{age | limitTo:letterLimit}}
+                        </span>
+                    </td>
                     <td>
                         <div class="buttons" ng-show="!Currency.IsDeleted">
                             <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(Currency)"><i class="fa fa-pencil" aria-hidden="true"></i>@Currency.TableBtnEdit</button>
@@ -75,41 +82,76 @@
                         <h4 class="modal-title">{{action |uppercase}} @Currency.ModalTitle</h4>
                     </div>
                     <div class="modal-body">
-                        <div class="form-group">
-                            <label for="TxtTitle">@Currency.Title</label><span class="red-text"> *</span>
-                            <input type="text" ng-model="Currency.DisplayValue" class="form-control" name="TxtTitle" placeholder="@Currency.Title"
-                                   ng-minlength="@Common.TitleMax3" ng-maxlength="@Common.TitleMax3" required ng-pattern="/@Regex.NameAr/">
+                        @*<div class="form-group">
+                                <label for="TxtTitle">@Currency.Title</label><span class="red-text"> *</span>
+                                <input type="text" ng-model="Currency.DisplayValue" class="form-control" name="TxtTitle" placeholder="@Currency.Title"
+                                       ng-minlength="@Common.TitleMax3" ng-maxlength="@Common.TitleMax3" required ng-pattern="/@Regex.NameAr/">
 
 
-                            <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
-                                <span class="red-text" ng-message="required">@Currency.TxtTitleRequiredErrorMessage</span>
-                                <span class="red-text" ng-message="pattern">@Currency.TxtTitlePatternErrorMessage</span>
-                                <span class="red-text" ng-message="maxlength">@Common.MinimumKeyWord @Common.TitleMax3 @Common.Charachter</span>
-                                <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax3 @Common.Charachter</span>
-                            </div>
-                        </div>`
+                                <div class="red-text" ng-messages="FrmAddUpdate.TxtTitle.$error" ng-show="FrmAddUpdate.TxtTitle.$touched">
+                                    <span class="red-text" ng-message="required">@Currency.TxtTitleRequiredErrorMessage</span>
+                                    <span class="red-text" ng-message="pattern">@Currency.TxtTitlePatternErrorMessage</span>
+                                    <span class="red-text" ng-message="maxlength">@Common.MinimumKeyWord @Common.TitleMax3 @Common.Charachter</span>
+                                    <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMax3 @Common.Charachter</span>
+                                </div>
+                            </div>`
+                            <div class="form-group">
+                                <label>@Currency.Desc</label><span class="red-text"> *</span>
+                                <input ng-model="Currency.DisplayValueDesc" class="form-control" name="TxtDesc"
+                                       placeholder="@Currency.Desc" ng-minlength="@Common.TitleMax3" ng-maxlength="@Common.DescMax7000" required ng-pattern="/@Regex.NameEn/"/>
+                                <div class="red-text" ng-messages="FrmAddUpdate.TxtDesc.$error" ng-show="FrmAddUpdate.TxtDesc.$touched">
+                                    <span class="red-text" ng-message="required">@Currency.TxtDescRequiredErrorMessage</span>
+                                    <span class="red-text" ng-message="pattern">@Currency.TxtDescPatternErrorMessage</span>
+                                    <span class="red-text" ng-message="maxlength">@Common.MinimumKeyWord @Common.TitleMax3 @Common.Charachter</span>
+                                    <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMin30 @Common.Charachter</span>
+                                </div>
+                            </div>*@
                         <div class="form-group">
-                            <label>@Currency.Desc</label><span class="red-text"> *</span>
-                            <input ng-model="Currency.DisplayValueDesc" class="form-control" name="TxtDesc"
-                                   placeholder="@Currency.Desc" ng-minlength="@Common.TitleMax3" ng-maxlength="@Common.DescMax7000" required ng-pattern="/@Regex.NameEn/"/>
-                            <div class="red-text" ng-messages="FrmAddUpdate.TxtDesc.$error" ng-show="FrmAddUpdate.TxtDesc.$touched">
-                                <span class="red-text" ng-message="required">@Currency.TxtDescRequiredErrorMessage</span>
-                                <span class="red-text" ng-message="pattern">@Currency.TxtDescPatternErrorMessage</span>
-                                <span class="red-text" ng-message="maxlength">@Common.MinimumKeyWord @Common.TitleMax3 @Common.Charachter</span>
-                                <span class="red-text" ng-message="maxlength">@Common.MaximumKeyWord @Common.TitleMin30 @Common.Charachter</span>
+                            <div class="tabs-container">
+                                <ul class="nav nav-tabs tab-border-top-primary" style="border-bottom: 1px solid transparent;background-color: #d6ece9;">
+                                    <li ng-repeat="lang in language" ng-class="{active:$first}">
+                                        <a data-toggle="tab" data-target="#tab-{{lang.id}}">
+                                            {{lang.value}}
+                                        </a>
+                                    </li>
+                                </ul>
+
+                                <div class="tab-content">
+                                    <div ng-repeat="lang in language" id="tab-{{lang.id}}" class="tab-pane" ng-class="{active:$first}">
+                                        <div class="panel-body">
+                                            <div class="form-group">
+                                                <label>{{lang.value}}  title</label>
+                                                <input type="text" ng-model="Currency.TitleDictionary[lang.key]" placeholder="Enter {{lang.value}}  title"
+                                                       class="form-control" name="u{{lang.value+'name'}}" required="">
+                                                <br />
+                                                <div ng-show="FrmAddUpdate.$submitted || FrmAddUpdate.u{{lang.value+'name'}}.$touched">
+                                                    <label id="-error" class="red-text" ng-show="FrmAddUpdate.u{{lang.value+'name'}}.$error.required">{{lang.value}} Name is missing.</label>
+                                                </div>
+                                            </div>
+
+                                            @*<div class="form-group">
+                                                <label>{{lang.value}}  Description</label>
+                                                <textarea type="text" ng-model="Currency.DescDictionary[lang.key]" placeholder="Enter {{lang.value}}  desc"
+                                                          class="form-control" name="{{lang.key+'desc'}}" required=""></textarea>
+                                                <br />
+                                                <div ng-show="FrmAddUpdate.$submitted || FrmAddUpdate.{{lang.key+'desc'}}.$touched">
+                                                    <label id="-error" class="red-text" ng-show="FrmAddUpdate.{{lang.key+'desc'}}.$error.required">{{lang.value}} description is missing.</label>
+                                                </div>
+                                            </div>*@
+                                        </div>
+                                    </div>
+
+
+                                </div>
                             </div>
                         </div>
-
-
-
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary btn-with-icon" ng-disabled="FrmAddUpdate.$invalid"><i class="ion-android-checkmark-circle"></i>@Currency.btnSaveLbl</button>
+                        </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary btn-with-icon" ng-disabled="FrmAddUpdate.$invalid"><i class="ion-android-checkmark-circle"></i>@Currency.btnSaveLbl</button>
-                    </div>
+
                 </div>
-
             </div>
-        </div>
     </form>
 
 

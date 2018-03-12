@@ -1,6 +1,7 @@
 ﻿@using System.Diagnostics.Eventing.Reader
+@using Front.Helpers
 @using GMG_Portal.API.Models.SystemParameters
-@model List<News>
+@model List<NewsModel>
 
 @{
   ViewBag.Title = "Index";
@@ -30,7 +31,7 @@
       <div class="row">
         <div class="col-md-8">
           <main>
-            @foreach (News newsObj in Model)
+            @foreach (NewsModel newsObj in Model)
             {
               <article class="mg-post">
                 <header>
@@ -49,7 +50,7 @@
                                             }
                                             else
                                             {*@
-                      @newsObj.DisplayValue
+                      @newsObj.TitleDictionary[Common.CurrentLang]
                       @*}*@
                     </a>
                   </h2>
@@ -60,21 +61,21 @@
                         @newsObj.CreationTime.Value.ToString("D")
                       }
                     </span>
-                    <span>by  @newsObj.CreatorUserName </span>
+                    <span>by  @newsObj.CreatorUserName Administrator</span>
                     <span><a href="/News/Index/@newsObj.CategoryId">@newsObj.CategoryName</a> </span>
                     @*   <span><a href="#">3 Comments</a></span>*@
                   </div>
                 </header>
                 <div>
-                  @if (@newsObj.DisplayValueDesc.Length >= 50)
+                  @if (@newsObj.DescDictionary[Common.CurrentLang].Length >= 50)
                   {
                     <p>
-                      @newsObj.DisplayValueDesc.ToString().Substring(0, 50)
+                      @newsObj.DescDictionary[Common.CurrentLang].ToString().Substring(0, 50)
                     </p>
                   }
                   else
                   {
-                    @newsObj.DisplayValueDesc
+                    @newsObj.DescDictionary[Common.CurrentLang]
                   }
                 </div>
                 <footer class="clearfix">
@@ -93,7 +94,7 @@
             <aside class="mg-widget">
               <h2 class="mg-widget-title">@Front.Resources.Global.News_RecentNews</h2>
               <ul class="mg-recnt-posts">
-                @foreach (News t in Model.Take(3))
+                @foreach (NewsModel t in Model.Take(3))
                 {
 
                   <li>
@@ -102,30 +103,30 @@
                         <div class="mg-rp-date">@t.CreationTime.Value.Day <div class="mg-rp-month">@t.CreationTime.Value.ToString("MMM")</div></div>
                       </div>
                       <h3>
-                        <a href="/News/Details/@t.Id">@t.DisplayValue</a>
+                        <a href="/News/Details/@t.Id">@t.TitleDictionary[Common.CurrentLang]</a>
                       </h3>
                       <p>
-                        @(@t.DisplayValueDesc.Length >= 30 ? t.DisplayValueDesc.Substring(0, 29) : t.DisplayValueDesc)
+                        @(@t.DescDictionary[Common.CurrentLang].Length >= 30 ? t.DescDictionary[Common.CurrentLang].Substring(0, 29) : t.DescDictionary[Common.CurrentLang])
                       </p>
                     </div>
                   </li>
                 }
-
               </ul>
             </aside>
             <aside class="mg-widget">
               <h2 class="mg-widget-title">@Front.Resources.Global.News_Category</h2>
-              <ul>
+                <ul id="ulCategory"></ul>
+                    @*<ul>
                 @if (Model.Count > 0)
                 {
-                  foreach (Category cat in Model[0].Categories)
+                  foreach (CategoryModel cat in Model[0].Categories)
                   {
                     <li>
-                      <a href="/News/Index/@cat.Id">@cat.DisplayValue</a>
+                      <a href="/News/Index/@cat.Id">@cat.TitleDictionary[Common.CurrentLang]</a>
                     </li>
                   }
                 }
-              </ul>
+              </ul>*@
             </aside>
             @*<aside class="mg-widget">
                                 <h2 class="mg-widget-title">Tags</h2>
@@ -151,3 +152,28 @@
 
 }
 
+<script>
+    $(document).ready(function () {
+
+        var apiUrl = document.querySelector('#HServicesURL').value;
+        $.ajax({
+            url: apiUrl + "/SystemParameters/NewsCategory/GetAll?langId=@Common.CurrentLang",
+            type: "Get",
+            success: function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    $(
+                        "<li>" +
+                        "<a href='/News/Index/" + data[i].Id + "'>" + data[i].TitleDictionary['@Common.CurrentLang'] + "</a>" +
+                        " </li>"
+
+                    ).appendTo("#ulCategory");
+                }
+
+            },
+            error: function (msg) {
+                //  alert("error news category");
+            }
+        });
+
+    });
+</script>

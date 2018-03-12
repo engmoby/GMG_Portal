@@ -1,15 +1,11 @@
 ﻿@using Front.Helpers
 @using GMG_Portal.API.Models.SystemParameters
-@using GMG_Portal.API.Models.SystemParameters.ContactUs
-@model  List<Owners>
+@model  List<OwnerModel>
 
 @{
     ViewBag.Title = "Owners";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-
-
 
 <div class="mg-page-title parallax">
     <div class="container">
@@ -20,7 +16,7 @@
             </div>
         </div>
     </div>
-</div> 
+</div>
 <div class="mg-team pb70">
     <div class="container">
         <div class="row">
@@ -31,14 +27,13 @@
                 </div>
             </div>
         </div>
-        
 
         <div class="row">
             @for (int i = 0; i < Model.Count; i++)
             {
                 if (i > 0 && i % 4 == 0)
                 {
-                    @:</div><div class="row"> 
+                    @:</div><div class="row">
                 }
                 <div class="col-md-3">
                     <a href="#@Model[i].Id-1" data-featherlight="#@Model[i].Id-1">
@@ -49,63 +44,93 @@
                             </figure>
                             <div class="mg-team-member-overlayer"></div>
                             <div class="mg-team-info">
-                                @if (@Model[i].DisplayValueName.Length >= 20)
+
+                                @foreach (var keyValue in Model[i].OwnerNameDictionary.Keys)
                                 {
-                                    <h3>@Model[i].DisplayValueName.Substring(0, 20)</h3>
-                                }
-                                else
-                                {
-                                    <h3>@Model[i].DisplayValueName</h3>
+                                    if (keyValue == Common.CurrentLang)
+                                    {
+
+                                        if (Model[i].OwnerNameDictionary[keyValue].Length >= 20)
+                                        {
+                                            <h3>@Model[i].OwnerNameDictionary[keyValue].Substring(0, 20)</h3>
+                                        }
+                                        else
+                                        {
+                                            <h3>@Model[i].OwnerNameDictionary[keyValue]</h3>
+
+                                        }
+                                    }
 
                                 }
-                                @if (@Model[i].DisplayValuePosition.Length >= 20)
+                                @foreach (var keyValue in Model[i].OwnerPostionDictionary.Keys)
                                 {
-                                    <h3>@Model[i].DisplayValuePosition</h3>
-                                }
-                                else
-                                {
-                                    <h3>@Model[i].DisplayValuePosition</h3>
-                                }
+                                    if (keyValue == Common.CurrentLang)
+                                    {
 
+                                        if (Model[i].OwnerPostionDictionary[keyValue].Length >= 20)
+                                        {
+                                            <h3>@Model[i].OwnerPostionDictionary[keyValue].Substring(0, 20)</h3>
+                                        }
+                                        else
+                                        {
+                                            <h3>@Model[i].OwnerPostionDictionary[keyValue]</h3>
+
+                                        }
+                                    }
+
+                                }
                             </div>
-
                         </div>
                     </a>
                     <div class="lightbox" id="@Model[i].Id-1">
-                        
-                        <h2>@Model[i].DisplayValueName</h2>
-                        <h3>@Model[i].DisplayValuePosition</h3>
-                        <img src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/Owners/@Model[i].Image" alt="" class="img-responsive"  style="width: 206px;height: 183px;">
-                          
-                        <div class="display-field" >
 
+                        @foreach (var keyValue in Model[i].OwnerNameDictionary.Keys)
+                        {
+                            if (keyValue == Common.CurrentLang)
+                            {
+                                <h2>@Model[i].OwnerNameDictionary[keyValue]</h2>
+                            }
 
-                            @Html.PreserveNewLines(@Model[i].DisplayValueDesc)
+                        }
+                        @foreach (var keyValue in Model[i].OwnerPostionDictionary.Keys)
+                        {
+                            if (keyValue == Common.CurrentLang)
+                            {
+                                <h3>@Model[i].OwnerPostionDictionary[keyValue]</h3>
+                            }
+
+                        }
+                        <img src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/Owners/@Model[i].Image" alt="" class="img-responsive" style="width: 206px;height: 183px;">
+
+                        <div class="display-field">
+
+                            @foreach (var keyValue in Model[i].OwnerDescDictionary.Keys)
+                            {
+                                if (keyValue == Common.CurrentLang)
+                                {
+                                    @Html.PreserveNewLines(@Model[i].OwnerDescDictionary[keyValue])
+                                }
+
+                            }
                         </div>
                         @if (!string.IsNullOrEmpty(@Model[i].Facebook))
                         {
-                            <a target='Blank' href="@Model[i].Facebook"><i class="fa fa-facebook"></i></a> 
+                            <a target='Blank' href="@Model[i].Facebook"><i class="fa fa-facebook"></i></a>
                         }
                         @if (!string.IsNullOrEmpty(@Model[i].Twitter))
                         {
-                            <a target='Blank' href="@Model[i].Twitter"><i class="fa fa-twitter"></i></a> 
+                            <a target='Blank' href="@Model[i].Twitter"><i class="fa fa-twitter"></i></a>
                         }
                         @if (!string.IsNullOrEmpty(@Model[i].LinkedIn))
 
                         {
-                            <a target='Blank' href="@Model[i].LinkedIn"><i class="fa fa-linkedin"></i></a> 
+                            <a target='Blank' href="@Model[i].LinkedIn"><i class="fa fa-linkedin"></i></a>
                         }
                     </div>
-                    
-
                 </div>
             }
         </div>
-        
-        <script src="~/Scripts/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
 
+        <script src="~/Scripts/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
     </div>
 </div>
- 
-
-

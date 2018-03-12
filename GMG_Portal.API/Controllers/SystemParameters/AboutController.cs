@@ -21,22 +21,9 @@ namespace GMG_Portal.API.Controllers.SystemParameters
         {
             try
             {
-                var AboutLogic = new AboutLogic();
-                var AboutLogicTranslate = new AboutLogicTranslate();
-               
-             
-
-                if (langId == Parameters.DefaultLang)
-                {
-                    var Obj = AboutLogic.GetAll(); 
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<About>>(Obj)); 
-                }
-                else
-
-                {
-                    var ObjByLang = AboutLogicTranslate.GetAll(langId); 
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<About>>(ObjByLang)); 
-                }
+                var aboutLogic = new AboutLogic();
+                var obj = aboutLogic.GetAll();
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<AboutModel>(obj));
             }
             catch (Exception ex)
             {
@@ -48,25 +35,9 @@ namespace GMG_Portal.API.Controllers.SystemParameters
         {
             try
             {
-                var AboutLogic = new AboutLogic();
-                var AboutLogicTranslate = new AboutLogicTranslate();
-
-                if (langId == Parameters.DefaultLang)
-                {
-                    var Obj = AboutLogic.GetAllWithDeleted();
-
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<About>>(Obj));
-
-                }
-                else
-
-                {
-                    var ObjByLang = AboutLogicTranslate.GetAllWithDeleted(langId);
-
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<About>>(ObjByLang));
-
-                }
-
+                var aboutLogic = new AboutLogic();
+                var obj = aboutLogic.GetAllWithDeleted();
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<AboutModel>>(obj));
             }
             catch (Exception ex)
             {
@@ -82,40 +53,24 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 if (ModelState.IsValid)
                 {
                     var aboutLogic = new AboutLogic();
-                    var aboutLogicTranslate = new AboutLogicTranslate();
-
-                    SystemParameters_About obj = null;
-                    SystemParameters_About_Translate objByLang = null;
+                    About obj = null;
 
                     if (postedAbouts.Id.Equals(0))
                     {
-                        if (postedAbouts.LangId == Parameters.DefaultLang)
-                            obj = aboutLogic.Insert(Mapper.Map<SystemParameters_About>(postedAbouts));
-                        else
-                            objByLang =  aboutLogicTranslate.Insert(Mapper.Map<SystemParameters_About_Translate>(postedAbouts));
-
+                        obj = aboutLogic.Insert(Mapper.Map<About>(postedAbouts));
                     }
                     else
                     {
                         if (postedAbouts.IsDeleted)
                         {
-                            if (postedAbouts.LangId == Parameters.DefaultLang)
-                                obj = aboutLogic.Delete(Mapper.Map<SystemParameters_About>(postedAbouts));
-                            else
-                                objByLang = aboutLogicTranslate.Delete(Mapper.Map<SystemParameters_About_Translate>(postedAbouts));
+                            obj = aboutLogic.Delete(Mapper.Map<About>(postedAbouts));
                         }
                         else
                         {
-                            if (postedAbouts.LangId == Parameters.DefaultLang)
-                                obj = aboutLogic.Edit(Mapper.Map<SystemParameters_About>(postedAbouts));
-                            else
-                                objByLang = aboutLogicTranslate.Edit(Mapper.Map<SystemParameters_About_Translate>(postedAbouts));
+                            obj = aboutLogic.Edit(Mapper.Map<About>(postedAbouts));
                         }
                     }
-                    if (postedAbouts.LangId == Parameters.DefaultLang)
-                        return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<About>(obj));
-                    else
-                        return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<SystemParameters_About_Translate>(objByLang));
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<AboutModel>(obj));
                 }
                 goto ThrowBadRequest;
             }
@@ -126,7 +81,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
 
-        ThrowBadRequest:
+            ThrowBadRequest:
             return Request.CreateResponse(HttpStatusCode.BadRequest);
         }
         [HttpGet]
@@ -138,100 +93,41 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 //General Declerations
                 var retunAboutAll = new AboutAll();
                 var aboutLogic = new AboutLogic();
-                var aboutLogicTranslate = new AboutLogicTranslate();
 
+                //var obj = aboutLogic.GetAll();
+                //retunAboutAll.AboutTitle = obj.DisplayValue;
+                //retunAboutAll.AboutDesc = obj.DisplayValueDesc;
+                //retunAboutAll.AboutVideoUrl = obj.Url;
 
+                //// Get Vision By Lang 
+                //var visionLogic = new VisionsLogic();
+                //var objvVision = visionLogic.GetAll();
+                //retunAboutAll.VisionTitle = objvVision.DisplayValue;
+                //retunAboutAll.VisionDesc = objvVision.DisplayValueDesc;
 
-                // Get About By Lang 
-                if (langId == Parameters.DefaultLang)
-                {
-                    var obj = aboutLogic.GetAll();
-                    retunAboutAll.AboutTitle = obj.DisplayValue;
-                    retunAboutAll.AboutDesc = obj.DisplayValueDesc;
-                    retunAboutAll.AboutVideoUrl = obj.Url;
-                }
-                else
-                {
-                    var objtranslate = aboutLogicTranslate.GetAll(langId);
-                    retunAboutAll.AboutTitle = objtranslate.DisplayValue;
-                    retunAboutAll.AboutDesc = objtranslate.DisplayValueDesc;
-                    retunAboutAll.AboutVideoUrl = objtranslate.Url;
-                }
-
-
-                // Get Vision By Lang 
-                var visionLogic = new VisionsLogic();
-                var visionLogicTranslate = new VisionLogicTranslate();
-
-                if (langId == Parameters.DefaultLang)
-                {
-                    var obj = visionLogic.GetAll();
-                    retunAboutAll.VisionTitle = obj.DisplayValue;
-                    retunAboutAll.VisionDesc = obj.DisplayValueDesc;
-                }
-                else
-                {
-                    var objtranslate = visionLogicTranslate.GetAll(langId);
-                    retunAboutAll.VisionTitle = objtranslate.DisplayValue;
-                    retunAboutAll.VisionDesc = objtranslate.DisplayValueDesc;
-                }
-
-
-                // Get Mission By Lang 
-                var missionLogic = new MissionsLogic();
-                var missionLogicTranslate = new MissionLogicTranslate();
-                if (langId == Parameters.DefaultLang)
-                {
-                    var obj = missionLogic.GetAll();
-                    retunAboutAll.MissionTitle = obj.DisplayValue;
-                    retunAboutAll.MissionDesc = obj.DisplayValueDesc;
-                }
-                else
-                {
-                    var objtranslate = missionLogicTranslate.GetAll(langId);
-                    retunAboutAll.MissionTitle = objtranslate.DisplayValue;
-                    retunAboutAll.MissionDesc = objtranslate.DisplayValueDesc;
-
-                }
+                //// Get Mission By Lang 
+                //var missionLogic = new MissionsLogic();
+                //var objmMission = missionLogic.GetAll();
+                //retunAboutAll.MissionTitle = objmMission.DisplayValue;
+                //retunAboutAll.MissionDesc = objmMission.DisplayValueDesc;
 
 
 
 
-                //Core Values By Lang
-                var coreValueLogic = new CoreValuesLogic();
-                var coreValueLogicTranslate = new CoreValuesLogicTranslate();
-
-
-                if (langId == Parameters.DefaultLang)
-                {
-                    var returnCoreValues = new List<CoreValues>();
-                    var values = coreValueLogic.GetAll();
-                    foreach (var valueObj in values)
-                    {
-                        returnCoreValues.Add(new CoreValues
-                        {
-                            DisplayValue = valueObj.DisplayValue,
-                            DisplayValueDesc = valueObj.DisplayValueDesc
-                        });
-                    }
-                    retunAboutAll.CoreValueses = returnCoreValues;
-                }
-                else
-                {
-                    var returnCoreValues = new List<SystemParameters_CoreValues_Translate>();
-                    var values = coreValueLogicTranslate.GetAll(langId);
-                    foreach (var valueObj in values)
-                    {
-                        returnCoreValues.Add(new SystemParameters_CoreValues_Translate
-                        {
-                            DisplayValue = valueObj.DisplayValue,
-                            DisplayValueDesc = valueObj.DisplayValueDesc
-                        });
-                    }
-                    retunAboutAll.CoreValueses = Mapper.Map<List<CoreValues>>(returnCoreValues);
-                }
-
-               //Finally Return the Object 
+                ////Core Values By Lang
+                //var coreValueLogic = new CoreValuesLogic();
+                //var returnCoreValues = new List<CoreValues>();
+                //var values = coreValueLogic.GetAll();
+                //foreach (var valueObj in values)
+                //{
+                //    returnCoreValues.Add(new CoreValues
+                //    {
+                //        DisplayValue = valueObj.DisplayValue,
+                //        DisplayValueDesc = valueObj.DisplayValueDesc
+                //    });
+                //}
+                //retunAboutAll.CoreValueses = returnCoreValues;
+                //Finally Return the Object 
                 return Request.CreateResponse(HttpStatusCode.OK, retunAboutAll);
             }
             catch (Exception ex)

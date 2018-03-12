@@ -1,6 +1,6 @@
-﻿
+﻿@using Front.Helpers
 @using GMG_Portal.API.Models.SystemParameters
-@model  List<GMG_Portal.Data.Hotles_Offers>
+@model  List<OfferModel>
 @{
     ViewBag.Title = "Offers";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -19,56 +19,66 @@
 
 <div class="mg-rooms-cols">
     <div class="container">
-        @if (Model.Count != 0) { 
+        @if (Model.Count != 0) {
         <div class="row">
             @for (int i = 0; i < Model.Count; i++)
             {
                 if (i > 0 && i % 3 == 0)
                 {
-                    @:</div><div class="row"> 
+                    @:</div><div class="row">
                 }
-            
+
                 <div class="col-sm-4">
                     <figure class="mg-room">
-                        <img src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/Offers/@Model[i].Image" alt="img11" class="img-responsive">
-                        <figcaption>
-                           
-                            @if (@Model[i].DisplayValue.Length >= 20)
-                            { 
-                                <h2>@Model[i].DisplayValue.Substring(0, 20)</h2> 
-                            }
-                            else
-                            {
-                                <h2>@Model[i].DisplayValue</h2> 
-                            }
-                            @*<div class="mg-room-rating">@Model[i].HotelTitle</div>*@
-                            <div class="mg-room-price">$@Model[i].Price <sup>@Model[i].CurrencyTitle</sup></div>
+                        <a href="/Offers/offerdetails/@Model[i].Id" style="color: #edf0f3 !important;">
 
-                            @if (@Model[i].DisplayValueDesc.Length >= 40)
-                            {
-                                <p>@Model[i].DisplayValueDesc.Substring(0,40)</p>
+                            <img src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/Offers/@Model[i].Image" alt="img11" class="img-responsive">
+                            <figcaption>
 
-                            }
-                            else
-                            {
-                                <p>@Model[i].DisplayValueDesc</p> 
-                            }
-                            <a href="/Offers/offerdetails/@Model[i].Id" class="btn btn-link">@Front.Resources.Global.Offers_Index_Details <i class="fa fa-angle-double-right"></i></a>
-                            @*<a href="#" class="btn btn-main">Book</a>*@
-                        </figcaption>			
-                    </figure>
-                </div>
+                                @if (@Model[i].OfferTitleDictionary[Common.CurrentLang].Length >= 20)
+                                {
+                                    <h2>@Model[i].OfferTitleDictionary[Common.CurrentLang].Substring(0, 20)</h2>
+                                }
+                                else
+                                {
+                                    <h2>@Model[i].OfferTitleDictionary[Common.CurrentLang]</h2>
+                                }
+                                <div class="mg-room-price">
+                                    @Model[i].Price
 
+                                    @foreach (var c in Common.Currency)
+                                    {
+                                        if (c.Id == @Model[i].Currency)
+                                        {
+                                            <sub>
+                                                @c.TitleDictionary[Common.CurrentLang]
+                                            </sub>
+                                        }
+                                    }
+                                    @*  <sup>@Model[i].CurrencyTitle</sup>*@
+                                </div>
 
-            }  
+                                @if (@Model[i].OfferDescDictionary[Common.CurrentLang].Length >= 40)
+                                {
+                                    <p>@Model[i].OfferDescDictionary[Common.CurrentLang].Substring(0, 40)</p>
+
+                                }
+                                else
+                                {
+                                    <p>@Model[i].OfferDescDictionary[Common.CurrentLang]</p>
+                                }
+                                <a href="/Offers/offerdetails/@Model[i].Id" class="btn btn-link">@Front.Resources.Global.Offers_Index_Details <i class="fa fa-angle-double-right"></i></a>
+                            </figcaption>
+                        </a>
+ </figure>
+                    </div>
+
+            }
         </div>
         }
         else
         {
             <p style="    margin-left: 47%;">@Front.Resources.Global.Offers_Error</p>
         }
-        
-     
-
     </div>
 </div>

@@ -113,7 +113,6 @@
 		width: 100%;
 	}
 
-
 	.featherlight-iframe .featherlight-content {
 		/* removed the border for image croping since iframe is edge to edge */
 		border-bottom: 0;

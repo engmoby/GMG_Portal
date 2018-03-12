@@ -1,7 +1,5 @@
 ﻿@using Front.Helpers
 
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Mobarak  </title>
     <link rel="shortcut icon" href="~/Content/images/favicon.ico">
-
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic|Playfair+Display:400,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
     <!-- Bootstrap -->
@@ -27,10 +24,11 @@
 
     <script src="~/Content/js/modernizr.custom.min.js"></script>
 
-
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-
+    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>*@
+     
+    <script src="~/Content/js/1.7.1_jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="~/Content/js/jquery.form-validator.js"></script> 
     @*LightBox Owners*@
     <link type="text/css" rel="stylesheet" href="~/Scripts/featherlight.min.css" />
     <style type="text/css">
@@ -147,33 +145,18 @@
             }
         }
     </style>
-
-
-
 </head>
 <body>
     <input type="hidden" id="HServicesURL" value="@System.Configuration.ConfigurationManager.AppSettings["ServerIp"]" />
     <input type="hidden" name="HCurrentLang" id="HCurrentLang" value="en">
 
-
-    <!-- Menu and Search Button --> 
+    <!-- Menu and Search Button -->
     @{
         Html.RenderPartial("_HeaderNavBar");
     }
 
-
-
-
-
-
     <!-- Loaded Body Content   -->
     @RenderBody()
-
-
-
-
-
-
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="~/Content/js/jquery.min.js"></script>
@@ -184,23 +167,19 @@
     <script src="~/Content/js/classie.js"></script>
     <script src="~/Content/js/selectFx.js"></script>
     <script src="~/Content/js/bootstrap-datepicker.min.js"></script>
-    <script src="~/Content/js/starrr.min.js"></script>
-    <script src="~/Content/js/nivo-lightbox.min.js"></script>
-    <script src="~/Content/js/jquery.shuffle.min.js"></script>
+    @*<script src="~/Content/js/starrr.min.js"></script>
+        <script src="~/Content/js/nivo-lightbox.min.js"></script>
+        <script src="~/Content/js/jquery.shuffle.min.js"></script>*@
     <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
     <script src="~/Content/js/gmaps.min.js"></script>
     <script src="~/Content/js/jquery.parallax-1.1.3.js"></script>
     <script src="~/Content/js/script.js"></script>
 
-     
-
-
-
     @{
         Html.RenderPartial("_Footer");
     }
-     
-    <script src="~/Scripts/jquery.blockUI.js"></script> 
+
+    <script src="~/Scripts/jquery.blockUI.js"></script>
     <script type="text/javascript">
 
         $(document).ready(function () {
@@ -208,17 +187,14 @@
             var currentLang = document.querySelector('#HCurrentLang').value;
             document.getElementById("HotelMore").style.display = "none";
 
-       //   var searchkeys = document.querySelector('#searchkey').value;
-      //      alert(searchkeys);
+            //   var searchkeys = document.querySelector('#searchkey').value;
+            //      alert(searchkeys);
 
             $("#searchnow").click(function () {
-              window.location.href =  "@System.Configuration.ConfigurationManager.AppSettings["HomeUrl"]" + "/news/Search?keyword=" + document.querySelector('#searchkeyword').value;
+                window.location.href = "@System.Configuration.ConfigurationManager.AppSettings["HomeUrl"]" + "/news/Search?keyword=" + document.querySelector('#searchkeyword').value;
 
             }
           );
-
-
-
 
             //$.blockUI({
             //    css: {
@@ -250,22 +226,31 @@
                     //    document.getElementById("HotelMore").style.display = "block";
                     //}
                     for (var i = 0; i < data.length; i++) {
-                        //$(
-                        //    "<li>" +
-                        //    "<a href='/Hotel/Details/" + data[i].Id + "'>" + data[i].DisplayValue + "</i></a>"
 
-                        //).appendTo("#ulAllHotels");
-                        ////  var result = $.localStorage('hotelId', data[i].Id);
+                        if (data[i].ImageList.length > 0 && data[i].FeaturesList.length > 0) {
 
-                        list.push(data[i].Id);
+                            $(
+                                "<li>" +
+                                "<a href='/Hotel/Details/" + data[i].Id + "'>" + data[i].TitleDictionary['@Common.CurrentLang'] + "</i></a>"
+
+                            ).appendTo("#ulAllHotels");
+                            $( 
+                            "<option value='" + data[i].TitleDictionary['@Common.CurrentLang'] + "'>" + data[i].TitleDictionary['@Common.CurrentLang'] + "</option>"
+
+                            ).appendTo("#HotelName");
+                        }
+                        //else {
+                        //    document.getElementById("hotelMenu").style.display = "none";
+                        //}
+
+                        // list.push(data[i].Id);
                     }
                     if (data.length >= 5) {
-                        //$(
-                        //    "<li>" + "<a href='/Hotel/Index'>" + more + "</i></a>"
-                        //).appendTo("#ulAllHotels");
+                        $(
+                            "<li>" + "<a href='/Hotel/Index'>" + more + "</i></a>"
+                        ).appendTo("#ulAllHotels");
                     }
                     // $.localStorage('listlist', list);
-
 
                     //  var value = $.localStorage('hotelList');
                     //for (var i = 0; i < value.length; i++) {
@@ -280,12 +265,11 @@
                 }
             });
 
-
             /*load footer data*/
             $.ajax({
                 url: apiUrl + "/SystemParameters/ContactUs/GetAll?langId=@Common.CurrentLang",
                 type: "Get",
-                success: function (data) { 
+                success: function (data) {
                     $(
                         "<p style='direction: ltr;margin-bottom: 6px;'>" + data.PhoneNo1 + "<br>" + data.PhoneNo2 + "</p>"
                      ).appendTo("#divphones");
@@ -305,7 +289,6 @@
                         + "</p>"
                     ).appendTo("#divmail");
 
-
                     $(
                         "<li>" + "<a target='Blank' href='" + data.Facebook + "'>" + "<i class='fa fa-facebook'></i>" + "</i></a>"
                         + "<li>" + "<a target='Blank' href='" + data.Twitter + "'>" + "<i class='fa fa-twitter'></i>" + "</i></a>"
@@ -322,8 +305,6 @@
                     //    + "</p>"
                     //).appendTo("#divMailHeader");
 
-
-
                 },
                 error: function (msg) {
                     //alert("error footer");
@@ -331,9 +312,6 @@
             });
 
         });
-
-
     </script>
-
 </body>
 </html>

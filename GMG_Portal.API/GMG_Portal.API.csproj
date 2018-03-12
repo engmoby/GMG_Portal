@@ -63,6 +63,10 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MailJetClient, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MailJet.NET.1.5.0\lib\net\MailJetClient.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.0.1011, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -99,8 +103,18 @@
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.2.3\lib\net452\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="System.Net" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.3\lib\net45\System.Web.Cors.dll</HintPath>
       <Private>True</Private>
@@ -140,7 +154,6 @@
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Web" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Xml" />
     <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -149,9 +162,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System.Net.Http.Formatting">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
@@ -186,7 +196,6 @@
     <Compile Include="Controllers\SystemParameters\CareerController.cs" />
     <Compile Include="Controllers\SystemParameters\CareerFormController.cs" />
     <Compile Include="Controllers\SystemParameters\ContactFormController.cs" />
-    <Compile Include="Controllers\SystemParameters\CoreValuesController.cs" />
     <Compile Include="Controllers\SystemParameters\NewsCategoryController.cs" />
     <Compile Include="Controllers\SystemParameters\NewsletterController.cs" />
     <Compile Include="Controllers\SystemParameters\ContactUsController.cs" />
@@ -194,8 +203,6 @@
     <Compile Include="Controllers\SystemParameters\FeaturesController.cs" />
     <Compile Include="Controllers\SystemParameters\NewsController.cs" />
     <Compile Include="Controllers\SystemParameters\AboutController.cs" />
-    <Compile Include="Controllers\SystemParameters\MissionsController.cs" />
-    <Compile Include="Controllers\SystemParameters\VisionsController.cs" />
     <Compile Include="Controllers\SystemParameters\HomeSlidersController.cs" />
     <Compile Include="Controllers\SystemParameters\LanguagesController.cs" />
     <Compile Include="Helpers\CorsFilterAttribute.cs" />
@@ -214,30 +221,30 @@
     <Compile Include="Models\General\HomeModels.cs" />
     <Compile Include="Models\Hotels\Reservation\Reservation.cs" />
     <Compile Include="Models\Hotels\Hotel\HotelFeatures.cs" />
-    <Compile Include="Models\Hotels\Offer\Offer.cs" />
+    <Compile Include="Models\Hotels\Offer\OfferModel.cs" />
     <Compile Include="Models\Hotels\HotelFeatures\HotelFeatures.cs" />
     <Compile Include="Models\Hotels\Hotel\HotelImages.cs" />
-    <Compile Include="Models\Hotels\Hotel\Hotels.cs" />
-    <Compile Include="Models\SystemParameters\Currency\CurrencyVm.cs" />
+    <Compile Include="Models\Hotels\Hotel\HotelsModel.cs" />
+    <Compile Include="Models\SystemParameters\Currency\CurrencyModel.cs" />
     <Compile Include="Models\SystemParameters\Admin\Admin.cs" />
-    <Compile Include="Models\SystemParameters\Career\Career.cs" />
+    <Compile Include="Models\SystemParameters\Career\CareerModel.cs" />
     <Compile Include="Models\SystemParameters\CareerForm\CareerForm.cs" />
     <Compile Include="Models\SystemParameters\Department\Department.cs" />
     <Compile Include="Models\SystemParameters\ContactForm\ContactForm.cs" />
-    <Compile Include="Models\SystemParameters\Category\Category.cs" />
-    <Compile Include="Models\SystemParameters\CoreValues\CoreValues.cs" />
+    <Compile Include="Models\SystemParameters\Category\CategoryModel.cs" />
+    <Compile Include="Models\SystemParameters\CoreValues\CoreValuesModel.cs" />
     <Compile Include="Models\SystemParameters\Notify\NotifyViewModel.cs" />
     <Compile Include="Models\SystemParameters\Newsletter\Newsletter.cs" />
-    <Compile Include="Models\SystemParameters\ContactUs\ContactUs.cs" />
-    <Compile Include="Models\SystemParameters\Owner\Owners.cs" />
-    <Compile Include="Models\SystemParameters\Features\Features.cs" />
-    <Compile Include="Models\SystemParameters\News\News.cs" />
+    <Compile Include="Models\SystemParameters\ContactUs\ContactUsModel.cs" />
+    <Compile Include="Models\SystemParameters\Owner\OwnerModel.cs" />
+    <Compile Include="Models\SystemParameters\Features\FeaturesModel.cs" />
+    <Compile Include="Models\SystemParameters\News\NewsModel.cs" />
     <Compile Include="Models\SystemParameters\AccountType\AccountType.cs" />
     <Compile Include="Models\SystemParameters\Cities\ViewModelCities.cs" />
-    <Compile Include="Models\SystemParameters\About\About.cs" />
-    <Compile Include="Models\SystemParameters\Mission\Mission.cs" />
-    <Compile Include="Models\SystemParameters\Vision\Vision.cs" />
-    <Compile Include="Models\SystemParameters\HomeSlider\HomeSlider.cs" />
+    <Compile Include="Models\SystemParameters\About\AboutModel.cs" />
+    <Compile Include="Models\SystemParameters\Mission\MissionModel.cs" />
+    <Compile Include="Models\SystemParameters\Vision\VisionModel.cs" />
+    <Compile Include="Models\SystemParameters\HomeSlider\HomeSliderModel.cs" />
     <Compile Include="Models\SystemParameters\Languages\Languages.cs" />
     <Compile Include="Models\SystemParameters\Countries\Countries.cs" />
     <Compile Include="Models\SystemParameters\Customer\Customer.cs" />
@@ -253,7 +260,6 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="File\Home.json" />
     <None Include="Properties\PublishProfiles\CRM_API.pubxml" />
     <None Include="Properties\PublishProfiles\GMGAPI - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\GMGAPI - FTP.pubxml" />
@@ -262,6 +268,7 @@
     <None Include="Properties\PublishProfiles\gmgportal-stag - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\gmgportal-stag - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
+    <None Include="Properties\PublishProfiles\PortalMApi.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

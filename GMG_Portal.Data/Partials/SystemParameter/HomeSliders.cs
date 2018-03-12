@@ -7,9 +7,12 @@ using System.Threading.Tasks;
 
 namespace GMG_Portal.Data
 {
-    public partial class SystemParameters_HomeSlider
+    public partial class HomeSlider
     {
         [NotMapped]
         public string OperationStatus { get; set; }
+
+        public Dictionary<string, string> TitleDictionary { get; set; }
+        public Dictionary<string, string> DescDictionary { get; set; }
     }
 }

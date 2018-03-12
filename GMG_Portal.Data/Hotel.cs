@@ -14,25 +14,23 @@ namespace GMG_Portal.Data
     
     public partial class Hotel
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Hotel()
+        {
+            this.Hotels_Features = new HashSet<Hotels_Features>();
+            this.Hotels_Images = new HashSet<Hotels_Images>();
+            this.Hotels_Reservation = new HashSet<Hotels_Reservation>();
+            this.Hotels_Translate = new HashSet<Hotels_Translate>();
+        }
+    
         public int Id { get; set; }
-        public Nullable<System.Guid> SGuid { get; set; }
-        public string DisplayValue { get; set; }
-        public Nullable<int> LookupKey { get; set; }
-        public Nullable<System.Guid> LookupKeyGuid { get; set; }
-        public Nullable<bool> IsCurrent { get; set; }
         public bool IsDeleted { get; set; }
         public Nullable<int> CityId { get; set; }
         public Nullable<int> Rate { get; set; }
-        public string DisplayValueDesc { get; set; }
-        public Nullable<int> LookupKeyDesc { get; set; }
-        public Nullable<System.Guid> LookupKeyGuidDesc { get; set; }
         public string CheckIn { get; set; }
         public string CheckOut { get; set; }
         public Nullable<double> Late { get; set; }
         public Nullable<double> Long { get; set; }
-        public string DisplayValueAddress { get; set; }
-        public Nullable<int> LookupKeyAddress { get; set; }
-        public Nullable<System.Guid> LookupKeyGuidAddress { get; set; }
         public string Email { get; set; }
         public Nullable<int> PriceStart { get; set; }
         public Nullable<double> DistanceDownTown { get; set; }
@@ -42,7 +40,15 @@ namespace GMG_Portal.Data
         public Nullable<int> CreatorUserId { get; set; }
         public Nullable<System.DateTime> DeletionTime { get; set; }
         public Nullable<int> DeleterUserId { get; set; }
-        public bool Show { get; set; }
         public Nullable<int> Currency { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Hotels_Features> Hotels_Features { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Hotels_Images> Hotels_Images { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Hotels_Reservation> Hotels_Reservation { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Hotels_Translate> Hotels_Translate { get; set; }
     }
 }

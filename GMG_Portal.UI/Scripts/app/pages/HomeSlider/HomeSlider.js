@@ -1,17 +1,16 @@
-﻿controllerProvider.register('HomeSlidersController', ['$scope', 'HomeSlidersApi', 'uploadService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', HomeSlidersController]);
-function HomeSlidersController($scope, HomeSlidersApi, uploadService, $rootScope, $timeout, $filter, $uibModal, toastr) {
-    var langId = document.querySelector('#HCurrentLang').value;
-    debugger;
-    var CurrentLanguage = langId;
-    $("#DropdwonLang").change(function () {
-        var selectedText = $(this).find("option:selected").text();
+﻿controllerProvider.register('HomeSlidersController', ['$scope', 'appCONSTANTS', 'HomeSlidersApi', 'uploadService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', HomeSlidersController]);
+function HomeSlidersController($scope, appCONSTANTS, HomeSlidersApi, uploadService, $rootScope, $timeout, $filter, $uibModal, toastr) {
+    $scope.data = { static: true }
+
+    $scope.language = appCONSTANTS.supportedLanguage;
+    var langId = document.querySelector('#HCurrentLang').value; 
+    $scope.CurrentLanguage = langId;
+    $("#DropdwonLang").change(function () { 
         var selectedValue = $(this).val();
         document.getElementById("HCurrentLang").value = selectedValue;
-        CurrentLanguage = selectedValue;
-
+        $scope.CurrentLanguage = selectedValue;  
         debugger;
-
-        HomeSlidersApi.GetAll(CurrentLanguage).then(function (response) {
+        HomeSlidersApi.GetAll($scope.CurrentLanguage).then(function (response) {
             $scope.HomeSliders = response.data;
             $rootScope.ViewLoading = false;
         });
@@ -23,9 +22,10 @@ function HomeSlidersController($scope, HomeSlidersApi, uploadService, $rootScope
     var maxFileSize = 2048000; // 1MB -> 1000 * 1024
     $scope.letterLimit = 20;
     $rootScope.ViewLoading = true;
-    HomeSlidersApi.GetAll(CurrentLanguage).then(function (response) {
+    HomeSlidersApi.GetAll($scope.CurrentLanguage).then(function (response) {
         $scope.HomeSliders = response.data;
         $rootScope.ViewLoading = false;
+       // console.log($scope.HomeSliders);
     });
     $scope.open = function (homeSlider) {
         debugger;
@@ -36,13 +36,14 @@ function HomeSlidersController($scope, HomeSlidersApi, uploadService, $rootScope
         $scope.FrmAddUpdate.$setPristine();
         $scope.FrmAddUpdate.$setUntouched();
         if (homeSlider == null) homeSlider = {};
+        else {
+            var rateCurrentSelected = $filter('filter')($scope.sliderRating, homeSlider.Rating);
+            $scope.selectedRate = rateCurrentSelected[0].id;
+        }
         $scope.HomeSlider = angular.copy(homeSlider);
         if ($scope.HomeSlider.Image)
             $scope.countFiles = $scope.HomeSlider.Image;
 
-        $timeout(function () {
-            document.querySelector('input[name="TxtNameAr"]').focus();
-        }, 1000);
     }
     $scope.openImage = function (homeSlider) {
         debugger;
@@ -81,7 +82,7 @@ function HomeSlidersController($scope, HomeSlidersApi, uploadService, $rootScope
             $scope.HomeSlider.Image = $scope.Image;
             $scope.Image = "";
         }
-        $scope.HomeSlider.LangId = CurrentLanguage;
+        $scope.HomeSlider.LangId = $scope.CurrentLanguage;
         $scope.HomeSlider.Rating = $scope.selectedRate;
 
         HomeSlidersApi.Save($scope.HomeSlider).then(function (response) {

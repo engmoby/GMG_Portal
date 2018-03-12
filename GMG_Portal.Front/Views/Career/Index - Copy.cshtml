@@ -1,0 +1,100 @@
+﻿@using GMG_Portal.API.Models.SystemParameters
+@model List<GMG_Portal.API.Models.SystemParameters.Career>
+@{
+    ViewBag.Title = "Career";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="mg-page-title parallax">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>@Front.Resources.Global.Career_Index_Title</h2>
+                <p>@Front.Resources.Global.Career_Index_Desc</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (null != TempData["alertMessage"])
+{
+    <script type="text/javascript">
+        alert("@TempData["alertMessage"]");
+    </script>
+}
+<div class="mg-page">
+    <div class="container">
+        <div class="row">
+            <div class="panel-group mb80" id="accordion" role="tablist" aria-multiselectable="true">
+
+                @foreach (Career careerObj in Model)
+
+            {
+
+                    <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="@careerObj.Id-A">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#@careerObj.Id" aria-expanded="false" aria-controls="@careerObj.Id" class="collapsed">
+                                @careerObj.DisplayValue
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="@careerObj.Id" class="panel-collapse collapse" role="tabpanel" aria-labelledby="@careerObj.Id-A" aria-expanded="false" style="height: 0px;">
+                        <div class="panel-body">
+                            <p>
+                                <b>@Front.Resources.Global.Career_Index_Job_Desc :</b>
+
+                                @careerObj.DisplayValueDesc .
+                            </p>
+
+                            <p>
+                                <b>@Front.Resources.Global.Career_Index_Job_Exp :</b>
+
+                                @careerObj.Experience
+                            </p>
+
+                            <p>
+                                <b>@Front.Resources.Global.Career_Index_Job_Level :</b>
+
+                                @careerObj.CareerLevel
+                            </p>
+
+                            <p>
+                                <b>
+                                    @Front.Resources.Global.Career_Index_Job_Type :
+                                </b>
+                                @careerObj.JobType
+                            </p>
+
+                            <p>
+                                <b>
+                                    @Front.Resources.Global.Career_Index_Job_Level :
+                                </b>
+
+                                @careerObj.EducationLevel
+                            </p>
+
+                            <p>
+                                <b>
+                                    @Front.Resources.Global.Career_Index_Job_Vacancies :
+                                </b>
+
+                                @careerObj.Vacancies
+                            </p>
+
+                            <p>
+                                <b>@Front.Resources.Global.Career_Index_Job_Requirements</b>
+
+                                @careerObj.DisplayValueRequirements.
+                            </p>
+
+                            <a href="/Career/Details/@careerObj.Id" class="main_apply" style="font-size: 16px;padding: 10px 35px; color: #FFF;background-color: #e7b315 ;border-color: #e7b315 ;">@Front.Resources.Global.Career_Index_Apply_Button</a>
+                        </div>
+                    </div>
+                </div>
+
+                }
+            </div>
+        </div>
+    </div>
+</div>

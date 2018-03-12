@@ -16,19 +16,23 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         {
             _db = new GMG_Portal_DBEntities1();
         }
-        public List<SystemParameters_HomeSlider> GetAllWithDeleted()
+        public List<HomeSlider> GetAllWithDeleted()
         {
-            return _db.SystemParameters_HomeSlider.OrderBy(p => p.IsDeleted).ToList();
+            return _db.HomeSliders.OrderBy(p => p.IsDeleted).ToList();
         }
-        public List<SystemParameters_HomeSlider> GetAll()
+        public List<HomeSlider> GetAll()
         {
-            return _db.SystemParameters_HomeSlider.Where(p => p.IsDeleted != true).ToList();
+            return _db.HomeSliders.Where(p => p.IsDeleted != true).ToList();
         }
-        public SystemParameters_HomeSlider Get(int id)
+        public HomeSlider Get(int id)
         {
-            return _db.SystemParameters_HomeSlider.Find(id);
+            return _db.HomeSliders.Find(id);
         }
-        private SystemParameters_HomeSlider Save(SystemParameters_HomeSlider obj)
+        public List<HomeSlider_Translate> GetTranslates(int recordId)
+        {
+            return _db.HomeSlider_Translate.Where(x => x.RecordId == recordId).ToList();
+        }
+        private HomeSlider Save(HomeSlider obj)
         {
             try
             {
@@ -54,41 +58,64 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 throw;
             }
         }
-        public SystemParameters_HomeSlider Insert(SystemParameters_HomeSlider postedHomeSlider)
+        public HomeSlider Insert(HomeSlider postedHomeSlider)
         {
 
-            var obj = new SystemParameters_HomeSlider()
+            var obj = new HomeSlider()
             {
-                DisplayValue = postedHomeSlider.DisplayValue,
-                DisplayValueDesc = postedHomeSlider.DisplayValueDesc,
-                Image= postedHomeSlider.Image,
+                Image = postedHomeSlider.Image,
                 IsDeleted = postedHomeSlider.IsDeleted,
-                Show = Parameters.Show,
                 Rating = postedHomeSlider.Rating,
                 URL = postedHomeSlider.URL,
                 CreationTime = Parameters.CurrentDateTime,
-                CreatorUserId = Parameters.UserId, 
+                CreatorUserId = Parameters.UserId,
             };
-            _db.SystemParameters_HomeSlider.Add(obj);
-            return Save(obj);
+            _db.HomeSliders.Add(obj);
+            _db.SaveChanges();
+            var objTrasnlate = new HomeSlider_Translate();
+            {
+                foreach (var title in postedHomeSlider.TitleDictionary)
+                {
+                    objTrasnlate.Title = title.Value;
+                    objTrasnlate.Description = postedHomeSlider.DescDictionary[title.Key];
+                    objTrasnlate.langId = title.Key;
+                    objTrasnlate.RecordId = obj.Id;
+                    _db.HomeSlider_Translate.Add(objTrasnlate);
+                    _db.SaveChanges();
+                }
+            }
+            HomeSlider objReturn = Get(obj.Id);
+            List<HomeSlider_Translate> currencyTranslate = GetTranslates(obj.Id);
+            return Save(objReturn);
         }
-        public SystemParameters_HomeSlider Edit(SystemParameters_HomeSlider postedhomeSlider)
+        public HomeSlider Edit(HomeSlider postedhomeSlider)
         {
-            SystemParameters_HomeSlider obj = Get(postedhomeSlider.Id);
-            obj.DisplayValue = postedhomeSlider.DisplayValue;
-            obj.DisplayValueDesc = postedhomeSlider.DisplayValueDesc;
+            HomeSlider obj = Get(postedhomeSlider.Id);
+            List<HomeSlider_Translate> currencyTranslate = GetTranslates(postedhomeSlider.Id);
+            foreach (var title in postedhomeSlider.TitleDictionary)
+            {
+                foreach (var objTranslate in currencyTranslate)
+                {
+                    if (title.Key == objTranslate.langId)
+                    {
+                        objTranslate.Title = title.Value;
+                        objTranslate.Description = postedhomeSlider.DescDictionary[title.Key];
+                        _db.SaveChanges();
+                    }
+                }
+            }
+
             obj.Image = postedhomeSlider.Image;
             obj.URL = postedhomeSlider.URL;
             obj.Rating = postedhomeSlider.Rating;
             obj.IsDeleted = postedhomeSlider.IsDeleted;
-            obj.Show = postedhomeSlider.Show; 
             obj.LastModificationTime = Parameters.CurrentDateTime;
             obj.LastModifierUserId = Parameters.UserId;
             return Save(obj);
         }
-        public SystemParameters_HomeSlider Delete(SystemParameters_HomeSlider postedhomeSlider)
+        public HomeSlider Delete(HomeSlider postedhomeSlider)
         {
-            SystemParameters_HomeSlider obj = Get(postedhomeSlider.Id);
+            HomeSlider obj = Get(postedhomeSlider.Id);
             //if (_db.SystemParameters_HomeSlider.Any(p => p.Id == postedhomeSlider.Id && p.IsDeleted != true))
             //{
             //      //  obj.OperationStatus = "HasRelationship";
@@ -98,6 +125,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             obj.IsDeleted = true;
             obj.CreationTime = Parameters.CurrentDateTime;
             obj.CreatorUserId = Parameters.UserId;
+            _db.SaveChanges();
             return Save(obj);
         }
 

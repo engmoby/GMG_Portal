@@ -1,0 +1,186 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="SurveryApp">
+
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900&subset=latin,greek,greek-ext,vietnamese,cyrillic-ext,latin-ext,cyrillic' rel='stylesheet' type='text/css'>
+
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png">
+
+
+    <link rel="stylesheet" href="Content/css/ionicons.css">
+    <link rel="stylesheet" href="Content/css/angular-toastr.css">
+    <link rel="stylesheet" href="Content/css/animate.css">
+    <link rel="stylesheet" href="Content/css/bootstrap.css">
+
+    <link rel="stylesheet" href="Content/css/font-awesome.css">
+
+    <link rel="stylesheet" href="Content/css/angular-progress-button-styles.min.css">
+    <link rel="stylesheet" href="Content/css/style.css">
+
+    <link rel="stylesheet" href="Content/css/main.css">
+</head>
+<body>
+    <!--<script type="text/javascript">
+        var menuItems = [];
+
+        menuItems.push({ "title": "Home  ", "level": "0", "icon": "ion-android-home", "stateRef": "HomePage", "templateUrl": "partial/currency/currency.html" });
+
+        menuItems.push({
+            "name": "Contactus", "title": "ContactUs", "level": "0", "icon": "ion-gear-a", "subMenu": [
+                { "name": "sdsdsd", "title": "about", "level": "1", "stateRef": "about", "templateUrl": "partial/about.html" }
+
+
+
+            ]
+        });
+
+    </script>-->
+
+    <main> 
+
+        <div style="width: 180px;  top: 66px;left: 0;z-index: 904;display: block;min-height: 100%;background-color: #1C2B36;height: 100%;position: fixed;">
+
+            <div style="position: relative; overflow: hidden;width: auto;height: 330px;">
+
+                <ul style="overflow: hidden;width: auto;height: 330px;    margin: 0;padding: 18px 0 0;list-style: none;">
+                    <li style="background-color: #209e91;display: block;position: relative;float: none;padding: 0;">
+                        <a ui-sref="user">Users</a>
+                    </li>
+                    <li>
+                        <a ui-sref="currency">currency</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!--<ba-sidebar></ba-sidebar>-->
+        <!---->
+
+        <div class="page-top clearfix" scroll-position="scrolled" max-height="50" ng-class="{'scrolled': scrolled}">
+            <a ui-sref="home" class="al-logo clearfix">
+                <img src="assets/img/logo1.png" style="height: 68px;" />
+            </a>
+            <a href="#" class="collapse-menu-link ion-navicon" ba-sidebar-toggle-menu></a>
+
+            <div class="search">
+                Content Language :
+
+                <select id="DropdwonLang" name="DropdwonLang" class="select-simple form-control pmd-select2">
+                    <option value="en">English</option>
+                    <option value="ar">العربيه</option>
+                    <option value="fr">Francais</option>
+                </select>
+
+
+            </div>
+
+            <div class="user-profile clearfix">
+                <div class="al-user-profile" uib-dropdown>
+                    <a uib-dropdown-toggle class="profile-toggle-link">
+                        <img ng-src="{{::( 'Kostya' | profilePicture )}}">
+                    </a>
+                    <ul class="top-dropdown-menu profile-dropdown" uib-dropdown-menu>
+                        <li><i class="dropdown-arr"></i></li>
+                        logumn
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="al-main">
+            <div class="al-content">
+                <div content-top></div>
+                <div class="content-top clearfix">
+                    <h1 class="al-title">{{ activePageTitle }}</h1>
+
+                    <ul class="breadcrumb al-breadcrumb">
+                      <li>
+                            <a href="#/dashboard">Home</a>
+                        </li>
+                          <li>{{ activePageTitle }}</li>
+                    </ul>
+                </div>
+                <div ui-view autoscroll="true" autoscroll-body-top></div>
+            </div>
+        </div>
+
+
+    </main>
+
+    <!-- End Left sidebar -->
+    <!--<div ui-view></div>-->
+    <div id="preloader" ng-show="!$pageFinishedLoading || ViewLoading">
+        <div></div>
+    </div>
+
+    <script src="scripts/lib/jquery-1.10.2.min.js"></script>
+    <script src="scripts/lib/jquery-ui.js"></script>
+    <script src="scripts/lib/bootstrap.min.js"></script>
+    <script src="scripts/lib/amcharts.js"></script>
+    <script src="scripts/lib/responsive.min.js"></script>
+    <script src="scripts/lib/angular.js"></script>
+    <script src="scripts/lib/angular-messages.js"></script>
+    <script src="scripts/lib/jquery.slimscroll.js"></script>
+    <script src="scripts/lib/angular-slimscroll.js"></script>
+    <script src="scripts/lib/smart-table.js"></script>
+    <script src="scripts/lib/angular-toastr.tpls.js"></script>
+    <script src="scripts/lib/angular-touch.js"></script>
+    <script src="scripts/lib/sortable.js"></script>
+    <script src="scripts/lib/leaflet-src.js"></script>
+    <script src="scripts/lib/angular-progress-button-styles.min.js"></script>
+    <script src="scripts/lib/angular-ui-router.js"></script>
+    <script src="scripts/lib/ui-bootstrap-tpls.js"></script>
+    <script src="scripts/lib/angular-animate.js"></script>
+<!--<script src="scripts/app/app.js"></script>-->
+    <script src="partial/app/config.js"></script>
+    <script src="partial/app/app.js"></script>
+    <script src="scripts/app/theme/theme.module.js"></script>
+    <script src="scripts/app/theme/components/components.module.js"></script>
+    <script src="scripts/app/theme/inputs/inputs.module.js"></script>
+    <script src="scripts/app/theme/theme.config.js"></script>
+    <script src="scripts/app/theme/theme.configProvider.js"></script>
+    <script src="scripts/app/theme/theme.constants.js"></script>
+    <script src="scripts/app/theme/theme.run.js"></script>
+    <script src="scripts/app/theme/theme.service.js"></script>
+    <script src="scripts/app/theme/services/baProgressModal.js"></script>
+    <script src="scripts/app/theme/services/baUtil.js"></script>
+    <script src="scripts/app/theme/services/fileReader.js"></script>
+    <script src="scripts/app/theme/services/preloader.js"></script>
+    <script src="scripts/app/theme/components/backTop/backTop.directive.js"></script>
+    <script src="scripts/app/theme/components/baSidebar/baSidebar.directive.js"></script>
+    <script src="scripts/app/theme/components/baSidebar/baSidebar.service.js"></script>
+    <script src="scripts/app/theme/components/baSidebar/BaSidebarCtrl.js"></script>
+    <script src="scripts/app/theme/components/baSidebar/baSidebarHelpers.directive.js"></script>
+    <script src="scripts/app/theme/components/contentTop/contentTop.directive.js"></script>
+    <script src="scripts/app/theme/components/msgCenter/msgCenter.directive.js"></script>
+    <script src="scripts/app/theme/components/msgCenter/MsgCenterCtrl.js"></script>
+    <script src="scripts/app/theme/components/pageTop/pageTop.directive.js"></script>
+    <script src="scripts/app/theme/filters/image/profilePicture.js"></script>
+    <script src="scripts/app/theme/components/backTop/lib/jquery.backTop.min.js"></script>
+
+    <!--<script src="scripts/app/pages/pages.module.js"></script>-->
+    <!--<script src="Scripts/app/pages/Settings.js"></script>-->
+
+    <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.7.1/loading-bar.min.css' type='text/css' media='all' />
+    <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.7.1/loading-bar.min.js'></script>
+    <script src="Scripts/app/theme/checklist-model.js"></script>
+
+    <script src="Scripts/app/theme/angular.ui-sortable.js"></script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyB3wGgcIinZF1DW9oiwSCG8JjGQC-nPutA"></script>
+
+    <script src="https://rawgit.com/allenhwkim/angularjs-google-maps/master/build/scripts/ng-map.js"></script>
+    <script src="Scripts/app/theme/autocomplete.js"></script>
+
+    <link href="Scripts/app/pages/Owner/ng-sortable.min.css" rel="stylesheet" />
+    <script src="Scripts/app/pages/Owner/containerPositioning.js"></script>
+    <script src="Scripts/app/pages/Owner/ng-sortable.js"></script>
+
+    <script src="partial/app/currency/currencyService.js"></script>
+    <script src="partial/app/currency/currencyCtrl.js"></script>
+</body>
+</html>

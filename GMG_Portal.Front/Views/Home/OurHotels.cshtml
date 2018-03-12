@@ -1,49 +1,5 @@
-﻿@*//@using GMG_Portal.API.Models.Hotels.Hotel*@
+﻿@using Front.Helpers
 @model GMG_Portal.API.Models.General.HomeModels
-
-@*<div class="mg-best-rooms">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="mg-sec-title">
-                        <h2>Our Hotelss</h2>
-                        <p>Luxury Hotelss</p>
-                    </div>
-                    <div class="row">
-
-                        @{
-
-
-
-                        }
-
-
-
-                        @if (Model.Hotels != null)
-                        {
-                            foreach (var hotel in Model.Hotels.Take(3))
-                            {
-                            <div class="col-sm-@hotel.Bootstrap">
-                                <figure class="mg-room">
-                                    <img src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/@hotel.Image" alt="img11" class="img-responsive">
-                                    <figcaption>
-                                        <h2>@hotel.DisplayValue</h2>
-                                        <div class="mg-room-rating"><i class="fa fa-star"></i> @hotel.Rate</div>
-                                        <div class="mg-room-price">@hotel.PriceStart /Night</div>
-                                        <p>@hotel.DisplayValueDesc</p>
-                                        <a href="/Hotel/Details/@hotel.Id" class="btn btn-link ">View Details <i class="fa fa-angle-double-right"></i></a>
-                                    </figcaption>
-                                </figure>
-                            </div>
-                        }
-
-
-                        }
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>*@
 
 @if (Model.Hotels != null)
 {
@@ -61,57 +17,60 @@
                             </div>
                             <div id='ajax_loader' style="position: fixed; left: 50%; top: 50%; display: none;">
                                 <div class="preloader" id="divLoader"></div>
-
-
                             </div>
                             <input id="pageDemo2" class="demo" type="submit" value="Custom ">
                             <input id="pageDemo4" class="demo" type="submit" value="Custom Message">*@
                     </div>
                     <div class="row">
 
-                        @foreach (var hotel in Model.Hotels.Take(3))
+                        @foreach (var hotel in Model.Hotels.Take(3).Where(x=>x.ImageList.Count > 0))
                         {
                             <div class="col-sm-4">
                                 <a href="/Hotel/Details/@hotel.Id" style="color: #edf0f3 !important;">
-                                     <figure class="mg-room">
-                                        <img src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/Hotels/@hotel.Image" alt="img11" class="img-responsive" style="width: 103%; height: 211px;">
+                                    <figure class="mg-room">
+                                        <img src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/Hotels/@hotel.ImageList[0].Image" alt="img11" class="img-responsive" style="width: 103%; height: 211px;">
                                         <figcaption>
 
-                                            @if (@hotel.DisplayValue.Length >= 17)
+                                            @if (@hotel.TitleDictionary[Common.CurrentLang].Length >= 17)
                                             {
-                                                <h2>@hotel.DisplayValue.ToString().Substring(0, 17)</h2>
+                                                <h2>@hotel.TitleDictionary[Common.CurrentLang].ToString().Substring(0, 17)</h2>
                                             }
                                             else
                                             {
-                                                <h2>@hotel.DisplayValue</h2>
+                                                <h2>@hotel.TitleDictionary[Common.CurrentLang]</h2>
 
                                             }
                                             <div class="mg-room-rating">
                                                 <i class="fa fa-star"></i> @hotel.Rate
                                             </div>
                                             <div class="mg-room-price">
-                                                <sub>@hotel.CurrencyTitle</sub>@hotel.PriceStart<span style="font-size: 18px;">/@Front.Resources.Global.Hotel_Night</span>
-                                                  @*@hotel.PriceStart<sup style="margin-left: 4px;">(@hotel.CurrencyTitle)</sup> <span style="font-size: 21px;">@Front.Resources.Global.Hotel_Night</span>*@
-                                            </div>
-                                            @*<div class="mg-room-price">
-                                                @hotel.PriceStart<sup style="margin-left: 4px;">/@Front.Resources.Global.Hotel_Night</sup> <span style="font-size: 21px;">(@hotel.Currency)</span>
-                                            </div>*@
-                                            @if (@hotel.DisplayValueDesc.Length >= 81)
-                                            {
-                                                <p> @hotel.DisplayValueDesc.ToString().Substring(0, 81)</p>
+                                                    @foreach (var c in Model.Currency)
+                                                    {
+                                                        if (c.Id == hotel.Currency)
+                                                        {
+                                                            <sub>
+                                                                @c.TitleDictionary[Common.CurrentLang] 
+                                                            </sub>
 
-                                            }
-                                            else
-                                            {
-                                                <p> @hotel.DisplayValueDesc</p>
-                                            }
-                                            <a href="/Hotel/Details/@hotel.Id" class="btn btn-link ">@Front.Resources.Global.SeeMore <i class="fa fa-angle-double-right"></i></a>
-                                        </figcaption>
-                                    </figure>
-                                </a>
-                            </div>
+                                                        }
+                                                    }
+                                            @hotel.PriceStart<span style="font-size: 18px;">/@Front.Resources.Global.Hotel_Night</span>
+                                        </div>
+                                        @if (@hotel.DescDictionary[Common.CurrentLang].Length >= 81)
+                                        {
+                                            <p> @hotel.DescDictionary[Common.CurrentLang].ToString().Substring(0, 81)</p>
+
+                                        }
+                                        else
+                                        {
+                                            <p> @hotel.DescDictionary[Common.CurrentLang]</p>
+                                        }
+                                        <a href="/Hotel/Details/@hotel.Id" class="btn btn-link ">@Front.Resources.Global.SeeMore <i class="fa fa-angle-double-right"></i></a>
+                                    </figcaption>
+                                </figure>
+                            </a>
+                        </div>
                         }
-
                     </div>
                 </div>
             </div>

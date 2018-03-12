@@ -164,5 +164,4 @@
 
 	/* bind featherlight on ready if config autoBind is set */
 	$(document).ready(function(){ FeatherlightGallery._onReady(); });
-
 }(jQuery));

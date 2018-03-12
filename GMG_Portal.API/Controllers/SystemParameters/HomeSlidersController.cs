@@ -22,18 +22,18 @@ namespace GMG_Portal.API.Controllers.SystemParameters
             try
             {
                 var homeSlidersLogic = new HomeSlidersLogic();
-                var homeSlidersLogicTranslate = new HomeSliderLogicTranslate();
-                if (langId == Parameters.DefaultLang)
-                {
+                //var homeSlidersLogicTranslate = new HomeSliderLogicTranslate();
+                //if (langId == Parameters.DefaultLang)
+                //{
                     var obj = homeSlidersLogic.GetAll();
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<SystemParameters_HomeSlider>>(obj));
-                }
-                else
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<HomeSliderModel>>(obj));
+                //}
+                //else
 
-                {
-                    var objByLang = homeSlidersLogicTranslate.GetAll(langId);
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<SystemParameters_HomeSlider_Translate>>(objByLang));
-                }
+                //{
+                //    var objByLang = homeSlidersLogicTranslate.GetAll(langId);
+                //    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<SystemParameters_HomeSlider_Translate>>(objByLang));
+                //}
             }
             catch (Exception ex)
             {
@@ -46,23 +46,23 @@ namespace GMG_Portal.API.Controllers.SystemParameters
             try
             {
                 var homeSlidersLogic = new HomeSlidersLogic();
-                var homeSlidersLogicTranslate = new HomeSliderLogicTranslate();
+                //var homeSlidersLogicTranslate = new HomeSliderLogicTranslate();
 
-                if (langId == Parameters.DefaultLang)
-                {
+                //if (langId == Parameters.DefaultLang)
+                //{
                     var obj = homeSlidersLogic.GetAllWithDeleted();
 
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<SystemParameters_HomeSlider>>(obj));
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<HomeSliderModel>>(obj));
 
-                }
-                else
+                //}
+                //else
 
-                {
-                    var objByLang = homeSlidersLogicTranslate.GetAllWithDeleted(langId);
+                //{
+                //    var objByLang = homeSlidersLogicTranslate.GetAllWithDeleted(langId);
 
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<SystemParameters_HomeSlider_Translate>>(objByLang));
+                //    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<SystemParameters_HomeSlider_Translate>>(objByLang));
 
-                }
+                //}
 
             }
             catch (Exception ex)
@@ -74,45 +74,45 @@ namespace GMG_Portal.API.Controllers.SystemParameters
          
 
         [HttpPost]
-        public HttpResponseMessage Save(HomeSlider postedHomeSliders)
+        public HttpResponseMessage Save(HomeSliderModel postedHomeSliders)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
                     var homeSlidersLogic = new HomeSlidersLogic();
-                    var homeSlidersLogicTranslate = new HomeSliderLogicTranslate();
+                //    var homeSlidersLogicTranslate = new HomeSliderLogicTranslate();
 
-                    SystemParameters_HomeSlider obj = null;
+                    HomeSlider obj = null;
                     SystemParameters_HomeSlider_Translate objByLang = null;
                     if (postedHomeSliders.Id.Equals(0))
                     {
-                        if (postedHomeSliders.langId == Parameters.DefaultLang)
-                            obj = homeSlidersLogic.Insert(Mapper.Map<SystemParameters_HomeSlider>(postedHomeSliders));
-                        else
-                            objByLang = homeSlidersLogicTranslate.Insert(Mapper.Map<SystemParameters_HomeSlider_Translate>(postedHomeSliders));
+                      //  if (postedHomeSliders.langId == Parameters.DefaultLang)
+                            obj = homeSlidersLogic.Insert(Mapper.Map<HomeSlider>(postedHomeSliders));
+                        //else
+                        //    objByLang = homeSlidersLogicTranslate.Insert(Mapper.Map<SystemParameters_HomeSlider_Translate>(postedHomeSliders));
                     }
                     else
                     {
                         if (postedHomeSliders.IsDeleted)
                         {
-                            if (postedHomeSliders.langId == Parameters.DefaultLang)
-                                obj = homeSlidersLogic.Delete(Mapper.Map<SystemParameters_HomeSlider>(postedHomeSliders));
-                            else
-                                objByLang = homeSlidersLogicTranslate.Delete(Mapper.Map<SystemParameters_HomeSlider_Translate>(postedHomeSliders));
+                          //  if (postedHomeSliders.langId == Parameters.DefaultLang)
+                                obj = homeSlidersLogic.Delete(Mapper.Map<HomeSlider>(postedHomeSliders));
+                          // / else
+                              //  objByLang = homeSlidersLogicTranslate.Delete(Mapper.Map<SystemParameters_HomeSlider_Translate>(postedHomeSliders));
                         }
                         else
                         {
-                            if (postedHomeSliders.langId == Parameters.DefaultLang)
-                                obj = homeSlidersLogic.Edit(Mapper.Map<SystemParameters_HomeSlider>(postedHomeSliders));
-                            else
-                                objByLang = homeSlidersLogicTranslate.Edit(Mapper.Map<SystemParameters_HomeSlider_Translate>(postedHomeSliders));
+                          //  if (postedHomeSliders.langId == Parameters.DefaultLang)
+                                obj = homeSlidersLogic.Edit(Mapper.Map<HomeSlider>(postedHomeSliders));
+                          //  else
+                              //  objByLang = homeSlidersLogicTranslate.Edit(Mapper.Map<SystemParameters_HomeSlider_Translate>(postedHomeSliders));
                         }
                     }
-                    if (postedHomeSliders.langId == Parameters.DefaultLang)
-                        return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<SystemParameters_HomeSlider>(obj));
-                    else
-                        return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<SystemParameters_HomeSlider_Translate>(objByLang));
+                   // if (postedHomeSliders.langId == Parameters.DefaultLang)
+                        return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<HomeSliderModel>(obj));
+                  //  else
+                      //  return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<SystemParameters_HomeSlider_Translate>(objByLang));
 
                 }
                 goto ThrowBadRequest;

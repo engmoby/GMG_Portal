@@ -517,7 +517,6 @@ angular.module('ngResource', ['ng']).
     };
 
     this.$get = ['$http', '$log', '$q', '$timeout', function($http, $log, $q, $timeout) {
-
       var noop = angular.noop,
         forEach = angular.forEach,
         extend = angular.extend,
@@ -541,7 +540,6 @@ angular.module('ngResource', ['ng']).
           replace(/%3D/gi, '=').
           replace(/%2B/gi, '+');
       }
-
 
       /**
        * This method is intended for encoding *key* or *value* parts of query component. We need a
@@ -630,7 +628,6 @@ angular.module('ngResource', ['ng']).
           // replace escaped `/\.` with `/.`
           config.url = protocolAndDomain + url.replace(/\/\\\./, '/.');
 
-
           // set params - delegate param encoding to $http
           forEach(params, function(value, key) {
             if (!self.urlParams[key]) {
@@ -640,7 +637,6 @@ angular.module('ngResource', ['ng']).
           });
         }
       };
-
 
       function resourceFactory(url, paramDefaults, actions, options) {
         var route = new Route(url, options);
@@ -838,7 +834,6 @@ angular.module('ngResource', ['ng']).
             return promise;
           };
 
-
           Resource.prototype['$' + name] = function(params, success, error) {
             if (isFunction(params)) {
               error = success; success = params; params = {};
@@ -858,6 +853,4 @@ angular.module('ngResource', ['ng']).
       return resourceFactory;
     }];
   });
-
-
 })(window, window.angular);

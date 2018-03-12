@@ -1,6 +1,6 @@
 ﻿@using Front.Helpers
 @using GMG_Portal.API.Models.SystemParameters
-@model GMG_Portal.API.Models.SystemParameters.News
+@model GMG_Portal.API.Models.SystemParameters.NewsModel
 
 @{
     ViewBag.Title = "Details";
@@ -10,7 +10,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h2>@Model.DisplayValue</h2>
+                <h2>@Model.TitleDictionary[Common.CurrentLang]</h2>
                 <p></p>
             </div>
         </div>
@@ -30,21 +30,20 @@
                             {
                                 <img style="width: 650px; height: 350px;" src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/News/@Model.Image" alt="" class="img-responsive">
                             }
-                            <h2 class="mg-post-title">@Model.DisplayValue</h2>
+                            <h2 class="mg-post-title">@Model.TitleDictionary[Common.CurrentLang]</h2>
                             <div class="mg-post-meta">
                                 <span>@Model.CreationTime.Value.ToString("D")</span>
-                                <span>by  @Model.CreatorUserName </span>
+                                <span>by  @Model.CreatorUserName Administrator</span>
                                 <span><a href="/News/Index/@Model.CategoryId">@Model.CategoryName</a> </span>
                             </div>
                         </header>
-                        <div> 
-                            
-                            <div class="display-field" > 
+                        <div>
 
-                                @Html.PreserveNewLines(@Model.DisplayValueDesc)
+                            <div class="display-field">
+
+                                @Html.PreserveNewLines(@Model.DescDictionary[Common.CurrentLang])
                             </div>
                         </div>
-
                     </article>
                 </main>
 
@@ -56,43 +55,39 @@
                             <a href="#">Disciplinae principes tertium parentes <i class="fa fa-angle-right"></i></a>
                         </div>
                     </div>*@
-
-
             </div>
             <div class="col-md-4">
                 <div class="mg-widget-area">
                     @*<aside class="mg-widget">
                         <input id="txtSearch" type="text" placeholder="Search..." class="form-control" onkeydown="search(this)">
-
                     </aside>*@
                     <aside class="mg-widget">
                         <h2 class="mg-widget-title">@Front.Resources.Global.News_RecentNews</h2>
                         <ul class="mg-recnt-posts" id="ulAllNews">
-                            @*@{
-                                    var Users = (List<News>)ViewBag.NewsList;
+                            @{
+                                    var Users = (List<NewsModel>)ViewBag.NewsList;
 
                                     for (int i = 0; i < Users.Count; i++)
                                     {
                                         <li>
                                             <div class="mg-recnt-post">
                                                 <div class="mg-rp-date">
-                                                    <div class="mg-rp-date">@ViewBag.NewsList[i].CreationTime.Value.Day <div class="mg-rp-month">@ViewBag.NewsList[i].CreationTime.Value.ToString("MMM")</div></div>
+                                                    @*<div class="mg-rp-date">@ViewBag.NewsList[i].CreationTime.Value.Day <div class="mg-rp-month">@ViewBag.NewsList[i].CreationTime.Value.ToString("MMM")</div></div>*@
                                                 </div>
                                                 <h3>
-                                                    <a href="/News/Details/@ViewBag.NewsList[i].Id">@ViewBag.NewsList[i].DisplayValue</a>
+                                                    <a href="/News/Details/@ViewBag.NewsList[i].Id">@ViewBag.NewsList[i].TitleDictionary[Common.CurrentLang]</a>
                                                 </h3>
-                                                <p>@ViewBag.NewsList[i].DisplayValueDesc.ToString().Substring(0, 30)</p>
+                                                <p>@ViewBag.NewsList[i].DescDictionary[Common.CurrentLang].ToString().Substring(0, 30)</p>
                                             </div>
                                         </li>
                                     }
-                                }*@
+                                }
                         </ul>
                     </aside>
                     <aside class="mg-widget">
                         <h2 class="mg-widget-title">@Front.Resources.Global.News_Category</h2>
                         <ul id="ulCategory"></ul>
                     </aside>
-
                 </div>
             </div>
         </div>
@@ -102,7 +97,7 @@
 
 <script>
     function search(ele) {
-        if (event.keyCode == 13) { 
+        if (event.keyCode == 13) {
             $.ajax({
                 url: '@Url.Action("Search", "News")?keyword=' + ele.value + '&langId=@Common.CurrentLang' ,
                 //url: "http://localhost:2798/SystemParameters/News/SearchNews/",
@@ -124,43 +119,23 @@
         var apiUrl = document.querySelector('#HServicesURL').value;
         var newsId = document.querySelector('#HCurrentNewsId').value;
         $.ajax({
-            url: apiUrl + "/SystemParameters/News/GetLatestNewsWithOutCurrentId?langId=@Common.CurrentLang&newsId=" + newsId,
+            url: apiUrl + "/SystemParameters/NewsCategory/GetAll?langId=@Common.CurrentLang",
             type: "Get",
             success: function (data) {
                 for (var i = 0; i < data.length; i++) {
-                     
-                        $( 
-                            "<li>" +
-                             "<div class='mg-recnt-post'>" +
-                            "<div class='mg-rp-date'>" +
-                            "<div class='mg-rp-date'>" + data[i].CreationDay +
-                            "<div class='mg-rp-month'>" + data[i].CreationMonth + "</div></div> </div>" +
-                           "<h3>" +
-                            "<a href='/News/Details/" + data[i].Id + "'>" + data[i].DisplayValue.toString().substring(20, 0) + "</a></h3>" +
-                            "<p>" + data[i].DisplayValueDesc.substring(50, 0) + "</p></div></li>"
-
-
-                            ).appendTo("#ulAllNews");
-                    
-
-
-
-                }
-                for (var j = 0; j < data[0].Categories.length; j++) {
                     $(
                         "<li>" +
-                        "<a href='/News/Index/" + data[0].Categories[j].Id + "'>" + data[0].Categories[j].DisplayValue + "</a>" +
+                        "<a href='/News/Index/" + data[i].Id + "'>" + data[i].TitleDictionary['@Common.CurrentLang']  + "</a>" +
                         " </li>"
-
 
                     ).appendTo("#ulCategory");
                 }
+
             },
             error: function(msg) {
                //  alert("error news category");
             }
         });
-
 
     });
 </script>

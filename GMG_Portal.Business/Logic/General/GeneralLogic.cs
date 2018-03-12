@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using GMG_Portal.Data;
-
+using System.Web;
+using System.Web.Http;
 namespace GMG_Portal.Business.Logic.General
 {
     public class GeneralLogic
@@ -17,12 +19,12 @@ namespace GMG_Portal.Business.Logic.General
             _db = new GMG_Portal_DBEntities1();
         }
 
-
+       
         //public List<HomeView> GetAll()
         //{
         //    return _db.HomeViews.ToList();
         //}
-    
+
         //public List<HomeView> GetAllByLangId(string landId)
         //{
         //    return _db.HomeViews.ToList();
@@ -33,10 +35,7 @@ namespace GMG_Portal.Business.Logic.General
             try
             {
                 var connectionString = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
-
-                ////string conStr = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString.ToString();
-                //string conStr = "Data Source = tcp:gmg.database.windows.net,1433; Initial Catalog = GMG_PORTAL_STAG; User Id = gmg_admin@gmg; Password = gCv3XfIkABJWl2hK;";
-
+ 
 
                 SqlConnection thisConnection = default(SqlConnection);
                 thisConnection = new SqlConnection(connectionString);

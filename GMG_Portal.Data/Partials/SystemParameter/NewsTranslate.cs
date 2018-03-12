@@ -16,6 +16,6 @@ namespace GMG_Portal.Data
         public string CategoryName { get; set; }
         public int CreationDay { get; set; }
         public string CreationMonth { get; set; }
-        public List<SystemParameters_Category> Categories { get; set; }
+        public List<Category> Categories { get; set; }
     }
 }

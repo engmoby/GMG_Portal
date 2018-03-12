@@ -17,19 +17,19 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         {
             _db = new GMG_Portal_DBEntities1();
         }
-        public List<SystemParameters_CoreValues> GetAllWithDeleted()
+        public List<CoreValue> GetAllWithDeleted()
         {
-            return _db.SystemParameters_CoreValues.OrderBy(p => p.IsDeleted).ToList();
+            return _db.CoreValues.OrderBy(p => p.IsDeleted).ToList();
         }
-        public List<SystemParameters_CoreValues> GetAll()
+        public List<CoreValue> GetAll()
         {
-            return _db.SystemParameters_CoreValues.Where(p => p.IsDeleted != true).ToList();
+            return _db.CoreValues.Where(p => p.IsDeleted != true).ToList();
         }
-        public SystemParameters_CoreValues Get(int id)
+        public CoreValue Get(int id)
         {
-            return _db.SystemParameters_CoreValues.Find(id);
+            return _db.CoreValues.Find(id);
         }
-        private SystemParameters_CoreValues Save(SystemParameters_CoreValues obj)
+        private CoreValue Save(CoreValue obj)
         {
             try
             {
@@ -55,24 +55,35 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 throw;
             }
         }
-        public SystemParameters_CoreValues Insert(SystemParameters_CoreValues postedCoreValue)
+        public CoreValue Insert(CoreValue postedCoreValue)
         { 
-            var obj = new SystemParameters_CoreValues()
-            {
-                DisplayValue = postedCoreValue.DisplayValue,
-                DisplayValueDesc = postedCoreValue.DisplayValueDesc,
-                Icon = postedCoreValue.Icon,
-                IsDeleted = postedCoreValue.IsDeleted,
-                Show = Parameters.Show, 
+            var obj = new CoreValue()
+            { 
+                IsDeleted = postedCoreValue.IsDeleted, 
                 CreationTime = Parameters.CurrentDateTime,
                 CreatorUserId = Parameters.UserId,
             };
-            _db.SystemParameters_CoreValues.Add(obj);
-            return Save(obj);
+            _db.CoreValues.Add(obj);
+            _db.SaveChanges();
+            var objTrasnlate = new CoreValues_Translate();
+            {
+                foreach (var title in postedCurrency.TitleDictionary)
+                {
+                    objTrasnlate.Title = title.Value;
+                    objTrasnlate.Description = postedCurrency.DescDictionary[title.Key];
+                    objTrasnlate.LangId = title.Key;
+                    objTrasnlate.RecordId = obj.Id;
+                    _db.Currency_Translate.Add(objTrasnlate);
+                    _db.SaveChanges();
+                }
+            }
+            Currency currency = Get(postedCurrency.Id);
+            List<Currency_Translate> currencyTranslate = GetTranslates(postedCurrency.Id);
+            return Save(currency);
         }
-        public SystemParameters_CoreValues Edit(SystemParameters_CoreValues postedCoreValue)
+        public CoreValue Edit(CoreValue postedCoreValue)
         {
-            SystemParameters_CoreValues obj = Get(postedCoreValue.Id);
+            CoreValue obj = Get(postedCoreValue.Id);
             obj.DisplayValue = postedCoreValue.DisplayValue;
             obj.DisplayValueDesc = postedCoreValue.DisplayValueDesc;
             obj.Icon = postedCoreValue.Icon; 
@@ -82,14 +93,9 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             obj.LastModifierUserId = Parameters.UserId;
             return Save(obj);
         }
-        public SystemParameters_CoreValues Delete(SystemParameters_CoreValues postedCoreValue)
+        public CoreValue Delete(CoreValue postedCoreValue)
         {
-            SystemParameters_CoreValues obj = Get(postedCoreValue.Id);
-            //if (_db.SystemParameters_CoreValues.Any(p => p.Id == postedCoreValue.Id && p.IsDeleted != true))
-            //{
-            //    //  obj.OperationStatus = "HasRelationship";
-            //    return obj;
-            //}
+            CoreValue obj = Get(postedCoreValue.Id); 
 
             obj.IsDeleted = true;
             obj.CreationTime = Parameters.CurrentDateTime;

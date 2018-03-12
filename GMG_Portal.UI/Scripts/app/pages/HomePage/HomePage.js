@@ -16,8 +16,7 @@ function HomePageController($scope, HomePageApi, $rootScope, $timeout, $filter, 
         $rootScope.ViewLoading = false;
     });
    
-    HomePageApi.GetAllContactInquiry().then(function (response) {
-        debugger;
+    HomePageApi.GetAllContactInquiry().then(function (response) { 
         $scope.HomePageInquiry = response.data;
     });
 

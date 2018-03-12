@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Data;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Mail;
 using System.Web.Http;
 using GMG_Portal.API.Models.SystemParameters;
 using GMG_Portal.Data;
@@ -17,235 +19,76 @@ using GMG_Portal.API.Models.SystemParameters.ContactUs;
 using GMG_Portal.Business.Logic.General;
 using Heloper;
 using Helpers;
-
+using System.Web;
 namespace GMG_Portal.API.Controllers.SystemParameters
 {
     [RoutePrefix("SystemParameters/General")]
     [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*")]
     public class GeneralController : ApiController
     {
+        private string PopulateBody(string url)
+        {
+            string body = string.Empty;
+            using (StreamReader reader = new StreamReader(HttpContext.Current.Server.MapPath("~/Invetation.html")))
+            {
+                body = reader.ReadToEnd();
+            }
+            body = body.Replace("{Url}", url);
+            return body;
+        }
+        private void SendHtmlFormattedEmail(string recepientEmail, string subject, string body)
+        {
+            string FromMail = "gmggroupsoftware@gmail.com";
+            MailMessage mail = new MailMessage();
+            SmtpClient SmtpServer = new SmtpClient("in-v3.mailjet.com");
+            mail.From = new MailAddress(FromMail);
+            mail.To.Add(recepientEmail);
+            mail.Subject = subject;
+            mail.IsBodyHtml = true;
+            mail.Body = body;
+            SmtpServer.Port = 587;
+            SmtpServer.Credentials = new System.Net.NetworkCredential("9d7c1de804eabdf8fedf498bffadd546", "93187ce363c3beb198214badc25cdc3c");
+            SmtpServer.EnableSsl = false;
+            SmtpServer.Send(mail);
+
+        }
 
         public HttpResponseMessage GetAll(string langId)
         {
             try
             {
+                string url = "http://gmgportal.azurewebsites.net/Home/Index";
+                //string body = PopulateBody(url);
 
+                //SendHtmlFormattedEmail("m.abdo@gmggroupsoft.com", "New Invetation!", body);
 
+                var retunGeneralAll = new HomeModels(); 
+                var homeSlidersLogic = new HomeSlidersLogic();
+                var hotelLogic = new HotelLogic();
+                var newsLogic = new NewsLogic();
+                var featureLogic = new FeaturesLogic();
+                var aboutLogic = new AboutLogic();
+                var ownerLogic = new OwnerLogic();
                 var currencyLogic = new CurrencyLogic();
-                var currencyLogicTranslateogic = new CurrencyLogicTranslate();
 
-                var retunGeneralAll = new HomeModels();
-                var generalLogic = new GeneralLogic();
-
-                DataTable homeSlidersTable;
-                DataTable hotelsTable;
-                DataTable newsTable;
-                DataTable featuresTable;
-                DataTable aboutTable;
-                DataTable hotelImages;
-                DataTable ownerTable;
+                var objHomeSliders = homeSlidersLogic.GetAll();
+                var objHotels = hotelLogic.GetAll();
+                var objNews = newsLogic.GetAll();
+                var objFeatures = featureLogic.GetAllByTake6();
+                var objAbout = aboutLogic.GetAll();
+                var objHotelsImages = hotelLogic.GetAllImages();
+                var objOwner = ownerLogic.GetAll(); 
+                var objCurrency = currencyLogic.GetAll();
 
 
-
-                if (langId == Parameters.DefaultLang)
-                {
-                    homeSlidersTable = generalLogic
-                       .Sqlread("SELECT * FROM [dbo].[SystemParameters.HomeSlider] WHERE IsDeleted=0").Tables[0];
-                    hotelsTable = generalLogic
-                       .Sqlread(
-                           "SELECT * FROM [dbo].[Hotels] JOIN dbo.[Hotels.Images] ON dbo.Hotels.Id = dbo.[Hotels.Images].Hotel_Id WHERE dbo.Hotels.IsDeleted=0 AND dbo.[Hotels.Images].IsDeleted=0")
-                       .Tables[0];
-                    newsTable = generalLogic
-                       .Sqlread("SELECT * FROM [dbo].[SystemParameters.News] WHERE IsDeleted=0").Tables[0];
-                    featuresTable = generalLogic
-                       .Sqlread("SELECT  TOP 6 * FROM [dbo].[SystemParameters.Features] WHERE IsDeleted=0").Tables[0];
-                    aboutTable = generalLogic
-                       .Sqlread("SELECT * FROM [dbo].[SystemParameters.About] WHERE IsDeleted=0").Tables[0];
-                    hotelImages = generalLogic
-                       .Sqlread(
-                           "SELECT Image FROM [dbo].[Hotels] JOIN dbo.[Hotels.Images] ON dbo.Hotels.Id = dbo.[Hotels.Images].Hotel_Id WHERE dbo.Hotels.IsDeleted=0 AND dbo.[Hotels.Images].IsDeleted=0")
-                       .Tables[0];
-                    ownerTable = generalLogic
-                       .Sqlread("SELECT * FROM [dbo].[SystemParameters.Owners] WHERE IsDeleted=0").Tables[0];
-                }
-                else
-                {
-                    homeSlidersTable = generalLogic
-                        .Sqlread("SELECT * FROM [dbo].[SystemParameters.HomeSlider_Translate] WHERE LangId='" + langId + "' AND IsDeleted=0").Tables[0];
-
-                    hotelsTable = generalLogic
-                        .Sqlread("SELECT DISTINCT ([dbo].[Hotels_Translate].Id) ,[Hotels.Images_Translate].Image,[Hotels_Translate].Rate,[Hotels_Translate].Currency,[dbo].[Hotels_Translate].LangId,PriceStart,DisplayValue,DisplayValueDesc," +
-                                 "[Image], [dbo].[Hotels.Features_Translate].Id FROM [dbo].[Hotels_Translate] INNER JOIN dbo.[Hotels.Images_Translate]  " +
-                                 " ON [dbo].[Hotels_Translate].Id = [dbo].[Hotels.Images_Translate].Hotel_Id INNER JOIN dbo.[Hotels.Features_Translate]   " +
-                                 "ON [dbo].[Hotels_Translate].Id = [dbo].[Hotels.Features_Translate].Hotel_Id  WHERE [dbo].[Hotels_Translate].LangId='" + langId + "' " +
-                                 "  AND dbo.Hotels_Translate.IsDeleted=0  AND [dbo].[Hotels.Images_Translate].LangId='" + langId + "'  AND  dbo.[Hotels.Images_Translate].IsDeleted=0 " +
-                                 " AND [dbo].[Hotels.Features_Translate].LangId='" + langId + "'  AND  dbo.[Hotels.Features_Translate].IsDeleted=0")
-                        .Tables[0];
-                    newsTable = generalLogic
-                        .Sqlread("SELECT * FROM [dbo].[SystemParameters.News_Translate] WHERE LangId='" + langId + "'AND IsDeleted=0 ").Tables[0];
-                    featuresTable = generalLogic
-                        .Sqlread("SELECT  TOP 6 * FROM [dbo].[SystemParameters.Features_Translate] WHERE LangId='" + langId + "' AND IsDeleted=0").Tables[0];
-                    aboutTable = generalLogic
-                        .Sqlread("SELECT * FROM [dbo].[SystemParameters.About_Translate] WHERE LangId='" + langId + "' AND IsDeleted=0").Tables[0];
-                    hotelImages = generalLogic
-                        .Sqlread(
-                            "SELECT Image FROM [dbo].[Hotels_Translate] JOIN dbo.[Hotels.Images_Translate] ON [dbo].[Hotels_Translate].Id = [dbo].[Hotels.Images_Translate].Hotel_Id WHERE [dbo].[Hotels_Translate].LangId='" + langId + "' AND dbo.Hotels_Translate.IsDeleted=0 AND dbo.[Hotels.Images_Translate].IsDeleted=0")
-                        .Tables[0];
-                    ownerTable = generalLogic
-                        .Sqlread("SELECT * FROM [dbo].[SystemParameters.Owners_Translate] WHERE LangId='" + langId + "' AND IsDeleted=0").Tables[0];
-                }
-
-
-
-
-
-
-
-
-                //HomeSliders
-                List<HomeSlider> returnHomeSlider = new List<HomeSlider>(homeSlidersTable.Rows.Count);
-                foreach (DataRow dr in homeSlidersTable.Rows)
-                {
-                    returnHomeSlider.Add(new HomeSlider
-                    {
-                        Id = (int)dr["Id"],
-                        DisplayValue = (string)dr["DisplayValue"],
-                        DisplayValueDesc = (string)dr["DisplayValueDesc"],
-                        Image = (string)dr["Image"],
-                        Rating = (int)dr["Rating"]
-                    });
-                }
-
-
-                //Get Hotels
-                List<Hotels> returnHotels = new List<Hotels>(hotelsTable.Rows.Count);
-                foreach (DataRow dr in hotelsTable.Rows)
-                {
-                    var rateVlaue = 1;
-                    if (langId == Parameters.DefaultLang)
-                    {
-                       
-                        var currencyInfo = currencyLogic.Get((int)dr["Currency"]);
-                        if (returnHotels.FirstOrDefault(x => x.Id == (int)dr["Id"]) != null)
-                            continue;
-                        rateVlaue = (int)dr["Rate"];
-                        returnHotels.Add(new Hotels
-                        {
-                            Id = (int)dr["Id"],
-                            DisplayValue = (string)dr["DisplayValue"],
-                            DisplayValueDesc = (string)dr["DisplayValueDesc"],
-                            Image = (string)dr["Image"],
-                            PriceStart = (int)dr["PriceStart"],
-                            Rate = rateVlaue,
-                            CurrencyTitle = currencyInfo.DisplayValue
-                        });
-                    }
-
-                    else
-                    {
-                        var currencyTranslateInfo = currencyLogicTranslateogic.Get((int)dr["Currency"], langId);
-                        if (returnHotels.FirstOrDefault(x => x.Id == (int)dr["Id"]) != null)
-                            continue;
-
-                        rateVlaue = (int)dr["Rate"];
-                        returnHotels.Add(new Hotels
-                        {
-                            Id = (int)dr["Id"],
-                            DisplayValue = (string)dr["DisplayValue"],
-                            DisplayValueDesc = (string)dr["DisplayValueDesc"],
-                            Image = (string)dr["Image"],
-                            PriceStart = (int)dr["PriceStart"],
-                            Rate = rateVlaue,
-                            CurrencyTitle = currencyTranslateInfo.DisplayValue
-                        });
-
-                    }
-
-
-                }
-
-
-
-
-                //Get News
-                List<News> returnNews = new List<News>(newsTable.Rows.Count);
-                foreach (DataRow dr in newsTable.Rows)
-                {
-                    returnNews.Add(new News
-                    {
-                        Id = (int)dr["Id"],
-                        DisplayValue = (string)dr["DisplayValue"],
-                        DisplayValueDesc = (string)dr["DisplayValueDesc"],
-                        CreationTime = (DateTime?)dr["CreationTime"]
-                    });
-
-                }
-
-
-                //Get Features
-                List<Features> returnFeatures = new List<Features>(featuresTable.Rows.Count);
-                foreach (DataRow dr in featuresTable.Rows)
-                    returnFeatures.Add(new Features
-                    {
-                        DisplayValue = (string)dr["DisplayValue"],
-                        DisplayValueDesc = (string)dr["DisplayValueDesc"],
-                        Icon = (string)dr["Icon"]
-                    });
-
-
-
-                //Get About
-                var returnAbout = new About();
-                foreach (DataRow dr in aboutTable.Rows)
-                {
-                    returnAbout.DisplayValue = (string)dr["DisplayValue"];
-                    returnAbout.DisplayValueDesc = (string)dr["DisplayValueDesc"];
-                    returnAbout.Url = (string)dr["Url"];
-
-                }
-
-
-                //Get Hotel Images
-                List<HotelImages> returnHotelImages = new List<HotelImages>(hotelsTable.Rows.Count);
-                foreach (DataRow dr in hotelImages.Rows)
-                {
-                    returnHotelImages.Add(new HotelImages
-                    {
-                        Image = (string)dr["Image"]
-                    });
-
-                }
-
-                //Get News
-                List<Owners> returnOwners = new List<Owners>(ownerTable.Rows.Count);
-                foreach (DataRow dr in ownerTable.Rows)
-                {
-                    returnOwners.Add(new Owners
-                    {
-                        Id = (int)dr["Id"],
-                        DisplayValueName = (string)dr["DisplayValueName"],
-                        DisplayValuePosition = (string)dr["DisplayValuePosition"],
-                        DisplayValueDesc = (string)dr["DisplayValueDesc"],
-                        CreationTime = (DateTime?)dr["CreationTime"]
-                    });
-
-                }
-
-
-
-
-
-
-
-
-
-                retunGeneralAll.HomeSliders = returnHomeSlider;
-                retunGeneralAll.Hotels = returnHotels;
-                retunGeneralAll.News = returnNews;
-                retunGeneralAll.Features = returnFeatures;
-                retunGeneralAll.About = returnAbout;
-                retunGeneralAll.Gallery = returnHotelImages;
-                retunGeneralAll.Owners = returnOwners;
+                retunGeneralAll.HomeSliders = Mapper.Map<List<HomeSliderModel>>(objHomeSliders);
+                retunGeneralAll.Hotels = Mapper.Map<List<HotelsModel>>(objHotels);
+                retunGeneralAll.News = Mapper.Map<List<NewsModel>>(objNews);
+                retunGeneralAll.Features = Mapper.Map<List<FeaturesModel>>(objFeatures);
+                retunGeneralAll.About = Mapper.Map<AboutModel>(objAbout);
+                retunGeneralAll.Gallery = Mapper.Map<List<HotelImages>>(objHotelsImages);
+                retunGeneralAll.Owners = Mapper.Map<List<OwnerModel>>(objOwner);
+                retunGeneralAll.Currency = Mapper.Map<List<CurrencyModel>>(objCurrency);
 
 
 

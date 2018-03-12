@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace GMG_Portal.Data
 {
-    public partial class Front_Vision
-    {
-      //  [NotMapped]
+    public partial class Vision
+    { 
         public string OperationStatus { get; set; }
+        public Dictionary<string, string> TitleDictionary { get; set; }
+        public Dictionary<string, string> DescDictionary { get; set; }
     }
 }

@@ -14,16 +14,25 @@ namespace GMG_Portal.Data
     
     public partial class Currency
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Currency()
+        {
+            this.Currency_Translate = new HashSet<Currency_Translate>();
+            this.Offers = new HashSet<Offer>();
+        }
+    
         public int Id { get; set; }
-        public string DisplayValue { get; set; }
-        public bool IsDeleted { get; set; }
-        public Nullable<bool> Show { get; set; }
-        public string DisplayValueDesc { get; set; }
         public Nullable<System.DateTime> LastModificationTime { get; set; }
         public Nullable<int> LastModifierUserId { get; set; }
         public Nullable<System.DateTime> CreationTime { get; set; }
         public Nullable<int> CreatorUserId { get; set; }
+        public bool IsDeleted { get; set; }
         public Nullable<System.DateTime> DeletionTime { get; set; }
         public Nullable<int> DeleterUserId { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Currency_Translate> Currency_Translate { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Offer> Offers { get; set; }
     }
 }

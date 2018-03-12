@@ -23,7 +23,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                  
                 var careerLogic = new CareerLogic();
                 var career = careerLogic.GetAll();
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Career>>(career));
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<CareerModel>>(career));
             }
             catch (Exception ex)
             {
@@ -38,7 +38,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
 
                 var careerLogic = new CareerLogic();
                 var career = careerLogic.Get(id);
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Career>(career));
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<CareerModel>(career));
             }
             catch (Exception ex)
             {
@@ -52,7 +52,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
             {
                 var CareerLogic = new CareerLogic();
                 var Careers = CareerLogic.GetAllWithDeleted();
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<API.Models.SystemParameters.Career>>(Careers));
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<CareerModel>>(Careers));
             }
             catch (Exception ex)
             {
@@ -61,30 +61,30 @@ namespace GMG_Portal.API.Controllers.SystemParameters
             }
         }
         [HttpPost]
-        public HttpResponseMessage Save(Career postedCareers)
+        public HttpResponseMessage Save(CareerModel postedCareers)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    var CareerLogic = new CareerLogic();
-                    SystemParameters_Careers Career = null;
+                    var careerLogic = new CareerLogic();
+                    Career career = null;
                     if (postedCareers.Id.Equals(0))
                     {
-                        Career = CareerLogic.Insert(Mapper.Map<SystemParameters_Careers>(postedCareers));
+                        career = careerLogic.Insert(Mapper.Map<Career>(postedCareers));
                     }
                     else
                     {
                         if (postedCareers.IsDeleted)
                         {
-                            Career = CareerLogic.Delete(Mapper.Map<SystemParameters_Careers>(postedCareers));
+                            career = careerLogic.Delete(Mapper.Map<Career>(postedCareers));
                         }
                         else
                         {
-                            Career = CareerLogic.Edit(Mapper.Map<SystemParameters_Careers>(postedCareers));
+                            career = careerLogic.Edit(Mapper.Map<Career>(postedCareers));
                         }
                     }
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Career>(Career));
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<CareerModel>(career));
                 }
                 goto ThrowBadRequest;
             }

@@ -1,6 +1,10 @@
-﻿using System;
+﻿using Front.Helpers;
+using GMG_Portal.API.Models.General;
+using GMG_Portal.API.Models.Hotels.Hotel;
+using GMG_Portal.API.Models.SystemParameters;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Globalization;
 using System.Net;
 using System.Net.Http;
@@ -8,20 +12,15 @@ using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using Front.Helpers;
-using GMG_Portal.API.Models.General;
-using GMG_Portal.API.Models.Hotels.Hotel;
-using Newtonsoft.Json;
-using GMG_Portal.API.Models.SystemParameters;
-using GMG_Portal.API.Models.SystemParameters.ContactUs;
 
 namespace Front.Controllers
 {
     public class HomeController : Controller
     {
-        readonly HttpClient _client;
+        private readonly HttpClient _client;
 
-        string url = System.Configuration.ConfigurationManager.AppSettings["ServerIp"] + "/SystemParameters/";
+        private string url = System.Configuration.ConfigurationManager.AppSettings["ServerIp"] + "/SystemParameters/";
+
         public HomeController()
         {
             if (Common.CurrentLang == "ar")
@@ -32,13 +31,12 @@ namespace Front.Controllers
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-
         public async Task<ActionResult> Index()
         {
             string general = url + "General/GetAll?langId=" + Common.CurrentLang;
 
             var homeModels = new HomeModels();
-            var list = new List<Hotels>();
+            var list = new List<HotelsModel>();
 
             HttpResponseMessage responseMessage = await _client.GetAsync(general);
             if (responseMessage.IsSuccessStatusCode)
@@ -46,32 +44,31 @@ namespace Front.Controllers
                 var responseData = responseMessage.Content.ReadAsStringAsync().Result;
                 var homesliders = JsonConvert.DeserializeObject<HomeModels>(responseData);
                 homeModels = homesliders;
-                foreach (var homeslider in homesliders.Hotels)
-                {
-                    list.Add(new Hotels
-                    {
-                        Id = homeslider.Id,
-                        DisplayValue = homeslider.DisplayValue
-                    });
-                }
-
+                //foreach (var homeslider in homesliders.Hotels)
+                //{
+                //    list.Add(new HotelsModel
+                //    {
+                //        Id = homeslider.Id,
+                //    // DisplayValue = homeslider.DisplayValue
+                //    });
+                //}
             }
-            Common.Hotels = list; 
+            Common.Hotels = homeModels.Hotels;
+            Common.Currency = homeModels.Currency;
+            Common.Features = homeModels.Features;
             return View(homeModels);
-
         }
 
         public ActionResult Error()
         {
             return View();
-
         }
-        // Home Partial Views Loading 
+
+        // Home Partial Views Loading
         //public ActionResult Slider()
         //{
         //    //return Slider();
         //}
-
 
         public ActionResult AboutHome()
         {
@@ -93,7 +90,6 @@ namespace Front.Controllers
             return NewsHome();
         }
 
-
         //Fill Models with data Retrieved
 
         private async Task<string> CallHomeSliders(string homeSlider, HomeModels homeModels)
@@ -103,7 +99,7 @@ namespace Front.Controllers
             if (responseMessage.IsSuccessStatusCode)
             {
                 var responseData = responseMessage.Content.ReadAsStringAsync().Result;
-                var homesliders = JsonConvert.DeserializeObject<List<HomeSlider>>(responseData);
+                var homesliders = JsonConvert.DeserializeObject<List<HomeSliderModel>>(responseData);
                 homeModels.HomeSliders = homesliders;
                 returnValue = HttpStatusCode.OK.ToString();
             }
@@ -152,7 +148,7 @@ namespace Front.Controllers
             if (responseMessageApi.IsSuccessStatusCode)
             {
                 var responseData = responseMessageApi.Content.ReadAsStringAsync().Result;
-                var features = JsonConvert.DeserializeObject<List<Features>>(responseData);
+                var features = JsonConvert.DeserializeObject<List<FeaturesModel>>(responseData);
                 homeModels.Features = features;
             }
         }
@@ -163,21 +159,20 @@ namespace Front.Controllers
             if (responseMessageApi.IsSuccessStatusCode)
             {
                 var responseData = responseMessageApi.Content.ReadAsStringAsync().Result;
-                var hotels = JsonConvert.DeserializeObject<List<Hotels>>(responseData);
+                var hotels = JsonConvert.DeserializeObject<List<HotelsModel>>(responseData);
                 homeModels.Hotels = hotels;
             }
         }
 
-
         private async Task Callowners(string _Owners, HomeModels homeModels)
         {
-            HttpResponseMessage responseMessageApi = await _client.GetAsync(_Owners);
-            if (responseMessageApi.IsSuccessStatusCode)
-            {
-                var responseData = responseMessageApi.Content.ReadAsStringAsync().Result;
-                var owners = JsonConvert.DeserializeObject<List<Owners>>(responseData);
-                homeModels.Owners = owners;
-            }
+            //HttpResponseMessage responseMessageApi = await _client.GetAsync(_Owners);
+            //if (responseMessageApi.IsSuccessStatusCode)
+            //{
+            //    var responseData = responseMessageApi.Content.ReadAsStringAsync().Result;
+            //    var owners = JsonConvert.DeserializeObject<List<Owners>>(responseData);
+            //    homeModels.Owners = owners;
+            //}
         }
 
         private async Task CallNews(string _News, string gallery, HomeModels homeModels)
@@ -186,7 +181,7 @@ namespace Front.Controllers
             if (responseMessageApi.IsSuccessStatusCode)
             {
                 var responseData = responseMessageApi.Content.ReadAsStringAsync().Result;
-                var news = JsonConvert.DeserializeObject<List<News>>(responseData);
+                var news = JsonConvert.DeserializeObject<List<NewsModel>>(responseData);
                 homeModels.News = news;
             }
 
@@ -195,7 +190,6 @@ namespace Front.Controllers
             {
                 var responseDataGallery = responseMessageGallery.Content.ReadAsStringAsync().Result;
                 homeModels.Gallery = JsonConvert.DeserializeObject<List<HotelImages>>(responseDataGallery);
-
             }
         }
 
@@ -209,6 +203,5 @@ namespace Front.Controllers
             //    homeModels.ContactUs = contactUs;
             //}
         }
-
     }
 }

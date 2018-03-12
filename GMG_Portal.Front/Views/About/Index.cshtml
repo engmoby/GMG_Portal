@@ -1,19 +1,19 @@
 ﻿@using System.Globalization
 @using System.Threading
+@using Front.Helpers
 @using GMG_Portal.API.Models.SystemParameters
-@model  AboutAll
+@model  AboutModel
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 
 <div class="mg-page-title parallax">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <h2>@Front.Resources.Global.About_Title </h2>
-                <p>@Front.Resources.Global.About_Description </p> 
+                <p>@Front.Resources.Global.About_Description </p>
             </div>
         </div>
     </div>
@@ -24,21 +24,19 @@
             <div class="col-md-6">
                 <div class="mg-about-us-txt">
                     <div class="mg-sec-title">
-                        <h2>@Model.AboutTitle</h2>
-                   
+                        <h2>@Model.AboutTitleDictionary[@Common.CurrentLang]</h2>
                     </div>
-                   <p>@Model.AboutDesc </p> 
+                    <p>@Html.PreserveNewLines(@Model.AboutDescDictionary[@Common.CurrentLang]) </p>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="video-responsive">
-                    <div style="position:relative;height:0;padding-bottom:70%"><iframe src="https://www.youtube.com/embed/@Model.AboutVideoUrl?ecver=2" style="position:absolute;width:100%;height:100%;left:0" width="500" height="350" frameborder="0" allowfullscreen></iframe></div>
+                    <div style="position:relative;height:0;padding-bottom:70%"><iframe src="https://www.youtube.com/embed/@Model.Url?ecver=2" style="position:absolute;width:100%;height:100%;left:0" width="500" height="350" frameborder="0" allowfullscreen></iframe></div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 
 <div class="mg-about-features">
     <div class="container">
@@ -46,62 +44,51 @@
             <div class="col-md-6">
                 <div class="mg-about-us-txt">
                     <div class="mg-sec-title">
-                        <h2>@Model.VisionTitle</h2>
+                        <h2>@Model.VisionTitleDictionary[Common.CurrentLang]</h2>
                         <p></p>
                     </div>
-                    <p>@Model.VisionDesc</p>
+                    <p>@Model.VisionDescDictionary[Common.CurrentLang]</p>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="mg-about-us-txt">
                     <div class="mg-sec-title">
-                        <h2>@Model.MissionTitle </h2>
+                        <h2>@Model.MissionTitleDictionary[Common.CurrentLang] </h2>
                         <p></p>
                     </div>
-                    <p>@Model.MissionDesc </p>
+                    <p>@Model.MissionDescDictionary[Common.CurrentLang] </p>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-
-
-
-
-@*Our Values*@ 
+@*Our Values*@
 
 <div class="mg-about-features">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="mg-sec-title">
-                    <h2>@Front.Resources.Global.About_CoreValuesTitle</h2>
+                    <h2>@Model.CoreValueTitleDictionary[@Common.CurrentLang]</h2>
                 </div>
-                <hr />
             </div>
         </div>
-    <div class="row">
-    
-    @for (int i = 0; i < Model.CoreValueses.Count; i++)
-    {
-        if (i > 0 && i % 3 == 0)
-        {
-            @:</div><div class="row"> 
-        }
-
-            <div class="col-sm-4">
-                <div class="mg-feature">
-                    <div class="mg-feature-icon-title">
-                 
-                        <h3>@Model.CoreValueses[i].DisplayValue</h3>
+        <div class="row">
+            <div class="col-md-6">
+                @if (@Common.CurrentLang == "ar")
+            {
+                    <div class="mg-about-us-txt">
+                        <p>@Html.PreserveNewLines(@Model.CoreValueDescDictionary[@Common.CurrentLang]) </p>
                     </div>
-                 
-                </div>
+                }
+                else
+                {
+                    <div class="mg-about-us-txt" style="text-align: left;">
+                        <p>@Html.PreserveNewLines(@Model.CoreValueDescDictionary[@Common.CurrentLang]) </p>
+                    </div>
+                }
             </div>
-    }
         </div>
     </div>
 </div>
-
-	

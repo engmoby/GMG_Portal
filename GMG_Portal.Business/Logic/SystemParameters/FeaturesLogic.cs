@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using GMG_Portal.Data;
 using Heloper;
 
@@ -16,43 +14,45 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         {
             _db = new GMG_Portal_DBEntities1();
         }
-        public List<SystemParameters_Features> GetAllWithDeleted()
+        public List<Feature> GetAllWithDeleted()
         {
-            return _db.SystemParameters_Features.OrderBy(p => p.IsDeleted).ToList();
+            return _db.Features.OrderBy(p => p.IsDeleted).ToList();
         }
-        public List<SystemParameters_Features> GetAllByTake6()
+        public IQueryable<Feature> GetAllByTake6()
         {
-            var returnList = new List<SystemParameters_Features>();
-            var featureList = _db.SystemParameters_Features.Where(p => p.IsDeleted != true).ToList();
-            var random = featureList.OrderBy(x => Guid.NewGuid()).Take(6);
-            foreach (var systemParametersFeaturese in random)
-            {
-                returnList.Add(new SystemParameters_Features
-                {
-                    Id = systemParametersFeaturese.Id,
-                    Icon = systemParametersFeaturese.Icon,
-                    DisplayValue = systemParametersFeaturese.DisplayValue,
-                    DisplayValueDesc = systemParametersFeaturese.DisplayValueDesc
-                });
-            }
-            return returnList;
+            var returnList = new List<Feature>();
+           return _db.Features.Where(p => p.IsDeleted != true).OrderBy(r => Guid.NewGuid()).Take(6);
+            //var random = featureList.OrderBy(x => Guid.NewGuid()).Take(6);
+            //foreach (var systemParametersFeaturese in random)
+            //{
+            //    returnList.Add(new Feature
+            //    {
+            //        Id = systemParametersFeaturese.Id,
+            //        Icon = systemParametersFeaturese.Icon,
+            //        //DisplayValue = systemParametersFeaturese.DisplayValue,
+            //        //DisplayValueDesc = systemParametersFeaturese.DisplayValueDesc
+            //    });
+            //}
+            //return returnList;
 
         }
-        public List<SystemParameters_Features> GetAll()
+        public List<Feature> GetAll()
         {
-            return _db.SystemParameters_Features.Where(p => p.IsDeleted != true).ToList();
+            return _db.Features.Where(p => p.IsDeleted != true).ToList();
         }
-        public SystemParameters_Features Get(int id)
+        public Feature Get(int id)
         {
-            return _db.SystemParameters_Features.Find(id);
+            return _db.Features.Find(id);
         }
-
-
-        private SystemParameters_Features Save(SystemParameters_Features obj)
+        public List<Features_Translate> GetTranslates(int recordId)
+        {
+            return _db.Features_Translate.Where(x => x.RecordId == recordId).ToList();
+        }
+        private Feature Save(Feature obj)
         {
             try
             {
-                _db.SaveChanges();
+               _db.SaveChanges();
                 obj.OperationStatus = "Succeded";
                 return obj;
             }
@@ -74,36 +74,58 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 throw;
             }
         }
-        public SystemParameters_Features Insert(SystemParameters_Features postedFeature)
-        { 
-            var obj = new SystemParameters_Features()
-            {
-                DisplayValue = postedFeature.DisplayValue,
-                DisplayValueDesc = postedFeature.DisplayValueDesc,
+        public Feature Insert(Feature postedFeature)
+        {
+            var obj = new Feature()
+            { 
                 Icon = postedFeature.Icon,
-                IsDeleted = postedFeature.IsDeleted,
-                Show = Parameters.Show, 
+                IsDeleted = postedFeature.IsDeleted, 
                 CreationTime = Parameters.CurrentDateTime,
                 CreatorUserId = Parameters.UserId,
             };
-            _db.SystemParameters_Features.Add(obj);
-            return Save(obj);
+            _db.Features.Add(obj);
+            _db.SaveChanges();
+            var objTrasnlate = new Features_Translate();
+            {
+                foreach (var title in postedFeature.TitleDictionary)
+                {
+                    objTrasnlate.Title = title.Value;
+                    objTrasnlate.Description = postedFeature.DescDictionary[title.Key];
+                    objTrasnlate.langId = title.Key;
+                    objTrasnlate.RecordId = obj.Id;
+                    _db.Features_Translate.Add(objTrasnlate);
+                    _db.SaveChanges();
+                }
+            }
+            Feature feature = Get(obj.Id);
+            List<Features_Translate> featureTranslate = GetTranslates(obj.Id);
+            return Save(feature); 
         }
-        public SystemParameters_Features Edit(SystemParameters_Features postedFeature)
+        public Feature Edit(Feature postedFeature)
         {
-            SystemParameters_Features obj = Get(postedFeature.Id);
-            obj.DisplayValue = postedFeature.DisplayValue;
-            obj.DisplayValueDesc = postedFeature.DisplayValueDesc;
-            obj.Icon = postedFeature.Icon; 
-            obj.IsDeleted = postedFeature.IsDeleted;
-            obj.Show = postedFeature.Show;
+            Feature obj = Get(postedFeature.Id);
+            List<Features_Translate> featureTranslate = GetTranslates(postedFeature.Id);
+            foreach (var title in postedFeature.TitleDictionary)
+            { 
+                foreach (var objTranslate in featureTranslate)
+                {
+                    if (title.Key == objTranslate.langId)
+                    {
+                        objTranslate.Title = title.Value;
+                        objTranslate.Description = postedFeature.DescDictionary[title.Key];
+                        _db.SaveChanges();
+                    }
+                }
+            }
+            obj.Icon = postedFeature.Icon;
+            obj.IsDeleted = postedFeature.IsDeleted; 
             obj.LastModificationTime = Parameters.CurrentDateTime;
             obj.LastModifierUserId = Parameters.UserId;
             return Save(obj);
         }
-        public SystemParameters_Features Delete(SystemParameters_Features postedFeature)
+        public Feature Delete(Feature postedFeature)
         {
-            SystemParameters_Features obj = Get(postedFeature.Id);
+            Feature obj = Get(postedFeature.Id);
             //if (_db.SystemParameters_Features.Any(p => p.Id == postedFeature.Id && p.IsDeleted != true))
             //{
             //    //  obj.OperationStatus = "HasRelationship";
@@ -113,6 +135,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             obj.IsDeleted = true;
             obj.CreationTime = Parameters.CurrentDateTime;
             obj.CreatorUserId = Parameters.UserId;
+            _db.SaveChanges();
             return Save(obj);
         }
 

@@ -1,3 +1,5 @@
+/// <reference path="E:\Projects\Portal\Project\Main\GMG_Portal.UI\partial/ba-sidbar.html" />
+/// <reference path="E:\Projects\Portal\Project\Main\GMG_Portal.UI\partial/ba-sidbar.html" />
 /// <reference path="../lib/angular.js" />
 'use strict';
 var app = angular.module('BlurAdmin', [
@@ -8,22 +10,31 @@ var app = angular.module('BlurAdmin', [
   'ngTouch',
   'toastr',
   'smart-table',
-  "xeditable",
+  //"xeditable",
   'ui.slimscroll',
-  'ngJsTree',
+  //'ngJsTree',
   'angular-progress-button-styles',
   'BlurAdmin.theme',
   'BlurAdmin.pages',
-  'flow',
-  'ui.select',
+  //'flow',
+  //'ui.select',
   'angular-loading-bar',
    'checklist-model',
 'ui.sortable', 
-'google.places'
+'google.places',
+'as.sortable'
 
 
 ]);
-
+app.constant('appCONSTANTS',
+    { 
+        'defaultLanguage': 'en',
+        'supportedLanguage': {
+            'en': {'id':'1', 'key': 'en', 'value': 'english' },
+            'fr': { 'id': '2', 'key': 'fr', 'value': 'frensh' },
+            'ar': { 'id': '3', 'key': 'ar', 'value': 'arabic' }
+        }
+    });
 app.directive("notInList", function () {
     return {
         require: "ngModel",
@@ -121,7 +132,6 @@ app.directive('ngConfirm', function ($compile) {
         }
     };
 });
-
 
 
 //app.directive('customUploader', function () {
@@ -604,5 +614,24 @@ app.service('Map', function ($q) {
         });
         this.map.setCenter(res.geometry.location);
     }
+
+});
+
+
+app.directive("ba-sidebar", function () {
+    return {
+        
+        templateUrl: '/partial/ba-sidbar.html'
+    };
+
+});
+
+
+app.directive("content-top", function () {
+    debugger;
+    return {
+        restrict: "A",
+        template: '<div class="content-top clearfix"><h1 class="al-title">{{ activePageTitle }}</h1><ul class="breadcrumb al-breadcrumb"><li><a href="#/dashboard">Home</a></li><li>{{ activePageTitle }}</li></ul></div>'
+    };
 
 });

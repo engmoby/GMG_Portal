@@ -127,10 +127,7 @@ input[type=radio]:checked:before {
     font: 400 8px/1 'FontAwesome';
 }
 
-
-
 .featherlight .featherlight-content {
-
     max-width: 50%!important;
     border-radius: 6px!important;
     text-align: center!important;
@@ -152,12 +149,10 @@ input[type=radio]:checked:before {
     font-weight: bold;
     color: #000;}
 
-
 .featherlight-inner h2{    color: #000;
     font-weight: bold;
     text-align: center;}
-	
-	
+
 .featherlight-inner h3{color: #000;
     font-weight: bold;
     margin-top: 10px;
@@ -167,18 +162,14 @@ input[type=radio]:checked:before {
     margin-right: auto;
     margin-top: 30px;}
 
-
 .featherlight-inner p{    color: #000;
     font-size: 18px;
     margin-top: 15px;}
 
-
 .carousel-inner>.item {
-
     max-height: 735px;
     overflow: hidden;
 }
-
 
 .wpb_wrapper h5, h3, h4{    line-height: 26px;
     font-family: "Open Sans";}
@@ -1522,6 +1513,7 @@ div.cs-skin-elastic .cs-options .cs-selected span::after {
     overflow: hidden;
     margin-bottom: 30px;
     max-height: 200px;
+    height: 200px;
 }
 .mg-room figcaption {
     position: absolute;
@@ -3000,15 +2992,11 @@ padding-bottom: 40px;
     display: none;
 }
 
-
-
 .carousel-inner>.item>a>img, .carousel-inner>.item>img {
- 
     width: 100%;
 }
 
 .mg-team-member img{width:100%!important;}
-
 
 .mg-booking-form .nav-tabs > li > a span.mg-bs-bar:after {
     content: '';
@@ -3787,11 +3775,9 @@ padding-bottom: 40px;
 }
 @media (max-width: 991px) {
 .mg-room {
-    
     max-height: 134px;
     /*max-height: 242px;
     min-height: 242px;*/
-
 }
 
     .carousel-caption > h2 {
@@ -4326,7 +4312,7 @@ padding-bottom: 40px;
     }
 }
 /*
- * Boxed Mode Responsive 
+ * Boxed Mode Responsive
  */
 @media (max-width: 1199px) {
     .mg-boxed {
@@ -4345,9 +4331,8 @@ padding-bottom: 40px;
 }
 @media (max-width: 991px) {
     .featherlight .featherlight-content {
-
         max-width: 90%!important;}
-	
+
     .mg-boxed {
         width: 767px;
     }
@@ -4406,7 +4391,6 @@ padding-bottom: 40px;
 }
 
 @media (max-width: 1280px) {
-
     .carousel-inner>.item {
         max-height: 481px;
         overflow: hidden;
@@ -4423,4 +4407,74 @@ padding-bottom: 40px;
     .display-field {
         text-align: left;margin-bottom: 15px;
     }
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
 }

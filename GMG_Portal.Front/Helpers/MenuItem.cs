@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
@@ -12,7 +10,7 @@ namespace Front.Helpers
         public static MvcHtmlString MenuItem(this HtmlHelper htmlHelper, string action, string text)
         {
             var menu = new TagBuilder("div");
-            var currentAction = (string) htmlHelper.ViewContext.RouteData.Values["action"];
+            var currentAction = (string)htmlHelper.ViewContext.RouteData.Values["action"];
             if (string.Equals(
                 currentAction,
                 action,
@@ -24,6 +22,7 @@ namespace Front.Helpers
             menu.SetInnerText(text);
             return MvcHtmlString.Create(menu.ToString());
         }
+
         public static MvcHtmlString ListItemAction(this HtmlHelper helper, string name, string actionName, string controllerName)
         {
             var currentControllerName = (string)helper.ViewContext.RouteData.Values["controller"];
@@ -37,10 +36,10 @@ namespace Front.Helpers
             sb.Append("</li>");
             return new MvcHtmlString(sb.ToString());
         }
+
         public static IHtmlString PreserveNewLines(this HtmlHelper htmlHelper, string message)
         {
             return message == null ? null : htmlHelper.Raw(htmlHelper.Encode(message).Replace("\n", "<br/>"));
         }
     }
-
 }

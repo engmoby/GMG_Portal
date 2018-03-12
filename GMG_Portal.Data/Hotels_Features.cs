@@ -17,7 +17,9 @@ namespace GMG_Portal.Data
         public int Id { get; set; }
         public Nullable<int> Hotel_Id { get; set; }
         public Nullable<int> Feature_Id { get; set; }
-        public Nullable<System.Guid> SGuid { get; set; }
         public bool IsDeleted { get; set; }
+    
+        public virtual Feature Feature { get; set; }
+        public virtual Hotel Hotel { get; set; }
     }
 }

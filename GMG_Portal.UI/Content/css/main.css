@@ -1758,7 +1758,9 @@ h3.with-line {
     margin-bottom: 8px;
     margin-top: -2px; }
   .profile-block .tab-content {
-    padding: 15px 15px 25px; }
+    /*padding: 15px 15px 25px;*/
+
+  }
   .profile-block .progress-bar-primary {
     background-color: #63bbb2; }
   .profile-block .form-group {
@@ -4041,12 +4043,14 @@ th {
   cursor: pointer; }
 
 .tab-content {
-  padding: 15px 15px 5px 15px;
+  /*padding: 15px 15px 5px 15px;*/
   background: transparent;
   color: #666666; }
   .tab-content .tab-pane p {
     color: #666666; }
-
+  .form-group {
+      margin-bottom: 0px!important;
+  }
 .nav.nav-tabs {
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
@@ -4532,7 +4536,7 @@ a.collapse-menu-link {
   overflow: hidden;
   width: 162px;
   float: left;
-  margin: 20px 0 0 30px; }
+  margin: 0px 0 0 30px; }
   .search label {
     cursor: pointer; }
   .search i {

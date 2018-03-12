@@ -1,0 +1,113 @@
+﻿  
+<div ng-controller="CurrencysCtrl">
+
+    <div ba-panel>
+        <table class="table table-hover table-condensed" st-table="TableData" st-safe-src="CurrencyList">
+            <thead>
+                <tr class="toolbar">
+                    <th colspan="2">
+                        <div class="input-group">
+                            <span class="input-group-addon addon-left"><i class="fa fa-search" aria-hidden="true"></i></span>
+                            <input st-search="" class="form-control" placeholder="search" type="text" />
+                        </div>
+                    </th>
+                    <th colspan="1"></th>
+                    <th>
+                        <div class="input-group">
+                            <button class="btn btn-primary btn-with-icon" ng-click="open(null)"><i class="fa fa-plus" aria-hidden="true"></i> Add</button>
+                        </div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="Currency in TableData">
+                    <td ng-class="{'red-text': Currency.IsDeleted == true}">
+                        <span ng-repeat="(name, age) in Currency.TitleDictionary" ng-if="name == CurrentLanguage">
+                            {{age}}
+                        </span>
+                    </td> 
+                    <td>
+                        <div class="buttons" ng-show="!Currency.IsDeleted">
+                            <button class="btn btn-primary editable-table-button btn-xs btn-with-icon" ng-click="open(Currency)"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
+                            <button class="btn btn-danger editable-table-button btn-xs btn-with-icon" ng-confirm="Confirm Delete ?" ng-click="Delete(Currency)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
+                        </div>
+                        <div class="buttons restore-button" ng-show="Currency.IsDeleted">
+                            <button class="center-block btn btn-default  restore-button btn-xs btn-with-icon" ng-click="Restore(Currency)"><i class="fa fa-undo" aria-hidden="true"></i>Restore</button>
+                        </div>
+                    </td>
+                </tr>
+             
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4" class="text-center">
+                        <div st-pagination="" st-items-by-page="10"></div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table> 
+    
+    </div>
+
+
+    <form name="FrmAddUpdate" novalidate ng-submit="save()" autocomplete="off">
+
+        <div class="modal fade" id="ModelAddUpdate" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">{{action |uppercase}} @Currency.ModalTitle</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            <div class="tabs-container">
+                                <ul class="nav nav-tabs tab-border-top-primary" style="border-bottom: 1px solid transparent;background-color: #d6ece9;">
+                                    <li ng-repeat="lang in language" ng-class="{active:$first}">
+                                        <a data-toggle="tab" data-target="#tab-{{lang.id}}">
+                                            {{lang.value}}
+                                        </a>
+                                    </li>
+                                </ul>
+
+                                <div class="tab-content">
+                                    <div ng-repeat="lang in language" id="tab-{{lang.id}}" class="tab-pane" ng-class="{active:$first}">
+                                        <div class="panel-body">
+                                            <div class="form-group">
+                                                <label>{{lang.value}}  title</label>
+                                                <input type="text" ng-model="Currency.TitleDictionary[lang.key]" placeholder="Enter {{lang.value}}  title"
+                                                       class="form-control" name="u{{lang.value+'name'}}" required="">
+                                                <br />
+                                                <div ng-show="FrmAddUpdate.$submitted || FrmAddUpdate.u{{lang.value+'name'}}.$touched">
+                                                    <label id="-error" class="red-text" ng-show="FrmAddUpdate.u{{lang.value+'name'}}.$error.required">{{lang.value}} Name is missing.</label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary btn-with-icon" ng-disabled="FrmAddUpdate.$invalid"><i class="ion-android-checkmark-circle"></i>@Currency.btnSaveLbl</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+</div>
+
+
+
+
+
+

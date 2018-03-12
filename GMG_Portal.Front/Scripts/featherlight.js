@@ -262,7 +262,6 @@
 			self.$instance.hide().appendTo(self.root);
 			if((!event || !event.isDefaultPrevented())
 				&& self.beforeOpen(event) !== false) {
-
 				if(event){
 					event.preventDefault();
 				}
@@ -300,7 +299,6 @@
 			if(self.beforeClose(event) === false) {
 				deferred.reject();
 			} else {
-
 				if (0 === pruneOpened(self).length) {
 					toggleGlobalEvents(false);
 				}

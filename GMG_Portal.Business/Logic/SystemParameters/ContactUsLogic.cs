@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using GMG_Portal.Data;
 using Heloper;
 
@@ -16,19 +14,19 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         {
             _db = new GMG_Portal_DBEntities1();
         }
-        public List<SystemParameters_ContactUs> GetAllWithDeleted()
+        public List<ContactU> GetAllWithDeleted()
         {
-            return _db.SystemParameters_ContactUs.OrderBy(p => p.IsDeleted).ToList();
+            return _db.ContactUs.OrderBy(p => p.IsDeleted).ToList();
         }
-        public  SystemParameters_ContactUs GetAll()
+        public ContactU GetAll()
         {
-            return _db.SystemParameters_ContactUs.FirstOrDefault(p => p.IsDeleted != true);
+            return _db.ContactUs.FirstOrDefault(p => p.IsDeleted != true);
         }
-        public SystemParameters_ContactUs Get(int id)
+        public ContactU Get(int id)
         {
-            return _db.SystemParameters_ContactUs.Find(id);
+            return _db.ContactUs.Find(id);
         }
-        private SystemParameters_ContactUs Save(SystemParameters_ContactUs obj)
+        private ContactU Save(ContactU obj)
         {
             try
             {
@@ -53,16 +51,29 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 }
                 throw;
             }
-        } 
-        public SystemParameters_ContactUs Edit(SystemParameters_ContactUs postedContactUs)
+        }
+        public List<ContactUs_Translate> GetTranslates(int recordId)
         {
-            SystemParameters_ContactUs contactUs = Get(postedContactUs.Id);
-            contactUs.DisplayValueAddress = postedContactUs.DisplayValueAddress;
-            contactUs.DisplayValueDesc = postedContactUs.DisplayValueDesc;
+            return _db.ContactUs_Translate.Where(x => x.RecordId == recordId).ToList();
+        }
+        public ContactU Edit(ContactU postedContactUs)
+        {
+            ContactU contactUs = Get(postedContactUs.Id);
+            List<ContactUs_Translate> currencyTranslate = GetTranslates(postedContactUs.Id);
+            foreach (var desc in postedContactUs.DescDictionary)
+            { 
+                foreach (var objTranslate in currencyTranslate)
+                {
+                    if (desc.Key == objTranslate.langId)
+                    {
+                        objTranslate.Description = desc.Value; 
+                        _db.SaveChanges();
+                    }
+                }
+            } 
             contactUs.Image = postedContactUs.Image;
             contactUs.Url = postedContactUs.Url;
-            contactUs.IsDeleted = postedContactUs.IsDeleted;
-            contactUs.Show = postedContactUs.Show;
+            contactUs.IsDeleted = postedContactUs.IsDeleted; 
             contactUs.Facebook = postedContactUs.Facebook;
             contactUs.Fax = postedContactUs.Fax;
             contactUs.Twitter = postedContactUs.Twitter;
@@ -77,11 +88,11 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             contactUs.Mailbox = postedContactUs.Mailbox;
             contactUs.WhatsApp = postedContactUs.WhatsApp;
             contactUs.MailNo1 = postedContactUs.MailNo1;
-            contactUs.MailNo2= postedContactUs.MailNo2;
+            contactUs.MailNo2 = postedContactUs.MailNo2;
             contactUs.LastModificationTime = Parameters.CurrentDateTime;
             contactUs.LastModifierUserId = Parameters.UserId;
             return Save(contactUs);
-        } 
+        }
 
     }
 }

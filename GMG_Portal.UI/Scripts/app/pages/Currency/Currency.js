@@ -1,28 +1,32 @@
-﻿controllerProvider.register('CurrencysController', ['$scope', 'CurrencyApi', 'uploadService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', CurrencysController]);
-function CurrencysController($scope, CurrencyApi, uploadService, $rootScope, $timeout, $filter, $uibModal, toastr) {
+﻿controllerProvider.register('CurrencysController', ['$scope', 'appCONSTANTS', 'CurrencyApi', 'uploadService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', CurrencysController]);
+function CurrencysController($scope, appCONSTANTS, CurrencyApi, uploadService, $rootScope, $timeout, $filter, $uibModal, toastr) {
+    $scope.language = appCONSTANTS.supportedLanguage;
     var langId = document.querySelector('#HCurrentLang').value;
-    var currentLanguage = langId;
+    $scope.CurrentLanguage = langId;
+    var cm = this;
+    cm.langg = 'ar';
     $("#DropdwonLang").change(function () {
         var selectedText = $(this).find("option:selected").text();
         var selectedValue = $(this).val();
         document.getElementById("HCurrentLang").value = selectedValue;
-        currentLanguage = selectedValue;
+        $scope.CurrentLanguage = selectedValue;
 
         debugger;
 
-        CurrencyApi.GetAll(currentLanguage).then(function (response) {
-            $scope.Currencys = response.data;
-            $rootScope.ViewLoading = false;
-        });
+        //CurrencyApi.GetAll($scope.CurrentLanguage).then(function (response) {
+        //    $scope.Currencys = response.data;
+        //    $rootScope.ViewLoading = false;
+        //});
     });
 
     $scope.Image = "";
     $scope.letterLimit = 20;
     $rootScope.ViewLoading = true;
-    CurrencyApi.GetAll(currentLanguage).then(function (response) {
+    CurrencyApi.GetAll($scope.CurrentLanguage).then(function (response) {
         debugger;
         $scope.Currencys = response.data;
         $rootScope.ViewLoading = false;
+        console.log($scope.Currencys);
     });
     $scope.open = function (Currency) {
         debugger;
@@ -37,9 +41,9 @@ function CurrencysController($scope, CurrencyApi, uploadService, $rootScope, $ti
         if ($scope.Currency.Image)
             $scope.countFiles = $scope.Currency.Image;
 
-        $timeout(function () {
-            document.querySelector('input[name="TxtNameAr"]').focus();
-        }, 1000);
+        //$timeout(function () {
+        //    document.querySelector('input[name="TxtNameAr"]').focus();
+        //}, 1000);
     }
     $scope.openImage = function (Currency) {
         debugger;
@@ -66,38 +70,38 @@ function CurrencysController($scope, CurrencyApi, uploadService, $rootScope, $ti
     $scope.save = function () {
         $rootScope.ViewLoading = true;
 
-        $scope.Currency.langId = currentLanguage;
+        $scope.Currency.langId = $scope.CurrentLanguage;
 
         debugger;
         CurrencyApi.Save($scope.Currency).then(function (response) {
 
-                switch (response.data.OperationStatus) {
+            switch (response.data.OperationStatus) {
                 case "Succeded":
                     var index;
                     switch ($scope.action) {
-                    case 'edit':
-                        index = $scope.Currencys.indexOf($filter('filter')($scope.Currencys, { 'Id': $scope.Currency.Id }, true)[0]);
-                         $scope.Currencys[index] = angular.copy(response.data);
-                        //CurrencyApi.GetAll().then(function (response) {
-                        //    $scope.Currencys = response.data;
-                        //});
-                        toastr.success($('#HUpdateSuccessMessage').val(), 'Success');
-                        break;
-                    case 'delete':
-                        index = $scope.Currencys.indexOf($filter('filter')($scope.Currencys, { 'Id': $scope.Currency.Id }, true)[0]);
-                         $scope.Currencys[index] = angular.copy(response.data);
-                        //CurrencyApi.GetAll().then(function (response) {
-                        //    $scope.Currencys = response.data;
-                        //});
-                        toastr.success($('#HDeleteSuccessMessage').val(), 'Success');
-                        break;
-                    case 'add':
-                        //CurrencyApi.GetAll().then(function (response) {
-                        //    $scope.Currencys = response.data;
-                        //});
-                        $scope.Currencys.push(angular.copy(response.data));
-                        toastr.success($('#HSaveSuccessMessage').val(), 'Success');
-                        break;
+                        case 'edit':
+                            index = $scope.Currencys.indexOf($filter('filter')($scope.Currencys, { 'Id': $scope.Currency.Id }, true)[0]);
+                            $scope.Currencys[index] = angular.copy(response.data);
+                            //CurrencyApi.GetAll().then(function (response) {
+                            //    $scope.Currencys = response.data;
+                            //});
+                            toastr.success($('#HUpdateSuccessMessage').val(), 'Success');
+                            break;
+                        case 'delete':
+                            index = $scope.Currencys.indexOf($filter('filter')($scope.Currencys, { 'Id': $scope.Currency.Id }, true)[0]);
+                            $scope.Currencys[index] = angular.copy(response.data);
+                            //CurrencyApi.GetAll().then(function (response) {
+                            //    $scope.Currencys = response.data;
+                            //});
+                            toastr.success($('#HDeleteSuccessMessage').val(), 'Success');
+                            break;
+                        case 'add':
+                            //CurrencyApi.GetAll().then(function (response) {
+                            //    $scope.Currencys = response.data;
+                            //});
+                            $scope.Currencys.push(angular.copy(response.data));
+                            toastr.success($('#HSaveSuccessMessage').val(), 'Success');
+                            break;
                     }
                     break;
                 case "NameEnMustBeUnique":
@@ -114,11 +118,11 @@ function CurrencysController($scope, CurrencyApi, uploadService, $rootScope, $ti
                     break;
                 default:
 
-                }
+            }
 
-                $rootScope.ViewLoading = false;
-                $scope.back();
-            },
+            $rootScope.ViewLoading = false;
+            $scope.back();
+        },
             function (response) {
                 debugger;
                 ss = response;
@@ -131,7 +135,7 @@ function CurrencysController($scope, CurrencyApi, uploadService, $rootScope, $ti
         $scope.Currency.IsDeleted = true;
         $scope.save();
     }
-    
+
 }
 
 

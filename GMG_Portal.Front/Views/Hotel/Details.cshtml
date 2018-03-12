@@ -1,5 +1,6 @@
 ﻿@using Front.Helpers
-@model GMG_Portal.Data.Hotel
+@using GMG_Portal.API.Models.Hotels.Hotel
+@model GMG_Portal.API.Models.Hotels.Hotel.HotelsModel
 
 @{
     ViewBag.Title = "Details";
@@ -10,17 +11,28 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h2>@Model.DisplayValue</h2>
+                <h2>@Model.TitleDictionary[Common.CurrentLang]</h2>
             </div>
         </div>
     </div>
 </div>
 <div class="mg-single-room-price">
     <div class="mg-srp-inner">
-     
-            <sup style="margin-right: 5px;">@Model.CurrencyTitle</sup>@Model.PriceStart 
+
+        @*<sup style="margin-right: 5px;">@Model.CurrencyTitle</sup>*@
+        @foreach (var c in Common.Currency)
+        {
+            if (c.Id == Model.Currency)
+            {
+                <sub  style="margin-right: 5px;">
+                    @c.TitleDictionary[Common.CurrentLang]
+                </sub>
+            }
+
+        }
+        @Model.PriceStart
             <span style="font-size: 18px;">@Front.Resources.Global.Hotel_Night</span>
-       
+
         @*<sup style="margin-left: 4px;">@Model.CurrencyTitle</sup>@Model.PriceStart<span>/@Front.Resources.Global.Hotel_Night</span>*@
     </div>
 </div>
@@ -30,12 +42,11 @@
 
             <div class="row">
 
-                <ul class="main_clock">  
+                <ul class="main_clock">
 
                     <li> @Front.Resources.Global.CheckIn: <i class="fa fa-clock-o"></i> @Convert.ToDateTime(Model.CheckIn).AddHours(2).ToShortTimeString().</li>
                     <li> @Front.Resources.Global.CheckOut: <i class="fa fa-clock-o"></i> @Convert.ToDateTime(Model.CheckOut).AddHours(2).ToShortTimeString()</li>
                 </ul>
-
             </div>
 
             <div class="col-md-7">
@@ -66,14 +77,26 @@
                     {
                         if (i > 0 && i % 2 == 0)
                         {
-                            @:</div><div class="row"> 
+                            @:</div><div class="row">
                         }
-                        <div class="col-xs-6">
-                            <ul>
-                                <li><i class="@Model.FeaturesList[i].Icon"></i> @Model.FeaturesList[i].DisplayValue</li>
-                            </ul>
-                        </div>
                     }
+                    @foreach (HotelFeatures t in Model.FeaturesList)
+                         {
+                             foreach (var c in Common.Features)
+                             {
+                                 if (c.Id == t.Feature_Id)
+                                 {
+                                     <div class="col-xs-6">
+                                         <ul>
+                                             <li><i class="@c.Icon"></i> @c.TitleDictionary[Common.CurrentLang]</li>
+                                         </ul>
+                                     </div>
+
+                                 }
+                             }
+
+                         }
+                    
                 </div>
             </div>
         </div>
@@ -82,8 +105,8 @@
                 <div class="mg-single-room-txt">
                     <h2 class="mg-sec-left-title">@Front.Resources.Global.Hotel_Details_Description</h2>
 
-                    <div class="display-field" > 
-                        @Html.PreserveNewLines(@Model.DisplayValueDesc)
+                    <div class="display-field">
+                        @Html.PreserveNewLines(@Model.DescDictionary[Common.CurrentLang])
                     </div>
                 </div>
             </div>
@@ -142,7 +165,6 @@
                                                         onclick="jsFunction()">
                                                     Check Now
                                                 </button>
-
                                             </div>
                                         </div>
                                     </form>
@@ -152,7 +174,5 @@
                     </div>
                 </div>
             </div>*@
-
-
     </div>
 </div>

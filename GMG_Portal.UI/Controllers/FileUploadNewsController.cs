@@ -16,7 +16,9 @@ namespace GMG_Portal.UI.Controllers
         public async Task<HttpResponseMessage> Post()
         {
             try
-            {
+            { 
+
+
                 if (!Request.Content.IsMimeMultipartContent())
                 {
                     throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);

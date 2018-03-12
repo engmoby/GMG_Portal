@@ -21,19 +21,11 @@ namespace GMG_Portal.API.Controllers.SystemParameters
         {
             try
             {
-                var newsLogic = new NewsLogic(); 
+                var newsLogic = new NewsLogic();
 
-                List<SystemParameters_News> newsObj = null;
-                List<SystemParameters_News_Translate> newsObjByLang = null;
-
-                 
-                    newsObj = newsLogic.GetAll(langId);
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<News>>(newsObj));
-                    
-               
-
-
-                //  var news = newsLogic.GetAll(langId);
+                List<News> newsObj = null;
+                newsObj = newsLogic.GetAll();
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<NewsModel>>(newsObj));
             }
             catch (Exception ex)
             {
@@ -47,7 +39,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
             {
                 var newsLogic = new NewsLogic();
                 var news = newsLogic.GetAllWithCount(langId);
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<News>>(news));
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<NewsModel>>(news));
             }
             catch (Exception ex)
             {
@@ -61,7 +53,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
             {
                 var newsLogic = new NewsLogic();
                 var news = newsLogic.GetLatestNewsWithOutCurrentId(newsId, langId);
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<News>>(news));
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<NewsModel>>(news));
             }
             catch (Exception ex)
             {
@@ -74,10 +66,9 @@ namespace GMG_Portal.API.Controllers.SystemParameters
             try
             {
                 var newsModel = new News();
-                newsModel.LangId = langId;
                 var newsLogic = new NewsLogic();
-                var news = newsLogic.GetAllByCatrgoryId(categoryId, newsModel.LangId);
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<News>>(news));
+                var news = newsLogic.GetAllByCatrgoryId(categoryId, langId);
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<NewsModel>>(news));
             }
             catch (Exception ex)
             {
@@ -91,19 +82,10 @@ namespace GMG_Portal.API.Controllers.SystemParameters
         {
             try
             {
-                if (langId == Parameters.DefaultLang)
-                {
-                    var newsLogic = new NewsLogic();
-                    var news = newsLogic.SearchNews(keyword);
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<News>>(news));
-                }
-                else
-                {
-                    var newsLogic = new NewsLogic();
-                    var newsTranslate = newsLogic.SearchNewsTranslate(keyword,langId);
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<News>>(newsTranslate));
-                }
-                    
+                var newsLogic = new NewsLogic();
+                var news = newsLogic.SearchNews(keyword);
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<NewsModel>>(news));
+
             }
             catch (Exception ex)
             {
@@ -118,7 +100,7 @@ namespace GMG_Portal.API.Controllers.SystemParameters
             {
                 var newsLogic = new NewsLogic();
                 var news = newsLogic.GetAllWithDeleted(langId);
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<API.Models.SystemParameters.News>>(news));
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<NewsModel>>(news));
             }
             catch (Exception ex)
             {
@@ -130,11 +112,9 @@ namespace GMG_Portal.API.Controllers.SystemParameters
         {
             try
             {
-                var newsModel = new News();
-                newsModel.LangId = langId;
                 var newsLogic = new NewsLogic();
-                var newss = newsLogic.Get(id, newsModel.LangId);
-                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<News>(newss));
+                var newss = newsLogic.Get(id);
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<NewsModel>(newss));
             }
             catch (Exception ex)
             {
@@ -151,38 +131,25 @@ namespace GMG_Portal.API.Controllers.SystemParameters
                 if (ModelState.IsValid)
                 {
                     var newsLogic = new NewsLogic();
-                    SystemParameters_News newsObj = null;
-                    SystemParameters_News_Translate newsObjByLang = null;
+                    News newsObj = null;
                     if (postedNews.Id.Equals(0))
                     {
-                        if (postedNews.LangId == Parameters.DefaultLang)
-                            newsObj = newsLogic.Insert(Mapper.Map<SystemParameters_News>(postedNews));
-                        else
-                            newsObjByLang = newsLogic.InsertByLang(Mapper.Map<SystemParameters_News_Translate>(postedNews));
+                        newsObj = newsLogic.Insert(Mapper.Map<News>(postedNews));
                     }
                     else
                     {
                         if (postedNews.IsDeleted)
                         {
-                            if (postedNews.LangId == Parameters.DefaultLang)
-                                newsObj = newsLogic.Delete(Mapper.Map<SystemParameters_News>(postedNews));
-                            else
-                                newsObjByLang = newsLogic.DeleteByLang(Mapper.Map<SystemParameters_News_Translate>(postedNews));
+                            newsObj = newsLogic.Delete(Mapper.Map<News>(postedNews));
 
                         }
                         else
                         {
-                            if (postedNews.LangId == Parameters.DefaultLang)
-                                newsObj = newsLogic.Edit(Mapper.Map<SystemParameters_News>(postedNews));
-                            else
-                                newsObjByLang = newsLogic.EditByLang(Mapper.Map<SystemParameters_News_Translate>(postedNews));
+                            newsObj = newsLogic.Edit(Mapper.Map<News>(postedNews));
 
                         }
                     }
-                    if (postedNews.LangId == Parameters.DefaultLang)
-                        return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<News>(newsObj));
-                    else
-                        return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<News>(newsObjByLang));
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<NewsModel>(newsObj));
 
                 }
                 goto ThrowBadRequest;

@@ -1,24 +1,18 @@
 ﻿@using AutoMapper.XpressionMapper
 @model GMG_Portal.API.Models.General.HomeModels
-
-@*@model  Front.Models.HomeModels*@
-
+ 
 @{
     ViewBag.Title = "Home Page";
 }
 
- 
-
 <!-- Our Hotels Partial -->
 
-@Html.Partial("Slider")  
+@Html.Partial("Slider")
 
-
-@if (null != TempData["alertNoNews"])
+@*@if (null != TempData["alertNoNews"])
 {
     <script type="text/javascript">
         alert("@TempData["alertNoNews"]");
-
     </script>
 }
 
@@ -26,58 +20,39 @@
 {
     <script type="text/javascript">
         alert("@TempData["alertNoOffers"]");
-
     </script>
-}
+}*@
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
- 
+
 <script type="text/javascript">
-
-  
-   
-
 
     $(document).ready(function () {
 
-     
-
-
-      
         //// Fix Jquery DatePicker originally in the Template
         $('#input-group.mg-check-in').datepicker().on('changeDate', function (ev) {
             $('#checkin').change();
         });
-      
+
         $('#input-group.mg-check-out').datepicker().on('changeDate', function (ev) {
             $('#checkout').change();
         });
-
 
         $('#checkin').change(function () {
             $('#checkindate').val($('#checkin').val());
         });
 
-
         $('#checkout').change(function () {
             $('#checkoutdate').val($('#checkout').val());
         });
 
-        //// Fix Jquery DatePicker originally in the Template   
-
-    
-    
-
-
-      
+        //// Fix Jquery DatePicker originally in the Template
 
     });
-  
 </script>
 
 <script type="text/javascript">
 
     function jsFunction() {
-
 
         var child = $('#child').val();
         var adult = $('#adult').val();
@@ -87,14 +62,10 @@
             return false;
         }
 
-      
         if ($('#checkoutdate').val() === '') {
             alert("@Front.Resources.Global.Booking_JS2");
             return false;
         }
-
-
-       
 
         if (adult === null) {
             alert("@Front.Resources.Global.Booking_JS3");
@@ -106,9 +77,6 @@
             return false;
         }
 
-
-
-
        location.href = '@Url.Action("Index", "BookingLite")?checkin=' +
             $('#checkindate').val() +
            '&checkout=' +
@@ -116,15 +84,10 @@
            '&adult=' +
           $('#adult').val() +
             '&child=' +
-            $('#child').val(); 
+            $('#child').val();
          return false;
     }
-
-
-
-
 </script>
-
 
 <div class="mg-book-now">
     <div class="container">
@@ -140,15 +103,14 @@
                                 <div class="input-group date mg-check-in">
                                     <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
                                     <input type="text" class="form-control" id="checkin" placeholder="@Front.Resources.Global.Home_SearchRoomsCheckin">
-                                    <input type="hidden" id="checkindate"/>
+                                    <input type="hidden" id="checkindate" />
                                 </div>
                             </div>
                             <div class="col-md-3 col-xs-6">
                                 <div class="input-group date mg-check-out">
                                     <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
                                     <input type="text" class="form-control" id="checkout" placeholder="@Front.Resources.Global.Home_SearchRoomsCheckout">
-                                    <input type="hidden" id="checkoutdate"/>
-
+                                    <input type="hidden" id="checkoutdate" />
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -161,7 +123,6 @@
                                             <option value="3">3</option>
                                             <option value="4">4</option>
                                         </select>
-                                       
                                     </div>
                                     <div class="col-xs-6">
                                         <select class="cs-select cs-skin-elastic" id="child" name="child">
@@ -171,15 +132,12 @@
                                             <option value="2">2</option>
                                             <option value="3">3</option>
                                         </select>
-                                        
-
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <button class="btn btn-main btn-block" type="button" id="addressSearch"
                                         onclick="jsFunction()">@Front.Resources.Global.Home_SearchRoomsButton</button>
-
                             </div>
                         </div>
                     </form>
@@ -189,24 +147,17 @@
     </div>
 </div>
 
-
 <!-- Our Hotels Partial -->
 @Html.Partial("OurHotels")
-
-
 
 <!-- About us Partial  -->
 @Html.Partial("AboutHome")
 
-
 <!-- Hotel Facilities Partial  -->
 @Html.Partial("HotelFacilities")
-
 
 <!-- Owners Introduction Partial  -->
 @Html.Partial("OwnersHome")
 
-
 <!-- News Partial -->
 @Html.Partial("NewsHome")
-

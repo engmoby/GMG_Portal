@@ -15,16 +15,11 @@ namespace GMG_Portal.Data
     public partial class Currency_Translate
     {
         public int Id { get; set; }
-        public string DisplayValue { get; set; }
-        public bool IsDeleted { get; set; }
-        public Nullable<bool> Show { get; set; }
-        public string DisplayValueDesc { get; set; }
-        public Nullable<System.DateTime> LastModificationTime { get; set; }
-        public Nullable<int> LastModifierUserId { get; set; }
-        public Nullable<System.DateTime> CreationTime { get; set; }
-        public Nullable<int> CreatorUserId { get; set; }
-        public Nullable<System.DateTime> DeletionTime { get; set; }
-        public Nullable<int> DeleterUserId { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
         public string LangId { get; set; }
+        public Nullable<int> RecordId { get; set; }
+    
+        public virtual Currency Currency { get; set; }
     }
 }

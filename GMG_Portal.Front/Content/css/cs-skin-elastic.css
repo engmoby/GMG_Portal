@@ -80,14 +80,12 @@ div.cs-skin-elastic {
 	border-color: #889195;
 }
 
-
 .cs-skin-elastic .cs-options span {
 	background-repeat: no-repeat;
 	background-position: 1.5em 50%;
 	background-size: 2em auto;
 	padding: 8px 12px;
 }
-
 
 .cs-skin-elastic .cs-options .cs-selected span {
 	color: #e7b315;
@@ -102,9 +100,7 @@ div.cs-skin-elastic {
 	content: '';
 }
 
-
-
-@-webkit-keyframes expand { 
+@-webkit-keyframes expand {
 	0% { -webkit-transform: scale3d(1,0,1); }
 	25% { -webkit-transform: scale3d(1,1.2,1); }
 	50% { -webkit-transform: scale3d(1,0.85,1); }
@@ -112,7 +108,7 @@ div.cs-skin-elastic {
 	100% { -webkit-transform: scale3d(1,1,1); }
 }
 
-@keyframes expand { 
+@keyframes expand {
 	0% { -webkit-transform: scale3d(1,0,1); transform: scale3d(1,0,1); }
 	25% { -webkit-transform: scale3d(1,1.2,1); transform: scale3d(1,1.2,1); }
 	50% { -webkit-transform: scale3d(1,0.85,1); transform: scale3d(1,0.85,1); }
@@ -120,8 +116,7 @@ div.cs-skin-elastic {
 	100% { -webkit-transform: scale3d(1,1,1); transform: scale3d(1,1,1); }
 }
 
-
-@-webkit-keyframes bounce { 
+@-webkit-keyframes bounce {
 	0% { -webkit-transform: translate3d(0,-25px,0); opacity:0; }
 	25% { -webkit-transform: translate3d(0,10px,0); }
 	50% { -webkit-transform: translate3d(0,-6px,0); }
@@ -129,7 +124,7 @@ div.cs-skin-elastic {
 	100% { -webkit-transform: translate3d(0,0,0); opacity: 1; }
 }
 
-@keyframes bounce { 
+@keyframes bounce {
 	0% { -webkit-transform: translate3d(0,-25px,0); transform: translate3d(0,-25px,0); opacity:0; }
 	25% { -webkit-transform: translate3d(0,10px,0); transform: translate3d(0,10px,0); }
 	50% { -webkit-transform: translate3d(0,-6px,0); transform: translate3d(0,-6px,0); }

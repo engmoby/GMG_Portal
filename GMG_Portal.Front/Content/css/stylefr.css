@@ -127,10 +127,7 @@ input[type=radio]:checked:before {
     font: 400 8px/1 'FontAwesome';
 }
 
-
-
 .featherlight .featherlight-content {
-
     max-width: 50%!important;
     border-radius: 6px!important;
     text-align: center!important;
@@ -152,12 +149,10 @@ input[type=radio]:checked:before {
     font-weight: bold;
     color: #000;}
 
-
 .featherlight-inner h2{    color: #000;
     font-weight: bold;
     text-align: center;}
-	
-	
+
 .featherlight-inner h3{color: #000;
     font-weight: bold;
     margin-top: 10px;
@@ -167,18 +162,14 @@ input[type=radio]:checked:before {
     margin-right: auto;
     margin-top: 30px;}
 
-
 .featherlight-inner p{    color: #000;
     font-size: 18px;
     margin-top: 15px;}
 
-
 .carousel-inner>.item {
-
     max-height: 735px;
     overflow: hidden;
 }
-
 
 .wpb_wrapper h5, h3, h4{    line-height: 26px;
     font-family: "Open Sans";}
@@ -2995,15 +2986,11 @@ padding-bottom: 40px;
     display: none;
 }
 
-
-
 .carousel-inner>.item>a>img, .carousel-inner>.item>img {
- 
     width: 100%;
 }
 
 .mg-team-member img{width:100%!important;}
-
 
 .mg-booking-form .nav-tabs > li > a span.mg-bs-bar:after {
     content: '';
@@ -3782,11 +3769,9 @@ padding-bottom: 40px;
 }
 @media (max-width: 991px) {
 .mg-room {
-    
     max-height: 134px;
     /*max-height: 242px;
     min-height: 242px;*/
-
 }
 
     .carousel-caption > h2 {
@@ -4321,7 +4306,7 @@ padding-bottom: 40px;
     }
 }
 /*
- * Boxed Mode Responsive 
+ * Boxed Mode Responsive
  */
 @media (max-width: 1199px) {
     .mg-boxed {
@@ -4340,9 +4325,8 @@ padding-bottom: 40px;
 }
 @media (max-width: 991px) {
     .featherlight .featherlight-content {
-
         max-width: 90%!important;}
-	
+
     .mg-boxed {
         width: 767px;
     }
@@ -4401,7 +4385,6 @@ padding-bottom: 40px;
 }
 
 @media (max-width: 1280px) {
-
     .carousel-inner>.item {
         max-height: 481px;
         overflow: hidden;

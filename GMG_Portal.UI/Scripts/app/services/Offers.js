@@ -14,7 +14,7 @@
         });
     }
 
-  this.GetAllCategories = function (lang) {
+    this.GetAllCurrency = function (lang) {
     return $http.get(apiUrl + '/SystemParameters/Currency/GetAllWithDeleted?LangId=' + lang);
   }
 

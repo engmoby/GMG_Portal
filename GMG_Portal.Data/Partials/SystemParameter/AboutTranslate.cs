@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GMG_Portal.Data
 {
-    public partial class SystemParameters_About_Translate
-    {
-      
-
+    public partial class About_Translate
+    {  
         [NotMapped]
         public string OperationStatus { get; set; }
 

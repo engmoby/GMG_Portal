@@ -1,16 +1,17 @@
-﻿controllerProvider.register('FeaturesController', ['$scope', 'FeaturesApi', 'uploadService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', FeaturesController]);
-function FeaturesController($scope, FeaturesApi, uploadService, $rootScope, $timeout, $filter, $uibModal, toastr) {
+﻿controllerProvider.register('FeaturesController', ['$scope', 'appCONSTANTS', 'FeaturesApi', 'uploadService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', FeaturesController]);
+function FeaturesController($scope, appCONSTANTS, FeaturesApi, uploadService, $rootScope, $timeout, $filter, $uibModal, toastr) {
+    $scope.language = appCONSTANTS.supportedLanguage;
     var langId = document.querySelector('#HCurrentLang').value;
-    var CurrentLanguage = langId;
+    $scope.CurrentLanguage = langId;
     $("#DropdwonLang").change(function () {
         var selectedText = $(this).find("option:selected").text();
         var selectedValue = $(this).val();
         document.getElementById("HCurrentLang").value = selectedValue;
-        CurrentLanguage = selectedValue;
+        $scope.CurrentLanguage = selectedValue;
 
         debugger;
 
-        FeaturesApi.GetAll(CurrentLanguage).then(function (response) {
+        FeaturesApi.GetAll($scope.CurrentLanguage).then(function (response) {
             $scope.Features = response.data;
             $rootScope.ViewLoading = false;
         });
@@ -18,7 +19,7 @@ function FeaturesController($scope, FeaturesApi, uploadService, $rootScope, $tim
     $scope.Image = "";
     $scope.letterLimit = 20;
     $rootScope.ViewLoading = true;
-    FeaturesApi.GetAll(CurrentLanguage).then(function (response) {
+    FeaturesApi.GetAll($scope.CurrentLanguage).then(function (response) {
         $scope.Features = response.data;
         $rootScope.ViewLoading = false;
     });
@@ -63,7 +64,7 @@ function FeaturesController($scope, FeaturesApi, uploadService, $rootScope, $tim
             $scope.Feature.Image = $scope.Image;
             $scope.Image = "";
         } 
-        $scope.Feature.LangId = CurrentLanguage;
+        $scope.Feature.LangId = $scope.CurrentLanguage;
 
         FeaturesApi.Save($scope.Feature).then(function (response) {
 

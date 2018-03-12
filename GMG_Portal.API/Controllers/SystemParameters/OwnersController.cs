@@ -17,24 +17,29 @@ namespace GMG_Portal.API.Controllers.SystemParameters
     [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*")]
     public class OwnersController : ApiController
     {
-    
+
         public HttpResponseMessage GetAll(string langId)
         {
             try
             {
                 var ownersLogic = new OwnerLogic();
-                var ownersLogicTranslate = new OwnerLogicTranslate();
-                if (langId == Parameters.DefaultLang)
-                {
-                    var obj = ownersLogic.GetAll();
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Owners>>(obj));
-                }
-                else
+                //var ownersLogicTranslate = new OwnerLogicTranslate();
+                //if (langId == Parameters.DefaultLang)
+                //{
+                var obj = ownersLogic.GetAll();
+                //Mapper.Initialize(cfg =>
+                //{
+                //    cfg.CreateMap<SystemParameters_Owners, Owners>()
+                //        .ForMember(x => x.OwnerNameDictionary, o => o.MapFrom(src => src.SystemParameters_Owners_Translate.ToDictionary(lang => lang.langId.ToLower(), lang => lang.DisplayValueName)));
+                //});
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<OwnerModel>>(obj));
+                //}
+                //else
 
-                {
-                    var objByLang = ownersLogicTranslate.GetAll(langId);
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Owners>>(objByLang));
-                }
+                //{
+                //    var objByLang = ownersLogicTranslate.GetAll(langId);
+                //    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Owners>>(objByLang));
+                //}
             }
             catch (Exception ex)
             {
@@ -47,23 +52,27 @@ namespace GMG_Portal.API.Controllers.SystemParameters
             try
             {
                 var ownersLogic = new OwnerLogic();
-                var ownersLogicTranslate = new OwnerLogicTranslate();
+                //var ownersLogicTranslate = new OwnerLogicTranslate();
 
-                if (langId == Parameters.DefaultLang)
-                {
-                    var obj = ownersLogic.GetAllWithDeleted();
+                //if (langId == Parameters.DefaultLang)
+                //{
+                var obj = ownersLogic.GetAllWithDeleted();
+                //Mapper.Initialize(cfg =>
+                //{
+                //    cfg.CreateMap<SystemParameters_Owners, Owners>()
+                //    .ForMember(x => x.OwnerNameDictionary, o => o.MapFrom(src => src.SystemParameters_Owners_Translate.ToDictionary(lang => lang.langId.ToLower(), lang => lang.DisplayValueName)));
+                //});
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<OwnerModel>>(obj));
 
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Owners>>(obj));
+                //}
+                //else
 
-                }
-                else
+                //{
+                //    var objByLang = ownersLogicTranslate.GetAllWithDeleted(langId);
 
-                {
-                    var objByLang = ownersLogicTranslate.GetAllWithDeleted(langId);
+                //    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Owners>>(objByLang));
 
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Owners>>(objByLang));
-
-                }
+                //}
 
             }
             catch (Exception ex)
@@ -77,45 +86,46 @@ namespace GMG_Portal.API.Controllers.SystemParameters
 
 
         [HttpPost]
-        public HttpResponseMessage Save(Owners postedOwners)
+        public HttpResponseMessage Save(OwnerModel postedOwners)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
                     var ownersLogic = new OwnerLogic();
-                    var ownersLogicTranslate = new OwnerLogicTranslate();
+                    //var ownersLogicTranslate = new OwnerLogicTranslate();
 
-                    SystemParameters_Owners obj = null;
-                    SystemParameters_Owners_Translate objByLang = null;
+                    Owner obj = null;
+                    //SystemParameters_Owners_Translate objByLang = null;
                     if (postedOwners.Id.Equals(0))
                     {
-                        if (postedOwners.langId == Parameters.DefaultLang)
-                            obj = ownersLogic.Insert(Mapper.Map<SystemParameters_Owners>(postedOwners));
-                        else
-                            objByLang = ownersLogicTranslate.Insert(Mapper.Map<SystemParameters_Owners_Translate>(postedOwners));
+                        //if (postedOwners.langId == Parameters.DefaultLang)
+                        obj = ownersLogic.Insert(Mapper.Map<Owner>(postedOwners));
+                        //else
+                        //    objByLang = ownersLogicTranslate.Insert(Mapper.Map<SystemParameters_Owners_Translate>(postedOwners));
                     }
                     else
                     {
                         if (postedOwners.IsDeleted)
                         {
-                            if (postedOwners.langId == Parameters.DefaultLang)
-                                obj = ownersLogic.Delete(Mapper.Map<SystemParameters_Owners>(postedOwners));
-                            else
-                                objByLang = ownersLogicTranslate.Delete(Mapper.Map<SystemParameters_Owners_Translate>(postedOwners));
+                            //if (postedOwners.langId == Parameters.DefaultLang)
+                            obj = ownersLogic.Delete(Mapper.Map<Owner>(postedOwners));
+                            //else
+                            //    objByLang = ownersLogicTranslate.Delete(Mapper.Map<SystemParameters_Owners_Translate>(postedOwners));
                         }
                         else
                         {
-                            if (postedOwners.langId == Parameters.DefaultLang)
-                                obj = ownersLogic.Edit(Mapper.Map<SystemParameters_Owners>(postedOwners));
-                            else
-                                objByLang = ownersLogicTranslate.Edit(Mapper.Map<SystemParameters_Owners_Translate>(postedOwners));
+                            //if (postedOwners.langId == Parameters.DefaultLang)
+                            obj = ownersLogic.Edit(Mapper.Map<Owner>(postedOwners));
+                            //else
+                            //    objByLang = ownersLogicTranslate.Edit(Mapper.Map<SystemParameters_Owners_Translate>(postedOwners));
                         }
                     }
-                    if (postedOwners.langId == Parameters.DefaultLang)
-                        return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<SystemParameters_Owners>(obj));
-                    else
-                        return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<SystemParameters_Owners_Translate>(objByLang));
+                    //if (postedOwners.langId == Parameters.DefaultLang)
+                    // return Request.CreateResponse(HttpStatusCode.OK,  obj);
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<OwnerModel>(obj));
+                    //else
+                    //    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<SystemParameters_Owners_Translate>(objByLang));
 
                 }
                 goto ThrowBadRequest;
@@ -130,6 +140,30 @@ namespace GMG_Portal.API.Controllers.SystemParameters
             ThrowBadRequest:
             return Request.CreateResponse(HttpStatusCode.BadRequest);
         }
+
+
+        [HttpPost]
+        public HttpResponseMessage OrderOwner(List<OwnerModel> postedOwners)
+        {
+            try
+            {
+                var ownersLogic = new OwnerLogic();
+                var obj = ownersLogic.OrderOwner(Mapper.Map<List<Owner>>(postedOwners));
+
+                return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<OwnerModel>>(obj));
+
+            }
+
+            catch (Exception ex)
+            {
+                Log.LogError(ex);
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+            }
+
+            ThrowBadRequest:
+            return Request.CreateResponse(HttpStatusCode.BadRequest);
+        }
+
     }
 
 }

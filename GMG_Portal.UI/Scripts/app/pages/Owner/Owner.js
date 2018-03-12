@@ -1,13 +1,74 @@
-﻿controllerProvider.register('OwnersController', ['$scope', 'OwnersApi', 'uploadOwnersService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', OwnersController]);
-function OwnersController($scope, OwnersApi, uploadOwnersService, $rootScope, $timeout, $filter, $uibModal, toastr) {
+﻿controllerProvider.register('OwnersController', ['$scope', 'appCONSTANTS', 'OwnersApi', 'uploadOwnersService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', OwnersController]);
+function OwnersController($scope, appCONSTANTS, OwnersApi, uploadOwnersService, $rootScope, $timeout, $filter, $uibModal, toastr) {
 
-    var langId = document.querySelector('#HCurrentLang').value;
-    var CurrentLanguage = langId;
+    $scope.data = { static: true }
+
+    var tmpList = [];
+
+    for (var i = 1; i <= 6; i++) {
+        tmpList.push({
+            text: 'Item ' + i,
+            value: i
+        });
+    }
+
+    $scope.list = tmpList;
+
+
+    $scope.sortingLog = [];
+
+
+    $scope.sortableOptions = { 
+         
+        stop: function (e, ui) {
+            // this callback has the changed model
+            var logEntry = $scope.Owners.map(function (i) {
+                return i.Sorder;
+            }).join(', ');
+            debugger;
+
+            $scope.sortingLog.push(logEntry);
+            for (var i = 0; i < $scope.Owners.length; i++) {
+                $scope.Owners[i].Sorder = i;
+                 //for (var s = 0; s < $scope.sortingLog.length; s++) {
+                 //    $scope.Owners[i].Sorder = $scope.sortingLog[s].Sorder;
+                 //    s += 1;
+                 //    continue;
+                 //}
+            }
+             console.log($scope.Owners);
+        }
+    };
+
+    $scope.submitOrder = function () {
+        debugger;
+        // $scope.orderList = []; // $scope.selectedFeatures.features.HotelId = $scope.Hotel.Id;
+        // for (var i = 0; i < $scope.Owners.length; i++) {
+        //    $scope.orderList.push({ 
+        //        Feature_Id: $scope.sortingLogId[i] 
+        //    });
+        //}
+         OwnersApi.SaveOrder($scope.Owners).then(function (response) {
+        //    $scope.Owners = response.data;
+            $('#ModelOrder').modal('hide');
+
+        },
+            function (response) {
+                debugger;
+                $rootScope.ViewLoading = false;
+                //toastr.error(response.data, 'Error');
+
+            });
+    }
+    $scope.language = appCONSTANTS.supportedLanguage;
+
+    $scope.langId = document.querySelector('#HCurrentLang').value;
+    $scope.CurrentLanguage = $scope.langId;
     $("#DropdwonLang").change(function () {
         var selectedValue = $(this).val();
         document.getElementById("HCurrentLang").value = selectedValue;
-        CurrentLanguage = selectedValue;
-        OwnersApi.GetAll(CurrentLanguage).then(function (response) {
+        $scope.CurrentLanguage = selectedValue;
+        OwnersApi.GetAll($scope.CurrentLanguage).then(function (response) {
             $scope.Owners = response.data;
             $rootScope.ViewLoading = false;
         });
@@ -18,12 +79,13 @@ function OwnersController($scope, OwnersApi, uploadOwnersService, $rootScope, $t
     $scope.Image = "";
     $scope.letterLimit = 20;
     $rootScope.ViewLoading = true;
-    OwnersApi.GetAll(CurrentLanguage).then(function (response) {
+    OwnersApi.GetAll($scope.CurrentLanguage).then(function (response) {
         $scope.Owners = response.data;
         $rootScope.ViewLoading = false;
+
+        console.log($scope.Owners);
     });
     $scope.open = function (Owner) {
-        debugger;
         $scope.countFiles = '';
         $scope.invalidupdateAddFrm = true;
         $('#ModelAddUpdate').modal('show');
@@ -34,7 +96,7 @@ function OwnersController($scope, OwnersApi, uploadOwnersService, $rootScope, $t
         $scope.Owner = angular.copy(Owner);
         if ($scope.Owner.Image)
             $scope.countFiles = $scope.Owner.Image;
-         
+
     }
     $scope.openImage = function (Owner) {
         debugger;
@@ -44,6 +106,16 @@ function OwnersController($scope, OwnersApi, uploadOwnersService, $rootScope, $t
         $scope.Owner = angular.copy(Owner);
         if ($scope.Owner.Image)
             $scope.countFiles = $scope.Owner.Image;
+
+    }
+    $scope.openOrder = function (Owner) {
+        debugger;
+        $('#ModelOrder').modal('show');
+        //$scope.action = Owner == null ? 'add' : 'edit';
+        //if (Owner == null) Owner = {};
+        //$scope.Owner = angular.copy(Owner);
+        //if ($scope.Owner.Image)
+        //    $scope.countFiles = $scope.Owner.Image;
 
     }
     $scope.back = function () {
@@ -59,37 +131,38 @@ function OwnersController($scope, OwnersApi, uploadOwnersService, $rootScope, $t
     }
 
     $scope.save = function () {
+        debugger;
         $scope.back();
         $rootScope.ViewLoading = true;
         if ($scope.Image) {
             $scope.Owner.Image = $scope.Image;
             $scope.Image = "";
-        } 
+        }
         debugger;
-        $scope.Owner.LangId = CurrentLanguage;
-        OwnersApi.Save($scope.Owner).then(function (response) { 
+        $scope.Owner.LangId = $scope.CurrentLanguage;
+        OwnersApi.Save($scope.Owner).then(function (response) {
             switch (response.data.OperationStatus) {
                 case "Succeded":
                     var index;
                     switch ($scope.action) {
                         case 'edit':
                             index = $scope.Owners.indexOf($filter('filter')($scope.Owners, { 'Id': $scope.Owner.Id }, true)[0]);
-                            $scope.Owners[index] = angular.copy(response.data); 
+                            $scope.Owners[index] = angular.copy(response.data);
                             toastr.success($('#HUpdateSuccessMessage').val(), 'Success');
 
-                            OwnersApi.GetAll(CurrentLanguage).then(function (response) {
-                            $scope.Owners = response.data;
-                            $rootScope.ViewLoading = false;
+                            OwnersApi.GetAll($scope.CurrentLanguage).then(function (response) {
+                                $scope.Owners = response.data;
+                                $rootScope.ViewLoading = false;
                             });
 
                             break;
                         case 'delete':
                             index = $scope.Owners.indexOf($filter('filter')($scope.Owners, { 'Id': $scope.Owner.Id }, true)[0]);
                             $scope.Owners[index] = angular.copy(response.data);
-                             toastr.success($('#HDeleteSuccessMessage').val(), 'Success');
+                            toastr.success($('#HDeleteSuccessMessage').val(), 'Success');
                             break;
                         case 'add':
-                             $scope.Owners.push(angular.copy(response.data));
+                            $scope.Owners.push(angular.copy(response.data));
                             toastr.success($('#HSaveSuccessMessage').val(), 'Success');
                             break;
                     }
@@ -112,7 +185,9 @@ function OwnersController($scope, OwnersApi, uploadOwnersService, $rootScope, $t
         },
         function (response) {
             debugger;
-            ss = response;
+            $rootScope.ViewLoading = false;
+            //toastr.error(response.data, 'Error');
+
         });
     }
 

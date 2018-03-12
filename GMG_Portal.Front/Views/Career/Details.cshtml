@@ -11,8 +11,6 @@
             <div class="col-md-12">
                 <div class="mg-booking-form">
 
-
-
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane fade in active" id="select-room">
                             <div class="mg-saerch-room">
@@ -25,7 +23,6 @@
                                                 @Front.Resources.Global.Career_Details_Title <span class="mg-bn-big">@Front.Resources.Global.Career_Details_Description</span>
                                             </h2>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -39,18 +36,16 @@
 
                                             <div class="col-md-9">
                                                 <h3 class="mg-avl-room-title"> @Model.CareerTitle </h3>
-
                                             </div>
-                                            
- 
+
                                             @using (Html.BeginForm("Details", "Career", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
                                             {
                                                 @Html.AntiForgeryToken()
                                                 @Html.ValidationSummary(true)
- 
+
                                                 <fieldset>
                                                     <legend>Create Support Request</legend>
- 
+
                                                     <div class="editor-label">
                                                         @Html.LabelFor(model => model.FirstName)
                                                     </div>
@@ -58,7 +53,7 @@
                                                         @Html.EditorFor(model => model.LastName)
                                                         @Html.ValidationMessageFor(model => model.LastName)
                                                     </div>
- 
+
                                                     <div class="editor-label">
                                                         @Html.LabelFor(model => model.Email)
                                                     </div>
@@ -81,16 +76,12 @@
                                                     </p>
                                                 </fieldset>
                                             }
-
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
-
                     </div>
-
                 </div>
             </div>
         </div>

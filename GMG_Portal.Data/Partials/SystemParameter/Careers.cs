@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GMG_Portal.Data
 {
-    public partial class SystemParameters_Careers
+    public partial class Career
     {
         [NotMapped]
         public int ApplyCount { get; set; }

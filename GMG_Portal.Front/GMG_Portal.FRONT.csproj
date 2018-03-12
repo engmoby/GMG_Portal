@@ -327,6 +327,7 @@
     <Content Include="Content\js\classie.js" />
     <Content Include="Content\js\gmaps.min.js" />
     <Content Include="Content\js\html5shiv.min.js" />
+    <Content Include="Content\js\jquery.form-validator.js" />
     <Content Include="Content\js\jquery.form-validator.min.js" />
     <Content Include="Content\js\jquery.localstorage.js" />
     <Content Include="Content\js\jquery.min.js" />
@@ -377,6 +378,7 @@
     <Content Include="Content\fonts\hotels.eot" />
     <Content Include="Content\fonts\hotels.ttf" />
     <Content Include="Content\fonts\hotels.woff" />
+    <Content Include="Content\js\1.7.1_jquery.min.js" />
     <None Include="Properties\PublishProfiles\Front.pubxml" />
     <None Include="Properties\PublishProfiles\GMGPORTAL - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\GMGPORTAL - Web Deploy.pubxml" />
@@ -385,6 +387,9 @@
     <None Include="Properties\PublishProfiles\gmgportal-stag - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\gmgportal-stag - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\LOCAL.pubxml" />
+    <None Include="Properties\PublishProfiles\PortalM - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\PortalM - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\PortalM.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\featherlight.css" />
     <Content Include="Scripts\featherlight.gallery.css" />
@@ -447,6 +452,7 @@
     <Content Include="Views\Offers\OfferDetails.cshtml" />
     <Content Include="Views\Hotel\Details.cshtml" />
     <Content Include="Views\News\SearchResult.cshtml" />
+    <Content Include="Views\Career\Index - Copy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

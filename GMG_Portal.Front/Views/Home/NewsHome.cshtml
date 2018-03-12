@@ -1,7 +1,7 @@
-﻿@using GMG_Portal.API.Models.SystemParameters 
-@using GMG_Portal.API.Models.Hotels.Hotel 
+﻿@using Front.Helpers
+@using GMG_Portal.API.Models.SystemParameters
+@using GMG_Portal.API.Models.Hotels.Hotel
 @model GMG_Portal.API.Models.General.HomeModels
-
 
 <div class="mg-news-gallery">
     <div class="container">
@@ -12,11 +12,10 @@
 
                     @if (Model.News.Count != 0)
                     {
-                        foreach (News t in Model.News.Take(3))
+                        foreach (NewsModel t in Model.News.Take(3))
                         {
                             <li>
                                 <div class="mg-recnt-post">
-
 
                                     <div class="mg-rp-date">
 
@@ -24,22 +23,19 @@
                                             @t.CreationTime.Value.Day
                                         <div class="mg-rp-month">@t.CreationTime.Value.ToString("MMM")</div>
                                     </div>
-
                                 </div>
                                     <h3 class="display-field">
-                                        <a href="/News/Details/@t.Id" >@t.DisplayValue </a>
-                                </h3> 
-                                    @if (@t.DisplayValueDesc.Length >= 81)
+                                        <a href="/News/Details/@t.Id" >@t.TitleDictionary[Common.CurrentLang] </a>
+                                </h3>
+                                    @if (@t.DescDictionary[Common.CurrentLang].Length >= 81)
                                     {
-                                        <p> @t.DisplayValueDesc.ToString().Substring(0, 81)</p>
+                                        <p> @t.DescDictionary[Common.CurrentLang].ToString().Substring(0, 81)</p>
 
                                     }
                                     else
                                     {
-                                        <p>  @t.DisplayValueDesc</p>
+                                        <p>  @t.DescDictionary[Common.CurrentLang]</p>
                                     }
-
-
                             </div>
                         </li>
                         }
@@ -49,7 +45,6 @@
                         <p>No Recent News</p>
 
                     }
-
                 </ul>
             </div>
             <div class="col-md-7">
@@ -73,7 +68,6 @@
 
                         }
                     </ul>
-
                 </div>
             </div>
         </div>

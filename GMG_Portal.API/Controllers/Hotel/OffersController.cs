@@ -15,27 +15,24 @@ namespace GMG_Portal.API.Controllers.Offer
     [RoutePrefix("SystemParameters/Offers")]
     [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*")]
     public class OffersController : ApiController
-    {
-    
-
-
+    { 
         public HttpResponseMessage GetAll(string langId)
         {
             try
             {
                 var offerLogic = new OfferLogic();
-                var offerLogicTranslate = new OfferLogicTranslate();
-                if (langId == Parameters.DefaultLang)
-                {
+                //var offerLogicTranslate = new OfferLogicTranslate();
+                //if (langId == Parameters.DefaultLang)
+                //{
                     var obj = offerLogic.GetAll();
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Hotles_Offers>>(obj));
-                }
-                else
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<OfferModel>>(obj));
+                //}
+                //else
 
-                {
-                    var objByLang = offerLogicTranslate.GetAll(langId);
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Hotles_Offers_Translate>>(objByLang));
-                }
+                //{
+                //    var objByLang = offerLogicTranslate.GetAll(langId);
+                //    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Hotles_Offers_Translate>>(objByLang));
+                //}
             }
             catch (Exception ex)
             {
@@ -48,23 +45,23 @@ namespace GMG_Portal.API.Controllers.Offer
             try
             {
                 var offerLogic = new OfferLogic();
-                var offerLogicTranslate = new OfferLogicTranslate();
+                //var offerLogicTranslate = new OfferLogicTranslate();
 
-                if (langId == Parameters.DefaultLang)
-                {
+                //if (langId == Parameters.DefaultLang)
+                //{
                     var obj = offerLogic.GetAllWithDeleted();
 
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Hotles_Offers>>(obj));
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<OfferModel>>(obj));
 
-                }
-                else
+                //}
+                //else
 
-                {
-                    var objByLang = offerLogicTranslate.GetAllWithDeleted(langId);
+                //{
+                //    var objByLang = offerLogicTranslate.GetAllWithDeleted(langId);
 
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Hotles_Offers_Translate>>(objByLang));
+                //    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<List<Hotles_Offers_Translate>>(objByLang));
 
-                }
+                //}
 
             }
             catch (Exception ex)
@@ -83,17 +80,17 @@ namespace GMG_Portal.API.Controllers.Offer
             try
             {
                 var offerLogic = new OfferLogic();
-                var offerLogicTranslate = new OfferLogicTranslate();
-                if (langId == Parameters.DefaultLang)
-                {
+                //var offerLogicTranslate = new OfferLogicTranslate();
+                //if (langId == Parameters.DefaultLang)
+                //{
                     var obj = offerLogic.Get(id);
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Hotles_Offers>(obj));
-                }
-                else
-                {
-                    var objTranslate = offerLogicTranslate.Get(id,langId);
-                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Hotles_Offers_Translate>(objTranslate));
-                }
+                    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<OfferModel>(obj));
+                //}
+                //else
+                //{
+                //    var objTranslate = offerLogicTranslate.Get(id,langId);
+                //    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Hotles_Offers_Translate>(objTranslate));
+                //}
                   
 
 
@@ -105,54 +102,54 @@ namespace GMG_Portal.API.Controllers.Offer
             }
         }
         [HttpPost]
-        public HttpResponseMessage Save(Models.SystemParameters.Offer postedOffers)
+        public HttpResponseMessage Save(OfferModel postedOffers)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
                     var offerLogic = new OfferLogic();
-                    var offerLogicTranslate = new OfferLogicTranslate();
-                    Hotles_Offers obj = null;
-                    Hotles_Offers_Translate objTranslate =  null;
+                  //  var offerLogicTranslate = new OfferLogicTranslate();
+                    Data.Offer obj = null;
+                  //  Hotles_Offers_Translate objTranslate =  null;
                     if (postedOffers.Id.Equals(0))
                     {
-                        if (postedOffers.langId == Parameters.DefaultLang)
-                        {
-                            obj = offerLogic.Insert(Mapper.Map<Hotles_Offers>(postedOffers));
-                        }
-                        else
-                            objTranslate = offerLogicTranslate.Insert(Mapper.Map<Hotles_Offers_Translate>(postedOffers));
+                        //if (postedOffers.langId == Parameters.DefaultLang)
+                        //{
+                            obj = offerLogic.Insert(Mapper.Map<Data.Offer>(postedOffers));
+                        //}
+                        //else
+                        //    objTranslate = offerLogicTranslate.Insert(Mapper.Map<Hotles_Offers_Translate>(postedOffers));
                     }
 
                     else
                     {
                         if (postedOffers.IsDeleted)
                         {
-                            if (postedOffers.langId == Parameters.DefaultLang)
-                                obj = offerLogic.Delete(Mapper.Map<Hotles_Offers>(postedOffers));
-                            else
-                                objTranslate =
-                                    offerLogicTranslate.Delete(Mapper.Map<Hotles_Offers_Translate>(postedOffers));
+                         //   if (postedOffers.langId == Parameters.DefaultLang)
+                                obj = offerLogic.Delete(Mapper.Map<Data.Offer>(postedOffers));
+                            //else
+                            //    objTranslate =
+                            //        offerLogicTranslate.Delete(Mapper.Map<Hotles_Offers_Translate>(postedOffers));
                         }
 
 
                         else
                         {
-                            if (postedOffers.langId == Parameters.DefaultLang)
-                                obj = offerLogic.Edit(Mapper.Map<Hotles_Offers>(postedOffers));
-                            else
-                                objTranslate= offerLogicTranslate.Edit(Mapper.Map<Hotles_Offers_Translate>(postedOffers));
+                           // if (postedOffers.langId == Parameters.DefaultLang)
+                                obj = offerLogic.Edit(Mapper.Map<Data.Offer>(postedOffers));
+                            //else
+                            //    objTranslate= offerLogicTranslate.Edit(Mapper.Map<Hotles_Offers_Translate>(postedOffers));
 
                         }
                     
                     }
-                    if (postedOffers.langId == Parameters.DefaultLang)
-                        return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Hotles_Offers>(obj));
-                    else
-                    {
-                        return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Hotles_Offers_Translate>(objTranslate));
-                    }
+                   // if (postedOffers.langId == Parameters.DefaultLang)
+                        return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<OfferModel>(obj));
+                    //else
+                    //{
+                    //    return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Hotles_Offers_Translate>(objTranslate));
+                    //}
                 }
                 goto ThrowBadRequest;
             }

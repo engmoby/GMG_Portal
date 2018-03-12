@@ -4,11 +4,8 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GMG_Portal.Business.Logic.General;
 using GMG_Portal.Data;
-using Heloper; 
+using Heloper;
 
 namespace GMG_Portal.Business.Logic.SystemParameters
 {
@@ -20,46 +17,50 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         {
             _db = new GMG_Portal_DBEntities1();
         }
-        public List<SystemParameters_Owners> GetAllWithDeleted()
+        public List<Owner> GetAllWithDeleted()
         {
-            return _db.SystemParameters_Owners.OrderBy(p => p.IsDeleted).ThenBy(p => p.Sorder).ToList();
+            return _db.Owners.OrderBy(p => p.IsDeleted).ThenBy(p => p.Sorder).ToList();
         }
-        public List<SystemParameters_Owners> GetAll()
+        public List<Owner> GetAll()
         {
-            var returnList = new List<SystemParameters_Owners>();
-            var getOwnerList = _db.SystemParameters_Owners.Where(p => p.IsDeleted == false && p.Show == true).ToList().OrderBy(p => p.Sorder).ToList();
-            foreach (var ownerse in getOwnerList)
-            {
+            return _db.Owners.Where(p => p.IsDeleted == false).OrderBy(p => p.IsDeleted).ThenBy(p => p.Sorder).ToList();
+            //var returnList = new List<SystemParameters_Owners>();
+            //var getOwnerList = _db.SystemParameters_Owners.Where(p => p.IsDeleted == false && p.Show == true).ToList().OrderBy(p => p.Sorder).ToList();
+            //foreach (var ownerse in getOwnerList)
+            //{
 
-                returnList.Add(new SystemParameters_Owners
-                {
-                    Id = ownerse.Id, 
-                    DisplayValueName = ownerse.DisplayValueName,
-                    DisplayValuePosition= ownerse.DisplayValuePosition,
-                    DisplayValueDesc = ownerse.DisplayValueDesc, 
-                    Image = ownerse.Image,
-                    Facebook = ownerse.Facebook,
-                    Twitter = ownerse.Twitter,
-                    LinkedIn = ownerse.LinkedIn,
-                    Bootstrap = 12 / getOwnerList.Count,
-                    Sorder = ownerse.Sorder
-                  
-                });
-            }
-            return returnList;
+            //    returnList.Add(new SystemParameters_Owners
+            //    {
+            //        Id = ownerse.Id,
+            //        DisplayValueName = ownerse.DisplayValueName,
+            //        DisplayValuePosition = ownerse.DisplayValuePosition,
+            //        DisplayValueDesc = ownerse.DisplayValueDesc,
+            //        Image = ownerse.Image,
+            //        Facebook = ownerse.Facebook,
+            //        Twitter = ownerse.Twitter,
+            //        LinkedIn = ownerse.LinkedIn,
+            //        Bootstrap = 12 / getOwnerList.Count,
+            //        Sorder = ownerse.Sorder
+
+            //    });
+            //}
+            //return returnList;
             //return _db.SystemParameters_Owners.Where(p => p.IsDeleted == false && (bool) p.Show).ToList();
         }
-        public SystemParameters_Owners Get(int id)
+        public Owner Get(int id)
         {
-            return _db.SystemParameters_Owners.Find(id);
+            return _db.Owners.Find(id);
         }
-
-        public SystemParameters_Owners GetByOrder(int Sorder)
+        public List<Owners_Translate> GetTranslates(int recordId)
+        {
+            return _db.Owners_Translate.Where(x => x.RecordId == recordId).ToList();
+        }
+        public Owner GetByOrder(int sorder)
         {
             //var getOwnerOrder = _db.SystemParameters_Owners.Where(p => p.IsDeleted == false && p.Show == true && p.Sorder == Sorder ).ToList().OrderBy(p => p.Sorder).ToList();
-            return _db.SystemParameters_Owners.FirstOrDefault(p => p.IsDeleted == false && p.Show == true && p.Sorder == Sorder);
+            return _db.Owners.FirstOrDefault(p => p.IsDeleted == false && p.Show == true && p.Sorder == sorder);
         }
-        private SystemParameters_Owners Save(SystemParameters_Owners obj)
+        private Owner Save(Owner obj)
         {
             try
             {
@@ -85,59 +86,78 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 throw;
             }
         }
-        public SystemParameters_Owners Insert(SystemParameters_Owners postedOwner)
+        public Owner Insert(Owner postedOwner)
         {
 
-            var maxcount = GetMaxCountofOrder();
-            var obj = new SystemParameters_Owners()
+            // var maxcount = GetMaxCountofOrder();
+            var obj = new Owner()
             {
-                DisplayValueName = postedOwner.DisplayValueName,
-                DisplayValuePosition = postedOwner.DisplayValuePosition,
-                DisplayValueDesc = postedOwner.DisplayValueDesc,
-                Facebook= postedOwner.Facebook, 
-                Twitter= postedOwner.Twitter, 
-                Image= postedOwner.Image, 
-                LinkedIn= postedOwner.LinkedIn,
-                Show = Parameters.Show,  
+                Facebook = postedOwner.Facebook,
+                Twitter = postedOwner.Twitter,
+                Image = postedOwner.Image,
+                LinkedIn = postedOwner.LinkedIn,
+                Show = Parameters.Show,
                 CreationTime = Parameters.CurrentDateTime,
-                CreatorUserId = Parameters.UserId, 
-                Sorder = maxcount,
+                CreatorUserId = Parameters.UserId,
+                Sorder = 1,
 
             };
-            _db.SystemParameters_Owners.Add(obj);
-            return Save(obj);
+            _db.Owners.Add(obj);
+            _db.SaveChanges();
+            var objTrasnlate = new Owners_Translate();
+            {
+                foreach (var ownerName in postedOwner.OwnerNameDictionary)
+                {
+                    objTrasnlate.DisplayValueName = ownerName.Value;
+                    objTrasnlate.DisplayValuePosition = postedOwner.OwnerPostionDictionary[ownerName.Key];
+                    objTrasnlate.DisplayValueDesc = postedOwner.OwnerDescDictionary[ownerName.Key];
+                    objTrasnlate.langId = ownerName.Key;
+                    objTrasnlate.RecordId = obj.Id;
+                    _db.Owners_Translate.Add(objTrasnlate);
+                    _db.SaveChanges();
+                }
+            }
+            Owner owner = Get(obj.Id);
+            List<Owners_Translate> ownerTranslate = GetTranslates(obj.Id);
+            return Save(owner);
         }
-        public SystemParameters_Owners Edit(SystemParameters_Owners postedOwner)
+        public Owner Edit(Owner postedOwner)
         {
-            SystemParameters_Owners owner = Get(postedOwner.Id);
-            owner.DisplayValueName = postedOwner.DisplayValueName;
-            owner.DisplayValuePosition = postedOwner.DisplayValuePosition;
-            owner.DisplayValueDesc = postedOwner.DisplayValueDesc;
+            Owner owner = Get(postedOwner.Id);
+            List<Owners_Translate> ownerTranslate = GetTranslates(postedOwner.Id);
+            foreach (var ownerName in postedOwner.OwnerNameDictionary)
+            {
+                //var systemParametersOwnersTranslate = ownerTranslate.FirstOrDefault(x => x.langId == ownerName.Key); 
+                //var b = systemParametersOwnersTranslate != null && systemParametersOwnersTranslate.DisplayValueName == ownerName.Value;
+                //_db.SaveChanges();
+                foreach (var systemParametersOwnersTranslate in ownerTranslate)
+                {
+                    if (ownerName.Key == systemParametersOwnersTranslate.langId)
+                    {
+                        systemParametersOwnersTranslate.DisplayValueName = ownerName.Value;
+                        systemParametersOwnersTranslate.DisplayValueDesc = postedOwner.OwnerDescDictionary[ownerName.Key];
+                        systemParametersOwnersTranslate.DisplayValuePosition = postedOwner.OwnerPostionDictionary[ownerName.Key];
+                        _db.SaveChanges();
+                    }
+                }
+            }
             owner.Facebook = postedOwner.Facebook;
             owner.Twitter = postedOwner.Twitter;
             owner.Image = postedOwner.Image;
             owner.LinkedIn = postedOwner.LinkedIn;
             owner.IsDeleted = postedOwner.IsDeleted;
-            owner.Show = postedOwner.Show; 
+            owner.Show = postedOwner.Show;
             owner.LastModificationTime = Parameters.CurrentDateTime;
             owner.LastModifierUserId = Parameters.UserId;
-            //Update to Magically Replace the Numbers !
-            var corder = GetCurrentOrder(postedOwner.Id);
-            Savetheorder(postedOwner.Sorder, corder, postedOwner.Id);
-
-
-
-
-
-
-
-
-
+            ////Update to Magically Replace the Numbers !
+            //var corder = GetCurrentOrder(postedOwner.Id);
+            //Savetheorder(postedOwner.Sorder, corder, postedOwner.Id);
+            //_db.SaveChanges();
             return Save(owner);
         }
-        public SystemParameters_Owners Delete(SystemParameters_Owners postedOwner)
+        public Owner Delete(Owner postedOwner)
         {
-            SystemParameters_Owners obj = Get(postedOwner.Id);
+            Owner obj = Get(postedOwner.Id);
             //if (_db.SystemParameters_Owners.Any(p => p.Id == postedOwner.Id && p.IsDeleted != true))
             //{
             //      //  Owner.OperationStatus = "HasRelationship";
@@ -145,125 +165,25 @@ namespace GMG_Portal.Business.Logic.SystemParameters
             //}
 
             obj.IsDeleted = true;
-            obj.CreationTime = Parameters.CurrentDateTime;
-            obj.CreatorUserId = Parameters.UserId;
+            obj.DeletionTime = Parameters.CurrentDateTime;
+            obj.DeleterUserId = Parameters.UserId;
+            _db.SaveChanges();
             return Save(obj);
         }
-
-
-
-
-        public DataSet Sqlread(string sqlquery)
+        public List<Owner> OrderOwner(List<Owner> postedOwner)
         {
-            DataSet functionReturnValue = default(DataSet);
-            try
+            //List<Owner> obj = GetAll();
+            //for (int i = 0; i < obj.Count; i++)
+            //{
+            //    obj[i].Sorder = orderInts[i];
+            //}
+            foreach (var owner in postedOwner)
             {
-                var connectionString = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
-
-             
-                SqlConnection thisConnection = default(SqlConnection);
-                thisConnection = new SqlConnection(connectionString);
-                string sql = sqlquery;
-
-                thisConnection.Open();
-                DataSet DS = new DataSet();
-                SqlDataAdapter da = new SqlDataAdapter(sql, thisConnection);
-                da.Fill(DS);
-                functionReturnValue = DS;
-                thisConnection.Close();
+                var objOwner = Get(owner.Id);
+                objOwner.Sorder = owner.Sorder;
+                _db.SaveChanges();
             }
-            catch (Exception ex)
-            {
-                //  Lookups.LogErrorToText("Web", "Settings.vb", "FillMenus", ex.Message)
-            }
-            return functionReturnValue;
+            return GetAllWithDeleted();
         }
-        public string Sqlinsert(string sqlquery)
-        {
-            string functionReturnValue = null;
-            try
-            {
-
-
-                var connectionString = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
-
-                SqlConnection thisConnection = default(SqlConnection);
-
-
-                thisConnection = new SqlConnection(connectionString);
-                string sql = sqlquery;
-
-                thisConnection.Open();
-
-                dynamic objCmd = null;
-                objCmd = new System.Data.SqlClient.SqlCommand();
-                var _with1 = objCmd;
-                _with1.Connection = thisConnection;
-                _with1.CommandType = CommandType.Text;
-                _with1.CommandText = sql;
-                objCmd.ExecuteNonQuery();
-
-
-
-
-                functionReturnValue = "SQL Execution Successful !";
-                thisConnection.Close();
-
-            }
-            catch (Exception ex)
-            {
-                return ex.ToString();
-
-                //  Lookups.LogErrorToText("Web", "Settings.vb", "FillMenus", ex.Message)
-                //
-            }
-            return functionReturnValue;
-        }
-        public string Savetheorder(int Sorder, int currentOrder , int Sid)
-        {
-            DataTable DT;
-            DT = Sqlread("SELECT * FROM [dbo].[SystemParameters.Owners] WHERE Sorder=" + Sorder).Tables[0];
-            if (DT.Rows.Count > 0)
-            {
-                Sqlinsert("UPDATE [dbo].[SystemParameters.Owners] SET Sorder=" + Sorder + " WHERE Id=" + Sid);
-                var SQ = "UPDATE [dbo].[SystemParameters.Owners] SET Sorder=" + currentOrder + " WHERE Id=" +
-                         DT.Rows[0].Field<int>("Id");
-                Sqlinsert(SQ);
-            }
-            else
-            {
-                Sqlinsert("UPDATE [dbo].[SystemParameters.Owners] SET Sorder=" + Sorder + " WHERE Id=" + Sid);
-            }
-
-
-
-
-            return null;
-
-        }
-        public int GetCurrentOrder(int sId)
-        {
-            DataTable DT;
-            DT = Sqlread("SELECT Sorder FROM [dbo].[SystemParameters.Owners] WHERE Id=" + sId).Tables[0];
-            if (DT.Rows.Count > 0)
-            {
-                return DT.Rows[0].Field<int>("Sorder");
-            }
-
-            return 99;
-        }
-        public int GetMaxCountofOrder()
-        {
-            DataTable DT;
-            DT = Sqlread("SELECT * FROM [dbo].[SystemParameters.Owners] ORDER BY Sorder DESC").Tables[0];
-            if (DT.Rows.Count > 0)
-            {
-                return DT.Rows[0].Field<int>("Sorder") + 1;
-            }
-
-            return 99;
-        }
-
-
     }
 }

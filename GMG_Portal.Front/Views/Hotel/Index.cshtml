@@ -1,6 +1,6 @@
 ﻿@using Front.Helpers
-@model List<GMG_Portal.Data.Hotel>
-
+@using GMG_Portal.API.Models.Hotels.Hotel
+@model List<HotelsModel>
 
 <div class="mg-page-title parallax">
     <div class="container">
@@ -22,48 +22,65 @@
                     <div class="mg-avl-room">
                         <div class="row">
                             <div class="col-sm-5">
-                                <a href="/Hotel/Details/@hotel.Id"><img src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/Hotels/@hotel.Image" alt="" style="height: 350px; width: 475px;" class="img-responsive"></a>
+                                <a href="/Hotel/Details/@hotel.Id"><img src="@System.Configuration.ConfigurationManager.AppSettings["Serverbackend"]/Uploads/Hotels/@hotel.ImageList[0].Image" alt="" style="height: 350px; width: 475px;" class="img-responsive"></a>
                             </div>
                             <div class="col-sm-7">
                                 <h3 class="mg-avl-room-title">
-                                    <a href="/Hotel/Details/@hotel.Id">@hotel.DisplayValue</a>
+                                    <a href="/Hotel/Details/@hotel.Id">@hotel.TitleDictionary[Common.CurrentLang]</a>
                                     <span>
-                                        @hotel.PriceStart<sup>@hotel.CurrencyTitle</sup><sub style="margin-right: 7px;">@Front.Resources.Global.Hotel_Night</sub></span>
+                                        @hotel.PriceStart
+
+                                        @foreach (var c in Common.Currency)
+                                        {
+                                            if (c.Id == @hotel.Currency)
+                                            {
+                                                <sub>
+                                                    @c.TitleDictionary[Common.CurrentLang]
+                                                </sub>
+                                            }
+                                        }
+
+                                    @*<sup>@hotel.CurrencyTitle</sup>*@<sub style="margin-right: 7px;">@Front.Resources.Global.Hotel_Night</sub></span>
                                     @*<span>
                                         <sub style="margin-right: 5px;">@hotel.CurrencyTitle</sub>@hotel.PriceStart
                                         <span style="font-size: 18px;">/Night</span>
                                     </span>*@
                                 </h3>
 
-                                @if (@hotel.DisplayValueDesc.Length >= 110)
+                                @if (@hotel.DescDictionary[Common.CurrentLang].Length >= 110)
                                 {
                                     <div class="display-field">
-                                        @Html.PreserveNewLines(@hotel.DisplayValueDesc.ToString().Substring(0, 110))
+                                        @Html.PreserveNewLines(@hotel.DescDictionary[Common.CurrentLang].ToString().Substring(0, 110))
                                     </div>
                                 }
                                 else
                                 {
                                     <div class="display-field">
-                                        @Html.PreserveNewLines(@hotel.DisplayValueDesc)
+                                        @Html.PreserveNewLines(@hotel.DescDictionary[Common.CurrentLang])
                                     </div>
                                 }
 
-
                                 <div class="row mg-room-fecilities">
-                                    @for (int i = 0; i < hotel.FeaturesList.Count; i++)
+
+                                    @foreach (HotelFeatures t in hotel.FeaturesList)
                                     {
+                                        foreach (var c in Common.Features)
+                                        {
+                                            if (c.Id == t.Feature_Id)
+                                            {
+                                                <div class="col-xs-6">
+                                                    <ul>
+                                                        <li><i class="@c.Icon"></i> @c.TitleDictionary[Common.CurrentLang]</li>
+                                                    </ul>
+                                                </div>
 
+                                             }
+                                         }
 
-                                        <div class="col-xs-6">
-                                            <ul>
-                                                <li><i class="@hotel.FeaturesList[i].Icon"></i> @hotel.FeaturesList[i].DisplayValue</li>
-                                            </ul>
-                                        </div>
                                     }
                                 </div>
                                 <a href="/Hotel/Details/@hotel.Id" class="btn btn-dark ">@Front.Resources.Global.Hotel_Index_Button_Details <i class="fa fa-angle-double-right"></i></a>
                                 @*<a href="#" class="btn btn-main pull-right">Book Now</a>*@
-
                             </div>
                         </div>
                     </div>
@@ -72,5 +89,3 @@
         </div>
     </div>
 </div>
-
-

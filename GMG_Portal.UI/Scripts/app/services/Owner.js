@@ -12,4 +12,12 @@
             data: JSON.stringify(owner)
         });
     }
+    this.SaveOrder = function (orderInts) {
+        return $http({
+            url: apiUrl + '/SystemParameters/Owners/OrderOwner',
+            method: 'POST',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(orderInts)
+        });
+    }
 });

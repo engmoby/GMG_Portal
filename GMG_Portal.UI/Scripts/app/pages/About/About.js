@@ -1,16 +1,21 @@
-﻿controllerProvider.register('AboutController', ['$scope', 'AboutApi', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', AboutController]);
-function AboutController($scope, AboutApi, $rootScope, $timeout, $filter, $uibModal, toastr) {
+﻿controllerProvider.register('AboutController', ['$scope', 'appCONSTANTS', 'AboutApi', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', AboutController]);
+function AboutController($scope, appCONSTANTS, AboutApi, $rootScope, $timeout, $filter, $uibModal, toastr) {
+    $scope.oneAtATime = true;
+   
+
+    $scope.language = appCONSTANTS.supportedLanguage;
     var langId = document.querySelector('#HCurrentLang').value;
-    var CurrentLanguage = langId;
+   
+    $scope.CurrentLanguage = langId;
     $("#DropdwonLang").change(function () {
         var selectedText = $(this).find("option:selected").text();
         var selectedValue = $(this).val();
         document.getElementById("HCurrentLang").value = selectedValue;
-        CurrentLanguage = selectedValue;
+        $scope.CurrentLanguage = selectedValue;
 
         debugger;
 
-        AboutApi.GetAll(CurrentLanguage).then(function (response) {
+        AboutApi.GetAll($scope.CurrentLanguage).then(function (response) {
             $scope.About = response.data;
             $rootScope.ViewLoading = false;
         });
@@ -18,7 +23,7 @@ function AboutController($scope, AboutApi, $rootScope, $timeout, $filter, $uibMo
 
     $scope.letterLimit = 20;
     $rootScope.ViewLoading = true;
-    AboutApi.GetAll(CurrentLanguage).then(function (response) {
+    AboutApi.GetAll($scope.CurrentLanguage).then(function (response) {
         $scope.About = response.data;
         $rootScope.ViewLoading = false;
     });
@@ -31,18 +36,18 @@ function AboutController($scope, AboutApi, $rootScope, $timeout, $filter, $uibMo
         $scope.FrmAddUpdate.$setUntouched();
         if (aboutObj == null) aboutObj = {};
         $scope.aboutObj = angular.copy(aboutObj);
-       
+
     }
 
     $scope.back = function () {
         $('#ModelAddUpdate').modal('hide');
     }
- 
+
     $scope.save = function () {
         debugger;
         $rootScope.ViewLoading = true;
 
-        $scope.aboutObj.LangId = CurrentLanguage;
+        $scope.aboutObj.LangId = $scope.CurrentLanguage;
 
         AboutApi.Save($scope.aboutObj).then(function (response) {
 
@@ -80,7 +85,7 @@ function AboutController($scope, AboutApi, $rootScope, $timeout, $filter, $uibMo
             }
 
             $rootScope.ViewLoading = false;
-            $scope.back(); 
+            $scope.back();
         },
         function (response) {
             debugger;
@@ -88,7 +93,7 @@ function AboutController($scope, AboutApi, $rootScope, $timeout, $filter, $uibMo
         });
     }
 
-    
+
 }
 
 

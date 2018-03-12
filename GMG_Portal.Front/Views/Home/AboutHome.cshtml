@@ -1,27 +1,26 @@
-﻿@*@model  Front.Models.HomeModels*@
+﻿@using Front.Helpers
 @model GMG_Portal.API.Models.General.HomeModels
 
 <div class="mg-about parallax">
     <div class="container">
         <div class="row">
             <div class="col-md-7">
-                <h2 class="mg-sec-left-title">@Model.About.DisplayValue</h2>
-           
-                @if (@Model.About.DisplayValueDesc.Length >= 1000)
+                <h2 class="mg-sec-left-title">@Model.About.AboutTitleDictionary[Common.CurrentLang]</h2>
+
+                @if (@Model.About.AboutDescDictionary[Common.CurrentLang].Length >= 1000)
                 {
-                    <p>@Model.About.DisplayValueDesc.Substring(0, 1000)</p>
+                    <p>@Model.About.AboutDescDictionary[Common.CurrentLang].Substring(0, 1000)</p>
 
                 }
                 else
-                { 
-                    <p>@Model.About.DisplayValueDesc</p>
+                {
+                    <p>@Model.About.AboutDescDictionary[Common.CurrentLang]</p>
 
                 }
              </div>
             <div class="col-md-5">
                 <div class="video-responsive">
                     <div style="position:relative;height:0;padding-bottom:70%"><iframe src="https://www.youtube.com/embed/@Model.About.Url?ecver=2" style="position:absolute;width:100%;height:100%;left:0" width="500" height="350" frameborder="0" allowfullscreen></iframe></div>
-
                 </div>
             </div>
         </div>

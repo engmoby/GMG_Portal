@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -227,7 +227,6 @@
     <Compile Include="Controllers\Admin\HomeSliderController.cs" />
     <Compile Include="Controllers\Admin\LanguagesController.cs" />
     <Compile Include="Controllers\Admin\AdminController.cs" />
-    <Compile Include="Controllers\Admin\InvoiceStatusesController.cs" />
     <Compile Include="Controllers\FileUploadHotlesController.cs" />
     <Compile Include="Controllers\FileUploadOffersController.cs" />
     <Compile Include="Controllers\FileUploadNewsController.cs" />
@@ -291,7 +290,7 @@
     <Content Include="assets\img\favicon-32x32.png" />
     <Content Include="assets\img\favicon-96x96.png" />
     <Content Include="assets\img\green-bg.jpg" />
-    <Content Include="assets\img\logo.png" />
+    <Content Include="assets\img\logo1.png" />
     <Content Include="assets\img\money.svg" />
     <Content Include="assets\img\peachy-bg.jpg" />
     <Content Include="assets\img\person.svg" />
@@ -426,6 +425,7 @@
     <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\chartist.min.css" />
     <Content Include="Content\css\font-awesome.css" />
+    <Content Include="Content\css\fontawasome_new.css" />
     <Content Include="Content\css\fullcalendar.css" />
     <Content Include="Content\css\ion.rangeSlider.css" />
     <Content Include="Content\css\ion.rangeSlider.skinFlat.css" />
@@ -491,9 +491,29 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Index.html" />
+    <Content Include="partial\app\app.js" />
+    <Content Include="partial\app\config.js" />
+    <Content Include="partial\app\home\home.html" />
+    <Content Include="partial\app\home\homeCtrl.js" />
+    <Content Include="partial\app\home\homeService.js" />
+    <Content Include="partial\app\User\currency.html" />
+    <Content Include="partial\app\User\userCtrl.js" />
+    <Content Include="partial\app\User\userService.js" />
+    <Content Include="partial\app\User\user.html" />
+    <Content Include="partial\content-top.html" />
+    <Content Include="partial\about.html" />
+    <Content Include="partial\ba-sidbar.html" />
+    <Content Include="partial\app\currency\currencyService.js" />
+    <Content Include="partial\app\currency\currency.html" />
+    <Content Include="partial\app\currency\currencyCtrl.js" />
     <Content Include="Scripts\app\app.js" />
+    <Content Include="Scripts\app\content-top.html" />
     <Content Include="Scripts\app\Login.js" />
     <Content Include="Scripts\app\pages\Currency\Currency.js" />
+    <Content Include="Scripts\app\pages\Owner\containerPositioning.js" />
+    <Content Include="Scripts\app\pages\Owner\ng-sortable.js" />
+    <Content Include="Scripts\app\pages\Owner\ng-sortable.min.css" />
     <Content Include="Scripts\app\pages\User\User.js" />
     <Content Include="Scripts\app\pages\HomePage\HomePage.js" />
     <Content Include="Scripts\app\pages\About\About.js" />
@@ -1002,6 +1022,7 @@
     <Content Include="Templates\ba-sidebar.html" />
     <Content Include="Templates\backTop.html" />
     <Content Include="Views\About\Index.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1014,7 +1035,6 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
   </ItemGroup>
@@ -1091,6 +1111,7 @@
     <Content Include="Views\Login\ForgotPassword.cshtml" />
     <Content Include="Views\Login\ForgotPasswordConfirmation.cshtml" />
     <Content Include="Views\Currency\Index.cshtml" />
+    <None Include="Properties\PublishProfiles\PortalMBackend.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GMG_Portal.API\GMG_Portal.API.csproj">

@@ -1,16 +1,17 @@
-﻿controllerProvider.register('NewsCategorysController', ['$scope', 'NewsCategoryApi', 'uploadService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', NewsCategorysController]);
-function NewsCategorysController($scope, NewsCategoryApi, uploadService, $rootScope, $timeout, $filter, $uibModal, toastr) {
+﻿controllerProvider.register('NewsCategorysController', ['$scope','appCONSTANTS', 'NewsCategoryApi', 'uploadService', '$rootScope', '$timeout', '$filter', '$uibModal', 'toastr', NewsCategorysController]);
+function NewsCategorysController($scope,appCONSTANTS, NewsCategoryApi, uploadService, $rootScope, $timeout, $filter, $uibModal, toastr) {
+    $scope.language = appCONSTANTS.supportedLanguage;
     var langId = document.querySelector('#HCurrentLang').value;
-    var CurrentLanguage = langId;
+    $scope.CurrentLanguage = langId;
     $("#DropdwonLang").change(function () {
         var selectedText = $(this).find("option:selected").text();
         var selectedValue = $(this).val();
         document.getElementById("HCurrentLang").value = selectedValue;
-        CurrentLanguage = selectedValue;
+        $scope.CurrentLanguage = selectedValue;
 
         debugger;
 
-        NewsCategoryApi.GetAll(CurrentLanguage).then(function (response) {
+        NewsCategoryApi.GetAll($scope.CurrentLanguage).then(function (response) {
             $scope.NewsCategorys = response.data;
             $rootScope.ViewLoading = false;
         });
@@ -19,9 +20,10 @@ function NewsCategorysController($scope, NewsCategoryApi, uploadService, $rootSc
     $scope.Image = "";
     $scope.letterLimit = 20;
     $rootScope.ViewLoading = true;
-    NewsCategoryApi.GetAll(CurrentLanguage).then(function (response) {
+    NewsCategoryApi.GetAll($scope.CurrentLanguage).then(function (response) {
         $scope.NewsCategorys = response.data;
         $rootScope.ViewLoading = false;
+        console.log($scope.NewsCategorys);
     });
     $scope.open = function (NewsCategory) {
         debugger;
@@ -65,7 +67,7 @@ function NewsCategorysController($scope, NewsCategoryApi, uploadService, $rootSc
     $scope.save = function () {
         $rootScope.ViewLoading = true;
 
-        $scope.NewsCategory.langId = CurrentLanguage;
+        $scope.NewsCategory.langId = $scope.CurrentLanguage;
 
         debugger;
         NewsCategoryApi.Save($scope.NewsCategory).then(function (response) {

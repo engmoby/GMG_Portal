@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity.Core.Objects;
-using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using GMG_Portal.Business.Logic.General;
 using GMG_Portal.Data;
 using Heloper;
@@ -22,181 +18,173 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         public List<Hotel> GetAllWithDeleted()
         {
             var returnList = new List<Hotel>();
-            var getHotelInfo = _db.Hotels.ToList();
-            foreach (var hotel in getHotelInfo)
-            {
-                var haveFeature = true;
+            return _db.Hotels.ToList();
+            //foreach (var hotel in getHotelInfo)
+            //{
+            //    var haveFeature = true;
 
-                var getHotelImages = _db.Hotels_Images.Where(p => p.IsDeleted != true && p.Hotel_Id == hotel.Id).ToList();
-                var getHotelFeatures = _db.Hotels_Features.FirstOrDefault(p => p.IsDeleted != true && p.Hotel_Id == hotel.Id);
-                var getCurrency = _db.Currencies.FirstOrDefault(p => p.Id == hotel.Currency);
+            //    //  var getHotelImages = _db.Hotels_Images.Where(p => p.IsDeleted != true && p.Hotel_Id == hotel.Id).ToList();
+            //    // var getHotelFeatures = _db.Hotels_Features.FirstOrDefault(p => p.IsDeleted != true && p.Hotel_Id == hotel.Id);
+            //    var getCurrency = _db.Currency_Translate.FirstOrDefault(p => p.RecordId == hotel.Currency);
 
-                DateTime dtCheckin = DateTime.Parse(hotel.CheckIn).AddHours(2);
-                DateTime dtCheckout = DateTime.Parse(hotel.CheckOut).AddHours(2);
-                if (getHotelImages.Any())
-                {
+            //    DateTime dtCheckin = DateTime.Parse(hotel.CheckIn).AddHours(2);
+            //    DateTime dtCheckout = DateTime.Parse(hotel.CheckOut).AddHours(2);
+            //    if (hotel.Hotels_Images.Any())
+            //    {
 
-                    if (getHotelFeatures == null)
-                        haveFeature = false;
-                    returnList.Add(new Hotel
-                    {
-                        Id = hotel.Id,
-                        DisplayValue = hotel.DisplayValue,
-                        DisplayValueDesc = hotel.DisplayValueDesc,
-                        Rate = hotel.Rate,
-                        PriceStart = hotel.PriceStart,
-                        Currency = hotel.Currency,
-                        CurrencyTitle = getCurrency.DisplayValue,
-                        IsDeleted = hotel.IsDeleted,
-                        HasImage = haveFeature,
-                        Image = getHotelImages[0].Image,
-                        Late = hotel.Late,
-                        Long = hotel.Long,
-                        CheckIn = dtCheckin.ToString(),
-                        CheckOut = dtCheckout.ToString(),
-                    });
-                }
-                else
-                {
-                    returnList.Add(new Hotel
-                    {
-                        Id = hotel.Id,
-                        DisplayValue = hotel.DisplayValue,
-                        DisplayValueDesc = hotel.DisplayValueDesc,
-                        Rate = hotel.Rate,
-                        IsDeleted = hotel.IsDeleted,
-                        PriceStart = hotel.PriceStart,
-                        Currency = hotel.Currency,
-                        CurrencyTitle = getCurrency.DisplayValue,
-                        HasImage = false,
-                        Late = hotel.Late,
-                        Long = hotel.Long,
-                        CheckIn = dtCheckin.ToString(),
-                        CheckOut = dtCheckout.ToString(),
-                    });
-                }
+            //        if (hotel.Hotels_Features == null)
+            //            haveFeature = false;
+            //        returnList.Add(new Hotel
+            //        {
+            //            Id = hotel.Id,
+            //            Rate = hotel.Rate,
+            //            PriceStart = hotel.PriceStart,
+            //            Currency = hotel.Currency,
+            //            CurrencyTitle = getCurrency.Title,
+            //            IsDeleted = hotel.IsDeleted,
+            //            HasImage = haveFeature,
+            //            //Image = getHotelImages[0].Image,
+            //            Late = hotel.Late,
+            //            Long = hotel.Long,
+            //            CheckIn = dtCheckin.ToString(),
+            //            CheckOut = dtCheckout.ToString(),
+            //        });
+            //    }
+            //    else
+            //    {
+            //        returnList.Add(new Hotel
+            //        {
+            //            Id = hotel.Id,
+            //            Rate = hotel.Rate,
+            //            IsDeleted = hotel.IsDeleted,
+            //            PriceStart = hotel.PriceStart,
+            //            Currency = hotel.Currency,
+            //            CurrencyTitle = getCurrency.Title,
+            //            HasImage = false,
+            //            Late = hotel.Late,
+            //            Long = hotel.Long,
+            //            CheckIn = dtCheckin.ToString(),
+            //            CheckOut = dtCheckout.ToString(),
+            //        });
+            //    }
 
-            }
+            //}
 
-            return returnList;
+            //return returnList;
         }
 
         public List<Hotel> GetAllWithCount()
         {
             var returnList = new List<Hotel>();
-            var getHotelInfo = _db.Hotels.Where(p => p.IsDeleted == false).OrderByDescending(h => h.Id).ToList();
-            foreach (var hotel in getHotelInfo)
-            {
-                var getHotelImages = _db.Hotels_Images.Where(p => p.IsDeleted != true && p.Hotel_Id == hotel.Id).ToList();
-                var getHotelFeatures = _db.Hotels_Features.FirstOrDefault(p => p.IsDeleted != true && p.Hotel_Id == hotel.Id);
-                // var getCurrency = _db.Currencies.FirstOrDefault(p => p.Id == hotel.Currency);
+            return _db.Hotels.Where(p => p.IsDeleted == false).OrderByDescending(h => h.Id).ToList();
 
-                if (getHotelImages.Any())
-                {
-                    if (getHotelFeatures == null)
-                        continue;
-                    returnList.Add(new Hotel
-                    {
-                        Id = hotel.Id,
-                        DisplayValue = hotel.DisplayValue,
-                        DisplayValueDesc = hotel.DisplayValueDesc,
-                        Rate = hotel.Rate,
-                        PriceStart = hotel.PriceStart,
-                        Currency = hotel.Currency,
-                        // CurrencyTitle = getCurrency.DisplayValue,
-                        HasImage = true,
-                    });
-                }
-                if (returnList.Count >= 5)
-                    return returnList;
-            }
+           
+            //foreach (var hotel in getHotelInfo)
+            //{
+            //    // var getHotelImages = _db.Hotels_Images.Where(p => p.IsDeleted != true && p.Hotel_Id == hotel.Id).ToList();
+            //    //var getHotelFeatures = _db.Hotels_Features.FirstOrDefault(p => p.IsDeleted != true && p.Hotel_Id == hotel.Id);
+            //    // var getCurrency = _db.Currencies.FirstOrDefault(p => p.Id == hotel.Currency);
 
-            return returnList;
+            //    //if (hotel.Hotels_Images.Any())
+            //    //{
+            //    //    if (hotel.Hotels_Features == null)
+            //    //        continue;
+            //    //    returnList.Add(new Hotel
+            //    //    {
+            //    //        Id = hotel.Id,
+            //    //        Rate = hotel.Rate,
+            //    //        PriceStart = hotel.PriceStart,
+            //    //        Currency = hotel.Currency,
+            //    //        // CurrencyTitle = getCurrency.DisplayValue,
+            //    //        HasImage = true,
+            //    //    });
+            //    //}
+            //    //if (returnList.Count >= 5)
+            //    //    return returnList;
+            //}
+            //if (returnList.Count >= 5)
+            //    return returnList;
+            //return returnList;
         }
 
         public List<Hotel> GetAll()
         {
             var returnList = new List<Hotel>();
-            var getHotelInfo = _db.Hotels.Where(p => p.IsDeleted == false && p.Show).ToList();
-            foreach (var hotel in getHotelInfo)
-            {
-                var featuresList = new List<SystemParameters_Features>();
-                var getCurrency = _db.Currencies.FirstOrDefault(p => p.Id == hotel.Currency);
-                var getHotelFeatures = _db.Hotels_Features.Where(p => p.IsDeleted != true && p.Hotel_Id == hotel.Id).ToList();
+            return _db.Hotels.Where(p => p.IsDeleted == false).ToList();
+            //foreach (var hotel in getHotelInfo)
+            //{
+            //    // var featuresList = new List<SystemParameters_Features>();
+            //    var getCurrency = _db.Currency_Translate.FirstOrDefault(p => p.RecordId == hotel.Currency);
+            //    //var getHotelFeatures = _db.Hotels_Features.Where(p => p.IsDeleted != true && p.Hotel_Id == hotel.Id).ToList();
 
-                if (!getHotelFeatures.Any())
-                    continue;
-                foreach (var hotelFeature in getHotelFeatures)
-                {
-                    var getFeatures = _db.SystemParameters_Features.Where(p => p.IsDeleted != true && p.Id == hotelFeature.Feature_Id).ToList();
-                    foreach (var feature in getFeatures)
-                    {
-                        featuresList.Add(new SystemParameters_Features
-                        {
-                            DisplayValue = feature.DisplayValue,
-                            Icon = feature.Icon
-                        });
-                    }
-                }
+            //    if (!hotel.Hotels_Features.Any())
+            //        continue;
+            //    //foreach (var hotelFeature in getHotelFeatures)
+            //    //{
+            //    //    //var getFeatures = _db.SystemParameters_Features.Where(p => p.IsDeleted != true && p.Id == hotelFeature.Feature_Id).ToList();
+            //    //    //foreach (var feature in getFeatures)
+            //    //    //{
+            //    //    //    featuresList.Add(new SystemParameters_Features
+            //    //    //    {
+            //    //    //        DisplayValue = feature.DisplayValue,
+            //    //    //        Icon = feature.Icon
+            //    //    //    });
+            //    //    //}
+            //    //}
 
-                var getHotelImages = _db.Hotels_Images.Where(p => p.IsDeleted != true && p.Hotel_Id == hotel.Id).ToList();
+            //    var getHotelImages = _db.Hotels_Images.Where(p => p.IsDeleted != true && p.Hotel_Id == hotel.Id).ToList();
 
-                if (getHotelImages.Any())
-                {
-                    returnList.Add(new Hotel
-                    {
-                        Id = hotel.Id,
-                        DisplayValue = hotel.DisplayValue,
-                        DisplayValueDesc = hotel.DisplayValueDesc,
-                        Rate = hotel.Rate,
-                        PriceStart = hotel.PriceStart,
-                        Currency = hotel.Currency,
-                        CurrencyTitle = getCurrency.DisplayValue,
-                        FeaturesList = featuresList,
-                        Image = getHotelImages[0].Image,
-                        Bootstrap = 12 / getHotelInfo.Count
-                    });
-                }
-                else
-                {
+            //    if (getHotelImages.Any())
+            //    {
+            //        returnList.Add(new Hotel
+            //        {
+            //            Id = hotel.Id,
+            //            Rate = hotel.Rate,
+            //            PriceStart = hotel.PriceStart,
+            //            Currency = hotel.Currency,
+            //            CurrencyTitle = getCurrency.Title,
+            //            //  FeaturesList = featuresList,
+            //            Image = getHotelImages[0].Image,
+            //            Bootstrap = 12 / getHotelInfo.Count
+            //        });
+            //    }
+            //    else
+            //    {
 
-                    returnList.Add(new Hotel
-                    {
-                        Id = hotel.Id,
-                        DisplayValue = hotel.DisplayValue,
-                        DisplayValueDesc = hotel.DisplayValueDesc,
-                        Rate = hotel.Rate,
-                        PriceStart = hotel.PriceStart,
-                        Currency = hotel.Currency,
-                        CurrencyTitle = getCurrency.DisplayValue,
-                        FeaturesList = featuresList,
-                        Bootstrap = 12 / getHotelInfo.Count
-                    });
-                }
-            }
+            //        returnList.Add(new Hotel
+            //        {
+            //            Id = hotel.Id,
+            //            Rate = hotel.Rate,
+            //            PriceStart = hotel.PriceStart,
+            //            Currency = hotel.Currency,
+            //            CurrencyTitle = getCurrency.Title,
+            //            Bootstrap = 12 / getHotelInfo.Count
+            //        });
+            //    }
+            //}
 
-            return returnList;
+            //return returnList;
         }
         public Hotel Get(int id)
         {
             var returnList = new Hotel();
-            var featuresList = new List<SystemParameters_Features>();
 
             var getHotelInfo = _db.Hotels.FirstOrDefault(p => p.Id == id);
             var getHotelFeatures = _db.Hotels_Features.Where(p => p.Hotel_Id == getHotelInfo.Id).ToList();
-            var getCurrencyInfo = _db.Currencies.FirstOrDefault(p => p.Id == getHotelInfo.Currency);
-            foreach (var hotelFeature in getHotelFeatures)
-            {
-                var getFeatures = _db.SystemParameters_Features.Where(p => p.Id == hotelFeature.Feature_Id).ToList();
-                foreach (var feature in getFeatures)
-                {
-                    featuresList.Add(new SystemParameters_Features
-                    {
-                        DisplayValue = feature.DisplayValue,
-                        Icon = feature.Icon
-                    });
-                }
-            }
+            var getCurrencyInfo = _db.Currency_Translate.FirstOrDefault(p => p.RecordId == getHotelInfo.Currency);
+
+            //foreach (var hotelFeature in getHotelFeatures)
+            //{
+            //    //var getFeatures = _db.SystemParameters_Features.Where(p => p.Id == hotelFeature.Feature_Id).ToList();
+            //    //foreach (var feature in getFeatures)
+            //    //{
+            //    //    featuresList.Add(new SystemParameters_Features
+            //    //    {
+            //    //        DisplayValue = feature.DisplayValue,
+            //    //        Icon = feature.Icon
+            //    //    });
+            //    //}
+            //}
             var getHotelImages = _db.Hotels_Images.Where(p => p.Hotel_Id == getHotelInfo.Id && p.IsDeleted == false).ToList();
 
             if (getHotelInfo != null)
@@ -210,20 +198,15 @@ namespace GMG_Portal.Business.Logic.SystemParameters
 
                 DateTime dtCheckin = DateTime.Parse(getHotelInfo.CheckIn);
                 DateTime dtCheckout = DateTime.Parse(getHotelInfo.CheckOut);
-                DateTime dtCheckin1 = GeneralLogic.GetKsaDate(getHotelInfo.CheckIn);
-                string dtCheckinn = GeneralLogic.GetCountryTime("Saudi Arabia", getHotelInfo.CheckIn);
-                string dtCheckout1 = GeneralLogic.GetCountryTime("Saudi Arabia", getHotelInfo.CheckOut);
                 returnList.Id = getHotelInfo.Id;
-                returnList.DisplayValue = getHotelInfo.DisplayValue;
-                returnList.DisplayValueDesc = getHotelInfo.DisplayValueDesc;
                 returnList.Rate = getHotelInfo.Rate;
                 returnList.PriceStart = getHotelInfo.PriceStart;
-                returnList.CurrencyTitle = getCurrencyInfo.DisplayValue;
+                returnList.CurrencyTitle = getCurrencyInfo.Title;
                 returnList.Late = getHotelInfo.Late;
                 returnList.Long = getHotelInfo.Long;
                 returnList.CheckIn = dtCheckin.ToString();
                 returnList.CheckOut = dtCheckout.ToString();
-                returnList.FeaturesList = featuresList;
+                //  returnList.FeaturesList = featuresList;
 
                 return returnList;
             }
@@ -236,54 +219,53 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         public Hotel GetWithDeleted(int id)
         {
             var returnList = new Hotel();
-            var featuresList = new List<SystemParameters_Features>();
+            // var featuresList = new List<SystemParameters_Features>();
 
-            var getHotelInfo = _db.Hotels.FirstOrDefault(p => p.Id == id);
-            var getCurrency = _db.Currencies.FirstOrDefault(p => p.Id == getHotelInfo.Currency);
-            var getHotelFeatures = _db.Hotels_Features.Where(p => p.Hotel_Id == getHotelInfo.Id).ToList();
-            foreach (var hotelFeature in getHotelFeatures)
-            {
-                var getFeatures = _db.SystemParameters_Features.Where(p => p.Id == hotelFeature.Feature_Id).ToList();
-                foreach (var feature in getFeatures)
-                {
-                    featuresList.Add(new SystemParameters_Features
-                    {
-                        Id = feature.Id,
-                        DisplayValue = feature.DisplayValue,
-                        Icon = feature.Icon
-                    });
-                }
-            }
-            var getHotelImages = _db.Hotels_Images.Where(p => p.Hotel_Id == getHotelInfo.Id).ToList();
+            return _db.Hotels.FirstOrDefault(p => p.Id == id);
+           // var getCurrency = _db.Currency_Translate.FirstOrDefault(p => p.RecordId == getHotelInfo.Currency);
 
-            if (getHotelInfo != null)
-            {
-                //DateTime dtCheckin = DateTime.Parse(getHotelInfo.CheckIn, new CultureInfo("ar-SA"));
-                //DateTime dtCheckout = DateTime.Parse(getHotelInfo.CheckOut, new CultureInfo("ar-SA"));
+            //var getHotelFeatures = _db.Hotels_Features.Where(p => p.Hotel_Id == getHotelInfo.Id).ToList();
+            //foreach (var hotelFeature in getHotelFeatures)
+            //{
+            //    //var getFeatures = _db.SystemParameters_Features.Where(p => p.Id == hotelFeature.Feature_Id).ToList();
+            //    //foreach (var feature in getFeatures)
+            //    //{
+            //    //    featuresList.Add(new SystemParameters_Features
+            //    //    {
+            //    //        Id = feature.Id,
+            //    //        DisplayValue = feature.DisplayValue,
+            //    //        Icon = feature.Icon
+            //    //    });
+            //    //}
+            //}
+            //var getHotelImages = _db.Hotels_Images.Where(p => p.Hotel_Id == getHotelInfo.Id).ToList();
 
-                DateTime dtCheckin = DateTime.Parse(getHotelInfo.CheckIn).AddHours(2);
-                DateTime dtCheckout = DateTime.Parse(getHotelInfo.CheckOut).AddHours(2);
-                if (getHotelImages.Any())
-                {
-                    returnList.Image = getHotelImages[0].Image;
-                    returnList.ImageList = getHotelImages;
-                }
-                returnList.Id = getHotelInfo.Id;
-                returnList.DisplayValue = getHotelInfo.DisplayValue;
-                returnList.DisplayValueDesc = getHotelInfo.DisplayValueDesc;
-                returnList.Rate = getHotelInfo.Rate;
-                returnList.PriceStart = getHotelInfo.PriceStart;
-                returnList.Currency = getHotelInfo.Currency;
-                returnList.CurrencyTitle = getCurrency.DisplayValue;
-                returnList.FeaturesList = featuresList;
-                returnList.Late = getHotelInfo.Late;
-                returnList.Long = getHotelInfo.Long;
-                returnList.CheckIn = dtCheckin.ToString();
-                returnList.CheckOut = dtCheckout.ToString();
+            //if (getHotelInfo != null)
+            //{
+            //    //DateTime dtCheckin = DateTime.Parse(getHotelInfo.CheckIn, new CultureInfo("ar-SA"));
+            //    //DateTime dtCheckout = DateTime.Parse(getHotelInfo.CheckOut, new CultureInfo("ar-SA"));
 
-                return returnList;
-            }
-            else return null;
+            //    DateTime dtCheckin = DateTime.Parse(getHotelInfo.CheckIn).AddHours(2);
+            //    DateTime dtCheckout = DateTime.Parse(getHotelInfo.CheckOut).AddHours(2);
+            //    if (getHotelInfo.Hotels_Images.Any())
+            //    {
+            //        returnList.Image = getHotelImages[0].Image;
+            //        returnList.ImageList = getHotelImages;
+            //    }
+            //    returnList.Id = getHotelInfo.Id;
+            //    returnList.Rate = getHotelInfo.Rate;
+            //    returnList.PriceStart = getHotelInfo.PriceStart;
+            //    returnList.Currency = getHotelInfo.Currency;
+            //    returnList.CurrencyTitle = getCurrency.Title;
+            //    //  returnList.FeaturesList = featuresList;
+            //    returnList.Late = getHotelInfo.Late;
+            //    returnList.Long = getHotelInfo.Long;
+            //    returnList.CheckIn = dtCheckin.ToString();
+            //    returnList.CheckOut = dtCheckout.ToString();
+
+            //    return returnList;
+            //}
+            //else return null;
 
 
 
@@ -299,16 +281,16 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         }
         public IQueryable<Hotels_Images> HotelImages(int hotelId)
         {
-            return _db.Hotels_Images.Where(x => x.Hotel_Id == hotelId && x.Show);
+            return _db.Hotels_Images.Where(x => x.Hotel_Id == hotelId && !x.IsDeleted);
         }
         public List<Hotels_Images> GetAllImages()
         {
             var returnList = new List<Hotels_Images>();
-            var availableHotels = _db.Hotels.Where(x => x.IsDeleted == false).ToList();
+            var availableHotels = _db.Hotels.Where(x => !x.IsDeleted).ToList();
             foreach (var availableHotel in availableHotels)
             {
-                var imageList = _db.Hotels_Images.Where(x => x.IsDeleted == false && x.Hotel_Id == availableHotel.Id).ToList();
-                var random = imageList.OrderBy(x => Guid.NewGuid()).Take(10);
+                //var imageList = _db.Hotels_Images.Where(x => x.IsDeleted == false && x.Hotel_Id == availableHotel.Id).ToList();
+                var random = availableHotel.Hotels_Images.OrderBy(x => Guid.NewGuid()).Take(10);
                 foreach (var hotelsImagese in random)
                 {
                     returnList.Add(new Hotels_Images
@@ -350,10 +332,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
         {
             var hotel = new Hotel()
             {
-                DisplayValue = postedhotel.DisplayValue,
-                DisplayValueDesc = postedhotel.DisplayValueDesc,
                 IsDeleted = postedhotel.IsDeleted,
-                Show = Parameters.Show,
                 PriceStart = postedhotel.PriceStart,
                 Rate = postedhotel.Rate,
                 Currency = postedhotel.Currency,
@@ -366,15 +345,45 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 CreatorUserId = Parameters.UserId,
             };
             _db.Hotels.Add(hotel);
-            return Save(hotel);
+            _db.SaveChanges();
+            var objTrasnlate = new Hotels_Translate();
+            {
+                foreach (var title in postedhotel.TitleDictionary)
+                {
+                    objTrasnlate.Title = title.Value;
+                    objTrasnlate.Descrtiption = postedhotel.DescDictionary[title.Key];
+                    objTrasnlate.langId = title.Key;
+                    objTrasnlate.RecordId = hotel.Id;
+                    _db.Hotels_Translate.Add(objTrasnlate);
+                    _db.SaveChanges();
+                }
+            }
+            Hotel hotelObj = Get(hotel.Id);
+            List<Hotels_Translate> hotelTranslate = GetTranslates(hotel.Id);
+            return Save(hotelObj);
+        }
+        public List<Hotels_Translate> GetTranslates(int recordId)
+        {
+            return _db.Hotels_Translate.Where(x => x.RecordId == recordId).ToList();
         }
         public Hotel Edit(Hotel postedHotel)
         {
 
-            //  DateTime dateTime = DateTime.ParseExact(postedHotel.CheckIn, "HH:mm:ss",CultureInfo.InvariantCulture);
             var hotel = GetHotelInfoById(postedHotel.Id);
-            hotel.DisplayValue = postedHotel.DisplayValue;
-            hotel.DisplayValueDesc = postedHotel.DisplayValueDesc;
+            List<Hotels_Translate> hotelTranslate = GetTranslates(postedHotel.Id);
+            foreach (var title in postedHotel.TitleDictionary)
+            {
+                foreach (var objTranslate in hotelTranslate)
+                {
+                    if (title.Key == objTranslate.langId)
+                    {
+                        objTranslate.Title = title.Value;
+                        objTranslate.Descrtiption = postedHotel.DescDictionary[title.Key];
+                        _db.SaveChanges();
+                    }
+                }
+            }
+
             hotel.IsDeleted = postedHotel.IsDeleted;
             hotel.ImageList = postedHotel.ImageList;
             hotel.Rate = postedHotel.Rate;
@@ -414,8 +423,7 @@ namespace GMG_Portal.Business.Logic.SystemParameters
                 var image = new Hotels_Images()
                 {
                     Image = imageObj.Image,
-                    IsDeleted = false,
-                    Show = Parameters.Show,
+                    IsDeleted = false, 
                     Hotel_Id = postedhotel[0].Hotel_Id,
                     LastModificationTime = Parameters.CurrentDateTime,
                     CreationTime = Parameters.CurrentDateTime,
